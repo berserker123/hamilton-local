@@ -160,6 +160,9 @@ const TEXT = {
     medBadge: '就医指引', medH: 'Anglesea 急症诊所', medP: 'Anglesea Clinic Urgent Care，24 小时 · 每天开放，无需预约，按病情紧急程度看诊，需现场付费。',
     medPhone: '电话', medAddr: '地址', copy: '复制', healthline: '免费健康热线 Healthline', healthlineNote: '24/7，可要求翻译',
     life: '有生命危险请直接拨打', srcs: '来源',
+    em111Big: '紧急情况请立即拨打', medDisc: '本站不提供医疗建议。营业时间可能变动，请以诊所官方信息为准。',
+    wxBy: '天气数据来自', photoCredits: '图片来源', creditsH: '图片来源与授权', creditsP: '本站地点照片均来自 Wikimedia Commons，按各自授权使用（未作修改，仅压缩尺寸）。', cPlace: '地点', cAuthor: '作者', cLicense: '授权', cSource: '原图', close: '关闭',
+    indep: '本站为个人独立整理的信息网站，与所列任何商家、诊所、机构或市政府均无关联，也未获其背书。',
     smH: '亚洲超市与食材', smP: '只收录能在官网或公开商家目录里核对到地址和电话的门店；标“目录信息”的营业时间来自第三方目录', smCount: (n:number)=>`已核对 ${n} 家`,
     hoursUnknown: '营业时间未核实，出发前请电话确认', copyAddr: '复制地址', area: '区域',
     wkH: '周末遛娃 & 周边去处', wkP: '距离按 Hamilton 市中心估算；照片来自 Wikimedia Commons', km: '约 {n} km',
@@ -194,6 +197,9 @@ const TEXT = {
     medBadge: 'Medical help', medH: 'Anglesea Clinic Urgent Care', medP: 'Open 24 hours, 7 days. No appointment needed; patients are seen by urgency. Payment is required upfront.',
     medPhone: 'Phone', medAddr: 'Address', copy: 'Copy', healthline: 'Free Healthline', healthlineNote: '24/7, interpreters available',
     life: 'Life-threatening emergency? Call', srcs: 'Sources',
+    em111Big: 'In an emergency, call', medDisc: 'This site does not give medical advice. Hours may change — please check with the clinic.',
+    wxBy: 'Weather data by', photoCredits: 'Photo credits', creditsH: 'Photo credits & licences', creditsP: 'All place photos are from Wikimedia Commons and used under their stated licences (unmodified except resizing).', cPlace: 'Place', cAuthor: 'Author', cLicense: 'Licence', cSource: 'Source', close: 'Close',
+    indep: 'This is an independent, personally compiled site. It is not affiliated with or endorsed by any business, clinic, organisation or council listed.',
     smH: 'Asian grocers', smP: 'Only stores whose address and phone we could check on an official site or public business listing; hours marked "directory listing" come from third-party directories', smCount: (n:number)=>`${n} checked`,
     hoursUnknown: 'Hours not verified — call ahead', copyAddr: 'Copy address', area: 'Area',
     wkH: 'Weekend outings', wkP: 'Distances are rough estimates from central Hamilton; photos from Wikimedia Commons', km: '~{n} km',
@@ -353,6 +359,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDestCat, setSelectedDestCat] = useState('all');
   const [toastMessage, setToastMessage] = useState('');
+  const [showCredits, setShowCredits] = useState(false);
   const [toolTab, setToolTab] = useState<'bins' | 'transport' | 'urgent'>('bins');
   const [smType, setSmType] = useState('all');
   const [now, setNow] = useState(nzNow());
@@ -561,6 +568,10 @@ export default function App() {
 
           {toolTab === 'urgent' && (
             <div data-testid="panel-urgent" className="space-y-4">
+              <div data-testid="em111" className="border-2 border-red-600 bg-red-50 rounded-2xl px-4 py-3 text-center">
+                <a href="tel:111" className="text-lg sm:text-xl font-extrabold text-red-700">{T.em111Big} <span className="underline">111</span></a>
+                <p className="text-xs text-slate-600 mt-1">{T.medDisc}</p>
+              </div>
               <div className="bg-gradient-to-r from-red-600 to-rose-700 text-white rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-sm font-semibold"><AlertCircle className="w-5 h-5 shrink-0" />{T.life} <a href="tel:111" className="text-xl underline font-extrabold">111</a></div>
                 <a href="tel:0800611116" className="flex items-center gap-2 bg-white/15 hover:bg-white/25 rounded-xl px-3 py-2 text-sm"><ShieldCheck className="w-4 h-4 text-emerald-200" />{T.healthline}: <strong>0800 611 116</strong><span className="text-[11px] text-red-100">· {T.healthlineNote}</span></a>
@@ -707,6 +718,11 @@ export default function App() {
           <div>
             <h4 className="font-bold text-slate-200 mb-3 uppercase tracking-wider">{T.footDisc}</h4>
             <p className="leading-relaxed text-slate-500">{T.footDiscP}</p>
+            <p className="leading-relaxed text-slate-500 mt-2">{T.indep}</p>
+            <p className="mt-3 space-y-1">
+              <span className="block">{T.wxBy} <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="underline hover:text-teal-300">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer" className="underline hover:text-teal-300">CC BY 4.0</a>)</span>
+              <button data-testid="credits-btn" onClick={() => setShowCredits(true)} className="underline hover:text-teal-300">{T.photoCredits}</button>
+            </p>
           </div>
         </div>
         <div className="max-w-6xl mx-auto pt-8 mt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-slate-500 text-[11px] gap-2">
@@ -714,6 +730,25 @@ export default function App() {
           <span>Hamilton · Waikato · New Zealand</span>
         </div>
       </footer>
+      {showCredits && (
+        <div data-testid="credits" className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setShowCredits(false)}>
+          <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto p-5 text-sm" onClick={e => e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <h2 className="font-bold text-lg text-slate-900">{T.creditsH}</h2>
+              <button onClick={() => setShowCredits(false)} className="text-slate-500 hover:text-slate-900 text-xs border rounded-lg px-2 py-1">{T.close}</button>
+            </div>
+            <p className="text-xs text-slate-500 mb-3">{T.creditsP}</p>
+            <ul className="divide-y divide-slate-100">
+              {(PLACES as any[]).filter(p => p.photo).map(p => (
+                <li key={p.id} className="py-2 grid grid-cols-1 sm:grid-cols-[1.2fr_1fr_auto] gap-x-3 gap-y-0.5">
+                  <span className="font-semibold text-slate-900">{lang === 'zh' ? `${p.zh} · ${p.name}` : p.name}</span>
+                  <span className="text-slate-600">{T.cAuthor}: {p.photoCredit}</span>
+                  <span className="text-slate-600"><a href={p.photoLicenseUrl} target="_blank" rel="noreferrer" className="underline text-teal-700">{p.photoLicense}</a> · <a href={p.photoSource} target="_blank" rel="noreferrer" className="underline text-teal-700">{T.cSource}</a></span>
+                </li>))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
