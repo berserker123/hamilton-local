@@ -8,7 +8,7 @@ https://berserker123.github.io/hamilton-local/
 
 ## 文件
 
-- `index.html`、`app.js`、`app.css`、`photos/`：构建好的静态站点，路径均为相对路径。
+- `index.html`、`app.js`、`app.css`、`favicon.svg`、`photos/`：构建好的静态站点，路径均为相对路径。当前视觉为「极繁拼贴 Scrapbook」。
 - `source/`：源码，含 `src/`、`public/`、`index.html`、`build.sh`、`tailwind.config.js`。
 - `.nojekyll`：让 GitHub Pages 按原样提供文件，不经过 Jekyll 处理。
 
