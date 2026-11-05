@@ -5,6 +5,7 @@ import {
   Sun, Cloud, CloudRain, CloudSun, CloudFog, CloudLightning, Snowflake, Droplets, ExternalLink, Globe, Umbrella, Bus
 } from 'lucide-react';
 import PLACES from './places.json';
+import { LogoMark } from './Logo';
 
 type Lang = 'zh' | 'en';
 const CHECKED = '2026-11-03';
@@ -109,6 +110,7 @@ const URGENT = [
     sources: ['https://www.tuimedical.co.nz/rototuna', 'https://www.healthpoint.co.nz/gps-accident-urgent-medical-care/accident-urgent-medical-care-ae/tui-medical-rototuna-urgent-care-and-medical/'] },
 ];
 
+const HERO = { name: 'Waikato River, Hamilton', zh: '怀卡托河 · 汉密尔顿市区', credit: 'Umedha Hettigoda', license: 'CC BY-SA 2.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/', source: 'https://commons.wikimedia.org/wiki/File:Waikato_River,_Hamilton_city,_New_Zealand_(8162680016).jpg' };
 const B = 'https://www.busit.co.nz/hamilton-routes/';
 const ROUTES = [
   { n: 'O', name: 'Orbiter', zh: '环城线（顺/逆时针）', en: 'Ring route, both directions', slug: 'orbiter', hf: true },
@@ -161,7 +163,7 @@ const TEXT = {
     medPhone: '电话', medAddr: '地址', copy: '复制', healthline: '免费健康热线 Healthline', healthlineNote: '24/7，可要求翻译',
     life: '有生命危险请直接拨打', srcs: '来源',
     em111Big: '紧急情况请立即拨打', medDisc: '本站不提供医疗建议。营业时间可能变动，请以诊所官方信息为准。',
-    wxBy: '天气数据来自', photoCredits: '图片来源', creditsH: '图片来源与授权', creditsP: '本站地点照片均来自 Wikimedia Commons，按各自授权使用（未作修改，仅压缩尺寸）。', cPlace: '地点', cAuthor: '作者', cLicense: '授权', cSource: '原图', close: '关闭',
+    wxBy: '天气数据来自', photoCredits: '图片来源', creditsH: '图片来源与授权', creditsP: '本站照片均来自 Wikimedia Commons，按各自授权使用（仅裁剪、压缩尺寸）。', cPlace: '地点', cAuthor: '作者', cLicense: '授权', cSource: '原图', heroImg: '首屏大图', close: '关闭',
     indep: '本站为个人独立整理的信息网站，与所列任何商家、诊所、机构或市政府均无关联，也未获其背书。',
     smH: '亚洲超市与食材', smP: '只收录能在官网或公开商家目录里核对到地址和电话的门店；标“目录信息”的营业时间来自第三方目录', smCount: (n:number)=>`已核对 ${n} 家`,
     hoursUnknown: '营业时间未核实，出发前请电话确认', copyAddr: '复制地址', area: '区域',
@@ -198,7 +200,7 @@ const TEXT = {
     medPhone: 'Phone', medAddr: 'Address', copy: 'Copy', healthline: 'Free Healthline', healthlineNote: '24/7, interpreters available',
     life: 'Life-threatening emergency? Call', srcs: 'Sources',
     em111Big: 'In an emergency, call', medDisc: 'This site does not give medical advice. Hours may change — please check with the clinic.',
-    wxBy: 'Weather data by', photoCredits: 'Photo credits', creditsH: 'Photo credits & licences', creditsP: 'All place photos are from Wikimedia Commons and used under their stated licences (unmodified except resizing).', cPlace: 'Place', cAuthor: 'Author', cLicense: 'Licence', cSource: 'Source', close: 'Close',
+    wxBy: 'Weather data by', photoCredits: 'Photo credits', creditsH: 'Photo credits & licences', creditsP: 'All photos are from Wikimedia Commons and used under their stated licences (only cropped and resized).', cPlace: 'Place', cAuthor: 'Author', cLicense: 'Licence', cSource: 'Source', heroImg: 'Hero image', close: 'Close',
     indep: 'This is an independent, personally compiled site. It is not affiliated with or endorsed by any business, clinic, organisation or council listed.',
     smH: 'Asian grocers', smP: 'Only stores whose address and phone we could check on an official site or public business listing; hours marked "directory listing" come from third-party directories', smCount: (n:number)=>`${n} checked`,
     hoursUnknown: 'Hours not verified — call ahead', copyAddr: 'Copy address', area: 'Area',
@@ -269,14 +271,14 @@ function WeatherPill({ lang, T }: { lang: Lang; T: any }) {
   return (
     <div ref={ref} className="relative">
       <button data-testid="wx-pill" aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(o => !o)}
-        className="flex items-center gap-1.5 bg-teal-900/60 hover:bg-teal-900 px-2.5 py-1.5 rounded-full border border-teal-700 text-xs text-teal-50 transition">
+        className="sb-pill flex items-center gap-1.5 px-2.5 py-1.5 text-xs transition">
         <Icon className="w-4 h-4 text-amber-300" />
-        {cur ? (<><span className="font-bold">{Math.round(cur.temperature_2m)}°</span><span className="hidden sm:inline text-teal-200">{lang === 'zh' ? info!.zh : info!.en}</span></>)
-          : <span className="text-teal-200">{error ? T.wx.err : T.wx.loading}</span>}
+        {cur ? (<><span className="font-bold">{Math.round(cur.temperature_2m)}°</span><span className="hidden sm:inline text-white/80">{lang === 'zh' ? info!.zh : info!.en}</span></>)
+          : <span className="text-white/80">{error ? T.wx.err : T.wx.loading}</span>}
       </button>
       {open && (
         <div role="dialog" aria-label={T.wx.city} data-testid="wx-card"
-          className="fixed sm:absolute left-3 right-3 sm:left-auto sm:right-0 top-[68px] sm:top-full sm:mt-2 sm:w-[360px] z-50 bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200 p-5">
+          className="fixed sm:absolute left-3 right-3 sm:left-auto sm:right-0 top-[68px] sm:top-full sm:mt-2 sm:w-[360px] z-50 sb-card sb-wx text-slate-800 p-5">
           <div className="flex items-start justify-between">
             <div>
               <div className="text-xs text-slate-500">{T.wx.city} · {T.wx.now}</div>
@@ -329,10 +331,8 @@ function WeatherPill({ lang, T }: { lang: Lang; T: any }) {
 function SectionTitle({ title, sub }: { title: string; sub: string }) {
   return (
     <div>
-      <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-        <span className="w-2.5 h-6 bg-teal-600 rounded-full inline-block"></span><span>{title}</span>
-      </h2>
-      <p className="text-sm text-slate-500 mt-1">{sub}</p>
+      <h2 className="sb-h2"><span>{title}</span></h2>
+      <p className="text-sm text-slate-600 mt-2">{sub}</p>
     </div>
   );
 }
@@ -360,6 +360,7 @@ export default function App() {
   const [selectedDestCat, setSelectedDestCat] = useState('all');
   const [toastMessage, setToastMessage] = useState('');
   const [showCredits, setShowCredits] = useState(false);
+  useEffect(() => { if (!showCredits) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape') setShowCredits(false); }; document.addEventListener('keydown', k); return () => document.removeEventListener('keydown', k); }, [showCredits]);
   const [toolTab, setToolTab] = useState<'bins' | 'transport' | 'urgent'>('bins');
   const [smType, setSmType] = useState('all');
   const [now, setNow] = useState(nzNow());
@@ -387,36 +388,36 @@ export default function App() {
     { k: 'red', color: 'bg-red-500 text-white border-red-600', label: T.red, note: T.redNote, week: T.redWeek },
     { k: 'yellow', color: 'bg-yellow-400 text-yellow-950 border-yellow-500', label: T.yellow, note: T.yellowNote, week: T.yellowWeek },
     { k: 'glass', color: 'bg-sky-600 text-white border-sky-700', label: T.glass, note: T.glassNote, week: T.yellowWeek },
-    { k: 'food', color: 'bg-emerald-600 text-white border-emerald-700', label: T.food, note: T.foodNote, week: T.weekly },
+    { k: 'food', color: 'bg-green-700 text-white border-green-800', label: T.food, note: T.foodNote, week: T.weekly },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col antialiased selection:bg-teal-100 selection:text-teal-900">
+    <div className="sb-root min-h-screen text-slate-800 font-sans flex flex-col antialiased selection:bg-amber-200 selection:text-slate-900">
       {toastMessage && (
-        <div role="status" className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-2.5 rounded-full shadow-xl text-sm font-medium flex items-center gap-2 max-w-[90vw]">
+        <div role="status" className="sb-toast fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-2.5 shadow-xl text-sm font-medium flex items-center gap-2 max-w-[90vw]">
           <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" /><span>{toastMessage}</span>
         </div>
       )}
 
-      <header className="sticky top-0 z-40 bg-teal-800 text-white shadow-md border-b border-teal-700/50">
+      <header className="sb-header sticky top-0 z-40 text-white">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <button className="flex items-center gap-3 text-left min-w-0" onClick={() => go('home')}>
-            <div className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-tr from-emerald-400 to-teal-300 text-teal-950 flex items-center justify-center font-black text-lg shadow-inner">
-              {lang === 'zh' ? '汉' : 'HL'}
+            <div className="sb-logo w-10 h-10 shrink-0 flex items-center justify-center font-black text-lg">
+              <LogoMark />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
                 <span className="font-extrabold text-base sm:text-lg tracking-tight truncate">{T.brand}</span>
-                {lang === 'zh' && <span className="hidden sm:inline text-[10px] bg-teal-900/80 text-teal-200 border border-teal-600 px-1.5 py-0.5 rounded-full">Hamilton Local</span>}
+                {lang === 'zh' && <span className="hidden sm:inline sb-mini text-[10px] px-1.5 py-0.5">Hamilton Local</span>}
               </div>
-              <p className="text-[11px] text-teal-200/80 hidden sm:block">{T.sub}</p>
+              <p className="text-[11px] text-white/75 hidden sm:block">{T.sub}</p>
             </div>
           </button>
 
           <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
             {NAV.map(id => (
               <button key={id} onClick={() => go(id)}
-                className={`px-3 py-1.5 rounded-lg transition whitespace-nowrap ${activeTab === id ? 'bg-teal-700 text-white font-bold shadow-sm' : 'text-teal-100 hover:bg-teal-700/50 hover:text-white'}`}>
+                className={`px-3 py-1.5 rounded-lg transition whitespace-nowrap ${activeTab === id ? 'sb-nav-on font-bold' : 'text-white/85 hover:text-white sb-nav'}`}>
                 {T.nav[id]}
               </button>
             ))}
@@ -425,44 +426,53 @@ export default function App() {
           <div className="flex items-center gap-2 shrink-0">
             <WeatherPill lang={lang} T={T} />
             <button data-testid="lang" onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} aria-label="Switch language"
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-teal-600 bg-teal-900/40 hover:bg-teal-900 text-xs font-bold">
+              className="sb-pill flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold">
               <Globe className="w-3.5 h-3.5" />{lang === 'zh' ? 'EN' : '中'}
             </button>
           </div>
         </div>
 
-        <div className="flex lg:hidden overflow-x-auto px-2 py-2 bg-teal-900/90 border-t border-teal-700/50 text-xs gap-1 no-scrollbar">
+        <div className="flex lg:hidden overflow-x-auto px-2 py-2 border-t border-white/15 text-xs gap-2 no-scrollbar">
           {NAV.slice(1).map(id => (
-            <button key={id} onClick={() => go(id)} className="px-3 py-1.5 bg-teal-800/80 rounded-full text-teal-50 whitespace-nowrap active:bg-teal-700">{T.nav[id]}</button>
+            <button key={id} onClick={() => go(id)} className="sb-mnav px-3 py-1.5 whitespace-nowrap">{T.nav[id]}</button>
           ))}
         </div>
       </header>
 
-      <section id="home" className="bg-gradient-to-b from-teal-800 via-teal-900 to-slate-900 text-white py-12 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="max-w-3xl mx-auto space-y-5 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs px-3 py-1 rounded-full">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" /><span>{T.heroBadge}</span>
+      <section id="home" className="sb-hero px-4 pt-10 pb-14 sm:pt-14 sm:pb-20 relative">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_.85fr] gap-10 lg:gap-14 items-center relative z-10">
+          <div className="space-y-6 text-left">
+            <div className="sb-sticker inline-flex items-center gap-2 text-xs px-3 py-1.5">
+              <Sparkles className="w-3.5 h-3.5 shrink-0" /><span>{T.heroBadge}</span>
+            </div>
+            <h1 className="sb-h1">
+              <span className="sb-h1a">{T.heroA}</span><span className="sb-h1b">{T.heroB}</span>
+            </h1>
+            <p className="sb-lead text-[15px] sm:text-base max-w-xl leading-relaxed">{T.heroP}</p>
+            <form onSubmit={e => { e.preventDefault(); if (q) { showToast(T.filterKw(searchQuery)); document.getElementById('supermarkets')?.scrollIntoView({ behavior: 'smooth' }); } }}
+              className="sb-search max-w-xl p-1.5 flex items-center text-slate-800">
+              <Search className="w-5 h-5 text-slate-500 ml-2 shrink-0" />
+              <input type="search" aria-label={T.search} placeholder={T.searchPh} value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+                className="w-full min-w-0 px-3 py-2 text-base sm:text-sm outline-none bg-transparent placeholder:text-slate-500" />
+              {searchQuery && <button type="button" aria-label={T.clear} onClick={() => setSearchQuery('')} className="p-1 text-slate-500 hover:text-slate-900 mr-1"><X className="w-4 h-4" /></button>}
+              <button type="submit" className="sb-btn px-4 sm:px-5 py-2.5 text-sm font-bold shrink-0">{T.search}</button>
+            </form>
+            <div className="flex flex-wrap gap-2 pt-1 text-xs">
+              {['Hamilton Central', 'Frankton', 'Hamilton East', 'Chartwell', 'Cambridge', 'Raglan'].map(sub => (
+                <button key={sub} onClick={() => setSearchQuery(sub)} aria-pressed={searchQuery === sub} className={`sb-chip px-2.5 py-1 flex items-center gap-1 ${searchQuery === sub ? 'sb-chip-on' : ''}`}>
+                  <MapPin className="w-3 h-3" />{sub}
+                </button>
+              ))}
+            </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-            {T.heroA}<span className="text-emerald-400">{T.heroB}</span>
-          </h1>
-          <p className="text-teal-100 text-[15px] sm:text-base max-w-xl mx-auto leading-relaxed">{T.heroP}</p>
-          <form onSubmit={e => { e.preventDefault(); if (q) { showToast(T.filterKw(searchQuery)); document.getElementById('supermarkets')?.scrollIntoView({ behavior: 'smooth' }); } }}
-            className="max-w-xl mx-auto bg-white rounded-2xl p-1.5 shadow-2xl flex items-center text-slate-800 border-2 border-teal-400/50">
-            <Search className="w-5 h-5 text-slate-400 ml-2 shrink-0" />
-            <input type="search" aria-label={T.search} placeholder={T.searchPh} value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              className="w-full min-w-0 px-3 py-2 text-base sm:text-sm outline-none bg-transparent placeholder:text-slate-400" />
-            {searchQuery && <button type="button" aria-label={T.clear} onClick={() => setSearchQuery('')} className="p-1 text-slate-400 hover:text-slate-600 mr-1"><X className="w-4 h-4" /></button>}
-            <button type="submit" className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition shrink-0 shadow-md">{T.search}</button>
-          </form>
-          <div className="flex flex-wrap justify-center gap-2 pt-1 text-xs">
-            {['Hamilton Central', 'Frankton', 'Hamilton East', 'Chartwell', 'Cambridge', 'Raglan'].map(sub => (
-              <button key={sub} onClick={() => setSearchQuery(sub)} className="bg-teal-800/80 hover:bg-teal-700 border border-teal-600/50 px-2.5 py-1 rounded-full text-teal-100 transition flex items-center gap-1">
-                <MapPin className="w-3 h-3" />{sub}
-              </button>
-            ))}
-          </div>
+          <figure className="sb-polaroid relative mx-auto w-full max-w-[460px]">
+            <picture>
+              <source media="(max-width: 640px)" srcSet="./photos/hero-waikato-river-m.webp" />
+              <img src="./photos/hero-waikato-river.webp" alt={lang === 'zh' ? '流经汉密尔顿市区的怀卡托河' : 'The Waikato River flowing through Hamilton'} fetchPriority="high" className="w-full aspect-[4/3] lg:aspect-[4/5] object-cover" />
+            </picture>
+            <figcaption className="sb-hand pt-3 text-center">{lang === 'zh' ? '怀卡托河 · 汉密尔顿' : 'Waikato River · Hamilton'}</figcaption>
+            <a href={HERO.source} target="_blank" rel="noreferrer" className="block text-center text-[10px] text-slate-500 hover:text-slate-800 mt-1">{T.photoBy}: {HERO.credit}, {HERO.license}</a>
+          </figure>
         </div>
       </section>
 
@@ -476,15 +486,15 @@ export default function App() {
           <div role="tablist" className="grid grid-cols-3 gap-2 sm:gap-4 mb-5">
             {([['bins', Trash2], ['transport', Bus], ['urgent', Stethoscope]] as const).map(([id, Ic]) => (
               <button key={id} role="tab" aria-selected={toolTab === id} data-testid={'tab-' + id} onClick={() => setToolTab(id)}
-                className={`rounded-2xl p-3 sm:p-4 text-left border transition flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 ${toolTab === id ? 'bg-teal-800 text-white border-teal-800 shadow-md' : 'bg-white text-slate-700 border-slate-200 hover:border-teal-300'}`}>
+                className={`rounded-2xl p-3 sm:p-4 text-left border transition flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 sb-tab ${toolTab === id ? 'sb-tab-on' : ''}`}>
                 <span className={`p-2 rounded-xl self-start sm:self-auto ${toolTab === id ? 'bg-teal-700' : id === 'urgent' ? 'bg-red-50 text-red-600' : 'bg-teal-50 text-teal-700'}`}><Ic className="w-5 h-5" /></span>
                 <span className="min-w-0"><span className="block font-bold text-sm sm:text-base">{T.tabs[id]}</span>
-                  <span className={`hidden sm:block text-xs ${toolTab === id ? 'text-teal-100' : 'text-slate-500'}`}>{T.tabsSub[id]}</span></span>
+                  <span className={`hidden sm:block text-xs ${toolTab === id ? 'text-white/85' : 'text-slate-600'}`}>{T.tabsSub[id]}</span></span>
               </button>))}
           </div>
 
           {toolTab === 'bins' && (
-            <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="sb-card sb-panel p-5 sm:p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
                   <div className="p-3 bg-teal-50 text-teal-700 rounded-xl"><Trash2 className="w-6 h-6" /></div>
@@ -518,7 +528,7 @@ export default function App() {
           )}
 
           {toolTab === 'transport' && (
-            <div data-testid="panel-transport" className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-5">
+            <div data-testid="panel-transport" className="sb-card sb-panel p-5 sm:p-6 space-y-5">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-teal-50 text-teal-700 rounded-xl"><Bus className="w-6 h-6" /></div>
                 <div><h3 className="font-bold text-slate-900 text-base">{T.busH}</h3><p className="text-xs text-slate-500">{T.busP}</p></div>
@@ -580,12 +590,12 @@ export default function App() {
                 {URGENT.map(c => {
                   const isOpen = now >= c.open[0] && now < c.open[1];
                   return (
-                    <div key={c.id} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div key={c.id} className="sb-card p-5 flex flex-col justify-between">
                       <div>
                         <div className="flex items-start justify-between gap-2">
                           <h3 className="font-bold text-slate-900 text-base">{lang === 'zh' ? c.zh : c.name}</h3>
-                          <span data-testid="open-status" className={`shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 ${isOpen ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-emerald-500' : 'bg-slate-400'}`}></span>{isOpen ? T.openNow : T.closedNow}</span>
+                          <span data-testid="open-status" className={`shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 ${isOpen ? 'bg-green-100 text-green-800 border border-green-700' : 'bg-slate-200 text-slate-700'}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-green-600' : 'bg-slate-500'}`}></span>{isOpen ? T.openNow : T.closedNow}</span>
                         </div>
                         <div className="mt-3 space-y-1.5 text-sm text-slate-600">
                           <div className="flex gap-2"><Clock className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" /><span className="font-semibold text-slate-800">{c.hours[lang]}</span></div>
@@ -614,14 +624,14 @@ export default function App() {
           <div className="flex flex-wrap gap-1.5 text-xs mb-5">
             {SM_TYPES.map(c => (
               <button key={c.id} data-testid={'sm-' + c.id} onClick={() => setSmType(c.id)}
-                className={`px-3 py-1.5 rounded-full font-medium transition ${smType === c.id ? 'bg-teal-800 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                className={`px-3 py-1.5 rounded-full font-medium transition sb-chip ${smType === c.id ? 'sb-chip-on' : ''}`}>
                 {c[lang]} <span className="opacity-60">{c.id === 'all' ? SUPERMARKETS.length : SUPERMARKETS.filter(x => x.type === c.id).length}</span>
               </button>))}
           </div>
-          {filteredSupermarkets.length === 0 ? <div className="p-8 text-center text-sm text-slate-400 bg-white rounded-2xl border border-slate-200">{T.noMatch}</div> : (
+          {filteredSupermarkets.length === 0 ? <div className="sb-empty p-8 text-center text-sm text-slate-600">{T.noMatch}</div> : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredSupermarkets.map(sup => (
-              <div key={sup.id} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+              <div key={sup.id} className="sb-card sb-tilt p-5 flex flex-col justify-between">
                 <div>
                   <div className="flex items-start justify-between gap-2"><h3 className="font-bold text-slate-900 text-base">{lang === 'zh' ? sup.zhName : sup.name}</h3>
                     <span className="shrink-0 text-[10px] bg-amber-50 text-amber-800 border border-amber-200 font-bold px-2 py-0.5 rounded">{SM_TYPES.find(t => t.id === sup.type)![lang]}</span></div>
@@ -650,16 +660,16 @@ export default function App() {
             <div className="flex flex-wrap gap-1.5 text-xs">
               {DEST_CATS.map(cat => (
                 <button key={cat.id} onClick={() => setSelectedDestCat(cat.id)}
-                  className={`px-3 py-1.5 rounded-full font-medium transition ${selectedDestCat === cat.id ? 'bg-teal-800 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                  className={`px-3 py-1.5 rounded-full font-medium transition sb-chip ${selectedDestCat === cat.id ? 'sb-chip-on' : ''}`}>
                   {cat[lang]}
                 </button>))}
             </div>
           </div>
-          {filteredDestinations.length === 0 ? <div className="p-8 text-center text-sm text-slate-400 bg-white rounded-2xl border border-slate-200">{T.noMatch}</div> : (
+          {filteredDestinations.length === 0 ? <div className="sb-empty p-8 text-center text-sm text-slate-600">{T.noMatch}</div> : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredDestinations.map((p: any) => (
-              <article key={p.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:border-teal-300 hover:shadow-md transition">
-                <div className="relative aspect-[16/10] bg-gradient-to-br from-teal-700 to-emerald-800">
+              <article key={p.id} className="sb-card sb-tilt sb-taped flex flex-col">
+                <div className="sb-photo relative aspect-[16/10] bg-gradient-to-br from-teal-700 to-emerald-800 overflow-hidden">
                   {p.photo ? <img src={`./photos/${p.photo}`} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                     : <div className="absolute inset-0 flex items-center justify-center text-teal-100/70 text-sm font-semibold px-6 text-center">{p.name}</div>}
                   <div className="absolute top-3 left-3 flex gap-1.5">
@@ -677,7 +687,7 @@ export default function App() {
                     <div className="flex gap-1.5"><MapPin className="w-3.5 h-3.5 shrink-0 mt-px text-teal-600" /><dd>{p.address}</dd></div>
                   </dl>
                 </div>
-                <div className="px-4 py-3 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-2 text-xs">
+                <div className="px-4 py-3 border-t border-dashed border-slate-400 flex items-center justify-between gap-2 text-xs">
                   <span className="text-[10px] text-slate-400 truncate">
                     {p.photo && <>{T.photoBy}: <a href={p.photoSource} target="_blank" rel="noreferrer" className="underline">{p.photoCredit}</a>, <a href={p.photoLicenseUrl} target="_blank" rel="noreferrer" className="underline">{p.photoLicense}</a></>}
                   </span>
@@ -689,11 +699,11 @@ export default function App() {
 
         </main>
 
-      <footer className="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800 text-xs">
+      <footer className="sb-footer text-slate-300 py-12 px-4 text-xs">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-white font-bold text-base">
-              <span className="w-7 h-7 rounded-lg bg-teal-600 text-white flex items-center justify-center text-xs font-black">{lang === 'zh' ? '汉' : 'HL'}</span>
+              <span className="sb-logo w-7 h-7 flex items-center justify-center text-xs font-black"><LogoMark /></span>
               <span>{T.brand}</span>
             </div>
             <p className="leading-relaxed">{T.footAbout}</p>
@@ -717,28 +727,33 @@ export default function App() {
           </div>
           <div>
             <h4 className="font-bold text-slate-200 mb-3 uppercase tracking-wider">{T.footDisc}</h4>
-            <p className="leading-relaxed text-slate-500">{T.footDiscP}</p>
-            <p className="leading-relaxed text-slate-500 mt-2">{T.indep}</p>
+            <p className="leading-relaxed text-slate-300">{T.footDiscP}</p>
+            <p className="leading-relaxed text-slate-300 mt-2">{T.indep}</p>
             <p className="mt-3 space-y-1">
               <span className="block">{T.wxBy} <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="underline hover:text-teal-300">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer" className="underline hover:text-teal-300">CC BY 4.0</a>)</span>
               <button data-testid="credits-btn" onClick={() => setShowCredits(true)} className="underline hover:text-teal-300">{T.photoCredits}</button>
             </p>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto pt-8 mt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-slate-500 text-[11px] gap-2">
+        <div className="max-w-6xl mx-auto pt-8 mt-8 border-t border-dashed border-amber-400/60 flex flex-col sm:flex-row justify-between items-center text-slate-300 text-[11px] gap-2">
           <p>© 2026 {lang === 'zh' ? '汉密尔顿生活指南 · Hamilton Local' : 'Hamilton Local'}</p>
           <span>Hamilton · Waikato · New Zealand</span>
         </div>
       </footer>
       {showCredits && (
         <div data-testid="credits" className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setShowCredits(false)}>
-          <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto p-5 text-sm" onClick={e => e.stopPropagation()}>
+          <div className="sb-card sb-modal max-w-3xl w-full max-h-[85vh] overflow-y-auto p-5 text-sm" onClick={e => e.stopPropagation()}>
             <div className="flex items-start justify-between gap-3 mb-2">
               <h2 className="font-bold text-lg text-slate-900">{T.creditsH}</h2>
               <button onClick={() => setShowCredits(false)} className="text-slate-500 hover:text-slate-900 text-xs border rounded-lg px-2 py-1">{T.close}</button>
             </div>
             <p className="text-xs text-slate-500 mb-3">{T.creditsP}</p>
             <ul className="divide-y divide-slate-100">
+              <li className="py-2 grid grid-cols-1 sm:grid-cols-[1.2fr_1fr_auto] gap-x-3 gap-y-0.5">
+                <span className="font-semibold text-slate-900">{lang === 'zh' ? `${T.heroImg} · ${HERO.zh}` : `${T.heroImg} · ${HERO.name}`}</span>
+                <span className="text-slate-600">{T.cAuthor}: {HERO.credit}</span>
+                <span className="text-slate-600"><a href={HERO.licenseUrl} target="_blank" rel="noreferrer" className="underline text-teal-700">{HERO.license}</a> · <a href={HERO.source} target="_blank" rel="noreferrer" className="underline text-teal-700">{T.cSource}</a></span>
+              </li>
               {(PLACES as any[]).filter(p => p.photo).map(p => (
                 <li key={p.id} className="py-2 grid grid-cols-1 sm:grid-cols-[1.2fr_1fr_auto] gap-x-3 gap-y-0.5">
                   <span className="font-semibold text-slate-900">{lang === 'zh' ? `${p.zh} · ${p.name}` : p.name}</span>
