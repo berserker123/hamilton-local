@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Search, Trash2, Phone, MapPin, Clock, Calendar, ShieldCheck,
   Stethoscope, Copy, ChevronRight, X, Sparkles, AlertCircle,
-  Sun, Cloud, CloudRain, CloudSun, CloudFog, CloudLightning, Snowflake, Droplets, ExternalLink, Globe, Umbrella, Bus
+  Sun, Cloud, CloudRain, CloudSun, CloudFog, CloudLightning, Snowflake, Droplets, ExternalLink, Globe, Umbrella, Bus, ArrowDown, ArrowUpRight
 } from 'lucide-react';
 import PLACES from './places.json';
 import { LogoMark } from './Logo';
@@ -111,6 +112,7 @@ const URGENT = [
 ];
 
 const HERO = { name: 'Waikato River, Hamilton', zh: '怀卡托河 · 汉密尔顿市区', credit: 'Umedha Hettigoda', license: 'CC BY-SA 2.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/', source: 'https://commons.wikimedia.org/wiki/File:Waikato_River,_Hamilton_city,_New_Zealand_(8162680016).jpg' };
+const LAKE_BAND = { name: 'Hamilton Lake (Lake Rotoroa)', zh: '汉密尔顿湖（Rotoroa 湖）', credit: 'Michal Klajban', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', source: 'https://commons.wikimedia.org/wiki/File:Lake_Rotoroa,_Waikato,_New_Zealand_02.jpg' };
 const B = 'https://www.busit.co.nz/hamilton-routes/';
 const ROUTES = [
   { n: 'O', name: 'Orbiter', zh: '环城线（顺/逆时针）', en: 'Ring route, both directions', slug: 'orbiter', hf: true },
@@ -145,6 +147,7 @@ const TEXT = {
     brand: '汉密尔顿生活指南', sub: 'Hamilton 本地生活实用信息', checkedBadge: `信息核对于 ${CHECKED}`,
     heroBadge: '整理 Hamilton 与周边 Waikato 的日常生活信息',
     heroA: '在汉密尔顿，', heroB: '把日子过得更顺手',
+    lakeA: '周末慢一点，', lakeB: '去湖边走走',
     heroP: '垃圾桶怎么放、坐哪路公交、亚超在哪、周末带娃去哪、生病找谁——每条信息都附来源，可以自己核对。',
     searchPh: '搜索亚超、地点、区域（如 Frankton）…', search: '搜索', clear: '清除',
     nav: { home: '首页', tools: '实用工具箱', supermarkets: '亚超指南', weekend: '周末遛娃' },
@@ -163,7 +166,7 @@ const TEXT = {
     medPhone: '电话', medAddr: '地址', copy: '复制', healthline: '免费健康热线 Healthline', healthlineNote: '24/7，可要求翻译',
     life: '有生命危险请直接拨打', srcs: '来源',
     em111Big: '紧急情况请立即拨打', medDisc: '本站不提供医疗建议。营业时间可能变动，请以诊所官方信息为准。',
-    wxBy: '天气数据来自', photoCredits: '图片来源', creditsH: '图片来源与授权', creditsP: '本站照片均来自 Wikimedia Commons，按各自授权使用（仅裁剪、压缩尺寸）。', cPlace: '地点', cAuthor: '作者', cLicense: '授权', cSource: '原图', heroImg: '首屏大图', close: '关闭',
+    wxBy: '天气数据来自', photoCredits: '图片来源', creditsH: '图片来源与授权', creditsP: '本站照片均来自 Wikimedia Commons，按各自授权使用（按需裁剪、压缩尺寸及调色）。', cPlace: '地点', cAuthor: '作者', cLicense: '授权', cSource: '原图', heroImg: '首屏大图', interludeImg: '过渡大图', close: '关闭',
     indep: '本站为个人独立整理的信息网站，与所列任何商家、诊所、机构或市政府均无关联，也未获其背书。',
     smH: '亚洲超市与食材', smP: '只收录能在官网或公开商家目录里核对到地址和电话的门店；标“目录信息”的营业时间来自第三方目录', smCount: (n:number)=>`已核对 ${n} 家`,
     hoursUnknown: '营业时间未核实，出发前请电话确认', copyAddr: '复制地址', area: '区域',
@@ -182,6 +185,7 @@ const TEXT = {
     brand: 'Hamilton Local', sub: 'Practical everyday info for Hamilton', checkedBadge: `Checked ${CHECKED}`,
     heroBadge: 'Everyday info for Hamilton and the wider Waikato',
     heroA: 'Life in Hamilton, ', heroB: 'made a little easier',
+    lakeA: 'Slow down this weekend,', lakeB: 'take a walk by the lake',
     heroP: 'Bin days, buses, Asian grocers, weekend outings with kids, where to go when you are unwell — every entry links to its source so you can check it yourself.',
     searchPh: 'Search grocers, places, suburbs (e.g. Frankton)…', search: 'Search', clear: 'Clear',
     nav: { home: 'Home', tools: 'Toolbox', supermarkets: 'Asian grocers', weekend: 'Weekend' },
@@ -200,7 +204,7 @@ const TEXT = {
     medPhone: 'Phone', medAddr: 'Address', copy: 'Copy', healthline: 'Free Healthline', healthlineNote: '24/7, interpreters available',
     life: 'Life-threatening emergency? Call', srcs: 'Sources',
     em111Big: 'In an emergency, call', medDisc: 'This site does not give medical advice. Hours may change — please check with the clinic.',
-    wxBy: 'Weather data by', photoCredits: 'Photo credits', creditsH: 'Photo credits & licences', creditsP: 'All photos are from Wikimedia Commons and used under their stated licences (only cropped and resized).', cPlace: 'Place', cAuthor: 'Author', cLicense: 'Licence', cSource: 'Source', heroImg: 'Hero image', close: 'Close',
+    wxBy: 'Weather data by', photoCredits: 'Photo credits', creditsH: 'Photo credits & licences', creditsP: 'All photos are from Wikimedia Commons and used under their stated licences (cropped, resized and colour-graded where needed).', cPlace: 'Place', cAuthor: 'Author', cLicense: 'Licence', cSource: 'Source', heroImg: 'Hero image', interludeImg: 'Interlude image', close: 'Close',
     indep: 'This is an independent, personally compiled site. It is not affiliated with or endorsed by any business, clinic, organisation or council listed.',
     smH: 'Asian grocers', smP: 'Only stores whose address and phone we could check on an official site or public business listing; hours marked "directory listing" come from third-party directories', smCount: (n:number)=>`${n} checked`,
     hoursUnknown: 'Hours not verified — call ahead', copyAddr: 'Copy address', area: 'Area',
@@ -253,9 +257,10 @@ function WeatherPill({ lang, T }: { lang: Lang; T: any }) {
   const { data, error, reload } = useWeather();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
-    const onDoc = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    const onDoc = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node) && !dialogRef.current?.contains(e.target as Node)) setOpen(false); };
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('mousedown', onDoc); document.addEventListener('keydown', onKey);
     return () => { document.removeEventListener('mousedown', onDoc); document.removeEventListener('keydown', onKey); };
@@ -276,74 +281,174 @@ function WeatherPill({ lang, T }: { lang: Lang; T: any }) {
         {cur ? (<><span className="font-bold">{Math.round(cur.temperature_2m)}°</span><span className="hidden sm:inline text-white/80">{lang === 'zh' ? info!.zh : info!.en}</span></>)
           : <span className="text-white/80">{error ? T.wx.err : T.wx.loading}</span>}
       </button>
-      {open && (
-        <div role="dialog" aria-label={T.wx.city} data-testid="wx-card"
-          className="fixed sm:absolute left-3 right-3 sm:left-auto sm:right-0 top-[68px] sm:top-full sm:mt-2 sm:w-[360px] z-50 sb-card sb-wx text-slate-800 p-5">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="text-xs text-slate-500">{T.wx.city} · {T.wx.now}</div>
-              {cur ? (
-                <div className="flex items-center gap-3 mt-1">
-                  <Icon className="w-10 h-10 text-amber-500" />
-                  <div>
-                    <div className="text-4xl font-extrabold tracking-tight">{Math.round(cur.temperature_2m)}°C</div>
-                    <div className="text-xs text-slate-500">{lang === 'zh' ? info!.zh : info!.en} · {T.wx.feels} {Math.round(cur.apparent_temperature)}°</div>
+      {open && createPortal(
+        <div className="sb-modal-backdrop sb-weather-backdrop" onClick={() => setOpen(false)}>
+          <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={T.wx.city} data-testid="wx-card"
+            className="sb-card sb-wx" onClick={e => e.stopPropagation()}>
+            <div className="sb-wx-heading">
+              <div>
+                <h2>{T.wx.city} <span>· {T.wx.now}</span></h2>
+                {cur ? (
+                  <div className="sb-wx-current">
+                    <Icon />
+                    <div><strong className="sb-wx-temperature">{Math.round(cur.temperature_2m)}°C</strong>
+                      <p>{lang === 'zh' ? info!.zh : info!.en} · {T.wx.feels} {Math.round(cur.apparent_temperature)}°</p>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="mt-2 text-sm text-slate-500">{error ? T.wx.err : T.wx.loading}
-                  {error && <button onClick={reload} className="ml-2 text-teal-700 underline">{T.wx.retry}</button>}</div>
-              )}
+                ) : (
+                  <p className="sb-wx-loading">{error ? T.wx.err : T.wx.loading}
+                    {error && <button onClick={reload} className="sb-wx-retry">{T.wx.retry}</button>}
+                  </p>
+                )}
+              </div>
+              <button autoFocus onClick={() => setOpen(false)} aria-label={T.wx.close} className="sb-action sb-icon-close"><X /></button>
             </div>
-            <button onClick={() => setOpen(false)} aria-label={T.wx.close} className="p-1 text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+            {d && (<>
+              <div className="sb-wx-summary">
+                <div><span>{T.wx.hi}</span><strong>{Math.round(d.temperature_2m_max[0])}°</strong></div>
+                <div><span>{T.wx.lo}</span><strong>{Math.round(d.temperature_2m_min[0])}°</strong></div>
+                <div><span>{T.wx.rain}</span><strong>{d.precipitation_probability_max[0] ?? '–'}%</strong></div>
+              </div>
+              <div className="sb-wx-tip"><Umbrella /><p>{tip}</p></div>
+              <h3 className="sb-label">{T.wx.next}</h3>
+              <div className="sb-wx-forecast">
+                {d.time.slice(1, 6).map((day: string, i: number) => {
+                  const k = i + 1; const wi = wxInfo(d.weather_code[k]); const DI = wi.Icon;
+                  const dow = new Date(day + 'T12:00:00').getDay();
+                  return (
+                    <div key={day}>
+                      <span>{T.days[dow]}</span><DI />
+                      <strong>{Math.round(d.temperature_2m_max[k])}°<span>/{Math.round(d.temperature_2m_min[k])}°</span></strong>
+                      <span className="sb-wx-rain"><Droplets />{d.precipitation_probability_max[k] ?? '–'}%</span>
+                    </div>);
+                })}
+              </div>
+            </>)}
+            <p className="sb-wx-source">{T.wx.src}</p>
           </div>
-          {d && (<>
-            <div className="grid grid-cols-3 gap-2 mt-4 text-center text-xs">
-              <div className="bg-slate-50 rounded-xl p-2"><div className="text-slate-500">{T.wx.hi}</div><div className="font-bold text-base">{Math.round(d.temperature_2m_max[0])}°</div></div>
-              <div className="bg-slate-50 rounded-xl p-2"><div className="text-slate-500">{T.wx.lo}</div><div className="font-bold text-base">{Math.round(d.temperature_2m_min[0])}°</div></div>
-              <div className="bg-sky-50 rounded-xl p-2"><div className="text-slate-500">{T.wx.rain}</div><div className="font-bold text-base text-sky-700">{d.precipitation_probability_max[0] ?? '–'}%</div></div>
-            </div>
-            <div className="mt-3 flex gap-2 items-start bg-emerald-50 text-emerald-900 text-xs rounded-xl p-3 leading-relaxed">
-              <Umbrella className="w-4 h-4 shrink-0 mt-0.5" /><span>{tip}</span>
-            </div>
-            <div className="mt-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">{T.wx.next}</div>
-            <div className="grid grid-cols-5 gap-1 mt-2 text-center text-xs">
-              {d.time.slice(1, 6).map((day: string, i: number) => {
-                const k = i + 1; const wi = wxInfo(d.weather_code[k]); const DI = wi.Icon;
-                const dow = new Date(day + 'T12:00:00').getDay();
-                return (
-                  <div key={day} className="rounded-xl py-2 bg-slate-50">
-                    <div className="text-slate-500">{T.days[dow]}</div>
-                    <DI className="w-5 h-5 mx-auto my-1 text-slate-600" />
-                    <div className="font-semibold">{Math.round(d.temperature_2m_max[k])}°<span className="text-slate-400 font-normal">/{Math.round(d.temperature_2m_min[k])}°</span></div>
-                    <div className="text-[10px] text-sky-700 flex items-center justify-center gap-0.5"><Droplets className="w-3 h-3" />{d.precipitation_probability_max[k] ?? '–'}%</div>
-                  </div>);
-              })}
-            </div>
-          </>)}
-          <div className="mt-3 text-[10px] text-slate-400">{T.wx.src}</div>
-        </div>
+        </div>, document.body
       )}
     </div>
   );
 }
 
-function SectionTitle({ title, sub }: { title: string; sub: string }) {
+// Motion stays local to these primitives; scrolling never re-renders the page.
+
+function BlurText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
+  let index = 0;
   return (
-    <div>
-      <h2 className="sb-h2"><span>{title}</span></h2>
-      <p className="text-sm text-slate-600 mt-2">{sub}</p>
+    <span className={`sb-blur-text ${className}`}>
+      <span className="sr-only">{text}</span>
+      {text.split(/(\s+)/).filter(Boolean).map((word, wi) => (
+        <span className="sb-blur-word" aria-hidden="true" key={wi}>
+          {Array.from(word).map(char => (
+            <span key={index} className="sb-blur-char" style={{ animationDelay: `${delay + index++ * 40}ms` }}>
+              {char === ' ' ? '\u00a0' : char}
+            </span>
+          ))}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function Reveal({ children, id, className = '' }: { children: React.ReactNode; id?: string; className?: string }) {
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || !('IntersectionObserver' in window)) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motion.matches) return;
+    const show = () => { element.classList.remove('is-pending'); element.classList.add('is-visible'); };
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) { show(); observer.disconnect(); }
+    }, { threshold: 0, rootMargin: '0px 0px -32px 0px' });
+    element.classList.add('is-pending');
+    observer.observe(element);
+    const onMotion = () => { if (motion.matches) { show(); observer.disconnect(); } };
+    const onFocus = () => { show(); observer.disconnect(); };
+    motion.addEventListener('change', onMotion);
+    element.addEventListener('focusin', onFocus);
+    return () => { observer.disconnect(); motion.removeEventListener('change', onMotion); element.removeEventListener('focusin', onFocus); };
+  }, []);
+  return <section id={id} ref={ref} className={`sb-reveal ${className}`}>{children}</section>;
+}
+
+function HeroMedia() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const element = ref.current;
+      if (!element) return;
+      const height = element.parentElement?.offsetHeight || window.innerHeight;
+      element.style.transform = motion.matches ? '' : `translate3d(0, ${Math.min(window.scrollY, height) * 0.12}px, 0)`;
+    };
+    const onScroll = () => { if (!frame && !motion.matches) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    motion.addEventListener('change', update);
+    return () => { window.removeEventListener('scroll', onScroll); motion.removeEventListener('change', update); cancelAnimationFrame(frame); };
+  }, []);
+  return <div ref={ref} className="sb-hero-media" aria-hidden="true"><img src="./photos/hero-train.webp" alt="" fetchPriority="high" decoding="async" /></div>;
+}
+
+function SectionTitle({ title, sub, eyebrow }: { title: string; sub: string; eyebrow: string }) {
+  return (
+    <div className="sb-section-title">
+      <p className="sb-eyebrow">{eyebrow}</p>
+      <h2 className="sb-h2" key={title}><BlurText text={title} /></h2>
+      <p className="sb-section-sub">{sub}</p>
     </div>
   );
 }
 
 function SourceLinks({ urls, label }: { urls: string[]; label: string }) {
   return (
-    <div className="text-[11px] text-slate-400 flex flex-wrap gap-x-2">
+    <div className="sb-sources">
       <span>{label}:</span>
-      {urls.map((u, i) => <a key={u} href={u} target="_blank" rel="noreferrer" className="underline hover:text-teal-700">{new URL(u).hostname.replace('www.', '')}{urls.length > 1 ? '' : ''}</a>)}
+      {urls.map(u => <a key={u} href={u} target="_blank" rel="noreferrer">{new URL(u).hostname.replace('www.', '')}</a>)}
     </div>
   );
+}
+
+// Only visible bands respond to scrolling; transforms never update React state.
+function BandMedia({ src }: { src: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (motion.matches) { element.style.transform = ''; return; }
+      const rect = element.parentElement!.getBoundingClientRect();
+      const offset = (window.innerHeight / 2 - rect.top - rect.height / 2) * 0.07;
+      element.style.transform = `translate3d(0, ${Math.max(-48, Math.min(48, offset))}px, 0)`;
+    };
+    const schedule = () => { if (visible && !motion.matches && !frame) frame = requestAnimationFrame(update); };
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      visible = entries.some(entry => entry.isIntersecting);
+      if (visible) schedule();
+    }, { rootMargin: '100px' }) : null;
+    if (observer) observer.observe(element.parentElement!);
+    else { visible = true; schedule(); }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    motion.addEventListener('change', update);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      motion.removeEventListener('change', update);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  return <div ref={ref} className="sb-band-media" aria-hidden="true"><img src={src} alt="" loading="lazy" decoding="async" /></div>;
 }
 
 export default function App() {
@@ -371,7 +476,7 @@ export default function App() {
     if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
     showToast(T.copied(label));
   };
-  const go = (id: string) => { setActiveTab(id); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); };
+  const go = (id: string) => { setActiveTab(id); document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); };
 
   const q = searchQuery.trim().toLowerCase();
   const filteredSupermarkets = useMemo(() => SUPERMARKETS.filter(s => (smType === 'all' || s.type === smType) && (!q ||
@@ -385,10 +490,10 @@ export default function App() {
 
   const NAV = ['home', 'tools', 'supermarkets', 'weekend'];
   const bins = [
-    { k: 'red', color: 'bg-red-500 text-white border-red-600', label: T.red, note: T.redNote, week: T.redWeek },
-    { k: 'yellow', color: 'bg-yellow-400 text-yellow-950 border-yellow-500', label: T.yellow, note: T.yellowNote, week: T.yellowWeek },
-    { k: 'glass', color: 'bg-sky-600 text-white border-sky-700', label: T.glass, note: T.glassNote, week: T.yellowWeek },
-    { k: 'food', color: 'bg-green-700 text-white border-green-800', label: T.food, note: T.foodNote, week: T.weekly },
+    { k: 'red', color: 'sb-dot-red', label: T.red, note: T.redNote, week: T.redWeek },
+    { k: 'yellow', color: 'sb-dot-yellow', label: T.yellow, note: T.yellowNote, week: T.yellowWeek },
+    { k: 'glass', color: 'sb-dot-glass', label: T.glass, note: T.glassNote, week: T.yellowWeek },
+    { k: 'food', color: 'sb-dot-food', label: T.food, note: T.foodNote, week: T.weekly },
   ];
 
   return (
@@ -399,366 +504,370 @@ export default function App() {
         </div>
       )}
 
-      <header className="sb-header sticky top-0 z-40 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-          <button className="flex items-center gap-3 text-left min-w-0" onClick={() => go('home')}>
-            <div className="sb-logo w-10 h-10 shrink-0 flex items-center justify-center font-black text-lg">
-              <LogoMark />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-base sm:text-lg tracking-tight truncate">{T.brand}</span>
-                {lang === 'zh' && <span className="hidden sm:inline sb-mini text-[10px] px-1.5 py-0.5">Hamilton Local</span>}
-              </div>
-              <p className="text-[11px] text-white/75 hidden sm:block">{T.sub}</p>
-            </div>
+      <header className="sb-header text-white">
+        <div className="sb-header-inner">
+          <button className="sb-brand" onClick={() => go('home')}>
+            <span className="sb-logo"><LogoMark /></span>
+            <span className="min-w-0 text-left">
+              <span className="sb-brand-name">Hamilton Local</span>
+              <span className="sb-brand-sub">{lang === 'zh' ? T.brand : T.sub}</span>
+            </span>
           </button>
-
-          <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
+          <nav className="sb-desktop-nav" aria-label={T.nav.tools}>
             {NAV.map(id => (
-              <button key={id} onClick={() => go(id)}
-                className={`px-3 py-1.5 rounded-lg transition whitespace-nowrap ${activeTab === id ? 'sb-nav-on font-bold' : 'text-white/85 hover:text-white sb-nav'}`}>
-                {T.nav[id]}
-              </button>
+              <button key={id} onClick={() => go(id)} aria-current={activeTab === id ? 'location' : undefined}
+                className={`sb-nav ${activeTab === id ? 'sb-nav-on' : ''}`}>{T.nav[id]}</button>
             ))}
+            <button onClick={() => { setToolTab('urgent'); go('tools'); }} className="sb-nav">{T.tabs.urgent}</button>
           </nav>
-
-          <div className="flex items-center gap-2 shrink-0">
-            <WeatherPill lang={lang} T={T} />
-            <button data-testid="lang" onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} aria-label="Switch language"
-              className="sb-pill flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold">
+          <div className="sb-header-actions">
+            <button data-testid="lang" onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} aria-label="Switch language" className="sb-pill sb-language">
               <Globe className="w-3.5 h-3.5" />{lang === 'zh' ? 'EN' : '中'}
             </button>
+            <button className="sb-header-cta" onClick={() => go('tools')}>{T.nav.tools}<ArrowUpRight className="w-3.5 h-3.5" /></button>
           </div>
         </div>
-
-        <div className="flex lg:hidden overflow-x-auto px-2 py-2 border-t border-white/15 text-xs gap-2 no-scrollbar">
-          {NAV.slice(1).map(id => (
-            <button key={id} onClick={() => go(id)} className="sb-mnav px-3 py-1.5 whitespace-nowrap">{T.nav[id]}</button>
-          ))}
-        </div>
+        <nav className="sb-mobile-nav no-scrollbar" aria-label={T.nav.tools}>
+          {NAV.map(id => <button key={id} onClick={() => go(id)} aria-current={activeTab === id ? 'location' : undefined} className={`sb-mnav ${activeTab === id ? 'sb-nav-on' : ''}`}>{T.nav[id]}</button>)}
+          <button onClick={() => { setToolTab('urgent'); go('tools'); }} className="sb-mnav">{T.tabs.urgent}</button>
+        </nav>
       </header>
 
-      <section id="home" className="sb-hero px-4 pt-10 pb-14 sm:pt-14 sm:pb-20 relative">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_.85fr] gap-10 lg:gap-14 items-center relative z-10">
-          <div className="space-y-6 text-left">
-            <div className="sb-sticker inline-flex items-center gap-2 text-xs px-3 py-1.5">
-              <Sparkles className="w-3.5 h-3.5 shrink-0" /><span>{T.heroBadge}</span>
-            </div>
-            <h1 className="sb-h1">
-              <span className="sb-h1a">{T.heroA}</span><span className="sb-h1b">{T.heroB}</span>
-            </h1>
-            <p className="sb-lead text-[15px] sm:text-base max-w-xl leading-relaxed">{T.heroP}</p>
-            <form onSubmit={e => { e.preventDefault(); if (q) { showToast(T.filterKw(searchQuery)); document.getElementById('supermarkets')?.scrollIntoView({ behavior: 'smooth' }); } }}
-              className="sb-search max-w-xl p-1.5 flex items-center text-slate-800">
-              <Search className="w-5 h-5 text-slate-500 ml-2 shrink-0" />
+      <section id="home" className="sb-hero">
+        <HeroMedia />
+        <div className="sb-hero-shade" aria-hidden="true" />
+        <div className="sb-hero-content">
+          <div className="sb-sticker"><Sparkles className="w-3.5 h-3.5 shrink-0" /><span>{T.heroBadge}</span></div>
+          <h1 className="sb-h1" key={lang}>
+            <BlurText text={T.heroA} className="sb-h1a" />
+            <BlurText text={T.heroB} className="sb-h1b" delay={160} />
+          </h1>
+          <p className="sb-lead">{T.heroP}</p>
+            <form onSubmit={e => { e.preventDefault(); if (q) { showToast(T.filterKw(searchQuery)); go('supermarkets'); } }}
+              className="sb-search p-1.5 flex items-center">
+              <Search className="w-5 h-5 text-white/80 ml-2 shrink-0" />
               <input type="search" aria-label={T.search} placeholder={T.searchPh} value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                className="w-full min-w-0 px-3 py-2 text-base sm:text-sm outline-none bg-transparent placeholder:text-slate-500" />
-              {searchQuery && <button type="button" aria-label={T.clear} onClick={() => setSearchQuery('')} className="p-1 text-slate-500 hover:text-slate-900 mr-1"><X className="w-4 h-4" /></button>}
+                className="w-full min-w-0 px-3 py-2 text-base sm:text-sm outline-none bg-transparent placeholder:text-white/65" />
+              {searchQuery && <button type="button" aria-label={T.clear} onClick={() => setSearchQuery('')} className="p-2 text-white/80 hover:text-white mr-1"><X className="w-4 h-4" /></button>}
               <button type="submit" className="sb-btn px-4 sm:px-5 py-2.5 text-sm font-bold shrink-0">{T.search}</button>
             </form>
-            <div className="flex flex-wrap gap-2 pt-1 text-xs">
+            <div className="sb-hero-places flex flex-wrap justify-center gap-2 text-xs">
               {['Hamilton Central', 'Frankton', 'Hamilton East', 'Chartwell', 'Cambridge', 'Raglan'].map(sub => (
                 <button key={sub} onClick={() => setSearchQuery(sub)} aria-pressed={searchQuery === sub} className={`sb-chip px-2.5 py-1 flex items-center gap-1 ${searchQuery === sub ? 'sb-chip-on' : ''}`}>
                   <MapPin className="w-3 h-3" />{sub}
                 </button>
               ))}
             </div>
-          </div>
-          <figure className="sb-polaroid relative mx-auto w-full max-w-[460px]">
-            <picture>
-              <source media="(max-width: 640px)" srcSet="./photos/hero-waikato-river-m.webp" />
-              <img src="./photos/hero-waikato-river.webp" alt={lang === 'zh' ? '流经汉密尔顿市区的怀卡托河' : 'The Waikato River flowing through Hamilton'} fetchPriority="high" className="w-full aspect-[4/3] lg:aspect-[4/5] object-cover" />
-            </picture>
-            <figcaption className="sb-hand pt-3 text-center">{lang === 'zh' ? '怀卡托河 · 汉密尔顿' : 'Waikato River · Hamilton'}</figcaption>
-            <a href={HERO.source} target="_blank" rel="noreferrer" className="block text-center text-[10px] text-slate-500 hover:text-slate-800 mt-1">{T.photoBy}: {HERO.credit}, {HERO.license}</a>
-          </figure>
+          <button className="sb-ghost" onClick={() => go('tools')}>{lang === 'zh' ? '开始探索' : 'Start exploring'}<ArrowDown className="w-4 h-4" /></button>
         </div>
+        <div className="sb-hero-weather"><WeatherPill lang={lang} T={T} /></div>
+        <span className="sb-hero-location">Hamilton · Waikato · New Zealand</span>
       </section>
 
-      <main className="max-w-6xl w-full mx-auto px-4 py-10 space-y-16 flex-1">
+      <main className="sb-main w-full flex-1">
         {/* 1. TOOLBOX */}
-        <section id="tools" className="scroll-mt-28">
-          <div className="flex items-start justify-between mb-5 gap-3">
-            <SectionTitle title={T.toolsH} sub={T.toolsP} />
-            <span className="text-xs bg-teal-50 text-teal-700 border border-teal-200 font-medium px-2.5 py-1 rounded-full hidden sm:block whitespace-nowrap">{T.checkedBadge}</span>
-          </div>
-          <div role="tablist" className="grid grid-cols-3 gap-2 sm:gap-4 mb-5">
-            {([['bins', Trash2], ['transport', Bus], ['urgent', Stethoscope]] as const).map(([id, Ic]) => (
-              <button key={id} role="tab" aria-selected={toolTab === id} data-testid={'tab-' + id} onClick={() => setToolTab(id)}
-                className={`rounded-2xl p-3 sm:p-4 text-left border transition flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 sb-tab ${toolTab === id ? 'sb-tab-on' : ''}`}>
-                <span className={`p-2 rounded-xl self-start sm:self-auto ${toolTab === id ? 'bg-teal-700' : id === 'urgent' ? 'bg-red-50 text-red-600' : 'bg-teal-50 text-teal-700'}`}><Ic className="w-5 h-5" /></span>
-                <span className="min-w-0"><span className="block font-bold text-sm sm:text-base">{T.tabs[id]}</span>
-                  <span className={`hidden sm:block text-xs ${toolTab === id ? 'text-white/85' : 'text-slate-600'}`}>{T.tabsSub[id]}</span></span>
-              </button>))}
-          </div>
+        <Reveal id="tools" className="sb-section sb-tools sb-dark">
+          <BandMedia src="./photos/band-tools.webp" />
+          <div className="sb-container">
+            <div className="sb-section-heading">
+              <SectionTitle eyebrow={TEXT.en.toolsH} title={T.toolsH} sub={T.toolsP} />
+              <span className="sb-tag sb-checked">{T.checkedBadge}</span>
+            </div>
+            <div role="tablist" aria-label={T.toolsH} className="sb-tabs">
+              {([['bins', Trash2], ['transport', Bus], ['urgent', Stethoscope]] as const).map(([id, Ic]) => (
+                <button key={id} id={'tool-tab-' + id} role="tab" aria-selected={toolTab === id} aria-controls={'tool-panel-' + id}
+                  data-testid={'tab-' + id} onClick={() => setToolTab(id)}
+                  className={'sb-tab ' + (toolTab === id ? 'sb-tab-on' : '')}>
+                  <Ic className="sb-tab-icon" />
+                  <span><span className="sb-tab-label">{T.tabs[id]}</span><span className="sb-tab-sub">{T.tabsSub[id]}</span></span>
+                </button>))}
+            </div>
 
-          {toolTab === 'bins' && (
-            <div className="sb-card sb-panel p-5 sm:p-6 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
-                  <div className="p-3 bg-teal-50 text-teal-700 rounded-xl"><Trash2 className="w-6 h-6" /></div>
-                  <div><h3 className="font-bold text-slate-900 text-base">{T.binH}</h3><p className="text-xs text-slate-500">{T.binP}</p></div>
+            {toolTab === 'bins' && (
+              <div id="tool-panel-bins" role="tabpanel" aria-labelledby="tool-tab-bins" className="sb-card sb-panel">
+                <div className="sb-panel-heading">
+                  <span className="sb-icon-disc"><Trash2 /></span>
+                  <div><h3>{T.binH}</h3><p>{T.binP}</p></div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="sb-bin-schedules sb-stagger">
                   {[{ w: T.redWeek, items: [bins[0], bins[3]] }, { w: T.yellowWeek, items: [bins[1], bins[2], bins[3]] }].map((col, ci) => (
-                    <div key={ci} className="p-4 bg-slate-50 rounded-xl border border-slate-200/80">
-                      <div className="flex items-center gap-1.5 mb-2 text-xs font-bold text-slate-800 uppercase tracking-wider">
-                        <Calendar className="w-3.5 h-3.5 text-emerald-600" />{col.w}
-                      </div>
-                      <div className="space-y-2">
+                    <div key={ci} className="sb-bin-week">
+                      <h4><Calendar />{col.w}</h4>
+                      <div>
                         {col.items.map(b => (
-                          <div key={b.k} className={`p-2.5 rounded-lg border text-xs shadow-sm ${b.color}`}>
-                            <div className="font-bold">{b.label}</div><div className="opacity-90 mt-0.5">{b.note}</div>
+                          <div key={b.k} className="sb-bin-row">
+                            <span className={'sb-bin-dot ' + b.color} aria-hidden="true" />
+                            <div><strong>{b.label}</strong><p>{b.note}</p></div>
                           </div>))}
                       </div>
                     </div>))}
                 </div>
-                <div className="mt-4 bg-teal-50/70 p-3.5 rounded-xl border border-teal-100 text-sm text-teal-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <span className="leading-relaxed">{T.binDay}</span>
-                  <a href={HCC_LOOKUP} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center justify-center gap-1 bg-teal-700 hover:bg-teal-800 text-white px-3.5 py-2 rounded-xl text-xs font-semibold">
-                    {T.lookup}<ExternalLink className="w-3.5 h-3.5" /></a>
+                <div className="sb-bin-lookup">
+                  <p>{T.binDay}</p>
+                  <a href={HCC_LOOKUP} target="_blank" rel="noreferrer" className="sb-action">{T.lookup}<ExternalLink /></a>
+                </div>
+                <div className="sb-panel-foot">
+                  <p className="sb-icon-line"><Clock /><span>{T.binTip}</span></p>
+                  <SourceLinks urls={[HCC_LOOKUP, HCC_FAQ]} label={T.srcs} />
                 </div>
               </div>
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-2">
-                <div className="flex items-start text-xs text-slate-600 gap-2"><Clock className="w-4 h-4 text-amber-500 shrink-0" /><span>{T.binTip}</span></div>
-                <SourceLinks urls={[HCC_LOOKUP, HCC_FAQ]} label={T.srcs} />
-              </div>
-            </div>
-          )}
+            )}
 
-          {toolTab === 'transport' && (
-            <div data-testid="panel-transport" className="sb-card sb-panel p-5 sm:p-6 space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-teal-50 text-teal-700 rounded-xl"><Bus className="w-6 h-6" /></div>
-                <div><h3 className="font-bold text-slate-900 text-base">{T.busH}</h3><p className="text-xs text-slate-500">{T.busP}</p></div>
-              </div>
-              <div>
-                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">{T.hf}</div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {ROUTES.filter(r => r.hf).map(r => (
-                    <a key={r.slug} href={B + r.slug + '/'} target="_blank" rel="noreferrer" className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-teal-400 hover:bg-teal-50/50 transition">
-                      <span className="w-10 h-10 shrink-0 rounded-xl bg-violet-600 text-white font-black flex items-center justify-center">{r.n}</span>
-                      <span className="min-w-0"><span className="block font-bold text-sm text-slate-900">{r.name}</span><span className="block text-xs text-slate-500">{lang === 'zh' ? r.zh : r.en}</span></span>
-                      <ExternalLink className="w-3.5 h-3.5 text-slate-400 ml-auto shrink-0" />
+            {toolTab === 'transport' && (
+              <div id="tool-panel-transport" role="tabpanel" aria-labelledby="tool-tab-transport" data-testid="panel-transport" className="sb-card sb-panel sb-transport">
+                <div className="sb-panel-heading">
+                  <span className="sb-icon-disc"><Bus /></span>
+                  <div><h3>{T.busH}</h3><p>{T.busP}</p></div>
+                </div>
+                <div className="sb-route-group">
+                  <h4 className="sb-label">{T.hf}</h4>
+                  <div className="sb-feature-routes sb-stagger">
+                    {ROUTES.filter(r => r.hf).map(r => (
+                      <a key={r.slug} href={B + r.slug + '/'} target="_blank" rel="noreferrer" className="sb-route sb-route-feature">
+                        <span className="sb-route-number">{r.n}</span>
+                        <span><strong>{r.name}</strong><span className="sb-route-description">{lang === 'zh' ? r.zh : r.en}</span></span>
+                        <ExternalLink className="sb-route-external" />
+                      </a>))}
+                  </div>
+                </div>
+                <div className="sb-route-group">
+                  <h4 className="sb-label">{T.allRoutes}</h4>
+                  <div className="sb-routes">
+                    {ROUTES.filter(r => !r.hf).map(r => (
+                      <a key={r.slug} href={B + r.slug + '/'} target="_blank" rel="noreferrer" className="sb-route">
+                        <span className="sb-route-number">{r.n}</span><span>{r.name}</span>
+                      </a>))}
+                  </div>
+                </div>
+                <div className="sb-transit-services">
+                  {[
+                    { href: 'https://www.busit.co.nz/', t: T.planner, p: T.plannerP },
+                    { href: 'https://www.busit.co.nz/using-the-bus/transit-app/', t: T.transit, p: T.transitP },
+                    { href: 'https://www.busit.co.nz/fares/', t: T.bee, p: T.beeP },
+                  ].map(x => (
+                    <a key={x.href} href={x.href} target="_blank" rel="noreferrer" className="sb-transit-service">
+                      <strong>{x.t}<ExternalLink /></strong><p>{x.p}</p>
                     </a>))}
                 </div>
-              </div>
-              <div>
-                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">{T.allRoutes}</div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {ROUTES.filter(r => !r.hf).map(r => (
-                    <a key={r.slug} href={B + r.slug + '/'} target="_blank" rel="noreferrer" className="flex items-center gap-2 p-2 rounded-lg bg-slate-50 hover:bg-teal-50 border border-slate-100 text-sm">
-                      <span className="min-w-[2.25rem] h-7 px-1 rounded-md bg-teal-700 text-white text-xs font-bold flex items-center justify-center">{r.n}</span>
-                      <span className="text-slate-700 leading-tight">{r.name}</span>
-                    </a>))}
+                <div className="sb-panel-foot sb-transport-foot">
+                  <div className="sb-link-pills">
+                    <a href="https://www.busit.co.nz/using-the-bus/map-city-and-regional-bus-routes/" target="_blank" rel="noreferrer">{T.mapL}</a>
+                    <a href="https://www.busit.co.nz/fares/beecard/" target="_blank" rel="noreferrer">Bee Card</a>
+                    <a href="tel:0800205305">{T.busHelp}</a>
+                  </div>
+                  <SourceLinks urls={['https://www.busit.co.nz/hamilton-routes/']} label={T.srcs + ' ' + CHECKED} />
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                {[
-                  { href: 'https://www.busit.co.nz/', t: T.planner, p: T.plannerP },
-                  { href: 'https://www.busit.co.nz/using-the-bus/transit-app/', t: T.transit, p: T.transitP },
-                  { href: 'https://www.busit.co.nz/fares/', t: T.bee, p: T.beeP },
-                ].map(x => (
-                  <a key={x.href} href={x.href} target="_blank" rel="noreferrer" className="p-3 rounded-xl bg-teal-50/70 border border-teal-100 hover:border-teal-300">
-                    <span className="font-bold text-teal-900 flex items-center gap-1">{x.t}<ExternalLink className="w-3.5 h-3.5" /></span>
-                    <span className="block text-xs text-teal-800/80 mt-1 leading-relaxed">{x.p}</span>
-                  </a>))}
-              </div>
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-xs text-slate-500">
-                <span className="flex flex-wrap gap-3">
-                  <a href="https://www.busit.co.nz/using-the-bus/map-city-and-regional-bus-routes/" target="_blank" rel="noreferrer" className="underline text-teal-700">{T.mapL}</a>
-                  <a href="https://www.busit.co.nz/fares/beecard/" target="_blank" rel="noreferrer" className="underline text-teal-700">Bee Card</a>
-                  <a href="tel:0800205305" className="underline text-teal-700">{T.busHelp}</a>
-                </span>
-                <SourceLinks urls={['https://www.busit.co.nz/hamilton-routes/']} label={T.srcs + ' ' + CHECKED} />
-              </div>
-            </div>
-          )}
+            )}
 
-          {toolTab === 'urgent' && (
-            <div data-testid="panel-urgent" className="space-y-4">
-              <div data-testid="em111" className="border-2 border-red-600 bg-red-50 rounded-2xl px-4 py-3 text-center">
-                <a href="tel:111" className="text-lg sm:text-xl font-extrabold text-red-700">{T.em111Big} <span className="underline">111</span></a>
-                <p className="text-xs text-slate-600 mt-1">{T.medDisc}</p>
-              </div>
-              <div className="bg-gradient-to-r from-red-600 to-rose-700 text-white rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-2 text-sm font-semibold"><AlertCircle className="w-5 h-5 shrink-0" />{T.life} <a href="tel:111" className="text-xl underline font-extrabold">111</a></div>
-                <a href="tel:0800611116" className="flex items-center gap-2 bg-white/15 hover:bg-white/25 rounded-xl px-3 py-2 text-sm"><ShieldCheck className="w-4 h-4 text-emerald-200" />{T.healthline}: <strong>0800 611 116</strong><span className="text-[11px] text-red-100">· {T.healthlineNote}</span></a>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {URGENT.map(c => {
-                  const isOpen = now >= c.open[0] && now < c.open[1];
-                  return (
-                    <div key={c.id} className="sb-card p-5 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="font-bold text-slate-900 text-base">{lang === 'zh' ? c.zh : c.name}</h3>
-                          <span data-testid="open-status" className={`shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 ${isOpen ? 'bg-green-100 text-green-800 border border-green-700' : 'bg-slate-200 text-slate-700'}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-green-600' : 'bg-slate-500'}`}></span>{isOpen ? T.openNow : T.closedNow}</span>
+            {toolTab === 'urgent' && (
+              <div id="tool-panel-urgent" role="tabpanel" aria-labelledby="tool-tab-urgent" data-testid="panel-urgent" className="sb-card sb-panel sb-urgent">
+                <BandMedia src="./photos/band-urgent.webp" />
+                <div data-testid="em111" className="sb-emergency">
+                  <a href="tel:111"><span>{T.em111Big}</span><strong>111</strong></a>
+                  <p>{T.medDisc}</p>
+                </div>
+                <div className="sb-healthline">
+                  <div className="sb-icon-line"><AlertCircle /><span>{T.life} <a href="tel:111">111</a></span></div>
+                  <a href="tel:0800611116" className="sb-healthline-call"><ShieldCheck /><span>{T.healthline}: <strong>0800 611 116</strong><span className="sb-healthline-note">· {T.healthlineNote}</span></span></a>
+                </div>
+                <div className="sb-clinics sb-stagger">
+                  {URGENT.map(c => {
+                    const isOpen = now >= c.open[0] && now < c.open[1];
+                    return (
+                      <div key={c.id} className="sb-clinic">
+                        <div>
+                          <div className="sb-card-heading">
+                            <h3>{lang === 'zh' ? c.zh : c.name}</h3>
+                            <span data-testid="open-status" className={'sb-tag sb-status ' + (isOpen ? 'sb-status-open' : 'sb-status-closed')}>
+                              <span className="sb-status-dot" aria-hidden="true" />{isOpen ? T.openNow : T.closedNow}
+                            </span>
+                          </div>
+                          <div className="sb-clinic-info">
+                            <p className="sb-icon-line"><Clock /><strong>{c.hours[lang]}</strong></p>
+                            <p className="sb-icon-line"><MapPin /><span>{c.address}</span></p>
+                            <p className="sb-clinic-note">{c.note[lang]}</p>
+                          </div>
                         </div>
-                        <div className="mt-3 space-y-1.5 text-sm text-slate-600">
-                          <div className="flex gap-2"><Clock className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" /><span className="font-semibold text-slate-800">{c.hours[lang]}</span></div>
-                          <div className="flex gap-2"><MapPin className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" /><span>{c.address}</span></div>
-                          <p className="text-xs text-slate-500 pl-6">{c.note[lang]}</p>
+                        <div className="sb-card-foot">
+                          <SourceLinks urls={c.sources} label={T.srcs} />
+                          <a href={'tel:' + c.phone.replace(/\s/g, '')} className="sb-action sb-call"><Phone />{c.phone}</a>
                         </div>
-                      </div>
-                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                        <SourceLinks urls={c.sources} label={T.srcs} />
-                        <a href={`tel:${c.phone.replace(/\s/g, '')}`} className="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1"><Phone className="w-3.5 h-3.5" />{c.phone}</a>
-                      </div>
-                    </div>);
-                })}
+                      </div>);
+                  })}
+                </div>
+                <p className="sb-urgent-note">{T.nowNote} {T.checkedBadge}.</p>
               </div>
-              <p className="text-xs text-slate-500">{T.nowNote} {T.checkedBadge}.</p>
-            </div>
-          )}
-        </section>
+            )}
+          </div>
+        </Reveal>
+
+        {/* The river carries the charcoal band into the morning mist. */}
+        <Reveal className="sb-river-section">
+          <div className="sb-container">
+            <figure className="sb-river">
+              <picture>
+                <source media="(max-width: 640px)" srcSet="./photos/hero-waikato-river-m.webp" />
+                <img src="./photos/hero-waikato-river.webp" alt={lang === 'zh' ? '流经汉密尔顿市区的怀卡托河' : 'The Waikato River flowing through Hamilton'} loading="lazy" className="sb-river-image" />
+              </picture>
+              <figcaption className="sb-river-caption">{lang === 'zh' ? '怀卡托河 · 汉密尔顿' : 'Waikato River · Hamilton'}</figcaption>
+              <a href={HERO.source} target="_blank" rel="noreferrer" className="sb-river-credit">{T.photoBy}: {HERO.credit}, {HERO.license}</a>
+            </figure>
+          </div>
+        </Reveal>
 
         {/* 2. SUPERMARKETS */}
-        <section id="supermarkets" className="scroll-mt-28">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
-            <SectionTitle title={T.smH} sub={T.smP} />
-            <span className="text-xs text-slate-500 bg-white border border-slate-200 px-3 py-1.5 rounded-xl self-start sm:self-auto whitespace-nowrap">{T.smCount(SUPERMARKETS.length)} · {CHECKED}</span>
-          </div>
-          <div className="flex flex-wrap gap-1.5 text-xs mb-5">
-            {SM_TYPES.map(c => (
-              <button key={c.id} data-testid={'sm-' + c.id} onClick={() => setSmType(c.id)}
-                className={`px-3 py-1.5 rounded-full font-medium transition sb-chip ${smType === c.id ? 'sb-chip-on' : ''}`}>
-                {c[lang]} <span className="opacity-60">{c.id === 'all' ? SUPERMARKETS.length : SUPERMARKETS.filter(x => x.type === c.id).length}</span>
-              </button>))}
-          </div>
-          {filteredSupermarkets.length === 0 ? <div className="sb-empty p-8 text-center text-sm text-slate-600">{T.noMatch}</div> : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredSupermarkets.map(sup => (
-              <div key={sup.id} className="sb-card sb-tilt p-5 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-start justify-between gap-2"><h3 className="font-bold text-slate-900 text-base">{lang === 'zh' ? sup.zhName : sup.name}</h3>
-                    <span className="shrink-0 text-[10px] bg-amber-50 text-amber-800 border border-amber-200 font-bold px-2 py-0.5 rounded">{SM_TYPES.find(t => t.id === sup.type)![lang]}</span></div>
-                  <p className="text-xs text-slate-500 flex items-start gap-1 mt-1"><MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-px" /><span>{sup.address}</span></p>
-                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl">
-                    <div className="flex items-start gap-1.5"><Clock className="w-3.5 h-3.5 text-teal-600 shrink-0 mt-px" /><span>{sup.hours ? sup.hours[lang] : T.hoursUnknown}</span></div>
-                    <a href={`tel:${sup.phone.replace(/\s/g, '')}`} className="flex items-center gap-1.5 hover:text-teal-700"><Phone className="w-3.5 h-3.5 text-teal-600 shrink-0" /><span>{sup.phone}</span></a>
-                  </div>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {sup.tags[lang].map((tag, i) => <span key={i} className="text-[11px] bg-teal-50 text-teal-800 border border-teal-100 px-2.5 py-0.5 rounded-full font-medium">{tag}</span>)}
-                  </div>
-                </div>
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
-                  <SourceLinks urls={sup.sources} label={T.srcs} />
-                  <button onClick={() => copyToClipboard(sup.address, sup.name)} className="shrink-0 text-teal-700 hover:text-teal-800 font-semibold flex items-center gap-1 bg-teal-50 px-3 py-1.5 rounded-lg border border-teal-200/60">
-                    <Copy className="w-3.5 h-3.5" /><span>{T.copyAddr}</span></button>
-                </div>
-              </div>))}
-          </div>)}
-        </section>
-
-        {/* 3. WEEKEND */}
-        <section id="weekend" className="scroll-mt-28">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3">
-            <SectionTitle title={T.wkH} sub={T.wkP} />
-            <div className="flex flex-wrap gap-1.5 text-xs">
-              {DEST_CATS.map(cat => (
-                <button key={cat.id} onClick={() => setSelectedDestCat(cat.id)}
-                  className={`px-3 py-1.5 rounded-full font-medium transition sb-chip ${selectedDestCat === cat.id ? 'sb-chip-on' : ''}`}>
-                  {cat[lang]}
+        <Reveal id="supermarkets" className="sb-section sb-market">
+          <BandMedia src="./photos/band-market.webp" />
+          <div className="sb-container">
+            <div className="sb-section-heading">
+              <SectionTitle eyebrow={TEXT.en.smH} title={T.smH} sub={T.smP} />
+              <span className="sb-tag sb-checked">{T.smCount(SUPERMARKETS.length)} · {CHECKED}</span>
+            </div>
+            <div className="sb-filters" role="group" aria-label={T.smH}>
+              {SM_TYPES.map(c => (
+                <button key={c.id} data-testid={'sm-' + c.id} aria-pressed={smType === c.id} onClick={() => setSmType(c.id)}
+                  className={'sb-chip ' + (smType === c.id ? 'sb-chip-on' : '')}>
+                  {c[lang]} <span className="sb-filter-count">{c.id === 'all' ? SUPERMARKETS.length : SUPERMARKETS.filter(x => x.type === c.id).length}</span>
                 </button>))}
             </div>
+            {filteredSupermarkets.length === 0 ? <div className="sb-empty">{T.noMatch}</div> : (
+              <div className="sb-market-grid sb-stagger">
+                {filteredSupermarkets.map(sup => (
+                  <div key={sup.id} className="sb-card sb-market-card">
+                    <div>
+                      <div className="sb-card-heading">
+                        <h3>{lang === 'zh' ? sup.zhName : sup.name}</h3>
+                        <span className="sb-tag">{SM_TYPES.find(t => t.id === sup.type)![lang]}</span>
+                      </div>
+                      <p className="sb-icon-line sb-address"><MapPin /><span>{sup.address}</span></p>
+                      <div className="sb-market-info">
+                        <p className="sb-icon-line"><Clock /><span>{sup.hours ? sup.hours[lang] : T.hoursUnknown}</span></p>
+                        <a href={'tel:' + sup.phone.replace(/\s/g, '')} className="sb-icon-line"><Phone /><span>{sup.phone}</span></a>
+                      </div>
+                      <div className="sb-tags">{sup.tags[lang].map((tag, i) => <span key={i} className="sb-tag">{tag}</span>)}</div>
+                    </div>
+                    <div className="sb-card-foot">
+                      <SourceLinks urls={sup.sources} label={T.srcs} />
+                      <button onClick={() => copyToClipboard(sup.address, sup.name)} className="sb-action"><Copy /><span>{T.copyAddr}</span></button>
+                    </div>
+                  </div>))}
+              </div>)}
           </div>
-          {filteredDestinations.length === 0 ? <div className="sb-empty p-8 text-center text-sm text-slate-600">{T.noMatch}</div> : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredDestinations.map((p: any) => (
-              <article key={p.id} className="sb-card sb-tilt sb-taped flex flex-col">
-                <div className="sb-photo relative aspect-[16/10] bg-gradient-to-br from-teal-700 to-emerald-800 overflow-hidden">
-                  {p.photo ? <img src={`./photos/${p.photo}`} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                    : <div className="absolute inset-0 flex items-center justify-center text-teal-100/70 text-sm font-semibold px-6 text-center">{p.name}</div>}
-                  <div className="absolute top-3 left-3 flex gap-1.5">
-                    <span className="text-[11px] bg-white/90 text-slate-800 font-semibold px-2 py-0.5 rounded-full">{T.km.replace('{n}', p.km)}</span>
-                    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${p.free ? 'bg-emerald-500 text-white' : 'bg-slate-800/80 text-white'}`}>{p.free ? T.freeTag : T.paidTag}</span>
-                    {p.indoor && <span className="text-[11px] bg-sky-600 text-white font-semibold px-2 py-0.5 rounded-full">{T.indoorTag}</span>}
-                  </div>
-                </div>
-                <div className="p-4 space-y-2 flex-1">
-                  <div className="text-[11px] font-semibold text-teal-700">{lang === 'zh' ? p.tag : p.en.tag}</div>
-                  <h3 className="font-bold text-base text-slate-900 leading-snug">{lang === 'zh' ? <>{p.zh} <span className="text-slate-400 font-medium text-sm">{p.name}</span></> : p.name}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{lang === 'zh' ? p.description : p.en.description}</p>
-                  <dl className="text-xs text-slate-500 space-y-1 pt-1">
-                    <div className="flex gap-1.5"><Clock className="w-3.5 h-3.5 shrink-0 mt-px text-teal-600" /><dd className="line-clamp-2">{lang === 'zh' ? p.hours : p.en.hours}</dd></div>
-                    <div className="flex gap-1.5"><MapPin className="w-3.5 h-3.5 shrink-0 mt-px text-teal-600" /><dd>{p.address}</dd></div>
-                  </dl>
-                </div>
-                <div className="px-4 py-3 border-t border-dashed border-slate-400 flex items-center justify-between gap-2 text-xs">
-                  <span className="text-[10px] text-slate-400 truncate">
-                    {p.photo && <>{T.photoBy}: <a href={p.photoSource} target="_blank" rel="noreferrer" className="underline">{p.photoCredit}</a>, <a href={p.photoLicenseUrl} target="_blank" rel="noreferrer" className="underline">{p.photoLicense}</a></>}
-                  </span>
-                  <a href={p.url} target="_blank" rel="noreferrer" className="shrink-0 text-teal-700 font-semibold hover:text-teal-900 flex items-center gap-0.5">{T.official}<ChevronRight className="w-3.5 h-3.5" /></a>
-                </div>
-              </article>))}
-          </div>)}
-        </section>
+        </Reveal>
 
-        </main>
+        {/* 3. DUSK / WEEKEND */}
+        <Reveal className="sb-cinematic">
+          <BandMedia src="./photos/band-hamilton-lake.webp" />
+          <div className="sb-dusk-shade" aria-hidden="true" />
+          <div className="sb-cinematic-content">
+            <p className="sb-cinematic-eyebrow">Hamilton · Waikato · New Zealand</p>
+            <h2 key={lang}><BlurText text={T.lakeA} /><BlurText text={T.lakeB} /></h2>
+            <button className="sb-ghost" onClick={() => go('weekend')}>{T.nav.weekend}<ArrowDown className="w-4 h-4" /></button>
+          </div>
+          <a href={LAKE_BAND.source} target="_blank" rel="noreferrer" className="sb-river-credit">{T.photoBy}: {LAKE_BAND.credit}, {LAKE_BAND.license}</a>
+        </Reveal>
 
-      <footer className="sb-footer text-slate-300 py-12 px-4 text-xs">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-white font-bold text-base">
-              <span className="sb-logo w-7 h-7 flex items-center justify-center text-xs font-black"><LogoMark /></span>
-              <span>{T.brand}</span>
+        <Reveal id="weekend" className="sb-section sb-weekend sb-dark">
+          <div className="sb-container">
+            <div className="sb-section-heading"><SectionTitle eyebrow={TEXT.en.wkH} title={T.wkH} sub={T.wkP} /></div>
+            <div className="sb-filters" role="group" aria-label={T.wkH}>
+              {DEST_CATS.map(cat => (
+                <button key={cat.id} onClick={() => setSelectedDestCat(cat.id)} aria-pressed={selectedDestCat === cat.id}
+                  className={'sb-chip ' + (selectedDestCat === cat.id ? 'sb-chip-on' : '')}>{cat[lang]}</button>))}
             </div>
-            <p className="leading-relaxed">{T.footAbout}</p>
+            {filteredDestinations.length === 0 ? <div className="sb-empty">{T.noMatch}</div> : (
+              <div className="sb-weekend-grid sb-stagger">
+                {filteredDestinations.map((p: any) => (
+                  <article key={p.id} className="sb-card sb-place-card">
+                    <div className={'sb-photo ' + (!p.photo ? 'sb-photo-fallback' : '')}>
+                      {p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} loading="lazy" decoding="async" /> : null}
+                      <div className="sb-photo-tags">
+                        <span className="sb-tag">{T.km.replace('{n}', p.km)}</span>
+                        <span className="sb-tag">{p.free ? T.freeTag : T.paidTag}</span>
+                        {p.indoor && <span className="sb-tag">{T.indoorTag}</span>}
+                      </div>
+                    </div>
+                    <div className="sb-place-body">
+                      <p className="sb-place-kicker">{lang === 'zh' ? p.tag : p.en.tag}</p>
+                      <h3>{lang === 'zh' ? <>{p.zh} <span className="sb-place-english">{p.name}</span></> : p.name}</h3>
+                      <p className="sb-place-description">{lang === 'zh' ? p.description : p.en.description}</p>
+                      <dl className="sb-place-details">
+                        <div className="sb-icon-line"><Clock /><dd>{lang === 'zh' ? p.hours : p.en.hours}</dd></div>
+                        <div className="sb-icon-line"><MapPin /><dd>{p.address}</dd></div>
+                      </dl>
+                    </div>
+                    <div className="sb-card-foot">
+                      <span className="sb-photo-attribution">
+                        {p.photo && <>{T.photoBy}: <a href={p.photoSource} target="_blank" rel="noreferrer">{p.photoCredit}</a>, <a href={p.photoLicenseUrl} target="_blank" rel="noreferrer">{p.photoLicense}</a></>}
+                      </span>
+                      <a href={p.url} target="_blank" rel="noreferrer" className="sb-action">{T.official}<ChevronRight /></a>
+                    </div>
+                  </article>))}
+              </div>)}
           </div>
-          <div>
-            <h4 className="font-bold text-slate-200 mb-3 uppercase tracking-wider">{T.footLinks}</h4>
-            <ul className="space-y-2">
-              <li><a href="https://hamilton.govt.nz" target="_blank" rel="noreferrer" className="hover:text-teal-300">Hamilton City Council</a></li>
-              <li><a href="https://www.busit.co.nz" target="_blank" rel="noreferrer" className="hover:text-teal-300">Busit (Waikato buses)</a></li>
-              <li><a href="https://www.waikatodistrict.govt.nz" target="_blank" rel="noreferrer" className="hover:text-teal-300">Waikato District Council</a></li>
-            </ul>
+        </Reveal>
+      </main>
+
+      <footer className="sb-footer sb-dark">
+        <div className="sb-container">
+          <div className="sb-footer-grid">
+            <div className="sb-footer-about">
+              <div className="sb-footer-brand"><span className="sb-logo"><LogoMark /></span><span>{T.brand}</span></div>
+              <p>{T.footAbout}</p>
+            </div>
+            <div>
+              <h4>{T.footLinks}</h4>
+              <ul className="sb-link-pills">
+                <li><a href="https://hamilton.govt.nz" target="_blank" rel="noreferrer">Hamilton City Council</a></li>
+                <li><a href="https://www.busit.co.nz" target="_blank" rel="noreferrer">Busit (Waikato buses)</a></li>
+                <li><a href="https://www.waikatodistrict.govt.nz" target="_blank" rel="noreferrer">Waikato District Council</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>{T.footEm}</h4>
+              <ul className="sb-footer-numbers">
+                <li>{T.em111}: <strong>111</strong></li>
+                <li>{T.em105}: <strong>105</strong></li>
+                <li>Healthline: <strong>0800 611 116</strong></li>
+                <li>Anglesea Urgent Care: <strong>07 858 0800</strong></li>
+              </ul>
+            </div>
+            <div className="sb-footer-disclaimer">
+              <h4>{T.footDisc}</h4><p>{T.footDiscP}</p><p>{T.indep}</p>
+              <p>{T.wxBy} <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>)</p>
+              <button data-testid="credits-btn" onClick={() => setShowCredits(true)} className="sb-action">{T.photoCredits}<ArrowUpRight /></button>
+            </div>
           </div>
-          <div>
-            <h4 className="font-bold text-slate-200 mb-3 uppercase tracking-wider">{T.footEm}</h4>
-            <ul className="space-y-1.5">
-              <li>{T.em111}: <strong className="text-white">111</strong></li>
-              <li>{T.em105}: <strong className="text-white">105</strong></li>
-              <li>Healthline: <strong className="text-white">0800 611 116</strong></li>
-              <li>Anglesea Urgent Care: <strong className="text-white">07 858 0800</strong></li>
-            </ul>
+          <div className="sb-footer-bottom">
+            <p>© 2026 {lang === 'zh' ? '汉密尔顿生活指南 · Hamilton Local' : 'Hamilton Local'}</p>
+            <span>Hamilton · Waikato · New Zealand</span>
           </div>
-          <div>
-            <h4 className="font-bold text-slate-200 mb-3 uppercase tracking-wider">{T.footDisc}</h4>
-            <p className="leading-relaxed text-slate-300">{T.footDiscP}</p>
-            <p className="leading-relaxed text-slate-300 mt-2">{T.indep}</p>
-            <p className="mt-3 space-y-1">
-              <span className="block">{T.wxBy} <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="underline hover:text-teal-300">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer" className="underline hover:text-teal-300">CC BY 4.0</a>)</span>
-              <button data-testid="credits-btn" onClick={() => setShowCredits(true)} className="underline hover:text-teal-300">{T.photoCredits}</button>
-            </p>
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto pt-8 mt-8 border-t border-dashed border-amber-400/60 flex flex-col sm:flex-row justify-between items-center text-slate-300 text-[11px] gap-2">
-          <p>© 2026 {lang === 'zh' ? '汉密尔顿生活指南 · Hamilton Local' : 'Hamilton Local'}</p>
-          <span>Hamilton · Waikato · New Zealand</span>
         </div>
       </footer>
       {showCredits && (
-        <div data-testid="credits" className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setShowCredits(false)}>
-          <div className="sb-card sb-modal max-w-3xl w-full max-h-[85vh] overflow-y-auto p-5 text-sm" onClick={e => e.stopPropagation()}>
-            <div className="flex items-start justify-between gap-3 mb-2">
-              <h2 className="font-bold text-lg text-slate-900">{T.creditsH}</h2>
-              <button onClick={() => setShowCredits(false)} className="text-slate-500 hover:text-slate-900 text-xs border rounded-lg px-2 py-1">{T.close}</button>
+        <div data-testid="credits" className="sb-modal-backdrop" onClick={() => setShowCredits(false)}>
+          <div role="dialog" aria-modal="true" aria-labelledby="credits-title" className="sb-card sb-modal" onClick={e => e.stopPropagation()}>
+            <div className="sb-modal-heading"><h2 id="credits-title">{T.creditsH}</h2>
+              <button onClick={() => setShowCredits(false)} className="sb-action">{T.close}<X /></button>
             </div>
-            <p className="text-xs text-slate-500 mb-3">{T.creditsP}</p>
-            <ul className="divide-y divide-slate-100">
-              <li className="py-2 grid grid-cols-1 sm:grid-cols-[1.2fr_1fr_auto] gap-x-3 gap-y-0.5">
-                <span className="font-semibold text-slate-900">{lang === 'zh' ? `${T.heroImg} · ${HERO.zh}` : `${T.heroImg} · ${HERO.name}`}</span>
-                <span className="text-slate-600">{T.cAuthor}: {HERO.credit}</span>
-                <span className="text-slate-600"><a href={HERO.licenseUrl} target="_blank" rel="noreferrer" className="underline text-teal-700">{HERO.license}</a> · <a href={HERO.source} target="_blank" rel="noreferrer" className="underline text-teal-700">{T.cSource}</a></span>
+            <p className="sb-modal-intro">{T.creditsP}</p>
+            <ul className="sb-credits-list">
+              <li>
+                <span className="sb-credit-place">{lang === 'zh' ? T.heroImg + ' · ' + HERO.zh : T.heroImg + ' · ' + HERO.name}</span>
+                <span>{T.cAuthor}: {HERO.credit}</span>
+                <span><a href={HERO.licenseUrl} target="_blank" rel="noreferrer">{HERO.license}</a> · <a href={HERO.source} target="_blank" rel="noreferrer">{T.cSource}</a></span>
+              </li>
+              <li>
+                <span className="sb-credit-place">{lang === 'zh' ? T.interludeImg + ' · ' + LAKE_BAND.zh : T.interludeImg + ' · ' + LAKE_BAND.name}</span>
+                <span>{T.cAuthor}: {LAKE_BAND.credit}</span>
+                <span><a href={LAKE_BAND.licenseUrl} target="_blank" rel="noreferrer">{LAKE_BAND.license}</a> · <a href={LAKE_BAND.source} target="_blank" rel="noreferrer">{T.cSource}</a></span>
               </li>
               {(PLACES as any[]).filter(p => p.photo).map(p => (
-                <li key={p.id} className="py-2 grid grid-cols-1 sm:grid-cols-[1.2fr_1fr_auto] gap-x-3 gap-y-0.5">
-                  <span className="font-semibold text-slate-900">{lang === 'zh' ? `${p.zh} · ${p.name}` : p.name}</span>
-                  <span className="text-slate-600">{T.cAuthor}: {p.photoCredit}</span>
-                  <span className="text-slate-600"><a href={p.photoLicenseUrl} target="_blank" rel="noreferrer" className="underline text-teal-700">{p.photoLicense}</a> · <a href={p.photoSource} target="_blank" rel="noreferrer" className="underline text-teal-700">{T.cSource}</a></span>
+                <li key={p.id}>
+                  <span className="sb-credit-place">{lang === 'zh' ? p.zh + ' · ' + p.name : p.name}</span>
+                  <span>{T.cAuthor}: {p.photoCredit}</span>
+                  <span><a href={p.photoLicenseUrl} target="_blank" rel="noreferrer">{p.photoLicense}</a> · <a href={p.photoSource} target="_blank" rel="noreferrer">{T.cSource}</a></span>
                 </li>))}
             </ul>
           </div>
@@ -767,3 +876,4 @@ export default function App() {
     </div>
   );
 }
+
