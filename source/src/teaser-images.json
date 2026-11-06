@@ -1,0 +1,140 @@
+{
+    "lockedMix":  {
+                      "living":  "photos/teaser-living-a.webp",
+                      "kids":  "photos/teaser-kids-c.webp",
+                      "services":  "photos/teaser-services-a.webp",
+                      "weekend":  "photos/band-hamilton-lake.webp",
+                      "tools":  "photos/teaser-tools-b.webp"
+                  },
+    "toolsSwitcher":  "Disabled. Homepage teasers use lockedMix; ?tools= and ?style= are ignored. Tools B (Hamilton Orbiter buses) is the default.",
+    "toolsStyles":  {
+                        "a":  "photos/teaser-tools-a.webp",
+                        "b":  "photos/teaser-tools-b.webp",
+                        "c":  "photos/teaser-tools-c.webp"
+                    },
+    "credits":  [
+                    {
+                        "id":  "teaser-living-a",
+                        "file":  "photos/teaser-living-a.webp",
+                        "sourceFile":  "File:2017 Nijiya Market produce section in Mountain View.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:2017_Nijiya_Market_produce_section_in_Mountain_View.jpg",
+                        "author":  "Mark Yasuda",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "note":  "Asian grocery produce aisle; cropped/resized to webp for teaser"
+                    },
+                    {
+                        "id":  "teaser-living-b",
+                        "file":  "photos/teaser-living-b.webp",
+                        "sourceFile":  "File:Chinatown NYC Market Seafood and Vegetables June 2022.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Chinatown_NYC_Market_Seafood_and_Vegetables_June_2022.jpg",
+                        "author":  "TazmilyKoala",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "note":  "Asian market seafood/veg stall; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-living-c",
+                        "file":  "photos/teaser-living-c.webp",
+                        "sourceFile":  "File:Produce in Ben Thanh Market - Ho Chi Minh City, Vietnam - DSC01093.JPG",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Produce_in_Ben_Thanh_Market_-_Ho_Chi_Minh_City,_Vietnam_-_DSC01093.JPG",
+                        "author":  "Daderot",
+                        "license":  "CC0 1.0",
+                        "licenseUrl":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                        "note":  "Market produce display; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-kids-a",
+                        "file":  "photos/teaser-kids-a.webp",
+                        "sourceFile":  "File:Playground at Richmond Park, Richmond, Christchurch, New Zealand.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Playground_at_Richmond_Park,_Richmond,_Christchurch,_New_Zealand.jpg",
+                        "author":  "Michal Klajban",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "note":  "NZ playground equipment (no clear child faces preferred); cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-kids-b",
+                        "file":  "photos/teaser-kids-b.webp",
+                        "sourceFile":  "File:Playground in Bexley Park, Christchurch, New Zealand 03.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Playground_in_Bexley_Park,_Christchurch,_New_Zealand_03.jpg",
+                        "author":  "Michal Klajban",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "note":  "NZ playground; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-kids-c",
+                        "file":  "photos/teaser-kids-c.webp",
+                        "sourceFile":  "File:New Brighton Beachside Playground, New Brighton, Christchurch, Canterbury, New Zealand 16.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:New_Brighton_Beachside_Playground,_New_Brighton,_Christchurch,_Canterbury,_New_Zealand_16.jpg",
+                        "author":  "Michal Klajban",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "note":  "NZ beachside playground structure; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-services-a",
+                        "file":  "photos/teaser-services-a.webp",
+                        "sourceFile":  "File:PEX installation tools and fittings.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:PEX_installation_tools_and_fittings.jpg",
+                        "author":  "Tomwsulcer",
+                        "license":  "CC BY-SA 3.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                        "note":  "Plumbing tools/fittings still life; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-services-b",
+                        "file":  "photos/teaser-services-b.webp",
+                        "sourceFile":  "File:Plumber uses two wrenches to tighten a fitting.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Plumber_uses_two_wrenches_to_tighten_a_fitting.jpg",
+                        "author":  "Tomwsulcer",
+                        "license":  "CC0 1.0",
+                        "licenseUrl":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                        "note":  "Trades hands-on plumbing work; consent noted on Commons; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-services-c",
+                        "file":  "photos/teaser-services-c.webp",
+                        "sourceFile":  "File:Stanley Tools toolchest - New Britain Industrial Museum - DSC09848.JPG",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Stanley_Tools_toolchest_-_New_Britain_Industrial_Museum_-_DSC09848.JPG",
+                        "author":  "Daderot",
+                        "license":  "CC0 1.0",
+                        "licenseUrl":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                        "note":  "Tool chest / trades kit; cropped/resized"
+                    },
+                    {
+                        "id":  "teaser-tools-a",
+                        "file":  "photos/teaser-tools-a.webp",
+                        "sourceFile":  "File:Dunedin City recycling bins, New Zealand, March 2011.JPG",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Dunedin_City_recycling_bins,_New_Zealand,_March_2011.JPG",
+                        "author":  "Lcmortensen",
+                        "license":  "CC BY-SA 3.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/3.0",
+                        "theme":  "rubbish/recycling kerbside bins (NZ)",
+                        "note":  "cropped/resized to webp for teaser"
+                    },
+                    {
+                        "id":  "teaser-tools-b",
+                        "file":  "photos/teaser-tools-b.webp",
+                        "sourceFile":  "File:Hamilton Orbiter buses.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Hamilton_Orbiter_buses.jpg",
+                        "author":  "Johnragla",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "theme":  "Hamilton NZ public buses / Orbiter",
+                        "note":  "cropped/resized to webp for teaser"
+                    },
+                    {
+                        "id":  "teaser-tools-c",
+                        "file":  "photos/teaser-tools-c.webp",
+                        "sourceFile":  "File:Petersfield Hospital and Urgent Treatment Centre Entrance.jpg",
+                        "url":  "https://commons.wikimedia.org/wiki/File:Petersfield_Hospital_and_Urgent_Treatment_Centre_Entrance.jpg",
+                        "author":  "Djm-leighpark",
+                        "license":  "CC BY-SA 4.0",
+                        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+                        "theme":  "hospital / urgent treatment centre entrance (clinic)",
+                        "note":  "cropped/resized to webp for teaser"
+                    }
+                ]
+}
