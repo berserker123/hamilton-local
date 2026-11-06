@@ -59,10 +59,15 @@ button { cursor: pointer; }
 .sb-header-cta:hover, .sb-btn:hover { background: #f0e6d5; box-shadow: 0 4px 20px rgba(0, 0, 0, .08); }
 .sb-mobile-nav { display: none; }
 
-/* Separate scale and scroll layers let the two media transforms compose. */
+/* Hero motion affects only absolute image layers; the overlay never moves. */
 .sb-hero { position: relative; isolation: isolate; display: flex; flex-direction: column; min-height: 100svh; overflow: hidden; padding: 140px 24px 140px; background: #293d35; color: white; }
-.sb-hero-media { position: absolute; inset: -12% 0; z-index: -2; pointer-events: none; }
-.sb-hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; animation: sb-ken-burns 20s ease-out both; }
+.sb-hero-media { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.sb-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.sb-hero-media-a img { animation: sb-ken-burns 30s ease-in-out infinite; will-change: transform; }
+.sb-hero-media-b img { opacity: 0; }
+.sb-hero-media-b img.is-previous { z-index: 1; opacity: 1; }
+.sb-hero-media-b img.is-current { z-index: 2; opacity: 1; animation: sb-hero-fade 2s ease-in-out both; }
+.sb-hero-media-b img.is-initial { animation: none; }
 .sb-hero-shade { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(8, 21, 17, .68), rgba(8, 21, 17, .16) 28%, rgba(8, 21, 17, .24) 58%, rgba(8, 21, 17, .25) 72%, var(--charcoal) 100%), linear-gradient(90deg, rgba(8, 21, 17, .12), rgba(8, 21, 17, .3) 50%, rgba(8, 21, 17, .12)); }
 .sb-hero-content { width: 100%; max-width: 1040px; margin: auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .sb-sticker { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; padding: 9px 16px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 999px; background: rgba(255, 255, 255, .1); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font-size: 11px; line-height: 1.6; color: rgba(255, 255, 255, .9); }
@@ -416,7 +421,11 @@ button { cursor: pointer; }
 .sb-reveal.is-visible .sb-stagger > :nth-child(6n+4) { animation-delay: 180ms; }
 .sb-reveal.is-visible .sb-stagger > :nth-child(6n+5) { animation-delay: 240ms; }
 .sb-reveal.is-visible .sb-stagger > :nth-child(6n) { animation-delay: 300ms; }
-@keyframes sb-ken-burns { from { transform: scale(1.06); } to { transform: scale(1); } }
+@keyframes sb-ken-burns {
+  0%, 100% { transform: translate3d(-1%, .4%, 0) scale(1.05); }
+  50% { transform: translate3d(1%, -.6%, 0) scale(1.12); }
+}
+@keyframes sb-hero-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sb-blur-in { from { opacity: 0; filter: blur(10px); transform: translateY(12px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
 @keyframes sb-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @media (hover: hover) and (pointer: fine) {
@@ -564,6 +573,9 @@ button { cursor: pointer; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .sb-blur-char, .sb-reveal, .sb-reveal.is-pending, .sb-reveal.is-visible, .sb-reveal .sb-stagger > * { opacity: 1; filter: none; transform: none; }
   .sb-hero-media, .sb-band-media { transform: none !important; will-change: auto; }
+  .sb-hero-media img { transform: none !important; will-change: auto; }
+  .sb-hero-media-b img { opacity: 0 !important; }
+  .sb-hero-media-b img:first-child { opacity: 1 !important; z-index: 3; }
   .sb-card:hover, .sb-place-card:hover .sb-photo img { transform: none; }
 }
 
@@ -899,3 +911,58 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 .ia-root .sb-brand { min-height: 44px; }
 .ia-breadcrumb a, .ia-quick-links a { min-width: 44px; justify-content: center; }
 .ia-root a, .ia-root button { min-width: 44px; }
+
+/* Original Hamilton Local carriage: chrome is a sibling of the clipped scenery.
+   Two identical mirrored strips keep the one-way translation seamless at -50%.
+   No transform is applied to hero-train.webp or to any window/content wrapper. */
+.sb-hero-media-window {
+  --window-top: 112px;
+  --window-bottom: 112px;
+  --window-side: clamp(22px, 4.2vw, 72px);
+  --window-radius: clamp(36px, 5vw, 76px);
+  background: linear-gradient(110deg, #1a2421, #34372e 45%, #18231f);
+}
+.sb-window-view, .sb-window-rim {
+  position: absolute;
+  inset: var(--window-top) var(--window-side) var(--window-bottom);
+  border-radius: var(--window-radius);
+}
+.sb-window-view { overflow: hidden; background: #797b60; }
+.sb-window-track {
+  position: absolute; left: 0; top: 0; height: 100%; width: max-content;
+  display: flex; animation: sb-window-travel 42s linear infinite; will-change: transform;
+}
+.sb-window-track img {
+  position: static; flex: none; width: auto; max-width: none; height: 100%;
+  min-width: calc(100vw - var(--window-side) - var(--window-side));
+  object-fit: cover;
+}
+.sb-window-ground {
+  position: absolute; inset: auto 0 0; height: 23%; overflow: hidden;
+  mask-image: linear-gradient(transparent, #000 54%);
+  -webkit-mask-image: linear-gradient(transparent, #000 54%);
+}
+.sb-window-near { animation-duration: 14s; filter: blur(1.4px); }
+.sb-window-rim {
+  border: 13px solid #30362e;
+  box-shadow: 0 0 0 2px #b1a68a88, 0 0 0 7px #181e1a,
+    0 0 0 10px #777b6666, 0 14px 32px 12px #090e0c99,
+    inset 0 0 0 3px #a7a58b99, inset 0 0 0 7px #111b17,
+    inset 0 9px 28px 12px #101a1766;
+  background: linear-gradient(125deg, #fff2ce0c, transparent 37%, #081b0c12);
+}
+.sb-window-sill {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 80px;
+  border-top: 1px solid #c1b38a38;
+  background: linear-gradient(#494738, #252c25 9px, #14221c 28px, #19261f);
+  box-shadow: 0 -8px 24px #080e0b99;
+}
+@keyframes sb-window-travel { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 700px) {
+  .sb-hero-media-window { --window-top: 180px; --window-bottom: 90px; --window-side: 12px; --window-radius: 38px; }
+  .sb-window-rim { border-width: 8px; box-shadow: 0 0 0 2px #b1a68a66, 0 0 0 6px #181e1a, inset 0 0 0 2px #a7a58b99, inset 0 0 0 5px #111b17, inset 0 7px 20px 8px #101a1766; }
+  .sb-window-sill { height: 62px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-window-track { animation: none !important; transform: none !important; will-change: auto; }
+}
