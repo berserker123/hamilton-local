@@ -1,879 +1,183 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import {
-  Search, Trash2, Phone, MapPin, Clock, Calendar, ShieldCheck,
-  Stethoscope, Copy, ChevronRight, X, Sparkles, AlertCircle,
-  Sun, Cloud, CloudRain, CloudSun, CloudFog, CloudLightning, Snowflake, Droplets, ExternalLink, Globe, Umbrella, Bus, ArrowDown, ArrowUpRight
-} from 'lucide-react';
-import PLACES from './places.json';
+import React, { useEffect, useRef, useState } from 'react';
+import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Copy, Sun, Store, Trees, Wrench, BookOpen, ShieldCheck, ExternalLink } from 'lucide-react';
 import { LogoMark } from './Logo';
+import { BlurText, Reveal, HeroMedia } from './Motion';
+import { SUPERMARKETS, URGENT, ROUTES, TEXT, LAKE_BAND } from './local-data';
+import PLACES from './places.json';
+import VERIFIED from './verified-urls.json';
+import TEASER_IMAGES from './teaser-images.json';
 
 type Lang = 'zh' | 'en';
-const CHECKED = '2026-11-03';
-const HCC_LOOKUP = 'https://hamilton.govt.nz/fight-the-landfill/kerbside-collection';
-const HCC_FAQ = 'https://hamilton.govt.nz/fight-the-landfill/help/faq';
-
-// --- Asian supermarkets: only entries verified from public listings (checked 2026-11-03) ---
-const SUPERMARKETS = [
-  {
-    id: 'newsave-tristram',
-    name: 'New Save Asian Fresh Supermarket', zhName: '新时代亚超（New Save）',
-    type: 'cn', suburb: 'Hamilton Central',
-    address: '130 Tristram Street, Hamilton Central, Hamilton 3204',
-    hours: { zh: '每天 8:30–19:00', en: 'Daily 8:30am–7pm' },
-    phone: '07 834 9989',
-    tags: { zh: ['市中心', '综合亚洲食品'], en: ['City centre', 'General Asian groceries'] },
-    sources: ['https://www.yellow.co.nz/hamilton/bpp/new-save-asian-fresh-supermarket-579494705', 'https://maps.apple.com/place?place-id=IF844D396626F50B1'],
-  },
-  {
-    id: 'newsave-clyde',
-    name: 'New Save Asian Fresh Supermarket (Clyde St)', zhName: 'New Save 亚超（Clyde St 店）',
-    type: 'cn', suburb: 'Hamilton East / Chartwell',
-    address: '247 Clyde Street, Hamilton 3216',
-    hours: null,
-    phone: '07 960 7389',
-    tags: { zh: ['东区', '综合亚洲食品'], en: ['East side', 'General Asian groceries'] },
-    sources: ['https://yellow.co.nz/hamilton/bpp/new-save-asian-fresh-supermarket-579500713', 'https://www.zenbu.co.nz/entry/1096906-new-save-asian-supermarket-chartwell'],
-  },
-  {
-    id: 'wellmart',
-    name: 'Wellmart Asian Supermarket', zhName: 'Wellmart 亚超',
-    type: 'cn', suburb: 'Frankton / Hamilton Central',
-    address: '25/27A/27C Vialou Street, Hamilton 3204',
-    hours: { zh: '每天 8:30–19:00（目录信息）', en: 'Daily 8:30am–7pm (directory listing)' },
-    phone: '07 839 9058',
-    tags: { zh: ['生鲜', '冷冻', '调料'], en: ['Fresh produce', 'Frozen', 'Sauces'] },
-    sources: ['https://nz.oceaniabiz.com/waikato/wellmart-asian-supermarket-240616'],
-  },
-  {
-    id: 'ings',
-    name: 'Ings Trading', zhName: 'Ings Trading（亚洲食品零售/批发）',
-    type: 'cn', suburb: 'Frankton',
-    address: '4 Keddell Street, Frankton, Hamilton 3204',
-    hours: null,
-    phone: '07 848 1668',
-    tags: { zh: ['批发价', '餐饮食材', '厨具'], en: ['Wholesale prices', 'Restaurant supplies', 'Kitchenware'] },
-    sources: ['https://www.yellow.co.nz/hamilton/bpp/ings-trading-ltd-579436100'],
-  },
-  {
-    id: 'garden-fresh', name: 'Garden Fresh Rototuna', zhName: 'Garden Fresh 亚洲果蔬（Rototuna）', type: 'cn', suburb: 'Rototuna',
-    address: '16 Horsham Downs Road, Rototuna, Hamilton 3210',
-    hours: { zh: '每天 8:30–19:00（目录信息）', en: 'Daily 8:30am–7pm (directory listing)' }, phone: '07 855 6188',
-    tags: { zh: ['蔬菜水果', '中式调料'], en: ['Fruit & veg', 'Chinese pantry'] },
-    sources: ['https://2pos.co.nz/1402/11850', 'https://nz.directmap.info/hamilton/5925'],
-  },
-  {
-    id: 'manbok', name: 'Manbok Mart', zhName: 'Manbok Mart 万福韩国超市', type: 'kr', suburb: 'Hamilton East',
-    address: '509 Grey Street, Hamilton East, Hamilton 3216',
-    hours: { zh: '周一至六 8:30–19:00（目录信息）', en: 'Mon–Sat 8:30am–7pm (directory listing)' }, phone: '07 839 1971',
-    tags: { zh: ['韩国食品', '日本食品', '肉类'], en: ['Korean food', 'Japanese food', 'Meat'] },
-    sources: ['https://www.yellowpages.net/phone-64-78391971-asian-grocery-store-Hamilton-NZ26105.html', 'https://nz.near-place.com/manbok-mart-509-grey-street-hamilton-east-hamilton'],
-  },
-  {
-    id: 'indian-supermarket', name: 'Indian Supermarket', zhName: 'Indian Supermarket 印度超市', type: 'in', suburb: 'Frankton',
-    address: '89 Greenwood Street, Frankton, Hamilton 3204',
-    hours: { zh: '每天 10:00–20:00', en: 'Daily 10am–8pm' }, phone: '027 271 4040',
-    tags: { zh: ['印度香料', '米面豆类'], en: ['Indian spices', 'Rice, flour & lentils'] },
-    sources: ['https://indiansupermarket.co.nz/contact-us/'],
-  },
-  {
-    id: 'super-save', name: 'Super Save Hamilton', zhName: 'Super Save 印度超市', type: 'in', suburb: 'Frankton',
-    address: '1/254 Kahikatea Drive, Frankton, Hamilton 3204',
-    hours: { zh: '每天 8:00–20:00（目录信息）', en: 'Daily 8am–8pm (directory listing)' }, phone: '07 846 0688',
-    tags: { zh: ['印度食品', '冷冻', '散装'], en: ['Indian groceries', 'Frozen', 'Bulk'] },
-    sources: ['https://supersavehamilton.co.nz/indian-grocery-store-in-hamilton/', 'https://www.chamberofcommerce.co.nz/business-directory/waikato/frankton-junction/indian-grocery-store/143047-super-save-hamilton'],
-  },
-  {
-    id: 'pino-plus', name: 'Pino Plus – The Filipino Store', zhName: 'Pino Plus 菲律宾食品店', type: 'sea', suburb: 'Frankton',
-    address: '241 Kahikatea Drive, Hamilton 3204',
-    hours: null, phone: '07 846 2566',
-    tags: { zh: ['菲律宾食品'], en: ['Filipino groceries'] },
-    sources: ['https://2pos.co.nz/1402/11882'],
-  },
-];
-const SM_TYPES = [
-  { id: 'all', zh: '全部', en: 'All' }, { id: 'cn', zh: '中式/综合', en: 'Chinese / general' }, { id: 'kr', zh: '韩国', en: 'Korean' },
-  { id: 'in', zh: '印度', en: 'Indian' }, { id: 'sea', zh: '东南亚', en: 'Southeast Asian' },
-];
-
-const URGENT = [
-  { id: 'anglesea', name: 'Anglesea Clinic Urgent Care', zh: 'Anglesea 急症诊所', address: 'Gate 1, 3 Thackeray Street, Hamilton Central', phone: '07 858 0800',
-    open: [0, 24], hours: { zh: '24 小时 · 每天', en: '24 hours, 7 days' }, note: { zh: '无需预约，按病情紧急程度看诊，需现场付费。', en: 'Walk in, seen by urgency; payment upfront.' },
-    sources: ['https://www.angleseaclinic.org.nz/contact/', 'https://www.healthnz.govt.nz/hospitals-services/hospitals/waikato/waikato-hospital'] },
-  { id: 'terapa', name: 'Tui Medical Te Rapa', zh: 'Tui Medical Te Rapa 急症', address: '26 Bryant Road, Te Rapa, Hamilton 3200', phone: '07 849 4181',
-    open: [0, 24], hours: { zh: '急症 24 小时 · 每天（GP 周一至五 8:00–17:00）', en: 'Urgent care 24/7 (GP Mon–Fri 8am–5pm)' }, note: { zh: '按病情紧急程度看诊；收费标准见官网（按年龄、是否注册、社区服务卡而定）。', en: 'Seen by urgency; fees on the website (vary by age, enrolment and Community Services Card).' },
-    sources: ['https://www.tuimedical.co.nz/te-rapa', 'https://www.healthpoint.co.nz/gps-accident-urgent-medical-care/accident-urgent-medical-care-ae/tui-medical-te-rapa-urgent-care-and-medical/'] },
-  { id: 'victoria', name: 'Victoria Clinic', zh: 'Victoria Clinic 急症', address: '173 Anglesea Street, Hamilton Central 3204', phone: '07 834 0333',
-    open: [8, 20], hours: { zh: '急症 每天 8:00–20:00（圣诞节除外）', en: 'Urgent care daily 8am–8pm (except Christmas Day)' }, note: { zh: '无需预约，护士分诊；已注册和临时病人都可以看。', en: 'Walk in, nurse triage; enrolled and casual patients.' },
-    sources: ['https://victoriaclinic.co.nz/urgent-care/', 'https://victoriaclinic.co.nz/contact-us/'] },
-  { id: 'rototuna', name: 'Tui Medical Rototuna', zh: 'Tui Medical Rototuna 急症', address: 'Rototuna Shopping Centre, cnr Horsham Downs Rd & Thomas Rd, Hamilton 3210', phone: '0800 175 175',
-    open: [8, 20], hours: { zh: '急症 每天 8:00–20:00（8 月 31 日起调整）', en: 'Urgent care daily 8am–8pm (changed from 31 August)' }, note: { zh: '关门后请去 Tui Medical Te Rapa。', en: 'After hours, go to Tui Medical Te Rapa.' },
-    sources: ['https://www.tuimedical.co.nz/rototuna', 'https://www.healthpoint.co.nz/gps-accident-urgent-medical-care/accident-urgent-medical-care-ae/tui-medical-rototuna-urgent-care-and-medical/'] },
-];
-
-const HERO = { name: 'Waikato River, Hamilton', zh: '怀卡托河 · 汉密尔顿市区', credit: 'Umedha Hettigoda', license: 'CC BY-SA 2.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/', source: 'https://commons.wikimedia.org/wiki/File:Waikato_River,_Hamilton_city,_New_Zealand_(8162680016).jpg' };
-const LAKE_BAND = { name: 'Hamilton Lake (Lake Rotoroa)', zh: '汉密尔顿湖（Rotoroa 湖）', credit: 'Michal Klajban', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', source: 'https://commons.wikimedia.org/wiki/File:Lake_Rotoroa,_Waikato,_New_Zealand_02.jpg' };
-const B = 'https://www.busit.co.nz/hamilton-routes/';
-const ROUTES = [
-  { n: 'O', name: 'Orbiter', zh: '环城线（顺/逆时针）', en: 'Ring route, both directions', slug: 'orbiter', hf: true },
-  { n: 'C', name: 'Comet', zh: '南北线：The Base ↔ 医院（C1 Mahoe / C2 Glenview）', en: 'North–south: The Base ↔ Hospital (C1 Mahoe / C2 Glenview)', slug: 'comet', hf: true },
-  { n: 'M', name: 'Meteor', zh: '东西线：Rotokauri ↔ 市中心 ↔ Silverdale', en: 'West–east: Rotokauri ↔ CBD ↔ Silverdale', slug: 'meteor', hf: true },
-  { n: '1', name: 'Pukete', slug: 'pukete' }, { n: '3', name: 'Dinsdale', slug: 'dinsdale' }, { n: '4', name: 'Flagstaff', slug: 'flagstaff' },
-  { n: '4N', name: 'Flagstaff North', slug: 'flagstaff-north' }, { n: '5', name: 'Chartwell', slug: 'chartwell' }, { n: '9', name: 'Nawton', slug: 'nawton' },
-  { n: '10', name: 'Hillcrest', slug: 'hillcrest' }, { n: '11', name: 'Fairfield', slug: 'fairfield' }, { n: '12', name: 'Fitzroy', slug: 'fitzroy' },
-  { n: '13', name: 'University', slug: 'university' }, { n: '14', name: 'Claudelands', slug: 'claudelands' }, { n: '16', name: 'Rototuna', slug: 'rototuna' },
-  { n: 'RC', name: 'Rototuna Circular', slug: 'rototuna-circular' }, { n: '17', name: 'Hamilton Gardens Uni', slug: 'hamilton-gardens-uni' },
-  { n: '18', name: 'Te Rapa', slug: 'te-rapa' }, { n: '19', name: 'Bremworth / Temple View', slug: 'bremworth-temple-view' },
-];
-
-function nzNow() {
-  const parts = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
-  const h = +parts.find(p => p.type === 'hour')!.value, m = +parts.find(p => p.type === 'minute')!.value;
-  return h + m / 60;
-}
-
-
-const DEST_CATS = [
-  { id: 'all', zh: '全部', en: 'All' },
-  { id: 'near', zh: '10 km 内', en: 'Within 10 km' },
-  { id: 'mid', zh: '10–50 km', en: '10–50 km' },
-  { id: 'far', zh: '50 km 以上', en: '50 km+' },
-  { id: 'free', zh: '免费', en: 'Free' },
-  { id: 'indoor', zh: '下雨天', en: 'Rainy day' },
-];
-
-const TEXT = {
-  zh: {
-    brand: '汉密尔顿生活指南', sub: 'Hamilton 本地生活实用信息', checkedBadge: `信息核对于 ${CHECKED}`,
-    heroBadge: '整理 Hamilton 与周边 Waikato 的日常生活信息',
-    heroA: '在汉密尔顿，', heroB: '把日子过得更顺手',
-    lakeA: '周末慢一点，', lakeB: '去湖边走走',
-    heroP: '垃圾桶怎么放、坐哪路公交、亚超在哪、周末带娃去哪、生病找谁——每条信息都附来源，可以自己核对。',
-    searchPh: '搜索亚超、地点、区域（如 Frankton）…', search: '搜索', clear: '清除',
-    nav: { home: '首页', tools: '实用工具箱', supermarkets: '亚超指南', weekend: '周末遛娃' },
-    tabs: { bins: '垃圾清运', transport: '交通信息', urgent: '急诊信息' }, tabsSub: { bins: 'HCC 红桶/黄桶规则', transport: 'Busit 公交路线', urgent: '急症诊所 · 开门状态' },
-    openNow: '现在营业', closedNow: '现在已关门', nowNote: '开门状态按新西兰时间计算，节假日可能不同。', call: '拨打',
-    busH: 'Hamilton 市区公交（Busit）', busP: '点路线查看时刻表和路线图。高频线工作日白天约 15 分钟一班。', hf: '高频线', allRoutes: '其他市区路线',
-    planner: '行程规划', plannerP: 'Busit 官网首页输入起点终点', transit: 'Transit 实时到站', transitP: 'Busit 官方推荐的免费 App，可看公交实时位置', bee: 'Bee Card 与票价', beeP: '刷卡比现金便宜：市中心区成人 $1.50，1 区 $2.90；有每周封顶和免费换乘', mapL: '全市线路图', busHelp: 'Busit 客服 0800 205 305',
-    toolsH: '实用工具箱', toolsP: '垃圾清运、公交路线、急诊信息',
-    binH: '垃圾与回收怎么放', binP: 'HCC 四件套：红桶、黄桶、玻璃箱、厨余桶',
-    redWeek: '红周', yellowWeek: '黄周', weekly: '每周都收',
-    red: '红盖桶 · 一般垃圾', yellow: '黄盖桶 · 可回收', glass: '玻璃箱 · 玻璃瓶罐', food: '绿色厨余桶 · 食物残渣',
-    redNote: '隔周收，和黄周交替', yellowNote: '塑料 1/2/5、罐头、纸和纸板，洗净直接放入', glassNote: '与黄桶同一周收，去掉瓶盖', foodNote: '每周都收，锁好盖子防动物',
-    binDay: '你家具体哪天收、这周是红周还是黄周，HCC 按门牌地址查询，各街区不同。',
-    lookup: '去 HCC 官网按地址查询', binTip: '收运日早上 7 点前放到路边；最早前一天 17:00 后再放。',
-    medBadge: '就医指引', medH: 'Anglesea 急症诊所', medP: 'Anglesea Clinic Urgent Care，24 小时 · 每天开放，无需预约，按病情紧急程度看诊，需现场付费。',
-    medPhone: '电话', medAddr: '地址', copy: '复制', healthline: '免费健康热线 Healthline', healthlineNote: '24/7，可要求翻译',
-    life: '有生命危险请直接拨打', srcs: '来源',
-    em111Big: '紧急情况请立即拨打', medDisc: '本站不提供医疗建议。营业时间可能变动，请以诊所官方信息为准。',
-    wxBy: '天气数据来自', photoCredits: '图片来源', creditsH: '图片来源与授权', creditsP: '本站照片均来自 Wikimedia Commons，按各自授权使用（按需裁剪、压缩尺寸及调色）。', cPlace: '地点', cAuthor: '作者', cLicense: '授权', cSource: '原图', heroImg: '首屏大图', interludeImg: '过渡大图', close: '关闭',
-    indep: '本站为个人独立整理的信息网站，与所列任何商家、诊所、机构或市政府均无关联，也未获其背书。',
-    smH: '亚洲超市与食材', smP: '只收录能在官网或公开商家目录里核对到地址和电话的门店；标“目录信息”的营业时间来自第三方目录', smCount: (n:number)=>`已核对 ${n} 家`,
-    hoursUnknown: '营业时间未核实，出发前请电话确认', copyAddr: '复制地址', area: '区域',
-    wkH: '周末遛娃 & 周边去处', wkP: '距离按 Hamilton 市中心估算；照片来自 Wikimedia Commons', km: '约 {n} km',
-    freeTag: '免费', paidTag: '收费', indoorTag: '室内', official: '官网', noMatch: '没有匹配的结果，试试清除搜索词。',
-    photoBy: '照片', hoursL: '开放', priceL: '价格',
-    footAbout: '一个非商业的 Hamilton 本地生活信息站，面向所有居民，也照顾华人社区的需求。',
-    footLinks: '常用市政与公共链接', footEm: '紧急与健康电话', footDisc: '免责声明',
-    footDiscP: `信息核对于 ${CHECKED}，可能随时变化，请以官方来源为准。垃圾收运以 HCC 官网按地址查询结果为准。`,
-    em111: '火警 / 警察 / 救护车', em105: '非紧急警察', copied: (l:string)=>`已复制：${l}`, filterKw: (k:string)=>`筛选关键词：「${k}」`,
-    wx: { loading: '天气加载中', err: '天气暂不可用', now: '现在', feels: '体感', today: '今天', hi: '最高', lo: '最低', rain: '降雨概率', next: '未来几天', src: '数据：Open-Meteo，每 30 分钟更新', close: '关闭', city: 'Hamilton 汉密尔顿', retry: '重试',
-      tipRain: '今天下雨可能性大，建议选室内去处，比如博物馆或图书馆。', tipHot: '今天较晒，户外记得防晒和带水。', tipGood: '天气不错，适合去公园、花园或湖边走走。', tipCool: '有点凉，户外记得带外套。' },
-    days: ['周日','周一','周二','周三','周四','周五','周六'],
-  },
-  en: {
-    brand: 'Hamilton Local', sub: 'Practical everyday info for Hamilton', checkedBadge: `Checked ${CHECKED}`,
-    heroBadge: 'Everyday info for Hamilton and the wider Waikato',
-    heroA: 'Life in Hamilton, ', heroB: 'made a little easier',
-    lakeA: 'Slow down this weekend,', lakeB: 'take a walk by the lake',
-    heroP: 'Bin days, buses, Asian grocers, weekend outings with kids, where to go when you are unwell — every entry links to its source so you can check it yourself.',
-    searchPh: 'Search grocers, places, suburbs (e.g. Frankton)…', search: 'Search', clear: 'Clear',
-    nav: { home: 'Home', tools: 'Toolbox', supermarkets: 'Asian grocers', weekend: 'Weekend' },
-    tabs: { bins: 'Bins', transport: 'Buses', urgent: 'Urgent care' }, tabsSub: { bins: 'HCC red/yellow week', transport: 'Busit routes', urgent: 'Clinics · open now' },
-    openNow: 'Open now', closedNow: 'Closed now', nowNote: 'Open status uses New Zealand time; public holidays may differ.', call: 'Call',
-    busH: 'Hamilton city buses (Busit)', busP: 'Tap a route for its timetable and map. Frequent routes run about every 15 min on weekdays.', hf: 'Frequent', allRoutes: 'Other city routes',
-    planner: 'Journey planner', plannerP: 'On the Busit home page — enter from and to', transit: 'Transit app (real time)', transitP: 'Free app recommended by Busit, with live bus locations', bee: 'Bee Card & fares', beeP: 'Cheaper than cash: adult $1.50 in the central zone, $2.90 for 1 zone; weekly cap and free transfers', mapL: 'City route map', busHelp: 'Busit help 0800 205 305',
-    toolsH: 'Toolbox', toolsP: 'Bins, buses and urgent care',
-    binH: 'How the bins work', binP: 'Four containers: red bin, yellow bin, glass crate, food scraps bin',
-    redWeek: 'Red week', yellowWeek: 'Yellow week', weekly: 'Every week',
-    red: 'Red-lid bin · Rubbish', yellow: 'Yellow-lid bin · Recycling', glass: 'Glass crate · Bottles & jars', food: 'Green food scraps bin',
-    redNote: 'Fortnightly, alternating with yellow week', yellowNote: 'Plastics 1/2/5, tins, cans, paper and card — rinsed, loose', glassNote: 'Collected with the yellow bin; lids off', foodNote: 'Collected weekly; lock the lid against animals',
-    binDay: 'Your collection day, and whether this is a red or yellow week, depends on your street address — HCC looks it up by address.',
-    lookup: 'Look up your address on HCC', binTip: 'Bins out by 7am on collection day; not before 5pm the night before.',
-    medBadge: 'Medical help', medH: 'Anglesea Clinic Urgent Care', medP: 'Open 24 hours, 7 days. No appointment needed; patients are seen by urgency. Payment is required upfront.',
-    medPhone: 'Phone', medAddr: 'Address', copy: 'Copy', healthline: 'Free Healthline', healthlineNote: '24/7, interpreters available',
-    life: 'Life-threatening emergency? Call', srcs: 'Sources',
-    em111Big: 'In an emergency, call', medDisc: 'This site does not give medical advice. Hours may change — please check with the clinic.',
-    wxBy: 'Weather data by', photoCredits: 'Photo credits', creditsH: 'Photo credits & licences', creditsP: 'All photos are from Wikimedia Commons and used under their stated licences (cropped, resized and colour-graded where needed).', cPlace: 'Place', cAuthor: 'Author', cLicense: 'Licence', cSource: 'Source', heroImg: 'Hero image', interludeImg: 'Interlude image', close: 'Close',
-    indep: 'This is an independent, personally compiled site. It is not affiliated with or endorsed by any business, clinic, organisation or council listed.',
-    smH: 'Asian grocers', smP: 'Only stores whose address and phone we could check on an official site or public business listing; hours marked "directory listing" come from third-party directories', smCount: (n:number)=>`${n} checked`,
-    hoursUnknown: 'Hours not verified — call ahead', copyAddr: 'Copy address', area: 'Area',
-    wkH: 'Weekend outings', wkP: 'Distances are rough estimates from central Hamilton; photos from Wikimedia Commons', km: '~{n} km',
-    freeTag: 'Free', paidTag: 'Paid', indoorTag: 'Indoor', official: 'Website', noMatch: 'Nothing matches — try clearing the search.',
-    photoBy: 'Photo', hoursL: 'Hours', priceL: 'Price',
-    footAbout: 'A non-commercial local info site for everyone in Hamilton, with the Chinese-speaking community in mind.',
-    footLinks: 'Council & public links', footEm: 'Emergency & health numbers', footDisc: 'Disclaimer',
-    footDiscP: `Checked ${CHECKED}. Details can change — always confirm with the official source. For bin days, the HCC address lookup is authoritative.`,
-    em111: 'Fire / police / ambulance', em105: 'Police non-emergency', copied: (l:string)=>`Copied: ${l}`, filterKw: (k:string)=>`Filtering: "${k}"`,
-    wx: { loading: 'Loading weather', err: 'Weather unavailable', now: 'Now', feels: 'Feels like', today: 'Today', hi: 'High', lo: 'Low', rain: 'Rain chance', next: 'Next few days', src: 'Data: Open-Meteo, refreshed every 30 min', close: 'Close', city: 'Hamilton', retry: 'Retry',
-      tipRain: 'Rain is likely today — an indoor pick like the museum or library is a good bet.', tipHot: 'Strong sun today — bring sunscreen and water.', tipGood: 'Nice weather — a good day for a park, garden or lake walk.', tipCool: 'A bit cool — bring a jacket if heading out.' },
-    days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-  },
+type Route = 'home' | 'living' | 'weekend' | 'kids' | 'services' | 'tools';
+type T = (zh: string, en: string) => string;
+const CHECKED = '2026-11-06';
+const URLS = Object.fromEntries(VERIFIED.verified.map(item => [item.id, item.url]));
+const SECTIONS = [
+  { id: 'home', zh: '首页', en: 'Home', Icon: BookOpen },
+  { id: 'living', zh: '生活与吃喝', en: 'Living & Dining', Icon: Store },
+  { id: 'weekend', zh: '周末活动', en: "What's On", Icon: Calendar },
+  { id: 'kids', zh: '亲子遛娃', en: 'Kids & Family', Icon: Trees },
+  { id: 'services', zh: '便民黄页', en: 'Local Services', Icon: Wrench },
+  { id: 'tools', zh: '实用工具箱', en: 'Daily Essentials', Icon: ShieldCheck },
+] as const;
+const MARKET_CHECKED = SUPERMARKETS.filter(s => s.verificationStatus === 'verified').length;
+const MARKET_PENDING = SUPERMARKETS.length - MARKET_CHECKED;
+const PAGE = {
+  living: { zh: '从一日三餐，到日常散步。', en: 'Groceries, good food and a little fresh air.', photo: 'band-market.webp' },
+  weekend: { zh: '留一点时间，给周末。', en: 'Make a little room for the weekend.', photo: 'band-hamilton-lake.webp' },
+  kids: { zh: '陪孩子，把城市慢慢逛遍。', en: 'Small adventures, close to home.', photo: 'band-hamilton-lake.webp' },
+  services: { zh: '家里家外，总有需要帮忙的时候。', en: 'A little help for everyday life.', photo: 'band-tools.webp' },
+  tools: { zh: '把日常琐事，安排得更顺手。', en: 'The practical side of life, all in one place.', photo: 'band-tools.webp' },
 };
-
-// --- Weather (Open-Meteo) ---
-const WX_URL = 'https://api.open-meteo.com/v1/forecast?latitude=-37.787&longitude=175.279&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max&timezone=Pacific%2FAuckland&forecast_days=6';
-const WX_KEY = 'hl-weather-v1';
-function wxInfo(code: number) {
-  if (code === 0) return { Icon: Sun, zh: '晴', en: 'Clear' };
-  if (code <= 2) return { Icon: CloudSun, zh: '多云间晴', en: 'Partly cloudy' };
-  if (code === 3) return { Icon: Cloud, zh: '阴', en: 'Overcast' };
-  if (code <= 48) return { Icon: CloudFog, zh: '雾', en: 'Fog' };
-  if (code <= 57) return { Icon: CloudRain, zh: '毛毛雨', en: 'Drizzle' };
-  if (code <= 67) return { Icon: CloudRain, zh: '雨', en: 'Rain' };
-  if (code <= 77) return { Icon: Snowflake, zh: '雪', en: 'Snow' };
-  if (code <= 82) return { Icon: CloudRain, zh: '阵雨', en: 'Showers' };
-  if (code <= 86) return { Icon: Snowflake, zh: '阵雪', en: 'Snow showers' };
-  return { Icon: CloudLightning, zh: '雷雨', en: 'Thunderstorm' };
+const TABS = {
+  living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings']],
+  weekend: [['markets', '周末集市', 'Weekend markets'], ['festivals', '节日活动', 'Festivals'], ['picks', '本周精选', 'This week']],
+  kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
+  services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services']],
+  tools: [['bins', '垃圾清运', 'Bins'], ['transport', '交通信息', 'Buses'], ['urgent', '急诊信息', 'Urgent care']],
+};
+function href(route: string, tab?: string, q?: string) {
+  const params = new URLSearchParams();
+  if (tab) params.set('tab', tab);
+  if (q) params.set('q', q);
+  return '#/' + (route === 'home' ? '' : route) + (params.size ? '?' + params : '');
 }
-function useWeather() {
-  const [state, setState] = useState<{ data: any; error: boolean }>({ data: null, error: false });
-  const load = () => {
-    try {
-      const c = JSON.parse(sessionStorage.getItem(WX_KEY) || 'null');
-      if (c && Date.now() - c.t < 30 * 60 * 1000) { setState({ data: c.d, error: false }); return; }
-    } catch {}
-    setState(s => ({ ...s, error: false }));
-    fetch(WX_URL).then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(d => {
-      try { sessionStorage.setItem(WX_KEY, JSON.stringify({ t: Date.now(), d })); } catch {}
-      setState({ data: d, error: false });
-    }).catch(() => setState({ data: null, error: true }));
-  };
-  useEffect(load, []);
-  return { ...state, reload: load };
+function readRoute() {
+  const [path, query] = location.hash.slice(2).split('?');
+  const route = (SECTIONS.some(s => s.id === path) ? path : 'home') as Route;
+  const params = new URLSearchParams(query);
+  const tabs = route === 'home' ? [] : TABS[route];
+  const tab = tabs.find(item => item[0] === params.get('tab'))?.[0] || tabs[0]?.[0] || '';
+  return { route, tab, q: params.get('q') || '' };
 }
-
-function WeatherPill({ lang, T }: { lang: Lang; T: any }) {
-  const { data, error, reload } = useWeather();
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    const onDoc = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node) && !dialogRef.current?.contains(e.target as Node)) setOpen(false); };
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
-    document.addEventListener('mousedown', onDoc); document.addEventListener('keydown', onKey);
-    return () => { document.removeEventListener('mousedown', onDoc); document.removeEventListener('keydown', onKey); };
-  }, [open]);
-  const cur = data?.current; const d = data?.daily;
-  const info = cur ? wxInfo(cur.weather_code) : null;
-  const Icon = info ? info.Icon : (error ? AlertCircle : Cloud);
-  let tip = '';
-  if (d) {
-    const rain = d.precipitation_probability_max[0] ?? 0, hi = d.temperature_2m_max[0], uv = d.uv_index_max?.[0] ?? 0;
-    tip = rain >= 60 ? T.wx.tipRain : (uv >= 7 || hi >= 26) ? T.wx.tipHot : hi < 14 ? T.wx.tipCool : T.wx.tipGood;
+function OutLink({ id, children, className = 'sb-action' }: { id: string; children: React.ReactNode; className?: string }) {
+  if (!URLS[id]) return null;
+  return <a className={className} href={URLS[id]} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight aria-hidden="true" /></a>;
+}
+function Empty({ t, title, detail }: { t: T; title?: string; detail?: string }) {
+  return <div className="ia-empty sb-card" data-testid="empty-state"><span className="sb-icon-disc"><BookOpen /></span><p className="ia-kicker">{t('慢慢整理，认真收录', 'A guide worth taking time over')}</p><h2>{title || t('内容整理中', 'Coming soon')}</h2><p>{detail || t('确认好实用的信息，再和你分享。', 'We’re gathering useful local information to share here.')}</p></div>;
+}
+function Tabs({ route, tab, t }: { route: Exclude<Route, 'home'>; tab: string; t: T }) {
+  const tabs = TABS[route];
+  return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className="sb-tabs ia-tabs" onKeyDown={e => {
+    const current = tabs.findIndex(item => item[0] === tab);
+    const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
+    if (next < 0) return;
+    e.preventDefault(); location.hash = href(route, tabs[next][0]);
+    requestAnimationFrame(() => document.getElementById('tab-' + tabs[next][0])?.focus());
+  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}</div>;
+}
+function PlaceGrid({ places, lang, t }: { places: typeof PLACES; lang: Lang; t: T }) {
+  return <div className="ia-place-grid">{places.map(p => <article className="sb-card ia-place" key={p.id} data-place-id={p.id}>
+    {'photo' in p && p.photo ? <div className="ia-place-photo"><img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} loading="lazy" /></div> : <div className="ia-place-symbol"><Trees /></div>}
+    <div className="ia-place-body"><span className="ia-kicker">{p.area} · {t('约', '~')}{p.km} km</span><h3>{t(p.zh, p.name)}</h3>{lang === 'zh' && <p className="ia-secondary-name">{p.name}</p>}<p>{t(p.description, p.en.description)}</p><p className="sb-icon-line"><MapPin /><span>{p.address}</span></p>{p.id === 'hamilton-gardens' ? <OutLink id="hamilton-gardens">{t('访问花园官网', 'Visit Hamilton Gardens')}</OutLink> : <span className="ia-place-note">{t('出发前请确认开放信息', 'Check opening details before visiting')}</span>}</div>
+  </article>)}</div>;
+}
+// Family picks are derived from explicit child/family wording in the existing records.
+const FAMILY_PLACES = PLACES.filter(p => p.km <= 10 && /kids|children|family|toddler|all ages/i.test(p.en.description + ' ' + p.en.tag));
+const DAILY_PLACES = PLACES.filter(p => p.km <= 10 && !p.indoor);
+function Living({ tab, query, lang, t, toast }: { tab: string; query: string; lang: Lang; t: T; toast: (text: string) => void }) {
+  const [q, setQ] = useState(query);
+  if (tab === 'dining') return <Empty t={t} title={t('美食探索 · 内容整理中', 'Food discoveries · Coming soon')} />;
+  if (tab === 'places') {
+    const places = DAILY_PLACES.filter(p => !q || [p.zh, p.name, p.area, p.description, p.en.description].join(' ').toLowerCase().includes(q.toLowerCase()));
+    return <>{q && <div className="ia-list-toolbar"><p>{t('搜索', 'Search')}: {q}</p><button className="sb-action" onClick={() => setQ('')}>{t('清除搜索', 'Clear search')}<X /></button></div>}{places.length ? <PlaceGrid places={places} lang={lang} t={t} /> : <Empty t={t} title={t('没有匹配的地点', 'No matching places')} detail={t('试试其他关键词，或清除搜索。', 'Try another keyword or clear your search.')} />}</>;
   }
-  return (
-    <div ref={ref} className="relative">
-      <button data-testid="wx-pill" aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(o => !o)}
-        className="sb-pill flex items-center gap-1.5 px-2.5 py-1.5 text-xs transition">
-        <Icon className="w-4 h-4 text-amber-300" />
-        {cur ? (<><span className="font-bold">{Math.round(cur.temperature_2m)}°</span><span className="hidden sm:inline text-white/80">{lang === 'zh' ? info!.zh : info!.en}</span></>)
-          : <span className="text-white/80">{error ? T.wx.err : T.wx.loading}</span>}
-      </button>
-      {open && createPortal(
-        <div className="sb-modal-backdrop sb-weather-backdrop" onClick={() => setOpen(false)}>
-          <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={T.wx.city} data-testid="wx-card"
-            className="sb-card sb-wx" onClick={e => e.stopPropagation()}>
-            <div className="sb-wx-heading">
-              <div>
-                <h2>{T.wx.city} <span>· {T.wx.now}</span></h2>
-                {cur ? (
-                  <div className="sb-wx-current">
-                    <Icon />
-                    <div><strong className="sb-wx-temperature">{Math.round(cur.temperature_2m)}°C</strong>
-                      <p>{lang === 'zh' ? info!.zh : info!.en} · {T.wx.feels} {Math.round(cur.apparent_temperature)}°</p>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="sb-wx-loading">{error ? T.wx.err : T.wx.loading}
-                    {error && <button onClick={reload} className="sb-wx-retry">{T.wx.retry}</button>}
-                  </p>
-                )}
-              </div>
-              <button autoFocus onClick={() => setOpen(false)} aria-label={T.wx.close} className="sb-action sb-icon-close"><X /></button>
-            </div>
-            {d && (<>
-              <div className="sb-wx-summary">
-                <div><span>{T.wx.hi}</span><strong>{Math.round(d.temperature_2m_max[0])}°</strong></div>
-                <div><span>{T.wx.lo}</span><strong>{Math.round(d.temperature_2m_min[0])}°</strong></div>
-                <div><span>{T.wx.rain}</span><strong>{d.precipitation_probability_max[0] ?? '–'}%</strong></div>
-              </div>
-              <div className="sb-wx-tip"><Umbrella /><p>{tip}</p></div>
-              <h3 className="sb-label">{T.wx.next}</h3>
-              <div className="sb-wx-forecast">
-                {d.time.slice(1, 6).map((day: string, i: number) => {
-                  const k = i + 1; const wi = wxInfo(d.weather_code[k]); const DI = wi.Icon;
-                  const dow = new Date(day + 'T12:00:00').getDay();
-                  return (
-                    <div key={day}>
-                      <span>{T.days[dow]}</span><DI />
-                      <strong>{Math.round(d.temperature_2m_max[k])}°<span>/{Math.round(d.temperature_2m_min[k])}°</span></strong>
-                      <span className="sb-wx-rain"><Droplets />{d.precipitation_probability_max[k] ?? '–'}%</span>
-                    </div>);
-                })}
-              </div>
-            </>)}
-            <p className="sb-wx-source">{T.wx.src}</p>
-          </div>
-        </div>, document.body
-      )}
-    </div>
-  );
+  const markets = SUPERMARKETS.filter(s => [s.name, s.zhName, s.address, s.suburb, ...s.tags.zh, ...s.tags.en].join(' ').toLowerCase().includes(q.trim().toLowerCase()));
+  return <><div className="ia-list-toolbar"><p>{t(`${SUPERMARKETS.length} 家门店 · ${MARKET_CHECKED} 家已核对 · ${MARKET_PENDING} 家品牌待核实`, `${SUPERMARKETS.length} stores · ${MARKET_CHECKED} checked · ${MARKET_PENDING} brand unconfirmed`)}</p><label className="ia-inline-search"><Search /><input type="search" aria-label={t('搜索亚超', 'Search grocers')} value={q} onChange={e => setQ(e.target.value)} placeholder={t('门店、区域或地址', 'Store, suburb or address')} />{q && <button aria-label={t('清除搜索', 'Clear search')} onClick={() => setQ('')}><X /></button>}</label></div>
+  <div className="ia-market-grid">{markets.map(s => <article key={s.id} data-market-id={s.id} className="sb-card ia-market-card"><div className="ia-card-top"><Store /><span className={'sb-tag ' + (s.verificationStatus === 'uncertain' ? 'ia-pending' : '')}>{s.verificationStatus === 'uncertain' ? t('品牌待核实', 'Brand unconfirmed') : s.suburb}</span></div><h2>{t(`${s.zhName} ${s.brand}`, s.name)}</h2>{lang === 'zh' && s.name !== s.zhName && <p className="ia-secondary-name">{s.name}</p>}<p className="sb-icon-line"><MapPin /><span>{s.address}</span></p><p className="sb-icon-line"><Clock /><span>{s.hours ? s.hours[lang] : t('电话与营业时间待核实', 'Phone and hours unverified')}</span></p>{s.phone && <p className="ia-phone">{s.phone}</p>}{s.verificationNote && <p className="ia-verification">{s.verificationNote[lang]}</p>}<div className="ia-card-bottom">{s.mapLink && <a className="sb-action" href={s.mapLink} target="_blank" rel="noopener noreferrer"><MapPin />{t('地图 / 导航', 'Map / Directions')}</a>}<span>{s.tags[lang].join(' · ')}</span><button className="sb-action" onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}><Copy />{t('复制地址', 'Copy address')}</button></div></article>)}</div>
+  {!markets.length && <Empty t={t} title={t('没有匹配的门店', 'No matching stores')} detail={t('试试其他区域，或清除搜索。', 'Try another suburb or clear your search.')} />}
+  <p className="ia-section-note">{t('营业时间沿用现有资料，出发前请确认。jany.io / edan.io 为第三方目录信息，非商家官网。', 'Hours come from the existing records; confirm before visiting. jany.io / edan.io are third-party directory listings, not official business sites.')}</p></>;
 }
-
-// Motion stays local to these primitives; scrolling never re-renders the page.
-
-function BlurText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
-  let index = 0;
-  return (
-    <span className={`sb-blur-text ${className}`}>
-      <span className="sr-only">{text}</span>
-      {text.split(/(\s+)/).filter(Boolean).map((word, wi) => (
-        <span className="sb-blur-word" aria-hidden="true" key={wi}>
-          {Array.from(word).map(char => (
-            <span key={index} className="sb-blur-char" style={{ animationDelay: `${delay + index++ * 40}ms` }}>
-              {char === ' ' ? '\u00a0' : char}
-            </span>
-          ))}
-        </span>
-      ))}
-    </span>
-  );
+function Weekend({ tab, t }: { tab: string; t: T }) {
+  if (tab === 'picks') return <Empty t={t} title={t('本周精选 · 内容整理中', 'This week · Coming soon')} detail={t('每周五更新 · 内容整理中', 'Friday updates · Content being prepared')} />;
+  const cards = tab === 'markets' ? [
+    { id: 'farmers-market', zh: 'Hamilton 农贸市场', en: "Hamilton Farmers’ Market", kicker: 'Waikato Farmers’ Markets', zhP: '从主办方官网查看市场信息、开放安排与最新通知。', enP: 'Visit the organiser for market details, opening arrangements and updates.' },
+    { id: 'farmers-market-claudelands', zh: 'Claudelands 场馆信息', en: 'The Claudelands venue', kicker: 'Claudelands', zhP: '同一市场的场馆页面，出发前核对地点与活动安排。', enP: 'The venue listing for the same market. Check the location and event details before heading out.' },
+  ] : [{ id: 'balloons', zh: '怀卡托热气球节', en: 'Balloons over Waikato', kicker: 'Balloons over Waikato', zhP: '节日日期、场地与活动安排，以主办方公布为准。', enP: 'Find festival dates, venues and programme information from the organiser.' }];
+  return <><div className="ia-event-grid">{cards.map((c, i) => <article className="sb-card ia-event" key={c.id}><span className="ia-event-index">0{i + 1}</span><Calendar className="ia-event-icon" /><p className="ia-kicker">{c.kicker}</p><h2>{t(c.zh, c.en)}</h2><p>{t(c.zhP, c.enP)}</p><OutLink id={c.id}>{t('查看官方信息', 'View official information')}</OutLink></article>)}</div>{tab === 'festivals' && <div className="ia-inline-empty">{t('更多节日 · 内容整理中', 'More festivals · Coming soon')}</div>}<p className="ia-section-note">{t('这里提供主办方入口；具体日期、营业时间与取消通知请以链接页面为准。', 'Check the linked organiser or venue for dates, opening hours and cancellations.')}</p></>;
 }
-
-function Reveal({ children, id, className = '' }: { children: React.ReactNode; id?: string; className?: string }) {
-  const ref = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const element = ref.current;
-    if (!element || !('IntersectionObserver' in window)) return;
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (motion.matches) return;
-    const show = () => { element.classList.remove('is-pending'); element.classList.add('is-visible'); };
-    const observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) { show(); observer.disconnect(); }
-    }, { threshold: 0, rootMargin: '0px 0px -32px 0px' });
-    element.classList.add('is-pending');
-    observer.observe(element);
-    const onMotion = () => { if (motion.matches) { show(); observer.disconnect(); } };
-    const onFocus = () => { show(); observer.disconnect(); };
-    motion.addEventListener('change', onMotion);
-    element.addEventListener('focusin', onFocus);
-    return () => { observer.disconnect(); motion.removeEventListener('change', onMotion); element.removeEventListener('focusin', onFocus); };
-  }, []);
-  return <section id={id} ref={ref} className={`sb-reveal ${className}`}>{children}</section>;
+function Kids({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
+  if (tab === 'places') return <PlaceGrid places={FAMILY_PLACES} lang={lang} t={t} />;
+  if (tab === 'parties') return <Empty t={t} title={t('派对与场地 · 内容整理中', 'Parties & venues · Coming soon')} />;
+  return <div className="sb-card ia-map-empty"><div className="ia-map-grid" aria-hidden="true"><span>Rototuna</span><span>Flagstaff</span><span>Chartwell</span><span>Hamilton East</span></div><div className="ia-map-message"><span className="sb-icon-disc"><MapPin /></span><h2>{t('Playground 地图', 'Playground map')}</h2><p>{t('内容整理中', 'Coming soon')}</p><p>{t('区域名称仅作分类标签；游乐设施与地图点位尚未收录。', 'Area labels only. Facilities and map locations have not been added yet.')}</p><a className="sb-action" href={href('kids', 'places')}>{t('先看看遛娃好去处', 'Explore family outings')}<ArrowUpRight /></a></div></div>;
 }
-
-function HeroMedia() {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const element = ref.current;
-      if (!element) return;
-      const height = element.parentElement?.offsetHeight || window.innerHeight;
-      element.style.transform = motion.matches ? '' : `translate3d(0, ${Math.min(window.scrollY, height) * 0.12}px, 0)`;
-    };
-    const onScroll = () => { if (!frame && !motion.matches) frame = requestAnimationFrame(update); };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    motion.addEventListener('change', update);
-    return () => { window.removeEventListener('scroll', onScroll); motion.removeEventListener('change', update); cancelAnimationFrame(frame); };
-  }, []);
-  return <div ref={ref} className="sb-hero-media" aria-hidden="true"><img src="./photos/hero-train.webp" alt="" fetchPriority="high" decoding="async" /></div>;
+const SERVICE_CATS = {
+  home: [['园艺与庭院', 'Garden & grounds'], ['房屋维修', 'Home repairs'], ['清洁整理', 'Cleaning']],
+  trades: [['水管服务', 'Plumbing'], ['电工服务', 'Electrical'], ['木工与油漆', 'Carpentry & painting']],
+  daily: [['搬家运输', 'Moving'], ['生活协助', 'Everyday help'], ['社区服务', 'Community services']],
+};
+function Services({ tab, t, toast }: { tab: string; t: T; toast: (text: string) => void }) {
+  return <><div className="ia-category-grid">{SERVICE_CATS[tab as keyof typeof SERVICE_CATS].map(([zh, en]) => <div className="sb-card ia-category" key={en}><Wrench /><h2>{t(zh, en)}</h2><span>{t('内容整理中 · 暂无商家', 'Coming soon · No listings yet')}</span></div>)}</div><div className="sb-card ia-join"><div><p className="ia-kicker">{t('一起完善本地指南', 'Build a better local guide')}</p><h2>{t('在 Hamilton 提供服务？', 'Work with the Hamilton community?')}</h2><p>{t('商家入驻即将开放。', 'Business listings are coming soon.')}</p></div><button className="sb-action ia-primary" data-testid="join" onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}<ArrowUpRight /></button></div></>;
 }
-
-function SectionTitle({ title, sub, eyebrow }: { title: string; sub: string; eyebrow: string }) {
-  return (
-    <div className="sb-section-title">
-      <p className="sb-eyebrow">{eyebrow}</p>
-      <h2 className="sb-h2" key={title}><BlurText text={title} /></h2>
-      <p className="sb-section-sub">{sub}</p>
-    </div>
-  );
+const TOOL_GROUPS = [
+  { zh: 'UV 与天气', en: 'Weather & UV', Icon: Sun, ids: ['metservice-hamilton', 'niwa-uv', 'niwa-uv-index'] },
+  { zh: '学期与公共假期', en: 'Terms & public holidays', Icon: Calendar, ids: ['school-terms', 'public-holidays'] },
+  { zh: '学区查询', en: 'Find a school', Icon: BookOpen, ids: ['find-school'] },
+  { zh: '停水停电与道路施工', en: 'Outages & road works', Icon: Wrench, ids: ['wel-outages', 'hcc-roadworks', 'water-services', 'iawai'] },
+  { zh: '常用政府入口', en: 'Government services', Icon: ShieldCheck, ids: ['govt-nz', 'hcc-home'] },
+  { zh: '油价与充电桩', en: 'Petrol & EV charging', Icon: MapPin, ids: ['gaspy', 'charge-net', 'plugshare'] },
+];
+const SHORT_LABELS: Record<string, [string, string]> = {
+  'metservice-hamilton': ['Hamilton 天气', 'Hamilton weather'], 'niwa-uv': ['NIWA UV 与臭氧', 'NIWA UV & ozone'], 'niwa-uv-index': ['NIWA UV 指数', 'NIWA UV index'], 'school-terms': ['教育部 · 学期与假期', 'Ministry of Education'], 'public-holidays': ['公共假期', 'Public holidays'], 'find-school': ['Education Counts · 找学校', 'Education Counts'], 'wel-outages': ['WEL · 停电信息', 'WEL outages'], 'hcc-roadworks': ['HCC · 道路施工', 'HCC road works'], 'water-services': ['HCC · 供水服务', 'HCC water services'], iawai: ['IAWAI · 供水', 'IAWAI water'], 'govt-nz': ['新西兰政府', 'govt.nz'], 'hcc-home': ['汉密尔顿市政', 'Hamilton City Council'], gaspy: ['Gaspy · 油价', 'Gaspy'], 'charge-net': ['ChargeNet · 充电网络', 'ChargeNet'], plugshare: ['PlugShare · 充电桩', 'PlugShare'],
+};
+function Tools({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
+  const text = TEXT[lang];
+  const bins = [{ color: 'red', label: text.red, note: text.redNote }, { color: 'yellow', label: text.yellow, note: text.yellowNote }, { color: 'glass', label: text.glass, note: text.glassNote }, { color: 'food', label: text.food, note: text.foodNote }];
+  return <>{tab === 'bins' && <div className="sb-card sb-panel"><div className="sb-panel-heading"><span className="sb-icon-disc"><Trash2 /></span><div><h2>{text.binH}</h2><p>{text.binP}</p></div></div><div className="sb-bin-schedules">{[{ label: text.redWeek, items: [bins[0], bins[3]] }, { label: text.yellowWeek, items: [bins[1], bins[2], bins[3]] }].map(col => <div className="sb-bin-week" key={col.label}><h3><Calendar />{col.label}</h3>{col.items.map(b => <div className="sb-bin-row" key={b.color}><span className={'sb-bin-dot sb-dot-' + b.color} /><div><strong>{b.label}</strong><p>{b.note}</p></div></div>)}</div>)}</div><div className="sb-bin-lookup"><p>{text.binDay}</p><OutLink id="hcc-bins">{text.lookup}</OutLink></div><p className="sb-icon-line ia-section-note"><Clock /><span>{text.binTip}</span></p></div>}
+  {tab === 'transport' && <div className="sb-card sb-panel"><div className="sb-panel-heading"><span className="sb-icon-disc"><Bus /></span><div><h2>{text.busH}</h2><p>{t('线路沿用现有资料；时刻表、票价及实时变更请查询 Busit。', 'Routes from the existing guide; check Busit for timetables, fares and live changes.')}</p></div></div><div className="sb-feature-routes">{ROUTES.filter(r => r.hf).map(r => <div className="sb-route sb-route-feature" key={r.n}><span className="sb-route-number">{r.n}</span><span><strong>{r.name}</strong><span className="sb-route-description">{lang === 'zh' ? r.zh : r.en}</span></span></div>)}</div><h3 className="ia-subheading">{text.allRoutes}</h3><div className="sb-routes">{ROUTES.filter(r => !r.hf).map(r => <div className="sb-route" key={r.n}><span className="sb-route-number">{r.n}</span><span>{r.name}</span></div>)}</div><div className="ia-panel-actions"><OutLink id="busit-routes">{t('查看 Hamilton 线路', 'View Hamilton routes')}</OutLink><OutLink id="busit">{text.planner}</OutLink><span>Busit · 0800 205 305</span></div></div>}
+  {tab === 'urgent' && <div className="sb-card sb-panel ia-urgent"><div className="ia-emergency"><span>{text.em111Big}</span><strong>111</strong><p>{text.medDisc}</p></div><div className="ia-healthline"><ShieldCheck /><div><h2>Healthline · 0800 611 116</h2><p>{text.healthlineNote}</p></div><OutLink id="healthline">{t('Health NZ 健康热线', 'Health NZ Healthline')}</OutLink></div><div className="sb-clinics">{URGENT.map(c => <article className="sb-clinic" key={c.id}><h3>{t(c.zh, c.name)}</h3><p className="sb-icon-line"><Clock /><span>{c.hours[lang]}</span></p><p className="sb-icon-line"><MapPin /><span>{c.address}</span></p><p>{c.note[lang]}</p><div className="ia-clinic-foot"><strong>{c.phone}</strong>{c.id !== 'rototuna' ? <OutLink id={c.id === 'terapa' ? 'tui-te-rapa' : c.id === 'victoria' ? 'victoria-clinic' : 'anglesea'}>{t('诊所信息', 'Clinic information')}</OutLink> : <span>{t('官网链接待核对', 'Website link pending review')}</span>}</div></article>)}</div><p className="ia-section-note">{t('就医信息沿用现有资料，营业安排可能变化；出发前请致电确认。', 'Clinic details are from the existing guide. Hours can change; call before visiting.')}</p></div>}
+  <div className="ia-tool-heading"><p className="ia-kicker">{t('更多日常入口', 'More everyday essentials')}</p><h2>{t('需要时，少找一会儿。', 'A few less things to search for.')}</h2></div><div className="ia-tool-grid">{TOOL_GROUPS.map(g => <article key={g.en} className="sb-card ia-tool-card"><g.Icon /><h3>{t(g.zh, g.en)}</h3><div>{g.ids.map(id => <OutLink id={id} key={id} className="ia-tool-link">{t(...SHORT_LABELS[id])}</OutLink>)}</div></article>)}</div></>;
 }
-
-function SourceLinks({ urls, label }: { urls: string[]; label: string }) {
-  return (
-    <div className="sb-sources">
-      <span>{label}:</span>
-      {urls.map(u => <a key={u} href={u} target="_blank" rel="noreferrer">{new URL(u).hostname.replace('www.', '')}</a>)}
-    </div>
-  );
+function Modal({ kind, close, lang, t, route }: { kind: 'sources' | 'credits'; close: () => void; lang: Lang; t: T; route: Route }) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const opener = useRef(document.activeElement as HTMLElement | null);
+  useEffect(() => { const dialog = ref.current!; dialog.showModal(); const old = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = old; dialog.close(); opener.current?.focus({ preventScroll: true }); }; }, []);
+  const isSources = kind === 'sources';
+  return <dialog ref={ref} className="sb-modal ia-dialog sb-dark" aria-labelledby="dialog-title" onCancel={e => { e.preventDefault(); close(); }} onClick={e => { if (e.target === e.currentTarget) { const r = e.currentTarget.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close(); } }}><div className="sb-modal-heading"><h2 id="dialog-title">{isSources ? t('资料来源', 'Sources') : t('图片来源与授权', 'Photo credits & licences')}</h2><button autoFocus className="sb-action" onClick={close} aria-label={t('关闭', 'Close')}><X /></button></div>{isSources ? <><p>{t('资料核对日期', 'Records checked')} · {CHECKED}</p>{route === 'living' && <><p className="ia-section-note">{t('原始来源集中列于此处。未在本次核对链接清单中的地址仅以文本保留。jany.io / edan.io 为目录信息，非商家官网。', 'Original references are collected here. Addresses outside the verified link list are retained as text. jany.io / edan.io are directory listings, not official merchant sites.')}</p><ul className="ia-source-list">{SUPERMARKETS.map(s => <li key={s.id}><h3>{t(`${s.zhName} ${s.brand}`, s.name)}</h3>{[...new Set(s.sources)].map(url => <div className="ia-source-record" key={url}><span>{/jany\.io|edan\.io/.test(url) ? t('目录信息 / directory listing', 'Directory listing') : t('公开资料', 'Public reference')}</span><code>{url}</code></div>)}</li>)}</ul></>}
+  <h3>{t('已核对的外部入口', 'Verified external links')}</h3><div className="ia-verified-list">{VERIFIED.verified.map(v => <OutLink key={v.id} id={v.id} className="ia-tool-link">{lang === 'zh' ? v.label_zh : v.label_en}</OutLink>)}</div></> : <><p>{t('沿用工作区现有照片，保留作者、授权与原始出处。照片可能经裁剪、压缩及调色；未在核对清单中的出处仅作文本展示。', 'Existing workspace photographs, with original authors, licences and references retained. Images may be cropped, resized or graded. References outside the verified list are shown as text.')}</p><p className="ia-section-note">{t('hero-train、band-tools、band-market 与 band-urgent 为继承的设计素材，工作区未提供作者或授权记录。', 'hero-train, band-tools, band-market and band-urgent are inherited design assets without author or licence records in the workspace.')}</p><ul className="ia-source-list">{TEASER_IMAGES.credits.map(image => <li key={image.id} data-photo-credit={image.id}><h3>{image.id}</h3><p>{image.sourceFile}</p><p>{image.author} · {image.license}</p><code>{image.url}</code><code>{image.licenseUrl}</code><p>{t('图片经裁剪、缩放并转换为 WebP，用于首页导览。', 'Cropped, resized and converted to WebP for homepage teasers.')}</p><p>{image.note}</p></li>)}<li><h3>{t(LAKE_BAND.zh, LAKE_BAND.name)}</h3><p>{LAKE_BAND.credit} · {LAKE_BAND.license}</p><code>{LAKE_BAND.source}</code><code>{LAKE_BAND.licenseUrl}</code></li>{PLACES.filter(p => 'photo' in p).map(p => 'photo' in p && <li key={p.id}><h3>{t(p.zh, p.name)}</h3><p>{p.photoCredit} · {p.photoLicense}</p><code>{p.photoSource}</code><code>{p.photoLicenseUrl}</code></li>)}</ul></>}</dialog>;
 }
-
-// Only visible bands respond to scrolling; transforms never update React state.
-function BandMedia({ src }: { src: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let visible = false;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (motion.matches) { element.style.transform = ''; return; }
-      const rect = element.parentElement!.getBoundingClientRect();
-      const offset = (window.innerHeight / 2 - rect.top - rect.height / 2) * 0.07;
-      element.style.transform = `translate3d(0, ${Math.max(-48, Math.min(48, offset))}px, 0)`;
-    };
-    const schedule = () => { if (visible && !motion.matches && !frame) frame = requestAnimationFrame(update); };
-    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-      visible = entries.some(entry => entry.isIntersecting);
-      if (visible) schedule();
-    }, { rootMargin: '100px' }) : null;
-    if (observer) observer.observe(element.parentElement!);
-    else { visible = true; schedule(); }
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    motion.addEventListener('change', update);
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
-      motion.removeEventListener('change', update);
-      cancelAnimationFrame(frame);
-    };
-  }, []);
-  return <div ref={ref} className="sb-band-media" aria-hidden="true"><img src={src} alt="" loading="lazy" decoding="async" /></div>;
-}
-
-export default function App() {
-  const [lang, setLang] = useState<Lang>(() => (typeof localStorage !== 'undefined' && localStorage.getItem('hl-lang') === 'en') ? 'en' : 'zh');
-  const T: any = TEXT[lang];
-  useEffect(() => {
-    try { localStorage.setItem('hl-lang', lang); } catch {}
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-NZ';
-    document.title = lang === 'zh' ? '汉密尔顿生活指南 · Hamilton Local' : 'Hamilton Local — everyday info for Hamilton, NZ';
-  }, [lang]);
-
-  const [activeTab, setActiveTab] = useState('home');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedDestCat, setSelectedDestCat] = useState('all');
-  const [toastMessage, setToastMessage] = useState('');
-  const [showCredits, setShowCredits] = useState(false);
-  useEffect(() => { if (!showCredits) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape') setShowCredits(false); }; document.addEventListener('keydown', k); return () => document.removeEventListener('keydown', k); }, [showCredits]);
-  const [toolTab, setToolTab] = useState<'bins' | 'transport' | 'urgent'>('bins');
-  const [smType, setSmType] = useState('all');
-  const [now, setNow] = useState(nzNow());
-  useEffect(() => { const t = setInterval(() => setNow(nzNow()), 60000); return () => clearInterval(t); }, []);
-
-  const showToast = (msg: string) => { setToastMessage(msg); setTimeout(() => setToastMessage(''), 3000); };
-  const copyToClipboard = (text: string, label: string) => {
-    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
-    showToast(T.copied(label));
+function Home({ lang, t, toast }: { lang: Lang; t: T; toast: (text: string) => void }) {
+  const [query, setQuery] = useState('');
+  const TEASER_PHOTOS = TEASER_IMAGES.lockedMix;
+  function search(e: React.FormEvent) {
+    e.preventDefault(); const q = query.trim();
+    if (!q) return;
+    if (/bin|bus|urgent|clinic|weather|school|垃圾|公交|急|天气|学区|工具/i.test(q)) { location.hash = href('tools', /bus|公交/i.test(q) ? 'transport' : /urgent|clinic|急/i.test(q) ? 'urgent' : 'bins'); return; }
+    const place = PLACES.some(p => [p.zh, p.name, p.area].join(' ').toLowerCase().includes(q.toLowerCase()));
+    location.hash = href('living', place ? 'places' : 'grocers', q);
+  }
+  const teaserDetails = {
+    living: [t('把熟悉的味道，带回家。', 'A taste of home, close by.'), t('新宜超市 New Save · 物美超市 Wellmart · 华盛超市 Garden Fresh', 'New Save · Wellmart · Garden Fresh')],
+    weekend: [t('周末慢一点，去湖边走走。', 'Slow down. Take a walk by the lake.'), t('汉密尔顿湖公园 · 汉密尔顿花园', 'Hamilton Lake · Hamilton Gardens')],
+    kids: [t('小小探险，就在身边。', 'Little adventures, right here.'), FAMILY_PLACES.slice(0, 2).map(p => t(p.zh, p.name)).join(' · ')],
+    services: [t('本地服务，认真整理。', 'Local help, thoughtfully gathered.'), t('房屋维护 · 专业工种 · 生活便民', 'Home maintenance · Trades · Everyday help')],
+    tools: [t('生活琐事，一处找齐。', 'Everyday details, within reach.'), t('垃圾清运 · 公交 · 急诊', 'Bins · Buses · Urgent care')],
   };
-  const go = (id: string) => { setActiveTab(id); document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); };
-
-  const q = searchQuery.trim().toLowerCase();
-  const filteredSupermarkets = useMemo(() => SUPERMARKETS.filter(s => (smType === 'all' || s.type === smType) && (!q ||
-    [s.name, s.zhName, s.suburb, s.address, ...s.tags.zh, ...s.tags.en].some(x => x.toLowerCase().includes(q)))), [q, smType]);
-  const filteredDestinations = useMemo(() => (PLACES as any[]).filter(p => {
-    const c = selectedDestCat;
-    const okCat = c === 'all' || (c === 'near' && p.km <= 10) || (c === 'mid' && p.km > 10 && p.km <= 50) || (c === 'far' && p.km > 50) || (c === 'free' && p.free) || (c === 'indoor' && p.indoor);
-    const okQ = !q || [p.name, p.zh, p.area, p.address, p.description, p.en.description, p.tag, p.en.tag].some((x: string) => (x || '').toLowerCase().includes(q));
-    return okCat && okQ;
-  }), [selectedDestCat, q]);
-
-  const NAV = ['home', 'tools', 'supermarkets', 'weekend'];
-  const bins = [
-    { k: 'red', color: 'sb-dot-red', label: T.red, note: T.redNote, week: T.redWeek },
-    { k: 'yellow', color: 'sb-dot-yellow', label: T.yellow, note: T.yellowNote, week: T.yellowWeek },
-    { k: 'glass', color: 'sb-dot-glass', label: T.glass, note: T.glassNote, week: T.yellowWeek },
-    { k: 'food', color: 'sb-dot-food', label: T.food, note: T.foodNote, week: T.weekly },
-  ];
-
-  return (
-    <div className="sb-root min-h-screen text-slate-800 font-sans flex flex-col antialiased selection:bg-amber-200 selection:text-slate-900">
-      {toastMessage && (
-        <div role="status" className="sb-toast fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-2.5 shadow-xl text-sm font-medium flex items-center gap-2 max-w-[90vw]">
-          <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" /><span>{toastMessage}</span>
-        </div>
-      )}
-
-      <header className="sb-header text-white">
-        <div className="sb-header-inner">
-          <button className="sb-brand" onClick={() => go('home')}>
-            <span className="sb-logo"><LogoMark /></span>
-            <span className="min-w-0 text-left">
-              <span className="sb-brand-name">Hamilton Local</span>
-              <span className="sb-brand-sub">{lang === 'zh' ? T.brand : T.sub}</span>
-            </span>
-          </button>
-          <nav className="sb-desktop-nav" aria-label={T.nav.tools}>
-            {NAV.map(id => (
-              <button key={id} onClick={() => go(id)} aria-current={activeTab === id ? 'location' : undefined}
-                className={`sb-nav ${activeTab === id ? 'sb-nav-on' : ''}`}>{T.nav[id]}</button>
-            ))}
-            <button onClick={() => { setToolTab('urgent'); go('tools'); }} className="sb-nav">{T.tabs.urgent}</button>
-          </nav>
-          <div className="sb-header-actions">
-            <button data-testid="lang" onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} aria-label="Switch language" className="sb-pill sb-language">
-              <Globe className="w-3.5 h-3.5" />{lang === 'zh' ? 'EN' : '中'}
-            </button>
-            <button className="sb-header-cta" onClick={() => go('tools')}>{T.nav.tools}<ArrowUpRight className="w-3.5 h-3.5" /></button>
-          </div>
-        </div>
-        <nav className="sb-mobile-nav no-scrollbar" aria-label={T.nav.tools}>
-          {NAV.map(id => <button key={id} onClick={() => go(id)} aria-current={activeTab === id ? 'location' : undefined} className={`sb-mnav ${activeTab === id ? 'sb-nav-on' : ''}`}>{T.nav[id]}</button>)}
-          <button onClick={() => { setToolTab('urgent'); go('tools'); }} className="sb-mnav">{T.tabs.urgent}</button>
-        </nav>
-      </header>
-
-      <section id="home" className="sb-hero">
-        <HeroMedia />
-        <div className="sb-hero-shade" aria-hidden="true" />
-        <div className="sb-hero-content">
-          <div className="sb-sticker"><Sparkles className="w-3.5 h-3.5 shrink-0" /><span>{T.heroBadge}</span></div>
-          <h1 className="sb-h1" key={lang}>
-            <BlurText text={T.heroA} className="sb-h1a" />
-            <BlurText text={T.heroB} className="sb-h1b" delay={160} />
-          </h1>
-          <p className="sb-lead">{T.heroP}</p>
-            <form onSubmit={e => { e.preventDefault(); if (q) { showToast(T.filterKw(searchQuery)); go('supermarkets'); } }}
-              className="sb-search p-1.5 flex items-center">
-              <Search className="w-5 h-5 text-white/80 ml-2 shrink-0" />
-              <input type="search" aria-label={T.search} placeholder={T.searchPh} value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                className="w-full min-w-0 px-3 py-2 text-base sm:text-sm outline-none bg-transparent placeholder:text-white/65" />
-              {searchQuery && <button type="button" aria-label={T.clear} onClick={() => setSearchQuery('')} className="p-2 text-white/80 hover:text-white mr-1"><X className="w-4 h-4" /></button>}
-              <button type="submit" className="sb-btn px-4 sm:px-5 py-2.5 text-sm font-bold shrink-0">{T.search}</button>
-            </form>
-            <div className="sb-hero-places flex flex-wrap justify-center gap-2 text-xs">
-              {['Hamilton Central', 'Frankton', 'Hamilton East', 'Chartwell', 'Cambridge', 'Raglan'].map(sub => (
-                <button key={sub} onClick={() => setSearchQuery(sub)} aria-pressed={searchQuery === sub} className={`sb-chip px-2.5 py-1 flex items-center gap-1 ${searchQuery === sub ? 'sb-chip-on' : ''}`}>
-                  <MapPin className="w-3 h-3" />{sub}
-                </button>
-              ))}
-            </div>
-          <button className="sb-ghost" onClick={() => go('tools')}>{lang === 'zh' ? '开始探索' : 'Start exploring'}<ArrowDown className="w-4 h-4" /></button>
-        </div>
-        <div className="sb-hero-weather"><WeatherPill lang={lang} T={T} /></div>
-        <span className="sb-hero-location">Hamilton · Waikato · New Zealand</span>
-      </section>
-
-      <main className="sb-main w-full flex-1">
-        {/* 1. TOOLBOX */}
-        <Reveal id="tools" className="sb-section sb-tools sb-dark">
-          <BandMedia src="./photos/band-tools.webp" />
-          <div className="sb-container">
-            <div className="sb-section-heading">
-              <SectionTitle eyebrow={TEXT.en.toolsH} title={T.toolsH} sub={T.toolsP} />
-              <span className="sb-tag sb-checked">{T.checkedBadge}</span>
-            </div>
-            <div role="tablist" aria-label={T.toolsH} className="sb-tabs">
-              {([['bins', Trash2], ['transport', Bus], ['urgent', Stethoscope]] as const).map(([id, Ic]) => (
-                <button key={id} id={'tool-tab-' + id} role="tab" aria-selected={toolTab === id} aria-controls={'tool-panel-' + id}
-                  data-testid={'tab-' + id} onClick={() => setToolTab(id)}
-                  className={'sb-tab ' + (toolTab === id ? 'sb-tab-on' : '')}>
-                  <Ic className="sb-tab-icon" />
-                  <span><span className="sb-tab-label">{T.tabs[id]}</span><span className="sb-tab-sub">{T.tabsSub[id]}</span></span>
-                </button>))}
-            </div>
-
-            {toolTab === 'bins' && (
-              <div id="tool-panel-bins" role="tabpanel" aria-labelledby="tool-tab-bins" className="sb-card sb-panel">
-                <div className="sb-panel-heading">
-                  <span className="sb-icon-disc"><Trash2 /></span>
-                  <div><h3>{T.binH}</h3><p>{T.binP}</p></div>
-                </div>
-                <div className="sb-bin-schedules sb-stagger">
-                  {[{ w: T.redWeek, items: [bins[0], bins[3]] }, { w: T.yellowWeek, items: [bins[1], bins[2], bins[3]] }].map((col, ci) => (
-                    <div key={ci} className="sb-bin-week">
-                      <h4><Calendar />{col.w}</h4>
-                      <div>
-                        {col.items.map(b => (
-                          <div key={b.k} className="sb-bin-row">
-                            <span className={'sb-bin-dot ' + b.color} aria-hidden="true" />
-                            <div><strong>{b.label}</strong><p>{b.note}</p></div>
-                          </div>))}
-                      </div>
-                    </div>))}
-                </div>
-                <div className="sb-bin-lookup">
-                  <p>{T.binDay}</p>
-                  <a href={HCC_LOOKUP} target="_blank" rel="noreferrer" className="sb-action">{T.lookup}<ExternalLink /></a>
-                </div>
-                <div className="sb-panel-foot">
-                  <p className="sb-icon-line"><Clock /><span>{T.binTip}</span></p>
-                  <SourceLinks urls={[HCC_LOOKUP, HCC_FAQ]} label={T.srcs} />
-                </div>
-              </div>
-            )}
-
-            {toolTab === 'transport' && (
-              <div id="tool-panel-transport" role="tabpanel" aria-labelledby="tool-tab-transport" data-testid="panel-transport" className="sb-card sb-panel sb-transport">
-                <div className="sb-panel-heading">
-                  <span className="sb-icon-disc"><Bus /></span>
-                  <div><h3>{T.busH}</h3><p>{T.busP}</p></div>
-                </div>
-                <div className="sb-route-group">
-                  <h4 className="sb-label">{T.hf}</h4>
-                  <div className="sb-feature-routes sb-stagger">
-                    {ROUTES.filter(r => r.hf).map(r => (
-                      <a key={r.slug} href={B + r.slug + '/'} target="_blank" rel="noreferrer" className="sb-route sb-route-feature">
-                        <span className="sb-route-number">{r.n}</span>
-                        <span><strong>{r.name}</strong><span className="sb-route-description">{lang === 'zh' ? r.zh : r.en}</span></span>
-                        <ExternalLink className="sb-route-external" />
-                      </a>))}
-                  </div>
-                </div>
-                <div className="sb-route-group">
-                  <h4 className="sb-label">{T.allRoutes}</h4>
-                  <div className="sb-routes">
-                    {ROUTES.filter(r => !r.hf).map(r => (
-                      <a key={r.slug} href={B + r.slug + '/'} target="_blank" rel="noreferrer" className="sb-route">
-                        <span className="sb-route-number">{r.n}</span><span>{r.name}</span>
-                      </a>))}
-                  </div>
-                </div>
-                <div className="sb-transit-services">
-                  {[
-                    { href: 'https://www.busit.co.nz/', t: T.planner, p: T.plannerP },
-                    { href: 'https://www.busit.co.nz/using-the-bus/transit-app/', t: T.transit, p: T.transitP },
-                    { href: 'https://www.busit.co.nz/fares/', t: T.bee, p: T.beeP },
-                  ].map(x => (
-                    <a key={x.href} href={x.href} target="_blank" rel="noreferrer" className="sb-transit-service">
-                      <strong>{x.t}<ExternalLink /></strong><p>{x.p}</p>
-                    </a>))}
-                </div>
-                <div className="sb-panel-foot sb-transport-foot">
-                  <div className="sb-link-pills">
-                    <a href="https://www.busit.co.nz/using-the-bus/map-city-and-regional-bus-routes/" target="_blank" rel="noreferrer">{T.mapL}</a>
-                    <a href="https://www.busit.co.nz/fares/beecard/" target="_blank" rel="noreferrer">Bee Card</a>
-                    <a href="tel:0800205305">{T.busHelp}</a>
-                  </div>
-                  <SourceLinks urls={['https://www.busit.co.nz/hamilton-routes/']} label={T.srcs + ' ' + CHECKED} />
-                </div>
-              </div>
-            )}
-
-            {toolTab === 'urgent' && (
-              <div id="tool-panel-urgent" role="tabpanel" aria-labelledby="tool-tab-urgent" data-testid="panel-urgent" className="sb-card sb-panel sb-urgent">
-                <BandMedia src="./photos/band-urgent.webp" />
-                <div data-testid="em111" className="sb-emergency">
-                  <a href="tel:111"><span>{T.em111Big}</span><strong>111</strong></a>
-                  <p>{T.medDisc}</p>
-                </div>
-                <div className="sb-healthline">
-                  <div className="sb-icon-line"><AlertCircle /><span>{T.life} <a href="tel:111">111</a></span></div>
-                  <a href="tel:0800611116" className="sb-healthline-call"><ShieldCheck /><span>{T.healthline}: <strong>0800 611 116</strong><span className="sb-healthline-note">· {T.healthlineNote}</span></span></a>
-                </div>
-                <div className="sb-clinics sb-stagger">
-                  {URGENT.map(c => {
-                    const isOpen = now >= c.open[0] && now < c.open[1];
-                    return (
-                      <div key={c.id} className="sb-clinic">
-                        <div>
-                          <div className="sb-card-heading">
-                            <h3>{lang === 'zh' ? c.zh : c.name}</h3>
-                            <span data-testid="open-status" className={'sb-tag sb-status ' + (isOpen ? 'sb-status-open' : 'sb-status-closed')}>
-                              <span className="sb-status-dot" aria-hidden="true" />{isOpen ? T.openNow : T.closedNow}
-                            </span>
-                          </div>
-                          <div className="sb-clinic-info">
-                            <p className="sb-icon-line"><Clock /><strong>{c.hours[lang]}</strong></p>
-                            <p className="sb-icon-line"><MapPin /><span>{c.address}</span></p>
-                            <p className="sb-clinic-note">{c.note[lang]}</p>
-                          </div>
-                        </div>
-                        <div className="sb-card-foot">
-                          <SourceLinks urls={c.sources} label={T.srcs} />
-                          <a href={'tel:' + c.phone.replace(/\s/g, '')} className="sb-action sb-call"><Phone />{c.phone}</a>
-                        </div>
-                      </div>);
-                  })}
-                </div>
-                <p className="sb-urgent-note">{T.nowNote} {T.checkedBadge}.</p>
-              </div>
-            )}
-          </div>
-        </Reveal>
-
-        {/* The river carries the charcoal band into the morning mist. */}
-        <Reveal className="sb-river-section">
-          <div className="sb-container">
-            <figure className="sb-river">
-              <picture>
-                <source media="(max-width: 640px)" srcSet="./photos/hero-waikato-river-m.webp" />
-                <img src="./photos/hero-waikato-river.webp" alt={lang === 'zh' ? '流经汉密尔顿市区的怀卡托河' : 'The Waikato River flowing through Hamilton'} loading="lazy" className="sb-river-image" />
-              </picture>
-              <figcaption className="sb-river-caption">{lang === 'zh' ? '怀卡托河 · 汉密尔顿' : 'Waikato River · Hamilton'}</figcaption>
-              <a href={HERO.source} target="_blank" rel="noreferrer" className="sb-river-credit">{T.photoBy}: {HERO.credit}, {HERO.license}</a>
-            </figure>
-          </div>
-        </Reveal>
-
-        {/* 2. SUPERMARKETS */}
-        <Reveal id="supermarkets" className="sb-section sb-market">
-          <BandMedia src="./photos/band-market.webp" />
-          <div className="sb-container">
-            <div className="sb-section-heading">
-              <SectionTitle eyebrow={TEXT.en.smH} title={T.smH} sub={T.smP} />
-              <span className="sb-tag sb-checked">{T.smCount(SUPERMARKETS.length)} · {CHECKED}</span>
-            </div>
-            <div className="sb-filters" role="group" aria-label={T.smH}>
-              {SM_TYPES.map(c => (
-                <button key={c.id} data-testid={'sm-' + c.id} aria-pressed={smType === c.id} onClick={() => setSmType(c.id)}
-                  className={'sb-chip ' + (smType === c.id ? 'sb-chip-on' : '')}>
-                  {c[lang]} <span className="sb-filter-count">{c.id === 'all' ? SUPERMARKETS.length : SUPERMARKETS.filter(x => x.type === c.id).length}</span>
-                </button>))}
-            </div>
-            {filteredSupermarkets.length === 0 ? <div className="sb-empty">{T.noMatch}</div> : (
-              <div className="sb-market-grid sb-stagger">
-                {filteredSupermarkets.map(sup => (
-                  <div key={sup.id} className="sb-card sb-market-card">
-                    <div>
-                      <div className="sb-card-heading">
-                        <h3>{lang === 'zh' ? sup.zhName : sup.name}</h3>
-                        <span className="sb-tag">{SM_TYPES.find(t => t.id === sup.type)![lang]}</span>
-                      </div>
-                      <p className="sb-icon-line sb-address"><MapPin /><span>{sup.address}</span></p>
-                      <div className="sb-market-info">
-                        <p className="sb-icon-line"><Clock /><span>{sup.hours ? sup.hours[lang] : T.hoursUnknown}</span></p>
-                        <a href={'tel:' + sup.phone.replace(/\s/g, '')} className="sb-icon-line"><Phone /><span>{sup.phone}</span></a>
-                      </div>
-                      <div className="sb-tags">{sup.tags[lang].map((tag, i) => <span key={i} className="sb-tag">{tag}</span>)}</div>
-                    </div>
-                    <div className="sb-card-foot">
-                      <SourceLinks urls={sup.sources} label={T.srcs} />
-                      <button onClick={() => copyToClipboard(sup.address, sup.name)} className="sb-action"><Copy /><span>{T.copyAddr}</span></button>
-                    </div>
-                  </div>))}
-              </div>)}
-          </div>
-        </Reveal>
-
-        {/* 3. DUSK / WEEKEND */}
-        <Reveal className="sb-cinematic">
-          <BandMedia src="./photos/band-hamilton-lake.webp" />
-          <div className="sb-dusk-shade" aria-hidden="true" />
-          <div className="sb-cinematic-content">
-            <p className="sb-cinematic-eyebrow">Hamilton · Waikato · New Zealand</p>
-            <h2 key={lang}><BlurText text={T.lakeA} /><BlurText text={T.lakeB} /></h2>
-            <button className="sb-ghost" onClick={() => go('weekend')}>{T.nav.weekend}<ArrowDown className="w-4 h-4" /></button>
-          </div>
-          <a href={LAKE_BAND.source} target="_blank" rel="noreferrer" className="sb-river-credit">{T.photoBy}: {LAKE_BAND.credit}, {LAKE_BAND.license}</a>
-        </Reveal>
-
-        <Reveal id="weekend" className="sb-section sb-weekend sb-dark">
-          <div className="sb-container">
-            <div className="sb-section-heading"><SectionTitle eyebrow={TEXT.en.wkH} title={T.wkH} sub={T.wkP} /></div>
-            <div className="sb-filters" role="group" aria-label={T.wkH}>
-              {DEST_CATS.map(cat => (
-                <button key={cat.id} onClick={() => setSelectedDestCat(cat.id)} aria-pressed={selectedDestCat === cat.id}
-                  className={'sb-chip ' + (selectedDestCat === cat.id ? 'sb-chip-on' : '')}>{cat[lang]}</button>))}
-            </div>
-            {filteredDestinations.length === 0 ? <div className="sb-empty">{T.noMatch}</div> : (
-              <div className="sb-weekend-grid sb-stagger">
-                {filteredDestinations.map((p: any) => (
-                  <article key={p.id} className="sb-card sb-place-card">
-                    <div className={'sb-photo ' + (!p.photo ? 'sb-photo-fallback' : '')}>
-                      {p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} loading="lazy" decoding="async" /> : null}
-                      <div className="sb-photo-tags">
-                        <span className="sb-tag">{T.km.replace('{n}', p.km)}</span>
-                        <span className="sb-tag">{p.free ? T.freeTag : T.paidTag}</span>
-                        {p.indoor && <span className="sb-tag">{T.indoorTag}</span>}
-                      </div>
-                    </div>
-                    <div className="sb-place-body">
-                      <p className="sb-place-kicker">{lang === 'zh' ? p.tag : p.en.tag}</p>
-                      <h3>{lang === 'zh' ? <>{p.zh} <span className="sb-place-english">{p.name}</span></> : p.name}</h3>
-                      <p className="sb-place-description">{lang === 'zh' ? p.description : p.en.description}</p>
-                      <dl className="sb-place-details">
-                        <div className="sb-icon-line"><Clock /><dd>{lang === 'zh' ? p.hours : p.en.hours}</dd></div>
-                        <div className="sb-icon-line"><MapPin /><dd>{p.address}</dd></div>
-                      </dl>
-                    </div>
-                    <div className="sb-card-foot">
-                      <span className="sb-photo-attribution">
-                        {p.photo && <>{T.photoBy}: <a href={p.photoSource} target="_blank" rel="noreferrer">{p.photoCredit}</a>, <a href={p.photoLicenseUrl} target="_blank" rel="noreferrer">{p.photoLicense}</a></>}
-                      </span>
-                      <a href={p.url} target="_blank" rel="noreferrer" className="sb-action">{T.official}<ChevronRight /></a>
-                    </div>
-                  </article>))}
-              </div>)}
-          </div>
-        </Reveal>
-      </main>
-
-      <footer className="sb-footer sb-dark">
-        <div className="sb-container">
-          <div className="sb-footer-grid">
-            <div className="sb-footer-about">
-              <div className="sb-footer-brand"><span className="sb-logo"><LogoMark /></span><span>{T.brand}</span></div>
-              <p>{T.footAbout}</p>
-            </div>
-            <div>
-              <h4>{T.footLinks}</h4>
-              <ul className="sb-link-pills">
-                <li><a href="https://hamilton.govt.nz" target="_blank" rel="noreferrer">Hamilton City Council</a></li>
-                <li><a href="https://www.busit.co.nz" target="_blank" rel="noreferrer">Busit (Waikato buses)</a></li>
-                <li><a href="https://www.waikatodistrict.govt.nz" target="_blank" rel="noreferrer">Waikato District Council</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4>{T.footEm}</h4>
-              <ul className="sb-footer-numbers">
-                <li>{T.em111}: <strong>111</strong></li>
-                <li>{T.em105}: <strong>105</strong></li>
-                <li>Healthline: <strong>0800 611 116</strong></li>
-                <li>Anglesea Urgent Care: <strong>07 858 0800</strong></li>
-              </ul>
-            </div>
-            <div className="sb-footer-disclaimer">
-              <h4>{T.footDisc}</h4><p>{T.footDiscP}</p><p>{T.indep}</p>
-              <p>{T.wxBy} <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>)</p>
-              <button data-testid="credits-btn" onClick={() => setShowCredits(true)} className="sb-action">{T.photoCredits}<ArrowUpRight /></button>
-            </div>
-          </div>
-          <div className="sb-footer-bottom">
-            <p>© 2026 {lang === 'zh' ? '汉密尔顿生活指南 · Hamilton Local' : 'Hamilton Local'}</p>
-            <span>Hamilton · Waikato · New Zealand</span>
-          </div>
-        </div>
-      </footer>
-      {showCredits && (
-        <div data-testid="credits" className="sb-modal-backdrop" onClick={() => setShowCredits(false)}>
-          <div role="dialog" aria-modal="true" aria-labelledby="credits-title" className="sb-card sb-modal" onClick={e => e.stopPropagation()}>
-            <div className="sb-modal-heading"><h2 id="credits-title">{T.creditsH}</h2>
-              <button onClick={() => setShowCredits(false)} className="sb-action">{T.close}<X /></button>
-            </div>
-            <p className="sb-modal-intro">{T.creditsP}</p>
-            <ul className="sb-credits-list">
-              <li>
-                <span className="sb-credit-place">{lang === 'zh' ? T.heroImg + ' · ' + HERO.zh : T.heroImg + ' · ' + HERO.name}</span>
-                <span>{T.cAuthor}: {HERO.credit}</span>
-                <span><a href={HERO.licenseUrl} target="_blank" rel="noreferrer">{HERO.license}</a> · <a href={HERO.source} target="_blank" rel="noreferrer">{T.cSource}</a></span>
-              </li>
-              <li>
-                <span className="sb-credit-place">{lang === 'zh' ? T.interludeImg + ' · ' + LAKE_BAND.zh : T.interludeImg + ' · ' + LAKE_BAND.name}</span>
-                <span>{T.cAuthor}: {LAKE_BAND.credit}</span>
-                <span><a href={LAKE_BAND.licenseUrl} target="_blank" rel="noreferrer">{LAKE_BAND.license}</a> · <a href={LAKE_BAND.source} target="_blank" rel="noreferrer">{T.cSource}</a></span>
-              </li>
-              {(PLACES as any[]).filter(p => p.photo).map(p => (
-                <li key={p.id}>
-                  <span className="sb-credit-place">{lang === 'zh' ? p.zh + ' · ' + p.name : p.name}</span>
-                  <span>{T.cAuthor}: {p.photoCredit}</span>
-                  <span><a href={p.photoLicenseUrl} target="_blank" rel="noreferrer">{p.photoLicense}</a> · <a href={p.photoSource} target="_blank" rel="noreferrer">{T.cSource}</a></span>
-                </li>))}
-            </ul>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  return <><section className="sb-hero"><HeroMedia /><div className="sb-hero-shade" /><div className="sb-hero-content"><div className="sb-sticker"><Sparkles size={14} />{t('Hamilton 与 Waikato 的日常生活指南', 'Your everyday guide to Hamilton & Waikato')}</div><h1 className="sb-h1" tabIndex={-1} key={lang}><BlurText className="sb-h1a" text={t('在汉密尔顿，', 'Life in Hamilton,')} /><BlurText className="sb-h1b" delay={120} text={t('把日子过得更顺手', 'made a little easier')} /></h1><p className="sb-lead">{t('从一日三餐到周末时光，从带娃出门到日常琐事。\n在这里，找到离生活近一点的信息。', 'From the weekly shop to a weekend outside. Find the local information that makes everyday life a little easier.')}</p><form className="sb-search ia-hero-search" onSubmit={search}><Search /><input type="search" aria-label={t('搜索本地信息', 'Search local information')} placeholder={t('搜亚超、地点、区域或工具…', 'Search grocers, places or tools…')} value={query} onChange={e => setQuery(e.target.value)} /><button className="sb-btn" type="submit">{t('搜索', 'Search')}</button></form><div className="ia-quick-links"><a href={href('living')}>{t('找亚超', 'Grocers')}</a><a href={href('kids', 'places')}>{t('带娃出门', 'Family outings')}</a><a href={href('tools')}>{t('查垃圾日', 'Bin days')}</a></div><a href="#overview" onClick={e => { e.preventDefault(); document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' }); }} className="sb-ghost ia-explore">{t('看看本地生活', 'Explore local life')}<ArrowDown /></a></div><div className="sb-hero-weather"><OutLink id="metservice-hamilton" className="sb-pill ia-weather"><Sun />{t('Hamilton 天气 · 查看预报', 'Hamilton weather · View forecast')}</OutLink></div><span className="sb-hero-location">Hamilton · Waikato · New Zealand</span></section>
+  <Reveal id="overview" className="ia-overview"><div className="sb-container"><div className="ia-overview-title"><div><p className="ia-kicker">YOUR LOCAL FIELD GUIDE</p><h2>{t('生活在这里。', 'At home, here.')}</h2></div><p>{t('五个入口，照顾日常的不同片刻。', 'Five ways into everyday life in Hamilton.')}</p></div><div className="ia-teaser-grid">{SECTIONS.filter(s => s.id !== 'home').map((s, i) => <article key={s.id} data-teaser={s.id} className={'sb-card ia-teaser ia-teaser-' + s.id}><img className="ia-teaser-photo" src={'./' + TEASER_PHOTOS[s.id]} alt="" loading="lazy" /><div className="ia-teaser-top"><s.Icon /><span>0{i + 1} / {s.en.toUpperCase()}</span></div><h3>{t(s.zh, s.en)}</h3><p className="ia-teaser-title">{teaserDetails[s.id][0]}</p><p className="ia-teaser-detail">{teaserDetails[s.id][1]}</p><div className="ia-teaser-foot"><a href={href(s.id)} className="sb-action">{t('查看全部', 'View all')}<ArrowUpRight /></a>{s.id === 'services' && <button onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}</button>}</div>{s.id === 'tools' && <div className="ia-tool-pills">{TABS.tools.map(([id, zh, en]) => <a key={id} href={href('tools', id)}>{t(zh, en)}</a>)}</div>}</article>)}</div></div></Reveal></>;
 }
-
+export default function App() {
+  const [state, setState] = useState(readRoute);
+  const [lang, setLang] = useState<Lang>(() => { try { return localStorage.getItem('hl-lang') === 'en' ? 'en' : 'zh'; } catch { return 'zh'; } });
+  const [modal, setModal] = useState<'sources' | 'credits' | null>(null);
+  const [message, setMessage] = useState('');
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>();
+  const t: T = (zh, en) => lang === 'zh' ? zh : en;
+  const current = SECTIONS.find(s => s.id === state.route)!;
+  function toast(text: string) { setMessage(text); clearTimeout(toastTimer.current); toastTimer.current = setTimeout(() => setMessage(''), 3200); }
+  useEffect(() => { if (!location.hash.startsWith('#/')) history.replaceState(null, '', '#/'); const change = () => { setState(readRoute()); setModal(null); }; window.addEventListener('hashchange', change); return () => { window.removeEventListener('hashchange', change); clearTimeout(toastTimer.current); }; }, []);
+  useEffect(() => { try { localStorage.setItem('hl-lang', lang); } catch {} document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-NZ'; document.title = t(current.zh, current.en) + ' · Hamilton Local'; }, [lang, state.route]);
+  const previousRoute = useRef(state.route);
+  useEffect(() => { if (previousRoute.current !== state.route) { window.scrollTo({ top: 0, behavior: 'instant' }); document.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true }); previousRoute.current = state.route; } }, [state.route]);
+  return <div className="sb-root sb-dark ia-root"><a className="ia-skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t('跳转到内容', 'Skip to content')}</a><header className="sb-header"><div className="sb-header-inner"><a href={href('home')} className="sb-brand"><span className="sb-logo"><LogoMark /></span><span><span className="sb-brand-name">Hamilton Local</span><span className="sb-brand-sub">{t('汉密尔顿生活指南', 'Your local field guide')}</span></span></a><nav className="sb-desktop-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-nav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav><div className="sb-header-actions"><span className="ia-preview">{t('预览', 'Preview')}</span><button data-testid="lang" className="sb-pill sb-language" aria-label={t('切换到英文', 'Switch to Chinese')} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}><Globe />{lang === 'zh' ? 'EN' : '中文'}</button></div></div><nav className="sb-mobile-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-mnav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav></header>
+  <main id="main" tabIndex={-1}>{state.route === 'home' ? <Home lang={lang} t={t} toast={toast} /> : <><div className="ia-section-media" aria-hidden="true"><img src={'./photos/' + PAGE[state.route].photo} alt="" /></div><div className="sb-container ia-page-intro"><div className="ia-breadcrumb"><a href={href('home')}>{t('首页', 'Home')}</a><span>/</span><span>{t(current.zh, current.en)}</span></div><p className="ia-kicker">{current.en.toUpperCase()} · HAMILTON LOCAL</p><h1 className="ia-page-title" tabIndex={-1} key={current.id + lang}><BlurText text={t(current.zh, current.en)} /></h1><div className="ia-intro-bottom"><p>{t(PAGE[state.route].zh, PAGE[state.route].en)}</p><button data-testid="sources-btn" className="sb-action" onClick={() => setModal('sources')}><BookOpen />{t('资料来源', 'Sources')}</button></div></div><Reveal className="ia-content" key={state.route}><div className="sb-container"><Tabs route={state.route} tab={state.tab} t={t} /><div id="section-panel" role="tabpanel" aria-labelledby={'tab-' + state.tab} tabIndex={0}>
+  {state.route === 'living' && <Living key={state.tab + state.q} tab={state.tab} query={state.q} lang={lang} t={t} toast={toast} />}
+  {state.route === 'weekend' && <Weekend tab={state.tab} t={t} />}
+  {state.route === 'kids' && <Kids tab={state.tab} lang={lang} t={t} />}
+  {state.route === 'services' && <Services tab={state.tab} t={t} toast={toast} />}
+  {state.route === 'tools' && <Tools tab={state.tab} lang={lang} t={t} />}
+  </div></div></Reveal></>}</main>
+  <footer className="sb-footer ia-footer"><div className="sb-container"><div className="ia-footer-top"><div><a href={href('home')} className="sb-footer-brand"><LogoMark /><span>Hamilton Local</span></a><p>{t('离生活近一点。', 'A little closer to everyday life.')}</p></div><div className="ia-footer-actions"><button data-testid="credits-btn" className="sb-action" onClick={() => setModal('credits')}>{t('图片来源与授权', 'Photo credits')}<ArrowUpRight /></button><button className="sb-action" onClick={() => setModal('sources')}>{t('资料来源', 'Sources')}<BookOpen /></button></div></div><p className="ia-footer-note">{t('独立整理的本地生活指南，与所列机构及商家无关联。资料核对于', 'An independent local guide, unaffiliated with listed organisations and businesses. Records checked')} {CHECKED}。{t('信息可能变化，请以官方渠道为准。', ' Details may change; confirm with official sources.')}</p><div className="ia-footer-bottom"><span>© 2026 Hamilton Local</span><span>{t('本地预览 · 未发布', 'Local preview · Unpublished')}</span><span>Hamilton · Waikato · New Zealand</span></div></div></footer>
+  {modal && <Modal kind={modal} close={() => setModal(null)} lang={lang} t={t} route={state.route} />}{message && <div role="status" className="ia-toast sb-toast"><Sparkles /><span>{message}</span></div>}</div>;
+}

@@ -1,0 +1,245 @@
+{
+  "checked_at": "2026-11-06 NZDT",
+  "verified": [
+    {
+      "id": "balloons",
+      "label_zh": "怀卡托热气球节 Balloons over Waikato",
+      "label_en": "Balloons over Waikato",
+      "url": "https://balloonsoverwaikato.co.nz/",
+      "http": 200,
+      "use": "weekend/festivals"
+    },
+    {
+      "id": "farmers-market",
+      "label_zh": "汉密尔顿农贸市场（Waikato Farmers' Markets）",
+      "label_en": "Hamilton Farmers' Market (Waikato Farmers' Markets)",
+      "url": "https://www.waikatofarmersmarkets.co.nz/",
+      "http": 200,
+      "use": "weekend/markets",
+      "note": "NZ Claudelands market. Do NOT use hamiltonfarmersmarket.ca (Canada) or dead .co.nz domains."
+    },
+    {
+      "id": "farmers-market-claudelands",
+      "label_zh": "Claudelands 场馆页",
+      "label_en": "Claudelands venue listing",
+      "url": "https://claudelands.co.nz/events/all-events/event/hamilton-farmers-market",
+      "http": 200,
+      "use": "weekend/markets secondary"
+    },
+    {
+      "id": "school-terms",
+      "label_zh": "学期与假期（教育部）",
+      "label_en": "School terms & holidays (MoE)",
+      "url": "https://www.education.govt.nz/school-terms-and-holidays-dates",
+      "http": 200,
+      "use": "tools"
+    },
+    {
+      "id": "public-holidays",
+      "label_zh": "公共假期",
+      "label_en": "Public holidays",
+      "url": "https://www.employment.govt.nz/leave-and-holidays/public-holidays",
+      "http": 200,
+      "use": "tools"
+    },
+    {
+      "id": "wel-outages",
+      "label_zh": "WEL 停电信息",
+      "label_en": "WEL Networks outages",
+      "url": "https://www.wel.co.nz/outages",
+      "http": 200,
+      "use": "tools outages"
+    },
+    {
+      "id": "hcc-roadworks",
+      "label_zh": "市政道路施工与封路",
+      "label_en": "HCC road works & closures",
+      "url": "https://hamilton.govt.nz/parking-and-transport/road-works-and-closures",
+      "http": 200,
+      "use": "tools"
+    },
+    {
+      "id": "healthline",
+      "label_zh": "Healthline 0800 611 116",
+      "label_en": "Healthline 0800 611 116",
+      "url": "https://www.healthnz.govt.nz/online-phone-healthcare/healthline",
+      "http": 200,
+      "use": "tools urgent"
+    },
+    {
+      "id": "anglesea",
+      "label_zh": "Anglesea Clinic（拼写 Anglesea）",
+      "label_en": "Anglesea Clinic",
+      "url": "https://www.angleseaclinic.org.nz/",
+      "http": 200,
+      "use": "tools urgent"
+    },
+    {
+      "id": "tui-te-rapa",
+      "label_zh": "Tui Medical Te Rapa 急诊",
+      "label_en": "Tui Medical Te Rapa urgent care",
+      "url": "https://www.tuimedical.co.nz/te-rapa",
+      "http": 200,
+      "use": "tools urgent"
+    },
+    {
+      "id": "victoria-clinic",
+      "label_zh": "Victoria Clinic 急诊",
+      "label_en": "Victoria Clinic urgent care",
+      "url": "https://victoriaclinic.co.nz/urgent-care/",
+      "http": 200,
+      "use": "tools urgent"
+    },
+    {
+      "id": "busit",
+      "label_zh": "Busit 公交",
+      "label_en": "Busit",
+      "url": "https://www.busit.co.nz/",
+      "http": 200,
+      "use": "tools transport"
+    },
+    {
+      "id": "busit-routes",
+      "label_zh": "Busit 汉密尔顿线路",
+      "label_en": "Busit Hamilton routes",
+      "url": "https://www.busit.co.nz/hamilton-routes/",
+      "http": 200,
+      "use": "tools transport"
+    },
+    {
+      "id": "hcc-bins",
+      "label_zh": "HCC 垃圾收运查询",
+      "label_en": "HCC kerbside collection",
+      "url": "https://hamilton.govt.nz/fight-the-landfill/kerbside-collection",
+      "http": 200,
+      "use": "tools bins"
+    },
+    {
+      "id": "metservice-hamilton",
+      "label_zh": "MetService 汉密尔顿天气",
+      "label_en": "MetService Hamilton",
+      "url": "https://www.metservice.com/cities/hamilton",
+      "http": 200,
+      "use": "tools weather"
+    },
+    {
+      "id": "niwa-uv",
+      "label_zh": "NIWA UV",
+      "label_en": "NIWA UV & ozone",
+      "url": "https://niwa.co.nz/atmosphere/uv-and-ozone",
+      "http": 200,
+      "use": "tools UV"
+    },
+    {
+      "id": "niwa-uv-index",
+      "label_zh": "NIWA UV Index",
+      "label_en": "NIWA UV Index",
+      "url": "https://niwa.co.nz/atmosphere/uv-index",
+      "http": 200,
+      "use": "tools UV"
+    },
+    {
+      "id": "find-school",
+      "label_zh": "学区/找学校（Education Counts）",
+      "label_en": "Find a school (Education Counts)",
+      "url": "https://www.educationcounts.govt.nz/find-school",
+      "http": 200,
+      "use": "tools schools",
+      "note": "Needs normal browser UA; curl without UA may 403"
+    },
+    {
+      "id": "gaspy",
+      "label_zh": "油价 Gaspy",
+      "label_en": "Petrol prices (Gaspy)",
+      "url": "https://www.gaspy.nz/",
+      "http": 200,
+      "use": "tools fuel"
+    },
+    {
+      "id": "charge-net",
+      "label_zh": "充电网络 ChargeNet",
+      "label_en": "ChargeNet EV charging",
+      "url": "https://www.charge.net.nz/",
+      "http": 200,
+      "use": "tools EV"
+    },
+    {
+      "id": "plugshare",
+      "label_zh": "充电桩 PlugShare",
+      "label_en": "PlugShare",
+      "url": "https://www.plugshare.com/",
+      "http": 200,
+      "use": "tools EV"
+    },
+    {
+      "id": "govt-nz",
+      "label_zh": "政府服务入口 govt.nz",
+      "label_en": "govt.nz",
+      "url": "https://www.govt.nz/",
+      "http": 200,
+      "use": "tools gov"
+    },
+    {
+      "id": "hamilton-gardens",
+      "label_zh": "汉密尔顿花园",
+      "label_en": "Hamilton Gardens",
+      "url": "https://hamiltongardens.co.nz/",
+      "http": 200,
+      "use": "living places"
+    },
+    {
+      "id": "hcc-home",
+      "label_zh": "汉密尔顿市政",
+      "label_en": "Hamilton City Council",
+      "url": "https://hamilton.govt.nz/",
+      "http": 200,
+      "use": "tools gov"
+    },
+    {
+      "id": "water-services",
+      "label_zh": "市政供水服务页",
+      "label_en": "HCC water services",
+      "url": "https://hamilton.govt.nz/property-rates-and-building/water-services/",
+      "http": 200,
+      "use": "tools water"
+    },
+    {
+      "id": "iawai",
+      "label_zh": "IAWAI 供水",
+      "label_en": "IAWAI",
+      "url": "https://www.iawai.co.nz/",
+      "http": 200,
+      "use": "tools water"
+    },
+    {
+      "id": "visit-hamilton",
+      "label_zh": "Visit Hamilton",
+      "label_en": "Visit Hamilton",
+      "url": "https://www.visithamilton.co.nz/",
+      "http": 200,
+      "use": "optional tourism"
+    }
+  ],
+  "rejected_do_not_use": [
+    {
+      "url": "https://hamiltonfarmersmarket.co.nz/",
+      "reason": "DNS/connect fail from box"
+    },
+    {
+      "url": "https://hamiltonfarmersmarket.ca/",
+      "reason": "Wrong country (Canada Hamilton)"
+    },
+    {
+      "url": "https://www.aa.co.nz/cars/petrol-prices/",
+      "reason": "404"
+    },
+    {
+      "url": "https://www.niwa.co.nz/climate/uv-ozone",
+      "reason": "404"
+    },
+    {
+      "url": "https://www.metservice.com/towns-cities/locations/hamilton",
+      "reason": "500 from box; use /cities/hamilton instead"
+    }
+  ]
+}
