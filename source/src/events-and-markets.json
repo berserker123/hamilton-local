@@ -1,0 +1,939 @@
+{
+  "week_label_zh": "11月10日–16日",
+  "week_label_en": "10–16 November 2026",
+  "window": {
+    "start": "2026-11-10",
+    "end": "2026-11-16",
+    "timezone": "Pacific/Auckland"
+  },
+  "facebook_outcome": {
+    "attempted": true,
+    "usable_event_listings": true,
+    "note_zh": "已合并用户提供的 Facebook 活动。21 个 URL 匿名访问均返回 200 且标题匹配；不将响应状态视作全部活动详情重新核验。未登录账号。",
+    "note_en": "Merged supplied Facebook records; all 21 URLs returned 200 with event titles anonymously. Details remain sourced to the supplied records. No account login."
+  },
+  "existing_site_markets_note": "v14 weekend/markets currently lists two cards that are the SAME Hamilton Farmers’ Market (organiser site + Claudelands venue page). Cambridge and other Waikato markets are not yet on the site.",
+  "events_this_week": [
+    {
+      "id": "blackcaps-india-odi-2026-11-10",
+      "title_zh": "新西兰对印度单日国际赛 BLACKCAPS v India ODI",
+      "title_en": "BLACKCAPS v India ODI (3rd ODI)",
+      "dates": [
+        "2026-11-10"
+      ],
+      "time": "15:00",
+      "time_note_zh": "Seddon Park 官网写 3pm。",
+      "venue": "Seddon Park",
+      "town": "Hamilton",
+      "price_zh": "票价待确认（需购票）",
+      "price_en": "Ticketed; price 待确认",
+      "source_url": "https://seddonpark.com/events/event/blackcaps-v-india-odi",
+      "http_status": 200,
+      "source_kind": "official venue",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "赛事日 Hamilton Busit 凭比赛门票免费乘车（官网说明）。"
+    },
+    {
+      "id": "garden-place-matchday-2026-11-10",
+      "title_zh": "花园广场观赛日文化活动 Garden Place match-day celebration",
+      "title_en": "Garden Place match-day celebration of Indian culture",
+      "dates": [
+        "2026-11-10"
+      ],
+      "time": "12:00–14:00",
+      "venue": "Garden Place",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free",
+      "source_url": "https://hamilton.govt.nz/your-city/city-events/happening-in-hamilton",
+      "http_status": 200,
+      "source_kind": "Hamilton City Council",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "市议会 11 月活动页：板球开赛前在 Garden Place 有 Bollywood/Bhangra 等免费表演。同一页还列了 11 月 1 日场次，本周只收录 11 月 10 日。"
+    },
+    {
+      "id": "tanzos-von-otter-masterclass-2026-11-10",
+      "title_zh": "Anne Sofie von Otter × TANZOS 大师课",
+      "title_en": "Anne Sofie Von Otter x TANZOS Masterclass",
+      "dates": [
+        "2026-11-10"
+      ],
+      "time": "12:00–14:00",
+      "venue": "Gallagher Academy — Concert Chamber, Knighton Road, Hillcrest",
+      "town": "Hamilton",
+      "price_zh": "免费，需报名",
+      "price_en": "Free admission; registration listed",
+      "source_url": "https://www.eventfinda.co.nz/2026/anne-sofie-von-otter-tanzos-masterclass-hamilton/hamilton",
+      "http_status": 200,
+      "source_kind": "Eventfinda",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "waikato-professorial-lecture-2026-11-10",
+      "title_zh": "怀卡托大学教授讲座 Professorial Lecture（Karen Barbour）",
+      "title_en": "University of Waikato Professorial Lecture — Professor Karen Barbour",
+      "dates": [
+        "2026-11-10"
+      ],
+      "time": "待确认（场次 17:30–18:45；正文 17:45 开始）",
+      "time_note_zh": "Eventfinda 标题时段为 5:30pm–6:45pm；正文另写讲座 5.45pm 开始、5pm 起检票。开始时间以现场为准，标待确认。",
+      "venue": "Gallagher Academy of Performing Arts, University of Waikato",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free admission",
+      "source_url": "https://www.eventfinda.co.nz/2026/university-of-waikato-professorial-lecture13/hamilton",
+      "http_status": 200,
+      "source_kind": "Eventfinda",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "robin-white-tuituia-until-2026-11-11",
+      "title_zh": "Robin White：Tuituia / Something is Happening Here（最后几天）",
+      "title_en": "Robin White: Tuituia | Something is Happening Here (final days)",
+      "dates": [
+        "2026-11-10",
+        "2026-11-11"
+      ],
+      "time": "10:00–17:00",
+      "end_date": "2026-11-11",
+      "venue": "Te Whare Taonga o Waikato Museum & Gallery",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free entry",
+      "source_url": "https://tewharetaonga.nz/whats-on/exhibitions/robin-white-tuituia-something-is-happening-here",
+      "http_status": 200,
+      "source_kind": "official museum",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "官网：2026年8月1日–11月11日，10am–5pm。市议会页亦写开放至 11 月 11 日。"
+    },
+    {
+      "id": "nga-ara-auaha-2026",
+      "title_zh": "Ngā Ara Auaha 2026 学生创作展",
+      "title_en": "Ngā Ara Auaha 2026: Creative Practice Student Showcase",
+      "dates": [
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "time": "09:00–16:00",
+      "venue": "Gallagher Academy — GAPA / Foyer Galleries, Gate 2B Knighton Rd",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free admission",
+      "source_url": "https://www.eventfinda.co.nz/2026/nga-ara-auaha-2026-creative-practice-student-showcase/hamilton",
+      "http_status": 200,
+      "source_kind": "Eventfinda / Explore Hamilton weekly guide",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "Explore Hamilton 本周指南写 Mon 9–Fri 13 Nov。Eventfinda 另列出更晚的工作日场次（一直排到 2027），疑似模板多日期，后续是否开放待确认。本周按 13 日前仍开放来收录。"
+    },
+    {
+      "id": "arts-for-health-exhibition-2026",
+      "title_zh": "Arts for Health 年度艺术比赛展",
+      "title_en": "Annual Art Competition — Arts for Health",
+      "dates": [
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14",
+        "2026-11-15",
+        "2026-11-16"
+      ],
+      "time": "09:00–17:00",
+      "end_date": "2026-11-21",
+      "venue": "Artspost Galleries and Shop, 120 Victoria Street",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free",
+      "source_url": "https://www.eventfinda.co.nz/2026/annual-art-competition-arts-for-health/waikato",
+      "http_status": 200,
+      "source_kind": "Eventfinda",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "展期至 11 月 21 日，本周每天 9:00–17:00（以 Eventfinda 场次表为准）。"
+    },
+    {
+      "id": "pacific-rose-bowl-festival-2026",
+      "title_zh": "太平洋玫瑰碗节 Pacific Rose Bowl Festival",
+      "title_en": "Pacific Rose Bowl Festival",
+      "dates": [
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "time": "10:00–18:00",
+      "venue": "Rogers Rose Garden, Hamilton Gardens (parking: Gate 2)",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free",
+      "source_url": "https://www.pacificrosefestival.co.nz/",
+      "also": [
+        "https://hamiltongardens.co.nz/things-to-see-and-do-in-hamilton/whats-on/pacific-rose-bowl-festival"
+      ],
+      "http_status": 200,
+      "source_kind": "official festival + Hamilton Gardens",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "节日官网写 November 12th–15th 2026；花园官网写 10am–6pm、免费、公众投票玫瑰。"
+    },
+    {
+      "id": "sunset-market-2026-11-12",
+      "title_zh": "日落市集 Sunset Market",
+      "title_en": "Sunset Market",
+      "dates": [
+        "2026-11-12"
+      ],
+      "time": "16:00–20:00",
+      "venue": "Big Save Carpark, 5 Maui Street, Pukete",
+      "town": "Hamilton",
+      "price_zh": "免费入场",
+      "price_en": "Free admission",
+      "source_url": "https://www.eventfinda.co.nz/2026/sunset-market/hamilton",
+      "also": [
+        "https://www.waikatonz.com/all-events/sunset-market/"
+      ],
+      "http_status": 200,
+      "source_kind": "Eventfinda / Hamilton & Waikato Tourism",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "raglan-growers-2026-11-13",
+      "title_zh": "拉格伦种植者市集 Raglan Growers Market",
+      "title_en": "Raglan Growers Market",
+      "dates": [
+        "2026-11-13"
+      ],
+      "time": "17:00–19:00",
+      "venue": "1–3 Stewart Street",
+      "town": "Raglan",
+      "price_zh": "免费入场（多以现金交易）",
+      "price_en": "Free entry; cash preferred",
+      "source_url": "https://www.whaingaroa.org.nz/raglan-growers-market/",
+      "http_status": 200,
+      "source_kind": "official organiser (Whāingaroa Environment Centre)",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "官网：每周五 5–7pm；冬季停摆，2026 年 10 月 2 日（周五）已恢复。"
+    },
+    {
+      "id": "pb-festival-2026-11-14-15",
+      "title_zh": "PB Festival 健身与健康节",
+      "title_en": "PB Festival",
+      "dates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "time": "Sat 09:00–16:00; Sun 09:00–15:00",
+      "venue": "Claudelands Events Centre, cnr Brooklyn Road & Heaphy Terrace",
+      "town": "Hamilton",
+      "price_zh": "单日 $20，周末通票 $30（另可能有手续费）",
+      "price_en": "Single day $20; weekend $30; fees may apply",
+      "source_url": "https://www.eventfinda.co.nz/2026/pb-festival/hamilton",
+      "also": [
+        "https://pbfestival.nz/",
+        "https://www.facebook.com/events/1334377861398624/"
+      ],
+      "http_status": 200,
+      "source_kind": "Eventfinda + official site",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "boon-street-art-tour-2026-11-14",
+      "title_zh": "Boon 街头艺术步行导览 Street Art Walking Tour",
+      "title_en": "Boon & Love the Centre Street Art Walking Tours",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "10:00–11:30",
+      "venue": "Outside Hamilton Central Library, Garden Place",
+      "town": "Hamilton",
+      "price_zh": "普通票约 $14.35（含一份烘焙）",
+      "price_en": "General admission $14.35 incl. snack",
+      "source_url": "https://www.eventfinda.co.nz/2026/boon-love-the-centre-street-art-walking-tours/hamilton",
+      "http_status": 200,
+      "source_kind": "Eventfinda (listed by Hamilton Arts Trust)",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "fair-share-market-2026-11-14",
+      "title_zh": "公平分享市集 Fair Share Market",
+      "title_en": "Fair Share Market",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "09:00–12:00",
+      "venue": "Western Community Centre, 46 Hyde Avenue, Nawton",
+      "town": "Hamilton",
+      "price_zh": "免费（以物易物/分享，不用钱）",
+      "price_en": "Free; swap/share, no money needed",
+      "source_url": "https://www.goeco.org.nz/event-details/fair-share-market-2026-11-14-09-00",
+      "also": [
+        "https://hamilton.govt.nz/your-city/city-events/happening-in-hamilton"
+      ],
+      "http_status": 200,
+      "source_kind": "Go Eco / Hamilton City Council",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "matamata-market-2026-11-14",
+      "title_zh": "马塔马塔市集与手作展 Matamata Market & Craft Fair",
+      "title_en": "Matamata Market and Craft Fair",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "07:30 起（页面写时长约 5 小时，约至 12:30）",
+      "venue": "Matamata Primary School, 115A Broadway (directory listing)",
+      "town": "Matamata",
+      "price_zh": "免费入场",
+      "price_en": "Free entry",
+      "source_url": "https://thecommunity.co.nz/events/main/matamata-market-and-craft-fair-monthly-local-market/",
+      "http_status": 200,
+      "source_kind": "community directory (monthly 2nd Saturday)",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "每月第二个周六。2026-11-14 为第二个周六。精确关门时间以现场为准。"
+    },
+    {
+      "id": "cambridge-farmers-2026-11-14",
+      "title_zh": "剑桥农贸市场 Cambridge Farmers’ Market",
+      "title_en": "Cambridge Farmers’ Market",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "08:00–12:00",
+      "venue": "Victoria Square (cnr Victoria & Alpha Streets)",
+      "town": "Cambridge",
+      "price_zh": "免费入场",
+      "price_en": "Free entry",
+      "source_url": "https://www.waikatofarmersmarkets.co.nz/",
+      "also": [
+        "https://www.cambridge.co.nz/markets/"
+      ],
+      "http_status": 200,
+      "source_kind": "official organiser + Destination Cambridge",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "tanzos-summer-sirens-2026-11-14",
+      "title_zh": "TANZOS 夏日歌剧之夜 Summer Sirens",
+      "title_en": "Te Pae Kōkako TANZOS — Summer Sirens",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "19:00",
+      "venue": "Gallagher Academy — Sir John Gallagher Concert Chamber",
+      "town": "Hamilton",
+      "price_zh": "$20–$35",
+      "price_en": "$20–$35",
+      "source_url": "https://www.waikato.ac.nz/news-events/events/find-event/te-pae-kokako-tanzos-summer-sirens/",
+      "http_status": 200,
+      "source_kind": "University of Waikato official events",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "card-market-hamilton-2026-11-14",
+      "title_zh": "汉密尔顿卡牌市集 Card Market Hamilton",
+      "title_en": "Card Market Hamilton",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "待确认（有来源写 9:00 起，也有写 9:30–17:00）",
+      "venue": "Claudelands Arena, cnr Brooklyn Road & Heaphy Terrace",
+      "town": "Hamilton",
+      "price_zh": "票价待确认",
+      "price_en": "Ticket price 待确认",
+      "source_url": "https://hlive.co.nz/events/card-market-hamilton-2",
+      "also": [
+        "https://explorehamilton.co.nz/whats-on/",
+        "https://playeronecollectibles.com/trading-card-event.php/card-market-hamilton-hamilton/November-14-2026"
+      ],
+      "http_status": 200,
+      "source_kind": "HLive / Explore Hamilton / reseller listing",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "Claudelands 场馆页为脚本渲染，未能直接读出时段。勿把不确定的开场时间写成确切数字。"
+    },
+    {
+      "id": "round-the-bridges-2026-11-15",
+      "title_zh": "Lugtons 绕桥跑 Round the Bridges",
+      "title_en": "Lugtons Round the Bridges",
+      "dates": [
+        "2026-11-15"
+      ],
+      "time": "待确认（Facebook 07:30 起；官网 07:30 报到、08:25 儿童赛、10:00 主赛）",
+      "venue": "Start/finish Garden Place, central Hamilton",
+      "town": "Hamilton",
+      "price_zh": "2026 报名已售罄（官网）",
+      "price_en": "2026 sold out (official site)",
+      "source_url": "https://roundthebridges.co.nz/",
+      "also": [
+        "https://athleticswaikatobayofplenty.org.nz/events/round-the-bridges/",
+        "https://www.facebook.com/events/1523887379527056/",
+        "https://roundthebridges.co.nz/course-information/race-day-schedule/"
+      ],
+      "http_status": 200,
+      "source_kind": "official event + Athletics WBOP",
+      "from_facebook": false,
+      "family_friendly": true,
+      "time_note_zh": "Facebook 与 Explore Hamilton 的 07:30 为活动起始提示；官网日程将 07:30 列为报到开放。各组实际起跑不同，请查看官网日程。"
+    },
+    {
+      "id": "hamilton-farmers-market-2026-11-15",
+      "title_zh": "汉密尔顿农贸市场 Hamilton Farmers’ Market",
+      "title_en": "Hamilton Farmers’ Market",
+      "dates": [
+        "2026-11-15"
+      ],
+      "time": "08:00–12:00",
+      "venue": "The Barn, Claudelands Event Centre, Gate 3, Brooklyn Road",
+      "town": "Hamilton",
+      "price_zh": "免费入场",
+      "price_en": "Free admission",
+      "source_url": "https://www.waikatofarmersmarkets.co.nz/",
+      "also": [
+        "https://www.eventfinda.co.nz/2026/hamilton-farmers-market/hamilton"
+      ],
+      "http_status": 200,
+      "source_kind": "official organiser",
+      "from_facebook": false,
+      "family_friendly": true
+    },
+    {
+      "id": "gourmet-in-the-gardens-2026-11-15",
+      "title_zh": "花园美食集 Gourmet in the Gardens",
+      "title_en": "Gourmet in the Gardens",
+      "dates": [
+        "2026-11-15"
+      ],
+      "time": "16:00–20:00",
+      "venue": "Rhododendron Lawn, Hamilton Gardens",
+      "town": "Hamilton",
+      "price_zh": "免费入场（受天气影响，取消通知见其 Facebook）",
+      "price_en": "Free entry; weather dependent",
+      "source_url": "https://www.eventfinda.co.nz/2026/gourmet-in-the-gardens/hamilton",
+      "also": [
+        "https://hamiltongardens.co.nz/things-to-see-and-do-in-hamilton/whats-on/gourmet-in-the-gardens"
+      ],
+      "http_status": 200,
+      "source_kind": "Eventfinda 2026 dates + Hamilton Gardens",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "花园官网写整个夏季每周日 4pm–8pm，并请查阅 Facebook 了解餐车与取消。本周日场次有 Eventfinda 2026-11-15 条目。"
+    },
+    {
+      "id": "karioi-science-night",
+      "title_zh": "Karioi 火山地质科学之夜 Science Night: Geology of Karioi Volcano",
+      "title_en": "Science Night: Geology of Karioi Volcano",
+      "dates": [
+        "2026-11-11"
+      ],
+      "time": "19:00–20:00",
+      "venue": "Harbour View Hotel",
+      "town": "Raglan",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/2615047015681328/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Whāingaroa Environment Centre"
+    },
+    {
+      "id": "realignment-room",
+      "title_zh": "The Realignment Room",
+      "title_en": "The Realignment Room",
+      "dates": [
+        "2026-11-11"
+      ],
+      "time": "19:00–21:00",
+      "venue": "22C Deseret Rd, Temple View",
+      "town": "Hamilton",
+      "price_zh": "票价待确认（需购票）",
+      "price_en": "Ticket price unconfirmed; ticketed",
+      "source_url": "https://www.facebook.com/events/1405927602605800/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Astra Patmore"
+    },
+    {
+      "id": "plan-trip-fund-journey",
+      "title_zh": "规划旅途，筹措旅费 Plan the Trip. Fund the Journey",
+      "title_en": "Plan the Trip. Fund the Journey",
+      "dates": [
+        "2026-11-11"
+      ],
+      "time": "18:00",
+      "venue": "Hamilton Hotel, 170 Victoria St",
+      "town": "Hamilton",
+      "price_zh": "票价待确认（需购票）",
+      "price_en": "Ticket price unconfirmed; ticketed",
+      "source_url": "https://www.facebook.com/events/2064739960827495/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "nourish"
+    },
+    {
+      "id": "morrinsville-yin-yoga",
+      "title_zh": "莫林斯维尔阴瑜伽 Yin Yoga in Morrinsville",
+      "title_en": "Yin Yoga in Morrinsville",
+      "dates": [
+        "2026-11-11"
+      ],
+      "time": "18:30–19:30",
+      "venue": "St Joseph's Primary School Hall, 45 David St",
+      "town": "Morrinsville",
+      "price_zh": "费用待确认（需预约）",
+      "price_en": "Price unconfirmed; booking required",
+      "source_url": "https://www.facebook.com/events/1014383028323325/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Yin Yoga with Becky"
+    },
+    {
+      "id": "community-breathwork",
+      "title_zh": "社区呼吸练习工作坊 Community Breathwork Workshop: Unwind and let go",
+      "title_en": "Community Breathwork Workshop: Unwind and let go",
+      "dates": [
+        "2026-11-13"
+      ],
+      "time": "17:30–20:30",
+      "venue": "YWCA Waikato, 28 Pembroke St",
+      "town": "Hamilton",
+      "price_zh": "票价待确认（需购票）",
+      "price_en": "Ticket price unconfirmed; ticketed",
+      "source_url": "https://www.facebook.com/events/26597048999931046/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Gemma Rose"
+    },
+    {
+      "id": "huntly-fireworks",
+      "title_zh": "亨特利赛道烟花表演 GA Pickford Roofing Fireworks Spectacular (Huntly Speedway)",
+      "title_en": "GA Pickford Roofing Fireworks Spectacular (Huntly Speedway)",
+      "dates": [
+        "2026-11-13"
+      ],
+      "time": "16:00 入场 · 19:00 赛车",
+      "venue": "173 McVie Rd",
+      "town": "Huntly",
+      "price_zh": "票价待确认（需购票）",
+      "price_en": "Ticket price unconfirmed; ticketed",
+      "source_url": "https://www.facebook.com/events/28559282890362679/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Huntly Speedway"
+    },
+    {
+      "id": "whaingaroa-repair-cafe",
+      "title_zh": "Whāingaroa 维修咖啡馆 Whāingaroa Repair Café: November 2026",
+      "title_en": "Whāingaroa Repair Café: November 2026",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "10:00–12:00",
+      "venue": "Stewart Street Hall, 3 Stewart St",
+      "town": "Raglan",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/1434572025519606/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Whāingaroa Environment Centre; Repair Cafe Aotearoa"
+    },
+    {
+      "id": "paws-passenger-seat",
+      "title_zh": "Paws in the passenger seat",
+      "title_en": "Paws in the passenger seat",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "10:00–18:00",
+      "venue": "18 Main St",
+      "town": "Huntly",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/29313567321601931/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Pet Community House, Waikato"
+    },
+    {
+      "id": "all-saints-craft-market",
+      "title_zh": "All Saints 手作市集 CRAFT MARKET",
+      "title_en": "CRAFT MARKET",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "09:30–14:00",
+      "venue": "All Saints, 191 Sandwich Rd, St Andrews",
+      "town": "Hamilton",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/1020070631105735/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "All Saints Hamilton"
+    },
+    {
+      "id": "cambridge-art-trail",
+      "title_zh": "剑桥艺术漫游 Passion For Art Art Trail Cambridge NZ",
+      "title_en": "Passion For Art Art Trail Cambridge NZ",
+      "dates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "time": "首日 10:00 · 末日 16:00；每日时段待确认",
+      "venue": "Cambridge（各展点待确认）",
+      "town": "Cambridge",
+      "price_zh": "免费（自助参观）",
+      "price_en": "Free; self guided",
+      "source_url": "https://www.facebook.com/events/1465937022100330/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Cambridge Society of Arts et al.",
+      "notes_zh": "来源只给首日起始与末日结束时间；各展点及每日开放时段待确认。"
+    },
+    {
+      "id": "mystery-creek-seconds",
+      "title_zh": "Mystery Creek 陶艺次品特卖 Seconds Sale (Mystery Creek Ceramics)",
+      "title_en": "Seconds Sale (Mystery Creek Ceramics)",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "10:00",
+      "venue": "30 Lyon St, Kihikihi",
+      "town": "Te Awamutu",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/1558030606341724/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Mystery Creek Ceramics"
+    },
+    {
+      "id": "asian-cultural-food",
+      "title_zh": "亚洲文化美食节 2026 Asian Cultural Food Festival",
+      "title_en": "2026 Asian Cultural Food Festival",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "10:00",
+      "venue": "Hamilton Mandarin Church, 15 Kowhai St",
+      "town": "Hamilton",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/923923490575785/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Rainbow Chinese Community Centre"
+    },
+    {
+      "id": "waipa-wellness-day",
+      "title_zh": "Waipā 女性健康日 2026 Waipā Women's Hub Wellness Day",
+      "title_en": "2026 Waipā Women's Hub Wellness Day",
+      "dates": [
+        "2026-11-14"
+      ],
+      "time": "09:00–16:00",
+      "venue": "Waipā Women's Hub, 321 Bank St",
+      "town": "Te Awamutu",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/2620737688377908/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Waipā Women's Hub"
+    },
+    {
+      "id": "jet-ski-lake-waahi",
+      "title_zh": "摩托艇夏季系列赛与家庭日 Jet Ski Summer Series Round 1 & Family fun-day",
+      "title_en": "Jet Ski Summer Series Round 1 & Family fun-day",
+      "dates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "time": "首日 09:00 · 末日 16:00；每日时段待确认",
+      "venue": "Lake Waahi Reserve",
+      "town": "Huntly",
+      "price_zh": "费用待确认",
+      "price_en": "Price unconfirmed",
+      "source_url": "https://www.facebook.com/events/1886924712339905/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Jet Ski Racing New Zealand Inc",
+      "notes_zh": "使用 Lake Waahi Reserve, Huntly；Facebook 地址栏的美国地址有误。"
+    },
+    {
+      "id": "plunket-christmas-portraits",
+      "title_zh": "Plunket 圣诞肖像摄影 Morrinsville Plunket - Christmas Portraits",
+      "title_en": "Morrinsville Plunket - Christmas Portraits",
+      "dates": [
+        "2026-11-15"
+      ],
+      "time": "09:00",
+      "venue": "125 Anderson St",
+      "town": "Morrinsville",
+      "price_zh": "费用待确认（需预约）",
+      "price_en": "Price unconfirmed; booking required",
+      "source_url": "https://www.facebook.com/events/1627759722144864/",
+      "source_kind": "Facebook event supplied by user; anonymous URL/title rechecked",
+      "from_facebook": true,
+      "host": "Envisage Photography Ltd"
+    },
+    {
+      "id": "pixel-perfect-2026-11-10",
+      "title_zh": "像素艺术工作坊 Pixel Perfect",
+      "title_en": "Pixel Perfect",
+      "dates": [
+        "2026-11-10"
+      ],
+      "time": "16:00–17:00",
+      "venue": "Auaha Meeting Room, Central Library — Te Koopuu Maania o Kirikiriroa",
+      "town": "Hamilton",
+      "price_zh": "免费（本期报名已关闭）",
+      "price_en": "Free; registrations closed",
+      "source_url": "https://hamiltonlibraries.co.nz/all-events/whats-on/pixel-perfect",
+      "also": [
+        "https://hamilton.govt.nz/your-city/city-events/happening-in-hamilton"
+      ],
+      "source_kind": "Hamilton City Libraries + Council",
+      "from_facebook": false,
+      "notes_zh": "适合 8 岁及以上；14 岁以下须照护者陪同。本期从 10 月开始，现已关闭报名。"
+    },
+    {
+      "id": "ripoi-weaving-2026",
+      "title_zh": "编织传承展 Ripoi Anamata, Ripoi Inamata",
+      "title_en": "Ripoi Anamata, Ripoi Inamata",
+      "dates": [
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14",
+        "2026-11-15",
+        "2026-11-16"
+      ],
+      "time": "10:00–17:00",
+      "venue": "Te Whare Taonga o Waikato Museum & Gallery, 1 Grantham Street",
+      "town": "Hamilton",
+      "price_zh": "免费",
+      "price_en": "Free entry",
+      "source_url": "https://tewharetaonga.nz/public/whats-on/exhibitions/ripoi-anamata-ripoi-inamata",
+      "also": [
+        "https://hamilton.govt.nz/your-city/city-events/happening-in-hamilton"
+      ],
+      "source_kind": "Official museum + Council",
+      "from_facebook": false
+    }
+  ],
+  "markets": {
+    "already_on_site": [
+      {
+        "id": "hamilton-farmers-market",
+        "title_zh": "汉密尔顿农贸市场 Hamilton Farmers’ Market",
+        "title_en": "Hamilton Farmers’ Market",
+        "town": "Hamilton",
+        "day": "Every Sunday",
+        "hours": "08:00–12:00",
+        "venue": "The Barn, Claudelands Event Centre, Gate 3, Brooklyn Road",
+        "source_url": "https://www.waikatofarmersmarkets.co.nz/",
+        "also": [
+          "https://claudelands.co.nz/events/all-events/event/hamilton-farmers-market"
+        ],
+        "note_zh": "现站“周末集市”两张卡片其实指向同一市场（主办官网 + Claudelands 场馆页）。请保留并避免再加一条重复的同一市场。"
+      }
+    ],
+    "hamilton_new": [
+      {
+        "id": "sunset-market",
+        "title_zh": "日落市集 Sunset Market",
+        "title_en": "Sunset Market",
+        "town": "Hamilton",
+        "day": "每周四（本季至 12 月中，Eventfinda 列到 17 Dec 2026）",
+        "hours": "16:00–20:00",
+        "venue": "Big Save Carpark, 5 Maui Street, Pukete",
+        "source_url": "https://www.eventfinda.co.nz/2026/sunset-market/hamilton",
+        "also": [
+          "https://www.waikatonz.com/all-events/sunset-market/"
+        ],
+        "http_status": 200
+      },
+      {
+        "id": "gourmet-in-the-gardens",
+        "title_zh": "花园美食集 Gourmet in the Gardens",
+        "title_en": "Gourmet in the Gardens",
+        "town": "Hamilton",
+        "day": "夏季每周日",
+        "hours": "16:00–20:00",
+        "venue": "Rhododendron Lawn, Hamilton Gardens",
+        "source_url": "https://hamiltongardens.co.nz/things-to-see-and-do-in-hamilton/whats-on/gourmet-in-the-gardens",
+        "also": [
+          "https://www.eventfinda.co.nz/2026/gourmet-in-the-gardens/hamilton"
+        ],
+        "http_status": 200,
+        "note_zh": "受天气影响；取消与每周餐车以花园官网所指 Facebook 为准。"
+      },
+      {
+        "id": "fair-share-market",
+        "title_zh": "公平分享市集 Fair Share Market",
+        "title_en": "Fair Share Market",
+        "town": "Hamilton",
+        "day": "每月第二个周六",
+        "hours": "09:00–12:00",
+        "venue": "Western Community Centre, 46 Hyde Avenue, Nawton",
+        "source_url": "https://www.goeco.org.nz/event-details/fair-share-market-2026-11-14-09-00",
+        "http_status": 200
+      },
+      {
+        "id": "all-saints-craft-market",
+        "title_zh": "All Saints 手作市集 CRAFT MARKET",
+        "title_en": "CRAFT MARKET",
+        "town": "Hamilton",
+        "day": "11月14日 周六（单场）",
+        "hours": "09:30–14:00",
+        "venue": "All Saints, 191 Sandwich Rd, St Andrews",
+        "source_url": "https://www.facebook.com/events/1020070631105735/",
+        "price_zh": "费用待确认",
+        "price_en": "Price unconfirmed"
+      }
+    ],
+    "waikato_other": [
+      {
+        "id": "cambridge-farmers-market",
+        "title_zh": "剑桥农贸市场 Cambridge Farmers’ Market",
+        "title_en": "Cambridge Farmers’ Market",
+        "town": "Cambridge",
+        "day": "每周六",
+        "hours": "08:00–12:00",
+        "venue": "Victoria Square, Cambridge",
+        "source_url": "https://www.waikatofarmersmarkets.co.nz/",
+        "also": [
+          "https://www.cambridge.co.nz/markets/"
+        ],
+        "http_status": 200
+      },
+      {
+        "id": "cambridge-trash-n-treasure",
+        "title_zh": "剑桥狮子会跳蚤市场 Lions Trash ’N’ Treasure",
+        "title_en": "Cambridge Lions Trash ’N’ Treasure Market",
+        "town": "Cambridge",
+        "day": "每月第二个周日（本周已过：上次为 11 月 8 日）",
+        "hours": "08:30–13:00",
+        "venue": "Memorial Park (The Rugby Grounds), 62 Taylor Street, Cambridge",
+        "source_url": "https://www.cambridgemarket.nz/",
+        "also": [
+          "https://www.cambridge.co.nz/markets/"
+        ],
+        "http_status": 200,
+        "note_zh": "狗不得入场（残障辅助犬除外）。"
+      },
+      {
+        "id": "raglan-growers-market",
+        "title_zh": "拉格伦种植者市集 Raglan Growers Market",
+        "title_en": "Raglan Growers Market",
+        "town": "Raglan",
+        "day": "每周五（冬季停摆；2026-10-02 已恢复）",
+        "hours": "17:00–19:00",
+        "venue": "1–3 Stewart Street, Raglan",
+        "source_url": "https://www.whaingaroa.org.nz/raglan-growers-market/",
+        "http_status": 200
+      },
+      {
+        "id": "rosetown-produce-fair",
+        "title_zh": "玫瑰镇农产品集 / 特阿瓦穆图农产品市集 Rosetown Produce Fair",
+        "title_en": "Rosetown Produce Fair (formerly Te Awamutu Produce Market)",
+        "town": "Te Awamutu",
+        "day": "夏令时季（约 10 月–3 月）每周四下午",
+        "hours": "待确认（Open Food Network 写 13:30–17:15；artisanfarmers.market 写 13:00–17:30）",
+        "venue": "Selwyn Park, 1 Gorst Avenue, next to Te Awamutu i-SITE / visitor centre",
+        "source_url": "https://www.artisanfarmers.market/nz/markets/waikato/te-awamutu-produce-market",
+        "also": [
+          "https://openfoodnetwork.nz/farmers-markets/"
+        ],
+        "http_status": 200,
+        "note_zh": "未找到市议会一手时刻表；开门时间不要写死。"
+      },
+      {
+        "id": "matamata-market-craft-fair",
+        "title_zh": "马塔马塔市集与手作展 Matamata Market & Craft Fair",
+        "title_en": "Matamata Market and Craft Fair",
+        "town": "Matamata",
+        "day": "每月第二个周六",
+        "hours": "07:30 起，约 5 小时",
+        "venue": "Matamata Primary School (directory)",
+        "source_url": "https://thecommunity.co.nz/events/main/matamata-market-and-craft-fair-monthly-local-market/",
+        "http_status": 200
+      },
+      {
+        "id": "morrinsville-country-market",
+        "title_zh": "莫林斯维尔乡村市集 Morrinsville Country Market",
+        "title_en": "Morrinsville Country Market",
+        "town": "Morrinsville",
+        "day": "每月第一个周六（1 月除外；本月已于 11 月 7 日举办）",
+        "hours": "待确认（旅游信息页目录写 8:30 至正午）",
+        "venue": "Canada Street, Morrinsville（靠近市政/图书馆一带，以信息中心页为准）",
+        "source_url": "https://morrinsvillenz.co.nz/events-calendar/morrinsville-country-market/2026-11-07/",
+        "http_status": 200
+      }
+    ],
+    "skipped": [
+      {
+        "name": "Empire Street Market, Cambridge",
+        "reason": "Destination Cambridge 仅给电话/Facebook，缺明确开市日与时刻，未收录。"
+      },
+      {
+        "name": "Handmade Hamilton at Theatre Aquarius",
+        "reason": "地址为 190 King William、Theatre Aquarius，是加拿大 Hamilton，不是新西兰。"
+      },
+      {
+        "name": "Huntly / Thames weekend markets",
+        "reason": "未找到可核验的官方时段与地址。"
+      }
+    ]
+  },
+  "not_included_events": [
+    {
+      "name": "Paint and Wine Night — The Great Wave",
+      "when": "Tue 10 Nov 19:00–21:00, Good Neighbour, $52",
+      "url": "https://www.eventfinda.co.nz/2026/paint-and-wine-night-the-great-wave/hamilton",
+      "reason": "成人绘画酒吧活动，家庭向精选未收录；来源已核验 200。"
+    },
+    {
+      "name": "GISH On The Mish!",
+      "reason": "R18 喜剧，家庭向精选未收录。"
+    },
+    {
+      "name": "Boot Scootin’ Spur-lesque",
+      "reason": "夜店脱衣舞/风情演出，未收录。"
+    },
+    {
+      "name": "Ninja Run at Claudelands",
+      "reason": "市议会页为 11月6–8日，已过本周窗口。"
+    },
+    {
+      "name": "She Kills Monsters",
+      "reason": "仅见转载，缺剧院官方页，未收录。"
+    }
+  ],
+  "network_recheck": {
+    "date": "2026-11-10",
+    "report": "out/link-checks.json",
+    "blocked_sources": [
+      "https://openfoodnetwork.nz/farmers-markets/"
+    ],
+    "note": "Open Food Network returned HTTP 406; keep the Rosetown conflicting hours unconfirmed. No 404s found."
+  }
+}

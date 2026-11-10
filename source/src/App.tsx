@@ -6,11 +6,12 @@ import { SUPERMARKETS, URGENT, ROUTES, TEXT, LAKE_BAND } from './local-data';
 import PLACES from './places.json';
 import VERIFIED from './verified-urls.json';
 import TEASER_IMAGES from './teaser-images.json';
+import { WeekendAgenda } from './WeekendAgenda';
 
 type Lang = 'zh' | 'en';
 type Route = 'home' | 'living' | 'weekend' | 'kids' | 'services' | 'tools';
 type T = (zh: string, en: string) => string;
-const CHECKED = '2026-11-06';
+const CHECKED = '11月6日 周五';
 const URLS = Object.fromEntries(VERIFIED.verified.map(item => [item.id, item.url]));
 const SECTIONS = [
   { id: 'home', zh: '首页', en: 'Home', Icon: BookOpen },
@@ -31,7 +32,7 @@ const PAGE = {
 };
 const TABS = {
   living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings']],
-  weekend: [['markets', '周末集市', 'Weekend markets'], ['festivals', '节日活动', 'Festivals'], ['picks', '本周精选', 'This week']],
+  weekend: [['picks', '本周精选', 'This week'], ['markets', '周末集市', 'Weekend markets'], ['festivals', '节日活动', 'Festivals']],
   kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
   services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services']],
   tools: [['bins', '垃圾清运', 'Bins'], ['transport', '交通信息', 'Buses'], ['urgent', '急诊信息', 'Urgent care']],
@@ -90,11 +91,8 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
   <p className="ia-section-note">{t('营业时间沿用现有资料，出发前请确认。jany.io / edan.io 为第三方目录信息，非商家官网。', 'Hours come from the existing records; confirm before visiting. jany.io / edan.io are third-party directory listings, not official business sites.')}</p></>;
 }
 function Weekend({ tab, t }: { tab: string; t: T }) {
-  if (tab === 'picks') return <Empty t={t} title={t('本周精选 · 内容整理中', 'This week · Coming soon')} detail={t('每周五更新 · 内容整理中', 'Friday updates · Content being prepared')} />;
-  const cards = tab === 'markets' ? [
-    { id: 'farmers-market', zh: 'Hamilton 农贸市场', en: "Hamilton Farmers’ Market", kicker: 'Waikato Farmers’ Markets', zhP: '从主办方官网查看市场信息、开放安排与最新通知。', enP: 'Visit the organiser for market details, opening arrangements and updates.' },
-    { id: 'farmers-market-claudelands', zh: 'Claudelands 场馆信息', en: 'The Claudelands venue', kicker: 'Claudelands', zhP: '同一市场的场馆页面，出发前核对地点与活动安排。', enP: 'The venue listing for the same market. Check the location and event details before heading out.' },
-  ] : [{ id: 'balloons', zh: '怀卡托热气球节', en: 'Balloons over Waikato', kicker: 'Balloons over Waikato', zhP: '节日日期、场地与活动安排，以主办方公布为准。', enP: 'Find festival dates, venues and programme information from the organiser.' }];
+  if (tab === 'picks' || tab === 'markets') return <WeekendAgenda key={tab} mode={tab} t={t} />;
+  const cards = [{ id: 'balloons', zh: '怀卡托热气球节', en: 'Balloons over Waikato', kicker: 'Balloons over Waikato', zhP: '节日日期、场地与活动安排，以主办方公布为准。', enP: 'Find festival dates, venues and programme information from the organiser.' }];
   return <><div className="ia-event-grid">{cards.map((c, i) => <article className="sb-card ia-event" key={c.id}><span className="ia-event-index">0{i + 1}</span><Calendar className="ia-event-icon" /><p className="ia-kicker">{c.kicker}</p><h2>{t(c.zh, c.en)}</h2><p>{t(c.zhP, c.enP)}</p><OutLink id={c.id}>{t('查看官方信息', 'View official information')}</OutLink></article>)}</div>{tab === 'festivals' && <div className="ia-inline-empty">{t('更多节日 · 内容整理中', 'More festivals · Coming soon')}</div>}<p className="ia-section-note">{t('这里提供主办方入口；具体日期、营业时间与取消通知请以链接页面为准。', 'Check the linked organiser or venue for dates, opening hours and cancellations.')}</p></>;
 }
 function Kids({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
@@ -155,7 +153,7 @@ function Home({ lang, t, toast }: { lang: Lang; t: T; toast: (text: string) => v
     tools: [t('生活琐事，一处找齐。', 'Everyday details, within reach.'), t('垃圾清运 · 公交 · 急诊', 'Bins · Buses · Urgent care')],
   };
   return <><section className="sb-hero"><HeroMedia /><div className="sb-hero-shade" /><div className="sb-hero-content"><div className="sb-sticker"><Sparkles size={14} />{t('Hamilton 与 Waikato 的日常生活指南', 'Your everyday guide to Hamilton & Waikato')}</div><h1 className="sb-h1" tabIndex={-1} key={lang}><BlurText className="sb-h1a" text={t('在汉密尔顿，', 'Life in Hamilton,')} /><BlurText className="sb-h1b" delay={120} text={t('把日子过得更顺手', 'made a little easier')} /></h1><p className="sb-lead">{t('从一日三餐到周末时光，从带娃出门到日常琐事。\n在这里，找到离生活近一点的信息。', 'From the weekly shop to a weekend outside. Find the local information that makes everyday life a little easier.')}</p><form className="sb-search ia-hero-search" onSubmit={search}><Search /><input type="search" aria-label={t('搜索本地信息', 'Search local information')} placeholder={t('搜亚超、地点、区域或工具…', 'Search grocers, places or tools…')} value={query} onChange={e => setQuery(e.target.value)} /><button className="sb-btn" type="submit">{t('搜索', 'Search')}</button></form><div className="ia-quick-links"><a href={href('living')}>{t('找亚超', 'Grocers')}</a><a href={href('kids', 'places')}>{t('带娃出门', 'Family outings')}</a><a href={href('tools')}>{t('查垃圾日', 'Bin days')}</a></div><a href="#overview" onClick={e => { e.preventDefault(); document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' }); }} className="sb-ghost ia-explore">{t('看看本地生活', 'Explore local life')}<ArrowDown /></a></div><div className="sb-hero-weather"><OutLink id="metservice-hamilton" className="sb-pill ia-weather"><Sun />{t('Hamilton 天气 · 查看预报', 'Hamilton weather · View forecast')}</OutLink></div><span className="sb-hero-location">Hamilton · Waikato · New Zealand</span></section>
-  <Reveal id="overview" className="ia-overview"><div className="sb-container"><div className="ia-overview-title"><div><p className="ia-kicker">YOUR LOCAL FIELD GUIDE</p><h2>{t('生活在这里。', 'At home, here.')}</h2></div><p>{t('五个入口，照顾日常的不同片刻。', 'Five ways into everyday life in Hamilton.')}</p></div><div className="ia-teaser-grid">{SECTIONS.filter(s => s.id !== 'home').map((s, i) => <article key={s.id} data-teaser={s.id} className={'sb-card ia-teaser ia-teaser-' + s.id}><img className="ia-teaser-photo" src={'./' + TEASER_PHOTOS[s.id]} alt="" loading="lazy" /><div className="ia-teaser-top"><s.Icon /><span>0{i + 1} / {s.en.toUpperCase()}</span></div><h3>{t(s.zh, s.en)}</h3><p className="ia-teaser-title">{teaserDetails[s.id][0]}</p><p className="ia-teaser-detail">{teaserDetails[s.id][1]}</p><div className="ia-teaser-foot"><a href={href(s.id)} className="sb-action">{t('查看全部', 'View all')}<ArrowUpRight /></a>{s.id === 'services' && <button onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}</button>}</div>{s.id === 'tools' && <div className="ia-tool-pills">{TABS.tools.map(([id, zh, en]) => <a key={id} href={href('tools', id)}>{t(zh, en)}</a>)}</div>}</article>)}</div></div></Reveal></>;
+  <Reveal id="overview" className="ia-overview"><div className="sb-container"><div className="ia-overview-title"><div><p className="ia-kicker">YOUR LOCAL FIELD GUIDE</p><h2>{t('生活在这里。', 'At home, here.')}</h2></div><p>{t('五个入口，照顾日常的不同片刻。', 'Five ways into everyday life in Hamilton.')}</p></div><div className="ia-teaser-grid">{SECTIONS.filter(s => s.id !== 'home').map((s, i) => <article key={s.id} data-teaser={s.id} className={'sb-card ia-teaser ia-teaser-' + s.id}><img className="ia-teaser-photo" src={'./' + TEASER_PHOTOS[s.id]} alt="" loading="lazy" /><div className="ia-teaser-top"><s.Icon /><span>0{i + 1} / {s.en.toUpperCase()}</span></div><h3>{t(s.zh, s.en)}</h3><p className="ia-teaser-title">{teaserDetails[s.id][0]}</p><p className="ia-teaser-detail">{teaserDetails[s.id][1]}</p><div className="ia-teaser-foot"><a href={href(s.id)} className="sb-action">{t('查看全部', 'View all')}<ArrowUpRight /></a>{s.id === 'services' && <button onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}</button>}</div>{(s.id === 'tools' || s.id === 'weekend') && <div className="ia-tool-pills">{TABS[s.id].map(([id, zh, en]) => <a key={id} href={href(s.id, id)}>{t(zh, en)}</a>)}</div>}</article>)}</div></div></Reveal></>;
 }
 export default function App() {
   const [state, setState] = useState(readRoute);

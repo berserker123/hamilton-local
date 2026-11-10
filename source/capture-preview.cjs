@@ -1,82 +1,129 @@
-﻿// Offline hero preview QA: local files + dedicated loopback Chrome/CDP only.
-const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url'),{spawn,spawnSync}=require('node:child_process'),assert=require('node:assert/strict'),crypto=require('node:crypto');
-const chromePath='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',endpoint='http://127.0.0.1:9248',shots=path.resolve(__dirname,'../out/shots'),url=pathToFileURL(path.join(__dirname,'dist/index.html')).href;
-const pause=ms=>new Promise(r=>setTimeout(r,ms));
-const report={url,browser:chromePath,browserPlugin:'Browser plugin not available; TASK.md explicitly requests offline Chrome/CDP',checks:[],frames:[],recordings:[],layouts:[],errors:[],requests:[]};
-let chrome,client;const keepAlive=require.main===module ? setInterval(()=>{},1000) : undefined;
-async function connect(url){
- const ws=new WebSocket(url);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j;});let id=0;const pending=new Map(),listeners=new Map();
- ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){const p=pending.get(m.id);if(p){pending.delete(m.id);m.error?p.j(new Error(JSON.stringify(m.error))):p.r(m.result);}}else for(const fn of listeners.get(m.method)||[])fn(m.params);};
- ws.onclose=()=>{for(const p of pending.values())p.j(new Error('CDP closed'));pending.clear();};
- const send=(method,params={})=>new Promise((r,j)=>{const i=++id;pending.set(i,{r,j});ws.send(JSON.stringify({id:i,method,params}));});
- const evaluate=async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw new Error(JSON.stringify(r.exceptionDetails));return r.result.value;};
- return {ws,send,evaluate,on(name,fn){if(!listeners.has(name))listeners.set(name,new Set());listeners.get(name).add(fn);return ()=>listeners.get(name).delete(fn);}};
+// Offline v16 QA: file URLs and dedicated loopback Chrome/CDP only. No installs.
+const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
+const crypto = require('node:crypto'), { spawn } = require('node:child_process'), { pathToFileURL } = require('node:url');
+const root = path.resolve(__dirname, '..'), shots = path.join(root, 'out/shots');
+const url = pathToFileURL(path.join(__dirname, 'dist/index.html')).href;
+const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', endpoint = 'http://127.0.0.1:9255';
+const research = JSON.parse(fs.readFileSync(path.join(root, 'work/src/events-and-markets.json'), 'utf8'));
+const red = process.argv.includes('--red');
+const report = { url, browser: chromePath, browserPlugin: 'Browser plugin not available; TASK.md explicitly authorizes offline Chrome/CDP', checks: [], layouts: [], screenshots: [], errors: [], warnings: [], externalRequests: [] };
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+let chrome, client;
+async function connect(wsUrl) {
+  const ws = new WebSocket(wsUrl); await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
+  let id = 0; const pending = new Map(), listeners = new Map();
+  ws.onmessage = e => { const m = JSON.parse(e.data); if (m.id) { const p = pending.get(m.id); if (p) { pending.delete(m.id); m.error ? p.reject(new Error(JSON.stringify(m.error))) : p.resolve(m.result); } } else for (const fn of listeners.get(m.method) || []) fn(m.params); };
+  ws.onclose = () => { for (const p of pending.values()) p.reject(new Error('CDP closed')); pending.clear(); };
+  const send = (method, params = {}) => new Promise((resolve, reject) => { const i = ++id; pending.set(i, { resolve, reject }); ws.send(JSON.stringify({ id: i, method, params })); });
+  return { ws, send, on(method, fn) { if (!listeners.has(method)) listeners.set(method, []); listeners.get(method).push(fn); }, async evaluate(expression) { const r = await send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true }); if (r.exceptionDetails) throw new Error(JSON.stringify(r.exceptionDetails)); return r.result.value; } };
 }
-async function check(name,expr){assert.ok(await client.evaluate(expr),name);report.checks.push(name);console.log('PASS',name);}
-async function until(expr,ms=8000){const end=Date.now()+ms;while(Date.now()<end){if(await client.evaluate(expr))return;await pause(80);}throw new Error('Timed out: '+expr);}
-async function viewport(width,height){await client.send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width===390});await client.send('Emulation.setTouchEmulationEnabled',{enabled:width===390});}
-async function motion(value){await client.send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value}]});}
-async function open(suffix='#/',mode='window'){
- await client.send('Page.navigate',{url:url+suffix});await until(`document.querySelector('.sb-hero-media')?.dataset.hero===${JSON.stringify(mode)} && document.querySelector('.sb-hero-media img')?.naturalWidth>0`);
- await client.evaluate(`Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});}))`);
- if(mode==='b')await until(`document.querySelector('.sb-hero-media').dataset.ready==='true'`);
+async function until(expr) { const end = Date.now() + 10000; while (Date.now() < end) { if (await client.evaluate(expr)) return; await pause(80); } throw new Error('Timed out: ' + expr); }
+async function check(name, expression) { assert.ok(await client.evaluate(expression), name); report.checks.push(name); console.log('PASS', name); }
+async function viewport(width, height) { await client.send('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: width === 390 }); await client.send('Emulation.setTouchEmulationEnabled', { enabled: width === 390 }); }
+async function open(suffix) {
+  await client.send('Page.navigate', { url: url + suffix });
+  await until(`document.querySelector('main')?.innerText.length>100`);
+  await client.evaluate(`Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});}))`);
+  await pause(800);
 }
-const stateExpr=`(()=>{const m=document.querySelector('.sb-hero-media'),rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};return {time:performance.now(),mode:m.dataset.hero,ready:m.dataset.ready,hero:rect(document.querySelector('.sb-hero')),chrome:m.querySelector('.sb-window-rim')?rect(m.querySelector('.sb-window-rim')):null,tracks:[...m.querySelectorAll('.sb-window-track')].map(e=>({transform:getComputedStyle(e).transform,animation:getComputedStyle(e).animationName,duration:getComputedStyle(e).animationDuration,rect:rect(e)})),nav:rect(document.querySelector('header')),overlay:rect(document.querySelector('.sb-hero-content')),search:rect(document.querySelector('.ia-hero-search')),images:[...m.querySelectorAll('img')].map(i=>({src:i.getAttribute('src'),class:i.className,opacity:getComputedStyle(i).opacity,transform:getComputedStyle(i).transform,animation:getComputedStyle(i).animationName,loaded:i.complete&&i.naturalWidth>0,rect:rect(i)}))};})()`;
-async function frame(file){const state=await client.evaluate(stateExpr),{data}=await client.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(shots,file),Buffer.from(data,'base64'));report.frames.push({file,...state});console.log('Saved',file);return state;}
-async function layout(label){const r=await client.evaluate(`({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,title:document.title,meaningful:document.querySelector('main').innerText.length>100,errorOverlay:!!document.querySelector('vite-error-overlay,nextjs-portal'),broken:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src)})`);assert.equal(r.width,r.scrollWidth,label+': no overflow');assert.ok(r.meaningful&&!r.errorOverlay&&r.title.endsWith(' · Hamilton Local'));assert.deepEqual(r.broken,[]);report.layouts.push({label,...r});}
-async function click(selector){await client.evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center',behavior:'instant'})`);const p=await client.evaluate(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);await client.send('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...p});await client.send('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...p});await pause(200);}
-// Genuine elapsed-time browser raster frames, encoded silently with built-in MediaRecorder.
-async function recording(file,seconds=11){
- const supported=await client.evaluate(`(()=>{if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)return false;const mime=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(t=>MediaRecorder.isTypeSupported(t));if(!mime)return false;const canvas=document.createElement('canvas');canvas.width=innerWidth;canvas.height=innerHeight;canvas.style.cssText='position:fixed;left:-100000px;top:0;pointer-events:none';document.body.append(canvas);const stream=canvas.captureStream(0),chunks=[],recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:2800000});recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};window.__record={canvas,stream,chunks,recorder,mime};return true;})()`);
- if(!supported){report.recordings.push({file,caveat:'MediaRecorder/canvas capture unsupported'});return;}
- let busy=false,count=0,drawing=Promise.resolve(),error;
- const off=client.on('Page.screencastFrame',e=>{client.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(busy)return;busy=true;drawing=client.evaluate(`(async()=>{const i=new Image();i.src='data:image/jpeg;base64,${e.data}';await i.decode();const r=window.__record;r.latest=i;const paint=()=>{r.canvas.getContext('2d').drawImage(r.latest,0,0,r.canvas.width,r.canvas.height);r.stream.getVideoTracks()[0].requestFrame();};if(r.recorder.state==='inactive'){r.recorder.start(500);r.pump=setInterval(paint,1000/15);}paint();})()`).then(()=>count++).catch(e=>{error=e.message;}).finally(()=>{busy=false;});});
- const start=Date.now();try{
-  await client.send('Page.startScreencast',{format:'jpeg',quality:88,maxWidth:1440,maxHeight:1000,everyNthFrame:2});await pause(seconds*1000);await client.send('Page.stopScreencast');off();await drawing;assert.ok(count>2&&!error,'Screencast frames: '+error);
-  const v=await client.evaluate(`new Promise(resolve=>{const r=window.__record;r.recorder.onstop=()=>{const b=new Blob(r.chunks,{type:r.mime}),reader=new FileReader();reader.onload=()=>resolve({data:reader.result.split(',')[1],mime:r.mime,audioTracks:r.stream.getAudioTracks().length});reader.readAsDataURL(b);r.stream.getTracks().forEach(t=>t.stop());r.canvas.remove();delete window.__record;};clearInterval(r.pump);r.recorder.stop();})`);
-  const bytes=Buffer.from(v.data,'base64'),output=path.join(shots,file),seekable=path.join(shots,file+'.seekable.webm');fs.writeFileSync(output,bytes);
-  const remux=spawnSync('ffmpeg',['-v','error','-y','-i',output,'-c','copy',seekable],{windowsHide:true,encoding:'utf8'});assert.equal(remux.status,0,remux.stderr);fs.renameSync(seekable,output);
-  const probe=spawnSync('ffprobe',['-v','error','-show_entries','format=duration:stream=codec_type,width,height','-of','json',output],{windowsHide:true,encoding:'utf8'});assert.equal(probe.status,0,probe.stderr);const metadata=JSON.parse(probe.stdout);assert.ok(+metadata.format.duration>=8&&+metadata.format.duration<=12);assert.equal(metadata.streams.length,1);assert.equal(metadata.streams[0].codec_type,'video');report.videoMetadata=metadata;report.recordings.push({file,seconds:(Date.now()-start)/1000,frames:count,mime:v.mime,audioTracks:v.audioTracks,bytes:bytes.length,method:'Real-time CDP screencast -> canvas captureStream with explicit 15fps requestFrame -> MediaRecorder'});console.log('Recorded',file,count,'real frames');
- }catch(e){off();await client.send('Page.stopScreencast').catch(()=>{});report.recordings.push({file,caveat:e.message});await client.evaluate(`if(window.__record){const r=window.__record;clearInterval(r.pump);if(r.recorder.state!=='inactive')r.recorder.stop();r.stream.getTracks().forEach(t=>t.stop());r.canvas.remove();delete window.__record;}`);}
+async function click(selector) {
+  const point = await client.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});e.scrollIntoView({block:'center',behavior:'instant'});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+  await client.send('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'left', clickCount: 1, ...point });
+  await client.send('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'left', clickCount: 1, ...point }); await pause(250);
 }
-function sourceAudit(){
- const baseline=JSON.parse(fs.readFileSync(path.join(__dirname,'../out/v14-baseline.json'))),hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
- for(const [f,h]of Object.entries(baseline.src))if(!['Motion.tsx','styles.css'].includes(f))assert.equal(hash(path.join(__dirname,'src',f)),h,'Unrelated source: '+f);
- for(const [f,h]of Object.entries(baseline['public/photos']))for(const d of ['public/photos','dist/photos'])assert.equal(hash(path.join(__dirname,d,f)),h,'Original photo: '+d+'/'+f);
- for(const f of fs.readdirSync(path.join(__dirname,'src')).filter(f=>/\.(tsx?|json)$/.test(f)))assert.ok(!fs.readFileSync(path.join(__dirname,'src',f),'utf8').includes('\u6025\u75c7'),'Urgent wording: '+f);
- report.checks.push('Source/photo audit: App, merchant data, credits, locked manifest and all public/dist photos unchanged; urgent wording preserved');
+async function layout(label) {
+  const state = await client.evaluate(`({url:location.href,title:document.title,width:innerWidth,scrollWidth:document.documentElement.scrollWidth,meaningful:document.querySelector('main').innerText.length>100,overlay:!!document.querySelector('vite-error-overlay,nextjs-portal'),broken:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src),clipped:[...document.querySelectorAll('.wa-row,.wa-main,.wa h4,.wa-heading,.ia-tabs')].filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>e.className)})`);
+  assert.ok(state.url.startsWith(url)); assert.ok(state.title.endsWith(' · Hamilton Local')); assert.equal(state.width, state.scrollWidth, label + ': overflow'); assert.ok(state.meaningful && !state.overlay); assert.deepEqual(state.broken, []); assert.deepEqual(state.clipped, []); report.layouts.push({ label, ...state }); console.log('PASS layout', label);
 }
-module.exports={connect};
+async function screenshot(file) {
+  if (await client.evaluate(`!!document.querySelector('#overview')`)) { await client.evaluate(`document.querySelector('#overview').scrollIntoView({behavior:'instant'})`); await pause(750); }
+  await client.evaluate(`(async()=>{window.scrollTo({top:0,behavior:'instant'});await Promise.all(document.getAnimations().filter(a=>a.effect.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{})));window.__captureMotion=document.getAnimations().filter(a=>a.effect.getTiming().iterations===Infinity&&a.playState==='running');window.__captureMotion.forEach(a=>a.pause());})()`);
+  assert.ok(await client.evaluate(`[...document.querySelectorAll('h1 .sb-blur-char')].every(e=>getComputedStyle(e).opacity==='1'&&['none','blur(0px)'].includes(getComputedStyle(e).filter))`), file + ': title animation settled');
+  const { contentSize } = await client.send('Page.getLayoutMetrics');
+  const clip = { x: 0, y: 0, width: contentSize.width, height: contentSize.height, scale: 1 };
+  const { data } = await client.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true, clip });
+  fs.writeFileSync(path.join(shots, file), Buffer.from(data, 'base64')); report.screenshots.push({ file, width: clip.width, height: clip.height }); console.log('Saved', file);
+  await client.evaluate(`window.__captureMotion.forEach(a=>a.play());delete window.__captureMotion`);
+}
+function sourceAudit() {
+  const baseline=JSON.parse(fs.readFileSync(path.join(root,'out/v16-before.json'),'utf8'));
+  const hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+  for(const [file,expected] of Object.entries(baseline.files)) {
+    if(['work/src/App.tsx','work/src/styles.css','work/src/events-and-markets.json'].includes(file))continue;
+    assert.equal(hash(path.join(root,file)),expected,'Preserved '+file);
+    if(file.startsWith('work/public/photos/'))assert.equal(hash(path.join(__dirname,'dist/photos',path.basename(file))),expected);
+  }
+  const normalize=s=>s.replace(/import (?:WEEKEND from '.\/events-and-markets.json'|\{ WeekendAgenda \} from '.\/WeekendAgenda');/, 'WEEKEND_IMPORT').replace(/const CHECKED = .*?;/,'CHECKED').replace(/function Weekend\([\s\S]*?(?=  const cards = )/,'WEEKEND_BODY\n');
+  assert.equal(normalize(fs.readFileSync(path.join(__dirname,'src/App.tsx'),'utf8')),normalize(baseline.app),'App beyond authorized weekend/date changes');
+  assert.ok(fs.readFileSync(path.join(__dirname,'src/styles.css'),'utf8').startsWith(baseline.css),'Existing CSS preserved verbatim');
+  report.checks.push('Source hashes: Motion.tsx, original fonts/CSS, all public photographs, merchant/phone data, locked teasers and research originals preserved; App changes limited to weekend body/import and Chinese check date');
+}
+async function eventAudit(lang='zh') {
+  const records=await client.evaluate(`[...document.querySelectorAll('[data-event-id]')].map(e=>({id:e.dataset.eventId,title:e.querySelector('h4').textContent,text:e.innerText,links:[...e.querySelectorAll('a')].map(a=>a.href)}))`);
+  assert.equal(records.length,research.events_this_week.length);
+  assert.equal(new Set(records.map(e=>e.id)).size,records.length);
+  for(const item of research.events_this_week) {
+    const row=records.find(e=>e.id===item.id);assert.ok(row,item.id);assert.equal(row.title,item['title_'+lang]);assert.ok(row.text.includes(item['price_'+lang]));assert.ok(row.text.includes(item.venue));
+    for(const link of [item.source_url,...(item.also||[])])assert.ok(row.links.includes(link),item.id+' source '+link);
+  }
+  await check('Chinese UI dates, no ISO dates or duplicate English title lines', `!/(?:2026-\\d{2}-\\d{2})/.test(document.body.innerText)&&!document.querySelector('.wa .ia-secondary-name')&&[...document.querySelectorAll('.wa time')].every(e=>/\\d+月\\d+日 周[一二三四五六日]/.test(e.textContent))`);
+  report.checks.push('All 37 events match merged data ('+lang+'): unique IDs, titles, venues, prices and every source');
+}
+async function marketsAudit() {
+  const records=await client.evaluate(`[...document.querySelectorAll('[data-weekend-market-id]')].map(e=>({id:e.dataset.weekendMarketId,title:e.querySelector('h4').textContent,text:e.innerText,links:[...e.querySelectorAll('a')].map(a=>a.href)}))`);
+  const items=[...research.markets.already_on_site,...research.markets.hamilton_new,...research.markets.waikato_other];
+  assert.equal(records.length,items.length);
+  for(const item of items){const row=records.find(e=>e.id===item.id);assert.ok(row);assert.equal(row.title,item.title_zh);assert.ok(row.links.includes(item.source_url));}
+  assert.equal(records.filter(e=>e.id==='hamilton-farmers-market').length,1);
+  for(const id of ['cambridge-trash-n-treasure','morrinsville-country-market'])assert.ok(records.find(e=>e.id===id).text.includes('本周无场次'));
+  assert.ok(records.find(e=>e.id==='rosetown-produce-fair').text.includes('来源待确认'));
+  report.checks.push('11 compact markets match supplied/merged data; Hamilton Farmers’ Market once; past recurring sessions labelled; 406 source marked unconfirmed');
+}
+async function detailShot(file,selector,width,height) {
+  await viewport(width,height);
+  await client.evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'start',behavior:'instant'})`);await pause(650);
+  const {data}=await client.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+  fs.writeFileSync(path.join(shots,file),Buffer.from(data,'base64'));report.screenshots.push({file,width,height,kind:'viewport detail'});console.log('Saved',file);
+}
+module.exports = { connect };
 if(require.main===module)(async()=>{
- fs.mkdirSync(shots,{recursive:true});sourceAudit();
- chrome=spawn(chromePath,['--headless=new','--no-sandbox','--hide-scrollbars','--no-first-run','--no-default-browser-check','--disable-background-networking','--disable-component-update','--disable-sync','--disable-extensions','--disable-domain-reliability','--no-proxy-server','--host-resolver-rules=MAP * ~NOTFOUND','--remote-debugging-port=9248','--remote-debugging-address=127.0.0.1',`--user-data-dir=${path.join(__dirname,'.chrome-hero-profile')}`,'about:blank'],{windowsHide:true,stdio:'ignore'});
- let ready=false;for(let i=0;i<80;i++){try{await fetch(endpoint+'/json/version');ready=true;break;}catch{await pause(150);}}assert.ok(ready,'Chrome loopback ready');
- const target=await(await fetch(endpoint+'/json/new?about:blank',{method:'PUT'})).json();client=await connect(target.webSocketDebuggerUrl);
- client.on('Runtime.exceptionThrown',e=>report.errors.push(e.exceptionDetails));client.on('Runtime.consoleAPICalled',e=>{if(e.type==='error')report.errors.push(e.args.map(a=>a.value||a.description).join(' '));});client.on('Network.requestWillBeSent',e=>{if(/^https?:/.test(e.request.url))report.requests.push(e.request.url);});
- await client.send('Page.enable');await client.send('Runtime.enable');await client.send('Network.enable');await client.send('Network.setBlockedURLs',{urls:['http://*','https://*']});await viewport(1440,1000);await motion('no-preference');
-
- // New behavior must fail against the inherited build before implementation.
- await client.send('Page.navigate',{url:url+'#/'});await pause(900);await check('Default selects window',"document.querySelector('.sb-hero-media')?.dataset.hero==='window'");
- for(const [suffix,mode]of [['?hero=window#/','window'],['#/?hero=window','window'],['?hero=a#/','a'],['?hero=b#/','b'],['#/?hero=a','a'],['#/?hero=b','b'],['#/','window'],['?hero=invalid#/','window'],['?hero=b#/?hero=window','window'],['?hero=window#/?hero=a','a'],['?hero=a#/?hero=b','b'],['?hero=b#/?hero=invalid','b'],['?hero=a#/?hero=invalid','a']]){await open(suffix,mode);await check('Selector '+suffix+' => '+mode,'document.querySelector(".sb-hero-media").dataset.hero==='+JSON.stringify(mode));}
- await client.evaluate("location.hash='#/?hero=window'");await until("document.querySelector('.sb-hero-media').dataset.hero==='window'");report.checks.push('Live hash switching to window');
- await viewport(3440,1080);await open('?hero=window#/');await check('Ultrawide full-cycle coverage',String.raw`(()=>{const tracks=[...document.querySelectorAll('.sb-window-track')];let speeds=[];for(const track of tracks){const a=track.getAnimations()[0],d=a.effect.getTiming().duration,saved=a.currentTime,h=track.parentElement.getBoundingClientRect();a.pause();let xs=[];for(const t of [0,1000,d/2,d-1,d]){a.currentTime=t;const r=track.getBoundingClientRect();if(r.left>h.left+.1||r.right<h.right-.1)return false;xs.push(new DOMMatrixReadOnly(getComputedStyle(track).transform).m41);}if(!(xs[1]<xs[0]&&xs[2]<xs[1]&&xs[3]<xs[2]&&Math.abs(xs[4]-xs[0])<.1))return false;speeds.push(xs[0]-xs[1]);a.currentTime=saved;a.play();}return speeds[1]>speeds[0]*2;})()`);await pause(1300);await frame('06-hero-window-ultrawide.png');await layout('Window ultrawide 3440');await viewport(1440,1000);
- for(const suffix of ['?hero=window#/','#/?hero=window','?hero=a#/','?hero=b#/','#/?hero=b']){await motion('reduce');await open(suffix,'static');const a=await client.evaluate(stateExpr);await pause(650);const b=await client.evaluate(stateExpr);assert.equal(a.images.length,1);assert.equal(a.images[0].src,'./photos/hero-train.webp');assert.equal(a.images[0].transform,'none');assert.equal(a.images[0].animation,'none');assert.deepEqual(a.images,b.images);assert.ok(a.chrome);report.checks.push('Reduced motion fixed train + frame: '+suffix);}
- await motion('no-preference');await until("document.querySelector('.sb-hero-media').dataset.hero==='b'");report.checks.push('Live motion preference restores selected mode');
- await open('?hero=window#/');await pause(1200);const w1=await frame('01-hero-window-desktop.png');const video=recording('hero-window.webm',10);await pause(3300);const w2=await frame('01b-hero-window-desktop.png');await pause(3400);const w3=await frame('01c-hero-window-desktop.png');await video;
- for(const w of [w2,w3]){assert.deepEqual(w.chrome,w1.chrome);assert.deepEqual(w.overlay,w1.overlay);assert.deepEqual(w.search,w1.search);assert.deepEqual(w.nav,w1.nav);}assert.equal(w1.tracks.length,2);for(let i=0;i<2;i++){assert.notEqual(w1.tracks[i].transform,w2.tracks[i].transform);assert.notEqual(w2.tracks[i].transform,w3.tracks[i].transform);}report.checks.push('Elapsed travel frames change; frame, content, search and navigation fixed');await layout('Window desktop 1440');
- await check('Continuous leftward travel, faster ground, full-cycle coverage and seamless wrap',String.raw`(()=>{const tracks=[...document.querySelectorAll('.sb-window-track')];let speeds=[];for(const track of tracks){const a=track.getAnimations()[0],d=a.effect.getTiming().duration,saved=a.currentTime,h=track.parentElement.getBoundingClientRect();a.pause();let xs=[];for(const t of [0,1000,d/2,d-1,d]){a.currentTime=t;const r=track.getBoundingClientRect();if(r.left>h.left+.1||r.right<h.right-.1)return false;xs.push(new DOMMatrixReadOnly(getComputedStyle(track).transform).m41);}if(!(xs[1]<xs[0]&&xs[2]<xs[1]&&xs[3]<xs[2]&&Math.abs(xs[4]-xs[0])<.1))return false;speeds.push(xs[0]-xs[1]);a.currentTime=saved;a.play();}return speeds[1]>speeds[0]*2;})()`);
- await check('Window only moves derived crops; no production video',"[...document.querySelectorAll('.sb-window-track img')].every(i=>i.src.includes('hero-window-'))&&!document.querySelector('.sb-hero video')&&getComputedStyle(document.querySelector('.sb-window-rim')).animationName==='none'");
- await open('?hero=a#/','a');await pause(1100);const a1=await frame('04-hero-a-desktop.png');await pause(1200);const a2=await client.evaluate(stateExpr);assert.notEqual(a1.images[0].transform,a2.images[0].transform);assert.deepEqual(a1.overlay,a2.overlay);report.checks.push('A Ken Burns still animates; content fixed');
- await open('#/?hero=b','b');await pause(8400);const b1=await frame('05-hero-b-crossfade.png');assert.ok(b1.images.some(i=>+i.opacity>0&&+i.opacity<1));await pause(2300);const b2=await frame('05b-hero-b-lake.png');assert.ok(b2.images.some(i=>i.src.endsWith('hamilton-lake.webp')&&+i.opacity===1));report.checks.push('B still crossfades into decoded credited lake');
- await open('?hero=window#/');await check('Locked teasers including Orbiter B',`Object.entries({living:'teaser-living-a',weekend:'band-hamilton-lake',kids:'teaser-kids-c',services:'teaser-services-a',tools:'teaser-tools-b'}).every(([id,f])=>document.querySelector('[data-teaser="'+id+'"] img').getAttribute('src')==='./photos/'+f+'.webp')`);
- await click('[data-testid="credits-btn"]');await check('Existing credits and all teaser sources',`document.querySelector('dialog').open&&['Emily Walker','CC BY-SA 2.0','hero-train','Johnragla'].every(s=>document.querySelector('dialog').innerText.includes(s))&&document.querySelectorAll('[data-photo-credit]').length===12`);await client.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await client.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
- await click('.ia-quick-links a[href="#/living"]');await check('Grocer navigation preserves supermarket order',`JSON.stringify([...document.querySelectorAll('[data-market-id]')].map(e=>e.dataset.marketId))===JSON.stringify(['newsave-tristram','newsave-thebase','wellmart','green-patch-grey','green-patch-borman','garden-fresh'])`);await click('.sb-brand');await until("document.querySelector('.sb-hero-media')?.dataset.hero==='window'");
- await click('.ia-hero-search input');await client.send('Input.insertText',{text:'680'});await click('.ia-hero-search button');await check('Search routes and filters',`location.hash.includes('/living?tab=grocers&q=680')&&document.querySelectorAll('[data-market-id]').length===1&&!!document.querySelector('[data-market-id="green-patch-grey"]')`);
- await viewport(390,844);await open('#/?hero=window');await pause(1300);const m1=await frame('02-hero-window-mobile.png');await pause(1400);const m2=await frame('02b-hero-window-mobile.png');assert.notEqual(m1.tracks[0].transform,m2.tracks[0].transform);assert.deepEqual(m1.chrome,m2.chrome);assert.deepEqual(m1.overlay,m2.overlay);await layout('Window mobile 390');
- await motion('reduce');await until("document.querySelector('.sb-hero-media')?.dataset.hero==='static'");await frame('03-reduced-motion-mobile.png');await layout('Reduced mobile 390');await viewport(1440,1000);await open('?hero=window#/','static');await frame('03b-reduced-motion-desktop.png');await check('Reduced mode has no animated media',"document.querySelector('.sb-hero-media').getAnimations({subtree:true}).length===0");await layout('Reduced desktop');
- await motion('no-preference');await until("document.querySelector('.sb-hero-media').dataset.hero==='window'");report.checks.push('Live reduced-motion change resumes window');
- assert.equal(report.recordings.length,1);assert.ok(report.recordings[0].bytes>10000,JSON.stringify(report.recordings));assert.equal(report.recordings[0].audioTracks,0);
- assert.deepEqual(report.requests,[],'No external app requests');assert.deepEqual(report.errors,[],'No application errors');report.status='PASS';console.log('QA PASS',report.checks.length,'checks',report.frames.length,'frames',report.recordings.length,'recording attempts');
-})().catch(e=>{report.status='FAIL';report.failure=e.stack;console.error(e);process.exitCode=1;}).finally(async()=>{if(client&&report.status==='FAIL'){try{await frame('qa-failure.png');}catch{}}fs.writeFileSync(path.join(__dirname,'qa-results.json'),JSON.stringify(report,null,2));if(client){try{await client.send('Browser.close');}catch{}client.ws.close();}if(chrome)chrome.kill();clearInterval(keepAlive);});
-
-
+  fs.mkdirSync(shots,{recursive:true});
+  chrome=spawn(chromePath,['--headless=new','--no-sandbox','--hide-scrollbars','--no-first-run','--no-default-browser-check','--disable-background-networking','--disable-component-update','--disable-sync','--disable-extensions','--disable-domain-reliability','--no-proxy-server','--host-resolver-rules=MAP * ~NOTFOUND','--remote-debugging-port=9255','--remote-debugging-address=127.0.0.1',`--user-data-dir=${path.join(root,'out/.chrome-v16-qa')}`,'about:blank'],{windowsHide:true,stdio:'ignore'});
+  try {
+    let ready=false;for(let i=0;i<80;i++){try{await fetch(endpoint+'/json/version');ready=true;break;}catch{await pause(150);}}assert.ok(ready,'Chrome loopback ready');
+    const target=await(await fetch(endpoint+'/json/new?about:blank',{method:'PUT'})).json();client=await connect(target.webSocketDebuggerUrl);
+    client.on('Runtime.exceptionThrown',e=>report.errors.push(e.exceptionDetails));client.on('Runtime.consoleAPICalled',e=>{if(['error','warning'].includes(e.type))report[e.type==='error'?'errors':'warnings'].push(e.args.map(a=>a.value||a.description).join(' '));});
+    client.on('Network.requestWillBeSent',e=>{if(/^https?:/.test(e.request.url))report.externalRequests.push(e.request.url);});
+    await client.send('Page.enable');await client.send('Runtime.enable');await client.send('Network.enable');await client.send('Network.setBlockedURLs',{urls:['http://*','https://*']});
+    await client.send('Page.addScriptToEvaluateOnNewDocument',{source:`try{localStorage.setItem('hl-lang','zh')}catch{}`});
+    sourceAudit();
+    await viewport(1440,1000);await open('#/weekend');
+    await check('Locked weekend order and Hamilton default',`JSON.stringify([...document.querySelectorAll('[role=tab]')].map(e=>e.textContent))===JSON.stringify(['本周精选','周末集市','节日活动'])&&document.querySelector('[aria-selected=true]').id==='tab-picks'&&document.querySelector('[aria-pressed=true]').dataset.region==='Hamilton'`);
+    await layout('picks desktop default 1440');await screenshot('02-weekend-picks-desktop.png');await detailShot('02a-picks-desktop-detail.png','.wa',1440,1100);
+    await click('[data-region=all]');await eventAudit();await layout('all regions desktop');await screenshot('07-picks-all-regions-desktop.png');
+    await check('All groups and counts derive from records',`[...document.querySelectorAll('.wa-chip')].every(e=>Number(e.querySelector('span').textContent)===(e.dataset.region==='all'?37:[...document.querySelectorAll('[data-region-group]')].find(g=>g.dataset.regionGroup===e.dataset.region).querySelectorAll('[data-event-id]').length))`);
+    await check('PB and Round the Bridges deduped, timing conflict and jet-ski venue preserved',`document.querySelectorAll('[data-event-id^=pb-festival]').length===1&&document.querySelectorAll('[data-event-id^=round-the-bridges]').length===1&&document.querySelector('[data-event-id^=round-the-bridges]').innerText.includes('待确认')&&document.querySelector('[data-event-id=jet-ski-lake-waahi]').innerText.includes('Lake Waahi Reserve')`);
+    await click('[data-testid=lang]');await eventAudit('en');await check('English language switch works',`document.title==="What's On · Hamilton Local"&&document.querySelector('#tab-picks').textContent==='This week'`);await layout('picks English desktop');await click('[data-testid=lang]');
+    await click('#tab-markets');await check('Market hash route and default region',`location.hash==='#/weekend?tab=markets'&&document.querySelector('[aria-pressed=true]').dataset.region==='Hamilton'`);await layout('markets desktop');await screenshot('03-weekend-markets-desktop.png');await click('[data-region=all]');await marketsAudit();await layout('all markets desktop');await screenshot('08-markets-all-regions-desktop.png');
+    await click('#tab-festivals');await check('Festival and placeholder unchanged',`document.querySelector('#section-panel').innerText.includes('怀卡托热气球节')&&document.querySelector('.ia-inline-empty').textContent==='更多节日 · 内容整理中'&&document.querySelector('#section-panel a').href==='https://balloonsoverwaikato.co.nz/'`);await layout('festivals desktop');await screenshot('04-weekend-festivals-desktop.png');
+    await client.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Home',code:'Home',windowsVirtualKeyCode:36});await client.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Home',code:'Home',windowsVirtualKeyCode:36});await pause(200);await check('Tab keyboard Home navigation',`document.activeElement.id==='tab-picks'&&document.querySelector('[aria-selected=true]').id==='tab-picks'`);
+    const history=await client.send('Page.getNavigationHistory');await client.send('Page.navigateToHistoryEntry',{entryId:history.entries[history.currentIndex-1].id});await pause(250);await check('Hash back restores festivals',`document.querySelector('[aria-selected=true]').id==='tab-festivals'`);
+    await viewport(390,844);await open('#/weekend');await layout('picks mobile default 390');await screenshot('05-weekend-picks-mobile.png');await detailShot('05a-picks-mobile-detail.png','.ia-tabs',390,1100);
+    await check('390px chips stay on one compact scrollable row',`document.querySelector('.wa-regions').scrollWidth>document.querySelector('.wa-regions').clientWidth&&new Set([...document.querySelectorAll('.wa-chip')].map(e=>Math.round(e.getBoundingClientRect().y))).size===1&&[...document.querySelectorAll('.wa-chip')].every(e=>e.getBoundingClientRect().height<=44)`);
+    await click('[data-region=other]');await check('Mobile region chip updates visible events',`document.querySelector('[aria-pressed=true]').dataset.region==='other'&&[...document.querySelectorAll('[data-region-group]')].length===1&&document.querySelector('[data-event-id=jet-ski-lake-waahi]')!==null`);await layout('picks other Waikato mobile');await screenshot('09-picks-other-waikato-mobile.png');
+    await client.evaluate(`document.querySelector('[data-region=Cambridge]').focus()`);await client.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',unmodifiedText:'\r',windowsVirtualKeyCode:13});await client.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await pause(250);await check('Region chips support keyboard activation and visible focus',`document.querySelector('[aria-pressed=true]').dataset.region==='Cambridge'&&getComputedStyle(document.activeElement).outlineStyle!=='none'`);await layout('Cambridge mobile');await screenshot('10-picks-cambridge-mobile.png');
+    await click('#tab-markets');await layout('markets mobile');await screenshot('06-weekend-markets-mobile.png');await click('[data-region=all]');await marketsAudit();await layout('all markets mobile');await screenshot('11-markets-all-regions-mobile.png');
+    await client.send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});await click('[data-region=Raglan]');await check('Reduced motion respected',`getComputedStyle(document.querySelector('.wa-results')).animationName==='none'`);await client.send('Emulation.setEmulatedMedia',{features:[]});
+    await viewport(1440,1000);await open('#/');await check('Default window hero',`document.querySelector('.sb-hero-media').dataset.hero==='window'`);
+    await check('Locked teaser photographs',`Object.entries({living:'teaser-living-a',weekend:'band-hamilton-lake',kids:'teaser-kids-c',services:'teaser-services-a',tools:'teaser-tools-b'}).every(([id,f])=>document.querySelector('[data-teaser="'+id+'"] img').getAttribute('src')==='./photos/'+f+'.webp')`);
+    await check('Homepage weekend pill order',`JSON.stringify([...document.querySelectorAll('[data-teaser=weekend] .ia-tool-pills a')].map(a=>[a.textContent,a.getAttribute('href')]))===JSON.stringify([['本周精选','#/weekend?tab=picks'],['周末集市','#/weekend?tab=markets'],['节日活动','#/weekend?tab=festivals']])`);await layout('home desktop');await screenshot('01-home-desktop.png');
+    for(const mode of ['window','a','b']){await open('?hero='+mode+'#/');await until(`document.querySelector('.sb-hero-media')?.dataset.hero===${JSON.stringify(mode)}`);await check('Hero query '+mode,`document.querySelector('.sb-hero-media').dataset.hero===${JSON.stringify(mode)}`);}
+    await open('#/');await click('[data-testid=credits-btn]');await check('Credits retain 12 photograph records',`document.querySelector('dialog').open&&document.querySelectorAll('[data-photo-credit]').length===12&&document.querySelector('dialog').innerText.includes('Emily Walker')`);
+    await open('#/living');await check('Supermarket order retained',`JSON.stringify([...document.querySelectorAll('[data-market-id]')].map(e=>e.dataset.marketId))===JSON.stringify(['newsave-tristram','newsave-thebase','wellmart','green-patch-grey','green-patch-borman','garden-fresh'])`);
+    await open('#/living?tab=dining');await check('Other placeholders retained',`document.querySelector('[data-testid=empty-state]').innerText.includes('内容整理中')`);
+    await open('#/tools?tab=urgent');await check('急诊 spelling retained',`document.querySelector('#tab-urgent').textContent==='急诊信息'&&!document.body.innerText.includes('急症')`);
+    await open('#/weekend?tab=invalid');await check('Invalid tab falls back to picks',`document.querySelector('[aria-selected=true]').id==='tab-picks'`);
+    assert.deepEqual(report.errors,[]);assert.deepEqual(report.warnings,[]);assert.deepEqual(report.externalRequests,[]);report.checks.push('No runtime errors, console warnings, broken images, overlays or external page requests during offline QA');report.passed=true;
+  }catch(error){report.failure=error.message;console.error(error);process.exitCode=1;}
+  finally {fs.writeFileSync(path.join(root,'out/qa-results.json'),JSON.stringify(report,null,2));if(client){await client.send('Browser.close').catch(()=>{});client.ws.close();}if(chrome&&chrome.exitCode===null)chrome.kill();}
+})();
