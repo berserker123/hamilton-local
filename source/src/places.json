@@ -109,8 +109,15 @@
       "description": "The central public library — pick a few picture books with the kids and see if there are family sessions on.",
       "hours": "Mon–Wed & Fri 9:30–17:30; Thu 9:30–20:00; Sat & Sun 9:30–17:00 (public holidays may differ)",
       "price": "Free entry",
-      "area": "Hamilton Central"
-    }
+      "area": "Hamilton Central",
+      "photoAlt": "Exterior of Hamilton Central Library, New Zealand (photographed in 2011)"
+    },
+    "photo": "central-library.webp",
+    "photoAlt": "新西兰汉密尔顿中央图书馆建筑外观（摄于2011年）",
+    "photoCredit": "QFSE Media · www.abaconda.info",
+    "photoLicense": "CC BY 3.0 NZ",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/nz/deed.en",
+    "photoSource": "https://commons.wikimedia.org/wiki/File:Abakonda_hamilton_library-1.jpg"
   },
   {
     "id": "magical-bridge",

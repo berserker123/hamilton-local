@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
+import { AGENDA } from './agenda-data';
 
 type T = (zh: string, en: string) => string;
 type Event = typeof DATA.events_this_week[number];
@@ -12,7 +13,11 @@ const regions = [
   { id: 'other', zh: '其他怀卡托', en: 'Elsewhere in Waikato' },
 ];
 const regionOf = (town: string) => ['Hamilton', 'Cambridge', 'Raglan'].includes(town) ? town : 'other';
-const marketItems: Market[] = [...DATA.markets.already_on_site, ...DATA.markets.hamilton_new, ...DATA.markets.waikato_other];
+const marketItems = AGENDA.markets;
+const picks = AGENDA.picks;
+const festivals = AGENDA.festivals.map(item => 'dates' in item ? item : {
+  ...item, dates: [] as string[], time: item.hours, price_zh: '费用待确认', price_en: 'Price unconfirmed',
+});
 const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 export function chineseDate(date: string) {
   const [year, month, day] = date.split('-').map(Number);
@@ -51,26 +56,28 @@ function EventGroups({ items, t }: { items: Event[]; t: T }) {
   const days = [...new Set(items.filter(e => e.dates.length === 1).map(e => e.dates[0]))].sort();
   const continuous = items.filter(e => e.dates.length > 1).sort((a,b)=>a.dates[0].localeCompare(b.dates[0]));
   const groups = [...days.map(day=>({key:day, label:chineseDate(day), items:items.filter(e=>e.dates.length===1 && e.dates[0]===day).sort((a,b)=>a.time.localeCompare(b.time))})), ...(continuous.length?[{key:'ongoing',label:t('多日活动', 'Across several days'),items:continuous}]:[])];
-  return <>{groups.map(group=><section key={group.key} className="wa-day" data-agenda-day={group.key} aria-label={group.label}><h3 className="wa-day-label caption-3">{group.key==='ongoing' ? <><span>{t('多日活动', 'Several days')}</span><small className="caption-5">{t('各项日期见下', 'See each date range')}</small></> : <time dateTime={group.key}>{group.label}</time>}</h3><div className="wa-day-rows">{group.items.map(item=><EventRow key={item.id} item={item} t={t}/>)}</div></section>)}</>;
+  const undated=items.filter(e=>!e.dates.length);
+  if(undated.length)groups.push({key:'unconfirmed',label:t('日期待确认','Dates unconfirmed'),items:undated});
+  return <>{groups.map(group=><section key={group.key} className="wa-day" data-agenda-day={group.key} aria-label={group.label}><h3 className="wa-day-label caption-3">{group.key==='unconfirmed' ? group.label : group.key==='ongoing' ? <><span>{t('多日活动', 'Several days')}</span><small className="caption-5">{t('各项日期见下', 'See each date range')}</small></> : <time dateTime={group.key}>{group.label}</time>}</h3><div className="wa-day-rows">{group.items.map(item=><EventRow key={item.id} item={item} t={t}/>)}</div></section>)}</>;
 }
-export function WeekendAgenda({ mode, t }: { mode: 'picks' | 'markets'; t: T }) {
+export function WeekendAgenda({ mode, t }: { mode: 'picks' | 'markets' | 'festivals'; t: T }) {
   const [selection, setSelection] = useState('Hamilton');
-  const items = mode==='picks' ? DATA.events_this_week : marketItems;
+  const items = mode==='picks' ? picks : mode==='festivals' ? festivals : marketItems;
   const available = regions.filter(region=>items.some(item=>regionOf(item.town)===region.id));
-  const active = selection==='all' || available.some(r=>r.id===selection) ? selection : 'Hamilton';
+  const active = selection==='all' || available.some(r=>r.id===selection) ? selection : available[0]?.id || 'all';
   const shown = active==='all' ? available : available.filter(r=>r.id===active);
   return <div className="wa" data-agenda-mode={mode}>
-    <div className="wa-heading"><div><p className="caption-4 wa-eyebrow">{t(mode==='picks'?'本周精选':'周末集市',mode==='picks'?'This week':'Weekend markets')}</p><h2 className="heading-4" data-week-label>{DATA.week_label_zh}</h2><p className="caption-5 wa-muted" lang="en-NZ">{DATA.week_label_en}</p></div><span className="wa-total caption-4">{items.length} {t(mode==='picks'?'项活动':'个集市',mode==='picks'?'events':'markets')}</span></div>
+    <div className="wa-heading"><div><p className="caption-4 wa-eyebrow">{t(mode==='picks'?'本周精选':mode==='festivals'?'节日活动':'周末集市',mode==='picks'?'This week':mode==='festivals'?'Festivals':'Weekend markets')}</p><h2 className="heading-4" data-week-label>{DATA.week_label_zh}</h2><p className="caption-5 wa-muted" lang="en-NZ">{DATA.week_label_en}</p></div><span className="wa-total caption-4">{items.length} {t(mode!=='markets'?'项活动':'个集市',mode!=='markets'?'events':'markets')}</span></div>
     <nav className="wa-regions" aria-label={t('按地区筛选', 'Filter by region')}>
       {[{id:'all',zh:'全部',en:'All'},...available].map(region=><button key={region.id} className="wa-chip button-xsm" data-region={region.id} aria-pressed={active===region.id} aria-controls={`agenda-${mode}`} onClick={e=>{setSelection(region.id);e.currentTarget.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});}}>{t(region.zh,region.en)}<span className="caption-4">{region.id==='all'?items.length:items.filter(item=>regionOf(item.town)===region.id).length}</span></button>)}
     </nav>
     <div id={`agenda-${mode}`} className="wa-results" key={`${mode}-${active}`}>
-      <p className="wa-selection caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode==='picks'?'新西兰当地时间':'定期集市与本周单场',mode==='picks'?'New Zealand local time':'Recurring markets and dated listings')}</p>
+      <p className="wa-selection caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode!=='markets'?'新西兰当地时间':'定期集市与本周单场',mode!=='markets'?'New Zealand local time':'Recurring markets and dated listings')}</p>
       {shown.map(region=><section className="wa-region" data-region-group={region.id} key={region.id} aria-labelledby={`region-${mode}-${region.id}`}>
         <div className="wa-region-heading"><h2 className="heading-5" id={`region-${mode}-${region.id}`}>{t(region.zh,region.en)} <span className="caption-5">{t(region.en,'')}</span></h2><span className="caption-4">{items.filter(i=>regionOf(i.town)===region.id).length} {t('项', 'listings')}</span></div>
-        {mode==='picks'?<EventGroups items={DATA.events_this_week.filter(i=>regionOf(i.town)===region.id)} t={t}/>:<div className="wa-market-rows">{marketItems.filter(i=>regionOf(i.town)===region.id).map(item=><MarketRow key={item.id} item={item} t={t}/>)}</div>}
+        {mode!=='markets'?<EventGroups items={(mode==='festivals'?festivals:picks).filter(i=>regionOf(i.town)===region.id)} t={t}/>:<div className="wa-market-rows">{marketItems.filter(i=>regionOf(i.town)===region.id).map(item=><MarketRow key={item.id} item={item} t={t}/>)}</div>}
       </section>)}
     </div>
-    <p className="wa-footnote caption-5">{t(mode==='picks'?'多日活动仅列一次，日期范围随项保留。费用、报名与取消安排请查看来源；待确认信息未作推定。':'保留定期集市资料；本周已过的场次已注明，非全部在本周举行。费用与开放安排以来源为准。',mode==='picks'?'Multi-day events appear once, with their date ranges. Check sources for prices, bookings and cancellations; unknown details remain unconfirmed.':'Recurring market directory. Past sessions are labelled and not all markets run this week. Check sources for current arrangements.')}</p>
+    <p className="wa-footnote caption-5">{t(mode!=='markets'?'多日活动仅列一次，日期范围随项保留。费用、报名与取消安排请查看来源；待确认信息未作推定。':'保留定期集市资料；本周已过的场次已注明，非全部在本周举行。费用与开放安排以来源为准。',mode!=='markets'?'Multi-day events appear once, with their date ranges. Check sources for prices, bookings and cancellations; unknown details remain unconfirmed.':'Recurring market directory. Past sessions are labelled and not all markets run this week. Check sources for current arrangements.')}</p>
   </div>;
 }
