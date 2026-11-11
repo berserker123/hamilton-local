@@ -1,0 +1,38 @@
+/* v21 decoration lives on its own surface and never participates in hit testing. */
+html { color-scheme: dark; }
+.v21-season-badge { position: absolute; top: 12px; left: 36px; min-width: 16px; height: 16px; padding: 0 2px; border-radius: 4px; color: #efd7ad; background: #29372c; pointer-events: none; text-align: center; }
+.v21-window-scene { position: absolute; inset: 0; opacity: 0; transition: opacity 1000ms cubic-bezier(.22,1,.36,1); }
+.v21-window-scene.is-current { opacity: 1; }
+.v21-window-scene:not(.is-current) .sb-window-track { animation-play-state: paused; }
+.v21-effects, .v21-effects * { pointer-events: none !important; }
+.v21-effects { position: fixed; inset: 0; z-index: 45; overflow: hidden; contain: strict; }
+.v21-balloon { position: absolute; left: var(--x); bottom: -260px; width: var(--size); opacity: 0; animation: v21-balloon-rise var(--duration) cubic-bezier(.25,.32,.65,.87) var(--delay) both; will-change: transform, opacity; }
+.v21-balloon-art { display: block; width: 100%; height: auto; }
+.v21-particle { position: absolute; top: -64px; left: var(--x); width: var(--size); height: calc(var(--size) * 1.25); opacity: 0; animation: v21-season-fall var(--duration) cubic-bezier(.25,.32,.65,.87) var(--delay) both; will-change: transform, opacity; }
+.v21-particle svg { display: block; width: 100%; height: 100%; }
+.v21-summer-light { display: block; width: 100%; height: 100%; border-radius: 9999px; background: #f2d99c; box-shadow: 0 0 8px #e5c47c55; }
+.v21-summer .v21-particle { opacity: 0; }
+.v21-winter-rain { display: block; width: 1px; height: 16px; background: #b6c9cc; }
+@keyframes v21-balloon-rise {
+  0% { opacity: 0; transform: translate3d(-50%, 0, 0) rotate(-3deg); }
+  12% { opacity: .92; }
+  50% { transform: translate3d(calc(-50% + var(--drift)), -65vh, 0) rotate(3deg); }
+  84% { opacity: .88; }
+  100% { opacity: 0; transform: translate3d(-50%, calc(-100vh - 520px), 0) rotate(-2deg); }
+}
+@keyframes v21-season-fall {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(0); }
+  12% { opacity: .65; }
+  48% { transform: translate3d(var(--drift), 50vh, 0) rotate(var(--spin)); }
+  85% { opacity: .55; }
+  100% { opacity: 0; transform: translate3d(0, calc(100vh + 128px), 0) rotate(calc(var(--spin) * 1.7)); }
+}
+@media (max-width: 700px) {
+  .v21-particle:nth-child(n+13), .v21-balloon:nth-child(n+4) { display: none; }
+  .v21-balloon { width: calc(var(--size) * .65); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v21-effects { display: none; }
+  .v21-window-scene { transition: none; }
+  .v20-cord-capsule, .v20-cord-hint { transition: none; }
+}

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { SCENES } from './experience-model';
 export function BlurText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
   let index = 0;
   return (
@@ -44,7 +45,7 @@ const TRAIN = './photos/hero-train.webp';
 // Only additional scenic imagery with an existing workspace credit record.
 const SCENIC_SLIDES = [TRAIN, './photos/hamilton-lake.webp'];
 
-function readHeroMode(): HeroMode {
+export function readHeroMode(): HeroMode {
   const hashQuery = location.hash.indexOf('?');
   const hash = new URLSearchParams(hashQuery < 0 ? '' : location.hash.slice(hashQuery + 1)).get('hero');
   const page = new URLSearchParams(location.search).get('hero');
@@ -53,19 +54,19 @@ function readHeroMode(): HeroMode {
 }
 
 // Only clean interior crops move. The original photo's baked window never travels.
-function TrainWindow({ reduced = false }: { reduced?: boolean }) {
+function TrainWindow({ reduced = false, scene = 0 }: { reduced?: boolean; scene?: number }) {
   return <div className="sb-hero-media sb-hero-media-window" data-hero={reduced ? 'static' : 'window'} aria-hidden="true">
-    <div className="sb-window-view">
-      {reduced ? <img className="sb-window-static" src={TRAIN} alt="" fetchPriority="high" decoding="async" /> : <>
-        <div className="sb-window-track sb-window-distant">
-          {[0, 1].map(i => <img key={i} src="./photos/hero-window-scenery.webp" alt="" fetchPriority="high" decoding="async" />)}
-        </div>
-        <div className="sb-window-ground">
-          <div className="sb-window-track sb-window-near">
-            {[0, 1].map(i => <img key={i} src="./photos/hero-window-ground.webp" alt="" decoding="async" />)}
+    <div className="sb-window-view" data-scene={scene}>
+      {SCENES.map((item, index) => <div key={item.src} className={'v21-window-scene' + (scene === index ? ' is-current' : '')}>
+        {reduced ? <img className="sb-window-static" src={index === 0 ? TRAIN : item.src} alt="" decoding="async" /> : <>
+          <div className="sb-window-track sb-window-distant">
+            {[0, 1].map(i => <img key={i} src={item.src} alt="" fetchPriority={index === 0 ? 'high' : 'low'} decoding="async" />)}
           </div>
-        </div>
-      </>}
+          {index === 0 && <div className="sb-window-ground"><div className="sb-window-track sb-window-near">
+            {[0, 1].map(i => <img key={i} src="./photos/hero-window-ground.webp" alt="" decoding="async" />)}
+          </div></div>}
+        </>}
+      </div>)}
     </div>
     <div className="sb-window-rim" />
     <div className="sb-window-sill" />
@@ -99,7 +100,7 @@ function ScenicSlideshow() {
   </div>;
 }
 
-export function HeroMedia() {
+export function HeroMedia({ scene = 0 }: { scene?: number }) {
   const [mode, setMode] = useState(readHeroMode);
   const [reduced, setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(() => {
@@ -115,7 +116,7 @@ export function HeroMedia() {
       window.removeEventListener('popstate', onLocation);
     };
   }, []);
-  if (reduced || mode === 'window') return <TrainWindow reduced={reduced} />;
+  if (reduced || mode === 'window') return <TrainWindow reduced={reduced} scene={scene} />;
   if (mode === 'b') return <ScenicSlideshow />;
   return <div className="sb-hero-media sb-hero-media-a" data-hero="a" aria-hidden="true">
     <img src={TRAIN} alt="" fetchPriority="high" decoding="async" />
