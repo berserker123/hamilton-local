@@ -15,17 +15,32 @@
     "source": "https://hamiltongardens.co.nz/plan-your-visit-to-hamilton-gardens/mygardenspass",
     "km": 3,
     "photo": "hamilton-gardens.webp",
-    "photoAlt": "汉密尔顿花园超现实主义花园里的巨型手推车",
-    "photoCredit": "David Thomsen",
-    "photoLicense": "CC BY-SA 4.0",
-    "photoLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "photoSource": "https://commons.wikimedia.org/wiki/File:Giant_Wheelbarrow_in_the_Surrealist_Garden_at_Hamilton_Gardens,_New_Zealand.jpg",
+    "photoAlt": "汉密尔顿花园意大利文艺复兴园：拱廊、水池与狮子喷泉",
+    "photoCredit": "Daderot",
+    "photoLicense": "CC0",
+    "photoLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "photoSource": "https://commons.wikimedia.org/wiki/File:Italian_Renaissance_Garden_-_Hamilton_Gardens_-_Hamilton,_NZ_-_DSC06549.jpg",
+    "highlights": [
+      {
+        "tag": { "zh": "获奖", "en": "Award" },
+        "zh": "市政新闻：2026 年获得 ServiceIQ Tourism Excellence Award（中小企业），并保留 Qualmark Gold。",
+        "en": "Council news: 2026 ServiceIQ Tourism Excellence Award for a small–medium business, and it kept Qualmark Gold.",
+        "sourceId": "hg-award-2026"
+      },
+      {
+        "tag": { "zh": "新开", "en": "New" },
+        "zh": "市政新闻日期为 2026-09-24：最新封闭园 Medieval Garden 当天对公众开放。花园官网该页现写 NOW OPEN。",
+        "en": "Council news dated 24 September 2026: the new Medieval Garden opened to the public that day. The gardens page now says NOW OPEN.",
+        "sourceId": "hg-medieval-news",
+        "sourceId2": "hg-medieval"
+      }
+    ],
     "en": {
       "tag": "World themed gardens",
       "description": "Wander through themed gardens from different countries; the outer lawns and playground are great for kids to burn off energy.",
       "hours": "Enclosed themed gardens daily 10:00–18:00 (last entry 17:30, closed Christmas Day); outer gardens, Turtle Lake and playground are free",
       "price": "Outer gardens free; themed gardens: under 16 free, Hamilton residents free with MyGardens Pass, non-resident/international adults NZ$27.50",
-      "photoAlt": "Giant wheelbarrow in the Surrealist Garden at Hamilton Gardens",
+      "photoAlt": "Italian Renaissance Garden at Hamilton Gardens, with arches, pools and a lion fountain",
       "area": "Hamilton East"
     }
   },
@@ -356,6 +371,7 @@
   },
   {
     "id": "sanctuary-mountain",
+    "sourceId": "sanctuary-home",
     "name": "Sanctuary Mountain Maungatautari",
     "zh": "Maungatautari 生态保护山",
     "area": "Pukeatua",
@@ -365,7 +381,7 @@
     "hours": "游客中心每天 9:00–16:00（最后入园 16:00，圣诞节闭园）",
     "price": "需购票：官网 Explorer Day Pass 与导览价格请以官网为准（待确认）",
     "tag": "防捕食者围栏森林",
-    "description": "被防护围栏圈起来的山林，有机会听到、看到本土珍稀鸟类。",
+    "description": "位于 Pukeatua 的山林生态保护区，可以沿步道走进森林，听鸟鸣、寻找本土鸟类。",
     "url": "https://www.sanctuarymountain.co.nz/",
     "source": "https://www.sanctuarymountain.co.nz/location-and-directions/",
     "km": 38,
@@ -377,7 +393,7 @@
     "photoSource": "https://commons.wikimedia.org/wiki/File:Kaka_in_Maungatautari_Ecological_Island.JPG",
     "en": {
       "tag": "Predator-fenced forest",
-      "description": "A mountain forest inside a predator-proof fence, where you may hear and see rare native birds.",
+      "description": "A forest sanctuary in Pukeatua, with walking tracks for listening to birds and spotting native wildlife.",
       "hours": "Visitor centre daily 9:00–16:00 (last entry 16:00, closed Christmas Day)",
       "price": "Tickets required: see the official site for Explorer Day Pass and guided tour prices (to be confirmed)",
       "photoAlt": "A kākā at Maungatautari Ecological Island",
@@ -536,6 +552,7 @@
   },
   {
     "id": "wairere-falls",
+    "sourceId": "wairere-reopen",
     "name": "Wairere Falls Track",
     "zh": "Wairere 瀑布步道",
     "area": "Kaimai 山脉",
@@ -545,7 +562,7 @@
     "hours": "DOC 步道，开放时间待确认",
     "price": "免费",
     "tag": "瀑布步道",
-    "description": "到瀑布底观景台单程约 45 分钟，登顶约 90 分钟，适合能走路的大孩子。",
+    "description": "位于 Okauia 附近 Kaimai 山脉的瀑布步道，穿过山林可到观景台看瀑布，也能继续登高远眺怀卡托平原。",
     "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/bay-of-plenty/places/kaimai-mamaku-conservation-park/things-to-do/tracks/wairere-falls-track/",
     "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/bay-of-plenty/places/kaimai-mamaku-conservation-park/things-to-do/tracks/wairere-falls-track/",
     "km": 53,
@@ -557,11 +574,48 @@
     "photoSource": "https://commons.wikimedia.org/wiki/File:Wairere_Falls2.jpg",
     "en": {
       "tag": "Waterfall track",
-      "description": "About 45 minutes one way to the lookout at the base of the falls and about 90 minutes to the top — best for older kids who can walk.",
+      "description": "A waterfall walk in the Kaimai Range near Okauia. Follow the bush track to the lookout, or climb further for views across the Waikato plains.",
       "hours": "DOC track; opening hours to be confirmed",
       "price": "Free",
       "photoAlt": "Wairere Falls in the Kaimai bush",
       "area": "Kaimai Range"
+    }
+  }
+,
+  {
+    "id": "zealong",
+    "name": "Zealong Tea Estate",
+    "zh": "Zealong 茶园",
+    "area": "Gordonton",
+    "address": "495 Gordonton Road, Gordonton",
+    "indoor": false,
+    "km": null,
+    "tag": "茶园与品茶",
+    "description": "位于 Hamilton 北侧 Gordonton 的茶园，可以参加茶园导览，或在茶室坐下来喝茶。",
+    "sourceId": "zealong",
+    "url": "https://zealong.com/",
+    "en": {
+      "tag": "Tea estate",
+      "description": "A tea estate in Gordonton, north of Hamilton. Join a guided tour or sit down for tea in the Tea Room.",
+      "area": "Gordonton"
+    }
+  },
+  {
+    "id": "te-awa",
+    "name": "Te Awa River Ride",
+    "zh": "Te Awa 河滨步道",
+    "area": "Ngāruawāhia · Hamilton · Lake Karāpiro",
+    "address": "沿怀卡托河，Ngāruawāhia 至 Lake Karāpiro",
+    "indoor": false,
+    "km": null,
+    "tag": "河滨步行与骑行",
+    "description": "沿怀卡托河延伸的步行与骑行路线，从 Ngāruawāhia 经过 Hamilton 通往 Lake Karāpiro，可以挑一段散步或骑车看河景。",
+    "sourceId": "te-awa",
+    "url": "https://www.te-awa.org.nz/",
+    "en": {
+      "tag": "Riverside walking and cycling",
+      "description": "A walking and cycling trail along the Waikato River, from Ngāruawāhia through Hamilton to Lake Karāpiro. Choose a section for a riverside walk or bike ride.",
+      "area": "Ngāruawāhia · Hamilton · Lake Karāpiro"
     }
   }
 ]

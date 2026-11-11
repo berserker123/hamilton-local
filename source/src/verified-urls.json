@@ -218,6 +218,78 @@
       "url": "https://www.visithamilton.co.nz/",
       "http": 200,
       "use": "optional tourism"
+    },
+    {
+      "id": "hg-award-2026",
+      "label_zh": "汉密尔顿花园 2026 旅游奖",
+      "label_en": "Hamilton Gardens 2026 tourism award",
+      "url": "https://hamilton.govt.nz/your-council/news/bold-transformation-earns-hamilton-gardens-top-tourism-honour",
+      "http": 200,
+      "use": "v19 places award",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "hg-medieval",
+      "label_zh": "汉密尔顿花园中世纪园",
+      "label_en": "Hamilton Gardens Medieval Garden",
+      "url": "https://hamiltongardens.co.nz/hamilton-gardens-visit-gardens/medieval-garden",
+      "http": 200,
+      "use": "v19 places new garden",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "hg-medieval-news",
+      "label_zh": "中世纪园开放新闻",
+      "label_en": "Medieval Garden opening news",
+      "url": "https://hamilton.govt.nz/your-council/news/hamilton-gardens-opens-the-door-to-the-medieval-world",
+      "http": 200,
+      "use": "v19 places new garden",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "zealong",
+      "label_zh": "Zealong 茶园",
+      "label_en": "Zealong Tea Estate",
+      "url": "https://zealong.com/",
+      "http": 200,
+      "use": "v19 landmark",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "te-awa",
+      "label_zh": "Te Awa 河滨步道",
+      "label_en": "Te Awa River Ride",
+      "url": "https://www.te-awa.org.nz/",
+      "http": 200,
+      "use": "v19 landmark",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "sanctuary-home",
+      "label_zh": "Sanctuary Mountain",
+      "label_en": "Sanctuary Mountain",
+      "url": "https://www.sanctuarymountain.co.nz/",
+      "http": 200,
+      "use": "v19 landmark",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "wairere-reopen",
+      "label_zh": "Wairere 瀑布重开新闻",
+      "label_en": "Wairere Falls reopening",
+      "url": "https://www.doc.govt.nz/news/media-releases/2026-media-releases/wairere-falls-track-reopens/",
+      "http": 200,
+      "use": "v19 landmark",
+      "checked": "2026-11-11"
+    },
+    {
+      "id": "gaspy-stats",
+      "label_zh": "Gaspy 油价统计",
+      "label_en": "Gaspy price stats",
+      "url": "https://www.gaspy.nz/stats.html",
+      "http": 200,
+      "use": "v19 quick link",
+      "checked": "2026-11-11"
     }
   ],
   "rejected_do_not_use": [
