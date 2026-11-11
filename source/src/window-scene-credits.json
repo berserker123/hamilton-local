@@ -1,0 +1,72 @@
+[
+  {
+    "id": "gardens",
+    "zh": "汉密尔顿花园 · 意大利花园",
+    "en": "Hamilton Gardens · Italian Renaissance Garden",
+    "author": "Michal Klajban",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hamilton_Gardens,_New_Zealand_(2).JPG",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  },
+  {
+    "id": "waikato-river",
+    "zh": "怀卡托河 · 花园眺望",
+    "en": "Waikato River · view from Hamilton Gardens",
+    "author": "Daderot",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:River_-_Hamilton_Gardens_-_Hamilton,_NZ_-_DSC06553.jpg",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  },
+  {
+    "id": "fairfield",
+    "zh": "Fairfield 大桥",
+    "en": "Fairfield Bridge",
+    "author": "Johnragla",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fairfield_Bridge.jpg",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  },
+  {
+    "id": "claudelands",
+    "zh": "Claudelands 大桥",
+    "en": "Claudelands Bridge",
+    "author": "Wiremu Stadtwald Demchick",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Claudelands_Bridge,_Hamilton_02.JPG",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  },
+  {
+    "id": "museum",
+    "zh": "怀卡托博物馆",
+    "en": "Waikato Museum",
+    "author": "Nzwj",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:WaikatoMuseum.jpg",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  },
+  {
+    "id": "balloons",
+    "zh": "怀卡托热气球节 · 夜光",
+    "en": "Balloons over Waikato · Night Glow",
+    "author": "Isderion",
+    "license": "CC BY-SA 3.0 de",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:BoW_nightglow1.jpg",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  },
+  {
+    "id": "lake",
+    "zh": "汉密尔顿湖 · Lake Rotoroa",
+    "en": "Hamilton Lake · Lake Rotoroa",
+    "author": "Misaochaaan",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hamilton_lake.jpg",
+    "modifications": "16:9 subject crop; resize to 1200×675; saturation 94%; brightness +0.012; contrast 1.015; slight warm colour balance; mirrored trailing half for the existing moving track; 2400×675 WebP quality 87."
+  }
+]

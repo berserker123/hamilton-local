@@ -7,6 +7,6 @@ test('NZ seasons include November spring and cycle spring summer autumn winter',
  assert.deepEqual(Array.from({length:12},(_,i)=>seasonForMonth(i+1)),['summer','summer','autumn','autumn','autumn','winter','winter','winter','spring','spring','spring','summer']);
  let s='spring';const seen=[];for(let i=0;i<5;i++){seen.push(s);s=nextSeason(s);}assert.deepEqual(seen,['spring','summer','autumn','winter','spring']);
 });
-test('train journeys loop through original plus three licensed local scenes',()=>{
- const {SCENES,nextScene}=load();assert.equal(SCENES.length,4);let i=0;const seen=[];for(let n=0;n<5;n++){seen.push(i);i=nextScene(i);}assert.deepEqual(seen,[0,1,2,3,0]);assert.equal(new Set(SCENES.map(s=>s.src)).size,4);
+test('train journeys keep the four scenes and include seven new views before looping',()=>{
+ const {SCENES,nextScene}=load();assert.equal(SCENES.length,11);let i=0;const seen=[];for(let n=0;n<12;n++){seen.push(i);i=nextScene(i);}assert.deepEqual(seen,[0,1,2,3,4,5,6,7,8,9,10,0]);assert.equal(new Set(SCENES.map(s=>s.src)).size,11);
 });

@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { currentNZSeason, nextScene, nextSeason, SCENES, SEASON_LABELS, Season } from './experience-model';
+import { CordPick, createDrawBag, familyPicks } from './cord-picks';
 
-export function usePageExperience(route: string, lang: 'zh' | 'en') {
+export function usePageExperience(route: string, lang: 'zh' | 'en', pools: { services: CordPick[]; tools: CordPick[] }) {
   const [scene, setScene] = useState(0);
   const [season, setSeason] = useState<Season>(currentNZSeason);
   const [burst, setBurst] = useState(0);
   const [active, setActive] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [notice, setNotice] = useState('');
+  const [result, setResult] = useState<{ pick: CordPick; draw: number; route: string } | null>(null);
+  const bags = useRef<Record<string, ReturnType<typeof createDrawBag>>>({});
+  const drawCount = useRef(0);
   const loading = useRef(false);
   const generation = useRef(0);
   const zh = lang === 'zh';
@@ -18,10 +22,22 @@ export function usePageExperience(route: string, lang: 'zh' | 'en') {
     return () => media.removeEventListener('change', update);
   }, []);
   useEffect(() => {
-    setActive(false); setBurst(0); setNotice(''); loading.current = false;
+    setActive(false); setBurst(0); setNotice(''); setResult(null); loading.current = false;
     generation.current++;
     return () => { generation.current++; };
   }, [route]);
+  useEffect(() => {
+    if (result?.route !== 'services') return;
+    let raf = 0, attempts = 0, selected: HTMLElement | null = null;
+    const show = () => {
+      selected = document.getElementById(result.pick.target || '');
+      if (!selected && attempts++ < 20) { raf = requestAnimationFrame(show); return; }
+      selected?.classList.add('v22-selected-category');
+      selected?.scrollIntoView({ block: 'center', behavior: reduced ? 'instant' : 'smooth' });
+    };
+    const timer = setTimeout(() => { raf = requestAnimationFrame(show); }, reduced ? 0 : 950);
+    return () => { clearTimeout(timer); cancelAnimationFrame(raf); selected?.classList.remove('v22-selected-category'); };
+  }, [result, reduced]);
   useEffect(() => {
     if (!active) return;
     const timer = setTimeout(() => setActive(false), 9200);
@@ -34,6 +50,17 @@ export function usePageExperience(route: string, lang: 'zh' | 'en') {
     image.decode().catch(() => {});
   }, [route, scene]);
   function activate() {
+    if (route === 'kids' || route === 'services' || route === 'tools') {
+      const choices = route === 'kids' ? familyPicks() : pools[route];
+      const draw = bags.current[route] ||= createDrawBag();
+      const id = draw(choices.map(p => p.id));
+      const pick = choices.find(p => p.id === id);
+      if (!pick) return;
+      setResult({ pick, draw: ++drawCount.current, route });
+      setNotice((zh ? '这次抽到：' : 'Your pick: ') + pick.name[lang]);
+      if (route === 'services') location.hash = '#/services?tab=' + pick.tab;
+      return;
+    }
     if (route === 'home') {
       if (loading.current) return;
       loading.current = true;
@@ -56,11 +83,15 @@ export function usePageExperience(route: string, lang: 'zh' | 'en') {
   }
   const label = route === 'home' ? (zh ? '拉绳，切换下一段窗外风景' : 'Pull cord for the next view')
     : route === 'living' ? (zh ? '拉绳，切换下一个季节' : 'Pull cord for the next season')
+    : route === 'kids' ? (zh ? '拉绳，抽一个亲子好去处' : 'Pull cord for a family outing')
+    : route === 'services' ? (zh ? '拉绳，翻一翻便民黄页' : 'Pull cord to flip the directory')
+    : route === 'tools' ? (zh ? '拉绳，打开生活小锦囊' : 'Pull cord for an everyday tip')
     : (zh ? '拉绳，让热气球升空' : 'Pull cord to launch hot air balloons');
   const status = notice || (route === 'home' ? (zh ? `窗外：${SCENES[scene].zh}` : `View: ${SCENES[scene].en}`)
     : route === 'living' ? (zh ? `当前季节：${SEASON_LABELS[season][0]}` : `Season: ${SEASON_LABELS[season][1]}`)
+    : ['kids', 'services', 'tools'].includes(route) ? label
     : (burst ? (zh ? (reduced ? `热气球祝福已送达，第 ${burst} 次` : `热气球已升空，第 ${burst} 次`) : `Balloons ${reduced ? 'celebration' : 'launched'}, ${burst}`) : (zh ? '拉一下，让周末升空' : 'A little lift for the weekend')));
-  return { scene, season, burst, active, reduced, activate, label, status, badge: route === 'living' ? SEASON_LABELS[season][zh ? 0 : 1].slice(0, zh ? 1 : 2) : undefined };
+  return { scene, season, burst, active, reduced, activate, label, status, result: result?.route === route ? result : null, dismiss: () => setResult(null), badge: route === 'living' ? SEASON_LABELS[season][zh ? 0 : 1].slice(0, zh ? 1 : 2) : undefined };
 }
 
 const PALETTES = [ ['#d48852', '#efd9ac', '#9e5638'], ['#7d9c88', '#e4d8b7', '#3d695e'], ['#b9a575', '#f3e6c6', '#82724e'], ['#718b9a', '#dbd9c8', '#445d6c'], ['#bc7262', '#ecd2b7', '#854940'] ];
@@ -79,7 +110,7 @@ function Balloon({ index }: { index: number }) {
 }
 function FallingElement({ season, index }: { season: Season; index: number }) {
   if (season === 'summer') return <span className="v21-summer-light" />;
-  if (season === 'winter') return <span className="v21-winter-rain" />;
+  if (season === 'winter') return <svg className="v22-snowflake" viewBox="0 0 32 32" focusable="false"><g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M16 2v28M4 9l24 14M4 23 28 9M12 5l4 4 4-4M12 27l4-4 4 4M5 14l6-1-2-6M27 18l-6 1 2 6M9 25l2-6-6-1M23 7l-2 6 6 1" /></g></svg>;
   return <svg viewBox="0 0 32 40" focusable="false">
     {season === 'autumn' ? <><path d="M16 35C-1 30 2 15 24 3c6 18 3 29-8 32Z" fill={['#bb7841', '#d5a359', '#a9643c', '#c99a68'][index % 4]} /><path d="M9 39 23 7M16 23l-8-3m12-7 4 1" fill="none" stroke="#634e30" strokeWidth="1" /></>
       : <><path d="M16 34C2 30 2 12 11 5l5 4 5-4c11 13 7 26-5 29Z" fill={index % 2 ? '#e4c3be' : '#edcfc5'} /><path d="M16 30V14" stroke="#c39491" strokeWidth="1" /></>}
@@ -93,7 +124,7 @@ export function PageEffects({ route, season, active, burst }: { route: string; s
       const style = balloons ? {
         '--x': `${[8, 29, 50, 72, 87][i]}vw`, '--drift': `${[42, -52, 36, -42, 30][i]}px`, '--size': `${[146, 112, 172, 126, 102][i]}px`, '--duration': `${[8, 7.2, 8.4, 7.6, 7.1][i]}s`, '--delay': `${[0, .5, .15, .7, 1][i]}s`,
       } : {
-        '--x': `${(i * 47 + 7) % 100}vw`, '--drift': `${(i % 2 ? -1 : 1) * (28 + i * 3)}px`, '--size': `${season === 'summer' ? 6 + i % 5 * 3 : season === 'winter' ? 2 : 14 + i % 4 * 4}px`, '--duration': `${6 + i % 4 * .6}s`, '--delay': `${i % 6 * .22}s`, '--spin': `${(i % 2 ? -1 : 1) * (130 + i * 11)}deg`,
+        '--x': `${(i * 47 + 7) % 100}vw`, '--drift': `${(i % 2 ? -1 : 1) * (28 + i * 3)}px`, '--size': `${season === 'summer' ? 6 + i % 5 * 3 : season === 'winter' ? 12 + i % 5 * 5 : 14 + i % 4 * 4}px`, '--duration': `${6 + i % 4 * .6}s`, '--delay': `${i % 6 * .22}s`, '--spin': `${(i % 2 ? -1 : 1) * (130 + i * 11)}deg`,
       } as React.CSSProperties;
       return <div key={i} className={balloons ? 'v21-balloon' : 'v21-particle'} style={style}>{balloons ? <Balloon index={i} /> : <FallingElement season={season} index={i} />}</div>;
     })}
