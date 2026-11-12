@@ -13,3 +13,7 @@ https://berserker123.github.io/hamilton-local/
 - `.nojekyll`：让 GitHub Pages 按原样提供文件，不经过 Jekyll 处理。
 
 照片来自 Wikimedia Commons，署名显示在网站上。资料核查日期：2026-11-03。
+
+## 关注与订阅
+
+小红书链接和邮件订阅地址只写在 `source/src/follow-config.mjs`。留空时按钮和表单不会出现，也不会假装订阅成功。填好后在 `source/` 运行 `npm run build`。邮件表单推荐 Buttondown：`https://buttondown.com/api/emails/embed-subscribe/你的用户名`，字段名是 `email`。
