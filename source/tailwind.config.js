@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dusk: { DEFAULT: '#C8A46A', light: '#E6CFA0' },
-        moss: { DEFAULT: '#4E6B4A', deep: '#2F4A3A' },
-        mist: { DEFAULT: '#E7E6E1', deep: '#CFCFC8' },
-        charcoal: { DEFAULT: '#1E1D1A', soft: '#2A2824' },
+        dusk: { DEFAULT: '#C2410C', light: '#A84A08' },
+        moss: { DEFAULT: '#A84A08', deep: '#4E261C' },
+        mist: { DEFAULT: '#FFF7F1', deep: '#F0D4C4' },
+        charcoal: { DEFAULT: '#FFF7F1', soft: '#FFFFFF' },
         teal: {
           50: '#f0f5f1', 100: '#e0ebe3', 200: '#c2d8cb', 300: '#9bbbaa',
           400: '#709b87', 500: '#4d7a67', 600: '#3b6b59', 700: '#2f5d50',
