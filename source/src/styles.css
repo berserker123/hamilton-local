@@ -2600,39 +2600,92 @@ html, body { background: var(--hl-canvas); color: var(--hl-ink); }
 .sb-hero .sb-btn, .ia-hero-search .sb-btn { color: #1f2a24; background: #fff; }
 .sb-hero .sb-btn:hover, .ia-hero-search .sb-btn:hover { background: #f0e6d5; color: #1f2a24; }
 .sb-ghost:hover { color: #1f2a24; }
-.sb-header .v20-cord { color: #bbbdb2; }
+.sb-header .v20-cord { color: var(--hl-muted); }
 .sb-dot-yellow { background: #E0A100; }
 .sb-dot-red { background: #C4483A; }
 .sb-dot-glass { background: #3D7A8C; }
 .sb-dot-food { background: #3E7A45; }
 
-.ia-root:has(.ia-page-intro) .sb-desktop-nav,
-.ia-root:has(.ia-page-intro) .sb-mobile-nav {
-  background: color-mix(in srgb, var(--hl-surface) 92%, transparent);
+.ia-root .sb-desktop-nav,
+.ia-root .sb-mobile-nav {
+  background: color-mix(in srgb, var(--hl-surface) 94%, transparent);
   border-color: var(--hl-line);
-  box-shadow: 0 10px 28px -18px rgba(24, 32, 28, .45);
+  box-shadow: 0 10px 28px -18px rgba(44, 36, 28, .28);
 }
-.ia-root:has(.ia-page-intro) :is(.sb-nav, .sb-mnav) { color: var(--hl-muted); }
-.ia-root:has(.ia-page-intro) :is(.sb-nav:hover, .sb-mnav:hover, .sb-nav-on, .sb-nav-on:hover) {
-  color: var(--hl-ink);
-  background: var(--hl-accent-soft);
+.ia-root :is(.sb-nav, .sb-mnav) { color: var(--hl-muted); }
+.ia-root :is(.sb-nav:hover, .sb-mnav:hover) { color: var(--hl-ink); background: var(--hl-accent-soft); }
+.ia-root :is(.sb-nav-on, .sb-mnav.sb-nav-on),
+.ia-root :is(.sb-nav-on, .sb-mnav.sb-nav-on):hover {
+  color: var(--hl-on-fill);
+  background: var(--hl-fill);
 }
-.ia-root:has(.ia-page-intro) .sb-brand { color: var(--hl-ink); }
-.ia-root:has(.ia-page-intro) .sb-brand-sub { color: var(--hl-muted); }
-.ia-root:has(.ia-page-intro) .sb-logo {
+.ia-root .sb-brand { color: var(--hl-ink); }
+.ia-root .sb-brand-sub { color: var(--hl-muted); }
+.ia-root .sb-logo {
   color: var(--hl-accent);
   background: var(--hl-accent-soft);
   border-color: var(--hl-line);
 }
-.ia-root:has(.ia-page-intro) :is(.sb-pill, .sb-language) {
+.ia-root :is(.sb-pill, .sb-language) {
   color: var(--hl-ink);
   background: var(--hl-surface);
   border-color: var(--hl-line);
 }
-.ia-root:has(.ia-page-intro) .ia-preview { color: var(--hl-faint); }
-.ia-root:has(.ia-page-intro) .sb-header .v20-cord { color: var(--hl-muted); }
-.ia-root:has(.ia-page-intro) .v20-cord-hint { color: var(--hl-accent); }
-.ia-root:has(.ia-page-intro) :is(.v20-cord-anchor, .v20-cord-line) { background: var(--hl-control); }
+.ia-root .ia-preview { color: var(--hl-faint); }
+.ia-root .sb-header .v20-cord { color: var(--hl-muted); }
+.ia-root .v20-cord-hint { color: var(--hl-accent); }
+.ia-root :is(.v20-cord-anchor, .v20-cord-line) { background: var(--hl-control); }
+
+/* The page around the hero is paper. The dark scrim stays on the photograph only. */
+.sb-hero, .ia-root .sb-hero, .sb-hero-media-window { background: var(--hl-canvas); }
+.sb-hero-shade {
+  background: linear-gradient(180deg, transparent 0%, transparent 82%, var(--hl-canvas) 100%);
+}
+.sb-window-view { background: #E7DDD2; }
+.sb-window-view::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(8, 21, 17, .62), rgba(8, 21, 17, .4) 26%, rgba(8, 21, 17, .36) 62%, rgba(8, 21, 17, .5) 100%),
+    linear-gradient(90deg, rgba(8, 21, 17, .14), rgba(8, 21, 17, .3) 50%, rgba(8, 21, 17, .14));
+}
+.sb-window-rim {
+  border-color: #E4D9CC;
+  background: linear-gradient(125deg, rgba(255, 255, 255, .45), transparent 40%, rgba(44, 36, 28, .04));
+  box-shadow:
+    0 0 0 2px #EFE6DC,
+    0 0 0 7px #F6F1EA,
+    0 0 0 10px #E6DCD0,
+    0 14px 32px 12px rgba(44, 36, 28, .08),
+    inset 0 0 0 3px #F4EDE4,
+    inset 0 0 0 var(--window-inner-ring) #E5DBD0,
+    inset 0 9px 28px 12px rgba(44, 36, 28, .05);
+}
+.sb-window-sill {
+  border-top-color: #E4D9CC;
+  background: linear-gradient(#F7F1EA, #EFE6DC 9px, var(--hl-canvas) 28px, var(--hl-canvas));
+  box-shadow: 0 -8px 24px rgba(44, 36, 28, .05);
+}
+@media (max-width: 700px) {
+  .sb-window-rim {
+    box-shadow:
+      0 0 0 2px #EFE6DC,
+      0 0 0 6px #F6F1EA,
+      inset 0 0 0 2px #F4EDE4,
+      inset 0 0 0 var(--window-inner-ring) #E5DBD0,
+      inset 0 7px 20px 8px rgba(44, 36, 28, .05);
+  }
+}
+.sb-hero-location { color: var(--hl-muted); }
+.sb-hero-weather .sb-pill, .ia-root .ia-weather {
+  background: var(--hl-surface);
+  color: var(--hl-ink);
+  border-color: var(--hl-line);
+}
 
 .ia-section-media img { opacity: .72; }
 .ia-section-media::after,
