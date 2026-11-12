@@ -60,7 +60,19 @@ export function FeedbackLauncher() {
       el.style.bottom = `max(${gap}px, env(safe-area-inset-bottom))`;
       const bounds = el.getBoundingClientRect();
       const blockers = Array.from(document.querySelectorAll<HTMLElement>('.v20-cord, .leaflet-control, .ia-weather, .v22-result, .sb-hero-location, .v22-scene-label, .ia-place-actions, .pg-place-actions, .ia-market-actions'))
-        .map(node => ({ box: node.getBoundingClientRect(), control: node.matches('.v20-cord, .leaflet-control, .ia-weather') }))
+        .map(node => {
+          const rect = node.getBoundingClientRect();
+          const box = { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height };
+          // Scrolled-out cards have client rectangles beyond their scroll container.
+          // Only the visible intersection may move the launcher.
+          for (let parent = node.parentElement; parent; parent = parent.parentElement) {
+            const style = getComputedStyle(parent), clip = parent.getBoundingClientRect();
+            if (/auto|scroll|hidden|clip/.test(style.overflowX)) { box.left = Math.max(box.left, clip.left); box.right = Math.min(box.right, clip.right); }
+            if (/auto|scroll|hidden|clip/.test(style.overflowY)) { box.top = Math.max(box.top, clip.top); box.bottom = Math.min(box.bottom, clip.bottom); }
+          }
+          box.width = Math.max(0, box.right - box.left); box.height = Math.max(0, box.bottom - box.top);
+          return { box, control: node.matches('.v20-cord, .leaflet-control, .ia-weather') };
+        })
         .filter(({ box }) => box.width && box.height && box.bottom > 0 && box.top < innerHeight);
       const xs = [...new Set([bounds.left, ...blockers.flatMap(({ box }) => [box.left - bounds.width - 12, box.right + 12])])]
         .filter(x => x >= gap && x <= bounds.left).sort((a, b) => b - a);

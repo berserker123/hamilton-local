@@ -1,3 +1,4 @@
+import { BilingualTitle } from './BilingualTitle';
 import React, { useState } from 'react';
 import VENUES from './party-venues.json';
 import { PARTY_REGIONS, PARTY_TYPES, filterPartyVenues, partyDirections, partyPage } from './party-data';
@@ -32,13 +33,13 @@ export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
     <div id="party-results" className="wa-results" key={`${region}-${type}`}>
       {shownRegions.map(group => <section key={group.id} className="wa-region" data-party-group={group.id} aria-labelledby={`party-heading-${group.id.replaceAll(' ', '-')}`}>
         <div className="wa-region-heading"><h3 className="heading-5" id={`party-heading-${group.id.replaceAll(' ', '-')}`}>{t(group.zh, group.en)}</h3><span className="caption-4">{group.venues.length} {t('项', 'options')}</span></div>
-        <div className="wa-market-rows" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
+        <div className="wa-market-rows hl-glow-group" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
           {partyPage(group.venues, !!expanded[group.id]).map(venue => {
             const category = PARTY_TYPES.find(item => item.id === venue.type)!;
-            return <article key={venue.id} className="wa-row pv-row" data-party-id={venue.id}>
+            return <article key={venue.id} className="wa-row pv-row hl-glow" data-party-id={venue.id}>
               <div className="wa-time caption-4"><span>{t(category.zh, category.en)}</span><span className="pv-town caption-5">{t(venue.town, venue.town)}</span></div>
               <div className="wa-main">
-                <h4 className="title-3">{lang === 'zh' ? venue.name_zh : venue.name_en}</h4><p className="pv-english caption-5" lang="en-NZ">{t(venue.name_en, '')}</p>
+                <BilingualTitle as="h4" className="title-3" zh={venue.name_zh} en={venue.name_en} t={t} />
                 <p className="wa-venue caption-4"><span>{venue.type === 'mobile' ? t('服务范围：', 'Service area: ') + t(venue.service_area_zh || venue.town, venue.service_area_en || venue.town) : t(venue.address, venue.address)}</span></p>
                 <p className="wa-hours caption-4">{t('适合年龄：', 'Ages: ')}{t(venue.ages_zh, venue.ages_en)}</p>
                 <p className="pv-details caption-4">{t(venue.details_zh, venue.details_en)}</p>

@@ -2,7 +2,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
 const base=process.env.PREVIEW_URL || 'http://127.0.0.1:4186',out=path.resolve(__dirname,'../out'),shots=path.join(out,'shots');
 const report={url:base,browserPlugin:'Browser plugin not available; using existing local Playwright',checks:[],consoleErrors:[],pageErrors:[],httpErrors:[]};
 const overlaps=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
-const routes=['','#/living','#/living?tab=dining','#/living?tab=places','#/weekend','#/weekend?tab=markets','#/weekend?tab=festivals','#/kids','#/kids?tab=places','#/kids?tab=parties','#/services','#/services?tab=trades','#/services?tab=daily','#/tools','#/tools?tab=transport','#/tools?tab=urgent'];
+const routes=['','#/living','#/living?tab=dining','#/living?tab=places','#/weekend','#/weekend?tab=markets','#/weekend?tab=festivals','#/kids','#/kids?tab=places','#/kids?tab=parties','#/services','#/services?tab=trades','#/services?tab=daily','#/tools','#/tools?tab=pay','#/tools?tab=urgent'];
 (async()=>{
  fs.mkdirSync(shots,{recursive:true});const browser=await chromium.launch({headless:true,executablePath:'F:/Bo/ms-playwright/chromium-1254/chrome-win64/chrome.exe'});
  try{
@@ -17,10 +17,10 @@ const routes=['','#/living','#/living?tab=dining','#/living?tab=places','#/weeke
   for(const viewport of [{width:1440,height:1000},{width:390,height:844},{width:320,height:740}]){
    await p.setViewportSize(viewport);
    for(const route of routes){
-    await p.goto(base+'/'+route);await p.locator('h1').waitFor();for(const selector of ['.sb-desktop-nav','.sb-mobile-nav'])assert.deepEqual(await p.locator(selector+' a').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['#/','#/living','#/weekend','#/kids','#/tools','#/services']);const pill=p.getByTestId('feedback-launcher');assert.equal(await pill.evaluate(e=>getComputedStyle(e).position),'fixed');
+    await p.goto(base+'/'+route);await p.locator('h1').waitFor();for(const selector of ['.sb-desktop-nav','.sb-mobile-nav'])assert.deepEqual(await p.locator(selector+' a').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['#/','#/tools','#/living','#/weekend','#/kids','#/services']);const pill=p.getByTestId('feedback-launcher');assert.equal(await pill.evaluate(e=>getComputedStyle(e).position),'fixed');
     await p.evaluate(()=>scrollTo(0,document.body.scrollHeight));await p.waitForTimeout(150);
     assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'horizontal overflow');const pb=await pill.boundingBox();assert.ok(pb.x>=0&&pb.y>=0&&pb.x+pb.width<=viewport.width&&pb.y+pb.height<=viewport.height);
-    const footer=await p.locator('.ia-footer-bottom').boundingBox();assert.ok(footer.y+footer.height+12<=pb.y,'footer needs clear space above launcher');
+    const footer=await p.locator('.ia-footer-bottom').boundingBox();assert.ok(footer.y+footer.height+12<=pb.y,'footer needs clear space above launcher '+JSON.stringify({route,viewport,footer,pb}));
     for(const selector of ['.ia-footer-actions button','.fb-footer-button','.ia-quick-links a','.ia-market-actions button','.v23-preview-open']){
      for(const el of await p.locator(selector).all()){await el.evaluate(e=>e.scrollIntoView({block:'center'}));await p.waitForTimeout(30);assert.ok(!overlaps(await pill.boundingBox(),await el.boundingBox()),'launcher obscures '+selector);}
     }

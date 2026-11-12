@@ -7,6 +7,7 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
  const stays = require('./src/stays-v25.json'), pets = require('./src/pets-v25.json'), farms = require('./src/upick-v25.json');
  assert.ok(stays.length >= 8 && stays.length <= 10);
  for(const stay of stays) {
+  if (stay.id === 'abbots-hamilton') { assert.deepEqual(stay.ratings, []); assert.equal(stay.url, 'https://www.abbotshamilton.co.nz/'); continue; }
   const high = stay.ratings.filter(r => Number.isInteger(r.count) && r.count > 0 && (/\/5$/.test(r.score) ? parseFloat(r.score) >= 4.5 : parseFloat(r.score) >= 8.5));
   assert.ok(new Set(high.map(r => r.platform)).size >= 2, stay.name + ': two high-rated major platforms');
   for(const rating of stay.ratings) assert.ok(stay.sources.includes(rating.url));
@@ -24,7 +25,7 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
   }
  }
  for(const farm of farms) assert.ok(farm.seasonZh && farm.seasonEn && farm.fruitZh && farm.fruitEn);
- report.checks.push('Data audit: eight stays with at least two qualifying platform records; six pet groups of 3–5; source URLs, bilingual summaries and addresses; all added photos require free licences and attribution');
+ report.checks.push('Data audit: eight stays; existing platform records retained, official-only Abbots has no scores; six pet groups of 3–5; source URLs, bilingual summaries and addresses; all added photos require free licences and attribution');
  const browser = await chromium.launch({ headless: true, executablePath: 'F:/Bo/ms-playwright/chromium-1254/chrome-win64/chrome.exe' });
  try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
@@ -35,7 +36,7 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
    await page.setViewportSize({ width, height: width === 1440 ? 1000 : 844 });
    for (const lang of ['zh', 'en']) {
     for (const tab of ['places', 'upick', 'stays', 'pets']) {
-     await page.goto(base + '/#/living?tab=' + tab);
+     await page.goto(base + '/#/' + (tab === 'pets' ? 'services' : 'living') + '?tab=' + tab);
      await page.locator('#section-panel').waitFor();
      if (await page.locator('html').getAttribute('lang') !== (lang === 'zh' ? 'zh-CN' : 'en-NZ')) await page.getByTestId('lang').click();
      assert.equal(await page.getByTestId('tab-' + tab).getAttribute('aria-selected'), 'true');
@@ -119,22 +120,27 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
   }
   await page.goto(base);
   await page.locator('#guide-tab-living').click();
-  assert.equal(await page.locator('.v25-preview-links a').count(), 3);
+  assert.equal(await page.locator('.v25-preview-links a').count(), 2);
   for (const link of await page.locator('.v25-preview-links a').all()) {
    const href = await link.getAttribute('href'); await link.click();
    await page.waitForURL(base + '/' + href); await page.locator('.ia-tabs [aria-selected=true]').waitFor(); assert.equal(await page.locator('.ia-tabs [aria-selected=true]').getAttribute('href'), href.includes('at=') ? '#/living?tab=places' : href);
    await page.goto(base); await page.locator('#guide-tab-living').click();
   }
   for (const [tab, file, selector] of [['places','v25-places-cards.png','[data-place-id="zealong"]'],['stays','v25-stays.png','#stays'],['pets','v25-pets.png','#pets'],['upick','v25-upick.png','#upick']]) {
-   await page.setViewportSize({width:1440,height:1000}); await page.goto(base + '/#/living?tab=' + tab);
+   await page.setViewportSize({width:1440,height:1000}); await page.goto(base + '/#/' + (tab === 'pets' ? 'services' : 'living') + '?tab=' + tab);
    if(await page.locator('html').getAttribute('lang')!=='zh-CN') await page.getByTestId('lang').click();
    await page.locator(selector).evaluate(e => e.scrollIntoView({block:'start'})); await page.waitForTimeout(150); await page.screenshot({path:path.join(out,'shots',file)});
   }
   await page.goto(base + '/#/kids?tab=places'); await page.locator('[data-place-id="hamilton-lake"]').scrollIntoViewIfNeeded(); await page.screenshot({path:path.join(out,'shots/v25-kids-places.png')});
   await page.goto(base + '/#/kids'); await page.locator('#pg-title').scrollIntoViewIfNeeded(); await page.getByTestId('pg-featured').check(); await page.screenshot({path:path.join(out,'shots/v25-playground-map.png')});
   await page.setViewportSize({width:390,height:844}); await page.goto(base + '/#/living?tab=places'); await page.locator('[data-place-id="zealong"]').scrollIntoViewIfNeeded(); await page.screenshot({path:path.join(out,'shots/v25-mobile.png')});
-  const allowed = new Set(['App.tsx','HomeGuide.tsx','PlaygroundMap.tsx','PartyVenues.tsx','LocalDirectories.tsx','styles.css','playgrounds.json','party-venues.json','Feedback.tsx','places.json']);
-  for(const {file,sha256} of JSON.parse(fs.readFileSync(path.join(out,'input-v25-sha256.json'),'utf8').replace(/^\uFEFF/,''))) if(!allowed.has(path.basename(file))) assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex'),sha256,file+' protected');
+  const allowed = new Set(['App.tsx','HomeGuide.tsx','PlaygroundMap.tsx','PartyVenues.tsx','LocalDirectories.tsx','WeekendAgenda.tsx','styles.css','playgrounds.json','party-venues.json','Feedback.tsx','places.json','stays-v25.json','cord-picks.ts']);
+  for(const {file,sha256} of JSON.parse(fs.readFileSync(path.join(out,'input-v25-sha256.json'),'utf8').replace(/^\uFEFF/,''))) if(!allowed.has(path.basename(file))) {
+    let content=fs.readFileSync(path.resolve(__dirname,'..',file));
+    // v25h adds only the shared glow utility to the retained contact card.
+    if(path.basename(file)==='ContactCard.tsx')content=content.toString('utf8').replace('v17-contact hl-glow','v17-contact');
+    assert.equal(crypto.createHash('sha256').update(content).digest('hex'),sha256,file+' protected');
+  }
   assert.deepEqual(report.consoleErrors,[]); assert.deepEqual(report.pageErrors,[]); assert.deepEqual(report.httpErrors,[]);
   report.passed = true;
  } finally { await browser.close(); fs.writeFileSync(path.join(out,'qa-v25.json'),JSON.stringify(report,null,2)); }

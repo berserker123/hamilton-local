@@ -32,11 +32,12 @@ const report = { checks: [], consoleErrors: [], pageErrors: [] };
     await open('#/living?tab=upick');
     assert.equal(await page.getByTestId('tab-upick').getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator('#upick [data-directory-id]').count(), require('./src/upick-v25.json').length);
-    assert.deepEqual(await page.locator('.ia-tabs a').evaluateAll(es => es.map(e => e.id)), ['tab-grocers','tab-dining','tab-places','tab-upick','tab-stays','tab-pets']);
+    assert.deepEqual(await page.locator('.ia-tabs a').evaluateAll(es => es.map(e => e.id)), ['tab-grocers','tab-dining','tab-places','tab-upick','tab-stays']);
     await shot('upick', '#upick');
     await open('#/living?tab=places');
     assert.equal(await page.locator('#upick').count(), 0);
-    assert.match(await page.locator('[data-place-id="hamilton-lake"] h3').innerText(), /Hamilton/);
+    assert.equal(await page.locator('[data-place-id="hamilton-lake"] h3').innerText(), '汉密尔顿湖公园');
+    assert.match(await page.locator('[data-place-id="hamilton-lake"] .ia-secondary-name').innerText(), /Hamilton/);
     await open('#/living?tab=places&at=upick');
     assert.equal(await page.getByTestId('tab-upick').getAttribute('aria-selected'), 'true');
     report.checks.push('U-Pick sibling tab, order, farm count, old anchor compatibility; living names retained');
@@ -114,7 +115,7 @@ const report = { checks: [], consoleErrors: [], pageErrors: [] };
       if (name === 'party') {
         await page.locator('[data-party-region="all"]').click();
         for (const card of await page.locator('.pv-row').all()) {
-          const english = await card.locator('.pv-english').innerText();
+          const english = await card.locator('.ia-secondary-name').innerText();
           assert.ok(english.length);
           assert.doesNotMatch(await card.locator('h4').innerText(), /汉密尔顿 Hamilton|剑桥 Cambridge|拉格伦 Raglan|怀卡托 Waikato/);
         }

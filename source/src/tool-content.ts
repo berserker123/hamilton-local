@@ -1,0 +1,55 @@
+export const ARRIVAL_STEPS = [
+  {
+    id:'ird', zh:'申请税号', en:'IRD number', tag:'01 · TAX', sources:['ird-arrival','myir-register'],
+    stepsZh:['到达新西兰后，先核对签证上的最晚入境日期；新抵埠通道须在该日期前申请。','准备护照资料、移民局申请编号；工作或学生签证持有人另备最近的海外税号（如有）。','注册并登录个人 myIR，选择新抵埠 IRD number 申请，按提示核对身份并提交。','获批后保存短信或邮件中的 IRD number，交给雇主办理工资税务。'],
+    stepsEn:['After arrival, check the final arrival date on your visa; use the new-arrival process before that date.','Prepare passport details and your Immigration NZ application number. Work/student visa holders also need their latest overseas tax number, if any.','Register and sign in to personal myIR, choose the new-arrival IRD application and follow the identity checks.','Keep the approved IRD number received by text/email and give it to your employer.'],
+    bringZh:'护照资料、移民局申请编号；海外税号（按签证类别）。', bringEn:'Passport details, Immigration NZ application number; overseas tax number where applicable.',
+    timeZh:'获批后 2 天内以短信或邮件收到；需要补件时另行联系。', timeEn:'Within 2 days if approved; IRD contacts you if more information is needed.',
+    costZh:'所引页面未列申请收费，费用待确认。', costEn:'Application charge not stated on the cited page; confirm with IRD.',
+  },
+  {
+    id:'bank', zh:'开银行账户', en:'Open a bank account', tag:'02 · BANKING', sources:['bank','bank-id'],
+    stepsZh:['以下以 ANZ 新移民通道为例：先核对官网资格和适合自己的日常或储蓄账户。','填写网上表格；已在新西兰的申请人提供长期居住的新西兰地址。','查看银行邮件，按要求补交身份证明、地址及税务居民资料。','收到开户确认后，按邮件说明到新西兰分行核验身份；激活后才能完整使用账户。'],
+    stepsEn:['ANZ is one example: check its official eligibility and choose an everyday or savings account.','Complete the online form; applicants already in NZ provide their long-term NZ residential address.','Check the bank email and supply the requested identity, address and tax-residency documents.','After account confirmation, visit a NZ branch for the identity check described in the email; full access follows activation.'],
+    bringZh:'护照等银行认可的身份证明；按要求准备住址证明及税务居民资料，以银行邮件清单为准。', bringEn:'Accepted ID such as a passport, and address/tax-residency documents requested in the bank email.',
+    timeZh:'ANZ 表格约 5 分钟；银行称 3 个工作日内邮件联系。最终激活时长待确认。', timeEn:'ANZ estimates 5 minutes for the form and an email within 3 business days. Final activation time: confirm with the bank.',
+    costZh:'账户及服务收费依所选产品；开户费用待确认，查看银行最新费用表。', costEn:'Fees depend on the account and services. Confirm opening charges and the current fee schedule.',
+  },
+  {
+    id:'licence', zh:'转换海外驾照', en:'Convert an overseas licence', tag:'03 · DRIVING', sources:['licence','licence-nonexempt','licence-fees'],
+    stepsZh:['在 NZTA 官网按发证地确认豁免或非豁免流程；中国大陆驾照走非豁免流程。','准备驾照实体原件、身份证明及需要的认可英文翻译；到指定海外驾照转换代理申请。','填申请表、核验身份并做视力检查，按适用流程完成理论考试及缴费。','预约并完成所需路考；转换期间必须遵守临时驾照上的监督驾驶等条件。'],
+    stepsEn:['Check whether the issuing country is exempt or non-exempt on NZTA; mainland China uses the non-exempt process.','Bring the physical overseas licence, identity evidence and an approved English translation if needed to a specialist conversion agent.','Complete the application, identity and eyesight checks, and the theory test and fees required for your route.','Book and pass the required practical test; obey any supervisor condition on your temporary NZ licence.'],
+    bringZh:'海外驾照实体原件、身份证明；非英文驾照的认可翻译及所需复印件。医疗证明如适用。', bringEn:'Physical overseas licence, identity evidence, approved translation for a non-English licence, required copies; medical certificate if applicable.',
+    timeZh:'总办理时间依核验与考试预约，待确认；不要将申请时间当作驾照可用期限。', timeEn:'Total time depends on verification and test availability; confirm with the agent.',
+    costZh:'非豁免 full class 1：申请 $52.10 + 理论 $45.70 + 路考 $59.90，首次均通过合计 $157.70；翻译等另计。豁免申请 $52.10，是否路考依条件。', costEn:'Non-exempt full class 1: $52.10 application + $45.70 theory + $59.90 practical = $157.70 if passed first time; translation extra. Exempt application $52.10, practical testing depends on eligibility.',
+  },
+  {
+    id:'gp', zh:'登记家庭医生', en:'Enrol with a GP', tag:'04 · HEALTH', sources:['gp'],
+    stepsZh:['先确认自己符合公共医疗资助资格，再联系附近接受新病人的 GP 诊所。','向诊所出示身份及医疗资格证明，例如护照和签证；按诊所要求补件。','填写并签署 enrolment form；告知既往病史、用药和原诊所，以便衔接病历。','确认登记生效、问诊费用及预约方式；尽量在生病前办妥。'],
+    stepsEn:['Confirm eligibility for publicly funded care and find a practice accepting new patients.','Provide identity and eligibility evidence, such as passport and visa; follow the practice document requirements.','Complete and sign the enrolment form; discuss medical history, medicines and transfer of records.','Confirm when enrolment takes effect, consultation charges and booking arrangements before you become unwell.'],
+    bringZh:'身份证明与公共医疗资助资格证明；诊所可能要求护照等文件。', bringEn:'Identity and publicly funded healthcare eligibility evidence; a passport may be requested.',
+    timeZh:'Health NZ 提醒登记可能最长需 3 个月；具体由诊所确认。', timeEn:'Health NZ says enrolment can take up to 3 months; confirm with the practice.',
+    costZh:'符合资格者登记免费；看诊收费另计，向诊所确认。', costEn:'Enrolment is free for eligible people; consultations may have separate charges.',
+  },
+  {
+    id:'csc', zh:'申请社区服务卡', en:'Community Services Card', tag:'05 · SUPPORT', sources:['csc','csc-documents'],
+    stepsZh:['核对 Work and Income 的居留、居住及家庭收入条件；部分领取福利者会自动获卡。','如需自行申请，从官网取得表格，填写本人、伴侣及家庭收入资料。','按要求备齐两份身份证明、在新西兰居住的权利证明；如未在线核验，带政府签发的身份证明到服务中心。','按表格地址提交材料；收到补件或收入证明通知时及时回复。'],
+    stepsEn:['Check Work and Income residence and household income criteria; some benefit recipients receive a card automatically.','If applying, obtain the official form and complete personal, partner and household income details.','Prepare two identity documents and evidence of the right to live in NZ. If not verified online, take government-issued ID to a service centre.','Send the application and documents to the address on the form; respond to requests for income evidence.'],
+    bringZh:'两份身份证明（至少一份政府签发）、居留权证明；伴侣资料及按要求提供的收入证明。', bringEn:'Two identity documents (at least one government-issued), residence evidence, partner details and income evidence if requested.',
+    timeZh:'所引页面未列固定处理天数，待确认。', timeEn:'No fixed processing time on the cited page; confirm with Work and Income.',
+    costZh:'所引页面未列申请收费，费用待确认。', costEn:'Application charge not stated on the cited page; confirm with Work and Income.',
+  },
+] as const;
+
+export const SHELLFISH = [
+  {id:'cockle',zh:'鸟蛤',en:'Cockle',general:'150',coromandel:'50',size:'—'},
+  {id:'pipi',zh:'皮皮贝',en:'Pipi',general:'150',coromandel:'50',size:'—'},
+  {id:'tuatua',zh:'沙蛤',en:'Tuatua',general:'150',coromandel:'50',size:'—'},
+  {id:'green-mussel',zh:'绿唇贻贝',en:'Green-lipped mussel',general:'50',coromandel:'10',size:'—'},
+  {id:'other-mussel',zh:'蓝贻贝与马贻贝',en:'Blue / horse mussels',general:'50*',coromandel:'50*',size:'—'},
+  {id:'scallop',zh:'扇贝',en:'Scallop',general:'20',coromandel:'关闭 / Closed',size:'100 mm'},
+  {id:'dredge-oyster',zh:'疏浚牡蛎',en:'Dredge oyster',general:'50',coromandel:'50',size:'58 mm'},
+  {id:'rock-oyster',zh:'岩牡蛎与太平洋牡蛎',en:'Rock / Pacific oyster',general:'250',coromandel:'100',size:'—'},
+  {id:'paua',zh:'黑足鲍',en:'Ordinary pāua',general:'10',coromandel:'10',size:'125 mm'},
+  {id:'yellow-paua',zh:'黄足鲍',en:'Yellow-foot pāua',general:'10',coromandel:'10',size:'80 mm'},
+] as const;

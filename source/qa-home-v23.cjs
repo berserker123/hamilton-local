@@ -18,10 +18,10 @@ async function settledScreenshot(page,name){
  fs.mkdirSync(shots,{recursive:true});const browser=await chromium.launch({headless:true,executablePath:'F:/Bo/ms-playwright/chromium-1254/chrome-win64/chrome.exe'});
  try{
   const ctx=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'}),p=await ctx.newPage();watch(p);await p.goto(base);await p.locator('h1').waitFor();
-  const sectionOrder=['living','weekend','kids','tools','services'];
+  const sectionOrder=['tools','living','weekend','kids','services'];
   for(const lang of ['zh','en']){
    if(lang==='en')await p.getByTestId('lang').click();
-   for(const selector of ['.sb-desktop-nav','.sb-mobile-nav'])assert.deepEqual(await p.locator(selector+' a').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['#/','#/living','#/weekend','#/kids','#/tools','#/services']);
+   for(const selector of ['.sb-desktop-nav','.sb-mobile-nav'])assert.deepEqual(await p.locator(selector+' a').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['#/','#/tools','#/living','#/weekend','#/kids','#/services']);
    assert.deepEqual(await p.locator('.v23-feature-tabs [role=tab]').evaluateAll(es=>es.map(e=>e.id.replace('guide-tab-',''))),sectionOrder);
    assert.deepEqual(await p.locator('.v23-tab-index').allTextContents(),['01','02','03','04','05']);
    assert.equal(await p.locator('.ia-overview,[data-teaser]').count(),0);
@@ -29,11 +29,11 @@ async function settledScreenshot(page,name){
    assert.equal(await p.locator('.ia-kicker').filter({hasText:'YOUR LOCAL FIELD GUIDE'}).count(),0);
    assert.equal(await p.locator('#overview .v23-feature-tabs').count(),1);
    assert.equal(await p.locator('.v23-how').count(),1);assert.equal(await p.locator('footer').count(),1);assert.equal(await p.locator('.ia-quick-links a').count(),5);
-   await p.locator('#guide-tab-tools').click();assert.equal(await p.locator('.v23-preview-open').getAttribute('href'),'#/tools?tab=transport');assert.equal(await p.locator('#guide-tab-tools .v23-tab-index').textContent(),'04');
+   await p.locator('#guide-tab-tools').click();assert.equal(await p.locator('.v23-preview-open').getAttribute('href'),'#/tools?tab=pay');assert.equal(await p.locator('#guide-tab-tools .v23-tab-index').textContent(),'01');
    await p.locator('#guide-tab-services').click();assert.equal(await p.locator('.v23-preview-open').getAttribute('href'),'#/services?tab=home');assert.equal(await p.locator('#guide-tab-services .v23-tab-index').textContent(),'05');
   }
   await p.getByTestId('lang').click();
-  const supplied=require('../out/baseline-v24b.json');const changed=Object.entries(supplied).filter(([file,hash])=>crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')!==hash).map(([file])=>file).sort();assert.deepEqual(changed,["work/src/App.tsx","work/src/CordResult.tsx","work/src/Feedback.tsx","work/src/HomeGuide.tsx","work/src/PageExperience.tsx","work/src/PartyVenues.tsx","work/src/PlaygroundMap.tsx","work/src/WeekendAgenda.tsx","work/src/party-venues.json","work/src/places.json","work/src/playgrounds.json","work/src/styles.css"]);
+  const supplied=require('../out/baseline-v24b.json');const changed=Object.entries(supplied).filter(([file,hash])=>crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')!==hash).map(([file])=>file).sort();assert.deepEqual(changed,["work/src/App.tsx","work/src/ContactCard.tsx","work/src/CordResult.tsx","work/src/Feedback.tsx","work/src/HomeGuide.tsx","work/src/PageExperience.tsx","work/src/PartyVenues.tsx","work/src/PlaygroundMap.tsx","work/src/WeekendAgenda.tsx","work/src/cord-picks.ts","work/src/party-venues.json","work/src/places.json","work/src/playgrounds.json","work/src/styles.css"]);
   pass('Bilingual navigation and numbered preview order; duplicate cards removed; anchor, quick tags, steps and footer retained');
   await noOverflow(p);assert.equal(await p.locator('.v23-marquee-track').evaluate(e=>getComputedStyle(e).animationName),'none');assert.equal(await p.locator('.v23-marquee-group a').count(),7);
   for(const el of await p.locator('.v23-marquee-group a').all()){const bounds=await el.boundingBox();assert.ok(bounds.x>=0&&bounds.x+bounds.width<=390,'static shortcut visible');}
@@ -48,8 +48,8 @@ async function settledScreenshot(page,name){
    await p.getByTestId('lang').click();assert.equal(await p.locator('html').getAttribute('lang'),'en-NZ');await noOverflow(p);await p.getByTestId('lang').click();
   }
   pass('Four viewports: five preview states, bilingual copy, one heading, nonblank screen, no overlays or overflow');
-  await p.setViewportSize({width:1440,height:1000});await p.goto(base);await p.locator('#guide-tab-living').focus();
-  for(const [key,id] of [['ArrowRight','weekend'],['ArrowDown','kids'],['End','services'],['Home','living'],['ArrowLeft','services']]){await p.keyboard.press(key);assert.equal(await p.evaluate(()=>document.activeElement.id),'guide-tab-'+id);assert.equal(await p.locator('#guide-tab-'+id).getAttribute('aria-selected'),'true');}
+  await p.setViewportSize({width:1440,height:1000});await p.goto(base);await p.locator('#guide-tab-living').click();await p.locator('#guide-tab-living').focus();
+  for(const [key,id] of [['ArrowRight','weekend'],['ArrowDown','kids'],['End','services'],['Home','tools'],['ArrowLeft','services']]){await p.keyboard.press(key);assert.equal(await p.evaluate(()=>document.activeElement.id),'guide-tab-'+id);assert.equal(await p.locator('#guide-tab-'+id).getAttribute('aria-selected'),'true');}
   await p.locator('#guide-tab-services').click();assert.match(await p.locator('#guide-preview').innerText(),/暂无商家/);await p.locator('#guide-tab-kids').click();await p.locator('.v23-preview-open').click();await p.locator('#tab-map').waitFor();assert.equal(await p.locator('.pg-pin').count(),12);
   await p.goto(base);await p.getByRole('button',{name:'开始搜索',exact:true}).click();assert.equal(await p.evaluate(()=>document.activeElement.matches('.ia-hero-search input')),true);await p.locator('.ia-hero-search input').fill('Rototuna');await p.locator('.ia-hero-search').getByRole('button',{name:'搜索',exact:true}).click();await p.locator('#tab-grocers').waitFor();assert.ok(p.url().includes('q=Rototuna'));
   pass('Keyboard arrow/Home/End tabs, honest directory empty state, preview-to-map destination, three-step search entry');

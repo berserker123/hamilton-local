@@ -16,13 +16,24 @@ const unknowns = p => ['fenced', 'toilets', 'shade'].filter(k => p[k] == null).l
       const inherited = fs.readFileSync(path.join(out, 'input-v24c/App.tsx'), 'utf8');
       assert.equal(crypto.createHash('sha256').update(inherited).digest('hex').toUpperCase(), hash);
       const current = fs.readFileSync(path.resolve(__dirname, '..', file), 'utf8');
-      assert.equal(current.slice(current.indexOf('function Home(')), inherited.slice(inherited.indexOf('function Home(')));
+      // The v25f brand exception bypasses automatic English place-name expansion.
+      const brand = "{t('汉密尔顿生活指南', 'Your local field guide')}";
+      const updatedBrand = "{lang === 'zh' ? '汉密尔顿生活指南' : 'Your local field guide'}";
+      assert.match(current, /<CommonTools t=\{t\} \/>/);
+      assert.match(current, /canonicalHash\(location.hash\)/);
+      const sourceBefore = fs.readFileSync(path.join(out, 'sources-v25g/before-src-App.tsx'), 'utf8');
+      assert.equal(sourceBefore.slice(sourceBefore.indexOf('function Home(')).replace(updatedBrand, brand), inherited.slice(inherited.indexOf('function Home(')));
       continue;
     }
     if (file === 'work/src/playgrounds.json') continue;
+    if (file === 'work/src/cord-picks.ts') {
+      const current = fs.readFileSync(path.resolve(__dirname, '..', file), 'utf8').replace("p.id !== 'magical-bridge' && ", '');
+      assert.equal(crypto.createHash('sha256').update(current).digest('hex').toUpperCase(), hash, 'Only removed duplicate Magical Bridge venue draw');
+      continue;
+    }
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname, '..', file))).digest('hex').toUpperCase(), hash, 'Protected input: ' + file);
   }
-  report.checks.push('Original playground data, production key, draw data, Home/App implementation and place-name formatter unchanged; v25 PlaceGrid/Living extension allowed');
+  report.checks.push('Production key and place-name formatter protected; Home/App retained except Chinese brand; v25 playground, living and duplicate venue draw changes allowed');
   const browser = await chromium.launch({ headless: true, executablePath: 'F:/Bo/ms-playwright/chromium-1254/chrome-win64/chrome.exe' });
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });

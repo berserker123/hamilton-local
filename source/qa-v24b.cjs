@@ -22,8 +22,8 @@ const routes=['','#/living','#/living?tab=places','#/weekend','#/weekend?tab=mar
      if(route.includes('parties')){await page.locator('[data-party-region="all"]').click();for(const button of await page.locator('[data-party-more]').all())await button.click();}
      const text=await page.locator('body').innerText();
      if(lang==='zh'){
-      // v25e: kids titles with an English name on the next line retain raw Chinese.
-      const separateTitles=route.startsWith('#/kids')?await page.locator('[data-place-id] h3,.pv-row h4,.pg-popup h3').allTextContents():[];
+      // v25f: all card titles use raw Chinese with a separate English line; brand stays Chinese.
+      const separateTitles=await page.locator('.ia-name-line,.pg-popup h3,.sb-brand-sub').allTextContents();
       const namesText=text.split('\n').filter(line=>!separateTitles.includes(line.trim())).join('\n');
       const formatted=placeNames(namesText),before=namesText.split('\n'),after=formatted.split('\n');
       assert.ok(formatted===namesText,'Unformatted place name on '+route+' at '+width+': '+JSON.stringify(before.flatMap((line,i)=>line===after[i]?[]:[{before:line,after:after[i]}]).slice(0,6)));
@@ -39,7 +39,7 @@ const routes=['','#/living','#/living?tab=places','#/weekend','#/weekend?tab=mar
   for(const [id,label]of [['Hamilton','汉密尔顿 Hamilton'],['Cambridge','剑桥 Cambridge'],['Raglan','拉格伦 Raglan'],['other','其他怀卡托 Waikato']])assert.equal((await page.locator(`[data-region-group="${id}"] .wa-region-heading h2`).innerText()).trim(),label);
   await page.screenshot({path:path.join(out,'shots/v24b-whatson.png'),fullPage:true});
   await page.setViewportSize({width:390,height:844});await page.locator('.wa-heading').evaluate(e=>e.scrollIntoView({block:'start'}));await page.screenshot({path:path.join(out,'shots/v24b-mobile.png')});
-  await page.goto(base+'/#/kids');await page.getByTestId('pg-area').selectOption('Hamilton Lake');assert.equal(await page.locator('[data-playground-id]').count(),1);assert.match(await page.locator('.pg-list h3').innerText(),/汉密尔顿 Hamilton/);
+  await page.goto(base+'/#/kids');await page.getByTestId('pg-area').selectOption('Hamilton Lake');assert.equal(await page.locator('[data-playground-id]').count(),1);assert.equal(await page.locator('.pg-list h3').innerText(),'汉密尔顿湖游乐场');assert.match(await page.locator('.pg-list .ia-secondary-name').innerText(),/Hamilton Lake/);
   await page.getByRole('button',{name:'在地图查看',exact:true}).click();await page.locator('.pg-popup').waitFor();assert.equal(await page.locator('.pg-popup h3').innerText(),'汉密尔顿湖游乐场');assert.match(await page.locator('.pg-popup').innerText(),/Hamilton Lake Domain Destination Playground/);
   report.checks.push('Four region headings contain English once; playground filter values and map popup preserved');
   assert.deepEqual(report.consoleErrors,[]);assert.deepEqual(report.pageErrors,[]);assert.deepEqual(report.httpErrors,[]);report.passed=true;

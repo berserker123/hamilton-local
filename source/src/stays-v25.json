@@ -180,40 +180,22 @@
     ]
   },
   {
-    "id": "park-view-motor-lodge",
-    "name": "Park View Motor Lodge",
-    "zh": "Park View 汽车旅馆",
-    "type": "Motel",
+    "id": "abbots-hamilton",
+    "name": "Abbots Hamilton",
+    "zh": "Abbots 汉密尔顿酒店",
+    "type": "Hotel",
     "area": "Whitiora, Hamilton",
-    "address": "450 Tristram Street, Hamilton",
-    "introZh": "靠近 Waikato Stadium，设有泳池。",
-    "introEn": "A motel near Waikato Stadium with a swimming pool.",
-    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d662148-Reviews-Park_View_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+    "address": "222 Ulster Street, Whitiora, Hamilton, Waikato, New Zealand",
+    "phone": "+64 7 8383299",
+    "mobile": "021 158 1119",
+    "introZh": "位于 Whitiora 的酒店与会议中心，提供免费 Wi-Fi、免费停车及家庭房选择。",
+    "introEn": "A Whitiora hotel and conference centre with free Wi-Fi, free parking and family room options.",
+    "url": "https://www.abbotshamilton.co.nz/",
     "sources": [
-      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d662148-Reviews-Park_View_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
-      "https://www.expedia.com/Hamilton-Hotels-Park-View-Motor-Lodge-In-Hamilton.h2564521.Hotel-Information",
-      "https://www.booking.com/hotel/nz/park-view-motor-lodge.html"
+      "https://www.abbotshamilton.co.nz/",
+      "https://www.abbotshamilton.co.nz/Contact.html"
     ],
-    "ratings": [
-      {
-        "platform": "Booking.com",
-        "score": "8.9/10",
-        "count": 425,
-        "url": "https://www.booking.com/hotel/nz/park-view-motor-lodge.html"
-      },
-      {
-        "platform": "Tripadvisor",
-        "score": "4.6/5",
-        "count": 242,
-        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d662148-Reviews-Park_View_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html"
-      },
-      {
-        "platform": "Expedia",
-        "score": "9.4/10",
-        "count": 757,
-        "url": "https://www.expedia.com/Hamilton-Hotels-Park-View-Motor-Lodge-In-Hamilton.h2564521.Hotel-Information"
-      }
-    ]
+    "ratings": []
   },
   {
     "id": "bks-premier-motel-hamilton",
