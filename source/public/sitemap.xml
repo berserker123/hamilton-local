@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://hamiltonlocal.nz/</loc>
-  </url>
+  <url><loc>https://hamiltonlocal.nz/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/supermarkets/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/living/dining/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/living/places/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/living/upick/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/living/stays/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/weekend/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/weekend/markets/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/weekend/festivals/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/kids/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/kids/places/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/kids/parties/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/services/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/services/trades/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/services/daily/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/services/pets/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/bins/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/urgent/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/pay/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/checklist/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/gst/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/units/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/seasonal/</loc></url>
+  <url><loc>https://hamiltonlocal.nz/tools/other/</loc></url>
 </urlset>
