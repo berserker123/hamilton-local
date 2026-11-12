@@ -33,10 +33,10 @@ export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
     <div id="party-results" className="wa-results" key={`${region}-${type}`}>
       {shownRegions.map(group => <section key={group.id} className="wa-region" data-party-group={group.id} aria-labelledby={`party-heading-${group.id.replaceAll(' ', '-')}`}>
         <div className="wa-region-heading"><h3 className="heading-5" id={`party-heading-${group.id.replaceAll(' ', '-')}`}>{t(group.zh, group.en)}</h3><span className="caption-4">{group.venues.length} {t('项', 'options')}</span></div>
-        <div className="wa-market-rows hl-glow-group" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
+        <div className="wa-market-rows" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
           {partyPage(group.venues, !!expanded[group.id]).map(venue => {
             const category = PARTY_TYPES.find(item => item.id === venue.type)!;
-            return <article key={venue.id} className="wa-row pv-row hl-glow" data-party-id={venue.id}>
+            return <article key={venue.id} className="wa-row pv-row" data-party-id={venue.id}>
               <div className="wa-time caption-4"><span>{t(category.zh, category.en)}</span><span className="pv-town caption-5">{t(venue.town, venue.town)}</span></div>
               <div className="wa-main">
                 <BilingualTitle as="h4" className="title-3" zh={venue.name_zh} en={venue.name_en} t={t} />

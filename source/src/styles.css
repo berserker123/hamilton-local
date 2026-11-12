@@ -913,11 +913,15 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 /* Original Hamilton Local carriage: chrome is a sibling of the clipped scenery.
    Two identical mirrored strips keep the one-way translation seamless at -50%.
    No transform is applied to hero-train.webp or to any window/content wrapper. */
-.sb-hero-media-window {
+.sb-hero {
   --window-top: 112px;
   --window-bottom: 112px;
   --window-side: clamp(22px, 4.2vw, 72px);
   --window-radius: clamp(36px, 5vw, 76px);
+  --window-border: 13px;
+  --window-inner-ring: 7px;
+}
+.sb-hero-media-window {
   background: linear-gradient(110deg, #1a2421, #34372e 45%, #18231f);
 }
 .sb-window-view, .sb-window-rim {
@@ -942,10 +946,10 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 }
 .sb-window-near { animation-duration: 14s; filter: blur(1.4px); }
 .sb-window-rim {
-  border: 13px solid #30362e;
+  border: var(--window-border) solid #30362e;
   box-shadow: 0 0 0 2px #b1a68a88, 0 0 0 7px #181e1a,
     0 0 0 10px #777b6666, 0 14px 32px 12px #090e0c99,
-    inset 0 0 0 3px #a7a58b99, inset 0 0 0 7px #111b17,
+    inset 0 0 0 3px #a7a58b99, inset 0 0 0 var(--window-inner-ring) #111b17,
     inset 0 9px 28px 12px #101a1766;
   background: linear-gradient(125deg, #fff2ce0c, transparent 37%, #081b0c12);
 }
@@ -957,8 +961,8 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 }
 @keyframes sb-window-travel { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (max-width: 700px) {
-  .sb-hero-media-window { --window-top: 180px; --window-bottom: 90px; --window-side: 12px; --window-radius: 38px; }
-  .sb-window-rim { border-width: 8px; box-shadow: 0 0 0 2px #b1a68a66, 0 0 0 6px #181e1a, inset 0 0 0 2px #a7a58b99, inset 0 0 0 5px #111b17, inset 0 7px 20px 8px #101a1766; }
+  .sb-hero { --window-top: 180px; --window-bottom: 90px; --window-side: 12px; --window-radius: 38px; --window-border: 8px; --window-inner-ring: 5px; }
+  .sb-window-rim { box-shadow: 0 0 0 2px #b1a68a66, 0 0 0 6px #181e1a, inset 0 0 0 2px #a7a58b99, inset 0 0 0 var(--window-inner-ring) #111b17, inset 0 7px 20px 8px #101a1766; }
   .sb-window-sill { height: 62px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2149,59 +2153,3 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 }
 @media(prefers-reduced-motion:reduce) { .v25g-check-card summary>svg,.v25g-shortcut { transition:none; } }
 
-/* Shared card halo. Keep the layer local, below content and all page overlays.
-   ::after leaves the optional card-style accent in ::before untouched. */
-@media (hover: hover) {
-  .ia-root { --hl-glow-gutter: max(47px, calc((100vw - 1320px) / 2 + 47px)); }
-  .ia-root .hl-glow.hl-glow {
-    position: relative;
-    isolation: isolate;
-    overflow: visible;
-  }
-  .hl-glow::after {
-    content: "";
-    position: absolute;
-    inset: -10%;
-    /* Large panels must not make the document wider than the viewport. */
-    left: max(-10%, calc(-1 * var(--hl-glow-gutter)));
-    right: max(-10%, calc(-1 * var(--hl-glow-gutter)));
-    z-index: -1;
-    border-radius: 24px;
-    background: radial-gradient(circle at 50% 45%, #c9a55a 0%, #8a6a2c 55%, transparent 80%);
-    filter: blur(60px);
-    opacity: 0;
-    transition: opacity .35s ease;
-    pointer-events: none;
-  }
-  .hl-glow:is(:hover, :focus-visible, :has(:focus-visible))::after { opacity: .3; }
-  .hl-glow-group { position: relative; z-index: 0; overflow: visible; }
-
-  /* Preserve rounded media and summary edges after releasing the outer clip. */
-  .hl-glow > :is(.ia-place-figure, .ia-photo-pending, .v25b-media, summary, .v23-browser-bar) {
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-  }
-  .hl-glow > .ia-place-figure { overflow: hidden; }
-}
-@media (hover: hover) and (max-width: 900px) {
-  .ia-root { --hl-glow-gutter: 27px; }
-}
-@media (hover: hover) and (max-width: 639px) {
-  .ia-root { --hl-glow-gutter: 19px; }
-}
-@media (hover: hover) and (min-width: 901px) {
-  /* Bleed space inside the scrollport; negative margins keep card geometry and
-     the original 642px list viewport. The map and list still scroll separately. */
-  .hl-glow-scroll {
-    box-sizing: content-box;
-    position: relative;
-    z-index: 0;
-    padding: 100px 108px 100px 100px;
-    margin: -100px;
-  }
-  /* The transparent scrollport bleed must not intercept the adjacent map. */
-  .pg-map-panel:has(+ .hl-glow-scroll) { z-index: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hl-glow::after { transition: none; }
-}

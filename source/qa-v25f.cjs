@@ -68,7 +68,7 @@ const report = { checks: [], consoleErrors: [], pageErrors: [], httpErrors: [] }
     assert.match(await page.locator('dialog[open]').innerText(), /222 Ulster Street/);
     assert.equal(await page.locator('dialog[open] a[href="tel:+6478383299"]').count(), 1);
     await page.keyboard.press('Escape');
-    for (const hash of ['#/kids?tab=places', '#/kids?tab=map', '#/kids?tab=parties', '#/weekend?tab=picks', '#/weekend?tab=markets', '#/weekend?tab=festivals', '#/services?tab=home', '#/tools?tab=bins', '#/tools?tab=urgent']) {
+    for (const hash of ['#/kids?tab=places', '#/kids?tab=map', '#/kids?tab=parties', '#/weekend?tab=picks', '#/weekend?tab=markets', '#/weekend?tab=festivals', '#/services?tab=home', '#/tools?tab=other', '#/tools?tab=urgent']) {
       await open(hash);
       const titles = page.locator('#section-panel h2.ia-name-line, #section-panel h3.ia-name-line, #section-panel h4.ia-name-line');
       assert.ok(await titles.count() > 0, hash);

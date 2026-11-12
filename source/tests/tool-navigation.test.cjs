@@ -24,3 +24,26 @@ test('home and top navigation put tools first; pet records remain unchanged',()=
   assert.match(app,/if \(tab === 'pets'\) return <Pets/);
   assert.ok(require('../src/pets-v25.json').length || Object.keys(require('../src/pets-v25.json')).length);
 });
+
+test('toolbox has the requested eight short tabs with Other last',()=>{
+  const {TOOL_TABS}=load();
+  assert.deepEqual(TOOL_TABS,[
+    ['bins','垃圾清运','Bins'],['urgent','急诊信息','Urgent care'],
+    ['pay','税后收入','Pay calculator'],['checklist','新移民清单','Arrival checklist'],
+    ['gst','GST计算','GST calculator'],['units','单位换算','Unit converter'],
+    ['seasonal','季节提醒','Seasonal'],['other','其他','Other'],
+  ]);
+});
+
+test('older toolbox links select Other and preserve their destinations and queries',()=>{
+  const {canonicalHash,AT_IDS}=load();
+  for(const anchor of ['tool-school-terms','tool-find-school','tool-transport','tool-weather','tool-outages','tool-government','tool-fuel']){
+    assert.ok(AT_IDS.has(anchor));
+    assert.equal(canonicalHash('#'+anchor),'#/tools?tab=other&at='+anchor);
+    assert.equal(canonicalHash('#/tools?tab=bins&at='+anchor+'&q=test'),'#/tools?tab=other&at='+anchor+'&q=test');
+  }
+  assert.equal(canonicalHash('#/tools?tab=transport&q=test'),'#/tools?tab=other&q=test&at=tool-transport');
+  assert.equal(canonicalHash('#/tools?tab=bins'),'#/tools?tab=bins');
+  assert.equal(canonicalHash('#tool-bins'),'#/tools?tab=bins&at=tool-bins');
+  assert.equal(canonicalHash('#urgent-clinics'),'#/tools?tab=urgent&at=urgent-clinics');
+});

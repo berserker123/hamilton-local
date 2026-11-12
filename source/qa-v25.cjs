@@ -134,11 +134,10 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
   await page.goto(base + '/#/kids?tab=places'); await page.locator('[data-place-id="hamilton-lake"]').scrollIntoViewIfNeeded(); await page.screenshot({path:path.join(out,'shots/v25-kids-places.png')});
   await page.goto(base + '/#/kids'); await page.locator('#pg-title').scrollIntoViewIfNeeded(); await page.getByTestId('pg-featured').check(); await page.screenshot({path:path.join(out,'shots/v25-playground-map.png')});
   await page.setViewportSize({width:390,height:844}); await page.goto(base + '/#/living?tab=places'); await page.locator('[data-place-id="zealong"]').scrollIntoViewIfNeeded(); await page.screenshot({path:path.join(out,'shots/v25-mobile.png')});
-  const allowed = new Set(['App.tsx','HomeGuide.tsx','PlaygroundMap.tsx','PartyVenues.tsx','LocalDirectories.tsx','WeekendAgenda.tsx','styles.css','playgrounds.json','party-venues.json','Feedback.tsx','places.json','stays-v25.json','cord-picks.ts']);
+  // v25i authorizes scene-label positioning in page-experience.css.
+  const allowed = new Set(['App.tsx','HomeGuide.tsx','PlaygroundMap.tsx','PartyVenues.tsx','LocalDirectories.tsx','WeekendAgenda.tsx','styles.css','page-experience.css','playgrounds.json','party-venues.json','Feedback.tsx','places.json','stays-v25.json','cord-picks.ts']);
   for(const {file,sha256} of JSON.parse(fs.readFileSync(path.join(out,'input-v25-sha256.json'),'utf8').replace(/^\uFEFF/,''))) if(!allowed.has(path.basename(file))) {
     let content=fs.readFileSync(path.resolve(__dirname,'..',file));
-    // v25h adds only the shared glow utility to the retained contact card.
-    if(path.basename(file)==='ContactCard.tsx')content=content.toString('utf8').replace('v17-contact hl-glow','v17-contact');
     assert.equal(crypto.createHash('sha256').update(content).digest('hex'),sha256,file+' protected');
   }
   assert.deepEqual(report.consoleErrors,[]); assert.deepEqual(report.pageErrors,[]); assert.deepEqual(report.httpErrors,[]);
