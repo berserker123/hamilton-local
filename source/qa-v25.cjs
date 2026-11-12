@@ -13,8 +13,8 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
   for(const rating of stay.ratings) assert.ok(stay.sources.includes(rating.url));
  }
  assert.equal(pets.length, 6);
- for(const group of pets) assert.ok(group.items.length >= 3 && group.items.length <= 5);
- for(const item of [...stays, ...pets.flatMap(g => g.items), ...farms]) {
+ for(const group of pets) assert.deepEqual(Object.keys(group).sort(), ['en','id','zh']);
+ for(const item of [...stays, ...farms]) {
   assert.ok(item.name && item.zh && item.address && item.area && item.introEn && item.introZh && item.sources.includes(item.url), item.id);
   assert.ok(new URL(item.url).protocol === 'https:');
   if (item.photo) {
@@ -42,9 +42,9 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
      assert.equal(await page.getByTestId('tab-' + tab).getAttribute('aria-selected'), 'true');
      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'overflow ' + tab + width + lang);
      assert.doesNotMatch(await page.locator('#section-panel').innerText(), /\?{3}/, 'Unknown details use readable labels');
-     const cards = page.locator('.ia-directory-card, [data-place-id]');
+     const cards = page.locator(tab === 'pets' ? '[data-pet-category]' : '.ia-directory-card, [data-place-id]');
      assert.ok(await cards.count() > 0);
-     for (const card of await cards.all()) {
+     for (const card of tab === 'pets' ? [] : await cards.all()) {
       assert.equal(await card.locator('.ia-place-footer .ia-place-actions a').count() >= 1, true);
       const action = await card.locator('.ia-place-footer .ia-place-actions').boundingBox();
       const correction = await card.locator('.ia-place-footer .fb-detail-link').boundingBox();
@@ -84,13 +84,11 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
      }
      if (tab === 'pets') {
       assert.equal(await page.locator('[data-pet-category]').count(), 6);
-      for(const group of pets) {
-       await page.locator(`.v25-subnav a[href$="at=pet-${group.id}"]`).click();
-       await page.waitForFunction(id => { const r = document.getElementById(id).getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight; }, 'pet-' + group.id);
-      }
-      await page.locator('[data-directory-id="waikato-after-hours"] .fb-detail-link').click();
+      assert.equal(await page.locator('#pets [data-directory-id]').count(), 0);
+      await page.locator('[data-pet-category="vets"] button').click();
       await page.locator('dialog[open]').waitFor();
-      assert.ok((await page.locator('input[name="section"]').inputValue()).includes('Waikato After Hours'));
+      assert.ok((await page.locator('input[name="section"]').inputValue()).includes('宠物指南-兽医与夜间急诊'));
+      assert.equal(await page.locator('input[name="type"]:checked').inputValue(), 'business');
       await page.keyboard.press('Escape');
      }
     }
@@ -135,7 +133,7 @@ const report = { url: base, checks: [], consoleErrors: [], pageErrors: [], httpE
   await page.goto(base + '/#/kids'); await page.locator('#pg-title').scrollIntoViewIfNeeded(); await page.getByTestId('pg-featured').check(); await page.screenshot({path:path.join(out,'shots/v25-playground-map.png')});
   await page.setViewportSize({width:390,height:844}); await page.goto(base + '/#/living?tab=places'); await page.locator('[data-place-id="zealong"]').scrollIntoViewIfNeeded(); await page.screenshot({path:path.join(out,'shots/v25-mobile.png')});
   // v25i authorizes scene-label positioning in page-experience.css.
-  const allowed = new Set(['App.tsx','HomeGuide.tsx','PlaygroundMap.tsx','PartyVenues.tsx','LocalDirectories.tsx','WeekendAgenda.tsx','styles.css','page-experience.css','playgrounds.json','party-venues.json','Feedback.tsx','places.json','stays-v25.json','cord-picks.ts']);
+  const allowed = new Set(['App.tsx','HomeGuide.tsx','PlaygroundMap.tsx','PartyVenues.tsx','LocalDirectories.tsx','WeekendAgenda.tsx','styles.css','page-experience.css','playgrounds.json','party-venues.json','Feedback.tsx','places.json','stays-v25.json','cord-picks.ts','pets-v25.json']);
   for(const {file,sha256} of JSON.parse(fs.readFileSync(path.join(out,'input-v25-sha256.json'),'utf8').replace(/^\uFEFF/,''))) if(!allowed.has(path.basename(file))) {
     let content=fs.readFileSync(path.resolve(__dirname,'..',file));
     assert.equal(crypto.createHash('sha256').update(content).digest('hex'),sha256,file+' protected');

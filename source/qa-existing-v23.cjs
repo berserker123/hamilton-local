@@ -31,6 +31,11 @@ if(!kind){
   const check=" const baseline=require('../out/baseline-v24b.json');\n for(const [file,expected] of Object.entries(baseline)){if(['work/src/App.tsx','work/src/CordResult.tsx','work/src/Feedback.tsx','work/src/HomeGuide.tsx','work/src/PageExperience.tsx','work/src/PartyVenues.tsx','work/src/PlaygroundMap.tsx','work/src/WeekendAgenda.tsx','work/src/cord-picks.ts','work/src/styles.css','work/src/page-experience.css','work/src/party-venues.json','work/src/places.json','work/src/playgrounds.json'].includes(file))continue;assert.equal(hash(path.resolve(__dirname,'..',file)),expected,file+' retained from supplied v22');}\n const preserved=Object.keys(baseline).filter(name=>name.startsWith('work/public/photos/')&&name.endsWith('.webp')).length;\n";
   source=source.slice(0,start)+check+source.slice(end);
  }else if(kind==='v22'){
+  // The tool link restores focus after navigation on animation frames.
+  // Wait for the behavior rather than sampling it after a fixed delay.
+  const focusCheck="await wait(p,350);assert.equal(await p.evaluate(()=>document.activeElement.id),'tool-bins');";
+  assert.ok(source.includes(focusCheck));
+  source=source.replace(focusCheck,"await p.waitForFunction(()=>document.activeElement.id==='tool-bins');assert.equal(await p.evaluate(()=>document.activeElement.id),'tool-bins');");
   source=source.replace("require('../out/baseline-v21.json')","require('../out/baseline-v24b.json')");
   source=source.replace("['work/public/licenses/window-scenes.md','work/src/App.tsx','work/src/PageExperience.tsx','work/src/experience-model.ts','work/src/page-experience.css'].sort()","['work/src/App.tsx','work/src/CordResult.tsx','work/src/Feedback.tsx','work/src/HomeGuide.tsx','work/src/PageExperience.tsx','work/src/PartyVenues.tsx','work/src/PlaygroundMap.tsx','work/src/WeekendAgenda.tsx','work/src/cord-picks.ts','work/src/page-experience.css','work/src/party-venues.json','work/src/places.json','work/src/playgrounds.json','work/src/styles.css'].sort()");
  }else{

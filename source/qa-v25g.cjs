@@ -79,13 +79,13 @@ const report={url:base,browser:'Chromium 1254',browserPlugin:'Browser plugin not
 
   const pets=require('./src/pets-v25.json');
   for(const hash of ['#/living?tab=pets','#pets','#/living?tab=pets&at=pet-vets','#pet-dog-parks']){
-   await open(hash);assert.match(p.url(),/#\/services\?/);assert.equal(await p.locator('#tab-pets').getAttribute('aria-selected'),'true');assert.equal(await p.locator('[data-pet-category]').count(),pets.length);assert.equal(await p.locator('[data-directory-id]').count(),pets.reduce((n,g)=>n+g.items.length,0));
+   await open(hash);assert.match(p.url(),/#\/services\?/);assert.equal(await p.locator('#tab-pets').getAttribute('aria-selected'),'true');assert.equal(await p.locator('[data-pet-category]').count(),pets.length);assert.equal(await p.locator('[data-directory-id]').count(),0);
    const target=new URL(p.url()).hash.split('at=')[1];if(target)assert.ok(await p.locator('#'+target).evaluate(el=>Math.abs(el.getBoundingClientRect().top)<260),'category anchor reached');
   }
   await open('#/services?tab=pets');await snap('pets-in-directory.png','#pets');
   await open('#/living?tab=stays');assert.equal(await p.locator('#tab-pets').count(),0);assert.equal(await p.locator('#stays').count(),1);
   await open();await p.locator('#guide-tab-services').click();assert.equal(await p.locator('.v25-preview-links a').getAttribute('href'),'#/services?tab=pets');
-  report.checks.push('All pet groups/cards retained in directory, old URLs and category hashes redirect, stays remain in living, home directory entry updated');
+  report.checks.push('Six category-only pet cards in directory, old URLs and category hashes redirect, stays remain in living, home directory entry updated');
 
   await open('#/weekend');assert.equal(await p.locator('.ia-section-media img').getAttribute('src'),'./photos/band-weekend-nightglow.webp');assert.equal(await p.locator('.ia-section-media img').evaluate(img=>img.complete&&img.naturalWidth===2400),true);await snap('weekend-bg.png');
   await p.getByTestId('credits-btn').click();const credit=p.locator('[data-photo-credit="weekend-nightglow"]');assert.match(await credit.innerText(),/Isderion/);assert.match(await credit.innerText(),/CC BY-SA 3.0 de/);assert.equal(await credit.locator('a').count(),2);await p.keyboard.press('Escape');

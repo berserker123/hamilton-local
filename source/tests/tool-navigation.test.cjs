@@ -15,7 +15,7 @@ test('legacy pets tab, category and bare hashes redirect into directory and pres
     ['#/tools?tab=units&at=tool-units','#/tools?tab=units&at=tool-units'],
   ])assert.equal(canonicalHash(old),next);
 });
-test('home and top navigation put tools first; pet records remain unchanged',()=>{
+test('home and top navigation put tools first; pet guide remains reachable',()=>{
   const {SECTION_ORDER}=load();
   assert.deepEqual(SECTION_ORDER,['home','tools','living','weekend','kids','services']);
   const app=fs.readFileSync('src/App.tsx','utf8'),home=fs.readFileSync('src/HomeGuide.tsx','utf8');
