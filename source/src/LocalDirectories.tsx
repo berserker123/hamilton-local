@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, BedDouble, MapPin, PawPrint, X } from 'lucide-react';
-import { FeedbackLink } from './Feedback';
+import { FeedbackLink, useFeedback } from './Feedback';
 import STAYS from './stays-v25.json';
 import PETS from './pets-v25.json';
 import UPICK from './upick-v25.json';
@@ -62,7 +62,17 @@ export function Stays({ t }: { t: T }) {
   return <section id="stays" className="v25-directory"><div className="v25-directory-heading"><p className="ia-kicker">AROUND HAMILTON · STAYS</p><h2>{t('精选住宿', 'Stays')}</h2><p>{t('按区域找一处落脚点，房型、价格与空房请查看住宿页面。', 'Find a place to stay by area. Check the property page for rooms, prices and availability.')}</p></div><div className="ia-place-grid">{STAYS.map(item => <DirectoryCard key={item.id} item={item} label={item.type} kind="stay" t={t} onDetails={() => setSelected(item)} />)}</div>{selected && <StayDetail item={selected} t={t} close={() => setSelected(null)} />}</section>;
 }
 export function Pets({ t }: { t: T }) {
-  return <section id="pets" className="v25-directory"><div className="v25-directory-heading"><p className="ia-kicker">AROUND HAMILTON · PETS</p><h2>{t(PETS_NAME.zh, PETS_NAME.en)}</h2><p>{t('日常用品、寄养、美容和看诊，按需要查找。出发前核对预约与最新安排。', 'Find supplies, boarding, grooming and veterinary care. Check appointments and current arrangements before visiting.')}</p></div><nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{PETS.map(group => <a key={group.id} href={'#/services?tab=pets&at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>{PETS.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}><h2>{t(group.zh, group.en)}</h2><div className="ia-place-grid">{group.items.map(item => <DirectoryCard key={item.id} item={item} kind="pet" t={t} />)}</div></section>)}</section>;
+  const { open } = useFeedback();
+  return <section id="pets" className="v25-directory">
+    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="六类宠物服务，商家招募中。欢迎咨询入驻与广告合作。" introEn="Six pet service categories. Merchant listings and advertising enquiries are welcome." t={t} />
+    <div className="v25k-pet-grid">{PETS.map(group => <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
+      <PawPrint className="v25k-pet-icon" aria-hidden="true" />
+      <h3 lang="zh-CN">{group.zh}</h3>
+      <p className="v25k-pet-english" lang="en-NZ">{group.en}</p>
+      <p className="v25k-pet-status">商家招募中 · Listings coming soon</p>
+      <button type="button" className="v25k-pet-enquiry" aria-haspopup="dialog" onClick={e => open('宠物指南-' + group.zh, e.currentTarget, 'business', '宠物指南-' + group.zh + '：商家入驻 / 广告合作')}>商家入驻 / 广告合作<ArrowUpRight aria-hidden="true" /></button>
+    </article>)}</div>
+  </section>;
 }
 export function UPick({ t }: { t: T }) {
   return <section id="upick" className="v25-directory v25-directory-group"><div className="v25-directory-heading"><p className="ia-kicker">AROUND HAMILTON · U-PICK</p><h2>{t('季节采摘', 'U-Pick farms')}</h2><p>{t('果季与开放日随天气、成熟度和余量变化；出发前请确认开放。未核实的月份标为「待确认」。', 'Seasons and opening days vary with weather, ripeness and availability. Confirm opening before visiting. Unverified months are marked Unconfirmed.')}</p></div><div className="ia-place-grid">{UPICK.map(item => <DirectoryCard key={item.id} item={item} t={t} kind="upick" official><p className="v25-season">{t(item.fruitZh, item.fruitEn)}<br />{t('采摘月份：', 'Picking months: ')}{t(item.seasonZh, item.seasonEn)}</p><p className="v25-confirm">{t('出发前请确认开放', 'Confirm opening before visiting')}</p></DirectoryCard>)}</div></section>;

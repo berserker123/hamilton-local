@@ -6,7 +6,7 @@ const report={url:'http://127.0.0.1:4186',browserPlugin:'Browser plugin not avai
 const targets=[
  ['places','living?tab=places','.ia-place'],['grocers','living?tab=grocers','.ia-market-card'],
  ['upick','living?tab=upick','.ia-directory-card'],['stays','living?tab=stays','.ia-directory-card'],
- ['pets','services?tab=pets','.ia-directory-card'],['playground','kids?tab=map','.pg-place'],
+ ['pets','services?tab=pets','[data-pet-category]'],['playground','kids?tab=map','.pg-place'],
  ['family','kids?tab=places','.ia-place'],['parties','kids?tab=parties','.pv-row'],
  ['weekend','weekend?tab=picks','.wa-row'],['markets','weekend?tab=markets','.wa-row'],
  ['festivals','weekend?tab=festivals','.wa-row'],['directory','services?tab=home','.ia-category'],

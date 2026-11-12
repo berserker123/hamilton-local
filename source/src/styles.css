@@ -2153,3 +2153,17 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 }
 @media(prefers-reduced-motion:reduce) { .v25g-check-card summary>svg,.v25g-shortcut { transition:none; } }
 
+/* v25k: category-only recruitment cards. */
+.v25k-pet-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-rows:1fr; gap:16px; }
+.ia-root .v25k-pet-card { display:flex; flex-direction:column; align-items:flex-start; min-width:0; padding:22px; background:#262822; border:1px solid #484b40; border-radius:12px; box-shadow:none; }
+.ia-root .v25k-pet-card::before, .ia-root .v25k-pet-card::after { content:none; }
+.v25k-pet-icon { width:28px; height:28px; margin-bottom:14px; color:#d49a86; }
+.ia-root .v25k-pet-card h3 { margin:0; color:#f0eddf; font:600 21px/1.4 var(--serif); }
+.ia-root .v25k-pet-english { margin:4px 0 16px; color:#c1c4b6; font-size:13px; line-height:1.5; }
+.ia-root .v25k-pet-status { margin:auto 0 14px; color:#c1c4b6; font-size:12px; line-height:1.6; }
+.v25k-pet-enquiry { display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid #686c5b; border-radius:6px; background:transparent; color:#dedaca; font:inherit; font-size:13px; cursor:pointer; }
+.v25k-pet-enquiry svg { width:14px; height:14px; }
+.v25k-pet-enquiry:hover { background:#34372e; border-color:#a8ad98; }
+.v25k-pet-enquiry:focus-visible { outline:2px solid #e4cc99; outline-offset:3px; }
+@media(max-width:900px) { .v25k-pet-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .v25k-pet-grid { grid-template-columns:minmax(0,1fr); gap:12px; } .ia-root .v25k-pet-card { padding:18px; } }
