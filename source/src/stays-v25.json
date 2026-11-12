@@ -1,0 +1,290 @@
+[
+  {
+    "id": "argent-motor-lodge",
+    "name": "Argent Motor Lodge",
+    "zh": "Argent 汽车旅馆",
+    "type": "Motel",
+    "area": "Melville, Hamilton",
+    "address": "27 Lorne Street, Melville, Hamilton",
+    "introZh": "邻近医院的汽车旅馆，客房配有厨房。",
+    "introEn": "A motel near the hospitals, with kitchens in the rooms.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d2549355-Reviews-Argent_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d2549355-Reviews-Argent_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Argent-Motor-Lodge.h6068442.Hotel-Information",
+      "https://www.booking.com/hotel/nz/argent-motor-lodge.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "9.4/10",
+        "count": 742,
+        "url": "https://www.booking.com/hotel/nz/argent-motor-lodge.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.9/5",
+        "count": 1058,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d2549355-Reviews-Argent_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.6/10",
+        "count": 451,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Argent-Motor-Lodge.h6068442.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "astra-motor-lodge",
+    "name": "Astra Motor Lodge",
+    "zh": "Astra 汽车旅馆",
+    "type": "Motel",
+    "area": "Melville, Hamilton",
+    "address": "47 Kahikatea Drive, Melville, Hamilton",
+    "introZh": "位于 Melville 的汽车旅馆，提供停车与洗衣设施。",
+    "introEn": "A Melville motel with parking and laundry facilities.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d4076449-Reviews-Astra_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d4076449-Reviews-Astra_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Astra-Motor-Lodge.h9626470.Hotel-Information",
+      "https://www.booking.com/hotel/nz/astra-motor-lodge.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "8.7/10",
+        "count": 549,
+        "url": "https://www.booking.com/hotel/nz/astra-motor-lodge.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.8/5",
+        "count": 424,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d4076449-Reviews-Astra_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.2/10",
+        "count": 265,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Astra-Motor-Lodge.h9626470.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "albert-court-motor-lodge",
+    "name": "Albert Court Motor Lodge",
+    "zh": "Albert Court 汽车旅馆",
+    "type": "Motel",
+    "area": "Hamilton East, Hamilton",
+    "address": "29 Albert Street, Hamilton East, Hamilton",
+    "introZh": "位于 Hamilton East，客房配有小厨房。",
+    "introEn": "A Hamilton East motel with kitchenettes in the rooms.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1756071-Reviews-Albert_Court_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1756071-Reviews-Albert_Court_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Albert-Court-Motor-Lodge.h8451493.Hotel-Information",
+      "https://www.booking.com/hotel/nz/albert-court-motor-lodge.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "9.2/10",
+        "count": 491,
+        "url": "https://www.booking.com/hotel/nz/albert-court-motor-lodge.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.8/5",
+        "count": 458,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1756071-Reviews-Albert_Court_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.8/10",
+        "count": 368,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Albert-Court-Motor-Lodge.h8451493.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "quantum-lodge-motor-inn",
+    "name": "Quantum Lodge Motor Inn",
+    "zh": "Quantum 汽车旅馆",
+    "type": "Motel",
+    "area": "Pukete, Hamilton",
+    "address": "1 Karewa Place, Pukete, Hamilton",
+    "introZh": "靠近 The Base，提供泳池与洗衣设施。",
+    "introEn": "A motel near The Base with a pool and laundry facilities.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d643009-Reviews-Quantum_Lodge_Motor_Inn-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d643009-Reviews-Quantum_Lodge_Motor_Inn-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Quantum-Lodge-Motor-Inn.h101286973.Hotel-Information",
+      "https://www.booking.com/hotel/nz/quantum-lodge-motor-inn.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "9.3/10",
+        "count": 784,
+        "url": "https://www.booking.com/hotel/nz/quantum-lodge-motor-inn.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.8/5",
+        "count": 260,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d643009-Reviews-Quantum_Lodge_Motor_Inn-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.6/10",
+        "count": 115,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Quantum-Lodge-Motor-Inn.h101286973.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "atrium-on-ulster",
+    "name": "Atrium on Ulster",
+    "zh": "Ulster 中庭汽车旅馆",
+    "type": "Motel",
+    "area": "Whitiora, Hamilton",
+    "address": "281–285 Ulster Street, Whitiora, Hamilton",
+    "introZh": "位于 Ulster Street，提供小厨房与健身房。",
+    "introEn": "An Ulster Street motel with kitchenettes and a gym.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1118088-Reviews-Atrium_on_Ulster-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1118088-Reviews-Atrium_on_Ulster-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Atrium-On-Ulster.h9626504.Hotel-Information",
+      "https://www.booking.com/hotel/nz/atrium-on-ulster.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "8.6/10",
+        "count": 998,
+        "url": "https://www.booking.com/hotel/nz/atrium-on-ulster.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.6/5",
+        "count": 402,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1118088-Reviews-Atrium_on_Ulster-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.2/10",
+        "count": 1000,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Atrium-On-Ulster.h9626504.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "park-view-motor-lodge",
+    "name": "Park View Motor Lodge",
+    "zh": "Park View 汽车旅馆",
+    "type": "Motel",
+    "area": "Whitiora, Hamilton",
+    "address": "450 Tristram Street, Hamilton",
+    "introZh": "靠近 Waikato Stadium，设有泳池。",
+    "introEn": "A motel near Waikato Stadium with a swimming pool.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d662148-Reviews-Park_View_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d662148-Reviews-Park_View_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Park-View-Motor-Lodge-In-Hamilton.h2564521.Hotel-Information",
+      "https://www.booking.com/hotel/nz/park-view-motor-lodge.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "8.9/10",
+        "count": 425,
+        "url": "https://www.booking.com/hotel/nz/park-view-motor-lodge.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.6/5",
+        "count": 242,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d662148-Reviews-Park_View_Motor_Lodge-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.4/10",
+        "count": 757,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Park-View-Motor-Lodge-In-Hamilton.h2564521.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "bks-premier-motel-hamilton",
+    "name": "BKs Premier Motel Hamilton",
+    "zh": "BKs 精品汽车旅馆",
+    "type": "Motel",
+    "area": "Melville, Hamilton",
+    "address": "50 Tawa Street, Melville, Hamilton",
+    "introZh": "位于医院附近，提供小厨房与洗衣设施。",
+    "introEn": "A motel near the hospitals with kitchenettes and laundry facilities.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d10414289-Reviews-BKs_Premier_Motel_Hamilton-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d10414289-Reviews-BKs_Premier_Motel_Hamilton-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.co.uk/Hamilton-Hotels-BKs-Premier-Motel-Hamilton.h14834245.Hotel-Information",
+      "https://www.booking.com/hotel/nz/bks-hamilton-motel.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "9.1/10",
+        "count": 794,
+        "url": "https://www.booking.com/hotel/nz/bks-hamilton-motel.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.7/5",
+        "count": 103,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d10414289-Reviews-BKs_Premier_Motel_Hamilton-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "9.4/10",
+        "count": 358,
+        "url": "https://www.expedia.co.uk/Hamilton-Hotels-BKs-Premier-Motel-Hamilton.h14834245.Hotel-Information"
+      }
+    ]
+  },
+  {
+    "id": "jetpark-hamilton-airport",
+    "name": "JetPark Hotel Hamilton Airport",
+    "zh": "JetPark 汉密尔顿机场酒店",
+    "type": "Hotel",
+    "area": "Ohaupo / Hamilton Airport",
+    "address": "201 Airport Road, RD2, Ohaupo",
+    "introZh": "机场附近的酒店，提供餐厅与室外泳池。",
+    "introEn": "A hotel near the airport with a restaurant and outdoor pool.",
+    "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1187051-Reviews-Jetpark_Hotel_Hamilton_Airport-Hamilton_Waikato_Region_North_Island.html",
+    "sources": [
+      "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1187051-Reviews-Jetpark_Hotel_Hamilton_Airport-Hamilton_Waikato_Region_North_Island.html",
+      "https://www.expedia.com/Hamilton-Hotels-Jet-Park-Hotel-Hamilton-Airport.h4281130.Hotel-Information",
+      "https://www.booking.com/hotel/nz/jetpark-hamilton-airport-new-zealand.html"
+    ],
+    "ratings": [
+      {
+        "platform": "Booking.com",
+        "score": "9.0/10",
+        "count": 1720,
+        "url": "https://www.booking.com/hotel/nz/jetpark-hamilton-airport-new-zealand.html"
+      },
+      {
+        "platform": "Tripadvisor",
+        "score": "4.5/5",
+        "count": 68,
+        "url": "https://www.tripadvisor.co.nz/Hotel_Review-g255108-d1187051-Reviews-Jetpark_Hotel_Hamilton_Airport-Hamilton_Waikato_Region_North_Island.html"
+      },
+      {
+        "platform": "Expedia",
+        "score": "8.6/10",
+        "count": 634,
+        "url": "https://www.expedia.com/Hamilton-Hotels-Jet-Park-Hotel-Hamilton-Airport.h4281130.Hotel-Information"
+      }
+    ]
+  }
+]

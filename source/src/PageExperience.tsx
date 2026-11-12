@@ -1,3 +1,4 @@
+import { placeNames } from './place-names';
 import React, { useEffect, useRef, useState } from 'react';
 import { currentNZSeason, nextScene, nextSeason, SCENES, SEASON_LABELS, Season } from './experience-model';
 import { CordPick, createDrawBag, familyPicks } from './cord-picks';
@@ -91,7 +92,7 @@ export function usePageExperience(route: string, lang: 'zh' | 'en', pools: { ser
     : route === 'living' ? (zh ? `当前季节：${SEASON_LABELS[season][0]}` : `Season: ${SEASON_LABELS[season][1]}`)
     : ['kids', 'services', 'tools'].includes(route) ? label
     : (burst ? (zh ? (reduced ? `热气球祝福已送达，第 ${burst} 次` : `热气球已升空，第 ${burst} 次`) : `Balloons ${reduced ? 'celebration' : 'launched'}, ${burst}`) : (zh ? '拉一下，让周末升空' : 'A little lift for the weekend')));
-  return { scene, season, burst, active, reduced, activate, label, status, result: result?.route === route ? result : null, dismiss: () => setResult(null), badge: route === 'living' ? SEASON_LABELS[season][zh ? 0 : 1].slice(0, zh ? 1 : 2) : undefined };
+  return { scene, season, burst, active, reduced, activate, label, status: placeNames(status, lang), result: result?.route === route ? result : null, dismiss: () => setResult(null), badge: route === 'living' ? SEASON_LABELS[season][zh ? 0 : 1].slice(0, zh ? 1 : 2) : undefined };
 }
 
 const PALETTES = [ ['#d48852', '#efd9ac', '#9e5638'], ['#7d9c88', '#e4d8b7', '#3d695e'], ['#b9a575', '#f3e6c6', '#82724e'], ['#718b9a', '#dbd9c8', '#445d6c'], ['#bc7262', '#ecd2b7', '#854940'] ];

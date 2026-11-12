@@ -4,17 +4,17 @@ import { ArrowUpRight, Check, MessageSquare, Send, X } from 'lucide-react';
 import { deliverFeedback, feedbackMailto, FEEDBACK_TYPES, FeedbackContext, FeedbackDraft, FeedbackErrors, isPreviewFeedback, validateFeedback } from './feedback-model';
 
 type Lang = 'zh' | 'en';
-type FeedbackRequest = FeedbackContext & { type: string };
-type FeedbackService = { lang: Lang; open: (section?: string, origin?: HTMLElement, type?: string) => void };
+type FeedbackRequest = FeedbackContext & { type: string; message?: string };
+type FeedbackService = { lang: Lang; open: (section?: string, origin?: HTMLElement, type?: string, message?: string) => void };
 const FeedbackServiceContext = createContext<FeedbackService | null>(null);
-const useFeedback = () => useContext(FeedbackServiceContext)!;
+export const useFeedback = () => useContext(FeedbackServiceContext)!;
 
 export function FeedbackProvider({ lang, section, children }: { lang: Lang; section: string; children: React.ReactNode }) {
   const [request, setRequest] = useState<FeedbackRequest | null>(null);
   const origin = useRef<HTMLElement | null>(null);
-  const open = useCallback((detail?: string, element?: HTMLElement, type = 'correction') => {
+  const open = useCallback((detail?: string, element?: HTMLElement, type = 'correction', message?: string) => {
     origin.current = element ?? document.activeElement as HTMLElement;
-    setRequest({ url: location.href, section: detail ? section + ' · ' + detail : section, type });
+    setRequest({ url: location.href, section: detail ? section + ' · ' + detail : section, type, message });
   }, [section]);
   const close = useCallback(() => {
     setRequest(null);
@@ -59,7 +59,7 @@ export function FeedbackLauncher() {
       el.style.right = `max(${gap}px, env(safe-area-inset-right))`;
       el.style.bottom = `max(${gap}px, env(safe-area-inset-bottom))`;
       const bounds = el.getBoundingClientRect();
-      const blockers = Array.from(document.querySelectorAll<HTMLElement>('.v20-cord, .leaflet-control, .ia-weather, .v22-result, .sb-hero-location, .v22-scene-label'))
+      const blockers = Array.from(document.querySelectorAll<HTMLElement>('.v20-cord, .leaflet-control, .ia-weather, .v22-result, .sb-hero-location, .v22-scene-label, .ia-place-actions, .pg-place-actions, .ia-market-actions'))
         .map(node => ({ box: node.getBoundingClientRect(), control: node.matches('.v20-cord, .leaflet-control, .ia-weather') }))
         .filter(({ box }) => box.width && box.height && box.bottom > 0 && box.top < innerHeight);
       const xs = [...new Set([bounds.left, ...blockers.flatMap(({ box }) => [box.left - bounds.width - 12, box.right + 12])])]
@@ -89,7 +89,7 @@ export function FeedbackLauncher() {
 function FeedbackDialog({ lang, context, close }: { lang: Lang; context: FeedbackRequest; close: () => void }) {
   const t = (zh: string, en: string) => lang === 'zh' ? zh : en;
   const dialog = useRef<HTMLDialogElement>(null);
-  const [draft, setDraft] = useState<FeedbackDraft>({ type: context.type, message: '', name: '', contact: '', botcheck: '' });
+  const [draft, setDraft] = useState<FeedbackDraft>({ type: context.type, message: context.message ?? '', name: '', contact: '', botcheck: '' });
   const [errors, setErrors] = useState<FeedbackErrors>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'sent' | 'email' | 'error'>('idle');
   const busy = useRef(false);
@@ -103,7 +103,11 @@ function FeedbackDialog({ lang, context, close }: { lang: Lang; context: Feedbac
     if (scrollbar) document.body.style.paddingRight = `${parseFloat(getComputedStyle(document.body).paddingRight) + scrollbar}px`;
     document.body.style.overflow = 'hidden';
     element.showModal();
-    element.querySelector<HTMLInputElement>('input[name="type"]:checked')?.focus({ preventScroll: true });
+    if (context.message) {
+      const message = element.querySelector<HTMLTextAreaElement>('#fb-message');
+      message?.focus({ preventScroll: true });
+      message?.setSelectionRange(message.value.length, message.value.length);
+    } else element.querySelector<HTMLInputElement>('input[name="type"]:checked')?.focus({ preventScroll: true });
     return () => { controller.current?.abort(); element.close(); document.body.style.overflow = overflow; document.body.style.paddingRight = padding; };
   }, []);
   useEffect(() => { if (status === 'sent' || status === 'email' || status === 'error') statusHeading.current?.focus(); }, [status]);

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
 import { CordPick } from './cord-picks';
+import { placeNames } from './place-names';
 
 type Result = { pick: CordPick; draw: number; route: string };
 const TAGS: Record<string, [string, string]> = { playground: ['游乐场', 'Playground'], venue: ['亲子好去处', 'Family venue'], event: ['亲子活动', 'Family event'], category: ['服务分类', 'Service category'], tip: ['生活小锦囊', 'Everyday tip'] };
@@ -29,8 +30,8 @@ export function CordResult({ result, dismiss, lang }: { result: Result | null; d
     {route === 'tools' && <div className="v22-toolbox" aria-hidden="true"><div className="v22-toolbox-lid" /><div className="v22-toolbox-base"><span>＋</span></div></div>}
     <p className="v22-draw-eyebrow">{route === 'kids' ? 'A LITTLE ADVENTURE' : route === 'services' ? (zh ? '这一页，刚好翻到' : 'OPENED TO THIS PAGE') : 'A LITTLE HELP FOR TODAY'}</p>
     <span className="v22-type-tag">{TAGS[pick.type]?.[zh ? 0 : 1]}</span>
-    <h2 id="cord-result-name">{pick.name[lang]}</h2>
-    <p className="v22-result-info">{pick.info[lang]}</p>
+    <h2 id="cord-result-name">{placeNames(pick.name[lang], lang)}</h2>
+    <p className="v22-result-info">{placeNames(pick.info[lang], lang)}</p>
     <a className="v22-result-link" href={pick.href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} onClick={() => {
       if (external) close(); else dismiss();
       if (pick.target) requestAnimationFrame(() => requestAnimationFrame(() => { const el = document.getElementById(pick.target!) || document.querySelector<HTMLElement>(`[data-place-id="${pick.target}"]`); el?.scrollIntoView({ block: 'center', behavior: 'instant' }); el?.setAttribute('tabindex', '-1'); el?.focus({ preventScroll: true }); }));

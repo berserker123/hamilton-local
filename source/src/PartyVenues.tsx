@@ -7,7 +7,7 @@ type Venue = typeof VENUES[number] & { service_area_zh?: string; service_area_en
 const ITEMS: Venue[] = VENUES;
 const REGION_COUNTS = Object.fromEntries(PARTY_REGIONS.map(group => [group.id, filterPartyVenues(ITEMS, group.id, 'all').length]));
 
-export function PartyVenues({ t }: { t: T }) {
+export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
   const [region, setRegion] = useState('Hamilton');
   const [type, setType] = useState('all');
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -31,15 +31,15 @@ export function PartyVenues({ t }: { t: T }) {
     <p className="pv-coverage caption-5">{t('地区数量包含官网明确覆盖当地的上门服务，服务单独分组；各地区数量不相加。左右滑动可查看全部地区。', 'Area counts include mobile services with stated local coverage, shown separately. Counts overlap. Scroll sideways for more areas.')}</p>
     <div id="party-results" className="wa-results" key={`${region}-${type}`}>
       {shownRegions.map(group => <section key={group.id} className="wa-region" data-party-group={group.id} aria-labelledby={`party-heading-${group.id.replaceAll(' ', '-')}`}>
-        <div className="wa-region-heading"><h3 className="heading-5" id={`party-heading-${group.id.replaceAll(' ', '-')}`}>{t(group.zh, group.en)}<span className="caption-5">{t(group.en, '')}</span></h3><span className="caption-4">{group.venues.length} {t('项', 'options')}</span></div>
+        <div className="wa-region-heading"><h3 className="heading-5" id={`party-heading-${group.id.replaceAll(' ', '-')}`}>{t(group.zh, group.en)}</h3><span className="caption-4">{group.venues.length} {t('项', 'options')}</span></div>
         <div className="wa-market-rows" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
           {partyPage(group.venues, !!expanded[group.id]).map(venue => {
             const category = PARTY_TYPES.find(item => item.id === venue.type)!;
             return <article key={venue.id} className="wa-row pv-row" data-party-id={venue.id}>
-              <div className="wa-time caption-4"><span>{t(category.zh, category.en)}</span><span className="pv-town caption-5">{venue.town}</span></div>
+              <div className="wa-time caption-4"><span>{t(category.zh, category.en)}</span><span className="pv-town caption-5">{t(venue.town, venue.town)}</span></div>
               <div className="wa-main">
-                <h4 className="title-3">{t(venue.name_zh, venue.name_en)}</h4><p className="pv-english caption-5" lang="en-NZ">{t(venue.name_en, '')}</p>
-                <p className="wa-venue caption-4"><span>{venue.type === 'mobile' ? t('服务范围：', 'Service area: ') + t(venue.service_area_zh || venue.town, venue.service_area_en || venue.town) : venue.address}</span></p>
+                <h4 className="title-3">{lang === 'zh' ? venue.name_zh : venue.name_en}</h4><p className="pv-english caption-5" lang="en-NZ">{t(venue.name_en, '')}</p>
+                <p className="wa-venue caption-4"><span>{venue.type === 'mobile' ? t('服务范围：', 'Service area: ') + t(venue.service_area_zh || venue.town, venue.service_area_en || venue.town) : t(venue.address, venue.address)}</span></p>
                 <p className="wa-hours caption-4">{t('适合年龄：', 'Ages: ')}{t(venue.ages_zh, venue.ages_en)}</p>
                 <p className="pv-details caption-4">{t(venue.details_zh, venue.details_en)}</p>
               </div>

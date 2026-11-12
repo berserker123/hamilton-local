@@ -5,6 +5,7 @@ import { SUPERMARKETS, ROUTES } from './local-data';
 import PLAYGROUNDS from './playgrounds.json';
 import TEASERS from './teaser-images.json';
 import { guideStats, PREVIEW_PICKS } from './home-guide-data';
+import { PETS_NAME } from './LocalDirectories';
 
 type T = (zh: string, en: string) => string;
 type ServiceCategories = Record<string, string[][]>;
@@ -12,8 +13,8 @@ const GUIDE_SECTIONS = [
   { id: 'living', zh: '本地生活', en: 'Local Living', Icon: Store, href: '#/living?tab=grocers', caption: { zh: '从附近的亚超开始。', en: 'Start with the weekly shop.' } },
   { id: 'weekend', zh: '周末活动', en: "What's On", Icon: Calendar, href: '#/weekend?tab=picks', caption: { zh: '给周末，留一点期待。', en: 'Make room for the weekend.' } },
   { id: 'kids', zh: '亲子遛娃', en: 'Kids & Family', Icon: Trees, href: '#/kids?tab=map', caption: { zh: '下一站，去游乐场。', en: 'A little adventure, close by.' } },
-  { id: 'services', zh: '便民黄页', en: 'Local Services', Icon: Wrench, href: '#/services?tab=home', caption: { zh: '家里家外，按需查找。', en: 'Find the right kind of help.' } },
   { id: 'tools', zh: '实用工具箱', en: 'Daily Essentials', Icon: ShieldCheck, href: '#/tools?tab=transport', caption: { zh: '先看看，哪路公交经过。', en: 'Find your way around town.' } },
+  { id: 'services', zh: '便民黄页', en: 'Local Services', Icon: Wrench, href: '#/services?tab=home', caption: { zh: '家里家外，按需查找。', en: 'Find the right kind of help.' } },
 ] as const;
 
 export function GuideStats({ t, categories }: { t: T; categories: ServiceCategories }) {
@@ -72,12 +73,12 @@ export function GuideMarquee({ t }: { t: T }) {
 export function GuidePreview({ t, categories }: { t: T; categories: ServiceCategories }) {
   const [selected, setSelected] = useState(0);
   const section = GUIDE_SECTIONS[selected];
-  const rows = section.id === 'living' ? SUPERMARKETS.filter(item => ['newsave-tristram', 'wellmart', 'garden-fresh'].includes(item.id)).map(item => ({ id: item.id, title: t(item.zhName, item.name), detail: item.suburb }))
-    : section.id === 'weekend' ? PREVIEW_PICKS.map(item => ({ id: item.id, title: t(item.title_zh, item.title_en), detail: `${item.dates.map(date => date.slice(5).replace('-', '/')).join(' · ')} · ${item.town}` }))
-    : section.id === 'kids' ? PLAYGROUNDS.slice(0, 3).map(item => ({ id: item.id, title: t(item.zh, item.name), detail: item.area }))
+  const rows = section.id === 'living' ? SUPERMARKETS.filter(item => ['newsave-tristram', 'wellmart', 'garden-fresh'].includes(item.id)).map(item => ({ id: item.id, title: t(item.zhName, item.name), detail: t(item.suburb, item.suburb) }))
+    : section.id === 'weekend' ? PREVIEW_PICKS.map(item => ({ id: item.id, title: t(item.title_zh, item.title_en), detail: t(`${item.dates.map(date => date.slice(5).replace('-', '/')).join(' · ')} · ${item.town}`, `${item.dates.map(date => date.slice(5).replace('-', '/')).join(' · ')} · ${item.town}`) }))
+    : section.id === 'kids' ? PLAYGROUNDS.slice(0, 3).map(item => ({ id: item.id, title: t(item.zh, item.name), detail: t(item.area, item.area) }))
     : section.id === 'services' ? categories.home.map(([zh, en], i) => ({ id: String(i), title: t(zh, en), detail: t('内容整理中 · 暂无商家', 'Coming soon · No listings yet') }))
     : ROUTES.slice(0, 3).map(item => ({ id: item.n, title: `${item.n} · ${item.name}`, detail: t('公交线路 · 查看交通信息', 'Bus route · View transport information') }));
-  return <Reveal className="v23-discover"><div className="sb-container">
+  return <Reveal id="overview" className="v23-discover"><div className="sb-container">
     <div className="v23-section-heading"><div><p className="ia-kicker">{t('五个入口，一份本地指南', 'FIVE SECTIONS. ONE LOCAL GUIDE.')}</p><h2>{t('先看看，再出发。', 'A little look. Then head out.')}</h2></div><p>{t('点选一个版块，看看里面有什么。', 'Pick a section. See what’s inside.')}</p></div>
     <div className="v23-feature"><div className="v23-feature-tabs" role="tablist" aria-label={t('指南版块预览', 'Guide section previews')} onKeyDown={event => {
       const next = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? (selected + 1) % 5 : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? (selected + 4) % 5 : event.key === 'Home' ? 0 : event.key === 'End' ? 4 : -1;
@@ -87,6 +88,7 @@ export function GuidePreview({ t, categories }: { t: T; categories: ServiceCateg
         <div id="guide-preview" role="tabpanel" tabIndex={0} aria-labelledby={'guide-tab-' + section.id}><div key={section.id} className="v23-preview-content">
           <div className="v23-preview-photo"><img src={'./' + TEASERS.lockedMix[section.id]} alt="" loading="lazy" /><div><span className="ia-kicker">HAMILTON & WAIKATO</span><h3>{t(section.caption.zh, section.caption.en)}</h3></div></div>
           <div className="v23-preview-records">{rows.map(row => <a key={row.id} href={section.href} data-preview-record={row.id}><span className="v23-record-icon"><section.Icon aria-hidden="true" /></span><span><strong>{row.title}</strong><small>{row.detail}</small></span><ArrowUpRight aria-hidden="true" /></a>)}</div>
+          {section.id === 'living' && <nav className="v25-preview-links" aria-label={t('更多本地生活', 'More local living')}><a href="#/living?tab=upick">{t('季节采摘 U-Pick', 'U-Pick farms')}</a><a href="#/living?tab=stays">{t('精选住宿 Stays', 'Stays')}</a><a href="#/living?tab=pets">{t(PETS_NAME.zh, PETS_NAME.en)}</a></nav>}
           <a className="v23-preview-open" href={section.href}>{t('进入', 'Explore')} {t(section.zh, section.en)}<ArrowRight aria-hidden="true" /></a>
         </div></div>
       </div>

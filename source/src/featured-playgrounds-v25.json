@@ -1,0 +1,27 @@
+{
+  "magical-bridge-playground": {
+    "zh": "约8000平方米的围栏场地，无障碍分区、玩水区和遮阳。",
+    "en": "An 8,000 m² fenced site with accessible play zones, water play and shade.",
+    "sources": ["https://hamilton.govt.nz/community-spaces/playgrounds/detail/magical-bridge-playground/"]
+  },
+  "hamilton-lake-domain": {
+    "zh": "大型湖畔游乐场，市政列有无障碍器材和无障碍厕所。",
+    "en": "A large lakeside playground with Council-listed accessible equipment and accessible toilets.",
+    "sources": ["https://hamilton.govt.nz/community-spaces/playgrounds/detail/hamilton-lake-domain/"]
+  },
+  "minogue-park-destination-playground": {
+    "zh": "大型游乐场，儿童滑索、玩沙玩水、蹦床和滑板车道，设厕所。",
+    "en": "A large playground with twin flying foxes, sand and water play, trampolines, scooter track and toilets.",
+    "sources": ["https://hamilton.govt.nz/community-spaces/playgrounds/detail/minogue-park-destination-playground/"]
+  },
+  "tauhara-park-destination-playground": {
+    "zh": "滑梯、儿童滑索和攀爬网，设遮阳、野餐桌和无障碍厕所。",
+    "en": "Slides, flying fox and climbing nets, with shade, picnic tables and accessible toilets.",
+    "sources": ["https://hamilton.govt.nz/community-spaces/playgrounds/detail/tauhara-park-destination-playground/"]
+  },
+  "hare-puke-park": {
+    "zh": "适合低龄及较大儿童，有大型攀爬网、遮阳帆、滑板车道和厕所。",
+    "en": "Play for younger and older children, with a large climbing net, shade sails, scooter track and toilets.",
+    "sources": ["https://hamilton.govt.nz/community-spaces/playgrounds/detail/hare-puke-park/"]
+  }
+}

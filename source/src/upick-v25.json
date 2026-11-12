@@ -1,0 +1,159 @@
+[
+  {
+    "id": "ruakura-berry-shop",
+    "name": "Ruakura Berry Shop",
+    "zh": "Ruakura 草莓采摘",
+    "fruitZh": "草莓",
+    "fruitEn": "Strawberries",
+    "seasonZh": "10月下旬起；结束月份 待确认",
+    "seasonEn": "From late October; closing month Unconfirmed",
+    "area": "Newstead · Hamilton",
+    "address": "11 Davison Road, Newstead, Hamilton 3286",
+    "introZh": "可自采草莓，也有鲜果冰淇淋；请自带容器。",
+    "introEn": "Pick strawberries and visit the real fruit ice cream shop; bring a container.",
+    "url": "https://www.ruakuraberry.co.nz/pick-your-own-berries",
+    "sources": [
+      "https://www.ruakuraberry.co.nz/",
+      "https://www.ruakuraberry.co.nz/pick-your-own-berries"
+    ]
+  },
+  {
+    "id": "whatawhata-berry-farm",
+    "name": "Whatawhata Berry Farm",
+    "zh": "Whatawhata 浆果农场",
+    "fruitZh": "草莓、蓝莓、黑莓、波森莓、覆盆子（按供应）",
+    "fruitEn": "Strawberries, blueberries, blackberries, boysenberries and raspberries, subject to availability",
+    "seasonZh": "待确认；查看农场当日采摘公告",
+    "seasonEn": "Unconfirmed; check the farm's picking updates",
+    "area": "Whatawhata · Hamilton",
+    "address": "1099 Whatawhata Road, Hamilton",
+    "introZh": "农场提供采摘容器，按采摘重量结算。",
+    "introEn": "The farm supplies picking containers and weighs your berries at checkout.",
+    "url": "https://www.whatawhataberryfarm.com/services/berry-picking",
+    "sources": [
+      "https://www.whatawhataberryfarm.com/services/berry-picking"
+    ]
+  },
+  {
+    "id": "tauwhare-berry-farm",
+    "name": "Tauwhare Berry Farm",
+    "zh": "Tauwhare 浆果农场",
+    "fruitZh": "草莓、覆盆子、黑莓",
+    "fruitEn": "Strawberries, raspberries and blackberries",
+    "seasonZh": "采摘月份 待确认；需先确认供应",
+    "seasonEn": "Picking months Unconfirmed; confirm availability first",
+    "area": "Matangi · Hamilton",
+    "address": "487 Tauwhare Road, RD4 Hamilton 3284",
+    "introZh": "可自采多种浆果，是否开放须电话或查看农场公告确认。",
+    "introEn": "Pick several berry varieties when available; phone or check farm updates first.",
+    "url": "https://tauwhareberryfarm.nz/",
+    "sources": [
+      "https://tauwhareberryfarm.nz/",
+      "https://tauwhareberryfarm.nz/berries"
+    ]
+  },
+  {
+    "id": "st-kilda-berry-farm",
+    "name": "St. Kilda Berry Farm",
+    "zh": "St. Kilda 草莓农场",
+    "fruitZh": "草莓（其他可采品种请确认）",
+    "fruitEn": "Strawberries; confirm other pickable varieties",
+    "seasonZh": "10月起；结束月份 待确认",
+    "seasonEn": "From October; closing month Unconfirmed",
+    "area": "Cambridge",
+    "address": "30 St. Kilda Road, Cambridge 3493",
+    "introZh": "剑桥 Cambridge 周边草莓采摘点，请自带带走水果的容器。",
+    "introEn": "A Cambridge berry farm with pick-your-own; bring a take-home container.",
+    "url": "https://www.stkildaberry.co.nz/pick-your-own",
+    "sources": [
+      "https://www.stkildaberry.co.nz/",
+      "https://www.stkildaberry.co.nz/pick-your-own"
+    ]
+  },
+  {
+    "id": "blueberry-country-ohaupo",
+    "name": "Blueberry Country — Ōhaupō Orchard",
+    "zh": "Blueberry Country 蓝莓园",
+    "fruitZh": "蓝莓",
+    "fruitEn": "Blueberries",
+    "seasonZh": "12–4月（依果况开放）",
+    "seasonEn": "December–April, subject to crop availability",
+    "area": "Ōhaupō",
+    "address": "397 Jary Road, RD1 Ōhaupō 3881",
+    "introZh": "Ōhaupō 果园提供蓝莓自采，出发前查看当季安排。",
+    "introEn": "Pick blueberries at the Ōhaupō orchard; check the current season before travelling.",
+    "url": "https://blueberry.co.nz/our-orchards/",
+    "sources": [
+      "https://blueberry.co.nz/our-orchards/"
+    ]
+  },
+  {
+    "id": "monavale-blueberries",
+    "name": "Monavale Blueberries",
+    "zh": "Monavale 有机蓝莓园",
+    "fruitZh": "有机蓝莓",
+    "fruitEn": "Organic blueberries",
+    "seasonZh": "待确认；官网预告2026年底重开，具体月份待公布",
+    "seasonEn": "Unconfirmed; reopening toward the end of 2026 announced, exact months pending",
+    "area": "Monavale · Cambridge",
+    "address": "178 Turkington Road, Monavale, Cambridge",
+    "introZh": "有机蓝莓园的季节性自采体验，开放消息见官网。",
+    "introEn": "Seasonal organic blueberry picking; check the orchard's opening announcement.",
+    "url": "https://monavaleblueberries.co.nz/visit/pick-your-own/",
+    "sources": [
+      "https://monavaleblueberries.co.nz/visit/pick-your-own/"
+    ]
+  },
+  {
+    "id": "lavender-backyard-garden",
+    "name": "Lavender Backyard Garden",
+    "zh": "薰衣草后院花园",
+    "fruitZh": "薰衣草、蓝莓",
+    "fruitEn": "Lavender and blueberries",
+    "seasonZh": "薰衣草11月下旬–1月底；蓝莓12月下旬–1月初",
+    "seasonEn": "Lavender: late November–January; blueberries: late December–early January",
+    "area": "Newstead · Hamilton",
+    "address": "398 Marshmeadow Road, RD6 Hamilton",
+    "introZh": "小型家庭花园提供薰衣草和短季蓝莓采摘。",
+    "introEn": "A family garden offering lavender picking and a short blueberry season.",
+    "url": "https://www.lavenderbackyard.co.nz/pages/lavender-farm-visit",
+    "sources": [
+      "https://www.lavenderbackyard.co.nz/pages/lavender-farm-visit",
+      "https://www.lavenderbackyard.co.nz/pages/lavender-farm-directions"
+    ]
+  },
+  {
+    "id": "tomtit-farm",
+    "name": "Tomtit Farm",
+    "zh": "Tomtit 鲜花农场",
+    "fruitZh": "时令鲜花（含大丽花、百日菊等）",
+    "fruitEn": "Seasonal flowers, including dahlias and zinnias",
+    "seasonZh": "12–4月；春季场次10–11月，须预约确认",
+    "seasonEn": "December–April; spring sessions October–November, confirm booking",
+    "area": "Matangi",
+    "address": "66 Webster Road, Matangi",
+    "introZh": "可预约自采鲜花，按桶选花并制作花束。",
+    "introEn": "Book a flower-picking session and gather seasonal blooms by the bucket.",
+    "url": "https://www.tomtitfarm.co.nz/pick-your-own-flowers",
+    "sources": [
+      "https://www.tomtitfarm.co.nz/pick-your-own-flowers"
+    ]
+  },
+  {
+    "id": "ryburn-gardens",
+    "name": "Ryburn Gardens",
+    "zh": "Ryburn 蓝莓园",
+    "fruitZh": "蓝莓",
+    "fruitEn": "Blueberries",
+    "seasonZh": "2026/27月份 待确认；上一季12–1月",
+    "seasonEn": "2026/27 months Unconfirmed; previous season December–January",
+    "area": "Newstead · Hamilton",
+    "address": "23 Ryburn Road, Newstead, Hamilton",
+    "introZh": "自带容器采蓝莓；新季开放日期请先向果园确认。",
+    "introEn": "Bring your own blueberry container; confirm the new season's opening dates first.",
+    "url": "https://www.ryburngardens.co.nz/",
+    "sources": [
+      "https://www.ryburngardens.co.nz/"
+    ]
+  }
+]
