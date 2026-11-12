@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<link rel="canonical" href="https://hamiltonlocal.nz/weekend/">
+<meta http-equiv="refresh" content="0; url=/weekend/">
+<title>本周活动精选 · Hamilton Local</title>
+<script>(function(){var D={"pages":[{"path":"/","route":"home","tab":"","sectionDefault":true},{"path":"/supermarkets","route":"living","tab":"grocers","sectionDefault":true},{"path":"/living/dining","route":"living","tab":"dining","sectionDefault":false},{"path":"/living/places","route":"living","tab":"places","sectionDefault":false},{"path":"/living/upick","route":"living","tab":"upick","sectionDefault":false},{"path":"/living/stays","route":"living","tab":"stays","sectionDefault":false},{"path":"/weekend","route":"weekend","tab":"picks","sectionDefault":true},{"path":"/weekend/markets","route":"weekend","tab":"markets","sectionDefault":false},{"path":"/weekend/festivals","route":"weekend","tab":"festivals","sectionDefault":false},{"path":"/kids","route":"kids","tab":"map","sectionDefault":true},{"path":"/kids/places","route":"kids","tab":"places","sectionDefault":false},{"path":"/kids/parties","route":"kids","tab":"parties","sectionDefault":false},{"path":"/services","route":"services","tab":"home","sectionDefault":true},{"path":"/services/trades","route":"services","tab":"trades","sectionDefault":false},{"path":"/services/daily","route":"services","tab":"daily","sectionDefault":false},{"path":"/services/pets","route":"services","tab":"pets","sectionDefault":false},{"path":"/tools/bins","route":"tools","tab":"bins","sectionDefault":true},{"path":"/tools/urgent","route":"tools","tab":"urgent","sectionDefault":false},{"path":"/tools/pay","route":"tools","tab":"pay","sectionDefault":false},{"path":"/tools/checklist","route":"tools","tab":"checklist","sectionDefault":false},{"path":"/tools/gst","route":"tools","tab":"gst","sectionDefault":false},{"path":"/tools/units","route":"tools","tab":"units","sectionDefault":false},{"path":"/tools/seasonal","route":"tools","tab":"seasonal","sectionDefault":false},{"path":"/tools/other","route":"tools","tab":"other","sectionDefault":false}],"toolAnchors":{"tool-bins":"bins","urgent-clinics":"urgent","tool-pay":"pay","tool-checklist":"checklist","tool-gst":"gst","tool-units":"units","tool-fishing":"seasonal","tool-pollen-flu":"seasonal","tool-school-terms":"other","tool-find-school":"other","tool-transport":"other","tool-weather":"other","tool-outages":"other","tool-government":"other","tool-fuel":"other"},"petIds":["pets","pet-shops","pet-boarding","pet-grooming","pet-vets","pet-dog-parks","pet-daycare"],"keep":["q","cards","hero"],"sections":["living","weekend","kids","services","tools"]};var fallback="/weekend/";var resolve=function resolveLegacyHash(hash, data) {
+  if (!hash || hash === '#') return null;
+  const body = hash.charAt(0) === '#' ? hash.slice(1) : hash;
+  if (!body) return null;
+  const splitAt = body.indexOf('?');
+  const head = splitAt < 0 ? body : body.slice(0, splitAt);
+  const params = new URLSearchParams(splitAt < 0 ? '' : body.slice(splitAt + 1));
+  if (!head.startsWith('/') && head.indexOf('?') === -1 && !data.petIds.includes(head) && !Object.prototype.hasOwnProperty.call(data.toolAnchors, head)) return null;
+
+  let route = 'home';
+  let tab = '';
+  let at = params.get('at') || '';
+  if (!head.startsWith('/')) {
+    if (data.petIds.includes(head)) {
+      route = 'services';
+      tab = 'pets';
+      if (!at) at = head;
+    } else {
+      route = 'tools';
+      tab = data.toolAnchors[head];
+      if (!at) at = head;
+    }
+  } else {
+    const section = head.split('/').filter(Boolean)[0] || '';
+    const name = section === 'whatson' ? 'weekend' : section;
+    if (name && name !== 'home' && data.sections.indexOf(name) < 0) return '/';
+    route = name || 'home';
+    tab = params.get('tab') || '';
+    const petAt = data.petIds.includes(at);
+    if (route === 'living' && (tab === 'pets' || petAt)) {
+      route = 'services';
+      tab = 'pets';
+    }
+    if (route === 'living' && at === 'upick' && (tab === 'places' || !tab)) tab = 'upick';
+    if (route === 'tools' && tab === 'transport' && !at) at = 'tool-transport';
+    if (route === 'tools' && Object.prototype.hasOwnProperty.call(data.toolAnchors, at)) tab = data.toolAnchors[at];
+    if (route === 'tools' && tab === 'transport') tab = 'other';
+  }
+
+  const exact = data.pages.find(page => page.route === route && page.tab === tab);
+  const fallback = data.pages.find(page => page.route === route && page.sectionDefault);
+  const page = exact || fallback || data.pages.find(item => item.route === 'home');
+  if (!page) return '/';
+  const out = new URLSearchParams();
+  data.keep.forEach(key => {
+    const value = params.get(key);
+    if (value) out.set(key, value);
+  });
+  const search = out.size ? '?' + out.toString() : '';
+  const anchor = at && /^[A-Za-z0-9_-]+$/.test(at) ? '#' + at : '';
+  const path = page.path === '/' ? '/' : page.path + '/';
+  return path + search + anchor;
+};function norm(p){try{p=decodeURIComponent(p||'/')}catch(e){}if(p.length>1&&p.charAt(p.length-1)==='/')p=p.slice(0,-1);return p||'/'}function same(next){var t=new URL(next,location.origin),h=new URL(location.href);if(norm(t.pathname)!==norm(h.pathname)||t.hash!==h.hash)return false;var keys={};t.searchParams.forEach(function(v,k){keys[k]=1});h.searchParams.forEach(function(v,k){keys[k]=1});for(var k in keys)if(t.searchParams.get(k)!==h.searchParams.get(k))return false;return true}var next=resolve(location.hash,D);if(next&&!same(next)){location.replace(next);return}if(fallback){var cut=fallback.indexOf('#');var base=cut<0?fallback:fallback.slice(0,cut);var anchor=cut<0?'':fallback.slice(cut);if(norm(location.pathname)!==norm(base))location.replace(base+location.search+anchor)}})();</script>
+</head><body><p><a href="/weekend/">本周精选</a></p></body></html>

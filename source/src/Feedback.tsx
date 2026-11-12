@@ -24,7 +24,9 @@ export function FeedbackProvider({ lang, section, children }: { lang: Lang; sect
   useEffect(() => {
     const leave = () => setRequest(null);
     window.addEventListener('hashchange', leave);
-    return () => window.removeEventListener('hashchange', leave);
+    window.addEventListener('popstate', leave);
+    window.addEventListener('hl-navigate', leave);
+    return () => { window.removeEventListener('hashchange', leave); window.removeEventListener('popstate', leave); window.removeEventListener('hl-navigate', leave); };
   }, []);
   return <FeedbackServiceContext.Provider value={{ lang, open }}>{children}{request && createPortal(<FeedbackDialog lang={lang} context={request} close={close} />, document.body)}</FeedbackServiceContext.Provider>;
 }
@@ -91,10 +93,12 @@ export function FeedbackLauncher() {
     window.addEventListener('scroll', schedule, { passive: true, capture: true });
     window.addEventListener('resize', schedule);
     window.addEventListener('hashchange', schedule);
+    window.addEventListener('popstate', schedule);
+    window.addEventListener('hl-navigate', schedule);
     const observer = new MutationObserver(schedule);
     // Scene/language changes can wrap an existing text node into a taller label.
     observer.observe(document.getElementById('root')!, { childList: true, characterData: true, subtree: true });
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('scroll', schedule, true); window.removeEventListener('resize', schedule); window.removeEventListener('hashchange', schedule); };
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('scroll', schedule, true); window.removeEventListener('resize', schedule); window.removeEventListener('hashchange', schedule); window.removeEventListener('popstate', schedule); window.removeEventListener('hl-navigate', schedule); };
   }, []);
   return <button ref={button} className="fb-launcher" data-testid="feedback-launcher" type="button" aria-haspopup="dialog" aria-label={lang === 'zh' ? '意见反馈' : 'Feedback'} onClick={e => open(undefined, e.currentTarget)}><MessageSquare aria-hidden="true" /><span>{lang === 'zh' ? '意见反馈' : 'Feedback'}</span></button>;
 }

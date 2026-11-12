@@ -19,8 +19,9 @@ test('home and top navigation put tools first; pet guide remains reachable',()=>
   const {SECTION_ORDER}=load();
   assert.deepEqual(SECTION_ORDER,['home','tools','living','weekend','kids','services']);
   const app=fs.readFileSync('src/App.tsx','utf8'),home=fs.readFileSync('src/HomeGuide.tsx','utf8');
-  assert.match(home,/#\/services\?tab=pets/);
+  assert.match(home,/pageHref\('services', 'pets'\)/);
   assert.doesNotMatch(home,/#\/living\?tab=pets/);
+  assert.doesNotMatch(home,/#\/services\?tab=/);
   assert.match(app,/if \(tab === 'pets'\) return <Pets/);
   assert.ok(require('../src/pets-v25.json').length || Object.keys(require('../src/pets-v25.json')).length);
 });
@@ -46,4 +47,45 @@ test('older toolbox links select Other and preserve their destinations and queri
   assert.equal(canonicalHash('#/tools?tab=bins'),'#/tools?tab=bins');
   assert.equal(canonicalHash('#tool-bins'),'#/tools?tab=bins&at=tool-bins');
   assert.equal(canonicalHash('#urgent-clinics'),'#/tools?tab=urgent&at=urgent-clinics');
+});
+
+test('legacy hashes become real paths and every page has its own copy',()=>{
+  const {legacyHashPath,pageHref,matchPath,PAGES}=load();
+  assert.equal(legacyHashPath('#/tools?tab=bins'),'/tools/bins/');
+  assert.equal(legacyHashPath('#/tools?tab=transport'),'/tools/other/#tool-transport');
+  assert.equal(legacyHashPath('#/tools?tab=urgent'),'/tools/urgent/');
+  assert.equal(legacyHashPath('#/living'),'/supermarkets/');
+  assert.equal(legacyHashPath('#/living?tab=grocers&q=Frankton'),'/supermarkets/?q=Frankton');
+  assert.equal(legacyHashPath('#/weekend'),'/weekend/');
+  assert.equal(legacyHashPath('#/whatson?tab=festivals'),'/weekend/festivals/');
+  assert.equal(legacyHashPath('#/kids?tab=map'),'/kids/');
+  assert.equal(legacyHashPath('#/services?tab=pets&at=pet-vets'),'/services/pets/#pet-vets');
+  assert.equal(legacyHashPath('#/living?tab=pets&q=test'),'/services/pets/?q=test');
+  assert.equal(legacyHashPath('#tool-transport'),'/tools/other/#tool-transport');
+  assert.equal(legacyHashPath('#tool-weather'),'/tools/other/#tool-weather');
+  assert.equal(legacyHashPath('#main'),null);
+  assert.equal(pageHref('home'),'/');
+  assert.equal(pageHref('tools','bins'),'/tools/bins/');
+  assert.equal(pageHref('tools','other','','tool-school-terms'),'/tools/other/#tool-school-terms');
+  assert.equal(pageHref('tools','transport'),'/tools/other/#tool-transport');
+  assert.equal(PAGES.length,24);
+  assert.equal(PAGES.some(page=>page.path==='/tools/transport'),false);
+  const pets=PAGES.find(page=>page.tab==='pets');
+  assert.match(pets.zh.description,/商家招募中/);
+  assert.doesNotMatch(pets.zh.description+pets.en.description+pets.zh.points.join(''),/Pet Essentials|Raw Essentials|Newstead|Waikato After Hours/);
+  assert.equal(matchPath('/tools/bins').tab,'bins');
+  assert.equal(matchPath('/tools/bins/').tab,'bins');
+  assert.equal(matchPath('/no-such-page'),null);
+  const titles=PAGES.map(page=>page.zh.title);
+  const descriptions=PAGES.map(page=>page.zh.description);
+  assert.equal(new Set(titles).size,PAGES.length);
+  assert.equal(new Set(descriptions).size,PAGES.length);
+  assert.equal(new Set(PAGES.map(page=>page.en.title)).size,PAGES.length);
+  assert.equal(new Set(PAGES.map(page=>page.en.description)).size,PAGES.length);
+  for(const page of PAGES){
+    assert.ok(page.zh.title.includes('Hamilton Local'));
+    assert.ok(page.zh.description.length>40);
+    assert.ok(page.en.description.length>40);
+    assert.ok(page.zh.points.length);
+  }
 });

@@ -11,9 +11,12 @@ function files(dir) {
 (async () => {
   for (const name of ['robots.txt', 'sitemap.xml', 'og-image.jpg', 'favicon.svg']) assert.ok(fs.existsSync(path.join(dist, name)), name + ' included in build');
   for (const file of files(dist)) {
+    if (/\.(webp|png|jpe?g|svg|ico)$/i.test(file)) continue;
     const text = fs.readFileSync(file, 'utf8');
-    assert.doesNotMatch(text, /noindex/i, path.relative(dist, file));
-    assert.doesNotMatch(text, /Pet Essentials|Raw Essentials|Newstead/, path.relative(dist, file) + ' pet grep');
+    const rel = path.relative(dist, file);
+    if (rel === '404.html') assert.match(text, /noindex/i, rel);
+    else assert.doesNotMatch(text, /noindex/i, rel);
+    assert.doesNotMatch(text, /Pet Essentials|Raw Essentials|Newstead/, rel + ' pet grep');
   }
   const robots = fs.readFileSync(path.join(dist, 'robots.txt'), 'utf8');
   assert.match(robots, /^User-agent: \*$/m);
@@ -63,7 +66,11 @@ function files(dir) {
       const doc = new DOMParser().parseFromString(xml, 'application/xml');
       return { errors: doc.querySelectorAll('parsererror').length, namespace: doc.documentElement.namespaceURI, urls: [...doc.querySelectorAll('url > loc')].map(e => e.textContent) };
     }, fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8'));
-    assert.deepEqual(sitemap, { errors: 0, namespace: 'http://www.sitemaps.org/schemas/sitemap/0.9', urls: [origin] });
+    assert.equal(sitemap.errors, 0);
+    assert.equal(sitemap.namespace, 'http://www.sitemaps.org/schemas/sitemap/0.9');
+    assert.ok(sitemap.urls.includes(origin));
+    assert.equal(new Set(sitemap.urls).size, sitemap.urls.length);
+    assert.ok(sitemap.urls.length >= 24);
     await page.goto(base);
     await page.locator('h1').waitFor();
     assert.ok((await page.locator('main').innerText()).length > 100);
@@ -78,11 +85,11 @@ function files(dir) {
     await page.goto(base + '/#/tools?tab=gst');
     await page.locator('[data-testid="tab-gst"][aria-selected="true"]').waitFor();
     assert.notEqual(await page.title(), homeTitle);
-    assert.match(await page.title(), /Hamilton Local/);
-    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), origin);
+    assert.match(await page.title(), /GST计算/);
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://hamiltonlocal.nz/tools/gst/');
     assert.deepEqual(errors, []);
-    report.checks.push('Sitemap is valid homepage-only XML; image decodes at 1200x630; assets return 200 with correct MIME types');
-    report.checks.push('Homepage renders; hash navigation keeps per-view titles and canonical; no console/page errors');
+    report.checks.push('Sitemap is valid XML with every canonical URL; image decodes at 1200x630; assets return 200 with correct MIME types');
+    report.checks.push('Homepage renders; old hash links open the matching real path; no console/page errors');
     report.passed = true;
   } finally { await browser.close(); }
 })().catch(e => { report.passed = false; report.error = e.stack; process.exitCode = 1; }).finally(() => {
