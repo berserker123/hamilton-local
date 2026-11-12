@@ -2153,3 +2153,59 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 }
 @media(prefers-reduced-motion:reduce) { .v25g-check-card summary>svg,.v25g-shortcut { transition:none; } }
 
+/* Real-path pages: readable text before the app replaces #root. */
+.seo-prerender, .seo-missing { max-width: 760px; margin: 72px auto 96px; padding: 0 24px; }
+.seo-prerender h1, .seo-missing h1 { margin: 12px 0 0; font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 5vw, 52px); line-height: 1.25; text-wrap: balance; }
+.seo-prerender p, .seo-missing p, .seo-prerender li { font-size: 16px; line-height: 1.75; }
+.seo-kicker, .seo-missing .ia-kicker { letter-spacing: .14em; text-transform: uppercase; color: var(--green); font-size: 12px; font-weight: 600; }
+.seo-en { color: #5c675f; }
+.seo-nav, .seo-missing .seo-nav { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 28px; }
+.seo-nav a, .seo-missing .seo-nav a { color: var(--green); text-underline-offset: 3px; }
+.seo-missing { padding-top: 120px; }
+
+/* Follow Xiaohongshu and email. Hidden controls stay out of the page until configured. */
+.hl-follow { margin: 8px 0 72px; }
+.hl-follow-card {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: 36px 48px; align-items: center;
+  padding: 36px 40px; border-radius: 24px; color: #eeede6;
+  border: 1px solid rgba(230, 207, 160, .34);
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(200, 164, 106, .18), transparent 46%),
+    linear-gradient(165deg, #2a2d24 0%, #191a17 72%);
+  box-shadow: 0 28px 70px -42px rgba(0, 0, 0, .55);
+}
+.hl-follow-card:not(:has(.hl-follow-actions)) { grid-template-columns: minmax(0, 1fr); }
+.hl-follow-kicker { margin: 0; color: #e6cfa0; letter-spacing: .16em; font-size: 11px; font-weight: 600; }
+.hl-follow h2 { margin: 12px 0 0; max-width: 16em; color: #f4f1ea; font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 3vw, 40px); line-height: 1.3; text-wrap: balance; }
+.hl-follow-copy p { margin: 14px 0 0; max-width: 46ch; color: #c4c6bb; font-size: 15px; line-height: 1.8; }
+.hl-follow-actions { display: flex; flex-direction: column; justify-content: center; gap: 14px; min-width: 0; }
+.hl-follow-xhs, .hl-follow-row button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; border-radius: 999px; font-weight: 650; text-decoration: none;
+}
+.hl-follow-xhs { justify-content: space-between; padding: 0 18px; border: 1px solid rgba(230, 207, 160, .55); color: #e6cfa0; background: rgba(230, 207, 160, .06); }
+.hl-follow-xhs:hover { background: rgba(230, 207, 160, .14); }
+.hl-follow-form { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.hl-follow-form label { color: #bbbdb2; font-size: 12px; letter-spacing: .08em; }
+.hl-follow-row { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 6px 6px 6px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .05); }
+.hl-follow-row svg { flex: none; width: 16px; height: 16px; color: #e6cfa0; }
+.hl-follow-row input { flex: 1; min-width: 0; border: 0; background: transparent; color: #f4f1ea; font: inherit; font-size: 16px; padding: 8px 0; }
+.hl-follow-row input::placeholder { color: rgba(244, 241, 234, .45); }
+.hl-follow-row input:focus { outline: none; }
+.hl-follow-row button { border: 0; padding: 0 18px; background: #e6cfa0; color: #1c2416; cursor: pointer; }
+.hl-follow-row button:hover { background: #f0e0bf; }
+.hl-follow-pending { margin: 0; color: #bbbdb2; font-size: 14px; line-height: 1.7; }
+.hl-follow--footer { margin: 0 0 40px; }
+.hl-follow--footer .hl-follow-card { padding: 28px 32px; border-radius: 20px; background: rgba(230, 207, 160, .05); box-shadow: none; }
+.hl-follow--footer h2 { font-size: clamp(24px, 2.4vw, 32px); }
+@media (max-width: 800px) {
+  .hl-follow { margin-bottom: 48px; }
+  .hl-follow-card, .hl-follow--footer .hl-follow-card { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 24px 20px; }
+  .hl-follow-row { flex-wrap: wrap; border-radius: 18px; padding: 10px; }
+  .hl-follow-row input { flex: 1 1 140px; }
+  .hl-follow-row button, .hl-follow-xhs { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hl-follow-xhs, .hl-follow-row button { transition: none; }
+}
+

@@ -4,6 +4,7 @@ import { BilingualTitle } from './BilingualTitle';
 import SOURCES from './tool-sources.json';
 import { ARRIVAL_STEPS, SHELLFISH } from './tool-content';
 import { PAY_RULES, KIWISAVER_RATES, calculatePay, calculateGST, convertUnits, parseNumber, Unit } from './tool-calculators';
+import { pageHref } from './site-routes.mjs';
 
 type T = (zh: string, en: string) => string;
 const money = (value: number) => new Intl.NumberFormat('en-NZ', { style:'currency', currency:'NZD' }).format(value);
@@ -89,7 +90,7 @@ const SHORTCUTS = [
   {tab:'urgent',at:'urgent-clinics',zh:'急诊与健康热线',en:'Urgent care',noteZh:'需要时，快速找到帮助',noteEn:'Find help when you need it',Icon:HeartPulse},
 ] as const;
 export function CommonTools({t}:{t:T}) {
-  return <section className="v25g-common" id="common-tools"><div className="sb-container"><div className="v25g-common-heading"><div><p className="ia-kicker">EVERYDAY, A LITTLE EASIER</p><BilingualTitle as="h2" zh="常用工具" en="Everyday tools" t={t} /></div><a href="#/tools?tab=pay" className="sb-action">{t('全部工具','All tools')}<ArrowRight aria-hidden="true" /></a></div><div className="v25g-shortcuts">{SHORTCUTS.map(item=><a className="sb-card v25g-shortcut" href={`#/tools?tab=${item.tab}&at=${item.at}`} key={item.tab}><item.Icon aria-hidden="true" /><BilingualTitle zh={item.zh} en={item.en} t={t} /><p>{t(item.noteZh,item.noteEn)}</p><ArrowUpRight className="v25g-shortcut-arrow" aria-hidden="true" /></a>)}</div></div></section>;
+  return <section className="v25g-common" id="common-tools"><div className="sb-container"><div className="v25g-common-heading"><div><p className="ia-kicker">EVERYDAY, A LITTLE EASIER</p><BilingualTitle as="h2" zh="常用工具" en="Everyday tools" t={t} /></div><a href={pageHref('tools','pay')} className="sb-action">{t('全部工具','All tools')}<ArrowRight aria-hidden="true" /></a></div><div className="v25g-shortcuts">{SHORTCUTS.map(item=><a className="sb-card v25g-shortcut" href={pageHref('tools', item.tab, '', item.at)} key={item.tab}><item.Icon aria-hidden="true" /><BilingualTitle zh={item.zh} en={item.en} t={t} /><p>{t(item.noteZh,item.noteEn)}</p><ArrowUpRight className="v25g-shortcut-arrow" aria-hidden="true" /></a>)}</div></div></section>;
 }
 export function PracticalTools({tab,t}:{tab:string;t:T}) {
   if(tab==='checklist')return <ArrivalChecklist t={t} />;

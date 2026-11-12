@@ -2,6 +2,8 @@ import { placeNames } from './place-names';
 import React, { useEffect, useRef, useState } from 'react';
 import { currentNZSeason, nextScene, nextSeason, SCENES, SEASON_LABELS, Season } from './experience-model';
 import { CordPick, createDrawBag, familyPicks } from './cord-picks';
+import { pageHref } from './site-routes.mjs';
+import { navigate } from './navigate';
 
 export function usePageExperience(route: string, lang: 'zh' | 'en', pools: { services: CordPick[]; tools: CordPick[] }) {
   const [scene, setScene] = useState(0);
@@ -59,7 +61,7 @@ export function usePageExperience(route: string, lang: 'zh' | 'en', pools: { ser
       if (!pick) return;
       setResult({ pick, draw: ++drawCount.current, route });
       setNotice((zh ? '这次抽到：' : 'Your pick: ') + pick.name[lang]);
-      if (route === 'services') location.hash = '#/services?tab=' + pick.tab;
+      if (route === 'services') navigate(pageHref('services', pick.tab || 'home'));
       return;
     }
     if (route === 'home') {
