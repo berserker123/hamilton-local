@@ -2840,5 +2840,39 @@ html, body { background: var(--hl-canvas); color: var(--hl-ink); }
   border-color: var(--hl-feedback);
   box-shadow: 0 8px 18px -14px rgba(16, 30, 28, .4);
 }
+/* Pale grey-green copy from the dark theme was remapped as success green. It is secondary text. */
+.ia-dialog > p,
+.ia-map-grid span,
+.ia-map-message p,
+.ia-place-body > p:not(.ia-kicker):not(.ia-secondary-name),
+.ia-panel-actions,
+.ia-tool-link,
+.ia-emergency p,
+.ia-healthline p,
+.ia-root .sb-clinic p,
+.ia-source-list code,
+.ia-directory-intro,
+.ia-directory-card .sb-icon-line,
+.v25-directory-heading > p:last-child,
+.ia-root .v25g-hint,
+.v25g-takehome > span:last-of-type,
+.v25g-takehome p,
+.v25g-method p,
+.v25g-method li,
+.v25g-check-body li,
+.v25g-season-card li,
+.v25g-facts dd,
+.v25g-gst-results span,
+.v25g-season-card > p,
+.v25g-fish-table caption,
+.v25g-healthline p { color: var(--hl-muted); }
+.v25g-warning, .v25g-warning p { color: var(--hl-warning); }
+.pg-map .leaflet-control-zoom a,
+.pg-map .leaflet-bar a {
+  background: var(--hl-surface);
+  color: var(--hl-ink);
+  border-bottom-color: var(--hl-line);
+}
+.pg-pin > span { background: var(--hl-fill); border-color: var(--hl-surface); color: var(--hl-on-fill); }
 
 /* HL_THEME_V26_END */
