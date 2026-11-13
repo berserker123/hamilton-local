@@ -1,12 +1,12 @@
 {
-  "id": "weekend-bush",
-  "file": "weekend-bush.webp",
-  "zh": "怀卡托河径 · 邓纳姆溪木栈道",
-  "en": "Waikato River Trails · Dunham Creek boardwalk",
-  "author": "Schwede66",
-  "license": "CC BY-SA 3.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-  "source": "https://commons.wikimedia.org/wiki/File:Waikato_River_Trails02.JPG",
-  "changesZh": "从原图中部裁出横向步道，缩放至 2000 × 1240 并压缩为 WebP。列表背景再叠浅色或炭色薄纱并轻微虚化。衍生图片沿用 CC BY-SA 3.0。",
-  "changesEn": "Horizontal crop of the boardwalk, resized to 2000 × 1240 and compressed to WebP. The list backdrop adds a light or charcoal veil and a soft blur. Derivative remains CC BY-SA 3.0."
+  "id": "weekend-river",
+  "file": "weekend-river.webp",
+  "zh": "汉密尔顿花园眺望怀卡托河",
+  "en": "Waikato River from Hamilton Gardens",
+  "author": "Daderot",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:River_-_Hamilton_Gardens_-_Hamilton,_NZ_-_DSC06553.jpg",
+  "changesZh": "缩放至 1920 × 1280，轻微虚化并压缩为 WebP。周末活动页全幅背景再叠浅色或炭色薄纱。衍生图片沿用 CC0。",
+  "changesEn": "Resized to 1920 × 1280, lightly blurred and compressed to WebP. The weekend page background adds a light or charcoal veil. Derivative remains CC0."
 }

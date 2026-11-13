@@ -3901,10 +3901,10 @@ html body .ia-root .wa:not(.pv) .wa-price.is-priced {
   border: 1px solid var(--hl-fill);
   opacity: 1;
 }
-html body .ia-root .wa:has(.wa-backdrop) :is(h4, .wa-event-title, .title-3) { color: var(--hl-ink); }
-html body .ia-root .wa:has(.wa-backdrop) :is(.ia-secondary-name, .wa-venue, .wa-hours, .wa-event-note, .wa-caution) { color: var(--hl-muted); }
-html body .ia-root .wa:has(.wa-backdrop) .wa-source { color: var(--hl-accent); }
-html body .ia-root .wa:has(.wa-backdrop) .wa-time:not(.is-tbc) { color: var(--hl-fill); }
+html body .ia-root[data-route="weekend"] .wa :is(h4, .wa-event-title, .title-3) { color: var(--hl-ink); }
+html body .ia-root[data-route="weekend"] .wa :is(.ia-secondary-name, .wa-venue, .wa-hours, .wa-event-note, .wa-caution) { color: var(--hl-muted); }
+html body .ia-root[data-route="weekend"] .wa .wa-source { color: var(--hl-accent); }
+html body .ia-root[data-route="weekend"] .wa .wa-time:not(.is-tbc) { color: var(--hl-fill); }
 html body .ia-root .wa:not(.pv) :is(.wa-event, .wa-row) .wa-price.is-free {
   background: #E6B84E;
   color: #2A211B;
@@ -3939,80 +3939,74 @@ html body .ia-root .wa:not(.pv) .wa-price.is-faded {
 }
 html body .ia-root .v20-cord-hint { display: none; }
 
-/* Weekend list backdrop: Waikato River Trails boardwalk, cream or charcoal veil. */
-.wa-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  border-radius: 28px;
-  pointer-events: none;
+/* Weekend page backdrop: Hamilton stretch of the Waikato, fixed behind the content. */
+html body .ia-root[data-route="weekend"] .ia-content {
+  background-color: transparent;
+  background-image:
+    linear-gradient(180deg, rgba(246, 241, 232, .5), rgba(239, 234, 226, .56)),
+    url('./photos/weekend-river.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
-.wa-backdrop::before {
-  content: "";
-  position: absolute;
-  inset: -28px;
-  background:
-    linear-gradient(180deg, rgba(246, 241, 232, .46), rgba(239, 234, 226, .52)),
-    url('./photos/weekend-bush.webp') center 42% / cover no-repeat;
-  filter: blur(5px);
+html[data-theme="night"] body .ia-root[data-route="weekend"] .ia-content {
+  background-image:
+    linear-gradient(180deg, rgba(22, 21, 19, .64), rgba(30, 29, 26, .7)),
+    url('./photos/weekend-river.webp');
 }
-html[data-theme="night"] .wa-backdrop::before {
-  background:
-    linear-gradient(180deg, rgba(22, 21, 19, .62), rgba(30, 29, 26, .68)),
-    url('./photos/weekend-bush.webp') center 42% / cover no-repeat;
+html body .ia-root[data-route="weekend"] .ia-tabs {
+  background-color: var(--hl-surface);
 }
-.wa:has(.wa-backdrop) { position: relative; isolation: isolate; }
-.wa:has(.wa-backdrop) > :not(.wa-backdrop) { position: relative; z-index: 1; }
-html body .ia-root .wa:has(.wa-backdrop) :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote, .wa-photo-credit) {
+html body .ia-root[data-route="weekend"] .wa :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote, .wa-photo-credit) {
   background-color: rgba(239, 234, 226, .92);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: none;
 }
-html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote, .wa-photo-credit) {
+html[data-theme="night"] body .ia-root[data-route="weekend"] .wa :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote, .wa-photo-credit) {
   background-color: rgba(30, 29, 26, .9);
 }
-html body .ia-root .wa:has(.wa-backdrop) .wa-heading,
-html body .ia-root .wa:has(.wa-backdrop) .hl-regions,
-html body .ia-root .wa:has(.wa-backdrop) .wa-region-heading,
-html body .ia-root .wa:has(.wa-backdrop) .wa-footnote,
-html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit {
+html body .ia-root[data-route="weekend"] .wa .wa-heading,
+html body .ia-root[data-route="weekend"] .wa .hl-regions,
+html body .ia-root[data-route="weekend"] .wa .wa-region-heading,
+html body .ia-root[data-route="weekend"] .wa .wa-footnote,
+html body .ia-root[data-route="weekend"] .wa .wa-photo-credit {
   padding: 16px 18px;
   border-radius: 18px;
 }
-html body .ia-root .wa:has(.wa-backdrop) .wa-heading { margin-bottom: 12px; }
-html body .ia-root .wa:has(.wa-backdrop) .hl-regions { margin-bottom: 16px; }
-html body .ia-root .wa:has(.wa-backdrop) .wa-region-heading {
+html body .ia-root[data-route="weekend"] .wa .wa-heading { margin-bottom: 12px; }
+html body .ia-root[data-route="weekend"] .wa .hl-regions { margin-bottom: 16px; }
+html body .ia-root[data-route="weekend"] .wa .wa-region-heading {
   margin-top: 0;
   border-bottom: 0;
 }
-html body .ia-root .wa:has(.wa-backdrop) .wa-day-label {
+html body .ia-root[data-route="weekend"] .wa .wa-day-label {
   width: max-content;
   max-width: 100%;
   padding: 10px 0 0;
   background: transparent;
   color: #8C3A18;
 }
-html body .ia-root .wa:has(.wa-backdrop) .wa-day-label :is(time, span) {
+html body .ia-root[data-route="weekend"] .wa .wa-day-label :is(time, span) {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
   background: rgba(255, 248, 240, .92);
   color: #8C3A18;
 }
-html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) .wa-day-label,
-html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) .wa-day-label :is(time, span) {
+html[data-theme="night"] body .ia-root[data-route="weekend"] .wa .wa-day-label,
+html[data-theme="night"] body .ia-root[data-route="weekend"] .wa .wa-day-label :is(time, span) {
   color: #E6CFA0;
   background: transparent;
 }
-html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) .wa-day-label :is(time, span) {
+html[data-theme="night"] body .ia-root[data-route="weekend"] .wa .wa-day-label :is(time, span) {
   background: rgba(30, 29, 26, .78);
 }
-html body .ia-root .wa:has(.wa-backdrop) .wa-footnote,
-html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit { margin-top: 12px; }
-html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit a { color: var(--hl-accent); }
-html body .ia-root .wa:has(.wa-backdrop) :is(.wa-event, .wa-row) {
+html body .ia-root[data-route="weekend"] .wa .wa-footnote,
+html body .ia-root[data-route="weekend"] .wa .wa-photo-credit { margin-top: 12px; }
+html body .ia-root[data-route="weekend"] .wa .wa-photo-credit a { color: var(--hl-accent); }
+html body .ia-root[data-route="weekend"] .wa :is(.wa-event, .wa-row) {
   background-color: rgba(255, 250, 244, .84);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
@@ -4020,13 +4014,13 @@ html body .ia-root .wa:has(.wa-backdrop) :is(.wa-event, .wa-row) {
   border-radius: 16px;
   box-shadow: 0 10px 28px rgba(42, 33, 27, .08);
 }
-html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) :is(.wa-event, .wa-row) {
+html[data-theme="night"] body .ia-root[data-route="weekend"] .wa :is(.wa-event, .wa-row) {
   background-color: rgba(32, 30, 27, .84);
   border-color: rgba(243, 239, 230, .14);
   box-shadow: 0 10px 28px rgba(0, 0, 0, .28);
 }
 @media (max-width: 700px) {
-  html body .ia-root .wa:has(.wa-backdrop) .wa-day-label { width: 100%; padding-top: 4px; }
+  html body .ia-root[data-route="weekend"] .wa .wa-day-label { width: 100%; padding-top: 4px; }
 }
 html body .ia-root .wa:not(.pv) .wa-event .wa-source svg { transition: transform 180ms ease; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
