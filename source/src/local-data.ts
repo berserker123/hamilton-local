@@ -47,7 +47,7 @@ export const SUPERMARKETS = [
     id: 'green-patch-borman', name: 'Borman Fresh (Green Patch Rototuna)', zhName: '绿盈超市', brand: 'Borman Fresh', type: 'cn', suburb: 'Rototuna',
     verificationStatus: 'verified',
     address: '1/5 Borman Road, Gordonton / Rototuna North, Hamilton 3281',
-    hours: null, phone: '07 949 7932',
+    hours: { zh: '每天 8:30–18:30（目录信息）', en: 'Daily 8:30am–6:30pm (directory listing)' }, phone: '07 949 7932',
     tags: { zh: ['北区', '亚洲超市'], en: ['North Hamilton', 'Asian supermarket'] },
     sources: ['https://www.chamberofcommerce.co.nz/business-directory/waikato/gordonton/grocery-store/177393-borman-fresh', 'https://thefamilycompany.co.nz/supermarket/hamilton/borman-fresh/', 'https://www.chamberofcommerce.co.nz/business-directory/waikato/gordonton/asian-grocery-store/145627-green-patch', 'https://exa.ai/library/place/bptzdskjxhh'],
   },
