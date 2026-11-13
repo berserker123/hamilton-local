@@ -3797,4 +3797,153 @@ html[data-theme="night"] .pv-price-chip {
 }
 html[data-theme="night"] .hl-spot-pill { background: rgba(20, 16, 12, .72); }
 
+/* Weekend picks: date column and separate cards. No photo behind the list. */
+html body .ia-root .wa:not(.pv) .wa-region-heading {
+  display: block;
+  margin: 8px 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hl-line);
+}
+html body .ia-root .wa:not(.pv) .wa-region-kicker {
+  margin: 0 0 8px;
+  color: var(--hl-muted);
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+html body .ia-root .wa:not(.pv) .wa-region-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+html body .ia-root .wa:not(.pv) .wa-region-names {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+html body .ia-root .wa:not(.pv) .wa-region-names h2 {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.2;
+  color: var(--hl-ink);
+}
+html body .ia-root .wa:not(.pv) .wa-region-names .ia-secondary-name {
+  margin: 0;
+  font-size: 16px;
+  color: var(--hl-muted);
+}
+html body .ia-root .wa:not(.pv) .wa-region-count {
+  flex-shrink: 0;
+  color: var(--hl-muted);
+  font-size: 14px;
+}
+html body .ia-root .wa:not(.pv) .wa-day {
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 12px 28px;
+  margin-top: 28px;
+}
+html body .ia-root .wa:not(.pv) .wa-day-label {
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  margin: 0;
+  padding-top: 20px;
+  color: var(--hl-ink);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+html body .ia-root .wa:not(.pv) .wa-event {
+  grid-template-columns: 108px minmax(0, 1fr) auto;
+  gap: 8px 18px;
+  align-items: start;
+  margin: 0 0 12px;
+  padding: 18px 20px;
+  border: 1px solid var(--hl-line);
+  border-radius: 18px;
+  background: var(--hl-surface);
+  box-shadow: none;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+html body .ia-root .wa:not(.pv) .wa-event-time {
+  margin: 0;
+  padding-top: 2px;
+  color: var(--hl-fill);
+  font-size: 14px;
+  font-weight: 650;
+}
+html body .ia-root .wa:not(.pv) .wa-event-title { color: var(--hl-ink); transition: color 180ms ease; }
+html body .ia-root .wa:not(.pv) .wa-event .ia-secondary-name { margin: 2px 0 0; color: var(--hl-muted); font-size: 14px; }
+html body .ia-root .wa:not(.pv) .wa-event .wa-venue { color: var(--hl-muted); }
+html body .ia-root .wa:not(.pv) .wa-event .wa-venue svg { color: var(--hl-fill); }
+html body .ia-root .wa:not(.pv) .wa-event-note {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--hl-canvas);
+  color: var(--hl-muted);
+}
+html body .ia-root .wa:not(.pv) .wa-event-note p { margin: 0; }
+html body .ia-root .wa:not(.pv) .wa-event-note p + p { margin-top: 6px; }
+html body .ia-root .wa:not(.pv) .wa-event-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 100%;
+}
+html body .ia-root .wa:not(.pv) .wa-event .wa-price.is-faded {
+  background: transparent;
+  color: var(--hl-muted);
+  border: 1px solid var(--hl-line);
+  opacity: .85;
+}
+html body .ia-root .wa:not(.pv) .wa-event .wa-source svg { transition: transform 180ms ease; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  html body .ia-root .wa:not(.pv) .wa-event:hover { transform: translateY(-2px); background: var(--hl-surface); }
+  html body .ia-root .wa:not(.pv) .wa-event:hover .wa-event-title { color: var(--hl-fill); }
+  html body .ia-root .wa:not(.pv) .wa-event:hover .wa-source svg { transform: translate(2px, -2px); }
+}
+@media (max-width: 700px) {
+  html body .ia-root .wa:not(.pv) .wa-day { grid-template-columns: 1fr; gap: 10px; }
+  html body .ia-root .wa:not(.pv) .wa-day-label {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 4px;
+    color: var(--hl-muted);
+    font-weight: 600;
+    text-align: center;
+  }
+  html body .ia-root .wa:not(.pv) .wa-day-label::before,
+  html body .ia-root .wa:not(.pv) .wa-day-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hl-line);
+  }
+  html body .ia-root .wa:not(.pv) .wa-event { grid-template-columns: 1fr; }
+  html body .ia-root .wa:not(.pv) .wa-event-side {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--hl-line);
+  }
+  html body .ia-root .wa:not(.pv) .wa-footnote { margin-left: 0; }
+}
+
+/* Pill tracks need air between the rounded edge and the first item. */
+html body .ia-root .sb-desktop-nav { padding: 8px; gap: 4px; }
+html body .ia-root .sb-nav { min-height: 40px; padding: 8px 16px; }
+html body .ia-root .sb-mobile-nav { padding: 8px; gap: 4px; }
+html body .ia-root .ia-tabs { padding: 8px; gap: 6px; }
+html body .ia-root .ia-tabs.ia-tabs-compact { padding: 6px; gap: 4px; }
+html body .ia-root .ia-tabs .sb-tab { min-height: 44px; }
+
 /* HL_THEME_V26_END */

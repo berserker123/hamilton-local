@@ -29,18 +29,37 @@ function Sources({ item, t }: { item: { source_url: string; also?: string[] }; t
   const urls = [item.source_url];
   return <div className="wa-sources caption-4">{urls.map((url, i) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${t('查看来源', 'View source')} ${i + 1}${url.includes('facebook.com') ? ' Facebook' : ''}`} className="wa-source">{url.includes('openfoodnetwork.nz') ? t('来源待确认', 'Source unconfirmed') : i === 0 ? t('来源', 'Source') : url.includes('facebook.com') ? 'Facebook' : t(`来源 ${i + 1}`, `Source ${i + 1}`)}<ArrowUpRight aria-hidden="true" /></a>)}</div>;
 }
+function eventNotes(item: Event) {
+  const notes: string[] = [];
+  if (item.time.startsWith('待确认')) notes.push(item.time);
+  if ('time_note_zh' in item && item.time_note_zh && item.time.startsWith('待确认')) notes.push(String(item.time_note_zh));
+  if ('notes_zh' in item && item.notes_zh && (item.id === 'cambridge-art-trail' || item.id.startsWith('pixel-'))) notes.push(String(item.notes_zh));
+  return notes;
+}
+function eventFaded(item: Event) {
+  if (/售罄|已关闭|已结束|取消|sold out|registrations closed/i.test(item.price_zh + ' ' + item.price_en)) return true;
+  if (!item.dates.length) return false;
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Pacific/Auckland' }).format(new Date());
+  return [...item.dates].sort().at(-1)! < today;
+}
 function EventRow({ item, t }: { item: Event; t: T }) {
   const multi = item.dates.length > 1;
-  return <article className="wa-row" data-event-id={item.id}>
-    <div className="wa-time caption-4">{multi ? <><time dateTime={item.dates[0]}>{chineseDate(item.dates[0])}</time><span>—</span><time dateTime={item.dates.at(-1)}>{chineseDate(item.dates.at(-1)!)}</time></> : <span>{item.time.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.time}</span>}</div>
-    <div className="wa-main"><BilingualTitle as="h4" className="title-3" zh={item.title_zh} en={item.title_en} t={t} />
+  const notes = eventNotes(item);
+  const when = multi
+    ? `${chineseDate(item.dates[0])} – ${chineseDate(item.dates.at(-1)!)}`
+    : (item.time.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.time);
+  return <article className="wa-row wa-event" data-event-id={item.id} data-past={eventFaded(item) ? 'true' : undefined}>
+    <p className="wa-time wa-event-time caption-4">{when}</p>
+    <div className="wa-main wa-event-copy">
+      <BilingualTitle as="h4" className="title-3 wa-event-title" zh={item.title_zh} en={item.title_en} t={t} />
       <p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town) === 'other' ? ` · ${item.town}` : ''}</span></p>
       {multi && <p className="wa-hours caption-4">{item.time.replace('Sat ', t('周六 ', 'Sat ')).replace('Sun ', t('周日 ', 'Sun '))}</p>}
-      {item.time.startsWith('待确认') && <p className="wa-caution caption-5">{item.time}</p>}
-      {('time_note_zh' in item && item.time_note_zh && item.time.startsWith('待确认')) ? <p className="wa-caution caption-5">{item.time_note_zh}</p> : null}
-      {('notes_zh' in item && item.notes_zh && (item.id === 'cambridge-art-trail' || item.id.startsWith('pixel-'))) ? <p className="wa-caution caption-5">{item.notes_zh}</p> : null}
+      {notes.length > 0 && <div className="wa-event-note">{notes.map(note => <p key={note} className="caption-5">{note}</p>)}</div>}
     </div>
-    <div className="wa-tail"><p className={'wa-price caption-4' + (item.price_zh.includes('待确认') || item.price_zh.includes('售罄') ? ' wa-caution' : '')}>{t(item.price_zh, item.price_en)}</p><Sources item={item} t={t} /></div>
+    <div className="wa-tail wa-event-side">
+      <p className={'wa-price caption-4' + (eventFaded(item) ? ' is-faded' : '')}>{t(item.price_zh, item.price_en)}</p>
+      <Sources item={item} t={t} />
+    </div>
   </article>;
 }
 function MarketRow({ item, t }: { item: Market; t: T }) {
@@ -72,9 +91,8 @@ export function WeekendAgenda({ mode, t }: { mode: 'picks' | 'markets' | 'festiv
     <div className="wa-heading"><div><p className="caption-4 wa-eyebrow">{t(mode==='picks'?'本周精选':mode==='festivals'?'节日活动':'周末集市',mode==='picks'?'This week':mode==='festivals'?'Festivals':'Weekend markets')}</p><h2 className="heading-4" data-week-label>{DATA.week_label_zh}</h2><p className="caption-5 wa-muted" lang="en-NZ">{DATA.week_label_en}</p></div><span className="wa-total caption-4">{items.length} {t(mode!=='markets'?'项活动':'个集市',mode!=='markets'?'events':'markets')}</span></div>
     <RegionFilter label={t('按地区筛选', 'Filter by region')} moreLabel={t('更多地区', 'More areas')} attrName="data-region" value={active} onChange={setSelection} options={[{id:'all',zh:'全部',en:'All'},...available].map(region => ({ id: region.id, label: t(region.zh, region.en), count: region.id === 'all' ? items.length : items.filter(item => regionOf(item.town) === region.id).length }))} />
     <div id={`agenda-${mode}`} className="wa-results" key={`${mode}-${active}`}>
-      <p className="wa-selection caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode!=='markets'?'新西兰当地时间':'定期集市与本周单场',mode!=='markets'?'New Zealand local time':'Recurring markets and dated listings')}</p>
       {shown.map(region=><section className="wa-region" data-region-group={region.id} key={region.id} aria-labelledby={`region-${mode}-${region.id}`}>
-        <div className="wa-region-heading"><h2 className="heading-5" id={`region-${mode}-${region.id}`}>{t(region.zh,region.en)}</h2><span className="caption-4">{items.filter(i=>regionOf(i.town)===region.id).length} {t('项', 'listings')}</span></div>
+        <div className="wa-region-heading"><p className="wa-region-kicker caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode!=='markets'?'新西兰当地时间':'定期集市与本周单场',mode!=='markets'?'New Zealand local time':'Recurring markets and dated listings')}</p><div className="wa-region-bar"><div className="wa-region-names"><h2 className="heading-5" id={`region-${mode}-${region.id}`} lang={t('中','en')==='en'?'en-NZ':'zh-CN'}>{t('中','en')==='en'?region.en:region.zh}</h2>{t('中','en')!=='en' && <p className="ia-secondary-name" lang="en-NZ">{region.en}</p>}</div><span className="wa-region-count caption-4">{items.filter(i=>regionOf(i.town)===region.id).length} {t('项', 'listings')}</span></div></div>
         {mode!=='markets'?<EventGroups items={(mode==='festivals'?festivals:picks).filter(i=>regionOf(i.town)===region.id)} t={t}/>:<div className="wa-market-rows">{marketItems.filter(i=>regionOf(i.town)===region.id).map(item=><MarketRow key={item.id} item={item} t={t}/>)}</div>}
       </section>)}
     </div>
