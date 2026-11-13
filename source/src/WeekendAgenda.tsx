@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
 import { AGENDA } from './agenda-data';
-import PHOTO from './weekend-photo.json';
+import PHOTO from './weekend-list-photo.json';
 
 type T = (zh: string, en: string) => string;
 type Event = typeof DATA.events_this_week[number];

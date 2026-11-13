@@ -3935,7 +3935,7 @@ html body .ia-root .wa:not(.pv) .wa-price.is-faded {
 }
 html body .ia-root .v20-cord-hint { display: none; }
 
-/* Weekend list backdrop: licensed nightglow, washed so text never sits on the photo. */
+/* Weekend list backdrop: Waikato River Trails boardwalk, cream or charcoal veil. */
 .wa-backdrop {
   position: absolute;
   inset: 0;
@@ -3947,22 +3947,27 @@ html body .ia-root .v20-cord-hint { display: none; }
 .wa-backdrop::before {
   content: "";
   position: absolute;
-  inset: -24px;
+  inset: -28px;
   background:
-    linear-gradient(180deg, rgba(230, 223, 213, .9), rgba(230, 223, 213, .9)),
-    url('./photos/band-weekend-nightglow.webp') center / cover no-repeat;
-  filter: blur(8px);
+    linear-gradient(180deg, rgba(246, 241, 232, .46), rgba(239, 234, 226, .52)),
+    url('./photos/weekend-bush.webp') center 42% / cover no-repeat;
+  filter: blur(5px);
 }
 html[data-theme="night"] .wa-backdrop::before {
   background:
-    linear-gradient(180deg, rgba(30, 29, 26, .88), rgba(30, 29, 26, .9)),
-    url('./photos/band-weekend-nightglow.webp') center / cover no-repeat;
+    linear-gradient(180deg, rgba(22, 21, 19, .62), rgba(30, 29, 26, .68)),
+    url('./photos/weekend-bush.webp') center 42% / cover no-repeat;
 }
 .wa:has(.wa-backdrop) { position: relative; isolation: isolate; }
 .wa:has(.wa-backdrop) > :not(.wa-backdrop) { position: relative; z-index: 1; }
-html body .ia-root .wa:has(.wa-backdrop) :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-day-label, .wa-footnote, .wa-photo-credit) {
-  background-color: var(--hl-surface);
+html body .ia-root .wa:has(.wa-backdrop) :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote, .wa-photo-credit) {
+  background-color: rgba(239, 234, 226, .92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   box-shadow: none;
+}
+html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote, .wa-photo-credit) {
+  background-color: rgba(30, 29, 26, .9);
 }
 html body .ia-root .wa:has(.wa-backdrop) .wa-heading,
 html body .ia-root .wa:has(.wa-backdrop) .hl-regions,
@@ -3979,14 +3984,45 @@ html body .ia-root .wa:has(.wa-backdrop) .wa-region-heading {
   border-bottom: 0;
 }
 html body .ia-root .wa:has(.wa-backdrop) .wa-day-label {
-  padding: 12px 14px;
-  border-radius: 14px;
+  width: max-content;
+  max-width: 100%;
+  padding: 10px 0 0;
+  background: transparent;
+  color: #8C3A18;
+}
+html body .ia-root .wa:has(.wa-backdrop) .wa-day-label :is(time, span) {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 248, 240, .92);
+  color: #8C3A18;
+}
+html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) .wa-day-label,
+html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) .wa-day-label :is(time, span) {
+  color: #E6CFA0;
+  background: transparent;
+}
+html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) .wa-day-label :is(time, span) {
+  background: rgba(30, 29, 26, .78);
 }
 html body .ia-root .wa:has(.wa-backdrop) .wa-footnote,
 html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit { margin-top: 12px; }
 html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit a { color: var(--hl-accent); }
 html body .ia-root .wa:has(.wa-backdrop) :is(.wa-event, .wa-row) {
-  background-color: var(--hl-surface);
+  background-color: rgba(255, 250, 244, .84);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(42, 33, 27, .08);
+}
+html[data-theme="night"] body .ia-root .wa:has(.wa-backdrop) :is(.wa-event, .wa-row) {
+  background-color: rgba(32, 30, 27, .84);
+  border-color: rgba(243, 239, 230, .14);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .28);
+}
+@media (max-width: 700px) {
+  html body .ia-root .wa:has(.wa-backdrop) .wa-day-label { width: 100%; padding-top: 4px; }
 }
 html body .ia-root .wa:not(.pv) .wa-event .wa-source svg { transition: transform 180ms ease; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
