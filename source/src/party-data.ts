@@ -37,6 +37,19 @@ export function partyPage<T>(items: readonly T[], expanded: boolean): T[] {
   return expanded ? [...items] : items.slice(0, PARTY_PAGE_SIZE);
 }
 
+export function partyPriceSummary(zh: string, en: string) {
+  const lead = (text: string, pending: string, more: string) => {
+    const normalized = text.replace(/／/g, '/').replace(/\s+/g, ' ').trim();
+    if (/套餐待确认|package unconfirmed/i.test(normalized)) return pending;
+    const first = normalized.split(/[；;]/)[0].trim();
+    const money = first.match(/NZ\$[\d,.]+(?:起|\/人起|\/person)?/i);
+    if (money && first.length > money[0].length) return money[0];
+    if (first.length <= 16) return first;
+    return more;
+  };
+  return { zh: lead(zh, '套餐待确认', '详见价格'), en: lead(en, 'Package unconfirmed', 'See price') };
+}
+
 export function partyDirections(address: string) {
   return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(address + ', New Zealand');
 }

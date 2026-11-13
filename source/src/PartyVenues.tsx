@@ -2,7 +2,7 @@ import { BilingualTitle } from './BilingualTitle';
 import { RegionFilter } from './RegionFilter';
 import React, { useState } from 'react';
 import VENUES from './party-venues.json';
-import { PARTY_REGIONS, PARTY_TYPES, filterPartyVenues, partyDirections, partyPage } from './party-data';
+import { PARTY_REGIONS, PARTY_TYPES, filterPartyVenues, partyDirections, partyPage, partyPriceSummary } from './party-data';
 
 type T = (zh: string, en: string) => string;
 type Venue = typeof VENUES[number] & { service_area_zh?: string; service_area_en?: string; service_regions?: string[]; map_address?: string; map_precision?: string };
@@ -35,15 +35,19 @@ export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
         <div className="wa-market-rows" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
           {partyPage(group.venues, !!expanded[group.id]).map(venue => {
             const category = PARTY_TYPES.find(item => item.id === venue.type)!;
+            const summary = partyPriceSummary(venue.price_zh, venue.price_en);
+            const chip = t(summary.zh, summary.en);
+            const fullPrice = t(venue.price_zh, venue.price_en);
             return <article key={venue.id} className="wa-row pv-row" data-party-id={venue.id}>
               <div className="wa-time caption-4"><span>{t(category.zh, category.en)}</span><span className="pv-town caption-5">{t(venue.town, venue.town)}</span></div>
               <div className="wa-main">
                 <BilingualTitle as="h4" className="title-3" zh={venue.name_zh} en={venue.name_en} t={t} />
                 <p className="wa-venue caption-4"><span>{venue.type === 'mobile' ? t('服务范围：', 'Service area: ') + t(venue.service_area_zh || venue.town, venue.service_area_en || venue.town) : t(venue.address, venue.address)}</span></p>
                 <p className="wa-hours caption-4">{t('适合年龄：', 'Ages: ')}{t(venue.ages_zh, venue.ages_en)}</p>
+                {fullPrice !== chip && <p className="pv-price-detail">{fullPrice}</p>}
                 <p className="pv-details caption-4">{t(venue.details_zh, venue.details_en)}</p>
               </div>
-              <div className="wa-tail pv-tail"><p className="wa-price caption-4">{t(venue.price_zh, venue.price_en)}</p><div className="wa-sources caption-4"><a className="wa-source" href={venue.url} target="_blank" rel="noopener noreferrer" aria-label={`${t('官网与预订', 'Website & booking')} · ${venue.name_en}`}>{t('官网与预订', 'Website & booking')}<span aria-hidden="true">↗</span></a>{venue.type !== 'mobile' && <a className="wa-source" href={partyDirections(venue.map_address || venue.address)} target="_blank" rel="noopener noreferrer" aria-label={`Google Maps · ${venue.name_en}`}>{t('地图导航', 'Directions')}<span aria-hidden="true">↗</span></a>}</div></div>
+              <div className="wa-tail pv-tail"><p className="pv-price-chip">{chip}</p><div className="wa-sources caption-4"><a className="wa-source" href={venue.url} target="_blank" rel="noopener noreferrer" aria-label={`${t('官网与预订', 'Website & booking')} · ${venue.name_en}`}>{t('官网与预订', 'Website & booking')}<span aria-hidden="true">↗</span></a>{venue.type !== 'mobile' && <a className="wa-source" href={partyDirections(venue.map_address || venue.address)} target="_blank" rel="noopener noreferrer" aria-label={`Google Maps · ${venue.name_en}`}>{t('地图导航', 'Directions')}<span aria-hidden="true">↗</span></a>}</div></div>
             </article>;
           })}
         </div>

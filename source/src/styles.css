@@ -3274,13 +3274,14 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
 /* Reference place cards: outings, family outings, U-pick, stays. */
 .hl-spot-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  max-width: 1024px;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: none;
   align-items: stretch;
 }
 @media (min-width: 768px) {
-  .ia-root .hl-spot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .ia-root .hl-spot-grid { grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 16px; }
 }
 .hl-spot {
   display: flex;
@@ -3292,7 +3293,7 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
   background: #EFEAE2;
   box-shadow: none;
 }
-.hl-spot-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #E6DFD5; }
+.hl-spot-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #E6DFD5; }
 .hl-spot-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hl-spot-fallback { display: grid; place-items: center; width: 100%; height: 100%; }
 .hl-spot-grid[data-accent="living"] .hl-spot-fallback { background: #d5e4e4; color: #1A5C64; }
@@ -3330,13 +3331,12 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
   min-height: 36px;
 }
 .hl-spot-info svg { width: 20px; height: 20px; }
-.hl-spot-body { display: flex; flex-direction: column; flex: 1; padding: 24px; min-height: 0; }
+.hl-spot-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; min-height: 0; }
 .hl-spot-body > h3 {
-  margin: 0 0 4px;
-  min-height: calc(1.25em * 2);
-  font-size: 22px;
+  margin: 0 0 2px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.3;
   color: #2A211B;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -3357,10 +3357,9 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
 }
 .hl-spot .v25-season, .hl-spot .v25-confirm { margin: 0 0 8px; font-size: 13px; line-height: 1.5; color: #66574A; }
 .hl-spot-copy {
-  margin: 0 0 16px;
-  min-height: calc(1.65em * 3);
-  font-size: 15px;
-  line-height: 1.65;
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.5;
   color: #66574A;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -3373,8 +3372,7 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin: auto 0 16px;
-  min-height: calc(1.45em * 2);
+  margin: auto 0 10px;
   font-size: 14px;
   line-height: 1.45;
   color: #66574A;
@@ -3412,10 +3410,10 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
   justify-content: center;
   gap: 8px;
   width: 100%;
-  min-height: 48px;
-  padding: 14px 16px;
+  min-height: 40px;
+  padding: 8px 12px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 10px;
   color: #fff;
   font-size: 15px;
   font-weight: 600;
@@ -3427,7 +3425,7 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 14px 0 0;
+  margin: 8px 0 0;
   padding: 0;
   border: 0;
   background: transparent;
@@ -3511,6 +3509,107 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
     color: var(--hl-ink);
     font-size: 15px;
   }
+}
+
+/* Date groups are labels beside cards, not a second frame. */
+.ia-root .wa-day-rows,
+.ia-root .wa-market-rows {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.ia-root .wa-day { align-items: start; }
+.ia-root .wa-day-label { margin: 0; padding-top: 0; }
+.ia-root .wa:not(.pv) .wa-footnote {
+  margin-left: 120px;
+  max-width: none;
+  text-align: left;
+}
+.ia-root .pv-row {
+  align-items: stretch;
+  grid-template-columns: 108px minmax(0, 1fr) minmax(168px, 220px);
+}
+.ia-root .pv-row .wa-time { padding-top: 2px; font-size: 13px; line-height: 1.45; color: var(--sec, #3E5218); }
+.ia-root .pv-row .pv-town { display: block; margin-top: 2px; font-size: 13px; color: #66574A; }
+html body .ia-root .pv-row :is(h4, .title-3) { font-size: 17px; line-height: 1.35; font-weight: 650; }
+html body .ia-root .pv-row :is(.wa-venue, .wa-hours, .pv-details) { font-size: 14px; line-height: 1.5; }
+.ia-root .pv-price-detail { margin: 0 0 6px; font-size: 13px; line-height: 1.5; color: #66574A; text-align: left; }
+.ia-root .pv-row .wa-tail { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; height: 100%; }
+.ia-root .pv-row .wa-sources { margin-top: auto; }
+.ia-root .pv-price-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sec, #3E5218) 12%, #EFEAE2);
+  color: var(--sec, #3E5218);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Section pages: licensed photo, cream wash, solid cards. */
+.ia-root { background-color: var(--hl-canvas); }
+.ia-root > main,
+.ia-root > footer { position: relative; z-index: 1; }
+.ia-root .ia-section-media {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  height: auto;
+  overflow: hidden;
+  background: var(--hl-canvas);
+}
+.ia-root .ia-section-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  filter: blur(8px) saturate(.86);
+  transform: scale(1.08);
+}
+.ia-root .ia-section-media::after,
+.ia-root .v25g-weekend-media::after {
+  background: linear-gradient(180deg, rgba(46, 42, 39, .72) 0, rgba(46, 42, 39, .5) 220px, rgba(230, 223, 213, .9) 460px, rgba(230, 223, 213, .92) 100%);
+}
+.ia-root .ia-content { background: transparent; }
+.ia-root[data-route="home"] .v23-stat-section {
+  background-color: var(--hl-band);
+  background-image: linear-gradient(rgba(217, 208, 195, .9), rgba(217, 208, 195, .92)), url('./photos/hamilton-lake.webp');
+  background-position: center;
+  background-size: cover;
+}
+@media (max-width: 700px) {
+  .ia-root .wa:not(.pv) .wa-footnote { margin-left: 0; }
+  .ia-root .wa-day-label { padding-top: 0; }
+  .ia-root .pv-row { grid-template-columns: 1fr; }
+  .ia-root .pv-row .wa-tail { align-items: flex-start; height: auto; }
+  .ia-root .pv-row .wa-sources { margin-top: 8px; }
+  .ia-root .ia-section-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: auto;
+    height: 520px;
+  }
+  .ia-root .ia-section-media img { filter: none; transform: none; }
+  .ia-root .ia-content { background: var(--hl-canvas); }
+  .ia-root[data-route="home"] .v23-stat-section { background-image: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ia-root .ia-section-media img { filter: none; transform: none; }
 }
 
 /* HL_THEME_V26_END */

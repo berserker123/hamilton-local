@@ -47,11 +47,11 @@ const SECTIONS = [
 const MARKET_CHECKED = SUPERMARKETS.filter(s => s.verificationStatus === 'verified').length;
 const MARKET_PENDING = SUPERMARKETS.length - MARKET_CHECKED;
 const PAGE = {
-  living: { zh: '从一日三餐，到日常散步。', en: 'Groceries, good food and a little fresh air.', photo: 'band-market.webp' },
+  living: { zh: '从一日三餐，到日常散步。', en: 'Groceries, good food and a little fresh air.', photo: 'teaser-living-a.webp' },
   weekend: { zh: '留一点时间，给周末。', en: 'Make a little room for the weekend.', photo: 'band-weekend-nightglow.webp' },
-  kids: { zh: '陪孩子，把城市慢慢逛遍。', en: 'Small adventures, close to home.', photo: 'band-hamilton-lake.webp' },
-  services: { zh: '家里家外，总有需要帮忙的时候。', en: 'A little help for everyday life.', photo: 'band-tools.webp' },
-  tools: { zh: '把日常琐事，安排得更顺手。', en: 'The practical side of life, all in one place.', photo: 'band-tools.webp' },
+  kids: { zh: '陪孩子，把城市慢慢逛遍。', en: 'Small adventures, close to home.', photo: 'teaser-kids-c.webp' },
+  services: { zh: '家里家外，总有需要帮忙的时候。', en: 'A little help for everyday life.', photo: 'teaser-services-a.webp' },
+  tools: { zh: '把日常琐事，安排得更顺手。', en: 'The practical side of life, all in one place.', photo: 'teaser-tools-b.webp' },
 };
 const TABS = {
   living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays']],
