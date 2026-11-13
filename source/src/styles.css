@@ -3969,6 +3969,11 @@ html body .ia-root.ia-photo-page :is(.ia-page-title, .ia-page-en, .ia-breadcrumb
   color: #F7F1E8;
 }
 html body .ia-root.ia-photo-page .ia-breadcrumb a { color: #F3E4D4; }
+html body .ia-root.ia-photo-page #main,
+html body .ia-root.ia-photo-page .ia-content {
+  padding-bottom: 0;
+  min-height: 0;
+}
 html body .ia-root.ia-photo-page .ia-content {
   position: relative;
   z-index: 1;
@@ -4045,19 +4050,14 @@ html body .ia-root[data-route="weekend"] #section-panel > .fb-detail-link {
 html body .ia-root.ia-photo-page .ia-footer {
   position: relative;
   z-index: 1;
-  background-color: var(--hl-footer);
+  background: rgba(16, 12, 10, .82);
   background-image: none;
-  margin-top: 56px;
+  margin-top: 20px;
+  padding-top: 0;
 }
-html body .ia-root.ia-photo-page .ia-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -56px;
-  height: 56px;
-  background: linear-gradient(180deg, transparent, var(--hl-footer));
-  pointer-events: none;
+html body .ia-root.ia-photo-page .ia-footer::before { content: none; }
+@media (max-width: 700px) {
+  html body .ia-root.ia-photo-page .ia-footer { margin-top: 14px; }
 }
 html body .ia-root .ia-bg-credit { color: var(--hl-footer-muted); }
 html body .ia-root .ia-bg-credit a { color: var(--hl-footer-accent); }
