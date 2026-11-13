@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 import { placeNames } from './place-names';
 import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Copy, Sun, Store, Trees, Wrench, BookOpen, ShieldCheck, ExternalLink } from 'lucide-react';
@@ -87,36 +87,13 @@ function Empty({ t, title, detail }: { t: T; title?: string; detail?: string }) 
 }
 function Tabs({ route, tab, t }: { route: Exclude<Route, 'home'>; tab: string; t: T }) {
   const tabs = TABS[route];
-  const listRef = useRef<HTMLDivElement>(null);
-  const indicatorRef = useRef<HTMLSpanElement>(null);
-  const seen = useRef(false);
-  useLayoutEffect(() => {
-    if (route !== 'tools') return;
-    const list = listRef.current;
-    const indicator = indicatorRef.current;
-    const move = (animate: boolean) => {
-      const active = list?.querySelector<HTMLElement>('.sb-tab-on');
-      if (!list || !indicator || !active) return;
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const x = active.offsetLeft + 12;
-      const y = active.offsetTop + active.offsetHeight - 8;
-      const width = Math.max(16, active.offsetWidth - 24);
-      indicator.style.transition = !animate || reduced ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)';
-      indicator.style.transform = `translate(${x}px, ${y}px) scaleX(${width})`;
-    };
-    move(seen.current);
-    seen.current = true;
-    const onResize = () => move(false);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [route, tab]);
-  return <div ref={listRef} role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className={'sb-tabs ia-tabs' + (route === 'tools' ? ' hl-tool-tabs' : '')} onKeyDown={e => {
+  return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className="sb-tabs ia-tabs" onKeyDown={e => {
     const current = tabs.findIndex(item => item[0] === tab);
     const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (next < 0) return;
     e.preventDefault(); location.hash = href(route, tabs[next][0]);
     requestAnimationFrame(() => document.getElementById('tab-' + tabs[next][0])?.focus());
-  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}{route === 'tools' && <span className="hl-tab-indicator" ref={indicatorRef} aria-hidden="true" />}</div>;
+  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}</div>;
 }
 type Place = typeof PLACES[number];
 function placeHref(p: Place) {
@@ -185,7 +162,7 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
       <span>{s.tags[lang].join(' · ')}</span>
       <div className="ia-market-actions">
         <a className="sb-action button-xsm" href={'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + encodeURIComponent(MARKET_STREET_VIEW[s.id as keyof typeof MARKET_STREET_VIEW])} target="_blank" rel="noopener noreferrer"><ExternalLink aria-hidden="true" />{t('看街景', 'Street View')}</a>
-        {s.mapLink && <a className="sb-action button-xsm" href={s.mapLink} target="_blank" rel="noopener noreferrer"><MapPin />{t('地图 / 导航', 'Map / Directions')}</a>}
+        {s.mapLink && <a className="sb-action hl-icon-btn" href={s.mapLink} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>}
         <button className="sb-action button-xsm" onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}><Copy />{t('复制地址', 'Copy address')}</button>
       </div>
     </div>
@@ -293,7 +270,7 @@ export default function App() {
     if (routeChanged) { window.scrollTo({ top: 0, behavior: 'instant' }); document.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true }); }
   }, [state.route, state.tab, state.at]);
   return <FeedbackProvider lang={lang} section={t(current.zh, current.en) + (state.tab ? " / " + state.tab : "")}><div className="sb-root sb-dark ia-root"><a className="ia-skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t('跳转到内容', 'Skip to content')}</a><header className="sb-header"><div className="sb-header-inner"><a href={href('home')} className="sb-brand"><span className="sb-logo"><LogoMark /></span><span><span className="sb-brand-name">Hamilton Local</span><span className="sb-brand-sub">{lang === 'zh' ? '汉密尔顿生活指南' : 'Your local field guide'}</span></span></a><nav className="sb-desktop-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-nav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav><div className="sb-header-actions"><span className="ia-preview">{t('预览', 'Preview')}</span><button data-testid="lang" className="sb-pill sb-language" aria-label={t('切换到英文', 'Switch to Chinese')} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}><Globe />{lang === 'zh' ? 'EN' : '中文'}</button>{hasCord && <PullCord key={state.route} lang={lang} label={experience.label} status={experience.status} badge={experience.badge} onActivate={experience.activate} />}</div></div><nav className="sb-mobile-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-mnav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav></header>
-  <main id="main" tabIndex={-1}>{state.route === 'home' ? <Home lang={lang} t={t} scene={experience.scene} /> : <><div className={"ia-section-media" + (state.route === "weekend" ? " v25g-weekend-media" : "")} aria-hidden="true"><img src={'./photos/' + PAGE[state.route].photo} alt="" /></div><div className="sb-container ia-page-intro"><div className="ia-breadcrumb"><a href={href('home')}>{t('首页', 'Home')}</a><span>/</span><span>{t(current.zh, current.en)}</span></div><p className="ia-kicker">{current.en.toUpperCase()} · HAMILTON LOCAL</p><h1 className="ia-page-title" tabIndex={-1} key={current.id + lang}><BlurText text={t(current.zh, current.en)} /></h1><div className="ia-intro-bottom"><p>{t(PAGE[state.route].zh, PAGE[state.route].en)}</p><button data-testid="sources-btn" className="sb-action" onClick={() => setModal('sources')}><BookOpen />{t('资料来源', 'Sources')}</button></div></div><Reveal className="ia-content" key={state.route}><div className="sb-container"><Tabs route={state.route} tab={state.tab} t={t} /><div id="section-panel" role="tabpanel" aria-labelledby={'tab-' + state.tab} tabIndex={0}>
+  <main id="main" tabIndex={-1}>{state.route === 'home' ? <Home lang={lang} t={t} scene={experience.scene} /> : <><div className={"ia-section-media" + (state.route === "weekend" ? " v25g-weekend-media" : "")} aria-hidden="true"><img src={'./photos/' + PAGE[state.route].photo} alt="" /></div><div className="sb-container ia-page-intro"><div className="ia-breadcrumb"><a href={href('home')}>{t('首页', 'Home')}</a><span>/</span><span>{t(current.zh, current.en)}</span></div><h1 className="ia-page-title" tabIndex={-1} key={current.id + lang}><BlurText text={t(current.zh, current.en)} /></h1><p className="ia-page-en">{lang === 'zh' ? current.en : current.zh}</p><div className="ia-intro-bottom"><p>{t(PAGE[state.route].zh, PAGE[state.route].en)}</p><button data-testid="sources-btn" className="sb-action" onClick={() => setModal('sources')}><BookOpen />{t('资料来源', 'Sources')}</button></div></div><Reveal className="ia-content" key={state.route}><div className="sb-container"><Tabs route={state.route} tab={state.tab} t={t} /><div id="section-panel" role="tabpanel" aria-labelledby={'tab-' + state.tab} tabIndex={0}>
   {state.route === 'living' && <Living key={state.tab + state.q} tab={state.tab} query={state.q} lang={lang} t={t} toast={toast} />}
   {state.route === 'weekend' && <Weekend tab={state.tab} t={t} />}
   {state.route === 'kids' && <Kids tab={state.tab} lang={lang} t={t} />}

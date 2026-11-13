@@ -48,8 +48,8 @@ export function ToolSources({ ids, t }: { ids: readonly string[]; t: T }) {
     return s ? <a key={id} href={s.url} target="_blank" rel="noopener noreferrer">{t(s.label, s.label.split(' · ')[0] + ' · Official source')}<ArrowUpRight aria-hidden="true" /></a> : null;
   })}</div></footer>;
 }
-function ToolHeading({ eyebrow, zh, en, introZh, introEn, t }: { eyebrow:string; zh:string; en:string; introZh:string; introEn:string; t:T }) {
-  return <div className="v25-directory-heading v25g-heading"><p className="ia-kicker">AROUND HAMILTON · {eyebrow}</p><BilingualTitle as="h2" zh={zh} en={en} t={t} /><p className="v25g-intro">{t(introZh,introEn)}</p></div>;
+function ToolHeading({ zh, en, introZh, introEn, t }: { eyebrow?:string; zh:string; en:string; introZh:string; introEn:string; t:T }) {
+  return <div className="v25-directory-heading v25g-heading"><BilingualTitle as="h2" zh={zh} en={en} t={t} /><p className="v25g-intro">{t(introZh,introEn)}</p></div>;
 }
 export function ArrivalChecklist({ t }: { t:T }) {
   return <section id="tool-checklist" className="v25g-tools"><ToolHeading eyebrow="GETTING STARTED" zh="新移民办事清单" en="New Arrival Checklist" introZh="刚到新西兰，先把这几件事逐项办妥。展开查看步骤、材料与官方入口。" introEn="Settle in one step at a time. Open each card for documents, steps and official links." t={t} />
@@ -122,7 +122,7 @@ const SHORTCUTS = [
   {tab:'urgent',at:'urgent-clinics',zh:'急诊与健康热线',en:'Urgent care',noteZh:'需要时，快速找到帮助',noteEn:'Find help when you need it',Icon:HeartPulse},
 ] as const;
 export function CommonTools({t}:{t:T}) {
-  return <section className="v25g-common" id="common-tools"><div className="sb-container"><div className="v25g-common-heading"><div><p className="ia-kicker">EVERYDAY, A LITTLE EASIER</p><BilingualTitle as="h2" zh="常用工具" en="Everyday tools" t={t} /></div><a href="#/tools?tab=pay" className="sb-action">{t('全部工具','All tools')}<ArrowRight aria-hidden="true" /></a></div><div className="v25g-shortcuts">{SHORTCUTS.map(item=><a className="sb-card v25g-shortcut" href={`#/tools?tab=${item.tab}&at=${item.at}`} key={item.tab}><item.Icon aria-hidden="true" /><BilingualTitle zh={item.zh} en={item.en} t={t} /><p>{t(item.noteZh,item.noteEn)}</p><ArrowUpRight className="v25g-shortcut-arrow" aria-hidden="true" /></a>)}</div></div></section>;
+  return <section className="v25g-common" id="common-tools"><div className="sb-container"><div className="v25g-common-heading"><div><BilingualTitle as="h2" zh="常用工具" en="Everyday tools" t={t} /></div><a href="#/tools?tab=pay" className="sb-action">{t('全部工具','All tools')}<ArrowRight aria-hidden="true" /></a></div><div className="v25g-shortcuts">{SHORTCUTS.map(item=><a className="sb-card v25g-shortcut" href={`#/tools?tab=${item.tab}&at=${item.at}`} key={item.tab}><item.Icon aria-hidden="true" /><BilingualTitle zh={item.zh} en={item.en} t={t} /><p>{t(item.noteZh,item.noteEn)}</p><ArrowUpRight className="v25g-shortcut-arrow" aria-hidden="true" /></a>)}</div></div></section>;
 }
 export function PracticalTools({tab,t}:{tab:string;t:T}) {
   if(tab==='checklist')return <ArrivalChecklist t={t} />;
