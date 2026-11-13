@@ -3901,7 +3901,33 @@ html body .ia-root .wa:not(.pv) .wa-event .wa-price:not(.is-faded) {
   border: 1px solid var(--hl-fill);
   opacity: 1;
 }
-html body .ia-root .wa:not(.pv) .wa-event .wa-price.is-faded {
+html body .ia-root .wa:not(.pv) :is(.wa-event, .wa-row) .wa-price.is-free {
+  background: #E6B84E;
+  color: #2A211B;
+  border: 1px solid #C49A32;
+  opacity: 1;
+}
+html body .ia-root .wa:not(.pv) :is(.wa-event, .wa-row) .wa-price.is-tbc {
+  background: #D5E0E8;
+  color: #1B3344;
+  border: 1px solid #B7C6D2;
+  opacity: 1;
+}
+html body .ia-root .wa:not(.pv) .wa-event-time.is-tbc,
+html body .ia-root .wa:not(.pv) .wa-time.is-tbc { color: #2C4A62; }
+html[data-theme="night"] body .ia-root .wa:not(.pv) :is(.wa-event, .wa-row) .wa-price.is-free {
+  background: #E6C56A;
+  color: #1E1D1A;
+  border-color: #E6C56A;
+}
+html[data-theme="night"] body .ia-root .wa:not(.pv) :is(.wa-event, .wa-row) .wa-price.is-tbc {
+  background: #3E5A6E;
+  color: #F3EFE6;
+  border-color: #3E5A6E;
+}
+html[data-theme="night"] body .ia-root .wa:not(.pv) .wa-event-time.is-tbc,
+html[data-theme="night"] body .ia-root .wa:not(.pv) .wa-time.is-tbc { color: #A9C6D6; }
+html body .ia-root .wa:not(.pv) .wa-price.is-faded {
   background: var(--hl-canvas);
   color: var(--hl-ink);
   border: 1px solid var(--hl-line);
