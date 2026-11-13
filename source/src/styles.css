@@ -4052,12 +4052,12 @@ html body .ia-root.ia-photo-page .ia-footer {
   z-index: 1;
   background: rgba(16, 12, 10, .82);
   background-image: none;
-  margin-top: 20px;
+  margin-top: 157px;
   padding-top: 0;
 }
 html body .ia-root.ia-photo-page .ia-footer::before { content: none; }
 @media (max-width: 700px) {
-  html body .ia-root.ia-photo-page .ia-footer { margin-top: 14px; }
+  html body .ia-root.ia-photo-page .ia-footer { margin-top: 148px; }
 }
 html body .ia-root .ia-bg-credit { color: var(--hl-footer-muted); }
 html body .ia-root .ia-bg-credit a { color: var(--hl-footer-accent); }
