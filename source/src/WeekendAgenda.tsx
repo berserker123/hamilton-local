@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
 import { AGENDA } from './agenda-data';
-import PHOTO from './weekend-list-photo.json';
 import { displayPrice, priceTone } from './weekend-status';
 
 type T = (zh: string, en: string) => string;
@@ -100,6 +99,5 @@ export function WeekendAgenda({ mode, t }: { mode: 'picks' | 'markets' | 'festiv
       </section>)}
     </div>
     <p className="wa-footnote caption-5">{t(mode!=='markets'?'多日活动仅列一次，日期范围随项保留。费用、报名与取消安排请查看来源；待确认信息未作推定。':'保留定期集市资料；本周已过的场次已注明，非全部在本周举行。费用与开放安排以来源为准。',mode!=='markets'?'Multi-day events appear once, with their date ranges. Check sources for prices, bookings and cancellations; unknown details remain unconfirmed.':'Recurring market directory. Past sessions are labelled and not all markets run this week. Check sources for current arrangements.')}</p>
-    <p className="wa-photo-credit caption-5">{t('背景照片', 'Backdrop')} · {PHOTO.author} · <a href={PHOTO.licenseUrl} target="_blank" rel="noopener noreferrer">{PHOTO.license}</a> · <a href={PHOTO.source} target="_blank" rel="noopener noreferrer">{t(PHOTO.zh, PHOTO.en)}</a></p>
   </div>;
 }

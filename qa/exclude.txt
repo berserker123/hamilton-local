@@ -1,0 +1,3 @@
+# Pages this round is allowed to differ from qa/baseline.
+# Remove the weekend line after Frank approves opt9x and the baseline is recaptured.
+weekend

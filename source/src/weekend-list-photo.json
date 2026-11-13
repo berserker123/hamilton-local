@@ -1,12 +1,12 @@
 {
-  "id": "weekend-river",
-  "file": "weekend-river.webp",
-  "zh": "汉密尔顿花园眺望怀卡托河",
-  "en": "Waikato River from Hamilton Gardens",
-  "author": "Daderot",
-  "license": "CC0",
-  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "source": "https://commons.wikimedia.org/wiki/File:River_-_Hamilton_Gardens_-_Hamilton,_NZ_-_DSC06553.jpg",
-  "changesZh": "缩放至 1920 × 1280，轻微虚化并压缩为 WebP。周末活动页全幅背景再叠浅色或炭色薄纱。衍生图片沿用 CC0。",
-  "changesEn": "Resized to 1920 × 1280, lightly blurred and compressed to WebP. The weekend page background adds a light or charcoal veil. Derivative remains CC0."
+  "id": "weekend-skyline",
+  "file": "weekend-skyline.webp",
+  "zh": "汉密尔顿市区黄昏航拍",
+  "en": "Hamilton CBD at sunset, aerial",
+  "author": "Mc4Jesus",
+  "license": "Pexels License",
+  "licenseUrl": "https://www.pexels.com/license/",
+  "source": "https://www.pexels.com/video/aerial-view-of-hamilton-at-sunset-new-zealand-34974599/",
+  "changesZh": "取自 Pexels 影片 34974599 的海报静帧，缩至 1920 × 1080 并压缩为 WebP。周末活动页用固定层铺满视口，标题区另加暗色渐变遮罩。未改色。",
+  "changesEn": "Poster still from Pexels video 34974599, resized to 1920 × 1080 and compressed to WebP. The weekend page pins it in a fixed layer, with a dark gradient behind the title. Colours were not regraded."
 }
