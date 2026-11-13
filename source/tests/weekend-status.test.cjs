@@ -37,5 +37,16 @@ test('every weekend status gets exactly one colour class',()=>{
   assert.equal(priceTone('$20–$35','$20–$35'),'is-priced');
   assert.equal(priceTone('免费（本期报名已关闭）','Free; registrations closed'),'is-faded');
   assert.equal(priceTone('免费','Free',true),'is-faded');
+  const {isWeekendEvent,weekendHeading}=load();
+  assert.deepEqual(weekendHeading('2026-11-10','2026-11-16'), {zh:'11月13日–15日', en:'13–15 November 2026', first:'2026-11-13', last:'2026-11-15'});
+  const events=data.events_this_week.filter(item=>isWeekendEvent(item.dates,'2026-11-10','2026-11-16'));
+  const byTown={};
+  for (const item of events){
+    const town=['Hamilton','Cambridge','Raglan'].includes(item.town)?item.town:'other';
+    byTown[town]=(byTown[town]||0)+1;
+  }
+  assert.ok(events.length < data.events_this_week.length);
+  assert.ok(events.every(item=>item.dates.some(date=>['2026-11-13','2026-11-14','2026-11-15'].includes(date))));
   console.log('status classes', counts);
+  console.log('fri-sun picks', events.length, byTown);
 });
