@@ -1,12 +1,13 @@
 import { BilingualTitle } from './BilingualTitle';
+import { RegionFilter } from './RegionFilter';
 import React, { useState } from 'react';
 import VENUES from './party-venues.json';
-import { PARTY_REGIONS, PARTY_TYPES, filterPartyVenues, partyDirections, partyPage } from './party-data';
+import { PARTY_REGIONS, PARTY_TYPES, filterPartyVenues, partyDirections, partyPage, partyPriceSummary, partyRegionCounts } from './party-data';
 
 type T = (zh: string, en: string) => string;
 type Venue = typeof VENUES[number] & { service_area_zh?: string; service_area_en?: string; service_regions?: string[]; map_address?: string; map_precision?: string };
 const ITEMS: Venue[] = VENUES;
-const REGION_COUNTS = Object.fromEntries(PARTY_REGIONS.map(group => [group.id, filterPartyVenues(ITEMS, group.id, 'all').length]));
+const REGION_COUNTS = partyRegionCounts(ITEMS);
 
 export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
   const [region, setRegion] = useState('Hamilton');
@@ -18,33 +19,34 @@ export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
 
   return <div className="wa pv" data-party-venues>
     <div className="wa-heading">
-      <div><p className="caption-4 wa-eyebrow">{t('亲子遛娃', 'Kids & family')}</p><h2 className="heading-4">{t('派对与场地', 'Parties & venues')}</h2><p className="caption-5 wa-muted">{t('按地区寻找游乐、运动、手作和聚会空间，也可选择上门派对服务。', 'Find play, sports, arts and gathering spaces by area, or choose a mobile party service.')}</p></div>
-      <span className="wa-total caption-4">{VENUES.length} {t('项选择', 'options')}</span>
+      <div><p className="caption-4 wa-eyebrow">{t('亲子遛娃', 'Kids & family')}</p><h2 className="heading-4">{t('派对与场地', 'Parties & venues')}</h2><p className="caption-5 wa-muted">{t('按地区寻找游乐、运动、手作和聚会空间，也可选择上门服务。', 'Find play, sports, arts and gathering spaces by area, or choose a home visit.')}</p></div>
+      <span className="wa-total caption-4">{REGION_COUNTS.all} {t('项选择', 'options')}</span>
     </div>
-    <nav className="wa-regions" aria-label={t('按地区筛选场地', 'Filter venues by region')}>
-      {[{ id: 'all', zh: '全部', en: 'All' }, ...PARTY_REGIONS].map(group => <button key={group.id} className="wa-chip button-xsm" data-party-region={group.id} aria-pressed={region === group.id} aria-controls="party-results" onClick={e => { setRegion(group.id); setExpanded({}); e.currentTarget.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' }); }}>{t(group.zh, group.en)}<span className="caption-4">{group.id === 'all' ? VENUES.length : REGION_COUNTS[group.id]}</span></button>)}
-    </nav>
+    <RegionFilter label={t('按地区筛选场地', 'Filter venues by region')} moreLabel={t('更多地区', 'More areas')} attrName="data-party-region" pin="mobile" value={region} onChange={id => { setRegion(id); setExpanded({}); }} options={[{ id: 'all', zh: '全部', en: 'All' }, ...PARTY_REGIONS].map(group => ({ id: group.id, label: t(group.zh, group.en), count: REGION_COUNTS[group.id] || 0 }))} />
     <div className="pv-filter-row">
       <label className="pv-type caption-4" htmlFor="party-type">{t('场地类型', 'Venue type')}<select id="party-type" data-testid="party-type" value={type} onChange={e => { setType(e.target.value); setExpanded({}); }} aria-controls="party-results"><option value="all">{t('全部类型', 'All types')}</option>{PARTY_TYPES.map(item => <option key={item.id} value={item.id}>{t(item.zh, item.en)}</option>)}</select></label>
       <button className="wa-source button-sm pv-reset" onClick={reset}>{t('重置筛选', 'Reset filters')}</button>
     </div>
     <p className="wa-selection caption-5" role="status" aria-live="polite" aria-atomic="true">{t(`找到 ${filtered.length} 项选择`, `${filtered.length} options found`)} · {t('资料核对：2026年11月11日', 'Sources checked: 11 November 2026')}</p>
-    <p className="pv-coverage caption-5">{t('地区数量包含官网明确覆盖当地的上门服务，服务单独分组；各地区数量不相加。左右滑动可查看全部地区。', 'Area counts include mobile services with stated local coverage, shown separately. Counts overlap. Scroll sideways for more areas.')}</p>
     <div id="party-results" className="wa-results" key={`${region}-${type}`}>
       {shownRegions.map(group => <section key={group.id} className="wa-region" data-party-group={group.id} aria-labelledby={`party-heading-${group.id.replaceAll(' ', '-')}`}>
         <div className="wa-region-heading"><h3 className="heading-5" id={`party-heading-${group.id.replaceAll(' ', '-')}`}>{t(group.zh, group.en)}</h3><span className="caption-4">{group.venues.length} {t('项', 'options')}</span></div>
         <div className="wa-market-rows" id={`party-rows-${group.id.replaceAll(' ', '-')}`}>
           {partyPage(group.venues, !!expanded[group.id]).map(venue => {
             const category = PARTY_TYPES.find(item => item.id === venue.type)!;
+            const summary = partyPriceSummary(venue.price_zh, venue.price_en);
+            const chip = t(summary.zh, summary.en);
+            const fullPrice = t(venue.price_zh, venue.price_en);
             return <article key={venue.id} className="wa-row pv-row" data-party-id={venue.id}>
               <div className="wa-time caption-4"><span>{t(category.zh, category.en)}</span><span className="pv-town caption-5">{t(venue.town, venue.town)}</span></div>
               <div className="wa-main">
                 <BilingualTitle as="h4" className="title-3" zh={venue.name_zh} en={venue.name_en} t={t} />
                 <p className="wa-venue caption-4"><span>{venue.type === 'mobile' ? t('服务范围：', 'Service area: ') + t(venue.service_area_zh || venue.town, venue.service_area_en || venue.town) : t(venue.address, venue.address)}</span></p>
                 <p className="wa-hours caption-4">{t('适合年龄：', 'Ages: ')}{t(venue.ages_zh, venue.ages_en)}</p>
+                {fullPrice !== chip && <p className="pv-price-detail">{fullPrice}</p>}
                 <p className="pv-details caption-4">{t(venue.details_zh, venue.details_en)}</p>
               </div>
-              <div className="wa-tail pv-tail"><p className="wa-price caption-4">{t(venue.price_zh, venue.price_en)}</p><div className="wa-sources caption-4"><a className="wa-source" href={venue.url} target="_blank" rel="noopener noreferrer" aria-label={`${t('官网与预订', 'Website & booking')} · ${venue.name_en}`}>{t('官网与预订', 'Website & booking')}<span aria-hidden="true">↗</span></a>{venue.type !== 'mobile' && <a className="wa-source" href={partyDirections(venue.map_address || venue.address)} target="_blank" rel="noopener noreferrer" aria-label={`Google Maps · ${venue.name_en}`}>{t('地图导航', 'Directions')}<span aria-hidden="true">↗</span></a>}</div></div>
+              <div className="wa-tail pv-tail"><p className="pv-price-chip">{chip}</p><div className="wa-sources caption-4"><a className="wa-source" href={venue.url} target="_blank" rel="noopener noreferrer" aria-label={`${t('官网与预订', 'Website & booking')} · ${venue.name_en}`}>{t('官网与预订', 'Website & booking')}<span aria-hidden="true">↗</span></a>{venue.type !== 'mobile' && <a className="wa-source" href={partyDirections(venue.map_address || venue.address)} target="_blank" rel="noopener noreferrer" aria-label={`Google Maps · ${venue.name_en}`}>{t('地图导航', 'Directions')}<span aria-hidden="true">↗</span></a>}</div></div>
             </article>;
           })}
         </div>

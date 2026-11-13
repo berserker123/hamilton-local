@@ -16,6 +16,6 @@ export function BilingualTitle({ zh, en, t, as: Heading = 'h3', className }: { z
   return <><Heading className={['ia-name-line', className].filter(Boolean).join(' ')} lang={chinese ? 'zh-CN' : 'en-NZ'} title={title}>{title}</Heading>{chinese && <p className="ia-secondary-name ia-name-line" lang="en-NZ" title={en}>{en}</p>}</>;
 }
 
-export function DirectoryHeading({ eyebrow, zh, en, introZh, introEn, t }: { eyebrow: string; zh: string; en: string; introZh: string; introEn: string; t: T }) {
-  return <div className="v25-directory-heading"><p className="ia-kicker">AROUND HAMILTON · {eyebrow}</p><h2>{t(zh, en)}</h2><p>{t(introZh, introEn)}</p></div>;
+export function DirectoryHeading({ zh, en, introZh, introEn, t }: { eyebrow?: string; zh: string; en: string; introZh: string; introEn: string; t: T }) {
+  return <div className="v25-directory-heading"><BilingualTitle as="h2" zh={zh} en={en} t={t} /><p>{t(introZh, introEn)}</p></div>;
 }

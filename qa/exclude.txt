@@ -1,0 +1,8 @@
+# Pages this round is allowed to differ from qa/baseline.
+# Remove these lines after Frank approves opt9y and the baseline is recaptured.
+weekend
+living
+kids
+services
+tools
+home

@@ -1,8 +1,10 @@
 import { BilingualTitle } from './BilingualTitle';
+import { RegionFilter } from './RegionFilter';
 import React, { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
 import { AGENDA } from './agenda-data';
+import { displayPrice, priceTone } from './weekend-status';
 
 type T = (zh: string, en: string) => string;
 type Event = typeof DATA.events_this_week[number];
@@ -25,32 +27,52 @@ export function chineseDate(date: string) {
   return `${month}月${day}日 ${weekdays[new Date(Date.UTC(year, month - 1, day)).getUTCDay()]}`;
 }
 function Sources({ item, t }: { item: { source_url: string; also?: string[] }; t: T }) {
-  const urls = [item.source_url, ...(item.also || [])];
+  const urls = [item.source_url];
   return <div className="wa-sources caption-4">{urls.map((url, i) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${t('查看来源', 'View source')} ${i + 1}${url.includes('facebook.com') ? ' Facebook' : ''}`} className="wa-source">{url.includes('openfoodnetwork.nz') ? t('来源待确认', 'Source unconfirmed') : i === 0 ? t('来源', 'Source') : url.includes('facebook.com') ? 'Facebook' : t(`来源 ${i + 1}`, `Source ${i + 1}`)}<ArrowUpRight aria-hidden="true" /></a>)}</div>;
+}
+function eventNotes(item: Event) {
+  const notes: string[] = [];
+  if (item.time.startsWith('待确认')) notes.push(item.time);
+  if ('time_note_zh' in item && item.time_note_zh && item.time.startsWith('待确认')) notes.push(String(item.time_note_zh));
+  if ('notes_zh' in item && item.notes_zh && (item.id === 'cambridge-art-trail' || item.id.startsWith('pixel-'))) notes.push(String(item.notes_zh));
+  return notes;
+}
+function eventClosed(item: Event) {
+  return priceTone(item.price_zh, item.price_en) === 'is-faded';
 }
 function EventRow({ item, t }: { item: Event; t: T }) {
   const multi = item.dates.length > 1;
-  return <article className="wa-row" data-event-id={item.id}>
-    <div className="wa-time caption-4">{multi ? <><time dateTime={item.dates[0]}>{chineseDate(item.dates[0])}</time><span>—</span><time dateTime={item.dates.at(-1)}>{chineseDate(item.dates.at(-1)!)}</time></> : <span>{item.time.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.time}</span>}</div>
-    <div className="wa-main"><BilingualTitle as="h4" className="title-3" zh={item.title_zh} en={item.title_en} t={t} />
+  const notes = eventNotes(item);
+  const timeUnconfirmed = !multi && item.time.startsWith('待确认');
+  const when = multi
+    ? `${chineseDate(item.dates[0])} – ${chineseDate(item.dates.at(-1)!)}`
+    : (timeUnconfirmed ? t('时间待确认', 'Time unconfirmed') : item.time);
+  const price = displayPrice(item.price_zh, item.price_en);
+  return <article className="wa-row wa-event" data-event-id={item.id} data-past={eventClosed(item) ? 'true' : undefined}>
+    <p className={'wa-time wa-event-time caption-4' + (timeUnconfirmed ? ' is-tbc' : '')}>{when}</p>
+    <div className="wa-main wa-event-copy">
+      <BilingualTitle as="h4" className="title-3 wa-event-title" zh={item.title_zh} en={item.title_en} t={t} />
       <p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town) === 'other' ? ` · ${item.town}` : ''}</span></p>
       {multi && <p className="wa-hours caption-4">{item.time.replace('Sat ', t('周六 ', 'Sat ')).replace('Sun ', t('周日 ', 'Sun '))}</p>}
-      {item.time.startsWith('待确认') && <p className="wa-caution caption-5">{item.time}</p>}
-      {('time_note_zh' in item && item.time_note_zh && item.time.startsWith('待确认')) ? <p className="wa-caution caption-5">{item.time_note_zh}</p> : null}
-      {('notes_zh' in item && item.notes_zh && (item.id === 'cambridge-art-trail' || item.id.startsWith('pixel-'))) ? <p className="wa-caution caption-5">{item.notes_zh}</p> : null}
+      {notes.length > 0 && <div className="wa-event-note">{notes.map(note => <p key={note} className="caption-5">{note}</p>)}</div>}
     </div>
-    <div className="wa-tail"><p className={'wa-price caption-4' + (item.price_zh.includes('待确认') || item.price_zh.includes('售罄') ? ' wa-caution' : '')}>{t(item.price_zh, item.price_en)}</p><Sources item={item} t={t} /></div>
+    <div className="wa-tail wa-event-side">
+      <p className={'wa-price caption-4 ' + priceTone(item.price_zh, item.price_en)}>{t(price.zh, price.en)}</p>
+      <Sources item={item} t={t} />
+    </div>
   </article>;
 }
 function MarketRow({ item, t }: { item: Market; t: T }) {
   const day = item.day.replace('Every Sunday', t('每周日', 'Every Sunday')).replace('2026-10-02', '10月2日');
   const past = ['cambridge-trash-n-treasure', 'morrinsville-country-market'].includes(item.id);
   const priced = DATA.events_this_week.find(event => event.town === item.town && event.title_zh === item.title_zh);
-  const price = 'price_zh' in item ? t(item.price_zh!, item.price_en!) : priced ? t(priced.price_zh, priced.price_en) : t('费用待确认', 'Price unconfirmed');
+  const raw = 'price_zh' in item ? { zh: item.price_zh!, en: item.price_en! } : priced ? { zh: priced.price_zh, en: priced.price_en } : { zh: '费用待确认', en: 'Price unconfirmed' };
+  const price = displayPrice(raw.zh, raw.en);
+  const tone = priceTone(raw.zh, raw.en, past);
   return <article className="wa-row" data-weekend-market-id={item.id}>
-    <div className="wa-time caption-4"><span>{item.hours.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.hours}</span></div>
+    <div className={'wa-time caption-4' + (item.hours.startsWith('待确认') ? ' is-tbc' : '')}><span>{item.hours.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.hours}</span></div>
     <div className="wa-main"><BilingualTitle as="h4" className="title-3" zh={item.title_zh} en={item.title_en} t={t} /><p className={'wa-hours caption-4' + (past ? ' wa-caution' : '')}>{past ? t('本周无场次 · ', 'No session this week · ') : ''}{day}</p><p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town)==='other'?` · ${item.town}`:''}</span></p>{item.hours.startsWith('待确认') && <p className="wa-caution caption-5">{item.hours}</p>}{'note_zh' in item && item.note_zh && item.id === 'cambridge-trash-n-treasure' ? <p className="wa-caution caption-5">{item.note_zh}</p> : null}</div>
-    <div className="wa-tail"><p className="wa-price caption-4">{price}</p><Sources item={item} t={t} /></div>
+    <div className="wa-tail"><p className={'wa-price caption-4 ' + tone}>{t(price.zh, price.en)}</p><Sources item={item} t={t} /></div>
   </article>;
 }
 function EventGroups({ items, t }: { items: Event[]; t: T }) {
@@ -69,13 +91,10 @@ export function WeekendAgenda({ mode, t }: { mode: 'picks' | 'markets' | 'festiv
   const shown = active==='all' ? available : available.filter(r=>r.id===active);
   return <div className="wa" data-agenda-mode={mode}>
     <div className="wa-heading"><div><p className="caption-4 wa-eyebrow">{t(mode==='picks'?'本周精选':mode==='festivals'?'节日活动':'周末集市',mode==='picks'?'This week':mode==='festivals'?'Festivals':'Weekend markets')}</p><h2 className="heading-4" data-week-label>{DATA.week_label_zh}</h2><p className="caption-5 wa-muted" lang="en-NZ">{DATA.week_label_en}</p></div><span className="wa-total caption-4">{items.length} {t(mode!=='markets'?'项活动':'个集市',mode!=='markets'?'events':'markets')}</span></div>
-    <nav className="wa-regions" aria-label={t('按地区筛选', 'Filter by region')}>
-      {[{id:'all',zh:'全部',en:'All'},...available].map(region=><button key={region.id} className="wa-chip button-xsm" data-region={region.id} aria-pressed={active===region.id} aria-controls={`agenda-${mode}`} onClick={e=>{setSelection(region.id);e.currentTarget.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});}}>{t(region.zh,region.en)}<span className="caption-4">{region.id==='all'?items.length:items.filter(item=>regionOf(item.town)===region.id).length}</span></button>)}
-    </nav>
+    <RegionFilter label={t('按地区筛选', 'Filter by region')} moreLabel={t('更多地区', 'More areas')} attrName="data-region" value={active} onChange={setSelection} options={[{id:'all',zh:'全部',en:'All'},...available].map(region => ({ id: region.id, label: t(region.zh, region.en), count: region.id === 'all' ? items.length : items.filter(item => regionOf(item.town) === region.id).length }))} />
     <div id={`agenda-${mode}`} className="wa-results" key={`${mode}-${active}`}>
-      <p className="wa-selection caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode!=='markets'?'新西兰当地时间':'定期集市与本周单场',mode!=='markets'?'New Zealand local time':'Recurring markets and dated listings')}</p>
       {shown.map(region=><section className="wa-region" data-region-group={region.id} key={region.id} aria-labelledby={`region-${mode}-${region.id}`}>
-        <div className="wa-region-heading"><h2 className="heading-5" id={`region-${mode}-${region.id}`}>{t(region.zh,region.en)}</h2><span className="caption-4">{items.filter(i=>regionOf(i.town)===region.id).length} {t('项', 'listings')}</span></div>
+        <div className="wa-region-heading"><p className="wa-region-kicker caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode!=='markets'?'新西兰当地时间':'定期集市与本周单场',mode!=='markets'?'New Zealand local time':'Recurring markets and dated listings')}</p><div className="wa-region-bar"><div className="wa-region-names"><h2 className="heading-5" id={`region-${mode}-${region.id}`} lang={t('中','en')==='en'?'en-NZ':'zh-CN'}>{t('中','en')==='en'?region.en:region.zh}</h2>{t('中','en')!=='en' && <p className="ia-secondary-name" lang="en-NZ">{region.en}</p>}</div><span className="wa-region-count caption-4">{items.filter(i=>regionOf(i.town)===region.id).length} {t('项', 'listings')}</span></div></div>
         {mode!=='markets'?<EventGroups items={(mode==='festivals'?festivals:picks).filter(i=>regionOf(i.town)===region.id)} t={t}/>:<div className="wa-market-rows">{marketItems.filter(i=>regionOf(i.town)===region.id).map(item=><MarketRow key={item.id} item={item} t={t}/>)}</div>}
       </section>)}
     </div>

@@ -118,7 +118,7 @@
       "id": "metservice-hamilton",
       "label_zh": "MetService 汉密尔顿天气",
       "label_en": "MetService Hamilton",
-      "url": "https://www.metservice.com/cities/hamilton",
+      "url": "https://www.metservice.com/towns-cities/regions/waikato/locations/hamilton",
       "http": 200,
       "use": "tools weather"
     },
@@ -310,8 +310,8 @@
       "reason": "404"
     },
     {
-      "url": "https://www.metservice.com/towns-cities/locations/hamilton",
-      "reason": "500 from box; use /cities/hamilton instead"
+      "url": "https://www.metservice.com/cities/hamilton",
+      "reason": "Older city path. Use the Waikato location page, which returns 200."
     }
   ]
 }

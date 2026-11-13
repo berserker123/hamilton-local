@@ -39,7 +39,7 @@ export function FeedbackFooter() {
   const t = (zh: string, en: string) => lang === 'zh' ? zh : en;
   return <section className="fb-footer" aria-labelledby="fb-footer-title">
     <span className="fb-footer-icon"><MessageSquare aria-hidden="true" /></span>
-    <div><span className="fb-eyebrow">BETTER TOGETHER · HAMILTON LOCAL</span><h2 id="fb-footer-title">{t('这份指南，也有你的一份。', 'Help shape your local guide.')}</h2><p>{t('发现信息有误，或有值得分享的本地推荐？告诉我们，一起把这里做得更好。', 'Spotted a mistake or found a local favourite? Share it and help make this guide more useful.')}</p></div>
+    <div><h2 id="fb-footer-title">{t('这份指南，也有你的一份。', 'Help shape your local guide.')}</h2><p className="ia-secondary-name">{t('Help shape your local guide.', '这份指南，也有你的一份。')}</p><p>{t('发现信息有误，或有值得分享的本地推荐？告诉我们，一起把这里做得更好。', 'Spotted a mistake or found a local favourite? Share it and help make this guide more useful.')}</p></div>
     <button className="fb-footer-button" type="button" aria-haspopup="dialog" onClick={e => open('Footer', e.currentTarget)}>{t('意见反馈', 'Feedback')}<ArrowUpRight aria-hidden="true" /></button>
   </section>;
 }
