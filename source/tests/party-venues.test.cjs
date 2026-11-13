@@ -31,13 +31,21 @@ test('party directory meets verified coverage and complete source requirements',
   assert.ok(!v.address.includes('（'),v.id+': navigable address only');
  }
 });
-test('mobile services match only their documented areas and remain a separate group',()=>{
- const {filterPartyVenues}=moduleUnderTest();
+test('home visits are listed once and region counts no longer overlap',()=>{
+ const {filterPartyVenues,partyRegionCounts}=moduleUnderTest();
  const items=[{id:'local',region:'mobile',type:'mobile',service_regions:['Hamilton']},{id:'regional',region:'mobile',type:'mobile',service_regions:['Waikato']},{id:'unknown',region:'mobile',type:'mobile'},{id:'hall',region:'Hamilton',type:'hire'}];
- assert.deepEqual(filterPartyVenues(items,'Hamilton','mobile').map(v=>v.id),['local','regional']);
- assert.deepEqual(filterPartyVenues(items,'Raglan','mobile').map(v=>v.id),['regional']);
+ assert.deepEqual(filterPartyVenues(items,'Hamilton','all').map(v=>v.id),['hall']);
+ assert.deepEqual(filterPartyVenues(items,'Hamilton','mobile').map(v=>v.id),[]);
+ assert.deepEqual(filterPartyVenues(items,'Raglan','mobile').map(v=>v.id),[]);
  assert.deepEqual(filterPartyVenues(items,'mobile','all').map(v=>v.id),['local','regional','unknown']);
- assert.deepEqual(filterPartyVenues(items,'Hamilton','hire').map(v=>v.id),['hall']);
+ assert.deepEqual(filterPartyVenues(items,'all','mobile').map(v=>v.id),['local','regional','unknown']);
+ const venues=require('../src/party-venues.json');
+ const counts=partyRegionCounts(venues);
+ assert.equal(counts.all,venues.length);
+ const regionSum=Object.entries(counts).filter(([id])=>id!=='all').reduce((sum,[,n])=>sum+n,0);
+ assert.equal(regionSum,counts.all);
+ assert.equal(counts.mobile,venues.filter(v=>v.region==='mobile').length);
+ assert.equal(counts.Hamilton,venues.filter(v=>v.region==='Hamilton').length);
 });
 test('regional paging is bounded and expansion covers the reported omissions',()=>{
  const {partyPage,PARTY_PAGE_SIZE,PARTY_REGIONS,PARTY_TYPES}=moduleUnderTest();

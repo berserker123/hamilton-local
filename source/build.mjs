@@ -12,6 +12,8 @@ fs.mkdirSync(path.join(dist,'photos'),{recursive:true});
 fs.cpSync('public/photos',path.join(dist,'photos'),{recursive:true});
 for(const name of ['index.html'])fs.copyFileSync(name,path.join(dist,name));
 fs.copyFileSync('public/favicon.svg',path.join(dist,'favicon.svg'));
+for (const name of ['favicon-32.png','apple-touch-icon.png','icon-512.png']) fs.copyFileSync(path.join('public',name),path.join(dist,name));
+fs.cpSync('public/brand',path.join(dist,'brand'),{recursive:true});
 for(const name of ['robots.txt','sitemap.xml','og-image.jpg'])fs.copyFileSync(path.join('public',name),path.join(dist,name));
 fs.writeFileSync(path.join(dist,'.nojekyll'),'');
 await build({entryPoints:['src/main.tsx'],bundle:true,minify:true,format:'iife',loader:{'.css':'empty'},define:{'process.env.NODE_ENV':'"production"'},outfile:path.join(dist,'app.js')});

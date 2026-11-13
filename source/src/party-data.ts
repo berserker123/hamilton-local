@@ -13,7 +13,7 @@ export const PARTY_REGIONS = [
   { id: 'Coromandel', zh: '科罗曼德及周边', en: 'Coromandel & Hauraki' },
   { id: 'Te Aroha', zh: '蒂阿罗哈', en: 'Te Aroha' },
   { id: 'other', zh: '其他怀卡托', en: 'Elsewhere in Waikato' },
-  { id: 'mobile', zh: '上门派对服务', en: 'Mobile party services' },
+  { id: 'mobile', zh: '上门服务', en: 'Home visits' },
 ] as const;
 
 export const PARTY_TYPES = [
@@ -25,11 +25,15 @@ export const PARTY_TYPES = [
   { id: 'mobile', zh: '上门派对服务', en: 'Mobile party services' },
 ] as const;
 
-export function filterPartyVenues<T extends { region: string; type: string; service_regions?: readonly string[] }>(items: readonly T[], region: string, type: string): T[] {
-  return items.filter(item => {
-    const servesRegion = item.region === 'mobile' && (item.service_regions?.includes(region) || item.service_regions?.includes('Waikato'));
-    return (region === 'all' || item.region === region || servesRegion) && (type === 'all' || item.type === type);
-  });
+export function filterPartyVenues<T extends { region: string; type: string }>(items: readonly T[], region: string, type: string): T[] {
+  return items.filter(item => (region === 'all' || item.region === region) && (type === 'all' || item.type === type));
+}
+
+export function partyRegionCounts<T extends { id: string; region: string }>(items: readonly T[]) {
+  const unique = [...new Map(items.map(item => [item.id, item])).values()];
+  const counts: Record<string, number> = { all: unique.length };
+  for (const item of unique) counts[item.region] = (counts[item.region] || 0) + 1;
+  return counts;
 }
 
 export const PARTY_PAGE_SIZE = 8;

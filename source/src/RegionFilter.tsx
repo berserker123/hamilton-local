@@ -3,22 +3,25 @@ import { ChevronDown } from 'lucide-react';
 
 export type RegionOption = { id: string; label: string; count: number };
 
-export function RegionFilter({ label, moreLabel, options, value, onChange, attrName }: {
+export function RegionFilter({ label, moreLabel, options, value, onChange, attrName, pin }: {
   label: string;
   moreLabel: string;
   options: RegionOption[];
   value: string;
   onChange: (id: string) => void;
   attrName: 'data-region' | 'data-party-region';
+  pin?: string;
 }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const menuId = useId();
-  const head = options.slice(0, 5);
-  const rest = options.slice(5);
-  const pinned = rest.find(option => option.id === value);
-  const shown = pinned ? [...head, pinned] : head;
-  const menu = rest.filter(option => option.id !== pinned?.id);
+  const pinned = pin ? options.find(option => option.id === pin) : undefined;
+  const pool = pinned ? options.filter(option => option.id !== pin) : options;
+  const head = pool.slice(0, 5);
+  const rest = pool.slice(5);
+  const selectedRest = rest.find(option => option.id === value);
+  const shown = selectedRest ? [...head, selectedRest] : head;
+  const menu = rest.filter(option => option.id !== selectedRest?.id);
 
   useEffect(() => {
     if (!open) return;
@@ -44,6 +47,7 @@ export function RegionFilter({ label, moreLabel, options, value, onChange, attrN
     </label>
     <div className="hl-region-chips" role="group" aria-label={label}>
       {shown.map(chip)}
+      {pinned && chip(pinned)}
       {menu.length > 0 && <div className="hl-region-more">
         <button type="button" className="wa-chip button-xsm hl-region-more-btn" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen(current => !current)}>
           {moreLabel}<ChevronDown aria-hidden="true" />
