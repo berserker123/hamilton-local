@@ -87,7 +87,7 @@ function Empty({ t, title, detail }: { t: T; title?: string; detail?: string }) 
 }
 function Tabs({ route, tab, t }: { route: Exclude<Route, 'home'>; tab: string; t: T }) {
   const tabs = TABS[route];
-  return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className="sb-tabs ia-tabs" onKeyDown={e => {
+  return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className={'sb-tabs ia-tabs' + (tabs.length <= 4 ? ' ia-tabs-compact' : '')} onKeyDown={e => {
     const current = tabs.findIndex(item => item[0] === tab);
     const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (next < 0) return;

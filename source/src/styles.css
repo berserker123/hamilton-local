@@ -2890,6 +2890,30 @@ html, body { background: var(--hl-canvas); color: var(--hl-ink); }
 .ia-root :is(.wa-price, .ia-event-price, .v25-season, .v17-contact-copy > span, .fb-eyebrow) { color: var(--hl-clay); }
 .ia-root .sb-bin-week :is(h3, h4) { color: var(--hl-clay); }
 .ia-root .ia-tabs, .ia-root .sb-tabs { background: var(--hl-surface); border-color: var(--hl-line); }
+.ia-root .ia-tabs.ia-tabs-compact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  margin-right: auto;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+}
+.ia-root .ia-tabs.ia-tabs-compact .sb-tab {
+  flex: 0 0 auto;
+  flex-direction: row;
+  width: auto;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 15px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
 .ia-root .fb-launcher, .ia-root .fb-launcher:hover {
   background: var(--hl-feedback);
   color: var(--hl-feedback-ink);
