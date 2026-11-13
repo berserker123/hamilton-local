@@ -3774,6 +3774,21 @@ html[data-theme="night"] .v23-preview-photo > div { background: var(--hl-surface
 html[data-theme="night"] .hl-spot-cta,
 html[data-theme="night"] .hl-spot-grid[data-accent] .hl-spot-cta { background: var(--sec-fill); color: #fff; }
 html[data-theme="night"] :is(.hl-spot-address svg, .hl-spot-fallback, #guide-tab-living svg, #guide-tab-weekend svg, #guide-tab-kids svg, #guide-tab-services svg, #guide-tab-tools svg) { color: var(--sec, var(--hl-accent)); }
+@media (max-width: 480px) {
+  html body .ia-root .sb-header { padding-inline: 12px; }
+  html body .ia-root .sb-header-inner { gap: 8px; }
+  html body .ia-root .sb-brand { flex: 0 0 auto; gap: 6px; min-width: max-content; }
+  html body .ia-root .sb-header-actions { gap: 4px; flex-shrink: 0; }
+  html body .ia-root .sb-header .sb-language {
+    gap: 3px;
+    min-height: 32px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 11px;
+    line-height: 1;
+  }
+  html body .ia-root .sb-header .sb-language svg { width: 12px; height: 12px; }
+}
 html[data-theme="night"] .hl-spot-grid[data-accent] .hl-spot-fallback { background: var(--hl-surface); color: var(--sec, var(--hl-accent)); }
 html[data-theme="night"] .hl-spot-icon { border-color: var(--hl-line); }
 html[data-theme="night"] .pv-price-chip {
