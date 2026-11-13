@@ -120,7 +120,7 @@ function PlaceDetail({ place: p, lang, t, close, separateName = false }: { place
     <p>{('url' in p && p.url) || ('sourceId' in p && URLS[p.sourceId]) ? <a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer">{p.id === 'hamilton-gardens' ? t('访问花园官网', 'Visit Hamilton Gardens') : t('打开来源', 'Open source')}<ArrowUpRight aria-hidden="true" /></a> : t('请以官网为准', 'Check the official website.')}</p>
   </dialog>;
 }
-function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', showFacts = false }: { places: Array<typeof PLACES[number] & { categoryZh?: string; categoryEn?: string; ages?: string; agesEn?: string }>; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids'; showFacts?: boolean }) {
+function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', showFacts = false }: { places: Array<typeof PLACES[number] & { categoryZh?: string; categoryEn?: string; ages?: string; agesEn?: string; phone?: string }>; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids'; showFacts?: boolean }) {
   const [openId, setOpenId] = useState<string | null>(null);
   const open = places.find(p => p.id === openId);
   const openPlace = (id: string) => setOpenId(id);
@@ -131,6 +131,7 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', s
     const hours = 'hours' in p && p.hours ? t(p.hours, 'hours' in p.en && p.en.hours ? p.en.hours : p.hours) : '';
     const price = 'price' in p && p.price ? t(p.price, 'price' in p.en && p.en.price ? p.en.price : p.price) : '';
     const ages = p.ages ? t(p.ages, p.agesEn || p.ages) : '';
+    const phone = p.phone || '';
     return <article className="hl-spot" key={p.id} data-place-id={p.id}>
       <div className="hl-spot-media">
         {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /></div>}
@@ -145,6 +146,7 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', s
         {showFacts && hours && <p className="hl-spot-copy">{hours}</p>}
         {showFacts && price && <p className="hl-spot-copy">{price}</p>}
         {showFacts && ages && <p className="hl-spot-copy">{ages}</p>}
+        {showFacts && phone && <p className="hl-spot-copy">{phone}</p>}
         {address && <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{address}</span></p>}
         <div className="hl-spot-tools">
           <a className="hl-spot-icon" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' ' + address)} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>
