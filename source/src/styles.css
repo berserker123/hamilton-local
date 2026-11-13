@@ -3934,6 +3934,60 @@ html body .ia-root .wa:not(.pv) .wa-price.is-faded {
   opacity: 1;
 }
 html body .ia-root .v20-cord-hint { display: none; }
+
+/* Weekend list backdrop: licensed nightglow, washed so text never sits on the photo. */
+.wa-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  pointer-events: none;
+}
+.wa-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background:
+    linear-gradient(180deg, rgba(230, 223, 213, .9), rgba(230, 223, 213, .9)),
+    url('./photos/band-weekend-nightglow.webp') center / cover no-repeat;
+  filter: blur(8px);
+}
+html[data-theme="night"] .wa-backdrop::before {
+  background:
+    linear-gradient(180deg, rgba(30, 29, 26, .88), rgba(30, 29, 26, .9)),
+    url('./photos/band-weekend-nightglow.webp') center / cover no-repeat;
+}
+.wa:has(.wa-backdrop) { position: relative; isolation: isolate; }
+.wa:has(.wa-backdrop) > :not(.wa-backdrop) { position: relative; z-index: 1; }
+html body .ia-root .wa:has(.wa-backdrop) :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-day-label, .wa-footnote, .wa-photo-credit) {
+  background-color: var(--hl-surface);
+  box-shadow: none;
+}
+html body .ia-root .wa:has(.wa-backdrop) .wa-heading,
+html body .ia-root .wa:has(.wa-backdrop) .hl-regions,
+html body .ia-root .wa:has(.wa-backdrop) .wa-region-heading,
+html body .ia-root .wa:has(.wa-backdrop) .wa-footnote,
+html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit {
+  padding: 16px 18px;
+  border-radius: 18px;
+}
+html body .ia-root .wa:has(.wa-backdrop) .wa-heading { margin-bottom: 12px; }
+html body .ia-root .wa:has(.wa-backdrop) .hl-regions { margin-bottom: 16px; }
+html body .ia-root .wa:has(.wa-backdrop) .wa-region-heading {
+  margin-top: 0;
+  border-bottom: 0;
+}
+html body .ia-root .wa:has(.wa-backdrop) .wa-day-label {
+  padding: 12px 14px;
+  border-radius: 14px;
+}
+html body .ia-root .wa:has(.wa-backdrop) .wa-footnote,
+html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit { margin-top: 12px; }
+html body .ia-root .wa:has(.wa-backdrop) .wa-photo-credit a { color: var(--hl-accent); }
+html body .ia-root .wa:has(.wa-backdrop) :is(.wa-event, .wa-row) {
+  background-color: var(--hl-surface);
+}
 html body .ia-root .wa:not(.pv) .wa-event .wa-source svg { transition: transform 180ms ease; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   html body .ia-root .wa:not(.pv) .wa-event:hover { transform: translateY(-2px); background: var(--hl-surface); }
