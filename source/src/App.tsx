@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 import { placeNames } from './place-names';
-import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Copy, Sun, Store, Trees, Wrench, BookOpen, ShieldCheck, ExternalLink } from 'lucide-react';
+import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Copy, Sun, Store, Trees, Wrench, BookOpen, ShieldCheck, ExternalLink, Info } from 'lucide-react';
 import { LogoMark } from './Logo';
 import { GuideStats, GuideMarquee, GuidePreview, GuideSteps } from './HomeGuide';
 import { BlurText, Reveal, HeroMedia } from './Motion';
@@ -119,17 +119,31 @@ function PlaceDetail({ place: p, lang, t, close, separateName = false }: { place
     <p><a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer">{p.id === 'hamilton-gardens' ? t('访问花园官网', 'Visit Hamilton Gardens') : t('打开来源', 'Open source')}<ArrowUpRight aria-hidden="true" /></a></p>
   </dialog>;
 }
-function PlaceGrid({ places, lang, t, separateName = false }: { places: typeof PLACES; lang: Lang; t: T; separateName?: boolean }) {
+function PlaceGrid({ places, lang, t, separateName = false, accent = 'living' }: { places: typeof PLACES; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids' }) {
   const [openId, setOpenId] = useState<string | null>(null);
   const open = places.find(p => p.id === openId);
-  return <><div className="ia-place-grid">{places.map(p => {
-    const title = separateName && lang === 'zh' ? p.zh : t(p.zh, p.name);
-    const tag = t(p.tag, p.en.tag);
-    const chips = [tag, p.free ? t('免费', 'Free') : ''].filter(Boolean);
-    return <article className="sb-card ia-place" key={p.id} data-place-id={p.id} data-card-kind="place">
-      {'photo' in p && p.photo ? <PhotoFlip src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} author={p.photoCredit} license={p.photoLicense} licenseUrl={p.photoLicenseUrl} sourceUrl={p.photoSource} showLabel={t('查看照片作者与授权', 'Show photo credit')} hideLabel={t('翻回照片', 'Show photo')} authorLabel={t('作者', 'Author')} licenseLabel={t('授权', 'Licence')} sourceLabel={t('原图与出处', 'Original photograph')}><CardMedia kind="place" title={title} chips={chips} /></PhotoFlip> : <><CardMedia kind="place" title={title} chips={chips} /><div className="ia-place-symbol ia-photo-pending"><Trees aria-hidden="true" /><span className="caption-3">{title}</span><span className="caption-5">{t('实景照片待补充', 'Location photo pending')}</span></div></>}
-      <div className="ia-place-body"><CardBadge kind="place" /><span className="ia-kicker">{t(p.area, p.en.area)}{p.km != null && <> · {t('约', '~')}{p.km} km</>}</span><BilingualTitle zh={p.zh} en={p.name} t={t} /><CardQuick items={placeQuickInfo({ area: t(p.area, p.en.area), km: p.km, free: p.free, tag }, lang)} /><p>{t(p.description, p.en.description)}</p><p className="sb-icon-line"><MapPin /><span>{t(p.address, p.id === 'te-awa' ? p.en.area : p.address)}</span></p>
-      <footer className="ia-place-footer"><div className="ia-place-actions"><a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer" aria-haspopup="dialog" onClick={e => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return; e.preventDefault(); setOpenId(p.id); }}>{t('查看详情', 'View details')}<ArrowUpRight aria-hidden="true" /></a></div><FeedbackLink section={p.name} /></footer></div>
+  const openPlace = (id: string) => setOpenId(id);
+  return <><div className="hl-spot-grid" data-accent={accent}>{places.map(p => {
+    const area = t(p.area, p.en.area);
+    const pill = p.km != null ? `${area} · ${t('约', '~')}${p.km} km` : area;
+    const address = t(p.address, p.id === 'te-awa' ? p.en.area : p.address);
+    return <article className="hl-spot" key={p.id} data-place-id={p.id}>
+      <div className="hl-spot-media">
+        {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /></div>}
+        <span className="hl-spot-pill">{pill}</span>
+        <button type="button" className="hl-spot-info" aria-label={t('查看来源与详情', 'View source and details')} onClick={() => openPlace(p.id)}><Info aria-hidden="true" /></button>
+      </div>
+      <div className="hl-spot-body">
+        <h3 lang={lang === 'zh' ? 'zh-CN' : 'en-NZ'}>{lang === 'zh' ? p.zh : p.name}</h3>
+        <p className="hl-spot-en" lang={lang === 'zh' ? 'en-NZ' : 'zh-CN'}>{lang === 'zh' ? p.name : p.zh}</p>
+        <p className="hl-spot-copy">{t(p.description, p.en.description)}</p>
+        <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{address}</span></p>
+        <div className="hl-spot-tools">
+          <a className="hl-spot-icon" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' ' + address)} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>
+        </div>
+        <button type="button" className="hl-spot-cta" onClick={() => openPlace(p.id)}>{t('查看详情', 'View details')}<ArrowUpRight aria-hidden="true" /></button>
+        <FeedbackLink section={p.name} />
+      </div>
     </article>;
   })}</div>{open && <PlaceDetail place={open} lang={lang} t={t} separateName={separateName} close={() => setOpenId(null)} />}</>;
 }
@@ -144,7 +158,7 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
   if (tab === 'dining') return <><DirectoryHeading eyebrow="DINING" zh="美食探索" en="Food discoveries" introZh="收录本地餐饮信息，核对后再与你分享。" introEn="Local food discoveries, shared after their details are checked." t={t} /><Empty t={t} title={t('美食探索 · 内容整理中', 'Food discoveries · Coming soon')} /></>;
   if (tab === 'places') {
     const places = DAILY_PLACES.filter(p => !q || [p.zh, p.name, p.area, p.description, p.en.description].join(' ').toLowerCase().includes(q.toLowerCase()));
-    return <><div id="everyday-places"><DirectoryHeading eyebrow="PLACES" zh="日常好去处" en="Everyday outings" introZh="从公园到步道，找一处适合今天出门的地方。" introEn="Find a park, a walk or somewhere to spend a little time outside." t={t} />{q && <div className="ia-list-toolbar"><p>{t('搜索', 'Search')}: {q}</p><button className="sb-action" onClick={() => setQ('')}>{t('清除搜索', 'Clear search')}<X /></button></div>}{places.length ? <PlaceGrid places={places} lang={lang} t={t} /> : <Empty t={t} title={t('没有匹配的地点', 'No matching places')} detail={t('试试其他关键词，或清除搜索。', 'Try another keyword or clear your search.')} />}</div></>;
+    return <><div id="everyday-places"><DirectoryHeading eyebrow="PLACES" zh="日常好去处" en="Everyday outings" introZh="从公园到步道，找一处适合今天出门的地方。" introEn="Find a park, a walk or somewhere to spend a little time outside." t={t} />{q && <div className="ia-list-toolbar"><p>{t('搜索', 'Search')}: {q}</p><button className="sb-action" onClick={() => setQ('')}>{t('清除搜索', 'Clear search')}<X /></button></div>}{places.length ? <PlaceGrid places={places} lang={lang} t={t} accent="living" /> : <Empty t={t} title={t('没有匹配的地点', 'No matching places')} detail={t('试试其他关键词，或清除搜索。', 'Try another keyword or clear your search.')} />}</div></>;
   }
   const markets = SUPERMARKETS.filter(s => [s.name, s.zhName, s.address, s.suburb, ...s.tags.zh, ...s.tags.en].join(' ').toLowerCase().includes(q.trim().toLowerCase()));
   return <><DirectoryHeading eyebrow="GROCERY" zh="亚超与杂货" en="Asian grocers" introZh="按门店、区域或地址，查找日常采买的去处。" introEn="Find everyday grocery stops by store, suburb or address." t={t} /><div className="ia-list-toolbar"><p>{t(`${SUPERMARKETS.length} 家门店 · ${MARKET_CHECKED} 家已核对 · ${MARKET_PENDING} 家品牌待核实`, `${SUPERMARKETS.length} stores · ${MARKET_CHECKED} checked · ${MARKET_PENDING} brand unconfirmed`)}</p><label className="ia-inline-search"><Search /><input type="search" aria-label={t('搜索亚超', 'Search grocers')} value={q} onChange={e => setQ(e.target.value)} placeholder={t('门店、区域或地址', 'Store, suburb or address')} />{q && <button aria-label={t('清除搜索', 'Clear search')} onClick={() => setQ('')}><X /></button>}</label></div>
@@ -174,7 +188,7 @@ function Weekend({ tab, t }: { tab: string; t: T }) {
   return <><WeekendAgenda key={tab} mode={tab as 'picks' | 'markets' | 'festivals'} t={t} />{tab === 'festivals' && <aside className="wa-organiser"><span className="caption-3">{t('汉密尔顿 · 年度节庆入口', 'Hamilton · Annual festival')}</span><h3 className="title-3">{t('怀卡托热气球节', 'Balloons over Waikato')}</h3><p className="caption-4">{t('保留主办方入口。日期、场地与节目待确认，不列入本周场次。', 'Organiser directory. Dates, venues and programme unconfirmed; not a listing for this week.')}</p><OutLink id="balloons">{t('查看主办方', 'Visit organiser')}</OutLink></aside>}</>;
 }
 function Kids({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
-  if (tab === 'places') return <PlaceGrid places={FAMILY_PLACES} lang={lang} t={t} separateName />;
+  if (tab === 'places') return <PlaceGrid places={FAMILY_PLACES} lang={lang} t={t} separateName accent="kids" />;
   if (tab === 'parties') return <PartyVenues t={t} lang={lang} />;
   return <PlaygroundMap lang={lang} t={t} />;
 }

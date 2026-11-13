@@ -3269,4 +3269,163 @@ html body .ia-root .ia-footer .ia-footer-actions .sb-action:hover { color: #fff;
   .wa-tail { align-items: flex-start; }
 }
 
+/* Reference place cards: outings, family outings, U-pick, stays. */
+.hl-spot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 1024px;
+  align-items: stretch;
+}
+@media (min-width: 768px) {
+  .ia-root .hl-spot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+}
+.hl-spot {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #e2dfd5;
+  background: #EFEAE2;
+  box-shadow: none;
+}
+.hl-spot-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #E6DFD5; }
+.hl-spot-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hl-spot-fallback { display: grid; place-items: center; width: 100%; height: 100%; }
+.hl-spot-grid[data-accent="living"] .hl-spot-fallback { background: #d5e4e4; color: #1A5C64; }
+.hl-spot-grid[data-accent="kids"] .hl-spot-fallback { background: #e3e6d4; color: #3E5218; }
+.hl-spot-fallback svg { width: 42px; height: 42px; }
+.hl-spot-pill {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  max-width: calc(100% - 72px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(20, 16, 12, .72);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.hl-spot-info {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, .9);
+  min-width: 36px;
+  min-height: 36px;
+}
+.hl-spot-info svg { width: 20px; height: 20px; }
+.hl-spot-body { display: flex; flex-direction: column; flex: 1; padding: 24px; min-height: 0; }
+.hl-spot-body > h3 { margin: 0 0 4px; font-size: 22px; font-weight: 700; line-height: 1.25; color: #2A211B; }
+.hl-spot-en { margin: 0 0 12px; font-size: 14px; font-weight: 500; line-height: 1.4; color: #66574A; }
+.hl-spot .v25-season, .hl-spot .v25-confirm { margin: 0 0 8px; font-size: 13px; line-height: 1.5; color: #66574A; }
+.hl-spot-copy {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #66574A;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hl-spot-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: auto 0 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #66574A;
+}
+.hl-spot-address svg { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 1px; }
+.hl-spot-grid[data-accent="living"] .hl-spot-address svg { color: #1A5C64; }
+.hl-spot-grid[data-accent="kids"] .hl-spot-address svg { color: #3E5218; }
+.hl-spot-tools { display: flex; gap: 8px; margin-bottom: 10px; }
+.hl-spot-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border: 1px solid #e2dfd5;
+  border-radius: 12px;
+  background: transparent;
+  color: #2A211B;
+}
+.hl-spot-icon svg { width: 18px; height: 18px; }
+.hl-spot-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  background: #1A5C64;
+}
+.hl-spot-grid[data-accent="kids"] .hl-spot-cta { background: #3E5218; }
+.hl-spot-cta svg { width: 18px; height: 18px; transition: transform 300ms ease-out; }
+.hl-spot .fb-detail-link {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 14px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #66574A;
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 32px;
+  text-decoration: none;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ia-root .hl-spot {
+    transition: transform 400ms ease-out, box-shadow 400ms ease-out;
+  }
+  .ia-root .hl-spot:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(35, 30, 26, .28);
+  }
+  .ia-root .hl-spot-media img { transition: transform 700ms ease-out; }
+  .ia-root .hl-spot:hover .hl-spot-media img { transform: scale(1.05); }
+  .hl-spot-grid[data-accent="living"] .hl-spot-cta:hover { background: #134850; }
+  .hl-spot-grid[data-accent="kids"] .hl-spot-cta:hover { background: #314216; }
+  .hl-spot-cta:hover svg { transform: translate(3px, -3px); }
+}
+.hl-spot-cta:active { transform: scale(0.98); }
+@media (prefers-reduced-motion: reduce) {
+  .ia-root .hl-spot, .ia-root .hl-spot:hover, .ia-root .hl-spot-media img, .hl-spot-cta, .hl-spot-cta svg {
+    transform: none;
+    transition: none;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hl-spot-pill { background: #2A211B; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .hl-spot-pill { background: #2A211B; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
 /* HL_THEME_V26_END */
