@@ -71,6 +71,60 @@ const SPECS: Spec[] = [
   { id: 'fairfield-skatepark', category: 'skate', name: 'Fairfield Skatepark', zh: 'Fairfield 滑板场', area: 'Fairfield', areaEn: 'Fairfield', address: 'Fairfield Park, Fairfield, Hamilton', phone: '+64 7 838 6699', hours: '请以官网为准', hoursEn: 'Check the official website.', price: '免费', priceEn: 'Free', ages: '面向各级骑手，含初学者', agesEn: 'For riders of all levels, including beginners', url: 'https://hamilton.govt.nz/strategies-plans-and-projects/projects/city-wide-community/fairfield-skate-park-refresh', description: '刷新后的滑板场，也有半场篮球和遮荫。', descriptionEn: 'The refreshed skatepark, with half-court basketball and shade.' },
 ];
 
+export const OUTING_CARD_PHOTOS = [
+  {
+    id: 'classics-museum',
+    photo: 'classics-museum.webp',
+    photoAlt: 'Hamilton Classics Museum 里的 Diamond T Texaco 油罐车',
+    photoAltEn: 'Diamond T Texaco tanker at Hamilton Classics Museum',
+    photoCredit: 'Sleeps-Darkly',
+    photoLicense: 'CC BY-SA 4.0',
+    photoLicenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+    photoSource: 'https://commons.wikimedia.org/wiki/File:Diamond_T_Texaco,_Hamilton_Classic_Car_Museum,_2023-11-24.jpg',
+    zh: 'Classics 博物馆',
+    en: 'Classics Museum',
+  },
+  {
+    id: 'hamilton-model-engineers',
+    photo: 'hamilton-model-engineers.webp',
+    photoAlt: 'Minogue Park 的 Hamilton Model Engineers 小火车轨道',
+    photoAltEn: 'Hamilton Model Engineers track at Minogue Park',
+    photoCredit: 'Johnragla',
+    photoLicense: 'CC BY-SA 4.0',
+    photoLicenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+    photoSource: 'https://commons.wikimedia.org/wiki/File:Model_Engineers_Club_at_Minogue_Park,_Hamilton.jpg',
+    zh: 'Hamilton Model Engineers 小火车',
+    en: 'Hamilton Model Engineers',
+  },
+  {
+    id: 'parana-park',
+    photo: 'parana-park.webp',
+    photoAlt: 'Hamilton East 的 Parana 公园步道',
+    photoAltEn: 'Walkway at Parana Park, Hamilton East',
+    photoCredit: 'Nzwj',
+    photoLicense: 'CC BY 3.0',
+    photoLicenseUrl: 'https://creativecommons.org/licenses/by/3.0',
+    photoSource: 'https://commons.wikimedia.org/wiki/File:ParanaParkHamilton.JPG',
+    zh: 'Parana 公园',
+    en: 'Parana Park',
+  },
+] as const;
+
+function withCardPhoto<T extends { en: object }>(place: T, id: string): T {
+  const photo = OUTING_CARD_PHOTOS.find(item => item.id === id);
+  if (!photo) return place;
+  return {
+    ...place,
+    photo: photo.photo,
+    photoAlt: photo.photoAlt,
+    photoCredit: photo.photoCredit,
+    photoLicense: photo.photoLicense,
+    photoLicenseUrl: photo.photoLicenseUrl,
+    photoSource: photo.photoSource,
+    en: { ...place.en, photoAlt: photo.photoAltEn },
+  };
+}
+
 export function familyOutings() {
   return SPECS.map(spec => {
     const cat = OUTING_CATEGORIES.find(item => item.id === spec.category)!;
@@ -126,5 +180,5 @@ export function familyOutings() {
         price: spec.priceEn,
       },
     };
-  });
+  }).map(place => withCardPhoto(place, place.id));
 }
