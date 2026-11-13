@@ -34,7 +34,7 @@ function StayDetail({ item, t, close }: { item: Item; t: T; close: () => void })
 }
 function DirectoryCard({ item, t, label, kind, children, onDetails }: { item: Item; t: T; label?: string; official?: boolean; kind: CardKind; children?: React.ReactNode; onDetails?: () => void }) {
   const chinese = t('中', 'en') !== 'en';
-  const Icon = kind === 'stay' ? BedDouble : Cherry;
+  const Icon = kind === 'stay' ? BedDouble : kind === 'pet' ? PawPrint : Cherry;
   const pill = label ? `${label} · ${item.area}` : item.area;
   const mapHref = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(item.name + ' ' + item.address);
   return <article className="hl-spot" data-directory-id={item.id} data-card-kind={kind}>
@@ -48,6 +48,7 @@ function DirectoryCard({ item, t, label, kind, children, onDetails }: { item: It
       <p className="hl-spot-en" lang={chinese ? 'en-NZ' : 'zh-CN'}>{chinese ? item.name : item.zh}</p>
       <p className="hl-spot-copy">{t(item.introZh, item.introEn)}</p>
       {children}
+      {item.phone && <p className="hl-spot-phone"><a href={'tel:' + item.phone.replace(/\s/g, '')}>{item.phone}</a></p>}
       <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{item.address}</span></p>
       <div className="hl-spot-tools">
         <a className="hl-spot-icon" href={mapHref} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>
@@ -61,17 +62,23 @@ export function Stays({ t }: { t: T }) {
   const [selected, setSelected] = useState<Item | null>(null);
   return <section id="stays" className="v25-directory"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="精选住宿" en="Stays" t={t} /><p>{t('按区域找一处落脚点，房型、价格与空房请查看住宿页面。', 'Find a place to stay by area. Check the property page for rooms, prices and availability.')}</p></div><div className="hl-spot-grid" data-accent="living">{STAYS.map(item => <DirectoryCard key={item.id} item={item} label={item.type} kind="stay" t={t} onDetails={() => setSelected(item)} />)}</div>{selected && <StayDetail item={selected} t={t} close={() => setSelected(null)} />}</section>;
 }
+const PET_PLACEHOLDERS = new Set(['grooming', 'daycare']);
 export function Pets({ t }: { t: T }) {
   const { open } = useFeedback();
   return <section id="pets" className="v25-directory">
-    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="六类宠物服务，商家招募中。欢迎咨询入驻与广告合作。" introEn="Six pet service categories. Merchant listings and advertising enquiries are welcome." t={t} />
-    <div className="v25k-pet-grid">{PETS.map(group => <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
+    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、寄养、兽医和市政放绳区已恢复。洗护美容与狗狗日托仍在招募商家。" introEn="Shops, boarding, vets and council off-leash areas are listed again. Grooming and dog daycare are still open to merchants." t={t} />
+    <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{PETS.map(group => <a key={group.id} href={'#/services?tab=pets&at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
+    {PETS.map(group => PET_PLACEHOLDERS.has(group.id) ? <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
       <PawPrint className="v25k-pet-icon" aria-hidden="true" />
       <h3 lang="zh-CN">{group.zh}</h3>
       <p className="v25k-pet-english" lang="en-NZ">{group.en}</p>
       <p className="v25k-pet-status">商家招募中 · Listings coming soon</p>
       <button type="button" className="v25k-pet-enquiry" aria-haspopup="dialog" onClick={e => open('宠物指南-' + group.zh, e.currentTarget, 'business', '宠物指南-' + group.zh + '：商家入驻 / 广告合作')}>商家入驻 / 广告合作<ArrowUpRight aria-hidden="true" /></button>
-    </article>)}</div>
+    </article> : <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
+      <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
+      <div className="hl-spot-grid" data-accent="services">{group.items.map(item => <DirectoryCard key={item.id} item={item} kind="pet" t={t} />)}</div>
+      {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政放绳区名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
+    </section>)}
   </section>;
 }
 export function UPick({ t }: { t: T }) {

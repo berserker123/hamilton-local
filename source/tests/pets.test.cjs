@@ -14,19 +14,17 @@ function renderPets(lang) {
   return { html: renderToStaticMarkup(React.createElement(m.exports.default, { lang })), result };
 }
 
-test('pet guide renders six bilingual category cards without merchant details in either language', () => {
-  for (const lang of ['zh', 'en']) {
-    const { html } = renderPets(lang);
-    assert.equal((html.match(/<article[^>]*data-pet-category=/g) || []).length, 6);
-    for (const title of ['宠物用品', '寄养与猫舍', '洗护美容', '兽医与夜间急诊', '遛狗与放绳区', '狗狗日托']) assert.ok(html.includes(title));
-    assert.equal((html.match(/商家招募中 · Listings coming soon/g) || []).length, 6);
-    assert.equal((html.match(/商家入驻 \/ 广告合作/g) || []).length, 6);
-    assert.doesNotMatch(html, /Pet Essentials|Raw Essentials|Newstead|data-directory-id=|href="tel:|maps\/search/);
-  }
-});
-
-test('pet guide dependency graph contains no archived listings or merchant content', () => {
-  const { result } = renderPets('zh');
+test('pet guide restores v25j listings and keeps grooming and daycare as merchant cards', () => {
+  const { html, result } = renderPets('zh');
+  for (const title of ['宠物用品', '寄养与猫舍', '洗护美容', '兽医与夜间急诊', '遛狗与放绳区', '狗狗日托']) assert.ok(html.includes(title), title);
+  for (const name of ['Pet Essentials Hamilton', 'Newstead Lodge Boarding Kennels and Cattery', 'Waikato After Hours Veterinary Hospital', 'Minogue Park dog exercise area']) assert.ok(html.includes(name), name);
+  assert.ok(html.includes('hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas'));
+  assert.equal((html.match(/商家招募中 · Listings coming soon/g) || []).length, 2);
+  assert.equal((html.match(/data-pet-category="grooming"/g) || []).length, 1);
+  assert.equal((html.match(/data-pet-category="daycare"/g) || []).length, 1);
+  assert.doesNotMatch(html, /data-directory-id="hounds-grooming"|data-directory-id="paws-daycare"/);
   assert.ok(!Object.keys(result.metafile.inputs).some(file => file.includes('_hidden')));
-  assert.doesNotMatch(result.outputFiles[0].text, /Pet Essentials|Raw Essentials|Newstead Lodge|Newstead Veterinary/);
+  const english = renderPets('en').html;
+  assert.ok(english.includes('after-hours care'));
+  assert.ok(english.includes('Pet Essentials Hamilton'));
 });

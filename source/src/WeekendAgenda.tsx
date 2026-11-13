@@ -1,4 +1,5 @@
 import { BilingualTitle } from './BilingualTitle';
+import { RegionFilter } from './RegionFilter';
 import React, { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
@@ -69,9 +70,7 @@ export function WeekendAgenda({ mode, t }: { mode: 'picks' | 'markets' | 'festiv
   const shown = active==='all' ? available : available.filter(r=>r.id===active);
   return <div className="wa" data-agenda-mode={mode}>
     <div className="wa-heading"><div><p className="caption-4 wa-eyebrow">{t(mode==='picks'?'本周精选':mode==='festivals'?'节日活动':'周末集市',mode==='picks'?'This week':mode==='festivals'?'Festivals':'Weekend markets')}</p><h2 className="heading-4" data-week-label>{DATA.week_label_zh}</h2><p className="caption-5 wa-muted" lang="en-NZ">{DATA.week_label_en}</p></div><span className="wa-total caption-4">{items.length} {t(mode!=='markets'?'项活动':'个集市',mode!=='markets'?'events':'markets')}</span></div>
-    <nav className="wa-regions" aria-label={t('按地区筛选', 'Filter by region')}>
-      {[{id:'all',zh:'全部',en:'All'},...available].map(region=><button key={region.id} className="wa-chip button-xsm" data-region={region.id} aria-pressed={active===region.id} aria-controls={`agenda-${mode}`} onClick={e=>{setSelection(region.id);e.currentTarget.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});}}>{t(region.zh,region.en)}<span className="caption-4">{region.id==='all'?items.length:items.filter(item=>regionOf(item.town)===region.id).length}</span></button>)}
-    </nav>
+    <RegionFilter label={t('按地区筛选', 'Filter by region')} moreLabel={t('更多地区', 'More areas')} attrName="data-region" value={active} onChange={setSelection} options={[{id:'all',zh:'全部',en:'All'},...available].map(region => ({ id: region.id, label: t(region.zh, region.en), count: region.id === 'all' ? items.length : items.filter(item => regionOf(item.town) === region.id).length }))} />
     <div id={`agenda-${mode}`} className="wa-results" key={`${mode}-${active}`}>
       <p className="wa-selection caption-5" role="status">{t(active==='all'?'按地区浏览全部条目':'已按地区筛选',active==='all'?'Showing all regions':'Filtered by region')} · {t(mode!=='markets'?'新西兰当地时间':'定期集市与本周单场',mode!=='markets'?'New Zealand local time':'Recurring markets and dated listings')}</p>
       {shown.map(region=><section className="wa-region" data-region-group={region.id} key={region.id} aria-labelledby={`region-${mode}-${region.id}`}>

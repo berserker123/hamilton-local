@@ -1,32 +1,54 @@
 [
   {
-    "id": "shops",
-    "zh": "宠物用品",
-    "en": "Pet shops"
+    "id": "shops", "zh": "宠物用品", "en": "Pet shops",
+    "items": [
+      {"id":"pet-essentials","name":"Pet Essentials Hamilton","zh":"宠物用品店","area":"Rototuna, Hamilton","address":"Shop 5, 23 Horsham Downs Road, Rototuna, Hamilton 3210","introZh":"提供猫狗、鸟类、鱼类与小动物用品。","introEn":"Food and supplies for dogs, cats, birds, fish and small pets.","url":"https://petessentialshamilton.co.nz/contact/","sources":["https://petessentialshamilton.co.nz/contact/"]},
+      {"id":"raw-essentials","name":"Raw Essentials Hamilton","zh":"宠物食品店","area":"Queenwood, Hamilton","address":"2 Queenwood Avenue, Hamilton 3210","introZh":"销售猫狗生食及零食。","introEn":"A local shop selling raw pet food and treats for cats and dogs.","url":"https://www.rawessentials.co.nz/p/raw-essentials-hamilton","sources":["https://www.rawessentials.co.nz/p/raw-essentials-hamilton"]},
+      {"id":"animal-feed-barn","name":"Animal Feed Barn","zh":"动物饲料用品店","area":"Te Rapa, Hamilton","address":"789 Te Rapa Road, Hamilton 3200","introZh":"销售猫狗、小动物及家禽饲料。","introEn":"Feed for dogs, cats, small animals and poultry.","url":"https://www.animalfeedbarn.co.nz/contact","sources":["https://www.animalfeedbarn.co.nz/","https://www.animalfeedbarn.co.nz/contact"]}
+    ]
   },
   {
-    "id": "boarding",
-    "zh": "寄养与猫舍",
-    "en": "Boarding & catteries"
+    "id": "boarding", "zh": "寄养与猫舍", "en": "Boarding & catteries",
+    "items": [
+      {"id":"newstead-boarding","name":"Newstead Lodge Boarding Kennels and Cattery","zh":"犬猫寄养","area":"Newstead, Hamilton outskirts","address":"229 Morrinsville Road, State Highway 26, Hamilton","introZh":"提供犬舍与猫舍寄养，也有日托服务。","introEn":"Boarding for dogs and cats, with dog daycare also available.","url":"https://newsteadlodge.com/","sources":["https://newsteadlodge.com/"]},
+      {"id":"cosy-boarding","name":"Cosy Paws","zh":"爱犬寄养","area":"Collins Road, Hamilton","address":"278 Collins Road, RD 2, Hamilton 3282","introZh":"提供犬只寄养；预订前核对入住要求。","introEn":"Dog boarding kennels; check entry requirements before booking.","url":"https://www.cosypaws.co.nz/kennel","sources":["https://www.cosypaws.co.nz/","https://www.cosypaws.co.nz/kennel"]},
+      {"id":"metro-boarding","name":"Metro Paws — Paws & Claws Luxury Hotel","zh":"宠物寄养旅馆","area":"Te Rapa, Hamilton","address":"57 Sunshine Avenue, Te Rapa, Hamilton","introZh":"Te Rapa 的犬只寄养设施。","introEn":"Dog boarding at Metro Paws’ Te Rapa location.","url":"https://www.metropaws.co.nz/luxury-hotel","sources":["https://www.metropaws.co.nz/contact","https://www.metropaws.co.nz/luxury-hotel"]},
+      {"id":"league-boarding","name":"League of Pups Hamilton","zh":"爱犬寄养中心","area":"Frankton, Hamilton","address":"31 Bandon Street, Frankton, Hamilton","introZh":"提供犬只寄养及室内外活动空间。","introEn":"Dog boarding with indoor and outdoor play spaces in Frankton.","url":"https://www.leagueofpups.com/hamilton","sources":["https://www.leagueofpups.com/hamilton"]}
+    ]
   },
   {
-    "id": "grooming",
-    "zh": "洗护美容",
-    "en": "Grooming"
+    "id": "grooming", "zh": "洗护美容", "en": "Grooming",
+    "items": [
+      {"id":"hounds-grooming","name":"Hamilton Hounds","zh":"爱犬洗护","area":"Frankton, Hamilton","address":"12 Grasslands Place, Frankton, Hamilton 3204","introZh":"犬只美容需预约，官网列为周一至周五提供。","introEn":"Dog grooming by appointment, listed Monday to Friday.","url":"https://hamiltonhounds.co.nz/contactus/","sources":["https://hamiltonhounds.co.nz/contactus/"]},
+      {"id":"paws-grooming","name":"Paws Pet Care and Wellbeing Centre","zh":"爱犬洗护中心","area":"Te Rapa, Hamilton","address":"645 Te Rapa Road, Hamilton","introZh":"提供犬只美容、洗浴及日托服务。","introEn":"Dog grooming and bathing at a centre that also offers daycare.","url":"https://www.pawspetcare.co.nz/","sources":["https://www.pawspetcare.co.nz/","https://www.pawspetcare.co.nz/doggydaycare/"]},
+      {"id":"metro-grooming","name":"Metro Paws Frankton","zh":"爱犬美容","area":"Frankton, Hamilton","address":"15 Goodfellow Place, Frankton, Hamilton","introZh":"Frankton 店提供犬只美容及日托。","introEn":"Grooming and dog daycare at the Frankton branch.","url":"https://www.metropaws.co.nz/grooming","sources":["https://www.metropaws.co.nz/contact","https://www.metropaws.co.nz/grooming"]}
+    ]
   },
   {
-    "id": "vets",
-    "zh": "兽医与夜间急诊",
-    "en": "Vets & after-hours care"
+    "id": "vets", "zh": "兽医与夜间急诊", "en": "Vets & after-hours care",
+    "items": [
+      {"id":"waikato-after-hours","name":"Waikato After Hours Veterinary Hospital","zh":"夜间急诊兽医院","area":"Hamilton Central","address":"574 Anglesea Street, Hamilton","introZh":"夜间、周末及公众假日急诊；请先致电 07 839 5656 核对接诊。","introEn":"After-hours, weekend and public-holiday emergency vet; call 07 839 5656 to confirm care.","phone":"07 839 5656","url":"https://wavh.co.nz/","sources":["https://wavh.co.nz/"]},
+      {"id":"vetora-hamilton","name":"Vetora Hamilton","zh":"综合兽医诊所","area":"Melville, Hamilton","address":"142 Collins Road, Melville, Hamilton","introZh":"提供宠物诊疗、影像检查与手术服务。","introEn":"Companion-animal consultations, imaging and surgery.","phone":"07 843 8822","url":"https://www.vetora.co.nz/clinics/vetora-hamilton","sources":["https://www.vetora.co.nz/clinics/vetora-hamilton"]},
+      {"id":"newstead-vets","name":"Newstead Veterinary Services","zh":"兽医诊所","area":"Newstead, Hamilton outskirts","address":"161 Morrinsville Road, Newstead 3284","introZh":"Newstead 兽医服务；小动物夜间急诊转介至 Waikato After Hours。","introEn":"Newstead veterinary practice; small-animal emergencies after closing go to Waikato After Hours.","phone":"07 856 4522","url":"https://www.newsteadvets.co.nz/contact-us","sources":["https://www.newsteadvets.co.nz/contact-us"]},
+      {"id":"carevets-horsham","name":"CareVets Horsham Downs","zh":"宠物兽医诊所","area":"Rototuna, Hamilton","address":"Unit B4, 1 North City Road, Rototuna Village, Hamilton 3281","introZh":"提供健康检查、疫苗、牙科及宠物诊疗。","introEn":"Pet health checks, vaccinations, dentistry and medical treatment.","phone":"07 855 5655","url":"https://carevets.co.nz/carevets-horsham-downs/","sources":["https://carevets.co.nz/carevets-horsham-downs/"]}
+    ]
   },
   {
-    "id": "dog-parks",
-    "zh": "遛狗与放绳区",
-    "en": "Dog parks & off-leash areas"
+    "id": "dog-parks", "zh": "遛狗与放绳区", "en": "Dog parks & off-leash areas",
+    "items": [
+      {"id":"minogue-dogs","name":"Minogue Park dog exercise area","zh":"围栏放绳区","area":"Forest Lake, Hamilton","address":"Moore Street, Forest Lake, Hamilton","introZh":"市政确认的全围栏放绳区；请以现场标识确定边界。","introEn":"Council-listed fully fenced off-leash area; follow signs for its boundaries.","url":"https://hamilton.govt.nz/community-spaces/parks/detail/minogue-park","sources":["https://hamilton.govt.nz/community-spaces/parks/detail/minogue-park","https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas"]},
+      {"id":"days-dogs","name":"Days Park","zh":"河畔放绳区","area":"Chartwell, Hamilton","address":"788 River Road, Chartwell, Hamilton","introZh":"市政列有放绳区，邻近 Waikato River。","introEn":"A council-listed off-leash park beside the Waikato River.","url":"https://hamilton.govt.nz/community-spaces/parks/detail/days-park","sources":["https://hamilton.govt.nz/community-spaces/parks/detail/days-park","https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas"]},
+      {"id":"claudelands-dogs","name":"Claudelands Park dog exercise area","zh":"公园放绳区","area":"Claudelands, Hamilton","address":"Corner of Brooklyn Road and Heaphy Terrace, Claudelands, Hamilton","introZh":"放绳区位于 Claudelands Events Centre 旁；游乐场区域禁犬。","introEn":"Off-leash space beside Claudelands Events Centre; dogs are prohibited around playgrounds.","url":"https://hamilton.govt.nz/community-spaces/parks/detail/claudelands-park","sources":["https://hamilton.govt.nz/community-spaces/parks/detail/claudelands-park","https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas"]},
+      {"id":"pukete-dogs","name":"Pukete Farm Park dog exercise area","zh":"农场公园放绳区","area":"Pukete, Hamilton","address":"66 Maui Street, Pukete, Hamilton","introZh":"市政列有指定放绳区；请留意单车道与现场边界。","introEn":"A designated council off-leash area; watch for bike trails and follow area boundaries.","url":"https://hamilton.govt.nz/community-spaces/parks/detail/pukete-farm-park","sources":["https://hamilton.govt.nz/community-spaces/parks/detail/pukete-farm-park","https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas"]}
+    ]
   },
   {
-    "id": "daycare",
-    "zh": "狗狗日托",
-    "en": "Doggy daycare"
+    "id": "daycare", "zh": "狗狗日托", "en": "Doggy daycare",
+    "items": [
+      {"id":"hounds-daycare","name":"Hamilton Hounds","zh":"爱犬日托","area":"Frankton, Hamilton","address":"12 Grasslands Place, Frankton, Hamilton 3204","introZh":"提供犬只日托；过夜寄养仅限已注册的日托犬只。","introEn":"Dog daycare; overnight boarding is restricted to enrolled daycare dogs.","url":"https://hamiltonhounds.co.nz/contactus/","sources":["https://hamiltonhounds.co.nz/contactus/"]},
+      {"id":"paws-daycare","name":"Paws Pet Care and Wellbeing Centre","zh":"爱犬日托中心","area":"Te Rapa, Hamilton","address":"645 Te Rapa Road, Hamilton","introZh":"提供室内外日托活动，也可另询美容服务。","introEn":"Dog daycare with indoor and outdoor activities, plus grooming services.","url":"https://www.pawspetcare.co.nz/doggydaycare/","sources":["https://www.pawspetcare.co.nz/doggydaycare/"]},
+      {"id":"metro-daycare","name":"Metro Paws Frankton","zh":"爱犬日间照护","area":"Frankton, Hamilton","address":"15 Goodfellow Place, Frankton, Hamilton","introZh":"Frankton 的犬只日托与美容服务。","introEn":"Dog daycare and grooming in Frankton.","url":"https://www.metropaws.co.nz/contact","sources":["https://www.metropaws.co.nz/contact"]},
+      {"id":"cosy-daycare","name":"Cosy Paws Indoor Daycare","zh":"室内犬只日托","area":"Collins Road, Hamilton","address":"154 Collins Road, Hamilton","introZh":"室内日托与寄养地址不同，出发前核对预订地点。","introEn":"Indoor daycare at a separate address from the boarding kennels; confirm your booking location.","url":"https://www.cosypaws.co.nz/","sources":["https://www.cosypaws.co.nz/"]}
+    ]
   }
 ]

@@ -169,14 +169,14 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
     <BilingualTitle as="h2" zh={s.zhName} en={s.name} t={t} />
     <CardQuick items={[{ key: 'area', text: placeNames(s.suburb, lang) }, ...s.tags[lang].slice(0, 2).map(tag => ({ key: 'tag', text: tag }))]} />
     <p className="sb-icon-line"><MapPin /><span>{s.address}</span></p>
-    <p className="sb-icon-line"><Clock /><span>{s.hours ? s.hours[lang] : t('电话与营业时间待核实', 'Phone and hours unverified')}</span></p>
+    <p className="sb-icon-line"><Clock /><span>{s.hours ? s.hours[lang] : t('营业时间请以店铺为准', 'Check the shop for opening hours')}</span></p>
     {s.phone && <p className="ia-phone">{s.phone}</p>}
     {s.verificationNote && <p className="ia-verification">{s.verificationNote[lang]}</p>}
     <div className="ia-card-bottom ia-market-bottom">
       <span>{s.tags[lang].join(' · ')}</span>
       <div className="ia-market-actions">
         <a className="sb-action button-xsm" href={'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + encodeURIComponent(MARKET_STREET_VIEW[s.id as keyof typeof MARKET_STREET_VIEW])} target="_blank" rel="noopener noreferrer"><ExternalLink aria-hidden="true" />{t('看街景', 'Street View')}</a>
-        {s.mapLink && <a className="sb-action hl-icon-btn" href={s.mapLink} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>}
+        <a className="sb-action button-xsm" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.name + ' ' + s.address)} target="_blank" rel="noopener noreferrer"><MapPin aria-hidden="true" />{t('地图', 'Map')}</a>
         <button className="sb-action button-xsm" onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}><Copy />{t('复制地址', 'Copy address')}</button>
       </div>
     </div>

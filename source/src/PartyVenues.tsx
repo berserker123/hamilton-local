@@ -1,4 +1,5 @@
 import { BilingualTitle } from './BilingualTitle';
+import { RegionFilter } from './RegionFilter';
 import React, { useState } from 'react';
 import VENUES from './party-venues.json';
 import { PARTY_REGIONS, PARTY_TYPES, filterPartyVenues, partyDirections, partyPage } from './party-data';
@@ -21,15 +22,13 @@ export function PartyVenues({ t, lang }: { t: T; lang: 'zh' | 'en' }) {
       <div><p className="caption-4 wa-eyebrow">{t('亲子遛娃', 'Kids & family')}</p><h2 className="heading-4">{t('派对与场地', 'Parties & venues')}</h2><p className="caption-5 wa-muted">{t('按地区寻找游乐、运动、手作和聚会空间，也可选择上门派对服务。', 'Find play, sports, arts and gathering spaces by area, or choose a mobile party service.')}</p></div>
       <span className="wa-total caption-4">{VENUES.length} {t('项选择', 'options')}</span>
     </div>
-    <nav className="wa-regions" aria-label={t('按地区筛选场地', 'Filter venues by region')}>
-      {[{ id: 'all', zh: '全部', en: 'All' }, ...PARTY_REGIONS].map(group => <button key={group.id} className="wa-chip button-xsm" data-party-region={group.id} aria-pressed={region === group.id} aria-controls="party-results" onClick={e => { setRegion(group.id); setExpanded({}); e.currentTarget.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' }); }}>{t(group.zh, group.en)}<span className="caption-4">{group.id === 'all' ? VENUES.length : REGION_COUNTS[group.id]}</span></button>)}
-    </nav>
+    <RegionFilter label={t('按地区筛选场地', 'Filter venues by region')} moreLabel={t('更多地区', 'More areas')} attrName="data-party-region" value={region} onChange={id => { setRegion(id); setExpanded({}); }} options={[{ id: 'all', zh: '全部', en: 'All' }, ...PARTY_REGIONS].map(group => ({ id: group.id, label: t(group.zh, group.en), count: group.id === 'all' ? VENUES.length : REGION_COUNTS[group.id] }))} />
     <div className="pv-filter-row">
       <label className="pv-type caption-4" htmlFor="party-type">{t('场地类型', 'Venue type')}<select id="party-type" data-testid="party-type" value={type} onChange={e => { setType(e.target.value); setExpanded({}); }} aria-controls="party-results"><option value="all">{t('全部类型', 'All types')}</option>{PARTY_TYPES.map(item => <option key={item.id} value={item.id}>{t(item.zh, item.en)}</option>)}</select></label>
       <button className="wa-source button-sm pv-reset" onClick={reset}>{t('重置筛选', 'Reset filters')}</button>
     </div>
     <p className="wa-selection caption-5" role="status" aria-live="polite" aria-atomic="true">{t(`找到 ${filtered.length} 项选择`, `${filtered.length} options found`)} · {t('资料核对：2026年11月11日', 'Sources checked: 11 November 2026')}</p>
-    <p className="pv-coverage caption-5">{t('地区数量包含官网明确覆盖当地的上门服务，服务单独分组；各地区数量不相加。左右滑动可查看全部地区。', 'Area counts include mobile services with stated local coverage, shown separately. Counts overlap. Scroll sideways for more areas.')}</p>
+    <p className="pv-coverage caption-5">{t('地区数量包含官网明确覆盖当地的上门服务，服务单独分组；各地区数量不相加。更多地区在「更多地区」里。', 'Area counts include mobile services with stated local coverage, shown separately. Counts overlap. Further areas are under More areas.')}</p>
     <div id="party-results" className="wa-results" key={`${region}-${type}`}>
       {shownRegions.map(group => <section key={group.id} className="wa-region" data-party-group={group.id} aria-labelledby={`party-heading-${group.id.replaceAll(' ', '-')}`}>
         <div className="wa-region-heading"><h3 className="heading-5" id={`party-heading-${group.id.replaceAll(' ', '-')}`}>{t(group.zh, group.en)}</h3><span className="caption-4">{group.venues.length} {t('项', 'options')}</span></div>
