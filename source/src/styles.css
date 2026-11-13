@@ -3633,31 +3633,63 @@ html body .ia-root .pv-row :is(.wa-venue, .wa-hours, .pv-details) { font-size: 1
   text-overflow: ellipsis;
 }
 
-/* Section pages: licensed photo, cream wash, solid cards. */
+/* Photo stays in the header band. Everything below sits on a solid page colour. */
 .ia-root { background-color: var(--hl-canvas); }
 .ia-root > main,
 .ia-root > footer { position: relative; z-index: 1; }
 .ia-root .ia-section-media {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: 460px;
   overflow: hidden;
-  background: var(--hl-canvas);
+  background: #1e1d1a;
 }
 .ia-root .ia-section-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 1;
-  filter: blur(8px) saturate(.86);
-  transform: scale(1.08);
+  filter: none;
+  transform: none;
 }
 .ia-root .ia-section-media::after,
 .ia-root .v25g-weekend-media::after {
-  background: linear-gradient(180deg, var(--hl-photo-scrim) 0, var(--hl-photo-scrim) 460px, var(--hl-photo-wash) 680px, var(--hl-photo-wash-deep) 100%);
+  background: linear-gradient(180deg, rgba(30, 29, 26, .88) 0%, rgba(30, 29, 26, .84) 78%, var(--hl-canvas) 100%);
 }
-.ia-root .ia-content { background: transparent; }
+.ia-root .ia-page-intro { position: relative; z-index: 1; }
+.ia-root .ia-content { position: relative; z-index: 1; background: var(--hl-canvas); }
+html body .ia-root .ia-page-intro button.sb-action.sb-action {
+  background: var(--hl-surface);
+  background-color: var(--hl-surface);
+  color: var(--hl-ink);
+  border: 1px solid var(--hl-line);
+}
+html body .ia-root .wa-row,
+html body .ia-root .wa-row:nth-child(even),
+html body .ia-root .wa-row:hover,
+html body .ia-root .pv-row,
+html body .ia-root .pv-row:nth-child(even),
+html body .ia-root .pv-row:hover {
+  background: var(--hl-surface);
+  color: var(--hl-ink);
+}
+.ia-root .v25-subnav a,
+.ia-root .wa-chip,
+.ia-root .wa-total {
+  background: var(--hl-surface);
+  color: var(--hl-ink);
+  border-color: var(--hl-line);
+}
+.ia-root .wa-chip[aria-pressed="true"],
+.ia-root .wa-chip[aria-pressed="true"]:hover {
+  background: var(--sec-fill, var(--hl-fill));
+  color: #fff;
+  border-color: var(--sec-fill, var(--hl-fill));
+}
+.ia-root .v25k-pet-status { font-size: 13px; }
 .ia-root[data-route="home"] .v23-stat-section {
   background-color: var(--hl-band);
   background-image: linear-gradient(var(--hl-band-wash), var(--hl-photo-wash-deep)), url('./photos/hamilton-lake.webp');
@@ -3719,7 +3751,7 @@ html[data-theme="night"] .v23-preview-photo > div { background: var(--hl-surface
 html[data-theme="night"] .hl-spot-cta,
 html[data-theme="night"] .hl-spot-grid[data-accent] .hl-spot-cta { background: var(--sec-fill); color: #fff; }
 html[data-theme="night"] :is(.hl-spot-address svg, .hl-spot-fallback, #guide-tab-living svg, #guide-tab-weekend svg, #guide-tab-kids svg, #guide-tab-services svg, #guide-tab-tools svg) { color: var(--sec, var(--hl-accent)); }
-html[data-theme="night"] .hl-spot-fallback { background: #24302e; }
+html[data-theme="night"] .hl-spot-grid[data-accent] .hl-spot-fallback { background: var(--hl-surface); color: var(--sec, var(--hl-accent)); }
 html[data-theme="night"] .hl-spot-icon { border-color: var(--hl-line); }
 html[data-theme="night"] .pv-price-chip {
   background: color-mix(in srgb, var(--sec, var(--hl-accent)) 22%, var(--hl-surface));

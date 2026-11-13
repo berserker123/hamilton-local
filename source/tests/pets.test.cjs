@@ -14,17 +14,17 @@ function renderPets(lang) {
   return { html: renderToStaticMarkup(React.createElement(m.exports.default, { lang })), result };
 }
 
-test('pet guide restores v25j listings and keeps grooming and daycare as merchant cards', () => {
+test('pet guide lists shops, vets and off-leash areas, then merchant placeholders', () => {
   const { html, result } = renderPets('zh');
-  for (const title of ['宠物用品', '寄养与猫舍', '洗护美容', '兽医与夜间急诊', '遛狗与放绳区', '狗狗日托']) assert.ok(html.includes(title), title);
-  for (const name of ['Pet Essentials Hamilton', 'Newstead Lodge Boarding Kennels and Cattery', 'Waikato After Hours Veterinary Hospital', 'Minogue Park dog exercise area']) assert.ok(html.includes(name), name);
+  for (const title of ['宠物用品', '寄养与猫舍', '洗护美容', '兽医与夜间急诊', '免牵引绳区域', '狗狗日托']) assert.ok(html.includes(title), title);
+  const order = ['shops', 'vets', 'dog-parks', 'boarding', 'grooming', 'daycare'].map(id => html.indexOf('data-pet-category="' + id + '"'));
+  assert.deepEqual(order, [...order].sort((a, b) => a - b));
+  for (const name of ['Pet Essentials Hamilton', 'Waikato After Hours Veterinary Hospital', 'Minogue Park dog exercise area', '围栏免牵引绳区域']) assert.ok(html.includes(name), name);
+  assert.doesNotMatch(html, /Newstead Lodge|data-directory-id="newstead-boarding"|放绳区/);
   assert.ok(html.includes('hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas'));
-  assert.equal((html.match(/商家招募中 · Listings coming soon/g) || []).length, 2);
-  assert.equal((html.match(/data-pet-category="grooming"/g) || []).length, 1);
-  assert.equal((html.match(/data-pet-category="daycare"/g) || []).length, 1);
-  assert.doesNotMatch(html, /data-directory-id="hounds-grooming"|data-directory-id="paws-daycare"/);
+  assert.equal((html.match(/商家招募中 · Listings coming soon/g) || []).length, 3);
   assert.ok(!Object.keys(result.metafile.inputs).some(file => file.includes('_hidden')));
   const english = renderPets('en').html;
-  assert.ok(english.includes('after-hours care'));
+  assert.ok(english.includes('Off-leash areas'));
   assert.ok(english.includes('Pet Essentials Hamilton'));
 });

@@ -62,23 +62,28 @@ export function Stays({ t }: { t: T }) {
   const [selected, setSelected] = useState<Item | null>(null);
   return <section id="stays" className="v25-directory"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="精选住宿" en="Stays" t={t} /><p>{t('按区域找一处落脚点，房型、价格与空房请查看住宿页面。', 'Find a place to stay by area. Check the property page for rooms, prices and availability.')}</p></div><div className="hl-spot-grid" data-accent="living">{STAYS.map(item => <DirectoryCard key={item.id} item={item} label={item.type} kind="stay" t={t} onDetails={() => setSelected(item)} />)}</div>{selected && <StayDetail item={selected} t={t} close={() => setSelected(null)} />}</section>;
 }
-const PET_PLACEHOLDERS = new Set(['grooming', 'daycare']);
+const PET_ORDER = ['shops', 'vets', 'dog-parks', 'boarding', 'grooming', 'daycare'];
+const PET_PLACEHOLDERS = new Set(['boarding', 'grooming', 'daycare']);
 export function Pets({ t }: { t: T }) {
   const { open } = useFeedback();
+  const groups = PET_ORDER.map(id => PETS.find(group => group.id === id)).filter(Boolean);
+  const listed = groups.filter(group => !PET_PLACEHOLDERS.has(group.id));
+  const waiting = groups.filter(group => PET_PLACEHOLDERS.has(group.id));
   return <section id="pets" className="v25-directory">
-    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、寄养、兽医和市政放绳区已恢复。洗护美容与狗狗日托仍在招募商家。" introEn="Shops, boarding, vets and council off-leash areas are listed again. Grooming and dog daycare are still open to merchants." t={t} />
-    <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{PETS.map(group => <a key={group.id} href={'#/services?tab=pets&at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
-    {PETS.map(group => PET_PLACEHOLDERS.has(group.id) ? <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
+    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、兽医和市政免牵引绳区域已列出。寄养、洗护美容与狗狗日托仍在招募商家。" introEn="Shops, vets and council off-leash areas are listed. Boarding, grooming and dog daycare are open to merchants." t={t} />
+    <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{groups.map(group => <a key={group.id} href={'#/services?tab=pets&at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
+    {listed.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
+      <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
+      <div className="hl-spot-grid" data-accent="services">{group.items.map(item => <DirectoryCard key={item.id} item={item} kind="pet" t={t} />)}</div>
+      {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政免牵引绳区域名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
+    </section>)}
+    <div className="v25k-pet-grid">{waiting.map(group => <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
       <PawPrint className="v25k-pet-icon" aria-hidden="true" />
       <h3 lang="zh-CN">{group.zh}</h3>
       <p className="v25k-pet-english" lang="en-NZ">{group.en}</p>
       <p className="v25k-pet-status">商家招募中 · Listings coming soon</p>
       <button type="button" className="v25k-pet-enquiry" aria-haspopup="dialog" onClick={e => open('宠物指南-' + group.zh, e.currentTarget, 'business', '宠物指南-' + group.zh + '：商家入驻 / 广告合作')}>商家入驻 / 广告合作<ArrowUpRight aria-hidden="true" /></button>
-    </article> : <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
-      <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
-      <div className="hl-spot-grid" data-accent="services">{group.items.map(item => <DirectoryCard key={item.id} item={item} kind="pet" t={t} />)}</div>
-      {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政放绳区名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
-    </section>)}
+    </article>)}</div>
   </section>;
 }
 export function UPick({ t }: { t: T }) {
