@@ -1,5 +1,5 @@
 /* v21 decoration lives on its own surface and never participates in hit testing. */
-html { color-scheme: dark; }
+html { color-scheme: light; }
 .v21-season-badge { position: absolute; top: 12px; left: 36px; min-width: 16px; height: 16px; padding: 0 2px; border-radius: 4px; color: #efd7ad; background: #29372c; pointer-events: none; text-align: center; }
 .v21-window-scene { position: absolute; inset: 0; opacity: 0; transition: opacity 1000ms cubic-bezier(.22,1,.36,1); }
 .v21-window-scene.is-current { opacity: 1; }
