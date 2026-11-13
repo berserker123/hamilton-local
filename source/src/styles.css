@@ -4203,13 +4203,39 @@ html body .ia-root .ia-inline-search input {
 
 html body .ia-root[data-route="tools"] .ia-fixed-photo img { object-position: center 32%; }
 
-html body .ia-root .pg-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: none;
+html body .ia-root .hl-spot[data-market-id] .hl-spot-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: auto;
 }
-html body .ia-root .pg-list-count { margin: 0 0 4px; color: var(--hl-muted); }
+html body .ia-root .hl-spot[data-market-id] .hl-spot-actions :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 40px;
+  padding: 6px 4px;
+  border: 0;
+  border-radius: 10px;
+  background: #1A5C64;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+html[data-theme="night"] body .ia-root .hl-spot[data-market-id] .hl-spot-actions :is(a, button) {
+  background: var(--sec-fill, #1A5C64);
+  color: #fff;
+}
+html body .ia-root .pg-layout { align-items: start; }
+html body .ia-root .pg-list {
+  display: block;
+  max-height: none;
+  overflow: visible;
+  padding: 0;
+}
 html body .ia-root .pg-place {
   display: flex;
   flex-direction: column;

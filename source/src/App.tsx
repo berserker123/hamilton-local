@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 import { placeNames } from './place-names';
-import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Copy, Sun, Moon, Store, Trees, Wrench, BookOpen, ShieldCheck, ExternalLink, Info } from 'lucide-react';
+import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Sun, Moon, Store, Trees, Wrench, BookOpen, ShieldCheck, Info } from 'lucide-react';
 import { LogoMark } from './Logo';
 import { GuideStats, GuideMarquee, GuidePreview, GuideSteps } from './HomeGuide';
 import { BlurText, Reveal, HeroMedia } from './Motion';
@@ -177,10 +177,10 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
         <p className="hl-spot-copy">{s.hours ? s.hours[lang] : t('营业时间待确认', 'Hours unconfirmed')}</p>
         {s.phone && <p className="hl-spot-phone"><a href={'tel:' + s.phone.replace(/\s/g, '')}>{s.phone}</a></p>}
         {s.verificationNote && <p className="v25-confirm">{s.verificationNote[lang]}</p>}
-        <div className="hl-spot-tools">
-          <a className="hl-spot-icon" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.name + ' ' + s.address)} target="_blank" rel="noopener noreferrer" aria-label={t('地图', 'Map')}><MapPin aria-hidden="true" /></a>
-          <button type="button" className="hl-spot-icon" aria-label={t('复制地址', 'Copy address')} onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}><Copy aria-hidden="true" /></button>
-          {viewpoint && <a className="hl-spot-icon" href={'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + encodeURIComponent(viewpoint)} target="_blank" rel="noopener noreferrer" aria-label={t('看街景', 'Street View')}><ExternalLink aria-hidden="true" /></a>}
+        <div className="hl-spot-actions">
+          <a href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.name + ' ' + s.address)} target="_blank" rel="noopener noreferrer">{t('地址', 'Address')}</a>
+          <button type="button" onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}>{t('复制', 'Copy')}</button>
+          <a href={viewpoint ? 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + encodeURIComponent(viewpoint) : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.address)} target="_blank" rel="noopener noreferrer">{t('街景', 'Street')}</a>
         </div>
       </div>
     </article>;
