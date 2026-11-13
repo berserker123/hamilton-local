@@ -601,7 +601,14 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 .ia-skip { position: fixed; top: -80px; left: 20px; z-index: 100; padding: 12px 20px; background: #eee8da; color: #1e1d1a; border-radius: 10px; min-height: 44px; }
 .ia-skip:focus { top: 16px; }
 .ia-root .sb-hero { min-height: max(780px, 100svh); padding: 150px 28px 120px; }
-.ia-root .sb-hero-content { max-width: 980px; }
+.ia-root .sb-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  padding: 28px 36px 16px;
+  border-radius: 28px;
+  background: rgba(20, 16, 12, .58);
+}
 .ia-root .sb-h1 { font-size: clamp(44px, 5.15vw, 76px); line-height: 1.35; }
 .ia-root .sb-h1a { font-weight: 400; }
 .ia-root .sb-lead { max-width: 580px; white-space: pre-line; font-size: 15px; line-height: 1.9; margin-block: 24px 30px; }
@@ -2708,20 +2715,12 @@ html, body { background: var(--hl-canvas); color: var(--hl-ink); }
 .ia-root :is(.v20-cord-anchor, .v20-cord-line) { background: var(--hl-header-muted); }
 
 .sb-hero, .ia-root .sb-hero, .sb-hero-media-window { background: var(--hl-top); }
-.sb-hero-shade { background: transparent; }
-.sb-window-view { background: var(--hl-bezel); }
-.sb-window-view::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  border-radius: inherit;
-  background: rgba(16, 20, 18, .72);
-}
+.sb-hero-shade { background: linear-gradient(180deg, rgba(20, 16, 12, .55), rgba(20, 16, 12, .12) 28%, rgba(20, 16, 12, .08) 62%, rgba(20, 16, 12, .45) 100%); }
+.sb-window-view { background: #1a2420; }
+.sb-window-view::after { content: none; }
 .sb-window-rim {
   border-color: var(--hl-line);
-  background: var(--hl-top);
+  background: transparent;
   box-shadow: none;
 }
 .sb-window-sill {
@@ -3719,9 +3718,19 @@ html body .ia-root .pv-row:hover {
 }
 
 .ia-root a.ia-explore {
-  background: rgba(30, 29, 26, .78);
-  color: #f3efe6;
-  border: 1px solid rgba(243, 239, 230, .6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 28px;
+  padding: 8px 4px;
+  min-width: 44px;
+  min-height: 44px;
+  background: transparent;
+  border: 0;
+  color: #f4efe6;
+  font-size: 15px;
+  font-weight: 600;
 }
 .hl-theme-toggle {
   display: inline-grid;
