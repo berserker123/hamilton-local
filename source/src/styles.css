@@ -1010,7 +1010,7 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 .ia-root .wa-chip[aria-pressed=true]:hover { color: #27251e; background: #f2dfb9; }
 .ia-root .wa-chip:active { transform: scale(.98); }
 .wa :is(button,a):focus-visible { outline: 2px solid var(--wa-gold); outline-offset: 2px; }
-.wa-results { animation: wa-arrive 500ms var(--wa-curve) both; }
+.wa-results { animation: none; opacity: 1; transform: none; }
 .wa-selection { padding-block: var(--spacing-200); color: var(--wa-muted); }
 .wa-region + .wa-region { margin-top: var(--spacing-400); }
 .wa-region-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--spacing-100); margin-bottom: var(--spacing-200); }
@@ -3895,12 +3895,19 @@ html body .ia-root .wa:not(.pv) .wa-event-side {
   gap: 12px;
   min-height: 100%;
 }
-html body .ia-root .wa:not(.pv) .wa-event .wa-price.is-faded {
-  background: transparent;
-  color: var(--hl-muted);
-  border: 1px solid var(--hl-line);
-  opacity: .85;
+html body .ia-root .wa:not(.pv) .wa-event .wa-price:not(.is-faded) {
+  background: var(--hl-fill);
+  color: var(--hl-on-fill);
+  border: 1px solid var(--hl-fill);
+  opacity: 1;
 }
+html body .ia-root .wa:not(.pv) .wa-event .wa-price.is-faded {
+  background: var(--hl-canvas);
+  color: var(--hl-ink);
+  border: 1px solid var(--hl-line);
+  opacity: 1;
+}
+html body .ia-root .v20-cord-hint { display: none; }
 html body .ia-root .wa:not(.pv) .wa-event .wa-source svg { transition: transform 180ms ease; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   html body .ia-root .wa:not(.pv) .wa-event:hover { transform: translateY(-2px); background: var(--hl-surface); }
