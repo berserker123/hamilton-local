@@ -4229,12 +4229,47 @@ html[data-theme="night"] body .ia-root .hl-spot[data-market-id] .hl-spot-actions
   background: var(--sec-fill, #1A5C64);
   color: #fff;
 }
-html body .ia-root .pg-layout { align-items: start; }
+html body .ia-root .pg-layout { align-items: stretch; }
+html body .ia-root .pg-list-pane { position: relative; min-width: 0; min-height: 0; }
 html body .ia-root .pg-list {
-  display: block;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   max-height: none;
-  overflow: visible;
-  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 0 16px 0 0;
+}
+html body .ia-root .pg-list::-webkit-scrollbar { width: 0; height: 0; display: none; }
+html body .ia-root .pg-scrollbar {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  width: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--hl-ink) 12%, transparent);
+  pointer-events: none;
+}
+html body .ia-root .pg-scrollbar span {
+  display: block;
+  width: 100%;
+  border-radius: 999px;
+  background: #6e675c;
+}
+html[data-theme="night"] body .ia-root .pg-scrollbar span { background: #d9c7a4; }
+@media (max-width: 900px) {
+  html body .ia-root .pg-list-pane { position: static; }
+  html body .ia-root .pg-list {
+    position: static;
+    inset: auto;
+    overflow: visible;
+    padding: 0;
+  }
+  html body .ia-root .pg-scrollbar { display: none; }
 }
 html body .ia-root .pg-place {
   display: flex;
@@ -4256,6 +4291,7 @@ html body .ia-root .pg-place.pg-selected {
   background: var(--hl-surface);
   border-color: color-mix(in srgb, var(--sec-fill, #3E5218) 55%, var(--hl-line));
 }
+html body .ia-root .pg-place.pg-selected { border-color: var(--sec, #3E5218); }
 html body .ia-root .pg-place-top { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
 html body .ia-root .pg-number {
   display: inline-flex;
