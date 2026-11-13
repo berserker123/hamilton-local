@@ -7,6 +7,7 @@ import { GuideStats, GuideMarquee, GuidePreview, GuideSteps } from './HomeGuide'
 import { BlurText, Reveal, HeroMedia } from './Motion';
 import { SUPERMARKETS, URGENT, ROUTES, TEXT, LAKE_BAND } from './local-data';
 import PLACES from './places.json';
+import { OUTING_CATEGORIES, familyOutings } from './kids-outings';
 import MARKET_STREET_VIEW from './market-street-view.json';
 import VERIFIED from './verified-urls.json';
 import TEASER_IMAGES from './teaser-images.json';
@@ -116,17 +117,20 @@ function PlaceDetail({ place: p, lang, t, close, separateName = false }: { place
     {'hours' in p && p.hours && <p className="sb-icon-line"><Clock /><span>{t(p.hours, p.en.hours)}</span></p>}
     {'price' in p && p.price && <p>{t(p.price, p.en.price)}</p>}
     <p className="sb-icon-line"><MapPin /><span>{t(p.address, p.id === 'te-awa' ? p.en.area : p.address)}</span></p>
-    <p><a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer">{p.id === 'hamilton-gardens' ? t('访问花园官网', 'Visit Hamilton Gardens') : t('打开来源', 'Open source')}<ArrowUpRight aria-hidden="true" /></a></p>
+    <p>{('url' in p && p.url) || ('sourceId' in p && URLS[p.sourceId]) ? <a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer">{p.id === 'hamilton-gardens' ? t('访问花园官网', 'Visit Hamilton Gardens') : t('打开来源', 'Open source')}<ArrowUpRight aria-hidden="true" /></a> : t('请以官网为准', 'Check the official website.')}</p>
   </dialog>;
 }
-function PlaceGrid({ places, lang, t, separateName = false, accent = 'living' }: { places: typeof PLACES; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids' }) {
+function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', showFacts = false }: { places: Array<typeof PLACES[number] & { categoryZh?: string; categoryEn?: string; ages?: string; agesEn?: string }>; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids'; showFacts?: boolean }) {
   const [openId, setOpenId] = useState<string | null>(null);
   const open = places.find(p => p.id === openId);
   const openPlace = (id: string) => setOpenId(id);
   return <><div className="hl-spot-grid" data-accent={accent}>{places.map(p => {
     const area = t(p.area, p.en.area);
-    const pill = p.km != null ? `${area} · ${t('约', '~')}${p.km} km` : area;
-    const address = t(p.address, p.id === 'te-awa' ? p.en.area : p.address);
+    const pill = showFacts && p.categoryZh ? t(p.categoryZh, p.categoryEn || p.categoryZh) : p.km != null ? `${area} · ${t('约', '~')}${p.km} km` : area;
+    const address = p.address ? t(p.address, p.id === 'te-awa' ? p.en.area : p.address) : '';
+    const hours = 'hours' in p && p.hours ? t(p.hours, 'hours' in p.en && p.en.hours ? p.en.hours : p.hours) : '';
+    const price = 'price' in p && p.price ? t(p.price, 'price' in p.en && p.en.price ? p.en.price : p.price) : '';
+    const ages = p.ages ? t(p.ages, p.agesEn || p.ages) : '';
     return <article className="hl-spot" key={p.id} data-place-id={p.id}>
       <div className="hl-spot-media">
         {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /></div>}
@@ -136,8 +140,12 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living' }:
       <div className="hl-spot-body">
         <h3 lang={lang === 'zh' ? 'zh-CN' : 'en-NZ'}>{lang === 'zh' ? p.zh : p.name}</h3>
         <p className="hl-spot-en" lang={lang === 'zh' ? 'en-NZ' : 'zh-CN'}>{lang === 'zh' ? p.name : p.zh}</p>
-        <p className="hl-spot-copy">{t(p.description, p.en.description)}</p>
-        <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{address}</span></p>
+        {t(p.description, p.en.description) && <p className="hl-spot-copy">{t(p.description, p.en.description)}</p>}
+        {showFacts && area && <p className="hl-spot-copy">{area}</p>}
+        {showFacts && hours && <p className="hl-spot-copy">{hours}</p>}
+        {showFacts && price && <p className="hl-spot-copy">{price}</p>}
+        {showFacts && ages && <p className="hl-spot-copy">{ages}</p>}
+        {address && <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{address}</span></p>}
         <div className="hl-spot-tools">
           <a className="hl-spot-icon" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' ' + address)} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>
         </div>
@@ -191,8 +199,13 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
 function Weekend({ tab, t }: { tab: string; t: T }) {
   return <WeekendAgenda key={tab === 'festivals' ? 'picks' : tab} mode={tab === 'markets' ? 'markets' : 'picks'} t={t} />;
 }
+function FamilyOutings({ lang, t }: { lang: Lang; t: T }) {
+  const [category, setCategory] = useState('all');
+  const places = familyOutings().filter(place => category === 'all' || place.categoryId === category);
+  return <><div role="tablist" aria-label={t('去处分类', 'Outing categories')} className="sb-tabs ia-tabs ia-tabs-compact">{[[ 'all', '全部', 'All' ] as const, ...OUTING_CATEGORIES.map(item => [item.id, item.zh, item.en] as const)].map(([id, zh, en]) => <button type="button" key={id} className={'sb-tab' + (category === id ? ' sb-tab-on' : '')} aria-selected={category === id} onClick={() => setCategory(id)}>{t(zh, en)}</button>)}</div><PlaceGrid places={places} lang={lang} t={t} separateName accent="kids" showFacts /></>;
+}
 function Kids({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
-  if (tab === 'places') return <PlaceGrid places={FAMILY_PLACES} lang={lang} t={t} separateName accent="kids" />;
+  if (tab === 'places') return <FamilyOutings lang={lang} t={t} />;
   if (tab === 'parties') return <PartyVenues t={t} lang={lang} />;
   return <PlaygroundMap lang={lang} t={t} />;
 }

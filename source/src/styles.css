@@ -4144,6 +4144,10 @@ html body .ia-root .ia-tabs.ia-tabs-compact .sb-tab {
   white-space: nowrap;
   text-align: center;
 }
+html body .ia-root .ia-tabs.ia-tabs-compact button.sb-tab { font-family: inherit; cursor: pointer; }
+@media (min-width: 721px) {
+  html body .ia-root .ia-tabs.ia-tabs-compact button.sb-tab { width: 100%; }
+}
 @media (max-width: 720px) {
   html body .ia-root .ia-tabs.ia-tabs-compact {
     display: flex;
