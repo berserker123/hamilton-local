@@ -3895,12 +3895,16 @@ html body .ia-root .wa:not(.pv) .wa-event-side {
   gap: 12px;
   min-height: 100%;
 }
-html body .ia-root .wa:not(.pv) .wa-event .wa-price:not(.is-faded) {
+html body .ia-root .wa:not(.pv) .wa-price.is-priced {
   background: var(--hl-fill);
   color: var(--hl-on-fill);
   border: 1px solid var(--hl-fill);
   opacity: 1;
 }
+html body .ia-root .wa:has(.wa-backdrop) :is(h4, .wa-event-title, .title-3) { color: var(--hl-ink); }
+html body .ia-root .wa:has(.wa-backdrop) :is(.ia-secondary-name, .wa-venue, .wa-hours, .wa-event-note, .wa-caution) { color: var(--hl-muted); }
+html body .ia-root .wa:has(.wa-backdrop) .wa-source { color: var(--hl-accent); }
+html body .ia-root .wa:has(.wa-backdrop) .wa-time:not(.is-tbc) { color: var(--hl-fill); }
 html body .ia-root .wa:not(.pv) :is(.wa-event, .wa-row) .wa-price.is-free {
   background: #E6B84E;
   color: #2A211B;

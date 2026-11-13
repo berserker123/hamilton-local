@@ -5,6 +5,7 @@ import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
 import { AGENDA } from './agenda-data';
 import PHOTO from './weekend-list-photo.json';
+import { displayPrice, priceTone } from './weekend-status';
 
 type T = (zh: string, en: string) => string;
 type Event = typeof DATA.events_this_week[number];
@@ -37,20 +38,8 @@ function eventNotes(item: Event) {
   if ('notes_zh' in item && item.notes_zh && (item.id === 'cambridge-art-trail' || item.id.startsWith('pixel-'))) notes.push(String(item.notes_zh));
   return notes;
 }
-function eventFaded(item: Event) {
-  if (/售罄|已关闭|已结束|已取消|sold out|registrations closed/i.test(item.price_zh + ' ' + item.price_en)) return true;
-  if (!item.dates.length) return false;
-  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Pacific/Auckland' }).format(new Date());
-  return [...item.dates].sort().at(-1)! < today;
-}
-function displayPrice(zh: string, en: string) {
-  return /^免费(入场)?$/.test(zh.trim()) ? { zh: '免费', en: 'Free' } : { zh, en };
-}
-function priceTone(zh: string, en: string, faded: boolean) {
-  if (faded) return ' is-faded';
-  if (/待确认/.test(zh) || /unconfirmed/i.test(en)) return ' is-tbc';
-  if (/^免费/.test(zh.trim())) return ' is-free';
-  return '';
+function eventClosed(item: Event) {
+  return priceTone(item.price_zh, item.price_en) === 'is-faded';
 }
 function EventRow({ item, t }: { item: Event; t: T }) {
   const multi = item.dates.length > 1;
@@ -60,7 +49,7 @@ function EventRow({ item, t }: { item: Event; t: T }) {
     ? `${chineseDate(item.dates[0])} – ${chineseDate(item.dates.at(-1)!)}`
     : (timeUnconfirmed ? t('时间待确认', 'Time unconfirmed') : item.time);
   const price = displayPrice(item.price_zh, item.price_en);
-  return <article className="wa-row wa-event" data-event-id={item.id} data-past={eventFaded(item) ? 'true' : undefined}>
+  return <article className="wa-row wa-event" data-event-id={item.id} data-past={eventClosed(item) ? 'true' : undefined}>
     <p className={'wa-time wa-event-time caption-4' + (timeUnconfirmed ? ' is-tbc' : '')}>{when}</p>
     <div className="wa-main wa-event-copy">
       <BilingualTitle as="h4" className="title-3 wa-event-title" zh={item.title_zh} en={item.title_en} t={t} />
@@ -69,7 +58,7 @@ function EventRow({ item, t }: { item: Event; t: T }) {
       {notes.length > 0 && <div className="wa-event-note">{notes.map(note => <p key={note} className="caption-5">{note}</p>)}</div>}
     </div>
     <div className="wa-tail wa-event-side">
-      <p className={'wa-price caption-4' + priceTone(item.price_zh, item.price_en, eventFaded(item))}>{t(price.zh, price.en)}</p>
+      <p className={'wa-price caption-4 ' + priceTone(item.price_zh, item.price_en)}>{t(price.zh, price.en)}</p>
       <Sources item={item} t={t} />
     </div>
   </article>;
@@ -80,11 +69,11 @@ function MarketRow({ item, t }: { item: Market; t: T }) {
   const priced = DATA.events_this_week.find(event => event.town === item.town && event.title_zh === item.title_zh);
   const raw = 'price_zh' in item ? { zh: item.price_zh!, en: item.price_en! } : priced ? { zh: priced.price_zh, en: priced.price_en } : { zh: '费用待确认', en: 'Price unconfirmed' };
   const price = displayPrice(raw.zh, raw.en);
-  const closed = past || /售罄|已关闭|已结束|已取消|sold out|registrations closed/i.test(raw.zh + ' ' + raw.en);
+  const tone = priceTone(raw.zh, raw.en, past);
   return <article className="wa-row" data-weekend-market-id={item.id}>
     <div className={'wa-time caption-4' + (item.hours.startsWith('待确认') ? ' is-tbc' : '')}><span>{item.hours.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.hours}</span></div>
     <div className="wa-main"><BilingualTitle as="h4" className="title-3" zh={item.title_zh} en={item.title_en} t={t} /><p className={'wa-hours caption-4' + (past ? ' wa-caution' : '')}>{past ? t('本周无场次 · ', 'No session this week · ') : ''}{day}</p><p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town)==='other'?` · ${item.town}`:''}</span></p>{item.hours.startsWith('待确认') && <p className="wa-caution caption-5">{item.hours}</p>}{'note_zh' in item && item.note_zh && item.id === 'cambridge-trash-n-treasure' ? <p className="wa-caution caption-5">{item.note_zh}</p> : null}</div>
-    <div className="wa-tail"><p className={'wa-price caption-4' + priceTone(raw.zh, raw.en, closed)}>{t(price.zh, price.en)}</p><Sources item={item} t={t} /></div>
+    <div className="wa-tail"><p className={'wa-price caption-4 ' + tone}>{t(price.zh, price.en)}</p><Sources item={item} t={t} /></div>
   </article>;
 }
 function EventGroups({ items, t }: { items: Event[]; t: T }) {
