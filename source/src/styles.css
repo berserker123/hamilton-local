@@ -2870,4 +2870,29 @@ html, body { background: var(--hl-canvas); color: var(--hl-ink); }
 .v23-preview-photo::after { background: color-mix(in srgb, var(--hl-surface) 82%, transparent); }
 .pg-map .leaflet-popup-content-wrapper { box-shadow: none; }
 
+/* Text on the dark photograph uses cream or light clay. Content below the intro sits on the page colour, so it no longer reads through the picture. */
+.ia-page-intro .ia-page-title,
+.ia-page-intro .ia-breadcrumb,
+.ia-page-intro .ia-intro-bottom,
+.ia-page-intro .ia-intro-bottom > p {
+  color: var(--hl-header-ink);
+}
+.ia-page-intro .ia-breadcrumb a { color: #E08A5E; }
+.ia-content { position: relative; background: var(--hl-canvas); }
+.ia-root .sb-route-number {
+  color: var(--hl-ink);
+  background: var(--hl-surface);
+  border-color: var(--hl-line);
+}
+.pg-featured-badge, .pg-popup-featured {
+  color: var(--hl-ink);
+  background: var(--hl-surface);
+  border-color: var(--hl-line);
+}
+.ia-root .leaflet-container a.leaflet-popup-close-button { color: var(--hl-ink); }
+.v23-preview-photo .ia-kicker,
+.v23-preview-photo h3,
+.v23-preview-photo p { color: var(--hl-ink); }
+.v23-preview-photo::after { background: color-mix(in srgb, var(--hl-canvas) 94%, #2A211B); }
+
 /* HL_THEME_V26_END */
