@@ -2008,7 +2008,8 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 /* v25g: practical tools use the existing dark card and editorial type system. */
 .ia-root .v25g-weekend-media img { opacity:.64; object-position:center 46%; }
 .ia-root .v25g-weekend-media::after { background:linear-gradient(180deg,#1e1d1a66 0%,#1e1d1a66 32%,#1e1d1acd 72%,#1e1d1a 100%),linear-gradient(90deg,#1e1d1a88,transparent); }
-.ia-root .ia-tabs:has(#tab-pay) { grid-template-columns:repeat(8,minmax(0,1fr)); }
+.ia-root .ia-tabs:has(#tab-bus) { grid-template-columns:repeat(9,minmax(0,1fr)); }
+.ia-root .ia-tabs:has(#tab-bus) .sb-tab { padding: 8px 4px; font-size: 13px; }
 .ia-root .ia-tabs:has(#tab-stays) { grid-template-columns:repeat(5,minmax(0,1fr)); }
 .ia-root .ia-tabs:has(#tab-pets) { grid-template-columns:repeat(4,minmax(0,1fr)); }
 .v25g-tools { min-width:0; margin-bottom:44px; }
@@ -2120,12 +2121,12 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 .v25g-shortcut .v25g-shortcut-arrow { position:absolute; top:20px; right:14px; width:15px; height:15px; color:#9ba78c; }
 @media(max-width:1100px) {
   .v25g-shortcuts { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .ia-root .ia-tabs:has(#tab-pay) { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .ia-root .ia-tabs:has(#tab-bus) { grid-template-columns:repeat(5,minmax(0,1fr)); border-radius: 20px; }
 }
 @media(max-width:700px) {
   .ia-root .ia-tabs:has(#tab-stays) { grid-template-columns:repeat(3,minmax(0,1fr)); }
   .ia-root .ia-tabs:has(#tab-pets) { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .ia-root .ia-tabs:has(#tab-pay) { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .ia-root .ia-tabs:has(#tab-bus) { grid-template-columns:repeat(3,minmax(0,1fr)); border-radius: 20px; }
   .ia-root .v25g-heading h2 { font-size:clamp(18px,5.6vw,25px); }
   .v25g-calculator,.v25g-season-card { padding:20px 16px; }
   .v25g-pay-layout,.v25g-health-grid,.v25g-unit-grid { grid-template-columns:1fr; gap:22px; }
@@ -2961,7 +2962,7 @@ html, body { background: var(--hl-canvas); color: var(--hl-ink); }
 .v23-preview-photo .ia-kicker,
 .v23-preview-photo h3,
 .v23-preview-photo p { color: var(--hl-ink); }
-.v23-preview-photo::after { background: color-mix(in srgb, var(--hl-canvas) 94%, #2A211B); }
+.v23-preview-photo::after { background: linear-gradient(180deg, rgba(20, 16, 12, .08), rgba(20, 16, 12, .28)); }
 
 /* Sections are visible immediately. The old scroll fade no longer hides them. */
 .sb-reveal, .sb-reveal.is-pending, .sb-reveal.is-visible { opacity: 1; transform: none; animation: none; transition: none; }

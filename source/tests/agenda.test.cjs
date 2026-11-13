@@ -8,9 +8,11 @@ test('festival wording in titles and descriptions has one exclusive category',()
  assert.equal(isFestival({title_en:'Weekend market',description:'Local produce'}),false);
  const festival={id:'f',title_en:'Town Fiesta',dates:['2026-11-14'],town:'Hamilton'};
  const result=splitAgenda([festival,{id:'e',title_en:'Walk'}],[festival,{id:'m',title_en:'Market'}]);
- assert.deepEqual(result.picks.map(x=>x.id),['e']);assert.deepEqual(result.markets.map(x=>x.id),['m']);assert.deepEqual(result.festivals.map(x=>x.id),['f']);
+ assert.deepEqual(result.picks.map(x=>x.id),['f','e']);assert.deepEqual(result.markets.map(x=>x.id),['m']);assert.deepEqual(result.festivals.map(x=>x.id),['f']);
 });
-test('actual data moves all three festivals and preserves other records',()=>{
- const {AGENDA}=moduleUnderTest();assert.equal(AGENDA.picks.length,34);assert.equal(AGENDA.markets.length,11);
- assert.deepEqual(AGENDA.festivals.map(x=>x.id).sort(),['asian-cultural-food','pacific-rose-bowl-festival-2026','pb-festival-2026-11-14-15']);
+test('actual data merges festivals into weekly picks by date',()=>{
+ const {AGENDA}=moduleUnderTest();assert.equal(AGENDA.picks.length,37);assert.equal(AGENDA.markets.length,11);
+ for (const id of ['asian-cultural-food','pacific-rose-bowl-festival-2026','pb-festival-2026-11-14-15']) assert.ok(AGENDA.picks.some(item=>item.id===id), id);
+ const dates=AGENDA.picks.map(item=>Array.isArray(item.dates)&&item.dates.length?[...item.dates].sort()[0]:'9999-99-99');
+ assert.deepEqual(dates, [...dates].sort());
 });

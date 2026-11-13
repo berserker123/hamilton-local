@@ -12,9 +12,6 @@ export function currentNZSeason(): Season {
 export function nextSeason(season: Season): Season { return SEASONS[(SEASONS.indexOf(season) + 1) % SEASONS.length]; }
 export const SCENES = [
   { src: './photos/hero-window-scenery.webp', zh: '怀卡托乡野', en: 'Waikato countryside' },
-  { src: './photos/window-karapiro.webp', zh: '卡拉皮罗湖', en: 'Lake Karāpiro' },
-  { src: './photos/window-waiwhakareke.webp', zh: 'Waiwhakareke 湿地', en: 'Waiwhakareke wetlands' },
-  { src: './photos/window-hamilton-lake.webp', zh: '汉密尔顿湖', en: 'Hamilton Lake' },
   { src: './photos/window-gardens-v22.webp', zh: '汉密尔顿花园 · 意大利花园', en: 'Hamilton Gardens · Italian Renaissance Garden' },
   { src: './photos/window-waikato-river-v22.webp', zh: '怀卡托河 · 花园眺望', en: 'Waikato River · view from Hamilton Gardens' },
   { src: './photos/window-fairfield-v22.webp', zh: 'Fairfield 大桥', en: 'Fairfield Bridge' },
@@ -22,5 +19,7 @@ export const SCENES = [
   { src: './photos/window-museum-v22.webp', zh: '怀卡托博物馆', en: 'Waikato Museum' },
   { src: './photos/window-balloons-v22.webp', zh: '怀卡托热气球节 · 夜光', en: 'Balloons over Waikato · Night Glow' },
   { src: './photos/window-lake-v22.webp', zh: '汉密尔顿湖 · Lake Rotoroa', en: 'Hamilton Lake · Lake Rotoroa' },
+  { src: './photos/window-waiwhakareke.webp', zh: 'Waiwhakareke 湿地', en: 'Waiwhakareke wetlands' },
+  { src: './photos/window-hamilton-lake.webp', zh: '汉密尔顿湖', en: 'Hamilton Lake' },
 ];
 export function nextScene(scene: number) { return (scene + 1) % SCENES.length; }

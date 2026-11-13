@@ -15,7 +15,7 @@ const GUIDE_SECTIONS = [
   { id: 'living', zh: '本地生活', en: 'Local Living', Icon: Store, href: '#/living?tab=grocers', caption: { zh: '从附近的亚超开始。', en: 'Start with the weekly shop.' } },
   { id: 'weekend', zh: '周末活动', en: "What's On", Icon: Calendar, href: '#/weekend?tab=picks', caption: { zh: '给周末，留一点期待。', en: 'Make room for the weekend.' } },
   { id: 'kids', zh: '亲子遛娃', en: 'Kids & Family', Icon: Trees, href: '#/kids?tab=map', caption: { zh: '下一站，去游乐场。', en: 'A little adventure, close by.' } },
-  { id: 'tools', zh: '实用工具箱', en: 'Daily Essentials', Icon: ShieldCheck, href: '#/tools?tab=pay', caption: { zh: '把日常，算得更清楚。', en: 'Make everyday life a little easier.' } },
+  { id: 'tools', zh: '实用工具', en: 'Daily Essentials', Icon: ShieldCheck, href: '#/tools?tab=pay', caption: { zh: '把日常，算得更清楚。', en: 'Make everyday life a little easier.' } },
   { id: 'services', zh: '便民黄页', en: 'Local Services', Icon: Wrench, href: '#/services?tab=home', caption: { zh: '家里家外，按需查找。', en: 'Find the right kind of help.' } },
 ].sort((a,b)=>SECTION_ORDER.indexOf(a.id as typeof SECTION_ORDER[number])-SECTION_ORDER.indexOf(b.id as typeof SECTION_ORDER[number]));
 

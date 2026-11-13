@@ -1,16 +1,6 @@
 # v21 窗外风景授权 / Window scene attribution
 
-Three derivatives made from existing workspace photos. Original files remain unchanged. Each derivative is offered under the same CC BY-SA licence as its source.
-
-## karapiro
-
-- File: photos/window-karapiro.webp
-- Author: Logan Clarke
-- Original: [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Lake_Karapiro_-_December_2020.jpg)
-- Licence and derivative licence: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
-- Changes: Existing workspace photograph; center crop and resize half to 810×454, reduced saturation and warm color balance, horizontally mirrored second half, WebP 1620×454. Licensed under the same CC BY-SA version as the source. No original file modified.
-- Source SHA256: ba656f299e946b52b5aeaf74233ae9cc5680c1e775ba946a313a1d66f87e3e42
-- Derivative SHA256: b71fa653fb85b04605b6afc295dd210d8dae04cf2623e6749afff303c5770014
+Derivatives made from existing workspace photos. Original files remain unchanged. Each derivative is offered under the same CC BY-SA licence as its source. Lake Karāpiro is no longer shown in the window.
 
 ## waiwhakareke
 
