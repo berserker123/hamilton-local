@@ -19,25 +19,7 @@ export function BlurText({ text, className = '', delay = 0 }: { text: string; cl
 }
 
 export function Reveal({ children, id, className = '' }: { children: React.ReactNode; id?: string; className?: string }) {
-  const ref = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const element = ref.current;
-    if (!element || !('IntersectionObserver' in window)) return;
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (motion.matches) return;
-    const show = () => { element.classList.remove('is-pending'); element.classList.add('is-visible'); };
-    const observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) { show(); observer.disconnect(); }
-    }, { threshold: 0, rootMargin: '0px 0px -32px 0px' });
-    element.classList.add('is-pending');
-    observer.observe(element);
-    const onMotion = () => { if (motion.matches) { show(); observer.disconnect(); } };
-    const onFocus = () => { show(); observer.disconnect(); };
-    motion.addEventListener('change', onMotion);
-    element.addEventListener('focusin', onFocus);
-    return () => { observer.disconnect(); motion.removeEventListener('change', onMotion); element.removeEventListener('focusin', onFocus); };
-  }, []);
-  return <section id={id} ref={ref} className={`sb-reveal ${className}`}>{children}</section>;
+  return <section id={id} className={className}>{children}</section>;
 }
 
 type HeroMode = 'window' | 'a' | 'b';

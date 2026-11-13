@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Calculator, CheckSquare, ChevronDown, Ruler, Fish, HeartPulse, ArrowRightLeft, ArrowRight } from 'lucide-react';
 import { BilingualTitle } from './BilingualTitle';
 import SOURCES from './tool-sources.json';
@@ -7,6 +7,40 @@ import { PAY_RULES, KIWISAVER_RATES, calculatePay, calculateGST, convertUnits, p
 
 type T = (zh: string, en: string) => string;
 const money = (value: number) => new Intl.NumberFormat('en-NZ', { style:'currency', currency:'NZD' }).format(value);
+const unitText = (value: number) => new Intl.NumberFormat('en-NZ', { maximumFractionDigits: 6 }).format(value);
+function useAnimatedNumber(value: number | null, format: (n: number) => string) {
+  const formatRef = useRef(format);
+  formatRef.current = format;
+  const displayed = useRef(value);
+  const [text, setText] = useState(() => value === null ? '—' : format(value));
+  useEffect(() => {
+    const paint = (n: number) => formatRef.current(n);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (value === null) { displayed.current = null; setText('—'); return; }
+    const start = displayed.current;
+    if (reduced || start === null || Object.is(start, value)) { displayed.current = value; setText(paint(value)); return; }
+    let frame = 0;
+    const began = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min(1, (now - began) / 360);
+      const eased = 1 - (1 - progress) ** 3;
+      if (progress >= 1) { displayed.current = value; setText(paint(value)); return; }
+      const current = start + (value - start) * eased;
+      displayed.current = current;
+      setText(paint(current));
+      frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [value]);
+  return text;
+}
+function CountValue({ value, format = money, testId, id }: { value: number | null; format?: (n: number) => string; testId?: string; id?: string }) {
+  const motion = useAnimatedNumber(value, format);
+  const exact = value === null ? '—' : format(value);
+  const exactNode = testId || id ? <output id={id} data-testid={testId}>{exact}</output> : <span className="hl-figure-exact">{exact}</span>;
+  return <span className="hl-figure">{exactNode}<span className="hl-figure-motion" aria-hidden="true">{motion}</span></span>;
+}
 const sourceById = new Map(SOURCES.map(s => [s.id, s]));
 export function ToolSources({ ids, t }: { ids: readonly string[]; t: T }) {
   return <footer className="v25g-sources"><span>{t('资料更新于 2026-11', 'Updated 2026-11')}</span><div>{ids.map(id => {
@@ -40,8 +74,8 @@ export function PayCalculator({ t }: { t:T }) {
         <p className="v25g-hint">{t('成人最低工资 $23.95/h，自 2026-04-01 生效；起薪与培训最低工资另有适用条件。','Adult minimum wage $23.95/h from 1 April 2026. Starting-out/training rules differ.')}</p>
         <label className="v25g-select-label" htmlFor="pay-kiwi">{t('KiwiSaver 员工供款率','KiwiSaver employee rate')}<select id="pay-kiwi" value={kiwi} onChange={e=>setKiwi(Number(e.target.value))}>{KIWISAVER_RATES.map(rate=><option key={rate} value={rate}>{rate===0 ? t('不扣款（未参加 / 符合暂停条件）','No deduction (not enrolled / eligible suspension)') : rate===.03 ? t('3%（须获批临时减率）','3% (approved temporary reduction only)') : `${Number((rate*100).toFixed(1))}%${rate===.035 ? t(' · 当前默认',' · current default') : ''}`}</option>)}</select></label>
         <div className="v25g-tax-code"><span>{t('税码','Tax code')}</span><strong>{student ? 'M SL' : 'M'}</strong></div><label className="v25g-checkbox"><input id="pay-student" type="checkbox" checked={student} onChange={e=>setStudent(e.target.checked)} /><span>{t('扣除学生贷款还款','Deduct student loan repayments')}</span></label>
-      </div><div className="v25g-takehome" aria-live="polite" aria-atomic="true"><span className="ia-kicker">{t('每周预计到手','ESTIMATED WEEKLY TAKE-HOME')}</span><output data-testid="pay-net">{result ? money(result.weekly.net) : '—'}</output><span>{t('税前收入 − PAYE − KiwiSaver − 学生贷款','Gross − PAYE − KiwiSaver − student loan')}</span><p>{result ? t('ACC 已含在 PAYE 中，只扣一次。','ACC is included in PAYE and deducted once.') : t('请输入有效的非负时薪与工时。','Enter valid non-negative hourly pay and hours.')}</p></div></div>
-      {result && <div className="v25g-table-wrap" tabIndex={0} role="region" aria-label={t("数据表，可横向滚动","Data table, scroll horizontally")}><table className="v25g-pay-table"><caption className="sr-only">{t('工资扣款估算（新西兰元）','Pay deduction estimates in NZ dollars')}</caption><thead><tr><th scope="col">{t('收入与扣款','Pay and deductions')}</th><th scope="col">{t('每周','Weekly')}</th><th scope="col">{t('每两周','Fortnightly')}</th><th scope="col">{t('每年','Annual')}</th></tr></thead><tbody>{PAY_FIELDS.map(([key,zh,en])=><tr key={key} data-pay-row={key} className={key==='net' ? 'v25g-net-row' : key==='incomeTax'||key==='acc' ? 'v25g-breakdown' : ''}><th scope="row">{t(zh,en)}</th>{(['weekly','fortnightly','annual'] as const).map(period=><td key={period}>{money(result[period][key])}</td>)}</tr>)}</tbody></table></div>}
+      </div><div className="v25g-takehome" aria-live="polite" aria-atomic="true"><span className="ia-kicker">{t('每周预计到手','ESTIMATED WEEKLY TAKE-HOME')}</span><CountValue testId="pay-net" value={result ? result.weekly.net : null} /><span>{t('税前收入 − PAYE − KiwiSaver − 学生贷款','Gross − PAYE − KiwiSaver − student loan')}</span><p>{result ? t('ACC 已含在 PAYE 中，只扣一次。','ACC is included in PAYE and deducted once.') : t('请输入有效的非负时薪与工时。','Enter valid non-negative hourly pay and hours.')}</p></div></div>
+      {result && <div className="v25g-table-wrap" tabIndex={0} role="region" aria-label={t("数据表，可横向滚动","Data table, scroll horizontally")}><table className="v25g-pay-table"><caption className="sr-only">{t('工资扣款估算（新西兰元）','Pay deduction estimates in NZ dollars')}</caption><thead><tr><th scope="col">{t('收入与扣款','Pay and deductions')}</th><th scope="col">{t('每周','Weekly')}</th><th scope="col">{t('每两周','Fortnightly')}</th><th scope="col">{t('每年','Annual')}</th></tr></thead><tbody>{PAY_FIELDS.map(([key,zh,en])=><tr key={key} data-pay-row={key} className={key==='net' ? 'v25g-net-row' : key==='incomeTax'||key==='acc' ? 'v25g-breakdown' : ''}><th scope="row">{t(zh,en)}</th>{(['weekly','fortnightly','annual'] as const).map(period=><td key={period}><CountValue value={result[period][key]} /></td>)}</tr>)}</tbody></table></div>}
       <details className="v25g-method"><summary>{t('费率、税档与计算方式','Rates, brackets and method')}<ChevronDown aria-hidden="true" /></summary><p>{t('税年：2026-04-01 至 2027-03-31。年收入按每周收入 × 52 估算。','Tax year: 1 April 2026 to 31 March 2027. Annual income = weekly income × 52.')}</p><ul><li>{t('所得税分段：$0–15,600 为 10.5%；其后至 $53,500 为 17.5%；至 $78,100 为 30%；至 $180,000 为 33%；超出部分 39%。','Progressive income tax: 10.5% to $15,600; 17.5% to $53,500; 30% to $78,100; 33% to $180,000; then 39%.')}</li><li>{t('ACC 个人征费 1.75%（含 GST），年计费收入上限 $156,641，最高约 $2,741.22。','ACC earners’ levy: 1.75% including GST, capped at $156,641 annual earnings (about $2,741.22).')}</li><li>{t('学生贷款：主要工作超过 $464/周（$928/两周、$24,128/年）的部分扣 12%。','Main-job student loan: 12% above $464/week ($928/fortnight, $24,128/year).')}</li><li>{t('KiwiSaver 按税前工资计算；3% 仅限已获批的临时减率。未计雇主供款。','KiwiSaver uses gross pay; 3% requires an approved temporary reduction. Employer contributions excluded.')}</li></ul></details>
       <p className="v25g-hint">{t('仅供估算，不代替工资单或 IRD 计算。各周期独立四舍五入至分，年度数值可能与逐周相加有分差；未计 ME 税收抵免、奖金、副业、特殊税码与其他扣款。','Estimate only; does not replace payroll or IRD calculations. Each period rounds independently to cents; totals may differ from summed payslips. Excludes ME credits, bonuses, secondary jobs, special tax codes and other deductions.')}</p>
       <ToolSources ids={['minimum-wage','tax-rates','acc-levy','kiwisaver','kiwisaver-changes','student-loan','payroll-spec']} t={t} />
@@ -51,15 +85,14 @@ export function GSTCalculator({ t }: { t:T }) {
   const [amount,setAmount]=useState('115'), [direction,setDirection]=useState<'inclusive'|'exclusive'>('inclusive');
   const number=parseNumber(amount), result=number===null ? null : calculateGST(number,direction);
   return <section id="tool-gst" className="v25g-tools"><ToolHeading eyebrow="QUICK CALCULATIONS" zh="消费税计算器" en="GST 15% Calculator" introZh="含税与不含税价格双向换算，单独显示 GST 金额。" introEn="Add or remove GST and see the tax component clearly." t={t} /><div className="sb-card v25g-calculator"><div className="v25g-calc-top"><Calculator aria-hidden="true" /><span className="ia-kicker">GST · 15%</span></div><div className="v25g-input-grid"><label htmlFor="gst-direction">{t('换算方向','Direction')}<select id="gst-direction" value={direction} onChange={e=>setDirection(e.target.value as typeof direction)}><option value="inclusive">{t('含税价 → 不含税价','Including GST → Excluding GST')}</option><option value="exclusive">{t('不含税价 → 含税价','Excluding GST → Including GST')}</option></select></label><label htmlFor="gst-amount">{t('金额（NZD）','Amount (NZD)')}<input id="gst-amount" type="number" min="0" step="any" inputMode="decimal" value={amount} onChange={e=>setAmount(e.target.value)} /></label></div>
-      <div className="v25g-gst-results" aria-live="polite">{[['exclusive','不含税','Excluding GST'],['gst','GST 金额','GST amount'],['inclusive','含税总额','Including GST']].map(([key,zh,en])=><div key={key}><span>{t(zh,en)}</span><output data-testid={'gst-'+key}>{result ? money(result[key as keyof typeof result]) : '—'}</output></div>)}</div>
+      <div className="v25g-gst-results" aria-live="polite">{[['exclusive','不含税','Excluding GST'],['gst','GST 金额','GST amount'],['inclusive','含税总额','Including GST']].map(([key,zh,en])=><div key={key}><span>{t(zh,en)}</span><CountValue testId={'gst-'+key} value={result ? result[key as keyof typeof result] : null} /></div>)}</div>
       <p className="v25g-hint">{result ? t('加 GST：不含税价 × 1.15；去 GST：含税价 ÷ 1.15；含税价中的 GST = 含税价 × 3/23。适用于标准税率，特殊或免税交易另查。','Add GST: × 1.15; remove GST: ÷ 1.15; tax component = inclusive price × 3/23. Standard-rated supplies only.') : t('请输入有效的非负金额。','Enter a valid non-negative amount.')}</p><ToolSources ids={['gst']} t={t} /></div></section>;
 }
 const unitLabels: Record<Unit,string>={c:'°C',f:'°F',kg:'公斤 kg',jin:'市斤 jin',lb:'磅 lb',m2:'m²',ft2:'ft²'};
 function ConversionRow({ id, zh, en, units, initial, t }: { id:string; zh:string; en:string; units:Unit[]; initial:string; t:T }) {
   const [input,setInput]=useState(initial), [from,setFrom]=useState<Unit>(units[0]), [to,setTo]=useState<Unit>(units[1]);
   const number=parseNumber(input), result=number===null ? null : convertUnits(number,from,to);
-  const resultText=result===null ? '—' : new Intl.NumberFormat('en-NZ',{maximumFractionDigits:6}).format(result);
-  return <article className="v25g-unit-row"><BilingualTitle zh={zh} en={en} t={t} /><div className="v25g-conversion-fields"><label htmlFor={id+'-input'} className="sr-only">{t(zh+'数值',en+' value')}</label><input id={id+'-input'} type="number" step="any" inputMode={id==='temperature'?'text':'decimal'} value={input} onChange={e=>setInput(e.target.value)} /><label htmlFor={id+'-from'} className="sr-only">{t(zh+'原单位',en+' from unit')}</label><select id={id+'-from'} value={from} onChange={e=>setFrom(e.target.value as Unit)}>{units.map(unit=><option key={unit} value={unit}>{t(unitLabels[unit],unitLabels[unit].replace(/[\u3400-\u9fff ]+/g,''))}</option>)}</select><button type="button" className="v25g-swap" aria-label={t('交换'+zh+'单位','Swap '+en+' units')} onClick={()=>{setFrom(to);setTo(from);}}><ArrowRightLeft aria-hidden="true" /></button><label htmlFor={id+'-to'} className="sr-only">{t(zh+'目标单位',en+' to unit')}</label><select id={id+'-to'} value={to} onChange={e=>setTo(e.target.value as Unit)}>{units.map(unit=><option key={unit} value={unit}>{t(unitLabels[unit],unitLabels[unit].replace(/[\u3400-\u9fff ]+/g,''))}</option>)}</select></div><div className="v25g-conversion-output" aria-live="polite"><output id={id+'-result'}>{resultText}</output><span>{t(unitLabels[to],unitLabels[to].replace(/[\u3400-\u9fff ]+/g,''))}</span></div>{result===null&&<p className="v25g-hint">{t('请输入有效数值；重量与面积不可为负。','Enter a valid value; weight and area cannot be negative.')}</p>}</article>;
+  return <article className="v25g-unit-row"><BilingualTitle zh={zh} en={en} t={t} /><div className="v25g-conversion-fields"><label htmlFor={id+'-input'} className="sr-only">{t(zh+'数值',en+' value')}</label><input id={id+'-input'} type="number" step="any" inputMode={id==='temperature'?'text':'decimal'} value={input} onChange={e=>setInput(e.target.value)} /><label htmlFor={id+'-from'} className="sr-only">{t(zh+'原单位',en+' from unit')}</label><select id={id+'-from'} value={from} onChange={e=>setFrom(e.target.value as Unit)}>{units.map(unit=><option key={unit} value={unit}>{t(unitLabels[unit],unitLabels[unit].replace(/[\u3400-\u9fff ]+/g,''))}</option>)}</select><button type="button" className="v25g-swap" aria-label={t('交换'+zh+'单位','Swap '+en+' units')} onClick={()=>{setFrom(to);setTo(from);}}><ArrowRightLeft aria-hidden="true" /></button><label htmlFor={id+'-to'} className="sr-only">{t(zh+'目标单位',en+' to unit')}</label><select id={id+'-to'} value={to} onChange={e=>setTo(e.target.value as Unit)}>{units.map(unit=><option key={unit} value={unit}>{t(unitLabels[unit],unitLabels[unit].replace(/[\u3400-\u9fff ]+/g,''))}</option>)}</select></div><div className="v25g-conversion-output" aria-live="polite"><CountValue id={id+'-result'} value={result} format={unitText} /><span>{t(unitLabels[to],unitLabels[to].replace(/[\u3400-\u9fff ]+/g,''))}</span></div>{result===null&&<p className="v25g-hint">{t('请输入有效数值；重量与面积不可为负。','Enter a valid value; weight and area cannot be negative.')}</p>}</article>;
 }
 export function UnitConverter({ t }: {t:T}) {
   return <section id="tool-units" className="v25g-tools"><ToolHeading eyebrow="EVERYDAY MEASURES" zh="单位换算" en="Unit Converter" introZh="边输入边换算。做饭、看体重或比较房屋面积时，少算一步。" introEn="Convert as you type, from oven temperatures to weight and floor area." t={t} /><div className="sb-card v25g-calculator"><div className="v25g-unit-grid"><ConversionRow id="temperature" zh="温度" en="Temperature" units={['f','c']} initial="350" t={t} /><ConversionRow id="weight" zh="重量" en="Weight" units={['jin','kg','lb']} initial="2" t={t} /><ConversionRow id="area" zh="面积" en="Area" units={['m2','ft2']} initial="100" t={t} /></div><p className="v25g-hint">{t('°F = °C × 1.8 + 32；1 lb = 0.45359237 kg。市斤按中国大陆常用口径 1 斤 = 0.5 kg（本工具约定）。1 ft² = 0.09290304 m²，由 1 ft = 0.3048 m 平方推得。','°F = °C × 1.8 + 32; 1 lb = 0.45359237 kg. Jin uses the mainland-China convention of 0.5 kg. 1 ft² = 0.09290304 m², derived by squaring 0.3048 m/ft.')}</p><ToolSources ids={['conversion','measurement']} t={t} /></div></section>;

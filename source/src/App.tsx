@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 import { placeNames } from './place-names';
 import { Search, Trash2, Bus, Stethoscope, MapPin, Clock, Calendar, ArrowUpRight, ArrowDown, X, Globe, Sparkles, Copy, Sun, Store, Trees, Wrench, BookOpen, ShieldCheck, ExternalLink } from 'lucide-react';
@@ -87,13 +87,36 @@ function Empty({ t, title, detail }: { t: T; title?: string; detail?: string }) 
 }
 function Tabs({ route, tab, t }: { route: Exclude<Route, 'home'>; tab: string; t: T }) {
   const tabs = TABS[route];
-  return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className="sb-tabs ia-tabs" onKeyDown={e => {
+  const listRef = useRef<HTMLDivElement>(null);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
+  const seen = useRef(false);
+  useLayoutEffect(() => {
+    if (route !== 'tools') return;
+    const list = listRef.current;
+    const indicator = indicatorRef.current;
+    const move = (animate: boolean) => {
+      const active = list?.querySelector<HTMLElement>('.sb-tab-on');
+      if (!list || !indicator || !active) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const x = active.offsetLeft + 12;
+      const y = active.offsetTop + active.offsetHeight - 8;
+      const width = Math.max(16, active.offsetWidth - 24);
+      indicator.style.transition = !animate || reduced ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)';
+      indicator.style.transform = `translate(${x}px, ${y}px) scaleX(${width})`;
+    };
+    move(seen.current);
+    seen.current = true;
+    const onResize = () => move(false);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [route, tab]);
+  return <div ref={listRef} role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className={'sb-tabs ia-tabs' + (route === 'tools' ? ' hl-tool-tabs' : '')} onKeyDown={e => {
     const current = tabs.findIndex(item => item[0] === tab);
     const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (next < 0) return;
     e.preventDefault(); location.hash = href(route, tabs[next][0]);
     requestAnimationFrame(() => document.getElementById('tab-' + tabs[next][0])?.focus());
-  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}</div>;
+  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}{route === 'tools' && <span className="hl-tab-indicator" ref={indicatorRef} aria-hidden="true" />}</div>;
 }
 type Place = typeof PLACES[number];
 function placeHref(p: Place) {
