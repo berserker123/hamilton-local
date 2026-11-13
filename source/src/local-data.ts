@@ -70,6 +70,17 @@ export const SUPERMARKETS = [
     tags: { zh: ['韩国食品', '东区'], en: ['Korean groceries', 'Hamilton East'] },
     sources: ['https://www.yellow.co.nz/hamilton/bpp/manbok-mart-579383834', 'https://2pos.co.nz/1402/7112'],
   },
+  {
+    id: 'ings-trading',
+    name: "Ing's Trading", zhName: 'Ings 亚洲食品', brand: "Ing's Trading",
+    verificationStatus: 'verified',
+    type: 'asian', suburb: 'Frankton',
+    address: '4b Keddell Street, Frankton, Hamilton 3204',
+    hours: { zh: '周一至周五 9:00–17:30，周六 8:00–17:00，周日休息（目录；官网确认亚洲食品与汉密尔顿电话）', en: 'Mon–Fri 9:00am–5:30pm, Sat 8:00am–5:00pm, Sunday closed (directories; the shop site confirms Asian goods and the Hamilton phone)' },
+    phone: '07 848 1668',
+    tags: { zh: ['亚洲食品'], en: ['Asian goods'] },
+    sources: ['https://ings.co.nz/', 'https://www.cylex.co.nz/company/ings+trading+ltd-18005416.html', 'https://www.chamberofcommerce.co.nz/business-directory/waikato/frankton-junction/supermarket/145040-ings-trading'],
+  },
 ];
 
 export const URGENT = [

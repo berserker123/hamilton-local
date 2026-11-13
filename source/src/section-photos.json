@@ -40,16 +40,16 @@
   },
   {
     "route": "tools",
-    "id": "tools-hakarimata",
-    "file": "hakarimata.webp",
-    "zh": "Hakarimata 风景保护区",
-    "en": "Hakarimata Scenic Reserve",
-    "author": "Johnragla",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Hakarimata_kauri_tree.jpg",
-    "changesZh": "沿用站内已授权的 Hakarimata 照片，作为实用工具页的固定背景。未改色。",
-    "changesEn": "Existing licensed Hakarimata photograph, used as the fixed background on Daily Essentials. Colours were not regraded."
+    "id": "tools-victoria-bridge",
+    "file": "victoria-bridge.webp",
+    "zh": "维多利亚桥与怀卡托河",
+    "en": "Victoria Bridge, Waikato River",
+    "author": "Tony McKay",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:VictoriaBridgeWaikatoRiver.jpg",
+    "changesZh": "取自维基共享资源原图（4412 × 3168），缩至 1920 宽并压缩为 WebP。实用工具页用固定层铺满视口，标题区另加暗色渐变遮罩。未改色。",
+    "changesEn": "Wikimedia Commons original (4412 × 3168), resized to 1920px wide and compressed to WebP. Daily Essentials pins it in a fixed layer, with a dark gradient behind the title. Colours were not regraded."
   },
   {
     "route": "weekend",

@@ -1,14 +1,12 @@
-import { BilingualTitle } from './BilingualTitle';
 import React, {useEffect,useMemo,useRef,useState} from 'react';
 import * as L from 'leaflet';
-import {MapPin,ArrowUpRight,RotateCcw,Trees} from 'lucide-react';
+import {MapPin,ArrowUpRight,RotateCcw,Trees,Navigation,Check,AlertCircle,Info,CircleHelp} from 'lucide-react';
 import DATA from './playgrounds.json';
 import FEATURED from './featured-playgrounds-v25.json';
 const featured = (id:string) => FEATURED[id as keyof typeof FEATURED];
 import {filterPlaygrounds} from './playground-filters';
 import {useFeedback} from './Feedback';
 import {placeNames} from './place-names';
-import {CardBadge,CardMedia,CardQuick} from './CardFace';
 type T=(zh:string,en:string)=>string;
 type Place=typeof DATA[number];
 const navigation=(p:Place)=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(`${p.lat},${p.lng}`);
@@ -19,6 +17,37 @@ function details(p:Place,lang:'zh'|'en',t:T){return [
   ...fields.map(([key,zh,en])=>({label:t(zh,en),value:p[key]===true?t('有','Yes'):p[key]===false?t('无','No'):null})),
   {label:t('适合年龄','Ages'),value:/待确认|未知|unconfirmed|unknown|\?{3}/i.test(p.ageZh+' '+p.ageEn)?null:(lang==='zh'?p.ageZh:p.ageEn)},
 ];}
+function facilityTag(key:'fenced'|'toilets'|'shade',value:boolean|null,t:T){
+  const tone=value===true?'yes':value===false?'no':'unknown';
+  const label=key==='fenced'
+    ?value===true?t('全围栏','Fenced'):value===false?t('无围栏','Not fenced'):t('围栏未知','Fence unknown')
+    :key==='toilets'
+    ?value===true?t('有厕所','Toilets'):value===false?t('无厕所','No toilets'):t('厕所未知','Toilets unknown')
+    :value===true?t('有遮阳','Shade'):value===false?t('无遮阳','No shade'):t('遮阳未知','Shade unknown');
+  const Icon=tone==='yes'?Check:tone==='no'?AlertCircle:CircleHelp;
+  return <span className={'pg-amenity is-'+tone}><Icon aria-hidden="true"/>{label}</span>;
+}
+function PlaceCard({p,n,selected,lang,t,onShow,onUpdate}:{p:Place;n:string;selected:boolean;lang:'zh'|'en';t:T;onShow:()=>void;onUpdate:(origin:HTMLElement)=>void}){
+  const age=details(p,lang,t).find(field=>field.label===t('适合年龄','Ages'));
+  return <article className={'pg-place'+(selected?' pg-selected':'')} data-playground-id={p.id} data-card-kind="playground">
+    <div className="pg-place-top"><span className="pg-number caption-3">{n}</span><span className="pg-suburb caption-5">{t(p.area,p.area)}</span>{featured(p.id)&&<span className="pg-featured-badge">{t('★ 精选','★ Featured')}</span>}</div>
+    <h3 className="pg-card-title">{lang==='zh'?p.zh:p.name}</h3>
+    <p className="pg-card-en">{lang==='zh'?p.name:p.zh}</p>
+    <p className="pg-address-box"><MapPin aria-hidden="true"/><span>{p.address}</span></p>
+    <p className="pg-card-copy">{t(p.highlightZh,p.highlightEn)}</p>
+    <div className="pg-amenities">
+      {facilityTag('toilets',p.toilets,t)}
+      {facilityTag('fenced',p.fenced,t)}
+      {facilityTag('shade',p.shade,t)}
+      {age?.value?<span className="pg-amenity is-age"><Info aria-hidden="true"/>{age.value}</span>:<span className="pg-amenity is-unknown"><CircleHelp aria-hidden="true"/>{t('年龄未知','Age unknown')}</span>}
+    </div>
+    <div className="pg-place-actions">
+      <button type="button" className="pg-view" onClick={onShow}><MapPin aria-hidden="true"/>{t('查看','Show')}</button>
+      <a className="pg-go" href={navigation(p)} target="_blank" rel="noopener noreferrer"><Navigation aria-hidden="true"/>{t('导航','Directions')}</a>
+      <button type="button" className="pg-update" aria-haspopup="dialog" onClick={e=>onUpdate(e.currentTarget)}>{t('补充信息','Add a detail')}</button>
+    </div>
+  </article>;
+}
 function popup(p:Place,lang:'zh'|'en',t:T,update:(p:Place,origin:HTMLElement)=>void){
   const box=document.createElement('div');box.className='pg-popup';box.dataset.popupId=p.id;
   const add=(tag:string,text:string)=>{const el=document.createElement(tag);el.textContent=text;box.append(el);return el;};
@@ -85,7 +114,10 @@ export function PlaygroundMap({lang,t}:{lang:'zh'|'en';t:T}){
     <div className="pg-heading"><div><p className="caption-3 pg-eyebrow">LITTLE ADVENTURES · HAMILTON</p><h2 id="pg-title" className="heading-4">{t('下一站，去哪里放电？','Where shall we play next?')}</h2><p className="body-6">{t('选个区域，找一处适合今天的小小探险。','Choose a neighbourhood for today’s little adventure.')}</p></div><span className="pg-count caption-3">{DATA.length} {t('处真实地点','real places')}</span></div>
     <div className="pg-filters"><label className="caption-3">{t('区域','Area')}<select data-testid="pg-area" value={area} onChange={e=>{setArea(e.target.value);setSelected('');}}><option value="all">{t('全部区域','All areas')}</option>{areas.map(a=><option key={a} value={a}>{t(a,a)}</option>)}</select></label><label className="caption-3">{t('设施','Facilities')}<select data-testid="pg-facility" value={facility} onChange={e=>{setFacility(e.target.value);setSelected('');}}><option value="all">{t('全部设施','All facilities')}</option>{fields.map(([key,zh,en])=><option key={key} value={key}>{t(zh+'已确认',en+' confirmed')}</option>)}</select></label><label className="pg-featured-toggle caption-3"><input type="checkbox" data-testid="pg-featured" checked={featuredOnly} onChange={e=>{setFeaturedOnly(e.target.checked);setSelected('');}}/>{t('只看精选','Featured only')}</label><button className="pg-reset button-sm" onClick={reset}><RotateCcw aria-hidden="true"/>{t('重置','Reset')}</button><p className="caption-5 pg-result-count" role="status">{t(`找到 ${shown.length} 处`,`Showing ${shown.length} places`)}</p></div>
     <div className="pg-layout"><div className="pg-map-panel"><div ref={container} className="pg-map" role="region" aria-label={t('Hamilton 游乐场交互地图','Interactive Hamilton playground map')} data-testid="playground-map" data-map-status={status}/>{status!=='ready'&&<div className="pg-map-status" role="status"><Trees aria-hidden="true"/><strong className="title-3">{t(status==='failed'?'地图暂时无法加载':'正在铺开城市地图',status==='failed'?'Map unavailable':'Loading the city map')}</strong><span className="caption-4">{t(status==='failed'?'下方地点列表与导航仍可使用。':'地点列表已就绪，可以先选好目的地。',status==='failed'?'The place list and directions remain available.':'The place list is ready to explore.')}</span>{status==='failed'&&<button className="pg-reset button-sm" onClick={()=>setRetry(v=>v+1)}>{t('重试地图','Retry map')}</button>}</div>}<div className="pg-map-caption caption-5"><MapPin aria-hidden="true"/><span>{t('点标记查看详情 · 拖动地图 · 用 + / − 缩放','Select a marker · Drag to explore · Use + / − to zoom')}</span></div></div>
-      <div className="pg-list" aria-label={t('游乐场地点列表','Playground list')}>{shown.length?shown.map(p=>{const title=lang==='zh'?p.zh:p.name;const age=details(p,lang,t).find(field=>field.label===t('适合年龄','Ages'));const knownAge=age&&age.value;return <article className={'pg-place'+(selected===p.id?' pg-selected':'')} key={p.id} data-playground-id={p.id} data-card-kind="playground"><CardMedia kind="playground" title={title} chips={[t(p.area,p.area),featured(p.id)?t('★ 精选','★ Featured'):''].filter(Boolean)} /><CardBadge kind="playground" /><div className="pg-place-heading"><span className="pg-number caption-3">{String(DATA.indexOf(p)+1).padStart(2,'0')}</span><div><p className="caption-5 pg-eyebrow">{t(p.area,p.area)}</p><BilingualTitle className="title-3" zh={p.zh} en={p.name} t={t} />{featured(p.id)&&<span className="pg-featured-badge">{t('★ 精选','★ Featured')}</span>}</div></div><CardQuick items={[{key:'area',text:t(p.area,p.area)},...knownAge?[{key:'age',text:knownAge}]:[]]} /><p className="caption-4 pg-address">{p.address}</p><p className="caption-4">{t(p.highlightZh,p.highlightEn)}</p><div className="caption-5 pg-facts">{details(p,lang,t).map(({label,value})=><span className="pg-fact" key={label}>{label}: {value??<span className="pg-unknown">{unknownLabel(t)}</span>}</span>)}</div>{details(p,lang,t).some(field=>field.value===null)&&<button type="button" className="pg-update" aria-haspopup="dialog" onClick={e=>update(p,e.currentTarget)}>{updateLabel(t)}</button>}<div className="pg-place-actions"><button className="button-sm" onClick={()=>choose(p)}><MapPin aria-hidden="true"/>{t('在地图查看','Show on map')}</button><a className="button-sm" href={navigation(p)} target="_blank" rel="noopener noreferrer">{t('导航','Directions')}<ArrowUpRight aria-hidden="true"/></a><a className="caption-5" href={p.source} target="_blank" rel="noopener noreferrer">{t('市政来源','Council source')}<ArrowUpRight aria-hidden="true"/></a></div></article>}):<div className="pg-no-results"><Trees aria-hidden="true"/><h3 className="title-3">{t('暂时没有匹配地点','No matching places')}</h3><p className="caption-4">{t('未确认的设施不会纳入筛选，试试其他条件。','Unknown facilities are excluded. Try another filter.')}</p><button className="pg-reset button-sm" onClick={reset}>{t('清除筛选','Clear filters')}</button></div>}</div>
+      <div className="pg-list" aria-label={t('游乐场地点列表','Playground list')}>
+        <p className="pg-list-count caption-5">{t(`${shown.length} 处`, `${shown.length} places`)}</p>
+        {shown.length ? shown.map(p => <PlaceCard key={p.id} p={p} n={String(DATA.indexOf(p)+1).padStart(2,'0')} selected={selected===p.id} lang={lang} t={t} onShow={() => choose(p)} onUpdate={origin => update(p, origin)} />) : <div className="pg-no-results"><Trees aria-hidden="true"/><h3 className="title-3">{t('暂时没有匹配地点','No matching places')}</h3><p className="caption-4">{t('未确认的设施不会纳入筛选，试试其他条件。','Unknown facilities are excluded. Try another filter.')}</p><button className="pg-reset button-sm" onClick={reset}>{t('清除筛选','Clear filters')}</button></div>}
+      </div>
     </div><div className="pg-source-note caption-5"><p>{t('地点与设施核对：2026年11月11日 · Hamilton City Council。坐标取自市政页面链接的公园定位，并非每件游乐设备的精确位置。围栏、厕所、遮阳或年龄未获来源确认时均标为待确认。','Places and facilities checked 11 November 2026 against Hamilton City Council. Pins follow the park locations linked by Council; they are not individual equipment positions. Unknown facilities and ages remain unconfirmed.')}</p><p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a> · <a href="https://hamilton.govt.nz/community-spaces/playgrounds" target="_blank" rel="noopener noreferrer">Hamilton City Council</a></p></div>
   </section>;
 }
