@@ -59,6 +59,31 @@ export const SUPERMARKETS = [
     tags: { zh: ['蔬菜水果', '中式调料'], en: ['Fruit & veg', 'Chinese pantry'] },
     sources: ['https://garden-fresh-rototuna.edan.io/', 'https://2pos.co.nz/1402/11850'],
   },
+  {
+    id: 'manbok-mart',
+    name: 'Manbok Mart', zhName: 'Manbok 韩国超市', brand: 'Manbok Mart',
+    verificationStatus: 'verified',
+    type: 'kr', suburb: 'Hamilton East',
+    address: '509 Grey Street, Hamilton East, Hamilton 3216',
+    hours: { zh: '周一至周六 8:30–19:00（Yellow）；周日待确认', en: 'Mon–Sat 8:30am–7pm (Yellow); Sunday unconfirmed' },
+    phone: '07 839 1971',
+    tags: { zh: ['韩国食品', '东区'], en: ['Korean groceries', 'Hamilton East'] },
+    sources: ['https://www.yellow.co.nz/hamilton/bpp/manbok-mart-579383834', 'https://2pos.co.nz/1402/7112'],
+  },
+  {
+    id: 'uniso-japan-mart',
+    name: 'Uniso Japan Mart', zhName: 'Uniso 日本超市', brand: 'Uniso Japan Mart',
+    verificationStatus: 'verified',
+    type: 'jp', suburb: 'Hamilton Central',
+    address: '27 Collingwood Street, Hamilton Central, Hamilton 3204',
+    hours: { zh: '营业时间待确认', en: 'Hours unconfirmed' },
+    tags: { zh: ['日本食品', '市中心'], en: ['Japanese groceries', 'City centre'] },
+    verificationNote: {
+      zh: '地址见怀卡托商会名录与地图目录。各来源的营业时间不一致，也没有公布电话，所以这两项保持待确认。',
+      en: 'Address from the Waikato chamber directory and map listings. Published hours disagree and no phone number is listed, so both stay unconfirmed.',
+    },
+    sources: ['https://www.chamberofcommerce.co.nz/business-directory/waikato/frankton-junction/grocery-store/140178-uniso-japan-mart', 'https://2pos.co.nz/1402/33016', 'https://thefamilycompany.co.nz/supermarket/hamilton/uniso-japan-mart/'],
+  },
 ];
 
 export const URGENT = [

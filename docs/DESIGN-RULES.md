@@ -22,7 +22,7 @@ Day is oatmeal canvas, basalt ink, and clay. Night is charcoal with a light ink.
 
 ## Photos and type
 
-Text never sits on the bare photograph. Titles, lists, and notes sit on a solid surface, or on a dark scrim that keeps the text readable. The weekend hero is the one exception that is allowed over the photo, and only with that scrim.
+Text never sits on the bare photograph. Titles, lists, and notes sit on a solid surface, or on a dark scrim that keeps the text readable. Section heroes may sit over the page photograph only with that scrim.
 
 Page backgrounds run continuously from the header to the footer. No extra colour band between the content and the footer.
 
@@ -34,7 +34,7 @@ Use only images whose author and licence are recorded. Do not invent attribution
 
 ## Sub-tab bars
 
-Every section sub-tab bar uses one style: content width, left aligned, the same pill padding, 44px tall. When the pills do not fit, they wrap on a wide screen and scroll sideways on a phone. They never stretch or space themselves out to fill the row.
+Every section sub-tab bar uses one full-width rounded track. The items are evenly distributed as equal columns. On a phone the row may scroll sideways when the labels do not fit. Each section keeps its own active-pill colour.
 
 实用工具 order: 垃圾清运, 急诊信息, 市区公交, 税后收入, 新移民清单, GST计算, 单位换算, 季节提醒, 其他工具.
 

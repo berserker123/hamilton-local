@@ -3717,11 +3717,10 @@ html body .ia-root .pv-row:hover {
   border-color: var(--sec-fill, var(--hl-fill));
 }
 .ia-root .v25k-pet-status { font-size: 13px; }
-.ia-root[data-route="home"] .v23-stat-section {
-  background-color: var(--hl-band);
-  background-image: linear-gradient(var(--hl-band-wash), var(--hl-photo-wash-deep)), url('./photos/hamilton-lake.webp');
-  background-position: center;
-  background-size: cover;
+html body .ia-root[data-route="home"] .v23-stat-section {
+  background: var(--hl-canvas);
+  background-image: none;
+  border-bottom-color: transparent;
 }
 @media (max-width: 700px) {
   .ia-root .wa:not(.pv) .wa-footnote { margin-left: 0; }
@@ -3939,10 +3938,10 @@ html body .ia-root .wa:not(.pv) .wa-price.is-faded {
 }
 html body .ia-root .v20-cord-hint { display: none; }
 
-/* Weekend: one fixed dusk photograph. The title sits on a dark scrim.
-   The week header, filters and list sit in one sheet that scrolls over it. */
-html body .ia-root[data-route="weekend"] { background: transparent; }
-html body .ia-root[data-route="weekend"] .ia-fixed-photo {
+/* Section pages: one fixed photograph. The title sits on a dark scrim.
+   The tabs and list sit in one sheet that scrolls over it. */
+html body .ia-root.ia-photo-page { background: transparent; }
+html body .ia-root.ia-photo-page .ia-fixed-photo {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -3950,13 +3949,13 @@ html body .ia-root[data-route="weekend"] .ia-fixed-photo {
   overflow: hidden;
   background: #1c1916;
 }
-html body .ia-root[data-route="weekend"] .ia-fixed-photo img {
+html body .ia-root.ia-photo-page .ia-fixed-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 40%;
 }
-html body .ia-root[data-route="weekend"] .ia-fixed-photo::after {
+html body .ia-root.ia-photo-page .ia-fixed-photo::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -3964,19 +3963,19 @@ html body .ia-root[data-route="weekend"] .ia-fixed-photo::after {
     linear-gradient(180deg, rgba(16, 12, 10, .82) 0%, rgba(16, 12, 10, .66) 160px, rgba(16, 12, 10, .28) 300px, rgba(16, 12, 10, 0) 460px),
     linear-gradient(90deg, rgba(16, 12, 10, .5) 0%, rgba(16, 12, 10, 0) 58%);
 }
-html body .ia-root[data-route="weekend"] .ia-section-media { display: none; }
-html body .ia-root[data-route="weekend"] .ia-page-intro { position: relative; z-index: 1; }
-html body .ia-root[data-route="weekend"] :is(.ia-page-title, .ia-page-en, .ia-breadcrumb, .ia-breadcrumb span, .ia-intro-bottom > p) {
+html body .ia-root.ia-photo-page .ia-section-media { display: none; }
+html body .ia-root.ia-photo-page .ia-page-intro { position: relative; z-index: 1; }
+html body .ia-root.ia-photo-page :is(.ia-page-title, .ia-page-en, .ia-breadcrumb, .ia-breadcrumb span, .ia-intro-bottom > p) {
   color: #F7F1E8;
 }
-html body .ia-root[data-route="weekend"] .ia-breadcrumb a { color: #F3E4D4; }
-html body .ia-root[data-route="weekend"] .ia-content {
+html body .ia-root.ia-photo-page .ia-breadcrumb a { color: #F3E4D4; }
+html body .ia-root.ia-photo-page .ia-content {
   position: relative;
   z-index: 1;
   background: transparent;
   background-image: none;
 }
-html body .ia-root[data-route="weekend"] .ia-content > .sb-container {
+html body .ia-root.ia-photo-page .ia-content > .sb-container {
   background: var(--hl-canvas);
   border: 1px solid color-mix(in srgb, var(--hl-ink) 10%, transparent);
   border-radius: 28px;
@@ -3984,11 +3983,11 @@ html body .ia-root[data-route="weekend"] .ia-content > .sb-container {
   padding-bottom: 28px;
   box-shadow: 0 16px 36px rgba(20, 16, 12, .16);
 }
-html[data-theme="night"] body .ia-root[data-route="weekend"] .ia-content > .sb-container {
+html[data-theme="night"] body .ia-root.ia-photo-page .ia-content > .sb-container {
   border-color: rgba(243, 239, 230, .12);
   box-shadow: 0 16px 36px rgba(0, 0, 0, .35);
 }
-html body .ia-root[data-route="weekend"] .ia-tabs { background-color: var(--hl-surface); }
+html body .ia-root.ia-photo-page .ia-tabs { background-color: var(--hl-surface); }
 html body .ia-root[data-route="weekend"] .wa :is(.wa-heading, .hl-regions, .wa-region-heading, .wa-footnote) {
   background: transparent;
   -webkit-backdrop-filter: none;
@@ -4043,14 +4042,14 @@ html body .ia-root[data-route="weekend"] #section-panel > .fb-detail-link {
   width: calc(100% - 160px);
   max-width: none;
 }
-html body .ia-root[data-route="weekend"] .ia-footer {
+html body .ia-root.ia-photo-page .ia-footer {
   position: relative;
   z-index: 1;
   background-color: var(--hl-footer);
   background-image: none;
   margin-top: 56px;
 }
-html body .ia-root[data-route="weekend"] .ia-footer::before {
+html body .ia-root.ia-photo-page .ia-footer::before {
   content: "";
   position: absolute;
   left: 0;
@@ -4069,7 +4068,7 @@ html body .ia-root .ia-bg-credit a { color: var(--hl-footer-accent); }
     margin-left: 0;
     width: 100%;
   }
-  html body .ia-root[data-route="weekend"] .ia-content > .sb-container { border-radius: 22px; }
+  html body .ia-root.ia-photo-page .ia-content > .sb-container { border-radius: 22px; }
 }
 html body .ia-root .wa:not(.pv) .wa-event .wa-source svg { transition: transform 180ms ease; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -4115,27 +4114,27 @@ html body .ia-root .sb-mobile-nav { padding: 8px; gap: 4px; }
 html body .ia-root .ia-tabs { padding: 8px; gap: 6px; }
 html body .ia-root .ia-tabs .sb-tab { min-height: 44px; }
 
-/* Every section sub-tab bar is the same compact track: content width, left aligned.
-   Pills never grow to fill the row. On a narrow screen the row scrolls instead of stretching. */
+/* Every section sub-tab bar is one full-width track. Items share the row equally.
+   On a narrow screen they keep their size and the track scrolls. Active colours stay per section. */
 html body .ia-root .ia-tabs.ia-tabs-compact {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   align-items: center;
-  width: max-content;
+  width: 100%;
   max-width: 100%;
   margin-left: 0;
-  margin-right: auto;
+  margin-right: 0;
   gap: 4px;
   padding: 6px;
   border-radius: 999px;
   grid-template-columns: none;
 }
 html body .ia-root .ia-tabs.ia-tabs-compact .sb-tab {
-  flex: 0 0 auto;
+  flex: none;
   flex-direction: row;
   width: auto;
-  min-width: max-content;
+  min-width: 0;
   height: 44px;
   min-height: 44px;
   padding: 0 16px;
@@ -4147,12 +4146,59 @@ html body .ia-root .ia-tabs.ia-tabs-compact .sb-tab {
 }
 @media (max-width: 720px) {
   html body .ia-root .ia-tabs.ia-tabs-compact {
+    display: flex;
     flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
   }
+  html body .ia-root .ia-tabs.ia-tabs-compact .sb-tab {
+    flex: 1 0 auto;
+    width: auto;
+    min-width: max-content;
+  }
+}
+
+html body .ia-root .ia-inline-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, 340px);
+  max-width: 340px;
+  height: 44px;
+  margin: 0;
+  padding: 0 14px 0 16px;
+  border: 1px solid var(--hl-line);
+  border-radius: 999px;
+  background: var(--hl-surface);
+  box-shadow: none;
+}
+html body .ia-root .ia-inline-search svg {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--hl-muted);
+}
+html body .ia-root .ia-inline-search input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 42px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--hl-ink);
+  font-size: 14px;
 }
 
 /* HL_THEME_V26_END */

@@ -24,10 +24,9 @@ import { SCENES } from './experience-model';
 import { FeedbackProvider, FeedbackLauncher, FeedbackFooter, FeedbackLink } from './Feedback';
 import { Stays, Pets, UPick, PETS_NAME, STAY_PHOTOS, DirectoryPhotoCredit } from './LocalDirectories';
 import { installCardStyle, placeQuickInfo } from './card-style';
-import { CardBadge, CardMedia, CardQuick } from './CardFace';
 import { PhotoFlip } from './PhotoFlip';
 import { WeekendPhotoCredit } from './WeekendPhotoCredit';
-import RIVER from './weekend-list-photo.json';
+import SECTION_PHOTOS from './section-photos.json';
 import { PracticalTools, CommonTools, ToolSources } from './PracticalTools';
 import { SECTION_ORDER, TOOL_TABS, AT_IDS, canonicalHash } from './tool-navigation';
 installCardStyle();
@@ -163,25 +162,29 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
   }
   const markets = SUPERMARKETS.filter(s => [s.name, s.zhName, s.address, s.suburb, ...s.tags.zh, ...s.tags.en].join(' ').toLowerCase().includes(q.trim().toLowerCase()));
   return <><DirectoryHeading eyebrow="GROCERY" zh="亚超与杂货" en="Asian grocers" introZh="按门店、区域或地址，查找日常采买的去处。" introEn="Find everyday grocery stops by store, suburb or address." t={t} /><div className="ia-list-toolbar"><p>{t(`${SUPERMARKETS.length} 家门店 · ${MARKET_CHECKED} 家已核对 · ${MARKET_PENDING} 家品牌待核实`, `${SUPERMARKETS.length} stores · ${MARKET_CHECKED} checked · ${MARKET_PENDING} brand unconfirmed`)}</p><label className="ia-inline-search"><Search /><input type="search" aria-label={t('搜索亚超', 'Search grocers')} value={q} onChange={e => setQ(e.target.value)} placeholder={t('门店、区域或地址', 'Store, suburb or address')} />{q && <button aria-label={t('清除搜索', 'Clear search')} onClick={() => setQ('')}><X /></button>}</label></div>
-  <div className="ia-market-grid">{markets.map(s => <article key={s.id} data-market-id={s.id} className="sb-card ia-market-card" data-card-kind="market">
-    <CardMedia kind="market" title={lang === 'zh' ? s.zhName : s.name} chips={[s.verificationStatus === 'uncertain' ? t('品牌待核实', 'Brand unconfirmed') : placeNames(s.suburb, lang), ...s.tags[lang]]} />
-    <CardBadge kind="market" />
-    <div className="ia-card-top"><Store /><span className={'sb-tag ' + (s.verificationStatus === 'uncertain' ? 'ia-pending' : '')}>{s.verificationStatus === 'uncertain' ? t('品牌待核实', 'Brand unconfirmed') : placeNames(s.suburb, lang)}</span></div>
-    <BilingualTitle as="h2" zh={s.zhName} en={s.name} t={t} />
-    <CardQuick items={[{ key: 'area', text: placeNames(s.suburb, lang) }, ...s.tags[lang].slice(0, 2).map(tag => ({ key: 'tag', text: tag }))]} />
-    <p className="sb-icon-line"><MapPin /><span>{s.address}</span></p>
-    <p className="sb-icon-line"><Clock /><span>{s.hours ? s.hours[lang] : t('营业时间请以店铺为准', 'Check the shop for opening hours')}</span></p>
-    {s.phone && <p className="ia-phone">{s.phone}</p>}
-    {s.verificationNote && <p className="ia-verification">{s.verificationNote[lang]}</p>}
-    <div className="ia-card-bottom ia-market-bottom">
-      <span>{s.tags[lang].join(' · ')}</span>
-      <div className="ia-market-actions">
-        <a className="sb-action button-xsm" href={'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + encodeURIComponent(MARKET_STREET_VIEW[s.id as keyof typeof MARKET_STREET_VIEW])} target="_blank" rel="noopener noreferrer"><ExternalLink aria-hidden="true" />{t('看街景', 'Street View')}</a>
-        <a className="sb-action button-xsm" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.name + ' ' + s.address)} target="_blank" rel="noopener noreferrer"><MapPin aria-hidden="true" />{t('地图', 'Map')}</a>
-        <button className="sb-action button-xsm" onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}><Copy />{t('复制地址', 'Copy address')}</button>
+  <div className="hl-spot-grid" data-accent="living">{markets.map(s => {
+    const viewpoint = MARKET_STREET_VIEW[s.id as keyof typeof MARKET_STREET_VIEW];
+    return <article key={s.id} data-market-id={s.id} className="hl-spot">
+      <div className="hl-spot-media">
+        <div className="hl-spot-fallback" aria-hidden="true"><Store /></div>
+        <span className="hl-spot-pill">{s.verificationStatus === 'uncertain' ? t('品牌待核实', 'Brand unconfirmed') : placeNames(s.suburb, lang)}</span>
       </div>
-    </div>
-  </article>)}</div>
+      <div className="hl-spot-body">
+        <h3 lang={lang === 'zh' ? 'zh-CN' : 'en-NZ'}>{lang === 'zh' ? s.zhName : s.name}</h3>
+        <p className="hl-spot-en" lang={lang === 'zh' ? 'en-NZ' : 'zh-CN'}>{lang === 'zh' ? s.name : s.zhName}</p>
+        <p className="hl-spot-copy">{s.tags[lang].join(' · ')}</p>
+        <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{s.address}</span></p>
+        <p className="hl-spot-copy">{s.hours ? s.hours[lang] : t('营业时间待确认', 'Hours unconfirmed')}</p>
+        {s.phone && <p className="hl-spot-phone"><a href={'tel:' + s.phone.replace(/\s/g, '')}>{s.phone}</a></p>}
+        {s.verificationNote && <p className="v25-confirm">{s.verificationNote[lang]}</p>}
+        <div className="hl-spot-tools">
+          <a className="hl-spot-icon" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.name + ' ' + s.address)} target="_blank" rel="noopener noreferrer" aria-label={t('地图', 'Map')}><MapPin aria-hidden="true" /></a>
+          <button type="button" className="hl-spot-icon" aria-label={t('复制地址', 'Copy address')} onClick={async () => { try { await navigator.clipboard.writeText(s.address); toast(t('地址已复制', 'Address copied')); } catch { toast(t('请选中卡片中的地址复制', 'Select the address on the card to copy it')); } }}><Copy aria-hidden="true" /></button>
+          {viewpoint && <a className="hl-spot-icon" href={'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + encodeURIComponent(viewpoint)} target="_blank" rel="noopener noreferrer" aria-label={t('看街景', 'Street View')}><ExternalLink aria-hidden="true" /></a>}
+        </div>
+      </div>
+    </article>;
+  })}</div>
   {!markets.length && <Empty t={t} title={t('没有匹配的门店', 'No matching stores')} detail={t('试试其他区域，或清除搜索。', 'Try another suburb or clear your search.')} />}
   <p className="ia-section-note">{t('营业时间沿用现有资料，出发前请确认。jany.io / edan.io 为第三方目录信息，非商家官网。', 'Hours come from the existing records; confirm before visiting. jany.io / edan.io are third-party directory listings, not official business sites.')}</p></>;
 }
@@ -277,6 +280,7 @@ export default function App() {
   const toastTimer = useRef<ReturnType<typeof setTimeout>>();
   const t: T = (zh, en) => lang === 'zh' ? placeNames(zh) : en;
   const current = SECTIONS.find(s => s.id === state.route)!;
+  const sectionPhoto = SECTION_PHOTOS.find(photo => photo.route === state.route);
   function toast(text: string) { setMessage(text); clearTimeout(toastTimer.current); toastTimer.current = setTimeout(() => setMessage(''), 3200); }
   useEffect(() => { const normalize = () => { const hash = canonicalHash(location.hash); if (hash !== location.hash) history.replaceState(null, '', hash); }; normalize(); const change = () => { normalize(); setState(readRoute()); setModal(null); }; window.addEventListener('hashchange', change); return () => { window.removeEventListener('hashchange', change); clearTimeout(toastTimer.current); }; }, []);
   useEffect(() => { try { localStorage.setItem('hl-lang', lang); } catch {} document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-NZ'; document.title = t(current.zh, current.en) + ' · Hamilton Local'; }, [lang, state.route]);
@@ -294,7 +298,7 @@ export default function App() {
     }
     if (routeChanged) { window.scrollTo({ top: 0, behavior: 'instant' }); document.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true }); }
   }, [state.route, state.tab, state.at]);
-  return <FeedbackProvider lang={lang} section={t(current.zh, current.en) + (state.tab ? " / " + state.tab : "")}><div className="sb-root sb-dark ia-root" data-route={state.route}>{state.route === 'weekend' && <div className="ia-fixed-photo" aria-hidden="true"><img src={'./photos/' + RIVER.file} alt="" /></div>}<a className="ia-skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t('跳转到内容', 'Skip to content')}</a><header className="sb-header"><div className="sb-header-inner"><a href={href('home')} className="sb-brand"><span className="sb-logo"><LogoMark /></span><span><span className="sb-brand-name">Hamilton Local</span><span className="sb-brand-sub">{lang === 'zh' ? '汉密尔顿生活指南' : 'Your local field guide'}</span></span></a><nav className="sb-desktop-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-nav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav><div className="sb-header-actions"><span className="ia-preview">{t('预览', 'Preview')}</span><ThemeToggle /><button data-testid="lang" className="sb-pill sb-language" aria-label={t('切换到英文', 'Switch to Chinese')} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}><Globe />{lang === 'zh' ? 'EN' : '中文'}</button>{hasCord && <PullCord key={state.route} lang={lang} label={experience.label} status={experience.status} badge={experience.badge} onActivate={experience.activate} />}</div></div><nav className="sb-mobile-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-mnav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav></header>
+  return <FeedbackProvider lang={lang} section={t(current.zh, current.en) + (state.tab ? " / " + state.tab : "")}><div className={'sb-root sb-dark ia-root' + (sectionPhoto ? ' ia-photo-page' : '')} data-route={state.route}>{sectionPhoto && <div className="ia-fixed-photo" aria-hidden="true"><img src={'./photos/' + sectionPhoto.file} alt="" /></div>}<a className="ia-skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t('跳转到内容', 'Skip to content')}</a><header className="sb-header"><div className="sb-header-inner"><a href={href('home')} className="sb-brand"><span className="sb-logo"><LogoMark /></span><span><span className="sb-brand-name">Hamilton Local</span><span className="sb-brand-sub">{lang === 'zh' ? '汉密尔顿生活指南' : 'Your local field guide'}</span></span></a><nav className="sb-desktop-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-nav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav><div className="sb-header-actions"><span className="ia-preview">{t('预览', 'Preview')}</span><ThemeToggle /><button data-testid="lang" className="sb-pill sb-language" aria-label={t('切换到英文', 'Switch to Chinese')} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}><Globe />{lang === 'zh' ? 'EN' : '中文'}</button>{hasCord && <PullCord key={state.route} lang={lang} label={experience.label} status={experience.status} badge={experience.badge} onActivate={experience.activate} />}</div></div><nav className="sb-mobile-nav" aria-label={t('主导航', 'Main navigation')}>{SECTIONS.map(s => <a key={s.id} href={href(s.id)} aria-current={s.id === state.route ? 'page' : undefined} className={'sb-mnav ' + (s.id === state.route ? 'sb-nav-on' : '')}>{t(s.zh, s.en)}</a>)}</nav></header>
   <main id="main" tabIndex={-1}>{state.route === 'home' ? <Home lang={lang} t={t} scene={experience.scene} /> : <><div className={"ia-section-media" + (state.route === "weekend" ? " v25g-weekend-media" : "")} aria-hidden="true"><img src={'./photos/' + PAGE[state.route].photo} alt="" /></div><div className="sb-container ia-page-intro"><div className="ia-breadcrumb"><a href={href('home')}>{t('首页', 'Home')}</a><span>/</span><span>{t(current.zh, current.en)}</span></div><h1 className="ia-page-title" tabIndex={-1} key={current.id + lang}><BlurText text={t(current.zh, current.en)} /></h1><p className="ia-page-en">{lang === 'zh' ? current.en : current.zh}</p><div className="ia-intro-bottom"><p>{t(PAGE[state.route].zh, PAGE[state.route].en)}</p><button data-testid="sources-btn" className="sb-action" onClick={() => setModal('sources')}><BookOpen />{t('资料来源', 'Sources')}</button></div></div><Reveal className="ia-content" key={state.route}><div className="sb-container"><Tabs route={state.route} tab={state.tab} t={t} /><div id="section-panel" role="tabpanel" aria-labelledby={'tab-' + state.tab} tabIndex={0}>
   {state.route === 'living' && <Living key={state.tab + state.q} tab={state.tab} query={state.q} lang={lang} t={t} toast={toast} />}
   {state.route === 'weekend' && <Weekend tab={state.tab} t={t} />}
@@ -302,7 +306,7 @@ export default function App() {
   {state.route === 'services' && <Services tab={state.tab} t={t} toast={toast} />}
   {state.route === 'tools' && <Tools tab={state.tab} lang={lang} t={t} />}
   <FeedbackLink section={t(current.zh, current.en)} /></div></div></Reveal></>}</main>
-  <footer className="sb-footer ia-footer"><div className="sb-container"><section className="hl-contact"><ContactCard t={t} /><FeedbackFooter /></section><div className="ia-footer-top"><div><a href={href('home')} className="sb-footer-brand"><LogoMark /><span>Hamilton Local</span></a><p>{t('离生活近一点。', 'A little closer to everyday life.')}</p></div><div className="ia-footer-actions"><button data-testid="credits-btn" className="sb-action" onClick={() => setModal('credits')}>{t('图片来源与授权', 'Photo credits')}<ArrowUpRight /></button><button className="sb-action" onClick={() => setModal('sources')}>{t('资料来源', 'Sources')}<BookOpen /></button></div></div><p className="ia-footer-note">{t('独立整理的本地生活指南，与所列机构及商家无关联。资料核对于', 'An independent local guide, unaffiliated with listed organisations and businesses. Records checked')} {CHECKED}。{t('信息可能变化，请以官方渠道为准。', ' Details may change; confirm with official sources.')}</p><div className="ia-footer-bottom"><span>© 2026 Hamilton Local</span>{state.route === 'weekend' && <span className="ia-bg-credit">{t('背景', 'Photo')} · {RIVER.author} · <a href={RIVER.licenseUrl} target="_blank" rel="noopener noreferrer">{RIVER.license}</a> · <a href={RIVER.source} target="_blank" rel="noopener noreferrer">{t(RIVER.zh, RIVER.en)}</a></span>}<span>{t('汉密尔顿 · 怀卡托', 'Hamilton · Waikato')}</span><span>Hamilton · Waikato · New Zealand</span></div></div></footer>
+  <footer className="sb-footer ia-footer"><div className="sb-container"><section className="hl-contact"><ContactCard t={t} /><FeedbackFooter /></section><div className="ia-footer-top"><div><a href={href('home')} className="sb-footer-brand"><LogoMark /><span>Hamilton Local</span></a><p>{t('离生活近一点。', 'A little closer to everyday life.')}</p></div><div className="ia-footer-actions"><button data-testid="credits-btn" className="sb-action" onClick={() => setModal('credits')}>{t('图片来源与授权', 'Photo credits')}<ArrowUpRight /></button><button className="sb-action" onClick={() => setModal('sources')}>{t('资料来源', 'Sources')}<BookOpen /></button></div></div><p className="ia-footer-note">{t('独立整理的本地生活指南，与所列机构及商家无关联。资料核对于', 'An independent local guide, unaffiliated with listed organisations and businesses. Records checked')} {CHECKED}。{t('信息可能变化，请以官方渠道为准。', ' Details may change; confirm with official sources.')}</p><div className="ia-footer-bottom"><span>© 2026 Hamilton Local</span>{sectionPhoto && <span className="ia-bg-credit">{t('背景', 'Photo')} · {sectionPhoto.author} · <a href={sectionPhoto.licenseUrl} target="_blank" rel="noopener noreferrer">{sectionPhoto.license}</a> · <a href={sectionPhoto.source} target="_blank" rel="noopener noreferrer">{t(sectionPhoto.zh, sectionPhoto.en)}</a></span>}<span>{t('汉密尔顿 · 怀卡托', 'Hamilton · Waikato')}</span><span>Hamilton · Waikato · New Zealand</span></div></div></footer>
   <FeedbackLauncher />
   <CordResult result={experience.result} dismiss={experience.dismiss} lang={lang} />
   <PageEffects route={state.route} season={experience.season} active={experience.active} burst={experience.burst} />
