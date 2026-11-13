@@ -25,7 +25,7 @@ export function chineseDate(date: string) {
   return `${month}月${day}日 ${weekdays[new Date(Date.UTC(year, month - 1, day)).getUTCDay()]}`;
 }
 function Sources({ item, t }: { item: { source_url: string; also?: string[] }; t: T }) {
-  const urls = [item.source_url, ...(item.also || [])];
+  const urls = [item.source_url];
   return <div className="wa-sources caption-4">{urls.map((url, i) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${t('查看来源', 'View source')} ${i + 1}${url.includes('facebook.com') ? ' Facebook' : ''}`} className="wa-source">{url.includes('openfoodnetwork.nz') ? t('来源待确认', 'Source unconfirmed') : i === 0 ? t('来源', 'Source') : url.includes('facebook.com') ? 'Facebook' : t(`来源 ${i + 1}`, `Source ${i + 1}`)}<ArrowUpRight aria-hidden="true" /></a>)}</div>;
 }
 function EventRow({ item, t }: { item: Event; t: T }) {

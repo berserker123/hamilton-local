@@ -86,13 +86,15 @@ export function GuidePreview({ t, categories }: { t: T; categories: ServiceCateg
       const next = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? (selected + 1) % 5 : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? (selected + 4) % 5 : event.key === 'Home' ? 0 : event.key === 'End' ? 4 : -1;
       if (next < 0) return; event.preventDefault(); setSelected(next); document.getElementById('guide-tab-' + GUIDE_SECTIONS[next].id)?.focus();
     }}>{GUIDE_SECTIONS.map((item, i) => <button key={item.id} id={'guide-tab-' + item.id} type="button"  role="tab" aria-selected={selected === i} aria-controls="guide-preview" tabIndex={selected === i ? 0 : -1} onClick={() => setSelected(i)}><span className="v23-tab-index">0{i + 1}</span><item.Icon aria-hidden="true" /><span>{t(item.zh, item.en)}<small>{t(item.en, item.zh)}</small></span><ArrowUpRight className="v23-tab-arrow" aria-hidden="true" /></button>)}</div>
-      <div className="v23-preview-shell"><div className="v23-browser-bar" aria-hidden="true"><span className="v23-dots"><i /><i /><i /></span><span>Hamilton Local / {section.en}</span><span className="v23-preview-label">{t('收录预览', 'GUIDE PREVIEW')}</span></div>
+      <div className="v23-preview-shell"><div className="v23-browser-bar" aria-hidden="true"><span className="v23-dots"><i /><i /><i /></span><span>Hamilton Local / {section.en}</span></div>
         <div id="guide-preview" role="tabpanel" tabIndex={0} aria-labelledby={'guide-tab-' + section.id}><div key={section.id} className="v23-preview-content">
           <div className="v23-preview-photo"><img src={'./' + TEASERS.lockedMix[section.id]} alt="" loading="lazy" /><div><BilingualTitle as="h3" zh={section.caption.zh} en={section.caption.en} t={t} /></div></div>
           <div className="v23-preview-records">{rows.map(row => <a key={row.id} href={section.id === 'tools' ? '#/tools?tab=' + row.id : section.href}  data-preview-record={row.id}><span className="v23-record-icon"><section.Icon aria-hidden="true" /></span><span><strong>{row.title}</strong><small>{row.detail}</small></span><ArrowUpRight aria-hidden="true" /></a>)}</div>
+          <div className="v23-preview-foot">
           {section.id === 'living' && <nav className="v25-preview-links" aria-label={t('更多本地生活', 'More local living')}><a href="#/living?tab=upick">{t('季节采摘', 'U-Pick farms')}</a><a href="#/living?tab=stays">{t('精选住宿', 'Stays')}</a></nav>}
           {section.id === 'services' && <nav className="v25-preview-links" aria-label={t('更多便民黄页', 'More local services')}><a href="#/services?tab=pets">{t(PETS_NAME.zh, PETS_NAME.en)}</a></nav>}
           <a className="v23-preview-open" href={section.href}>{t('进入', 'Explore')} {t(section.zh, section.en)}<ArrowRight aria-hidden="true" /></a>
+          </div>
         </div></div>
       </div>
     </div>
