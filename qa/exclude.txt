@@ -1,8 +1,1 @@
-# kids-c preview on kids-places-v1. Baselines stay on the published opt9 site.
-# Allowed differences: kids outing photos and credits, the 活动日历 label,
-# and mobile sub-tab bars (including the outing category bar).
-kids
-mobile/living
-mobile/services
-mobile/tools
-mobile/weekend
+# Baselines match the published site. A round may list pages here only while that round is still in preview.
