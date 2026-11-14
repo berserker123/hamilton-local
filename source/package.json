@@ -4,6 +4,7 @@
   "version": "18.0.0",
   "scripts": {
     "build": "node build.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
     "test": "node --test tests/*.test.cjs",
     "preview": "node preview.cjs",
     "qa": "node qa-all-v25l.cjs"
