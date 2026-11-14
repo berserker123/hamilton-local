@@ -19,7 +19,7 @@ for(const name of ['robots.txt','og-image.jpg'])fs.copyFileSync(path.join('publi
 fs.writeFileSync(path.join(dist,'.nojekyll'),'');
 await build({entryPoints:['src/main.tsx'],bundle:true,minify:true,format:'iife',loader:{'.css':'empty'},define:{'process.env.NODE_ENV':'"production"'},outfile:path.join(dist,'app.js')});
 execFileSync(process.execPath,['node_modules/tailwindcss/lib/cli.js','-c','tailwind.config.js','-i','src/styles.css','-o',path.join(dist,'app.css'),'--minify'],{stdio:'inherit'});
-fs.writeFileSync(path.join(dist,'app.css'),(fs.readFileSync('node_modules/leaflet/dist/leaflet.css','utf8')+'\n'+fs.readFileSync(path.join(dist,'app.css'),'utf8')+'\n'+fs.readFileSync('src/page-experience.css','utf8')).replace(/\r\n/g,'\n'));
+fs.writeFileSync(path.join(dist,'app.css'),fs.readFileSync('node_modules/leaflet/dist/leaflet.css','utf8')+'\n'+fs.readFileSync(path.join(dist,'app.css'),'utf8')+'\n'+fs.readFileSync('src/page-experience.css','utf8').replace(/\r\n/g,'\n'));
 fs.cpSync('node_modules/leaflet/dist/images',path.join(dist,'images'),{recursive:true});
 fs.mkdirSync(path.join(dist,'licenses'),{recursive:true});
 fs.cpSync('public/licenses',path.join(dist,'licenses'),{recursive:true});
