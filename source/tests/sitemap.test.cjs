@@ -24,12 +24,13 @@ test('generator discovers real HTML, excludes aliases and noindex, and preserves
     'index.html': '<link rel="canonical" href="https://hamiltonlocal.nz/">',
     'guide & tips.html': '<h1>Guide</h1>',
     'nested/index.html': '<h1>Nested guide</h1>',
+    'living/index.html': '<h1>Generated living guide</h1>',
     '404.html': '<h1>Not found</h1>',
     'private.html': "<meta content='noindex, follow' name='robots'>",
     'alias.html': '<link href="https://hamiltonlocal.nz/" rel="canonical">',
   };
   for (const [name, html] of Object.entries(pages)) {
-    for (const base of [siteDir, name === 'index.html' ? sourceDir : path.join(sourceDir, 'public')]) {
+    for (const base of name === 'living/index.html' ? [siteDir] : [siteDir, name === 'index.html' ? sourceDir : path.join(sourceDir, 'public')]) {
       const file = path.join(base, name);
       fs.mkdirSync(path.dirname(file), {recursive: true});
       fs.writeFileSync(file, html);
@@ -41,11 +42,11 @@ test('generator discovers real HTML, excludes aliases and noindex, and preserves
   git('add', 'source/index.html', 'source/src', 'source/public');
   git('-c', 'user.name=Sitemap test', '-c', 'user.email=sitemap@example.invalid', 'commit', '--quiet', '-m', 'Initial content');
   const xml = generateSitemap({siteDir, sourceDir});
-  assert.equal((xml.match(/<url>/g) || []).length, 3);
+  assert.equal((xml.match(/<url>/g) || []).length, 4);
   assert.match(xml, /https:\/\/hamiltonlocal\.nz\/guide%20%26%20tips\.html/);
   assert.match(xml, /https:\/\/hamiltonlocal\.nz\/nested\//);
   assert.doesNotMatch(xml, /404|private|alias|#/);
-  assert.equal((xml.match(/<lastmod>2026-11-01T12:00:00.000Z<\/lastmod>/g) || []).length, 3);
+  assert.equal((xml.match(/<lastmod>2026-11-01T12:00:00.000Z<\/lastmod>/g) || []).length, 4);
   fs.utimesSync(path.join(siteDir, 'index.html'), new Date(), new Date());
   fs.writeFileSync(path.join(sourceDir, 'public', 'sitemap.xml'), 'Regenerated sitemap');
   git('add', 'source/public/sitemap.xml');
@@ -55,4 +56,5 @@ test('generator discovers real HTML, excludes aliases and noindex, and preserves
   git('add', 'source/src/data.json');
   execFileSync('git', ['-c', 'user.name=Sitemap test', '-c', 'user.email=sitemap@example.invalid', 'commit', '--quiet', '-m', 'Content update'], {cwd: root, env: {...process.env, GIT_AUTHOR_DATE: '2026-11-03T12:00:00Z', GIT_COMMITTER_DATE: '2026-11-03T12:00:00Z'}});
   assert.match(generateSitemap({siteDir, sourceDir}), /<loc>https:\/\/hamiltonlocal\.nz\/<\/loc>\s*<lastmod>2026-11-03T12:00:00.000Z<\/lastmod>/);
+  assert.match(generateSitemap({siteDir, sourceDir}), /<loc>https:\/\/hamiltonlocal\.nz\/living\/<\/loc>\s*<lastmod>2026-11-03T12:00:00.000Z<\/lastmod>/);
 });

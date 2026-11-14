@@ -1,23 +1,33 @@
-# Sitemap and routing
+# Sitemap and section routing
 
-The site publishes static files from the root of `main` through GitHub Pages. React renders the guide in `index.html`; `source/src/App.tsx` reads `location.hash` and listens for `hashchange`. Sections use fragments such as `/#/living`, `/#/kids?tab=parties` and `/#/tools?tab=pay`. Places, venues and playgrounds are directory cards or map markers, not independent HTML pages. There is no separate article route or article generator.
+GitHub Pages publishes static files from the root of `main`. The build emits six crawlable documents: the homepage and `/living/`, `/weekend/`, `/kids/`, `/services/`, `/tools/`. Each section has its own directory and `index.html`, title, description, H1, introduction, canonical and Open Graph URL. Query parameters select tabs and filters; their canonical points to the section URL without the query.
 
-Consequently, the complete sitemap currently has **one crawlable URL**, `https://hamiltonlocal.nz/`. Adding fragment URLs or invented `/living/` and `/places/<id>/` paths would not make those views independently indexable. The HTML canonical also points to the homepage. This change does not claim to solve the routing limitation.
+`source/src/section-html.ts` emits useful HTML from the existing supermarket, events, playground, service-category, pet and tool records. The homepage links to all five sections. React replaces this static summary with the existing interactive UI. No JavaScript is needed to read the initial section content or discover its links. Places, venues and playgrounds remain directory cards or map markers, not individual HTTP pages, so the sitemap does not list them.
+
+## Routing and assets
+
+`section-navigation.ts` initializes routes from the pathname and query. Internal links have real paths and ordinary link semantics, including opening in another tab. Unmodified same-origin section clicks use `history.pushState`; `popstate` restores views on Back and Forward. Keyboard tabs and search use the same navigation function. All app assets use root-relative URLs, or paths relative to the root stylesheet.
+
+Legacy `/#/living`, `/#/kids?tab=parties`, `/#/tools?tab=pay` and older aliases are translated with `history.replaceState`, preserving query values. Pet, toolbox and `whatson` aliases still work. Ordinary document anchors are retained. Direct section requests return their own HTML with HTTP 200; no rewrite is required. Unknown URLs receive GitHub Pages' HTTP 404 and a generated `404.html` with `noindex, follow` and links back to the guide. The 404 document is excluded from the sitemap.
 
 ## Generation and publication
 
-Run `npm ci` and `npm run build` in `source/`. The build calls `scripts/generate-sitemap.mjs`, discovers actual HTML documents in `dist/`, and writes `dist/sitemap.xml` and `public/sitemap.xml`. `npm run sitemap` regenerates the sitemap from an existing build. Publish the complete `dist/` output to the repository root as usual, including `sitemap.xml`; source-only edits do not deploy on this site.
+Run `npm ci` and `npm run build` in `source/`. `build.mjs` bundles the app, emits section HTML and `404.html`, then runs `scripts/generate-sitemap.mjs`. The generator discovers actual HTML in `dist/` and writes both `dist/sitemap.xml` and `public/sitemap.xml`. `npm run sitemap` regenerates the sitemap from an existing build.
 
-The generator excludes `404.html`, noindex documents and pages whose canonical points elsewhere. It never lists hash routes, search/filter states, external links or individual records without a real page. If the build later emits additional HTML pages, they are discovered automatically; their source is expected at `public/<output path>`. Add a source mapping if a future page generator uses another location.
+Publish the complete `dist/` output to the repository root, including the five directories and `404.html`. Source-only edits do not deploy on this site. Keep the root-level `CNAME` and other repository files. Do not delete the root directory to publish. The checked-in published and public sitemaps must match the build output.
 
-`lastmod` comes from the most recent Git commit affecting page content. For the homepage, content includes `source/index.html`, `source/src/` (including imported JSON data), and deployed public assets. Sitemap and robots-only changes are excluded. Other static pages use their corresponding public HTML source. Build times and filesystem modification times are not used. Builds need Git history and tracked content; after committing content changes, rebuild before publishing. The checked-in public and published sitemaps must match the build output.
+The sitemap excludes `404.html`, noindex documents, pages whose canonical points elsewhere, fragments, tab/filter states and records without their own HTML page. `lastmod` comes from Git content history, not build times or filesystem timestamps. All six generated pages use the most recent commit affecting `source/index.html`, `source/src/` or `source/public/`, excluding sitemap and robots-only changes. This conservative shared mapping can advance all six dates when shared content changes. Other future static pages use `public/<output path>` unless their generator adds another mapping. Builds require Git history and tracked content. Commit source changes first, then rebuild and commit the published output separately so `lastmod` records the content commit.
 
-## Minimal follow-up for independent indexing
+## Verification
 
-Keep the existing React UI and data. First emit static or prerendered HTML for the five section paths (`/living/`, `/weekend/`, `/kids/`, `/services/`, `/tools/`), including useful page content, distinct titles/descriptions and self-referencing canonicals. Put an `index.html` in each directory so GitHub Pages serves direct requests without a catch-all rewrite. Use root-relative asset URLs, update internal links and initialize the app from the pathname. Preserve old hash links as client-side redirects to the corresponding real paths. Add detail pages from the existing data only where a dedicated page is useful. Extend the sitemap source/date mapping alongside that generator. This is a separate routing change, not part of this PR.
+- `npm test`: unit and build-output tests, including HTML metadata/content, sitemap discovery and dates, pathname parsing and legacy links. Known pre-existing failure: `regional paging is bounded and expansion covers the reported omissions` requires the missing `out/research/party-venues-before-expansion.json` fixture.
+- `npm run preview`: serves the actual `dist/` directory on `http://127.0.0.1:4179`, including directory indexes, trailing-slash redirects and the custom 404 document.
+- With preview running, `node scripts/verify-section-routes.cjs <screenshot-directory>` checks all six raw HTML responses with curl, checks metadata and assets, exercises legacy links, History API navigation, Back/Forward, keyboard tabs and reloads, and captures desktop day/night plus mobile screenshots. It uses Playwright with installed Chrome. Local build validation blocks external analytics/map services; it does not re-verify third-party availability.
 
-## Google Search Console
+## Google Search Console after merge
 
-After this PR is merged and GitHub Pages has deployed, verify the live sitemap contains `lastmod` and submit or resubmit `https://hamiltonlocal.nz/sitemap.xml` in the correct Search Console property. Inspect the homepage and request indexing if needed. No Search Console action can make hash views separate indexable pages. After real section/detail pages are published, submit the expanded sitemap and inspect representative direct URLs.
+Wait for GitHub Pages deployment. Open each of the five new paths directly and confirm HTTP 200, section-specific HTML, and its matching canonical. Confirm `https://hamiltonlocal.nz/sitemap.xml` lists exactly six URLs with `lastmod`, and robots.txt still references it. Submit or resubmit that sitemap in the correct Search Console property. Use URL Inspection's live test for each new section, verify its canonical, then request indexing. Use the clean section URLs rather than fragment or query URLs. Monitor sitemap processing and page indexing; submission does not guarantee indexing.
+
+This follow-up includes and supersedes PR #21's sitemap implementation; merge this PR instead of merging both independently.
 
 References: [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), [Google JavaScript SEO guidance](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).

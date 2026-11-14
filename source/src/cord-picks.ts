@@ -8,7 +8,7 @@ export function nzToday() { return new Intl.DateTimeFormat('en-CA', { timeZone: 
 export function familyPicks(today = nzToday()): CordPick[] {
   return [
     ...PLAYGROUNDS.map(p => ({ id: 'pg-' + p.id, type: 'playground', name: { zh: p.zh, en: p.name }, info: { zh: p.highlightZh, en: p.highlightEn }, href: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(`${p.lat},${p.lng}`) })),
-    ...PLACES.filter(p => p.id !== 'magical-bridge' && p.km != null && p.km <= 10 && /kids|children|family|toddler|all ages/i.test(p.en.description + ' ' + p.en.tag)).map(p => ({ id: 'venue-' + p.id, type: 'venue', name: { zh: p.zh, en: p.name }, info: { zh: p.description, en: p.en.description }, href: '#/kids?tab=places&q=' + encodeURIComponent(p.name), target: p.id })),
+    ...PLACES.filter(p => p.id !== 'magical-bridge' && p.km != null && p.km <= 10 && /kids|children|family|toddler|all ages/i.test(p.en.description + ' ' + p.en.tag)).map(p => ({ id: 'venue-' + p.id, type: 'venue', name: { zh: p.zh, en: p.name }, info: { zh: p.description, en: p.en.description }, href: '/kids/?tab=places&q=' + encodeURIComponent(p.name), target: p.id })),
     ...EVENTS.events_this_week.filter(e => e.family_friendly === true && e.dates.some(d => d >= today)).map(e => ({ id: 'event-' + e.id, type: 'event', name: { zh: e.title_zh, en: e.title_en }, info: { zh: e.venue + ' · ' + e.dates.filter(d => d >= today).join(' / '), en: e.venue + ' · ' + e.dates.filter(d => d >= today).join(' / ') }, href: e.source_url, dates: e.dates })),
   ];
 }

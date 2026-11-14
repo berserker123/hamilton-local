@@ -5,6 +5,7 @@ import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const defaultSourceDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://hamiltonlocal.nz';
+const sectionPage = /^(living|weekend|kids|services|tools)\/index\.html$/;
 const escapeXml = value => value.replace(/[<>&"']/g, char => ({'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;'}[char]));
 
 function attributes(tag) {
@@ -33,7 +34,7 @@ export function generateSitemap({siteDir, sourceDir = defaultSourceDir}) {
     if (canonical && new URL(canonical, loc).href !== loc) continue;
     // Hash routes and directory cards are not separate HTTP documents.
     // Git content dates survive cloning and do not change on every rebuild.
-    const inputs = name === 'index.html'
+    const inputs = name === 'index.html' || sectionPage.test(name)
       ? ['index.html', 'src', 'public', ':(exclude)public/sitemap.xml', ':(exclude)public/robots.txt']
       : ['public/' + name];
     const modified = execFileSync('git', ['log', '-1', '--format=%cI', '--', ...inputs], {cwd: sourceDir, encoding: 'utf8'}).trim();
