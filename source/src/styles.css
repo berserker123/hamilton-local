@@ -3407,7 +3407,8 @@ html body .ia-root :is(.ia-place-grid, .pg-list, .ia-market-grid) { align-items:
 }
 .hl-spot-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--hl-canvas); }
 .hl-spot-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.hl-spot-fallback { display: grid; place-items: center; width: 100%; height: 100%; }
+.hl-spot-fallback { position: relative; display: grid; place-items: center; width: 100%; height: 100%; }
+.hl-spot-caption { position: absolute; top: calc(50% + 29px); left: 8px; right: 8px; color: inherit; font-size: 13px; font-weight: 400; line-height: 1.4; text-align: center; white-space: nowrap; }
 .hl-spot-grid[data-accent="living"] .hl-spot-fallback { background: #d5e4e4; color: #1A5C64; }
 .hl-spot-grid[data-accent="kids"] .hl-spot-fallback { background: #e3e6d4; color: #3E5218; }
 .hl-spot-fallback svg { width: 42px; height: 42px; }

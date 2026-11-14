@@ -26,6 +26,7 @@ import { FeedbackProvider, FeedbackLauncher, FeedbackFooter, FeedbackLink } from
 import { Stays, Pets, UPick, PETS_NAME, STAY_PHOTOS, DirectoryPhotoCredit } from './LocalDirectories';
 import { installCardStyle, placeQuickInfo } from './card-style';
 import { PhotoFlip } from './PhotoFlip';
+import { PhotoPlaceholderCaption } from './PhotoPlaceholderCaption';
 import { WeekendPhotoCredit } from './WeekendPhotoCredit';
 import SECTION_PHOTOS from './section-photos.json';
 import { PracticalTools, CommonTools, ToolSources } from './PracticalTools';
@@ -134,7 +135,7 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', s
     const phone = p.phone || '';
     return <article className="hl-spot" key={p.id} data-place-id={p.id}>
       <div className="hl-spot-media">
-        {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /></div>}
+        {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /><PhotoPlaceholderCaption id={p.id} /></div>}
         <span className="hl-spot-pill">{pill}</span>
         <button type="button" className="hl-spot-info" aria-label={t('查看来源与详情', 'View source and details')} onClick={() => openPlace(p.id)}><Info aria-hidden="true" /></button>
       </div>
@@ -176,7 +177,7 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
     const viewpoint = MARKET_STREET_VIEW[s.id as keyof typeof MARKET_STREET_VIEW];
     return <article key={s.id} data-market-id={s.id} className="hl-spot">
       <div className="hl-spot-media">
-        <div className="hl-spot-fallback" aria-hidden="true"><Store /></div>
+        <div className="hl-spot-fallback" aria-hidden="true"><Store /><PhotoPlaceholderCaption id={s.id} /></div>
         <span className="hl-spot-pill">{s.verificationStatus === 'uncertain' ? t('品牌待核实', 'Brand unconfirmed') : placeNames(s.suburb, lang)}</span>
       </div>
       <div className="hl-spot-body">

@@ -6,6 +6,7 @@ import PETS from './pets-v25.json';
 import UPICK from './upick-v25.json';
 import { CardKind } from './card-style';
 import { PhotoFlip } from './PhotoFlip';
+import { PhotoPlaceholderCaption } from './PhotoPlaceholderCaption';
 
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 
@@ -39,7 +40,7 @@ function DirectoryCard({ item, t, label, kind, children, onDetails }: { item: It
   const mapHref = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(item.name + ' ' + item.address);
   return <article className="hl-spot" data-directory-id={item.id} data-card-kind={kind}>
     <div className="hl-spot-media">
-      {item.photo ? <img src={'./photos/' + item.photo} alt={item.photoAlt || item.name} /> : <div className="hl-spot-fallback" aria-hidden="true"><Icon /></div>}
+      {item.photo ? <img src={'./photos/' + item.photo} alt={item.photoAlt || item.name} /> : <div className="hl-spot-fallback" aria-hidden="true"><Icon /><PhotoPlaceholderCaption id={item.id} /></div>}
       <span className="hl-spot-pill">{pill}</span>
       {onDetails ? <button type="button" className="hl-spot-info" aria-label={t('查看住宿详情', 'View stay details')} onClick={() => onDetails()}><Info aria-hidden="true" /></button> : <a className="hl-spot-info" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={t('查看来源', 'View source')}><Info aria-hidden="true" /></a>}
     </div>
