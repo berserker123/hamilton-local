@@ -1,0 +1,2672 @@
+{
+  "research_date": "2026-11-14",
+  "disclaimer": "Amounts are transcribed from official/primary sources opened on 14 November 2026 (Pacific/Auckland). No figures were estimated or interpolated. Where a printed table had no dollar sign, the numeric amount is recorded as printed. Hourly equivalents are included only when the official source prints them, or are clearly labelled derived (not official). Base rates exclude penal rates, overtime, units, allowances and employer superannuation unless a source says otherwise.",
+  "occupations": [
+    {
+      "id": "nzno-registered-nurse",
+      "name_zh": "注册护士（Health NZ / NZNO）",
+      "name_en": "Registered Nurse (Health NZ / NZNO Nursing and Midwifery CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Health NZ | Te Whatu Ora and NZNO Nursing and Midwifery Collective Agreement",
+      "term": {
+        "start": "2026-03-01",
+        "end": "2027-10-31"
+      },
+      "source_urls": [
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/NZNO_nursing_and_midwifery_collective_agreement_(1_March_2026_to_31_October_2027)-signed_searchable.pdf",
+        "https://nzno.org.nz/Portals/0/Files/Documents/Support/CA/Health%20NZ%20%E2%80%93%20Te%20Whatu%20Ora%20and%20Toputanga%20Tapuhi%20Kaitiaki%20O%20Aoteraroa%20NZNO%20Nursing%20and%20Midwifery%20CA%201%20March%202026%20%E2%80%93%2031%20October%202027%20WEB%20V2.pdf",
+        "https://www.healthnz.govt.nz/health-professionals/employment-information-agreements/employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Ordinary hours for a full-time employee are 80 per fortnight (clause 6.1). The salary table is printed as annual amounts, not hourly rates.",
+      "current_effective_from": "2026-03-02",
+      "pending_increase": {
+        "effective_from": "2027-03-02",
+        "note": "Printed 2 March 2027 column in clause 8.0.1."
+      },
+      "notes": [
+        "These are base rates. They exclude penal rates, overtime, PDRP/QLP/merit and other allowances.",
+        "Progression: annual increment on anniversary, steps 1 to 5 inclusive; thereafter annual subject to satisfactory performance.",
+        "A separate NSNZ Health NZ nursing CA (1 April 2026 to 31 March 2028) also exists on the Health NZ employment-agreements page; its rates were not transcribed in this research."
+      ],
+      "scales": [
+        {
+          "id": "rn",
+          "name": "Registered Nurses (clause 8.0.1)",
+          "columns": [
+            "2024-04-01",
+            "2026-03-02",
+            "2027-03-02"
+          ],
+          "steps": [
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2024-04-01": 106739,
+                "2026-03-02": 109407,
+                "2027-03-02": 111596
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2024-04-01": 103750,
+                "2026-03-02": 106344,
+                "2027-03-02": 108471
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 100849,
+                "2026-03-02": 103370,
+                "2027-03-02": 105438
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 91179,
+                "2026-03-02": 93458,
+                "2027-03-02": 95328
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 86519,
+                "2026-03-02": 88682,
+                "2027-03-02": 90456
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 81683,
+                "2026-03-02": 83725,
+                "2027-03-02": 85400
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1 (New Graduate)",
+              "amounts": {
+                "2024-04-01": 75773,
+                "2026-03-02": 77667,
+                "2027-03-02": 79221
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nzno-enrolled-nurse",
+      "name_zh": "登记护士等（Health NZ / NZNO）",
+      "name_en": "Enrolled, Obstetric, Karitane and Assistant Nurses (Health NZ / NZNO CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Health NZ | Te Whatu Ora and NZNO Nursing and Midwifery Collective Agreement",
+      "term": {
+        "start": "2026-03-01",
+        "end": "2027-10-31"
+      },
+      "source_urls": [
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/NZNO_nursing_and_midwifery_collective_agreement_(1_March_2026_to_31_October_2027)-signed_searchable.pdf",
+        "https://nzno.org.nz/Portals/0/Files/Documents/Support/CA/Health%20NZ%20%E2%80%93%20Te%20Whatu%20Ora%20and%20Toputanga%20Tapuhi%20Kaitiaki%20O%20Aoteraroa%20NZNO%20Nursing%20and%20Midwifery%20CA%201%20March%202026%20%E2%80%93%2031%20October%202027%20WEB%20V2.pdf",
+        "https://www.healthnz.govt.nz/health-professionals/employment-information-agreements/employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Ordinary hours for a full-time employee are 80 per fortnight.",
+      "current_effective_from": "2026-03-02",
+      "pending_increase": {
+        "effective_from": "2027-03-02",
+        "note": "Printed 2 March 2027 column in clause 8.0.2."
+      },
+      "notes": [
+        "Step 5 rate as at 2 March 2026 is footnoted in the CA: printed rate includes a 2.5% pay increase and a $2,000 pay-scale adjustment (percentage first, then the flat adjustment).",
+        "Progression: annual increment on anniversary, steps 1–5 inclusive."
+      ],
+      "scales": [
+        {
+          "id": "en",
+          "name": "Enrolled, Obstetric, Karitane Nurses and Nurses’ Assistants (clause 8.0.2)",
+          "columns": [
+            "2024-04-01",
+            "2026-03-02",
+            "2027-03-02"
+          ],
+          "steps": [
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 83349,
+                "2026-03-02": 87433,
+                "2027-03-02": 89181
+              },
+              "footnote": "2-Mar-26 rate printed with an asterisk in the CA."
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 80864,
+                "2026-03-02": 82886,
+                "2027-03-02": 84543
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 78378,
+                "2026-03-02": 80337,
+                "2027-03-02": 81944
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 72985,
+                "2026-03-02": 74810,
+                "2027-03-02": 76306
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-04-01": 69934,
+                "2026-03-02": 71682,
+                "2027-03-02": 73116
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nzno-hca",
+      "name_zh": "医护助理 / 医院助理（Health NZ / NZNO）",
+      "name_en": "Health Care Assistants and Hospital Aides (Health NZ / NZNO CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Health NZ | Te Whatu Ora and NZNO Nursing and Midwifery Collective Agreement",
+      "term": {
+        "start": "2026-03-01",
+        "end": "2027-10-31"
+      },
+      "source_urls": [
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/NZNO_nursing_and_midwifery_collective_agreement_(1_March_2026_to_31_October_2027)-signed_searchable.pdf",
+        "https://nzno.org.nz/Portals/0/Files/Documents/Support/CA/Health%20NZ%20%E2%80%93%20Te%20Whatu%20Ora%20and%20Toputanga%20Tapuhi%20Kaitiaki%20O%20Aoteraroa%20NZNO%20Nursing%20and%20Midwifery%20CA%201%20March%202026%20%E2%80%93%2031%20October%202027%20WEB%20V2.pdf",
+        "https://www.healthnz.govt.nz/health-professionals/employment-information-agreements/employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Ordinary hours for a full-time employee are 80 per fortnight.",
+      "current_effective_from": "2026-03-02",
+      "pending_increase": {
+        "effective_from": "2027-03-02",
+        "note": "Printed 2 March 2027 column in clause 8.0.3."
+      },
+      "notes": [
+        "Progression: annual increment on anniversary, steps 1–5 inclusive. Merit 1 $1,000 p.a. and Merit 2 $2,000 p.a. allowances may be added to the base rate (not included in the step amounts)."
+      ],
+      "scales": [
+        {
+          "id": "hca",
+          "name": "Health Care Assistants and Hospital Aides (clause 8.0.3)",
+          "columns": [
+            "2024-04-01",
+            "2026-03-02",
+            "2027-03-02"
+          ],
+          "steps": [
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 70358,
+                "2026-03-02": 72117,
+                "2027-03-02": 73559
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 68437,
+                "2026-03-02": 70148,
+                "2027-03-02": 71551
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 67330,
+                "2026-03-02": 69013,
+                "2027-03-02": 70394
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 63486,
+                "2026-03-02": 65073,
+                "2027-03-02": 66375
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-04-01": 60100,
+                "2026-03-02": 61603,
+                "2027-03-02": 62835
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nzno-mha",
+      "name_zh": "精神健康助理（Health NZ / NZNO）",
+      "name_en": "Mental Health Assistants (Health NZ / NZNO CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Health NZ | Te Whatu Ora and NZNO Nursing and Midwifery Collective Agreement",
+      "term": {
+        "start": "2026-03-01",
+        "end": "2027-10-31"
+      },
+      "source_urls": [
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/NZNO_nursing_and_midwifery_collective_agreement_(1_March_2026_to_31_October_2027)-signed_searchable.pdf",
+        "https://nzno.org.nz/Portals/0/Files/Documents/Support/CA/Health%20NZ%20%E2%80%93%20Te%20Whatu%20Ora%20and%20Toputanga%20Tapuhi%20Kaitiaki%20O%20Aoteraroa%20NZNO%20Nursing%20and%20Midwifery%20CA%201%20March%202026%20%E2%80%93%2031%20October%202027%20WEB%20V2.pdf",
+        "https://www.healthnz.govt.nz/health-professionals/employment-information-agreements/employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "current_effective_from": "2026-03-02",
+      "pending_increase": {
+        "effective_from": "2027-03-02"
+      },
+      "notes": [
+        "Progression: annual increment on anniversary, steps 1–5 inclusive. Same merit allowances as HCAs may apply."
+      ],
+      "scales": [
+        {
+          "id": "mha",
+          "name": "Mental Health Assistants (clause 8.0.4)",
+          "columns": [
+            "2024-04-01",
+            "2026-03-02",
+            "2027-03-02"
+          ],
+          "steps": [
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 74442,
+                "2026-03-02": 76303,
+                "2027-03-02": 77829
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 72394,
+                "2026-03-02": 74204,
+                "2027-03-02": 75688
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 68164,
+                "2026-03-02": 69868,
+                "2027-03-02": 71265
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 63450,
+                "2026-03-02": 65036,
+                "2027-03-02": 66337
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-04-01": 59024,
+                "2026-03-02": 60500,
+                "2027-03-02": 61710
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meras-midwife",
+      "name_zh": "助产士（Health NZ / MERAS）",
+      "name_en": "Registered (Core), Community and Caseload Midwives (Health NZ / MERAS CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "MERAS Midwives Collective Agreement with Health NZ",
+      "term": {
+        "start": "2025-06-01",
+        "end": "2027-10-31"
+      },
+      "source_urls": [
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/meras-midwives-ca-1jun2025-31oct2027-signed.pdf",
+        "https://meras.midwife.org.nz/wp-content/uploads/sites/4/2025/12/MERAS-CA-formattedUpdated-signed.pdf",
+        "https://www.healthnz.govt.nz/health-professionals/employment-information-agreements/employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "current_effective_from": "2026-06-01",
+      "pending_increase": null,
+      "notes": [
+        "The salary tables in this CA are printed without dollar signs; amounts below are the printed figures.",
+        "Step 1 for Registered (Core) Midwives and Community Midwives is printed as N/A.",
+        "Current rates (1 June 2026) are not the same as the NZNO midwife rates. No further printed increase after 1 June 2026 was found in this CA (it expires 31 October 2027).",
+        "Maternity Care Assistant steps are also printed in clause 10.0."
+      ],
+      "scales": [
+        {
+          "id": "core-mw",
+          "name": "Registered (Core) Midwives",
+          "columns": [
+            "2024-04-01",
+            "2025-06-02",
+            "2026-06-01"
+          ],
+          "steps": [
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2024-04-01": 108008,
+                "2025-06-02": 110168,
+                "2026-06-01": 111821
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2024-04-01": 105017,
+                "2025-06-02": 107117,
+                "2026-06-01": 108724
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 102046,
+                "2025-06-02": 104087,
+                "2026-06-01": 105648
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 92255,
+                "2025-06-02": 94100,
+                "2026-06-01": 95512
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 87538,
+                "2025-06-02": 89289,
+                "2026-06-01": 90628
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 82642,
+                "2025-06-02": 84295,
+                "2026-06-01": 85559
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-04-01": "N/A",
+                "2025-06-02": "—",
+                "2026-06-01": "—"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mca",
+          "name": "Maternity Care Assistants",
+          "columns": [
+            "2024-04-01",
+            "2025-06-02",
+            "2026-06-01"
+          ],
+          "steps": [
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 70358,
+                "2025-06-02": 71765,
+                "2026-06-01": 72841
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 68437,
+                "2025-06-02": 69806,
+                "2026-06-01": 70853
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 67330,
+                "2025-06-02": 68677,
+                "2026-06-01": 69707
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 63486,
+                "2025-06-02": 64756,
+                "2026-06-01": 65727
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-04-01": 60100,
+                "2025-06-02": 61302,
+                "2026-06-01": 62222
+              }
+            }
+          ]
+        },
+        {
+          "id": "cmw-meras",
+          "name": "Community Midwives",
+          "columns": [
+            "2024-04-01",
+            "2025-06-02",
+            "2026-06-01"
+          ],
+          "steps": [
+            {
+              "step": "8",
+              "label": "Step 8*",
+              "amounts": {
+                "2024-04-01": 115715,
+                "2025-06-02": 118029,
+                "2026-06-01": 119799
+              }
+            },
+            {
+              "step": "7",
+              "label": "Step 7*",
+              "amounts": {
+                "2024-04-01": 110446,
+                "2025-06-02": 112655,
+                "2026-06-01": 114345
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6*",
+              "amounts": {
+                "2024-04-01": 107848,
+                "2025-06-02": 110005,
+                "2026-06-01": 111655
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-04-01": 103338,
+                "2025-06-02": 105405,
+                "2026-06-01": 106986
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-04-01": 93417,
+                "2025-06-02": 95285,
+                "2026-06-01": 96714
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-04-01": 88638,
+                "2025-06-02": 90411,
+                "2026-06-01": 91767
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 83677,
+                "2025-06-02": 85351,
+                "2026-06-01": 86631
+              }
+            }
+          ]
+        },
+        {
+          "id": "caseload-meras",
+          "name": "Caseload Midwives",
+          "columns": [
+            "2024-04-01",
+            "2025-06-02",
+            "2026-06-01"
+          ],
+          "steps": [
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-04-01": 132941,
+                "2025-06-02": 135600,
+                "2026-06-01": 137634
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-04-01": 130864,
+                "2025-06-02": 133481,
+                "2026-06-01": 135483
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kindergarten-teacher",
+      "name_zh": "幼儿园教师（KTCA）",
+      "name_en": "Kindergarten Teachers (KTCA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Kindergarten Teachers’, Head Teachers’ and Senior Teachers’ Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-06-29",
+        "end": "2028-12-28"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-06/Kindergarten%20Teachers%27%20Collective%20Agreement%202026-2028.pdf?VersionId=gK82agtHGevO9C1r1OMa1FQId1.6mMX7",
+        "https://www.education.govt.nz/education-professionals/early-learning/collective-employment-agreements/kindergarten-teachers-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Printed as annual full-time salaries. A part-time teacher’s salary is paid at 1/40th of the applicable full-time rate (clause 3.8 / part-time provisions). This is the kindergarten-association CA, not the education-and-care pay-parity funding scale.",
+      "current_effective_from": "2026-04-02",
+      "pending_increase": {
+        "effective_from": "2027-01-28",
+        "note": "K1 base scale has a further printed increase on 28 January 2027. Head Teachers and Senior Teachers also have 29 June 2026 and 29 June 2027 printed rates."
+      },
+      "notes": [
+        "The agreement came into force on 29 June 2026 (signed that day on the official MoE PDF) but the K1 base rates are printed as effective 2 April 2026, aligned with the Unified Base Salary Scale for teachers.",
+        "This covers teachers employed by kindergarten associations who are NZEI members. Most private/community education-and-care ('ECE centre') teachers are not on this CA; they use the MoE pay-parity attestation minimums below."
+      ],
+      "scales": [
+        {
+          "id": "k1",
+          "name": "K1 – Base-scale Teachers (clause 3.1.1(a))",
+          "columns": [
+            "2026-04-02",
+            "2027-01-28"
+          ],
+          "steps": [
+            {
+              "step": "1",
+              "label": "Step 1 (P3E)",
+              "amounts": {
+                "2026-04-02": 62862,
+                "2027-01-28": 64119
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2 (P3+E)",
+              "amounts": {
+                "2026-04-02": 65685,
+                "2027-01-28": 66999
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3 (P4E)",
+              "amounts": {
+                "2026-04-02": 68251,
+                "2027-01-28": 69616
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4 (P5E)",
+              "amounts": {
+                "2026-04-02": 72548,
+                "2027-01-28": 73999
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2026-04-02": 77224,
+                "2027-01-28": 78768
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2026-04-02": 82230,
+                "2027-01-28": 83874
+              }
+            },
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2026-04-02": 88276,
+                "2027-01-28": 90042
+              }
+            },
+            {
+              "step": "8",
+              "label": "Step 8",
+              "amounts": {
+                "2026-04-02": 93234,
+                "2027-01-28": 95099
+              }
+            },
+            {
+              "step": "9",
+              "label": "Step 9 (P3M)",
+              "amounts": {
+                "2026-04-02": 100368,
+                "2027-01-28": 102475
+              }
+            },
+            {
+              "step": "10",
+              "label": "Step 10 (P3+M, P4M, P5M)",
+              "amounts": {
+                "2026-04-02": 105686,
+                "2027-01-28": 107886
+              }
+            }
+          ]
+        },
+        {
+          "id": "k2",
+          "name": "K2 Head Teacher and K2R Relieving Head Teacher",
+          "columns": [
+            "2026-04-02",
+            "2026-06-29",
+            "2027-01-28",
+            "2027-06-29"
+          ],
+          "steps": [
+            {
+              "step": "K2R",
+              "label": "K2R Relieving Head Teacher (<10 weeks)",
+              "amounts": {
+                "2026-04-02": 108356,
+                "2026-06-29": 111356,
+                "2027-01-28": 113736,
+                "2027-06-29": 114736
+              }
+            },
+            {
+              "step": "K2",
+              "label": "K2 Head Teacher",
+              "amounts": {
+                "2026-04-02": 110356,
+                "2026-06-29": 113356,
+                "2027-01-28": 115736,
+                "2027-06-29": 116736
+              }
+            }
+          ]
+        },
+        {
+          "id": "k3-k4",
+          "name": "K3 and K4 Senior Teachers (clause 8.3.2)",
+          "columns": [
+            "2026-04-02",
+            "2026-06-29",
+            "2027-01-28",
+            "2027-06-29"
+          ],
+          "steps": [
+            {
+              "step": "K3",
+              "label": "K3 Senior Teacher",
+              "amounts": {
+                "2026-04-02": 116148,
+                "2026-06-29": 119148,
+                "2027-01-28": 121650,
+                "2027-06-29": 122650
+              }
+            },
+            {
+              "step": "K4",
+              "label": "K4 Senior Teacher",
+              "amounts": {
+                "2026-04-02": 125638,
+                "2026-06-29": 128638,
+                "2027-01-28": 131340,
+                "2027-06-29": 132340
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "primary-teacher",
+      "name_zh": "小学教师（PTCA）",
+      "name_en": "Primary Teachers (PTCA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Primary Teachers’ (including Deputy and Assistant Principals and other Unit Holders) Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-04-02",
+        "end": "2028-10-02"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-08/Primary%20Teachers%27%20Collective%20Agreement%202026-2028.pdf?VersionId=L4JqSrJQlFQ5y3in6tAze5rpXWUHLpCI",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202609",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/primary-teachers-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Printed as annual salaries for full-time teachers. Not an hourly scale. Units and allowances are additional and are not included in the step amounts. Unit value: $5,100 from 2 April 2026; $5,250 from 28 January 2027; $5,500 from 2 October 2028 (Education Circular 2026/09).",
+      "current_effective_from": "2026-04-02",
+      "pending_increase": {
+        "effective_from": "2027-01-28",
+        "note": "2.0% on steps 1–8 and 2.1% on steps 9–10 of the trained scale."
+      },
+      "notes": [
+        "Covers NZEI members in state and state-integrated primary schools. Non-members need a signed IEA for these rates."
+      ],
+      "scales": [
+        {
+          "id": "ptca-trained",
+          "name": "Unified Base Salary Scale for Trained Teachers (clause 3.2)",
+          "columns": [
+            "2024-12-02",
+            "2026-04-02",
+            "2027-01-28"
+          ],
+          "steps": [
+            {
+              "step": "1",
+              "label": "Step 1 (Q1E, Q2E, Q3E)",
+              "amounts": {
+                "2024-12-02": 61329,
+                "2026-04-02": 62862,
+                "2027-01-28": 64119
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2 (Q3+E)",
+              "amounts": {
+                "2024-12-02": 64083,
+                "2026-04-02": 65685,
+                "2027-01-28": 66999
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3 (Q4E)",
+              "amounts": {
+                "2024-12-02": 66586,
+                "2026-04-02": 68251,
+                "2027-01-28": 69616
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4 (Q5E)",
+              "amounts": {
+                "2024-12-02": 70779,
+                "2026-04-02": 72548,
+                "2027-01-28": 73999
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-12-02": 75340,
+                "2026-04-02": 77224,
+                "2027-01-28": 78768
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2024-12-02": 80224,
+                "2026-04-02": 82230,
+                "2027-01-28": 83874
+              }
+            },
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2024-12-02": 86123,
+                "2026-04-02": 88276,
+                "2027-01-28": 90042
+              }
+            },
+            {
+              "step": "8",
+              "label": "Step 8",
+              "amounts": {
+                "2024-12-02": 90960,
+                "2026-04-02": 93234,
+                "2027-01-28": 95099
+              }
+            },
+            {
+              "step": "9",
+              "label": "Step 9 (Q3M)",
+              "amounts": {
+                "2024-12-02": 97920,
+                "2026-04-02": 100368,
+                "2027-01-28": 102475
+              }
+            },
+            {
+              "step": "10",
+              "label": "Step 10 (Q3+M, Q4M, Q5M)",
+              "amounts": {
+                "2024-12-02": 103086,
+                "2026-04-02": 105686,
+                "2027-01-28": 107886
+              }
+            }
+          ]
+        },
+        {
+          "id": "ptca-untrained",
+          "name": "Base Salary Scale for Untrained Employees (clause 3.4)",
+          "columns": [
+            "2024-12-02",
+            "2026-04-02",
+            "2027-01-28"
+          ],
+          "steps": [
+            {
+              "step": "Minimum",
+              "label": "Minimum",
+              "amounts": {
+                "2024-12-02": 52468,
+                "2026-04-02": 53780,
+                "2027-01-28": 54855
+              }
+            },
+            {
+              "step": "Maximum",
+              "label": "Maximum",
+              "amounts": {
+                "2024-12-02": 54528,
+                "2026-04-02": 55891,
+                "2027-01-28": 57009
+              }
+            }
+          ]
+        },
+        {
+          "id": "ptca-slt",
+          "name": "Qualified Speech Language Therapists (clause 3.5.1)",
+          "columns": [
+            "2024-12-02",
+            "2026-04-02",
+            "2027-01-28"
+          ],
+          "steps": [
+            {
+              "step": "1",
+              "label": "Step 1 (Group 3 Entry)",
+              "amounts": {
+                "2024-12-02": 76805,
+                "2026-04-02": 78725,
+                "2027-01-28": 80300
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2 (Group 4 Entry)",
+              "amounts": {
+                "2024-12-02": 81462,
+                "2026-04-02": 83499,
+                "2027-01-28": 85169
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3 (Group 5 Entry)",
+              "amounts": {
+                "2024-12-02": 86253,
+                "2026-04-02": 88409,
+                "2027-01-28": 90178
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-12-02": 91069,
+                "2026-04-02": 93346,
+                "2027-01-28": 95213
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-12-02": 95638,
+                "2026-04-02": 98029,
+                "2027-01-28": 99990
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2024-12-02": 100139,
+                "2026-04-02": 102642,
+                "2027-01-28": 104695
+              }
+            },
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2024-12-02": 104640,
+                "2026-04-02": 107256,
+                "2027-01-28": 109401
+              }
+            },
+            {
+              "step": "8",
+              "label": "Step 8",
+              "amounts": {
+                "2024-12-02": 109139,
+                "2026-04-02": 111867,
+                "2027-01-28": 114105
+              }
+            },
+            {
+              "step": "9",
+              "label": "Step 9",
+              "amounts": {
+                "2024-12-02": 113640,
+                "2026-04-02": 116481,
+                "2027-01-28": 118811
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "secondary-teacher",
+      "name_zh": "中学教师（STCA）",
+      "name_en": "Secondary Teachers (STCA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Secondary Teachers’ Collective Agreement 2025–2027 (varied 20 April 2026)",
+      "term": {
+        "start": "2025-12-01",
+        "end": "2027-12-31"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-05/Secondary%20Teachers%27%20Collective%20Agreement%202025-2027%20%28varied%2020%20April%202026%29.pdf?VersionId=YJZePjSsT6Y9j0HhZmw3NyTrzZ5.92HB",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202601",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/secondary-teachers-collective-and-individual-employment-agreements",
+        "https://www.ppta.org.nz/collective-agreements/secondary-teachers-collective-agreement-stca/part-4-remuneration"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Printed as annual salaries. Units are $5,500 per annum from 28 January 2026 (not included in step amounts). Short-term relievers have separate 1/190 (daily) and 1/950 (hourly) formulae, capped at trained step 6 or untrained step 8.",
+      "current_effective_from": "2026-01-28",
+      "pending_increase": {
+        "effective_from": "2027-01-28",
+        "note": "2.0% on trained steps 1–8 and 2.1% on trained steps 9–10."
+      },
+      "notes": [
+        "Trained-teacher steps 1–10 match the unified base scale used in the PTCA and KTCA, with different effective dates (STCA from 28 January 2026; PTCA/KTCA from 2 April 2026). Qualification-group letters are G rather than Q."
+      ],
+      "scales": [
+        {
+          "id": "stca-trained",
+          "name": "Unified Base Salary Scale for Trained Teachers",
+          "columns": [
+            "2024-12-02",
+            "2026-01-28",
+            "2027-01-28"
+          ],
+          "steps": [
+            {
+              "step": "1",
+              "label": "Step 1 (G3E)",
+              "amounts": {
+                "2024-12-02": 61329,
+                "2026-01-28": 62862,
+                "2027-01-28": 64119
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2 (G3+E)",
+              "amounts": {
+                "2024-12-02": 64083,
+                "2026-01-28": 65685,
+                "2027-01-28": 66999
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3 (G4E)",
+              "amounts": {
+                "2024-12-02": 66586,
+                "2026-01-28": 68251,
+                "2027-01-28": 69616
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4 (G5E)",
+              "amounts": {
+                "2024-12-02": 70779,
+                "2026-01-28": 72548,
+                "2027-01-28": 73999
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-12-02": 75340,
+                "2026-01-28": 77224,
+                "2027-01-28": 78768
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2024-12-02": 80224,
+                "2026-01-28": 82230,
+                "2027-01-28": 83874
+              }
+            },
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2024-12-02": 86123,
+                "2026-01-28": 88276,
+                "2027-01-28": 90042
+              }
+            },
+            {
+              "step": "8",
+              "label": "Step 8",
+              "amounts": {
+                "2024-12-02": 90960,
+                "2026-01-28": 93234,
+                "2027-01-28": 95099
+              }
+            },
+            {
+              "step": "9",
+              "label": "Step 9 (G3M)",
+              "amounts": {
+                "2024-12-02": 97920,
+                "2026-01-28": 100368,
+                "2027-01-28": 102475
+              }
+            },
+            {
+              "step": "10",
+              "label": "Step 10 (G3+M, G4M, G5M)",
+              "amounts": {
+                "2024-12-02": 103086,
+                "2026-01-28": 105686,
+                "2027-01-28": 107886
+              }
+            }
+          ]
+        },
+        {
+          "id": "stca-untrained",
+          "name": "Base Scale – Untrained Teachers",
+          "columns": [
+            "2024-12-02",
+            "2026-01-28",
+            "2027-01-28"
+          ],
+          "steps": [
+            {
+              "step": "U1",
+              "label": "U1 (G1, G2, G3E)",
+              "amounts": {
+                "2024-12-02": 53155,
+                "2026-01-28": 54484,
+                "2027-01-28": 55574
+              }
+            },
+            {
+              "step": "U2",
+              "label": "U2",
+              "amounts": {
+                "2024-12-02": 55316,
+                "2026-01-28": 56699,
+                "2027-01-28": 57833
+              }
+            },
+            {
+              "step": "U3",
+              "label": "U3 (G4E)",
+              "amounts": {
+                "2024-12-02": 60327,
+                "2026-01-28": 61835,
+                "2027-01-28": 63072
+              }
+            },
+            {
+              "step": "U4",
+              "label": "U4 (G5E)",
+              "amounts": {
+                "2024-12-02": 61954,
+                "2026-01-28": 63503,
+                "2027-01-28": 64773
+              }
+            },
+            {
+              "step": "U5",
+              "label": "U5",
+              "amounts": {
+                "2024-12-02": 64457,
+                "2026-01-28": 66068,
+                "2027-01-28": 67390
+              }
+            },
+            {
+              "step": "U6",
+              "label": "U6",
+              "amounts": {
+                "2024-12-02": 68213,
+                "2026-01-28": 69918,
+                "2027-01-28": 71317
+              }
+            },
+            {
+              "step": "U7",
+              "label": "U7 (G1M)",
+              "amounts": {
+                "2024-12-02": 73594,
+                "2026-01-28": 75434,
+                "2027-01-28": 76943
+              }
+            },
+            {
+              "step": "U8",
+              "label": "U8 (G2M)",
+              "amounts": {
+                "2024-12-02": 78976,
+                "2026-01-28": 80950,
+                "2027-01-28": 82569
+              }
+            },
+            {
+              "step": "U9",
+              "label": "U9",
+              "amounts": {
+                "2024-12-02": 85735,
+                "2026-01-28": 87878,
+                "2027-01-28": 89636
+              }
+            },
+            {
+              "step": "U10",
+              "label": "U10 (G3, G4, G5M)",
+              "amounts": {
+                "2024-12-02": 88864,
+                "2026-01-28": 91086,
+                "2027-01-28": 92907
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school-teacher-aide",
+      "name_zh": "学校教师助理（SSSCA）",
+      "name_en": "Teacher Aides (Support Staff in Schools’ CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Support Staff in Schools’ Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-03-24",
+        "end": "2028-06-23"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-06/Support%20Staff%20in%20Schools%27%20Collective%20Agreement%202026-2028_0.pdf?VersionId=s6eMkn9ZMwitGGJPs9nXMYBKIy3zJS2H",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202608",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/support-staff-schools-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "hourly",
+      "ordinary_hours_note": "Printed as hourly rates. CA note: indicative annual salary for a 40 hour/week, 52 week/year full-time employee = hourly rate × 2,080. For grandparented 37.5-hour full-time employees, divide (hourly × 2080) by 1955.357. Employers may treat printed rates as minima and agree a rate above the grade maximum.",
+      "current_effective_from": "2026-03-24",
+      "pending_increase": {
+        "effective_from": "2027-03-23",
+        "note": "Printed 23 March 2027 hourly column. Education Circular 2026/08 describes this as a further 2.0%."
+      },
+      "notes": [
+        "Minimum step: Work Matrix A = A1; B = B-C1; C = B-C6; D = D1.",
+        "A 40-hour full-time week is now the standard; 37.5-hour full-time arrangements are grandparented (SSSCA / Circular 2026/08)."
+      ],
+      "scales": [
+        {
+          "id": "teacher-aide",
+          "name": "Teacher Aide Pay Rates (clause 3A.4.3)",
+          "columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "hourly_columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "steps": [
+            {
+              "step": "A-1",
+              "label": "Grade A step 1",
+              "amounts": {
+                "2023-12-01": 25.18,
+                "2026-03-24": 25.81,
+                "2027-03-23": 26.33
+              }
+            },
+            {
+              "step": "A-2",
+              "label": "Grade A step 2",
+              "amounts": {
+                "2023-12-01": 25.64,
+                "2026-03-24": 26.28,
+                "2027-03-23": 26.81
+              }
+            },
+            {
+              "step": "B-C-1",
+              "label": "Grade B-C step 1",
+              "amounts": {
+                "2023-12-01": 26.59,
+                "2026-03-24": 27.25,
+                "2027-03-23": 27.8
+              }
+            },
+            {
+              "step": "B-C-2",
+              "label": "Grade B-C step 2",
+              "amounts": {
+                "2023-12-01": 27.34,
+                "2026-03-24": 28.02,
+                "2027-03-23": 28.58
+              }
+            },
+            {
+              "step": "B-C-3",
+              "label": "Grade B-C step 3",
+              "amounts": {
+                "2023-12-01": 28.1,
+                "2026-03-24": 28.8,
+                "2027-03-23": 29.38
+              }
+            },
+            {
+              "step": "B-C-4",
+              "label": "Grade B-C step 4",
+              "amounts": {
+                "2023-12-01": 28.85,
+                "2026-03-24": 29.57,
+                "2027-03-23": 30.16
+              }
+            },
+            {
+              "step": "B-C-5",
+              "label": "Grade B-C step 5",
+              "amounts": {
+                "2023-12-01": 29.6,
+                "2026-03-24": 30.34,
+                "2027-03-23": 30.95
+              }
+            },
+            {
+              "step": "B-C-6",
+              "label": "Grade B-C step 6",
+              "amounts": {
+                "2023-12-01": 30.22,
+                "2026-03-24": 30.98,
+                "2027-03-23": 31.6
+              }
+            },
+            {
+              "step": "B-C-7",
+              "label": "Grade B-C step 7",
+              "amounts": {
+                "2023-12-01": 30.97,
+                "2026-03-24": 31.74,
+                "2027-03-23": 32.38
+              }
+            },
+            {
+              "step": "B-C-8",
+              "label": "Grade B-C step 8",
+              "amounts": {
+                "2023-12-01": 31.72,
+                "2026-03-24": 32.51,
+                "2027-03-23": 33.16
+              }
+            },
+            {
+              "step": "B-C-9",
+              "label": "Grade B-C step 9",
+              "amounts": {
+                "2023-12-01": 32.47,
+                "2026-03-24": 33.28,
+                "2027-03-23": 33.95
+              }
+            },
+            {
+              "step": "B-C-10",
+              "label": "Grade B-C step 10",
+              "amounts": {
+                "2023-12-01": 33.23,
+                "2026-03-24": 34.06,
+                "2027-03-23": 34.74
+              }
+            },
+            {
+              "step": "D-1",
+              "label": "Grade D step 1",
+              "amounts": {
+                "2023-12-01": 33.23,
+                "2026-03-24": 34.06,
+                "2027-03-23": 34.74
+              }
+            },
+            {
+              "step": "D-2",
+              "label": "Grade D step 2",
+              "amounts": {
+                "2023-12-01": 34.34,
+                "2026-03-24": 35.2,
+                "2027-03-23": 35.9
+              }
+            },
+            {
+              "step": "D-3",
+              "label": "Grade D step 3",
+              "amounts": {
+                "2023-12-01": 35.45,
+                "2026-03-24": 36.34,
+                "2027-03-23": 37.06
+              }
+            },
+            {
+              "step": "D-4",
+              "label": "Grade D step 4",
+              "amounts": {
+                "2023-12-01": 36.56,
+                "2026-03-24": 37.47,
+                "2027-03-23": 38.22
+              }
+            },
+            {
+              "step": "D-5",
+              "label": "Grade D step 5",
+              "amounts": {
+                "2023-12-01": 37.14,
+                "2026-03-24": 38.07,
+                "2027-03-23": 38.83
+              }
+            },
+            {
+              "step": "D-6",
+              "label": "Grade D step 6",
+              "amounts": {
+                "2023-12-01": 38.77,
+                "2026-03-24": 39.74,
+                "2027-03-23": 40.53
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school-admin-support",
+      "name_zh": "学校行政支持人员（SSSCA）",
+      "name_en": "Administration Support Staff (Support Staff in Schools’ CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Support Staff in Schools’ Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-03-24",
+        "end": "2028-06-23"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-06/Support%20Staff%20in%20Schools%27%20Collective%20Agreement%202026-2028_0.pdf?VersionId=s6eMkn9ZMwitGGJPs9nXMYBKIy3zJS2H",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202608",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/support-staff-schools-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "hourly",
+      "ordinary_hours_note": "Printed as hourly rates. Indicative annual = hourly × 2,080.",
+      "current_effective_from": "2026-03-24",
+      "pending_increase": {
+        "effective_from": "2027-03-23"
+      },
+      "notes": [
+        "Grade banding is taken from Education Circular 2026/08 Annex, which matches the CA amounts. Grades 2–4 share a continuous step sequence (steps 1–13). Grades 5, 6 and 7 each have their own step 1 onwards."
+      ],
+      "scales": [
+        {
+          "id": "admin",
+          "name": "Administration Support Staff Pay Rates (clause 3B.3.3)",
+          "columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "hourly_columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "steps": [
+            {
+              "step": "1-1",
+              "label": "Grade 1 step 1",
+              "amounts": {
+                "2023-12-01": 25.63,
+                "2026-03-24": 26.27,
+                "2027-03-23": 26.8
+              }
+            },
+            {
+              "step": "2-1",
+              "label": "Grade 2 step 1",
+              "amounts": {
+                "2023-12-01": 26.45,
+                "2026-03-24": 27.11,
+                "2027-03-23": 27.65
+              }
+            },
+            {
+              "step": "2-2",
+              "label": "Grade 2 step 2",
+              "amounts": {
+                "2023-12-01": 27.26,
+                "2026-03-24": 27.94,
+                "2027-03-23": 28.5
+              }
+            },
+            {
+              "step": "2-3",
+              "label": "Grade 2 step 3",
+              "amounts": {
+                "2023-12-01": 28.08,
+                "2026-03-24": 28.78,
+                "2027-03-23": 29.36
+              }
+            },
+            {
+              "step": "2-4",
+              "label": "Grade 2 step 4",
+              "amounts": {
+                "2023-12-01": 28.89,
+                "2026-03-24": 29.61,
+                "2027-03-23": 30.2
+              }
+            },
+            {
+              "step": "3-5",
+              "label": "Grade 3 step 5",
+              "amounts": {
+                "2023-12-01": 29.52,
+                "2026-03-24": 30.26,
+                "2027-03-23": 30.86
+              }
+            },
+            {
+              "step": "3-6",
+              "label": "Grade 3 step 6",
+              "amounts": {
+                "2023-12-01": 30.15,
+                "2026-03-24": 30.9,
+                "2027-03-23": 31.52
+              }
+            },
+            {
+              "step": "3-7",
+              "label": "Grade 3 step 7",
+              "amounts": {
+                "2023-12-01": 30.78,
+                "2026-03-24": 31.55,
+                "2027-03-23": 32.18
+              }
+            },
+            {
+              "step": "3-8",
+              "label": "Grade 3 step 8",
+              "amounts": {
+                "2023-12-01": 31.41,
+                "2026-03-24": 32.2,
+                "2027-03-23": 32.84
+              }
+            },
+            {
+              "step": "4-9",
+              "label": "Grade 4 step 9",
+              "amounts": {
+                "2023-12-01": 32.27,
+                "2026-03-24": 33.08,
+                "2027-03-23": 33.74
+              }
+            },
+            {
+              "step": "4-10",
+              "label": "Grade 4 step 10",
+              "amounts": {
+                "2023-12-01": 33.15,
+                "2026-03-24": 33.98,
+                "2027-03-23": 34.66
+              }
+            },
+            {
+              "step": "4-11",
+              "label": "Grade 4 step 11",
+              "amounts": {
+                "2023-12-01": 34.03,
+                "2026-03-24": 34.88,
+                "2027-03-23": 35.58
+              }
+            },
+            {
+              "step": "4-12",
+              "label": "Grade 4 step 12",
+              "amounts": {
+                "2023-12-01": 34.93,
+                "2026-03-24": 35.8,
+                "2027-03-23": 36.52
+              }
+            },
+            {
+              "step": "4-13",
+              "label": "Grade 4 step 13",
+              "amounts": {
+                "2023-12-01": 35.85,
+                "2026-03-24": 36.75,
+                "2027-03-23": 37.48
+              }
+            },
+            {
+              "step": "5-1",
+              "label": "Grade 5 step 1",
+              "amounts": {
+                "2023-12-01": 37.13,
+                "2026-03-24": 38.06,
+                "2027-03-23": 38.82
+              }
+            },
+            {
+              "step": "5-2",
+              "label": "Grade 5 step 2",
+              "amounts": {
+                "2023-12-01": 38.43,
+                "2026-03-24": 39.39,
+                "2027-03-23": 40.18
+              }
+            },
+            {
+              "step": "5-3",
+              "label": "Grade 5 step 3",
+              "amounts": {
+                "2023-12-01": 39.72,
+                "2026-03-24": 40.71,
+                "2027-03-23": 41.53
+              }
+            },
+            {
+              "step": "5-4",
+              "label": "Grade 5 step 4",
+              "amounts": {
+                "2023-12-01": 41.01,
+                "2026-03-24": 42.04,
+                "2027-03-23": 42.88
+              }
+            },
+            {
+              "step": "5-5",
+              "label": "Grade 5 step 5",
+              "amounts": {
+                "2023-12-01": 42.29,
+                "2026-03-24": 43.35,
+                "2027-03-23": 44.21
+              }
+            },
+            {
+              "step": "5-6",
+              "label": "Grade 5 step 6",
+              "amounts": {
+                "2023-12-01": 43.58,
+                "2026-03-24": 44.67,
+                "2027-03-23": 45.56
+              }
+            },
+            {
+              "step": "5-7",
+              "label": "Grade 5 step 7",
+              "amounts": {
+                "2023-12-01": 44.87,
+                "2026-03-24": 45.99,
+                "2027-03-23": 46.91
+              }
+            },
+            {
+              "step": "6-1",
+              "label": "Grade 6 step 1",
+              "amounts": {
+                "2023-12-01": 45.87,
+                "2026-03-24": 47.02,
+                "2027-03-23": 47.96
+              }
+            },
+            {
+              "step": "6-2",
+              "label": "Grade 6 step 2",
+              "amounts": {
+                "2023-12-01": 46.87,
+                "2026-03-24": 48.04,
+                "2027-03-23": 49.0
+              }
+            },
+            {
+              "step": "6-3",
+              "label": "Grade 6 step 3",
+              "amounts": {
+                "2023-12-01": 47.86,
+                "2026-03-24": 49.06,
+                "2027-03-23": 50.04
+              }
+            },
+            {
+              "step": "6-4",
+              "label": "Grade 6 step 4",
+              "amounts": {
+                "2023-12-01": 48.86,
+                "2026-03-24": 50.08,
+                "2027-03-23": 51.08
+              }
+            },
+            {
+              "step": "7-1",
+              "label": "Grade 7 step 1",
+              "amounts": {
+                "2023-12-01": 50.59,
+                "2026-03-24": 51.85,
+                "2027-03-23": 52.89
+              }
+            },
+            {
+              "step": "7-2",
+              "label": "Grade 7 step 2",
+              "amounts": {
+                "2023-12-01": 52.33,
+                "2026-03-24": 53.64,
+                "2027-03-23": 54.71
+              }
+            },
+            {
+              "step": "7-3",
+              "label": "Grade 7 step 3",
+              "amounts": {
+                "2023-12-01": 54.06,
+                "2026-03-24": 55.41,
+                "2027-03-23": 56.52
+              }
+            },
+            {
+              "step": "7-4",
+              "label": "Grade 7 step 4",
+              "amounts": {
+                "2023-12-01": 55.8,
+                "2026-03-24": 57.2,
+                "2027-03-23": 58.34
+              }
+            },
+            {
+              "step": "7-5",
+              "label": "Grade 7 step 5",
+              "amounts": {
+                "2023-12-01": 57.53,
+                "2026-03-24": 58.97,
+                "2027-03-23": 60.15
+              }
+            },
+            {
+              "step": "7-6",
+              "label": "Grade 7 step 6",
+              "amounts": {
+                "2023-12-01": 59.27,
+                "2026-03-24": 60.75,
+                "2027-03-23": 61.97
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school-librarian",
+      "name_zh": "学校图书馆员与助理（SSSCA）",
+      "name_en": "Librarians and Library Assistants (Support Staff in Schools’ CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Support Staff in Schools’ Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-03-24",
+        "end": "2028-06-23"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-06/Support%20Staff%20in%20Schools%27%20Collective%20Agreement%202026-2028_0.pdf?VersionId=s6eMkn9ZMwitGGJPs9nXMYBKIy3zJS2H",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202608",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/support-staff-schools-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "hourly",
+      "ordinary_hours_note": "Printed as hourly rates. Indicative annual = hourly × 2,080.",
+      "current_effective_from": "2026-03-24",
+      "pending_increase": {
+        "effective_from": "2027-03-23"
+      },
+      "scales": [
+        {
+          "id": "librarian",
+          "name": "Librarian and library assistant pay rates (clause 3C.3.3)",
+          "columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "hourly_columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "steps": [
+            {
+              "step": "A-1",
+              "label": "Grade A step 1",
+              "amounts": {
+                "2023-12-01": 27.87,
+                "2026-03-24": 28.57,
+                "2027-03-23": 29.14
+              }
+            },
+            {
+              "step": "A-2",
+              "label": "Grade A step 2",
+              "amounts": {
+                "2023-12-01": 29.18,
+                "2026-03-24": 29.91,
+                "2027-03-23": 30.51
+              }
+            },
+            {
+              "step": "A-3",
+              "label": "Grade A step 3",
+              "amounts": {
+                "2023-12-01": 30.57,
+                "2026-03-24": 31.33,
+                "2027-03-23": 31.96
+              }
+            },
+            {
+              "step": "B-1",
+              "label": "Grade B step 1",
+              "amounts": {
+                "2023-12-01": 30.96,
+                "2026-03-24": 31.73,
+                "2027-03-23": 32.37
+              }
+            },
+            {
+              "step": "B-2",
+              "label": "Grade B step 2",
+              "amounts": {
+                "2023-12-01": 31.82,
+                "2026-03-24": 32.62,
+                "2027-03-23": 33.27
+              }
+            },
+            {
+              "step": "B-3",
+              "label": "Grade B step 3",
+              "amounts": {
+                "2023-12-01": 32.72,
+                "2026-03-24": 33.54,
+                "2027-03-23": 34.21
+              }
+            },
+            {
+              "step": "B-4",
+              "label": "Grade B step 4",
+              "amounts": {
+                "2023-12-01": 33.66,
+                "2026-03-24": 34.5,
+                "2027-03-23": 35.19
+              }
+            },
+            {
+              "step": "B-5",
+              "label": "Grade B step 5",
+              "amounts": {
+                "2023-12-01": 34.64,
+                "2026-03-24": 35.51,
+                "2027-03-23": 36.22
+              }
+            },
+            {
+              "step": "B-6",
+              "label": "Grade B step 6",
+              "amounts": {
+                "2023-12-01": 35.66,
+                "2026-03-24": 36.55,
+                "2027-03-23": 37.28
+              }
+            },
+            {
+              "step": "B-7",
+              "label": "Grade B step 7",
+              "amounts": {
+                "2023-12-01": 36.67,
+                "2026-03-24": 37.59,
+                "2027-03-23": 38.34
+              }
+            },
+            {
+              "step": "C-1",
+              "label": "Grade C step 1",
+              "amounts": {
+                "2023-12-01": 39.17,
+                "2026-03-24": 40.15,
+                "2027-03-23": 40.95
+              }
+            },
+            {
+              "step": "C-2",
+              "label": "Grade C step 2",
+              "amounts": {
+                "2023-12-01": 40.52,
+                "2026-03-24": 41.53,
+                "2027-03-23": 42.36
+              }
+            },
+            {
+              "step": "C-3",
+              "label": "Grade C step 3",
+              "amounts": {
+                "2023-12-01": 41.92,
+                "2026-03-24": 42.97,
+                "2027-03-23": 43.83
+              }
+            },
+            {
+              "step": "C-4",
+              "label": "Grade C step 4",
+              "amounts": {
+                "2023-12-01": 43.37,
+                "2026-03-24": 44.45,
+                "2027-03-23": 45.34
+              }
+            },
+            {
+              "step": "C-5",
+              "label": "Grade C step 5",
+              "amounts": {
+                "2023-12-01": 44.87,
+                "2026-03-24": 45.99,
+                "2027-03-23": 46.91
+              }
+            },
+            {
+              "step": "D-1",
+              "label": "Grade D step 1",
+              "amounts": {
+                "2023-12-01": 47.54,
+                "2026-03-24": 48.73,
+                "2027-03-23": 49.7
+              }
+            },
+            {
+              "step": "D-2",
+              "label": "Grade D step 2",
+              "amounts": {
+                "2023-12-01": 48.95,
+                "2026-03-24": 50.17,
+                "2027-03-23": 51.18
+              }
+            },
+            {
+              "step": "D-3",
+              "label": "Grade D step 3",
+              "amounts": {
+                "2023-12-01": 50.4,
+                "2026-03-24": 51.66,
+                "2027-03-23": 52.69
+              }
+            },
+            {
+              "step": "D-4",
+              "label": "Grade D step 4",
+              "amounts": {
+                "2023-12-01": 51.89,
+                "2026-03-24": 53.19,
+                "2027-03-23": 54.25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school-science-technician",
+      "name_zh": "学校实验技术员（SSSCA）",
+      "name_en": "Science Technicians (Support Staff in Schools’ CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Support Staff in Schools’ Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-03-24",
+        "end": "2028-06-23"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-06/Support%20Staff%20in%20Schools%27%20Collective%20Agreement%202026-2028_0.pdf?VersionId=s6eMkn9ZMwitGGJPs9nXMYBKIy3zJS2H",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202608",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/support-staff-schools-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "hourly",
+      "ordinary_hours_note": "Printed as hourly rates. Indicative annual = hourly × 2,080.",
+      "current_effective_from": "2026-03-24",
+      "pending_increase": {
+        "effective_from": "2027-03-23"
+      },
+      "scales": [
+        {
+          "id": "science-tech",
+          "name": "Science technician pay rates (clause 3D.3.3)",
+          "columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "hourly_columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "steps": [
+            {
+              "step": "1-1",
+              "label": "Grade 1 step 1",
+              "amounts": {
+                "2023-12-01": 27.87,
+                "2026-03-24": 28.57,
+                "2027-03-23": 29.14
+              }
+            },
+            {
+              "step": "1-2",
+              "label": "Grade 1 step 2",
+              "amounts": {
+                "2023-12-01": 29.18,
+                "2026-03-24": 29.91,
+                "2027-03-23": 30.51
+              }
+            },
+            {
+              "step": "1-3",
+              "label": "Grade 1 step 3",
+              "amounts": {
+                "2023-12-01": 30.57,
+                "2026-03-24": 31.33,
+                "2027-03-23": 31.96
+              }
+            },
+            {
+              "step": "2-1",
+              "label": "Grade 2 step 1",
+              "amounts": {
+                "2023-12-01": 31.47,
+                "2026-03-24": 32.26,
+                "2027-03-23": 32.9
+              }
+            },
+            {
+              "step": "2-2",
+              "label": "Grade 2 step 2",
+              "amounts": {
+                "2023-12-01": 32.36,
+                "2026-03-24": 33.17,
+                "2027-03-23": 33.83
+              }
+            },
+            {
+              "step": "2-3",
+              "label": "Grade 2 step 3",
+              "amounts": {
+                "2023-12-01": 33.28,
+                "2026-03-24": 34.11,
+                "2027-03-23": 34.79
+              }
+            },
+            {
+              "step": "2-4",
+              "label": "Grade 2 step 4",
+              "amounts": {
+                "2023-12-01": 34.25,
+                "2026-03-24": 35.11,
+                "2027-03-23": 35.81
+              }
+            },
+            {
+              "step": "2-5",
+              "label": "Grade 2 step 5",
+              "amounts": {
+                "2023-12-01": 35.25,
+                "2026-03-24": 36.13,
+                "2027-03-23": 36.85
+              }
+            },
+            {
+              "step": "2-6",
+              "label": "Grade 2 step 6",
+              "amounts": {
+                "2023-12-01": 36.28,
+                "2026-03-24": 37.19,
+                "2027-03-23": 37.93
+              }
+            },
+            {
+              "step": "2-7",
+              "label": "Grade 2 step 7",
+              "amounts": {
+                "2023-12-01": 37.34,
+                "2026-03-24": 38.27,
+                "2027-03-23": 39.04
+              }
+            },
+            {
+              "step": "2-8",
+              "label": "Grade 2 step 8",
+              "amounts": {
+                "2023-12-01": 38.39,
+                "2026-03-24": 39.35,
+                "2027-03-23": 40.14
+              }
+            },
+            {
+              "step": "3-1",
+              "label": "Grade 3 step 1",
+              "amounts": {
+                "2023-12-01": 40.2,
+                "2026-03-24": 41.21,
+                "2027-03-23": 42.03
+              }
+            },
+            {
+              "step": "3-2",
+              "label": "Grade 3 step 2",
+              "amounts": {
+                "2023-12-01": 41.35,
+                "2026-03-24": 42.38,
+                "2027-03-23": 43.23
+              }
+            },
+            {
+              "step": "3-3",
+              "label": "Grade 3 step 3",
+              "amounts": {
+                "2023-12-01": 42.52,
+                "2026-03-24": 43.58,
+                "2027-03-23": 44.45
+              }
+            },
+            {
+              "step": "3-4",
+              "label": "Grade 3 step 4",
+              "amounts": {
+                "2023-12-01": 43.73,
+                "2026-03-24": 44.82,
+                "2027-03-23": 45.72
+              }
+            },
+            {
+              "step": "3-5",
+              "label": "Grade 3 step 5",
+              "amounts": {
+                "2023-12-01": 44.97,
+                "2026-03-24": 46.09,
+                "2027-03-23": 47.02
+              }
+            },
+            {
+              "step": "3-6",
+              "label": "Grade 3 step 6",
+              "amounts": {
+                "2023-12-01": 46.26,
+                "2026-03-24": 47.42,
+                "2027-03-23": 48.36
+              }
+            },
+            {
+              "step": "3-7",
+              "label": "Grade 3 step 7",
+              "amounts": {
+                "2023-12-01": 47.58,
+                "2026-03-24": 48.77,
+                "2027-03-23": 49.74
+              }
+            },
+            {
+              "step": "3-8",
+              "label": "Grade 3 step 8",
+              "amounts": {
+                "2023-12-01": 48.95,
+                "2026-03-24": 50.17,
+                "2027-03-23": 51.18
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school-other-support",
+      "name_zh": "其他学校支持人员（SSSCA Part 3E）",
+      "name_en": "Other Support Staff (Support Staff in Schools’ CA Part 3E)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Support Staff in Schools’ Collective Agreement 2026–2028",
+      "term": {
+        "start": "2026-03-24",
+        "end": "2028-06-23"
+      },
+      "source_urls": [
+        "https://web-assets.education.govt.nz/s3fs-public/2026-06/Support%20Staff%20in%20Schools%27%20Collective%20Agreement%202026-2028_0.pdf?VersionId=s6eMkn9ZMwitGGJPs9nXMYBKIy3zJS2H",
+        "https://www.education.govt.nz/our-work/publications/education-circulars/education-circular-202608",
+        "https://www.education.govt.nz/education-professionals/schools-year-0-13/people-and-employment/support-staff-schools-collective-and-individual-employment-agreements"
+      ],
+      "pay_basis": "hourly",
+      "ordinary_hours_note": "Printed as hourly rates (minima). Indicative annual = hourly × 2,080. Grade D step 7 is a Range of Rates top printed rate; salary within the range is reviewed annually.",
+      "current_effective_from": "2026-03-24",
+      "pending_increase": {
+        "effective_from": "2027-03-23"
+      },
+      "notes": [
+        "Grade A or B: minimum and maximum are step 1. Grade C: minimum step 2, maximum step 6. Grade D: minimum step 6; step 7 is the top of a range of rates.",
+        "Education Circular 2026/08: non-teaching guidance counsellors who hold a relevant Level 7+ qualification or are a registered psychologist translate at a minimum of Grade D step 6."
+      ],
+      "scales": [
+        {
+          "id": "other-support",
+          "name": "Pay rates for position elements table (clause 3E.4)",
+          "columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "hourly_columns": [
+            "2023-12-01",
+            "2026-03-24",
+            "2027-03-23"
+          ],
+          "steps": [
+            {
+              "step": "A-B-1",
+              "label": "Grade A-B step 1",
+              "amounts": {
+                "2023-12-01": 24.83,
+                "2026-03-24": 25.45,
+                "2027-03-23": 25.96
+              }
+            },
+            {
+              "step": "C-2",
+              "label": "Grade C step 2",
+              "amounts": {
+                "2023-12-01": 25.6,
+                "2026-03-24": 26.24,
+                "2027-03-23": 26.76
+              }
+            },
+            {
+              "step": "C-3",
+              "label": "Grade C step 3",
+              "amounts": {
+                "2023-12-01": 26.47,
+                "2026-03-24": 27.13,
+                "2027-03-23": 27.67
+              }
+            },
+            {
+              "step": "C-4",
+              "label": "Grade C step 4",
+              "amounts": {
+                "2023-12-01": 27.34,
+                "2026-03-24": 28.02,
+                "2027-03-23": 28.58
+              }
+            },
+            {
+              "step": "C-5",
+              "label": "Grade C step 5",
+              "amounts": {
+                "2023-12-01": 28.21,
+                "2026-03-24": 28.92,
+                "2027-03-23": 29.49
+              }
+            },
+            {
+              "step": "C-D-6",
+              "label": "Grade C-D step 6",
+              "amounts": {
+                "2023-12-01": 29.08,
+                "2026-03-24": 29.81,
+                "2027-03-23": 30.4
+              }
+            },
+            {
+              "step": "D-7",
+              "label": "Grade D step 7 (Range of Rates top)",
+              "amounts": {
+                "2023-12-01": 38.77,
+                "2026-03-24": 39.74,
+                "2027-03-23": 40.53
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aphst-allied-health",
+      "name_zh": "专职医疗（物理治疗、社工等，Health NZ / PSA APHST）",
+      "name_en": "Allied, Public Health, Scientific and Technical — degree-based core scale (PSA APHST CA)",
+      "verification": "verified",
+      "integration_fit": "good",
+      "agreement": "Health NZ | Te Whatu Ora and PSA Allied, Public Health, Scientific & Technical Collective Agreement 2025–2027",
+      "term": {
+        "start": "2025-12-01",
+        "end": "2027-10-31"
+      },
+      "source_urls": [
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/psa-aphst-ca-1dec2025-31oct2027-signed.pdf",
+        "https://static.info.content.health.nz/docs/health-pros/employment-agreements/psa-aphst-ca-1dec2025-31oct2027-unsigned.pdf",
+        "https://www.healthnz.govt.nz/health-professionals/employment-information-agreements/employment-agreements"
+      ],
+      "pay_basis": "annual",
+      "ordinary_hours_note": "Clause 5.1: salaries are expressed in full-time forty hour per week rates. Where normal hours are less than 40, salary is a proportion of the 40-hour rate.",
+      "current_effective_from": "2025-12-01",
+      "pending_increase": {
+        "effective_from": "2026-12-07",
+        "note": "Printed 7 December 2026 column. As at the research date (14 November 2026) this increase is imminent."
+      },
+      "notes": [
+        "This core scale is the main step scale for degree-qualified allied health roles under this CA, including (among others) physiotherapists, occupational therapists and social workers who are PSA members at Health NZ. Commencing step depends on the minimum professional qualification (Step 1, 2 or 3).",
+        "Steps 1–7 progress by annual increment. Step 8 is an Additional Progression Step (objectives). Steps 9–10 are Recognition Steps (Appendix A process).",
+        "A Medical Laboratory Scientist intern rate is also printed: $71,070 / $72,847 / $74,304 (2 Sept 2024 / 1 Dec 2025 / 7 Dec 2026).",
+        "Non-degree, assistant and several profession-specific scales also exist in this CA and were not fully transcribed here.",
+        "Some physiotherapists and social workers are instead covered by APEX collective agreements (for example the APEX physiotherapy CA, 1 November 2025 to 31 October 2027, is listed on the Health NZ employment-agreements page). Those APEX rates were not transcribed in this research. The tool should ask which CA applies."
+      ],
+      "scales": [
+        {
+          "id": "aphst-core",
+          "name": "Clinical/degree-qualified core salary scale (clause 5.2)",
+          "columns": [
+            "2024-09-02",
+            "2025-12-01",
+            "2026-12-07"
+          ],
+          "steps": [
+            {
+              "step": "10",
+              "label": "Recognition step 10",
+              "amounts": {
+                "2024-09-02": 116390,
+                "2025-12-01": 119300,
+                "2026-12-07": 121686
+              }
+            },
+            {
+              "step": "9",
+              "label": "Recognition step 9",
+              "amounts": {
+                "2024-09-02": 113300,
+                "2025-12-01": 116133,
+                "2026-12-07": 118455
+              }
+            },
+            {
+              "step": "8",
+              "label": "Additional Progression Step 8",
+              "amounts": {
+                "2024-09-02": 110210,
+                "2025-12-01": 112965,
+                "2026-12-07": 115225
+              }
+            },
+            {
+              "step": "7",
+              "label": "Step 7",
+              "amounts": {
+                "2024-09-02": 107600,
+                "2025-12-01": 110290,
+                "2026-12-07": 112496
+              }
+            },
+            {
+              "step": "6",
+              "label": "Step 6",
+              "amounts": {
+                "2024-09-02": 104794,
+                "2025-12-01": 107414,
+                "2026-12-07": 109562
+              }
+            },
+            {
+              "step": "5",
+              "label": "Step 5",
+              "amounts": {
+                "2024-09-02": 100163,
+                "2025-12-01": 102667,
+                "2026-12-07": 104720
+              }
+            },
+            {
+              "step": "4",
+              "label": "Step 4",
+              "amounts": {
+                "2024-09-02": 94394,
+                "2025-12-01": 96754,
+                "2026-12-07": 98689
+              }
+            },
+            {
+              "step": "3",
+              "label": "Step 3",
+              "amounts": {
+                "2024-09-02": 88627,
+                "2025-12-01": 90843,
+                "2026-12-07": 92660
+              }
+            },
+            {
+              "step": "2",
+              "label": "Step 2",
+              "amounts": {
+                "2024-09-02": 82856,
+                "2025-12-01": 84927,
+                "2026-12-07": 86626
+              }
+            },
+            {
+              "step": "1",
+              "label": "Step 1",
+              "amounts": {
+                "2024-09-02": 77087,
+                "2025-12-01": 79014,
+                "2026-12-07": 80594
+              }
+            }
+          ]
+        },
+        {
+          "id": "aphst-designated",
+          "name": "Designated positions scale (clause 5.2)",
+          "columns": [
+            "2024-09-02",
+            "2025-12-01",
+            "2026-12-07"
+          ],
+          "steps": [
+            {
+              "step": "F-4*",
+              "label": "Designated F step 4*",
+              "amounts": {
+                "2024-09-02": 151410,
+                "2025-12-01": 155195,
+                "2026-12-07": 158299
+              }
+            },
+            {
+              "step": "F-3",
+              "label": "Designated F step 3",
+              "amounts": {
+                "2024-09-02": 147290,
+                "2025-12-01": 150972,
+                "2026-12-07": 153992
+              }
+            },
+            {
+              "step": "F-2",
+              "label": "Designated F step 2",
+              "amounts": {
+                "2024-09-02": 143170,
+                "2025-12-01": 146749,
+                "2026-12-07": 149684
+              }
+            },
+            {
+              "step": "F-1",
+              "label": "Designated F step 1",
+              "amounts": {
+                "2024-09-02": 139050,
+                "2025-12-01": 142526,
+                "2026-12-07": 145377
+              }
+            },
+            {
+              "step": "E-3",
+              "label": "Designated E step 3",
+              "amounts": {
+                "2024-09-02": 139050,
+                "2025-12-01": 142526,
+                "2026-12-07": 145377
+              }
+            },
+            {
+              "step": "E-2",
+              "label": "Designated E step 2",
+              "amounts": {
+                "2024-09-02": 135960,
+                "2025-12-01": 139359,
+                "2026-12-07": 142146
+              }
+            },
+            {
+              "step": "E-1",
+              "label": "Designated E step 1",
+              "amounts": {
+                "2024-09-02": 132870,
+                "2025-12-01": 136192,
+                "2026-12-07": 138916
+              }
+            },
+            {
+              "step": "D-3",
+              "label": "Designated D step 3",
+              "amounts": {
+                "2024-09-02": 132870,
+                "2025-12-01": 136192,
+                "2026-12-07": 138916
+              }
+            },
+            {
+              "step": "D-2",
+              "label": "Designated D step 2",
+              "amounts": {
+                "2024-09-02": 130295,
+                "2025-12-01": 133552,
+                "2026-12-07": 136223
+              }
+            },
+            {
+              "step": "D-1",
+              "label": "Designated D step 1",
+              "amounts": {
+                "2024-09-02": 127720,
+                "2025-12-01": 130913,
+                "2026-12-07": 133531
+              }
+            },
+            {
+              "step": "C-3",
+              "label": "Designated C step 3",
+              "amounts": {
+                "2024-09-02": 127720,
+                "2025-12-01": 130913,
+                "2026-12-07": 133531
+              }
+            },
+            {
+              "step": "C-2",
+              "label": "Designated C step 2",
+              "amounts": {
+                "2024-09-02": 125145,
+                "2025-12-01": 128274,
+                "2026-12-07": 130839
+              }
+            },
+            {
+              "step": "C-1",
+              "label": "Designated C step 1",
+              "amounts": {
+                "2024-09-02": 122570,
+                "2025-12-01": 125634,
+                "2026-12-07": 128147
+              }
+            },
+            {
+              "step": "B-3",
+              "label": "Designated B step 3",
+              "amounts": {
+                "2024-09-02": 122570,
+                "2025-12-01": 125634,
+                "2026-12-07": 128147
+              }
+            },
+            {
+              "step": "B-2",
+              "label": "Designated B step 2",
+              "amounts": {
+                "2024-09-02": 119995,
+                "2025-12-01": 122995,
+                "2026-12-07": 125455
+              }
+            },
+            {
+              "step": "B-1",
+              "label": "Designated B step 1",
+              "amounts": {
+                "2024-09-02": 117420,
+                "2025-12-01": 120356,
+                "2026-12-07": 122763
+              }
+            },
+            {
+              "step": "A-3",
+              "label": "Designated A step 3",
+              "amounts": {
+                "2024-09-02": 117420,
+                "2025-12-01": 120356,
+                "2026-12-07": 122763
+              }
+            },
+            {
+              "step": "A-2",
+              "label": "Designated A step 2",
+              "amounts": {
+                "2024-09-02": 114330,
+                "2025-12-01": 117188,
+                "2026-12-07": 119532
+              }
+            },
+            {
+              "step": "A-1",
+              "label": "Designated A step 1",
+              "amounts": {
+                "2024-09-02": 111240,
+                "2025-12-01": 114021,
+                "2026-12-07": 116301
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

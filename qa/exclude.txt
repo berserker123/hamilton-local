@@ -1,8 +1,8 @@
-# Pages this round is allowed to differ from qa/baseline.
-# Remove these lines after Frank approves opt9y and the baseline is recaptured.
-weekend
-living
+# kids-c preview on kids-places-v1. Baselines stay on the published opt9 site.
+# Allowed differences: kids outing photos and credits, the 活动日历 label,
+# and mobile sub-tab bars (including the outing category bar).
 kids
-services
-tools
-home
+mobile/living
+mobile/services
+mobile/tools
+mobile/weekend

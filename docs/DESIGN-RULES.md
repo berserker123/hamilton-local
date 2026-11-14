@@ -34,11 +34,11 @@ Use only images whose author and licence are recorded. Do not invent attribution
 
 ## Sub-tab bars
 
-Every section sub-tab bar uses one full-width rounded track. The items are evenly distributed as equal columns. On a phone the row may scroll sideways when the labels do not fit. Each section keeps its own active-pill colour.
+Every section sub-tab bar uses one full-width rounded track. On a desktop the items are evenly distributed as equal columns. On a phone, a bar of up to three labels stays on one row inside the frame, with smaller type and padding. A longer bar, including the 遛娃好去处 category bar, wraps into evenly spaced rows inside the frame. No label is cut by the border. Each section keeps its own active-pill colour.
 
 实用工具 order: 垃圾清运, 急诊信息, 市区公交, 税后收入, 新移民清单, GST计算, 单位换算, 季节提醒, 其他工具.
 
-周末活动 has 本周精选 and 周末集市 only. Festival items live inside 本周精选. 本周精选 shows the full week, not Friday to Sunday only.
+周末活动 has 活动日历 and 周末集市 only. Festival items live inside 活动日历. 活动日历 shows the full week, not Friday to Sunday only. English for that tab is Events Calendar.
 
 ## Status pills
 

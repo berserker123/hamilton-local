@@ -7,6 +7,7 @@ import { GuideStats, GuideMarquee, GuidePreview, GuideSteps } from './HomeGuide'
 import { BlurText, Reveal, HeroMedia } from './Motion';
 import { SUPERMARKETS, URGENT, ROUTES, TEXT, LAKE_BAND } from './local-data';
 import PLACES from './places.json';
+import { OUTING_CATEGORIES, OUTING_CARD_PHOTOS, familyOutings } from './kids-outings';
 import MARKET_STREET_VIEW from './market-street-view.json';
 import VERIFIED from './verified-urls.json';
 import TEASER_IMAGES from './teaser-images.json';
@@ -55,7 +56,7 @@ const PAGE = {
 };
 const TABS = {
   living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays']],
-  weekend: [['picks', '本周精选', 'This week'], ['markets', '周末集市', 'Weekend markets']],
+  weekend: [['picks', '活动日历', 'Events Calendar'], ['markets', '周末集市', 'Weekend markets']],
   kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
   services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services'], ['pets', PETS_NAME.zh, PETS_NAME.en]],
   tools: TOOL_TABS,
@@ -116,17 +117,21 @@ function PlaceDetail({ place: p, lang, t, close, separateName = false }: { place
     {'hours' in p && p.hours && <p className="sb-icon-line"><Clock /><span>{t(p.hours, p.en.hours)}</span></p>}
     {'price' in p && p.price && <p>{t(p.price, p.en.price)}</p>}
     <p className="sb-icon-line"><MapPin /><span>{t(p.address, p.id === 'te-awa' ? p.en.area : p.address)}</span></p>
-    <p><a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer">{p.id === 'hamilton-gardens' ? t('访问花园官网', 'Visit Hamilton Gardens') : t('打开来源', 'Open source')}<ArrowUpRight aria-hidden="true" /></a></p>
+    <p>{('url' in p && p.url) || ('sourceId' in p && URLS[p.sourceId]) ? <a className="sb-action" href={placeHref(p)} target="_blank" rel="noopener noreferrer">{p.id === 'hamilton-gardens' ? t('访问花园官网', 'Visit Hamilton Gardens') : t('打开来源', 'Open source')}<ArrowUpRight aria-hidden="true" /></a> : t('请以官网为准', 'Check the official website.')}</p>
   </dialog>;
 }
-function PlaceGrid({ places, lang, t, separateName = false, accent = 'living' }: { places: typeof PLACES; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids' }) {
+function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', showFacts = false }: { places: Array<typeof PLACES[number] & { categoryZh?: string; categoryEn?: string; ages?: string; agesEn?: string; phone?: string }>; lang: Lang; t: T; separateName?: boolean; accent?: 'living' | 'kids'; showFacts?: boolean }) {
   const [openId, setOpenId] = useState<string | null>(null);
   const open = places.find(p => p.id === openId);
   const openPlace = (id: string) => setOpenId(id);
   return <><div className="hl-spot-grid" data-accent={accent}>{places.map(p => {
     const area = t(p.area, p.en.area);
-    const pill = p.km != null ? `${area} · ${t('约', '~')}${p.km} km` : area;
-    const address = t(p.address, p.id === 'te-awa' ? p.en.area : p.address);
+    const pill = showFacts && p.categoryZh ? t(p.categoryZh, p.categoryEn || p.categoryZh) : p.km != null ? `${area} · ${t('约', '~')}${p.km} km` : area;
+    const address = p.address ? t(p.address, p.id === 'te-awa' ? p.en.area : p.address) : '';
+    const hours = 'hours' in p && p.hours ? t(p.hours, 'hours' in p.en && p.en.hours ? p.en.hours : p.hours) : '';
+    const price = 'price' in p && p.price ? t(p.price, 'price' in p.en && p.en.price ? p.en.price : p.price) : '';
+    const ages = p.ages ? t(p.ages, p.agesEn || p.ages) : '';
+    const phone = p.phone || '';
     return <article className="hl-spot" key={p.id} data-place-id={p.id}>
       <div className="hl-spot-media">
         {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /></div>}
@@ -136,8 +141,13 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living' }:
       <div className="hl-spot-body">
         <h3 lang={lang === 'zh' ? 'zh-CN' : 'en-NZ'}>{lang === 'zh' ? p.zh : p.name}</h3>
         <p className="hl-spot-en" lang={lang === 'zh' ? 'en-NZ' : 'zh-CN'}>{lang === 'zh' ? p.name : p.zh}</p>
-        <p className="hl-spot-copy">{t(p.description, p.en.description)}</p>
-        <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{address}</span></p>
+        {t(p.description, p.en.description) && <p className="hl-spot-copy">{t(p.description, p.en.description)}</p>}
+        {showFacts && area && <p className="hl-spot-copy">{area}</p>}
+        {showFacts && hours && <p className="hl-spot-copy">{hours}</p>}
+        {showFacts && price && <p className="hl-spot-copy">{price}</p>}
+        {showFacts && ages && <p className="hl-spot-copy">{ages}</p>}
+        {showFacts && phone && <p className="hl-spot-copy">{phone}</p>}
+        {address && <p className="hl-spot-address"><MapPin aria-hidden="true" /><span>{address}</span></p>}
         <div className="hl-spot-tools">
           <a className="hl-spot-icon" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' ' + address)} target="_blank" rel="noopener noreferrer" aria-label={t('地图 / 导航', 'Map / Directions')}><MapPin aria-hidden="true" /></a>
         </div>
@@ -191,8 +201,13 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
 function Weekend({ tab, t }: { tab: string; t: T }) {
   return <WeekendAgenda key={tab === 'festivals' ? 'picks' : tab} mode={tab === 'markets' ? 'markets' : 'picks'} t={t} />;
 }
+function FamilyOutings({ lang, t }: { lang: Lang; t: T }) {
+  const [category, setCategory] = useState('all');
+  const places = familyOutings().filter(place => category === 'all' || place.categoryId === category);
+  return <><div role="tablist" aria-label={t('去处分类', 'Outing categories')} className="sb-tabs ia-tabs ia-tabs-compact">{[[ 'all', '全部', 'All' ] as const, ...OUTING_CATEGORIES.map(item => [item.id, item.zh, item.en] as const)].map(([id, zh, en]) => <button type="button" key={id} className={'sb-tab' + (category === id ? ' sb-tab-on' : '')} aria-selected={category === id} onClick={() => setCategory(id)}>{t(zh, en)}</button>)}</div><PlaceGrid places={places} lang={lang} t={t} separateName accent="kids" showFacts /></>;
+}
 function Kids({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
-  if (tab === 'places') return <PlaceGrid places={FAMILY_PLACES} lang={lang} t={t} separateName accent="kids" />;
+  if (tab === 'places') return <FamilyOutings lang={lang} t={t} />;
   if (tab === 'parties') return <PartyVenues t={t} lang={lang} />;
   return <PlaygroundMap lang={lang} t={t} />;
 }
@@ -237,7 +252,7 @@ function Modal({ kind, close, lang, t, route }: { kind: 'sources' | 'credits'; c
   useEffect(() => { const dialog = ref.current!; dialog.showModal(); const old = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = old; dialog.close(); opener.current?.focus({ preventScroll: true }); }; }, []);
   const isSources = kind === 'sources';
   return <dialog ref={ref} className="sb-modal ia-dialog sb-dark" aria-labelledby="dialog-title" onCancel={e => { e.preventDefault(); close(); }} onClick={e => { if (e.target === e.currentTarget) { const r = e.currentTarget.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close(); } }}><div className="sb-modal-heading"><h2 id="dialog-title">{isSources ? t('资料来源', 'Sources') : t('图片来源与授权', 'Photo credits & licences')}</h2><button autoFocus className="sb-action" onClick={close} aria-label={t('关闭', 'Close')}><X /></button></div>{isSources ? <><p>{t('资料核对日期', 'Records checked')} · {route === 'tools' ? '2026-11' : CHECKED}</p>{route === 'living' && <><p className="ia-section-note">{t('原始来源集中列于此处。未在本次核对链接清单中的地址仅以文本保留。jany.io / edan.io 为目录信息，非商家官网。', 'Original references are collected here. Addresses outside the verified link list are retained as text. jany.io / edan.io are directory listings, not official merchant sites.')}</p><ul className="ia-source-list">{SUPERMARKETS.map(s => <li key={s.id}><h3>{t(`${s.zhName} ${s.brand}`, s.name)}</h3>{[...new Set(s.sources)].map(url => <div className="ia-source-record" key={url}><span>{/jany\.io|edan\.io/.test(url) ? t('目录信息 / directory listing', 'Directory listing') : t('公开资料', 'Public reference')}</span><code>{url}</code></div>)}</li>)}</ul></>}
-  <h3>{t('已核对的外部入口', 'Verified external links')}</h3><div className="ia-verified-list">{VERIFIED.verified.map(v => <OutLink key={v.id} id={v.id} className="ia-tool-link">{t(v.label_zh, v.label_en)}</OutLink>)}</div></> : <><p>{t('沿用工作区现有照片，保留作者、授权与原始出处。照片可能经裁剪、压缩及调色；未在核对清单中的出处仅作文本展示。', 'Existing workspace photographs, with original authors, licences and references retained. Images may be cropped, resized or graded. References outside the verified list are shown as text.')}</p><p className="ia-section-note">{t('hero-train、band-tools、band-market 与 band-urgent 为继承的设计素材，工作区未提供作者或授权记录。', 'hero-train, band-tools, band-market and band-urgent are inherited design assets without author or licence records in the workspace.')}</p><p className="ia-section-note"><a href="./photos/CREDITS-v25e.md" target="_blank" rel="noopener noreferrer">{t('v25e \u56fe\u7247\u6388\u6743\u8bb0\u5f55\uff1a\u4e2d\u592e\u56fe\u4e66\u9986\u4e0e\u4f4f\u5bbf', 'v25e photo record: Central Library and stays')}<ArrowUpRight aria-hidden="true" /></a></p><p className="ia-section-note"><a href="./photos/CREDITS-v17.md" target="_blank" rel="noopener noreferrer">{t('v17 历史照片授权记录（中央图书馆旧图，已替换）', 'v17 historical photo record (replaced Central Library image)')}<ArrowUpRight aria-hidden="true" /></a></p><p className="ia-section-note"><a href="./licenses/window-scenes.md" target="_blank" rel="noopener noreferrer">{t('窗外风景：作者、原图与衍生许可', 'Window scenes: authors, originals and licences')}</a></p><ul className="ia-source-list"><WeekendPhotoCredit t={t} />{WINDOW_CREDITS.map(image => <li key={image.id} data-window-credit={image.id}><h3>{t(image.zh, image.en)}</h3><p>{image.author} · <a href={image.licenseUrl} target="_blank" rel="noopener noreferrer">{image.license}</a></p><a href={image.source} target="_blank" rel="noopener noreferrer">{t('原图与出处', 'Original photograph')}</a><p>{t('裁剪、缩放、轻微暖色调色；尾部镜像拼接；转换为 WebP。衍生图沿用原图许可。', 'Cropped, resized, lightly warm graded, mirrored trailing half and converted to WebP. Derivative uses the original licence.')}</p></li>)}{TEASER_IMAGES.credits.map(image => <li key={image.id} data-photo-credit={image.id}><h3>{image.id}</h3><p>{image.sourceFile}</p><p>{image.author} · {image.license}</p><code>{image.url}</code><code>{image.licenseUrl}</code><p>{t('图片经裁剪、缩放并转换为 WebP，用于首页导览。', 'Cropped, resized and converted to WebP for homepage teasers.')}</p><p>{image.note}</p></li>)}<li><h3>{t(LAKE_BAND.zh, LAKE_BAND.name)}</h3><p>{LAKE_BAND.credit} · {LAKE_BAND.license}</p><code>{LAKE_BAND.source}</code><code>{LAKE_BAND.licenseUrl}</code></li>{PLACES.filter(p => 'photo' in p).map(p => 'photo' in p && <li key={p.id}><h3>{t(p.zh, p.name)}</h3><p>{p.photoCredit} · {p.photoLicense}</p><code>{p.photoSource}</code><code>{p.photoLicenseUrl}</code></li>)}{STAY_PHOTOS.map(item => <li key={item.id} data-stay-photo-credit={item.id}><h3>{t(item.zh, item.name)}</h3><figure><DirectoryPhotoCredit item={item} t={t} /></figure></li>)}</ul></>}</dialog>;
+  <h3>{t('已核对的外部入口', 'Verified external links')}</h3><div className="ia-verified-list">{VERIFIED.verified.map(v => <OutLink key={v.id} id={v.id} className="ia-tool-link">{t(v.label_zh, v.label_en)}</OutLink>)}</div></> : <><p>{t('沿用工作区现有照片，保留作者、授权与原始出处。照片可能经裁剪、压缩及调色；未在核对清单中的出处仅作文本展示。', 'Existing workspace photographs, with original authors, licences and references retained. Images may be cropped, resized or graded. References outside the verified list are shown as text.')}</p><p className="ia-section-note">{t('hero-train、band-tools、band-market 与 band-urgent 为继承的设计素材，工作区未提供作者或授权记录。', 'hero-train, band-tools, band-market and band-urgent are inherited design assets without author or licence records in the workspace.')}</p><p className="ia-section-note"><a href="./photos/CREDITS-v25e.md" target="_blank" rel="noopener noreferrer">{t('v25e \u56fe\u7247\u6388\u6743\u8bb0\u5f55\uff1a\u4e2d\u592e\u56fe\u4e66\u9986\u4e0e\u4f4f\u5bbf', 'v25e photo record: Central Library and stays')}<ArrowUpRight aria-hidden="true" /></a></p><p className="ia-section-note"><a href="./photos/CREDITS-v17.md" target="_blank" rel="noopener noreferrer">{t('v17 历史照片授权记录（中央图书馆旧图，已替换）', 'v17 historical photo record (replaced Central Library image)')}<ArrowUpRight aria-hidden="true" /></a></p><p className="ia-section-note"><a href="./licenses/window-scenes.md" target="_blank" rel="noopener noreferrer">{t('窗外风景：作者、原图与衍生许可', 'Window scenes: authors, originals and licences')}</a></p><ul className="ia-source-list"><WeekendPhotoCredit t={t} />{WINDOW_CREDITS.map(image => <li key={image.id} data-window-credit={image.id}><h3>{t(image.zh, image.en)}</h3><p>{image.author} · <a href={image.licenseUrl} target="_blank" rel="noopener noreferrer">{image.license}</a></p><a href={image.source} target="_blank" rel="noopener noreferrer">{t('原图与出处', 'Original photograph')}</a><p>{t('裁剪、缩放、轻微暖色调色；尾部镜像拼接；转换为 WebP。衍生图沿用原图许可。', 'Cropped, resized, lightly warm graded, mirrored trailing half and converted to WebP. Derivative uses the original licence.')}</p></li>)}{TEASER_IMAGES.credits.map(image => <li key={image.id} data-photo-credit={image.id}><h3>{image.id}</h3><p>{image.sourceFile}</p><p>{image.author} · {image.license}</p><code>{image.url}</code><code>{image.licenseUrl}</code><p>{t('图片经裁剪、缩放并转换为 WebP，用于首页导览。', 'Cropped, resized and converted to WebP for homepage teasers.')}</p><p>{image.note}</p></li>)}<li><h3>{t(LAKE_BAND.zh, LAKE_BAND.name)}</h3><p>{LAKE_BAND.credit} · {LAKE_BAND.license}</p><code>{LAKE_BAND.source}</code><code>{LAKE_BAND.licenseUrl}</code></li>{PLACES.filter(p => 'photo' in p).map(p => 'photo' in p && <li key={p.id}><h3>{t(p.zh, p.name)}</h3><p>{p.photoCredit} · {p.photoLicense}</p><code>{p.photoSource}</code><code>{p.photoLicenseUrl}</code></li>)}{OUTING_CARD_PHOTOS.map(photo => <li key={photo.id}><h3>{t(photo.zh, photo.en)}</h3><p>{photo.photoCredit} · <a href={photo.photoLicenseUrl} target="_blank" rel="noopener noreferrer">{photo.photoLicense}</a></p><a href={photo.photoSource} target="_blank" rel="noopener noreferrer">{t('原图与出处', 'Original photograph')}</a></li>)}{STAY_PHOTOS.map(item => <li key={item.id} data-stay-photo-credit={item.id}><h3>{t(item.zh, item.name)}</h3><figure><DirectoryPhotoCredit item={item} t={t} /></figure></li>)}</ul></>}</dialog>;
 }
 function ThemeToggle() {
   const [night, setNight] = useState(() => document.documentElement.dataset.theme === 'night');
@@ -254,6 +269,7 @@ function Home({ lang, t, scene }: { lang: Lang; t: T; scene: number }) {
   function search(e: React.FormEvent) {
     e.preventDefault(); const q = query.trim();
     if (!q) return;
+    if (/活动日历|events?\s*calendar/i.test(q)) { location.hash = href('weekend','picks'); return; }
     if (/pet|宠物|兽医/i.test(q)) { location.hash = href('services','pets',q); return; }
     if (/pay|tax|salary|kiwi|税后|工资|时薪/i.test(q)) { location.hash = href('tools','pay'); return; }
     if (/gst|消费税/i.test(q)) { location.hash = href('tools','gst'); return; }
@@ -306,7 +322,7 @@ export default function App() {
   {state.route === 'services' && <Services tab={state.tab} t={t} toast={toast} />}
   {state.route === 'tools' && <Tools tab={state.tab} lang={lang} t={t} />}
   <FeedbackLink section={t(current.zh, current.en)} /></div></div></Reveal></>}</main>
-  <footer className="sb-footer ia-footer"><div className="sb-container"><section className="hl-contact"><ContactCard t={t} /><FeedbackFooter /></section><div className="ia-footer-top"><div><a href={href('home')} className="sb-footer-brand"><LogoMark /><span>Hamilton Local</span></a><p>{t('离生活近一点。', 'A little closer to everyday life.')}</p></div><div className="ia-footer-actions"><button data-testid="credits-btn" className="sb-action" onClick={() => setModal('credits')}>{t('图片来源与授权', 'Photo credits')}<ArrowUpRight /></button><button className="sb-action" onClick={() => setModal('sources')}>{t('资料来源', 'Sources')}<BookOpen /></button></div></div><p className="ia-footer-note">{t('独立整理的本地生活指南，与所列机构及商家无关联。资料核对于', 'An independent local guide, unaffiliated with listed organisations and businesses. Records checked')} {CHECKED}。{t('信息可能变化，请以官方渠道为准。', ' Details may change; confirm with official sources.')}</p><div className="ia-footer-bottom"><span>© 2026 Hamilton Local</span>{sectionPhoto && <span className="ia-bg-credit">{t('背景', 'Photo')} · {sectionPhoto.author} · <a href={sectionPhoto.licenseUrl} target="_blank" rel="noopener noreferrer">{sectionPhoto.license}</a> · <a href={sectionPhoto.source} target="_blank" rel="noopener noreferrer">{t(sectionPhoto.zh, sectionPhoto.en)}</a></span>}<span>{t('汉密尔顿 · 怀卡托', 'Hamilton · Waikato')}</span><span>Hamilton · Waikato · New Zealand</span></div></div></footer>
+  <footer className="sb-footer ia-footer"><div className="sb-container"><section className="hl-contact"><ContactCard t={t} /><FeedbackFooter /></section><div className="ia-footer-top"><div><a href={href('home')} className="sb-footer-brand"><LogoMark /><span>Hamilton Local</span></a><p>{t('离生活近一点。', 'A little closer to everyday life.')}</p></div><div className="ia-footer-actions"><button data-testid="credits-btn" className="sb-action" onClick={() => setModal('credits')}>{t('图片来源与授权', 'Photo credits')}<ArrowUpRight /></button><button className="sb-action" onClick={() => setModal('sources')}>{t('资料来源', 'Sources')}<BookOpen /></button></div></div><p className="ia-footer-note">{t('独立整理的本地生活指南，与所列机构及商家无关联。资料核对于', 'An independent local guide, unaffiliated with listed organisations and businesses. Records checked')} {CHECKED}。{t('信息可能变化，请以官方渠道为准。', ' Details may change; confirm with official sources.')}</p><div className="ia-footer-bottom"><span>© 2026 Hamilton Local</span>{sectionPhoto && <span className="ia-bg-credit">{t('背景', 'Photo')} · {sectionPhoto.author} · <a href={sectionPhoto.licenseUrl} target="_blank" rel="noopener noreferrer">{sectionPhoto.license}</a> · <a href={sectionPhoto.source} target="_blank" rel="noopener noreferrer">{t(sectionPhoto.zh, sectionPhoto.en)}</a>{state.route === 'kids' && OUTING_CARD_PHOTOS.map(photo => <span key={photo.id}> · {t(photo.zh, photo.en)} · {photo.photoCredit} · <a href={photo.photoLicenseUrl} target="_blank" rel="noopener noreferrer">{photo.photoLicense}</a></span>)}</span>}<span>{t('汉密尔顿 · 怀卡托', 'Hamilton · Waikato')}</span><span>Hamilton · Waikato · New Zealand</span></div></div></footer>
   <FeedbackLauncher />
   <CordResult result={experience.result} dismiss={experience.dismiss} lang={lang} />
   <PageEffects route={state.route} season={experience.season} active={experience.active} burst={experience.burst} />
