@@ -98,6 +98,29 @@ test('annual conversion label states the printed salary and a 40-hour week', () 
   assert.equal(hourlyInput(annualToHourly(77667)), '37.3399');
 });
 
+test('visible scale text leaves out clause references and research notes', () => {
+  const { offeredOccupations, quoteScale, pendingLine, scaleTitle, stepTitle, PAY_SCALES } = load();
+  for (const occupation of offeredOccupations(TODAY)) {
+    for (const scale of occupation.scales) {
+      assert.doesNotMatch(scaleTitle(scale.name), /clause|printed|research/i, occupation.id + ' ' + scale.id);
+      for (const step of scale.steps) assert.doesNotMatch(stepTitle(step.label), /clause|printed|research|range of rates/i);
+    }
+    const scale = occupation.scales[0];
+    const quote = quoteScale(occupation.id, scale.id, scale.steps[0].step, TODAY);
+    if (!quote.pending) continue;
+    const zh = pendingLine(quote, false);
+    const en = pendingLine(quote, true);
+    assert.doesNotMatch(zh, /clause|Printed|research|·/);
+    assert.doesNotMatch(en, /clause|Printed|research/);
+    assert.match(zh, /^待生效：/);
+    assert.match(en, /^Pending: /);
+  }
+  assert.equal(pendingLine(quoteScale('nzno-registered-nurse', 'rn', '5', TODAY), false), '待生效：2027年3月2日起，此等级为 $105,438');
+  assert.equal(pendingLine(quoteScale('nzno-registered-nurse', 'rn', '5', TODAY), true), 'Pending: $105,438 from 2 March 2027');
+  assert.equal(scaleTitle(PAY_SCALES.occupations.find(item => item.id === 'kindergarten-teacher').scales[0].name), 'K1 – Base-scale Teachers');
+  assert.equal(stepTitle('Grade D step 7 (Range of Rates top)'), 'Grade D step 7');
+});
+
 test('unknown selections do not invent a rate', () => {
   const { quoteScale } = load();
   assert.equal(quoteScale('custom', 'rn', '1', TODAY), null);

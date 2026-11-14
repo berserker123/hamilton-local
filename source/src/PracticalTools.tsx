@@ -4,7 +4,7 @@ import { BilingualTitle } from './BilingualTitle';
 import SOURCES from './tool-sources.json';
 import { ARRIVAL_STEPS, SHELLFISH } from './tool-content';
 import { PAY_RULES, KIWISAVER_RATES, calculatePay, calculateGST, convertUnits, parseNumber, Unit } from './tool-calculators';
-import { MERAS_NOTE, SCALE_DISCLAIMERS, conversionLabel, formatScaleDate, hourlyInput, offeredOccupations, quoteScale, todayISO } from './pay-scales';
+import { MERAS_NOTE, SCALE_DISCLAIMERS, conversionLabel, formatScaleDate, hourlyInput, offeredOccupations, pendingLine, quoteScale, scaleTitle, stepTitle, todayISO } from './pay-scales';
 
 type T = (zh: string, en: string) => string;
 const money = (value: number) => new Intl.NumberFormat('en-NZ', { style:'currency', currency:'NZD' }).format(value);
@@ -121,12 +121,12 @@ export function PayCalculator({ t }: { t:T }) {
       <div className="v25g-scale"><BilingualTitle as="h3" zh="职业薪级" en="Occupation pay scale" t={t} />
         <div className="v25g-input-grid v25g-scale-grid">
           <label className="v25g-select-label" htmlFor="pay-occupation"><span>{t('职业','Occupation')}</span><select id="pay-occupation" data-testid="pay-occupation" value={occupationId} onChange={e => applyOccupation(e.target.value)}><option value="custom">{t('自定义','Custom')}</option>{occupations.map(item => <option key={item.id} value={item.id}>{t(item.name_zh, item.name_en)}</option>)}</select></label>
-          {occupation && scales.length > 1 && <label className="v25g-select-label" htmlFor="pay-scale"><span>{t('薪级','Scale')}</span><select id="pay-scale" data-testid="pay-scale" value={scale?.id} onChange={e => applyScale(e.target.value)}>{scales.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
-          {occupation && scale && <label className="v25g-select-label" htmlFor="pay-step"><span>{t('等级','Step')}</span><select id="pay-step" data-testid="pay-step" value={quote?.stepId ?? ''} onChange={e => applyStep(e.target.value)}>{scale.steps.map(item => <option key={item.step} value={item.step}>{item.label}</option>)}</select></label>}
+          {occupation && scales.length > 1 && <label className="v25g-select-label" htmlFor="pay-scale"><span>{t('薪级','Scale')}</span><select id="pay-scale" data-testid="pay-scale" value={scale?.id} onChange={e => applyScale(e.target.value)}>{scales.map(item => <option key={item.id} value={item.id}>{scaleTitle(item.name)}</option>)}</select></label>}
+          {occupation && scale && <label className="v25g-select-label" htmlFor="pay-step"><span>{t('等级','Step')}</span><select id="pay-step" data-testid="pay-step" value={quote?.stepId ?? ''} onChange={e => applyStep(e.target.value)}>{scale.steps.map(item => <option key={item.step} value={item.step}>{stepTitle(item.label)}</option>)}</select></label>}
         </div>
         {quote && <div className="v25g-scale-notes">
           <p className="v25g-hint">{t('现行生效','Current from')} · {formatScaleDate(quote.effectiveFrom, english)}</p>
-          {quote.pending && <p className="v25g-hint">{quote.pending.amount !== null ? t(`待生效：${formatScaleDate(quote.pending.date, false)}起，此等级为 ${new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', minimumFractionDigits: quote.basis === 'hourly' ? 2 : 0, maximumFractionDigits: quote.basis === 'hourly' ? 2 : 0 }).format(quote.pending.amount)}`, `Pending: ${new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', minimumFractionDigits: quote.basis === 'hourly' ? 2 : 0, maximumFractionDigits: quote.basis === 'hourly' ? 2 : 0 }).format(quote.pending.amount)} from ${formatScaleDate(quote.pending.date, true)}`) : t(`待生效：${formatScaleDate(quote.pending.date, false)}`, `Pending from ${formatScaleDate(quote.pending.date, true)}`)}{quote.pending.note ? ` · ${quote.pending.note}` : ''}</p>}
+          {quote.pending && <p className="v25g-hint" data-testid="pay-pending">{pendingLine(quote, english)}</p>}
           {quote.meras && <p className="v25g-hint" data-testid="meras-note">{t(MERAS_NOTE.zh, MERAS_NOTE.en)}</p>}
           {SCALE_DISCLAIMERS.map(item => <p className="v25g-hint" key={item.en}>{t(item.zh, item.en)}</p>)}
           <p className="v25g-hint v25g-scale-source"><a href={quote.sourceUrl} target="_blank" rel="noopener noreferrer">{t('官方文本','Official document')}<ArrowUpRight aria-hidden="true" /></a></p>

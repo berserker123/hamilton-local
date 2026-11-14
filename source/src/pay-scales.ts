@@ -75,6 +75,22 @@ export function hourlyInput(value: number) {
   return String(rounded);
 }
 
+export function scaleTitle(name: string) {
+  return name.replace(/\s*\(clause\s+(?:\([^)]*\)|[^)])*\)/gi, '').replace(/\s{2,}/g, ' ').trim();
+}
+
+export function stepTitle(label: string) {
+  return label.replace(/\s*\([^)]*range of rates[^)]*\)/gi, '').trim();
+}
+
+export function pendingLine(quote: ScaleQuote, english: boolean) {
+  if (!quote.pending) return null;
+  const date = formatScaleDate(quote.pending.date, english);
+  if (quote.pending.amount === null) return english ? `Pending from ${date}` : `待生效：${date}`;
+  const formatted = money(quote.pending.amount, quote.basis === 'hourly');
+  return english ? `Pending: ${formatted} from ${date}` : `待生效：${date}起，此等级为 ${formatted}`;
+}
+
 export function officialSource(occupation: PayOccupation) {
   const page = occupation.source_urls.find(url => !/\.pdf$/i.test(url.split('?')[0]));
   return page ?? occupation.source_urls[0];
@@ -107,7 +123,7 @@ export type ScaleQuote = {
   hourly: number;
   hours: number | null;
   effectiveFrom: string;
-  pending: { date: string; amount: number | null; note?: string } | null;
+  pending: { date: string; amount: number | null } | null;
   sourceUrl: string;
   agreement: string;
   meras: boolean;
@@ -129,7 +145,7 @@ export function quoteScale(occupationId: string, scaleId: string, stepId: string
     amount, hourly,
     hours: occupation.pay_basis === 'annual' ? 40 : null,
     effectiveFrom: current,
-    pending: pending ? { date: pending, amount: pendingAmount, note: occupation.pending_increase?.note } : null,
+    pending: pending ? { date: pending, amount: pendingAmount } : null,
     sourceUrl: officialSource(occupation),
     agreement: occupation.agreement,
     meras: occupation.id === 'meras-midwife',
