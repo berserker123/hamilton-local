@@ -1,3 +1,4 @@
+import { navigate } from './section-navigation';
 import { placeNames } from './place-names';
 import React, { useEffect, useRef, useState } from 'react';
 import { currentNZSeason, nextScene, nextSeason, SCENES, SEASON_LABELS, Season } from './experience-model';
@@ -59,7 +60,7 @@ export function usePageExperience(route: string, lang: 'zh' | 'en', pools: { ser
       if (!pick) return;
       setResult({ pick, draw: ++drawCount.current, route });
       setNotice((zh ? '这次抽到：' : 'Your pick: ') + pick.name[lang]);
-      if (route === 'services') location.hash = '#/services?tab=' + pick.tab;
+      if (route === 'services') navigate('/services/?tab=' + pick.tab);
       return;
     }
     if (route === 'home') {

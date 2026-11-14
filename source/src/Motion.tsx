@@ -23,9 +23,9 @@ export function Reveal({ children, id, className = '' }: { children: React.React
 }
 
 type HeroMode = 'window' | 'a' | 'b';
-const TRAIN = './photos/hero-train.webp';
+const TRAIN = '/photos/hero-train.webp';
 // Only additional scenic imagery with an existing workspace credit record.
-const SCENIC_SLIDES = [TRAIN, './photos/hamilton-lake.webp'];
+const SCENIC_SLIDES = [TRAIN, '/photos/hamilton-lake.webp'];
 
 export function readHeroMode(): HeroMode {
   const hashQuery = location.hash.indexOf('?');
@@ -45,7 +45,7 @@ function TrainWindow({ reduced = false, scene = 0 }: { reduced?: boolean; scene?
             {[0, 1].map(i => <img key={i} src={item.src} alt="" fetchPriority={index === 0 ? 'high' : 'low'} decoding="async" />)}
           </div>
           {index === 0 && <div className="sb-window-ground"><div className="sb-window-track sb-window-near">
-            {[0, 1].map(i => <img key={i} src="./photos/hero-window-ground.webp" alt="" decoding="async" />)}
+            {[0, 1].map(i => <img key={i} src="/photos/hero-window-ground.webp" alt="" decoding="async" />)}
           </div></div>}
         </>}
       </div>)}

@@ -2,5 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hamiltonlocal.nz/</loc>
+    <lastmod>2026-11-14T12:53:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hamiltonlocal.nz/kids/</loc>
+    <lastmod>2026-11-14T12:53:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hamiltonlocal.nz/living/</loc>
+    <lastmod>2026-11-14T12:53:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hamiltonlocal.nz/services/</loc>
+    <lastmod>2026-11-14T12:53:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hamiltonlocal.nz/tools/</loc>
+    <lastmod>2026-11-14T12:53:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hamiltonlocal.nz/weekend/</loc>
+    <lastmod>2026-11-14T12:53:40.000Z</lastmod>
   </url>
 </urlset>

@@ -28,5 +28,5 @@ test('verified photo metadata feeds both the flip and detail attribution', () =>
     assert.ok(html.includes(item.photoLicenseUrl));
   }
   assert.match(flip, /ia-flip-front/);
-  assert.match(flip, /src=".\/photos\/test.webp"/);
+  assert.match(flip, /src="\/photos\/test.webp"/);
 });
