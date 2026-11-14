@@ -4,6 +4,7 @@ import { BilingualTitle } from './BilingualTitle';
 import SOURCES from './tool-sources.json';
 import { ARRIVAL_STEPS, SHELLFISH } from './tool-content';
 import { PAY_RULES, KIWISAVER_RATES, calculatePay, calculateGST, convertUnits, parseNumber, Unit } from './tool-calculators';
+import { MERAS_NOTE, SCALE_DISCLAIMERS, conversionLabel, formatScaleDate, hourlyInput, offeredOccupations, quoteScale, todayISO } from './pay-scales';
 
 type T = (zh: string, en: string) => string;
 const money = (value: number) => new Intl.NumberFormat('en-NZ', { style:'currency', currency:'NZD' }).format(value);
@@ -64,13 +65,75 @@ const PAY_FIELDS = [
   ['gross','税前收入','Gross pay'],['paye','PAYE（含 ACC）','PAYE (includes ACC)'],['incomeTax','其中：所得税','of which: Income tax'],['acc','其中：ACC 个人征费','of which: ACC levy'],['kiwisaver','KiwiSaver 员工供款','KiwiSaver employee contribution'],['studentLoan','学生贷款','Student loan'],['net','到手收入','Take-home pay'],
 ] as const;
 export function PayCalculator({ t }: { t:T }) {
+  const occupations = offeredOccupations();
+  const [occupationId, setOccupationId] = useState('custom');
+  const [scaleId, setScaleId] = useState('');
+  const [stepId, setStepId] = useState('');
   const [hourly,setHourly] = useState(String(PAY_RULES.minimumWage)), [hours,setHours] = useState('40');
   const [kiwi,setKiwi] = useState<number>(PAY_RULES.defaultKiwiSaver), [student,setStudent] = useState(false);
+  const english = t('中','en') === 'en';
+  const occupation = occupations.find(item => item.id === occupationId);
+  const scales = occupation?.scales ?? [];
+  const scale = scales.find(item => item.id === scaleId) ?? scales[0];
+  const quote = occupation && scale ? quoteScale(occupation.id, scale.id, stepId || scale.steps[0]?.step, todayISO()) : null;
+  function applyOccupation(nextOccupationId: string) {
+    if (nextOccupationId === 'custom') {
+      setOccupationId('custom'); setScaleId(''); setStepId('');
+      setHourly(String(PAY_RULES.minimumWage)); setHours('40');
+      return;
+    }
+    const next = occupations.find(item => item.id === nextOccupationId);
+    const nextScale = next?.scales[0];
+    const nextStep = nextScale?.steps[0];
+    if (!next || !nextScale || !nextStep) return;
+    const nextQuote = quoteScale(next.id, nextScale.id, nextStep.step, todayISO());
+    if (!nextQuote) return;
+    setOccupationId(next.id); setScaleId(nextScale.id); setStepId(nextStep.step);
+    setHourly(hourlyInput(nextQuote.hourly));
+    if (nextQuote.hours) setHours(String(nextQuote.hours));
+  }
+  function applyScale(nextScaleId: string) {
+    if (!occupation) return;
+    const nextScale = occupation.scales.find(item => item.id === nextScaleId);
+    const nextStep = nextScale?.steps[0];
+    if (!nextScale || !nextStep) return;
+    const nextQuote = quoteScale(occupation.id, nextScale.id, nextStep.step, todayISO());
+    if (!nextQuote) return;
+    setScaleId(nextScale.id); setStepId(nextStep.step);
+    setHourly(hourlyInput(nextQuote.hourly));
+    if (nextQuote.hours) setHours(String(nextQuote.hours));
+  }
+  function applyStep(nextStepId: string) {
+    if (!occupation || !scale) return;
+    const nextQuote = quoteScale(occupation.id, scale.id, nextStepId, todayISO());
+    if (!nextQuote) return;
+    setStepId(nextStepId);
+    setHourly(hourlyInput(nextQuote.hourly));
+    if (nextQuote.hours) setHours(String(nextQuote.hours));
+  }
+  function editHourly(value: string) { setHourly(value); if (occupationId !== 'custom') { setOccupationId('custom'); setScaleId(''); setStepId(''); } }
+  function editHours(value: string) { setHours(value); if (occupationId !== 'custom') { setOccupationId('custom'); setScaleId(''); setStepId(''); } }
   const rate = parseNumber(hourly), weeklyHours = parseNumber(hours);
   const result = rate !== null && weeklyHours !== null ? calculatePay(rate,weeklyHours,kiwi,student) : null;
+  const conversion = quote?.basis === 'annual' ? conversionLabel(quote.amount) : null;
   return <section id="tool-pay" className="v25g-tools"><ToolHeading eyebrow="PAY & EVERYDAY MONEY" zh="最低工资与税后收入计算器" en="Pay Calculator" introZh="从时薪到到手收入，算清每一笔扣款。适用固定周薪的主要工作，税码 M / M SL。" introEn="See what stays in your pocket. Estimates for a main job with constant weekly pay, tax code M / M SL." t={t} />
     <div className="sb-card v25g-calculator"><div className="v25g-calc-top"><Calculator aria-hidden="true" /><span className="ia-kicker">2026–27 · NZD</span><span className="sb-tag">{t('仅供估算','Estimate only')}</span></div>
-      <div className="v25g-pay-layout"><div><div className="v25g-input-grid"><label htmlFor="pay-hourly">{t('税前时薪（NZD）','Hourly rate (NZD)')}<input id="pay-hourly" type="number" min="0" step="any" inputMode="decimal" value={hourly} onChange={e=>setHourly(e.target.value)} /></label><label htmlFor="pay-hours">{t('每周工时','Weekly hours')}<input id="pay-hours" type="number" min="0" step="any" inputMode="decimal" value={hours} onChange={e=>setHours(e.target.value)} /></label></div>
+      <div className="v25g-scale"><BilingualTitle as="h3" zh="职业薪级" en="Occupation pay scale" t={t} />
+        <div className="v25g-input-grid v25g-scale-grid">
+          <label className="v25g-select-label" htmlFor="pay-occupation"><span>{t('职业','Occupation')}</span><select id="pay-occupation" data-testid="pay-occupation" value={occupationId} onChange={e => applyOccupation(e.target.value)}><option value="custom">{t('自定义','Custom')}</option>{occupations.map(item => <option key={item.id} value={item.id}>{t(item.name_zh, item.name_en)}</option>)}</select></label>
+          {occupation && scales.length > 1 && <label className="v25g-select-label" htmlFor="pay-scale"><span>{t('薪级','Scale')}</span><select id="pay-scale" data-testid="pay-scale" value={scale?.id} onChange={e => applyScale(e.target.value)}>{scales.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
+          {occupation && scale && <label className="v25g-select-label" htmlFor="pay-step"><span>{t('等级','Step')}</span><select id="pay-step" data-testid="pay-step" value={quote?.stepId ?? ''} onChange={e => applyStep(e.target.value)}>{scale.steps.map(item => <option key={item.step} value={item.step}>{item.label}</option>)}</select></label>}
+        </div>
+        {quote && <div className="v25g-scale-notes">
+          <p className="v25g-hint">{t('现行生效','Current from')} · {formatScaleDate(quote.effectiveFrom, english)}</p>
+          {quote.pending && <p className="v25g-hint">{quote.pending.amount !== null ? t(`待生效：${formatScaleDate(quote.pending.date, false)}起，此等级为 ${new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', minimumFractionDigits: quote.basis === 'hourly' ? 2 : 0, maximumFractionDigits: quote.basis === 'hourly' ? 2 : 0 }).format(quote.pending.amount)}`, `Pending: ${new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', minimumFractionDigits: quote.basis === 'hourly' ? 2 : 0, maximumFractionDigits: quote.basis === 'hourly' ? 2 : 0 }).format(quote.pending.amount)} from ${formatScaleDate(quote.pending.date, true)}`) : t(`待生效：${formatScaleDate(quote.pending.date, false)}`, `Pending from ${formatScaleDate(quote.pending.date, true)}`)}{quote.pending.note ? ` · ${quote.pending.note}` : ''}</p>}
+          {quote.meras && <p className="v25g-hint" data-testid="meras-note">{t(MERAS_NOTE.zh, MERAS_NOTE.en)}</p>}
+          {SCALE_DISCLAIMERS.map(item => <p className="v25g-hint" key={item.en}>{t(item.zh, item.en)}</p>)}
+          <p className="v25g-hint v25g-scale-source"><a href={quote.sourceUrl} target="_blank" rel="noopener noreferrer">{t('官方文本','Official document')}<ArrowUpRight aria-hidden="true" /></a></p>
+        </div>}
+      </div>
+      <div className="v25g-pay-layout"><div><div className="v25g-input-grid"><label htmlFor="pay-hourly">{t('税前时薪（NZD）','Hourly rate (NZD)')}<input id="pay-hourly" data-testid="pay-hourly" type="number" min="0" step="any" inputMode="decimal" value={hourly} onChange={e=>editHourly(e.target.value)} /></label><label htmlFor="pay-hours">{t('每周工时','Weekly hours')}<input id="pay-hours" data-testid="pay-hours" type="number" min="0" step="any" inputMode="decimal" value={hours} onChange={e=>editHours(e.target.value)} /></label></div>
+        {conversion && <p className="v25g-hint" data-testid="pay-conversion">{t(conversion.zh, conversion.en)}</p>}
         <p className="v25g-hint">{t('成人最低工资 $23.95/h，自 2026-04-01 生效；起薪与培训最低工资另有适用条件。','Adult minimum wage $23.95/h from 1 April 2026. Starting-out/training rules differ.')}</p>
         <label className="v25g-select-label" htmlFor="pay-kiwi">{t('KiwiSaver 员工供款率','KiwiSaver employee rate')}<select id="pay-kiwi" value={kiwi} onChange={e=>setKiwi(Number(e.target.value))}>{KIWISAVER_RATES.map(rate=><option key={rate} value={rate}>{rate===0 ? t('不扣款（未参加 / 符合暂停条件）','No deduction (not enrolled / eligible suspension)') : rate===.03 ? t('3%（须获批临时减率）','3% (approved temporary reduction only)') : `${Number((rate*100).toFixed(1))}%${rate===.035 ? t(' · 当前默认',' · current default') : ''}`}</option>)}</select></label>
         <div className="v25g-tax-code"><span>{t('税码','Tax code')}</span><strong>{student ? 'M SL' : 'M'}</strong></div><label className="v25g-checkbox"><input id="pay-student" type="checkbox" checked={student} onChange={e=>setStudent(e.target.checked)} /><span>{t('扣除学生贷款还款','Deduct student loan repayments')}</span></label>

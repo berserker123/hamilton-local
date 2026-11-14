@@ -2026,6 +2026,17 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 .v25g-calc-top .sb-tag { margin-left:auto; }
 .v25g-pay-layout { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:34px; }
 .v25g-input-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.v25g-scale { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; min-width:0; }
+.v25g-scale .ia-name-line { margin:0; }
+.v25g-scale-grid { grid-template-columns:1fr; }
+.v25g-scale-notes { display:flex; flex-direction:column; gap:2px; min-width:0; }
+.v25g-scale-notes .v25g-hint { margin:0; overflow-wrap:anywhere; }
+.v25g-scale-source { display:flex; }
+.v25g-scale-source a { display:inline-flex; align-items:center; gap:4px; min-height:44px; overflow-wrap:anywhere; }
+.v25g-scale-source svg { width:14px; height:14px; flex:none; }
+@media (min-width:900px) {
+  .v25g-scale-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
 .v25g-input-grid label,.v25g-select-label { display:flex; flex-direction:column; gap:9px; font-size:13px; color:#e3e5d8; }
 .v25g-tools :is(input[type=number],select) { width:100%; min-width:0; min-height:48px; padding:11px 13px; background:#222620; color:#f0f0e5; border:1px solid #62694d; border-radius:9px; font:400 15px/1.5 var(--sans); }
 .v25g-tools select { text-overflow:ellipsis; }
@@ -2621,7 +2632,7 @@ html:not([data-cards]) .ia-detail-credit a{color:var(--hl-accent)}
 .v25g-method{border-top:1px solid var(--hl-control)}
 .v25g-method p,.v25g-method li{color:var(--hl-success)}
 .v25g-sources{border-top:1px solid var(--hl-control);color:var(--hl-muted)}
-.v25g-sources a{color:var(--hl-muted)}
+.v25g-sources a,.v25g-scale-source a{color:var(--hl-muted)}
 .v25g-step-index{border:1px solid var(--hl-control);color:var(--hl-muted)}
 .v25g-check-body{border-top:1px solid var(--hl-control)}
 .v25g-check-body li,.v25g-season-card li{color:var(--hl-success)}
