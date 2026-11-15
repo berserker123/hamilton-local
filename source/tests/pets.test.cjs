@@ -22,9 +22,15 @@ test('pet guide lists shops, vets and off-leash areas, then merchant placeholder
   for (const name of ['Pet Essentials Hamilton', 'Waikato After Hours Veterinary Hospital', 'Minogue Park dog exercise area', '围栏免牵引绳区域']) assert.ok(html.includes(name), name);
   assert.doesNotMatch(html, /Newstead Lodge|data-directory-id="newstead-boarding"|放绳区/);
   assert.ok(html.includes('hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas'));
-  assert.equal((html.match(/商家招募中 · Listings coming soon/g) || []).length, 3);
+  assert.equal((html.match(/招商中/g) || []).length, 3);
+  for (const line of ['空着也是空着，不如放你的店', '这个位置空着，老板急得睡不着', '虚位以待，先到先得']) {
+    assert.ok(html.includes(line), line);
+  }
   assert.ok(!Object.keys(result.metafile.inputs).some(file => file.includes('_hidden')));
   const english = renderPets('en').html;
   assert.ok(english.includes('Off-leash areas'));
   assert.ok(english.includes('Pet Essentials Hamilton'));
+  assert.equal((english.match(/Open for listings/g) || []).length, 3);
+  assert.ok(english.includes('Your name here, first come first served'));
+  assert.ok(english.includes('List your business / Enquiries'));
 });

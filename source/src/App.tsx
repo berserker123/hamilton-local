@@ -32,6 +32,7 @@ import SECTION_PHOTOS from './section-photos.json';
 import { PracticalTools, CommonTools, ToolSources } from './PracticalTools';
 import { SECTION_ORDER, TOOL_TABS, AT_IDS, canonicalHash } from './tool-navigation';
 import { BlackFriday, BlackFridayBanner } from './BlackFriday';
+import { servicePlaceholderLine } from './service-placeholders';
 installCardStyle();
 
 type Lang = 'zh' | 'en';
@@ -60,7 +61,7 @@ const TABS = {
   living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays'], ['blackfriday', '黑五专区', 'Black Friday']],
   weekend: [['picks', '活动日历', 'Events Calendar'], ['markets', '周末集市', 'Weekend markets']],
   kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
-  services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services'], ['pets', PETS_NAME.zh, PETS_NAME.en]],
+  services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services'], ['pets', PETS_NAME.zh, PETS_NAME.en], ['advisors', '专业顾问', 'Professional Advice']],
   tools: TOOL_TABS,
 };
 function href(route: string, tab?: string, q?: string, at?: string) {
@@ -219,10 +220,21 @@ const SERVICE_CATS = {
   home: [['园艺与庭院', 'Garden & grounds'], ['房屋维修', 'Home repairs'], ['清洁整理', 'Cleaning']],
   trades: [['水管服务', 'Plumbing'], ['电工服务', 'Electrical'], ['木工与油漆', 'Carpentry & painting']],
   daily: [['搬家运输', 'Moving'], ['生活协助', 'Everyday help'], ['社区服务', 'Community services']],
+  advisors: [
+    ['金融服务 (贷款、保险、理财)', 'Financial Services'],
+    ['移民中介', 'Immigration Advisers'],
+    ['会计', 'Accountants'],
+    ['律师', 'Lawyers'],
+  ],
 };
 function Services({ tab, t, toast }: { tab: string; t: T; toast: (text: string) => void }) {
   if (tab === 'pets') return <Pets t={t} />;
-  return <><div className="ia-category-grid">{SERVICE_CATS[tab as keyof typeof SERVICE_CATS].map(([zh, en], index) => <div id={"service-" + tab + "-" + index} className="sb-card ia-category" key={en}><Wrench /><BilingualTitle as="h2" zh={zh} en={en} t={t} /><span>{t('内容整理中 · 暂无商家', 'Coming soon · No listings yet')}</span></div>)}</div><div className="sb-card ia-join"><div><p className="ia-kicker">{t('一起完善本地指南', 'Build a better local guide')}</p><h2>{t('在 Hamilton 提供服务？', 'Work with the Hamilton community?')}</h2><p>{t('商家入驻即将开放。', 'Business listings are coming soon.')}</p></div><button className="sb-action ia-primary" data-testid="join" onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}<ArrowUpRight /></button></div></>;
+  const chinese = t('中', 'en') !== 'en';
+  const categories = SERVICE_CATS[tab as keyof typeof SERVICE_CATS] || SERVICE_CATS.home;
+  return <><div className="ia-category-grid">{categories.map(([zh, en], index) => {
+    const line = servicePlaceholderLine(tab, index);
+    return <div id={"service-" + tab + "-" + index} className="sb-card ia-category" key={en}><div className="ia-card-top"><Wrench aria-hidden="true" /><span className="sb-tag">{t('招商中', 'Open for listings')}</span></div><BilingualTitle as="h2" zh={zh} en={en} t={t} /><span lang={chinese ? 'zh-CN' : 'en-NZ'}>{t(line.zh, line.en)}</span></div>;
+  })}</div><div className="sb-card ia-join"><div><p className="ia-kicker">{t('一起完善本地指南', 'Build a better local guide')}</p><h2>{t('在 Hamilton 提供服务？', 'Work with the Hamilton community?')}</h2><p>{t('商家入驻即将开放。', 'Business listings are coming soon.')}</p></div><button className="sb-action ia-primary" data-testid="join" onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}<ArrowUpRight /></button></div></>;
 }
 const TOOL_GROUPS = [
   { id: 'tool-weather', zh: 'UV 与天气', en: 'Weather & UV', Icon: Sun, ids: ['metservice-hamilton', 'niwa-uv', 'niwa-uv-index'] },
@@ -235,7 +247,10 @@ const TOOL_GROUPS = [
 const SHORT_LABELS: Record<string, [string, string]> = {
   'metservice-hamilton': ['Hamilton 天气', 'Hamilton weather'], 'niwa-uv': ['NIWA UV 与臭氧', 'NIWA UV & ozone'], 'niwa-uv-index': ['NIWA UV 指数', 'NIWA UV index'], 'school-terms': ['教育部 · 学期与假期', 'Ministry of Education'], 'public-holidays': ['公共假期', 'Public holidays'], 'find-school': ['Education Counts · 找学校', 'Education Counts'], 'wel-outages': ['WEL · 停电信息', 'WEL outages'], 'hcc-roadworks': ['HCC · 道路施工', 'HCC road works'], 'water-services': ['HCC · 供水服务', 'HCC water services'], iawai: ['IAWAI · 供水', 'IAWAI water'], 'govt-nz': ['新西兰政府', 'govt.nz'], 'hcc-home': ['汉密尔顿市政', 'Hamilton City Council'], gaspy: ['Gaspy · 油价', 'Gaspy'], 'charge-net': ['ChargeNet · 充电网络', 'ChargeNet'], plugshare: ['PlugShare · 充电桩', 'PlugShare'],
 };
-const SERVICE_PICKS: CordPick[] = Object.entries(SERVICE_CATS).flatMap(([tab, cats]) => cats.map(([zh, en], index) => ({ id: 'service-' + tab + '-' + index, type: 'category', name: { zh, en }, info: { zh: '内容整理中 · 暂无商家', en: 'Coming soon · No listings yet' }, href: '#/services?tab=' + tab, tab, target: 'service-' + tab + '-' + index })));
+const SERVICE_PICKS: CordPick[] = Object.entries(SERVICE_CATS).flatMap(([tab, cats]) => cats.map(([zh, en], index) => {
+  const line = servicePlaceholderLine(tab, index);
+  return { id: 'service-' + tab + '-' + index, type: 'category', name: { zh, en }, info: { zh: '招商中 · ' + line.zh, en: 'Open for listings · ' + line.en }, href: '#/services?tab=' + tab, tab, target: 'service-' + tab + '-' + index };
+}));
 const TOOL_PICKS: CordPick[] = [
   { id: 'tip-bins', type: 'tip', name: { zh: TEXT.zh.binH, en: TEXT.en.binH }, info: { zh: TEXT.zh.binTip, en: TEXT.en.binTip }, href: '#/tools?tab=bins', target: 'tool-bins' },
   { id: 'tip-bus', type: 'tip', name: { zh: TEXT.zh.busH, en: TEXT.en.busH }, info: { zh: TEXT.zh.planner, en: TEXT.en.planner }, href: URLS.busit },

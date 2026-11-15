@@ -2014,7 +2014,7 @@ html:not([data-cards]) .ia-place-detail .ia-highlights { display: flex; }
 .ia-root .ia-tabs:has(#tab-bus) { grid-template-columns:repeat(9,minmax(0,1fr)); }
 .ia-root .ia-tabs:has(#tab-bus) .sb-tab { padding: 8px 4px; font-size: 13px; }
 .ia-root .ia-tabs:has(#tab-stays) { grid-template-columns:repeat(5,minmax(0,1fr)); }
-.ia-root .ia-tabs:has(#tab-pets) { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.ia-root .ia-tabs:has(#tab-pets) { grid-template-columns:repeat(5,minmax(0,1fr)); }
 .v25g-tools { min-width:0; margin-bottom:44px; }
 .ia-root .v25g-heading { max-width:900px; margin-bottom:25px; }
 .ia-root .v25g-heading h2 { margin-bottom:3px; }
@@ -4563,4 +4563,20 @@ html body .ia-root[data-route="living"] .ia-tabs.ia-tabs-compact #tab-blackfrida
   .bf-banner-copy > span { font-size: 10px; }
   .bf-banner-date { display: none; }
   .bf-banner-icon { width: 32px; height: 32px; }
+}
+
+.ia-root .v25k-pet-card .ia-card-top { width: 100%; }
+.ia-root .ia-category > span:last-child { margin-top: auto; padding-top: 8px; font-size: 13px; line-height: 1.6; }
+.ia-root[data-route="services"] :is(.ia-category, .v25k-pet-card) .sb-tag {
+  color: var(--sec);
+  border-color: color-mix(in srgb, var(--sec) 35%, var(--hl-line));
+  background: color-mix(in srgb, var(--sec) 9%, transparent);
+  white-space: nowrap;
+}
+html[data-theme="night"] .ia-root[data-route="services"] :is(.ia-category, .v25k-pet-card) .sb-tag {
+  border-color: rgba(231, 196, 160, .35);
+  background: rgba(231, 196, 160, .1);
+}
+@media (max-width: 1050px) and (min-width: 721px) {
+  html body .ia-root[data-route="services"] .ia-tabs.ia-tabs-compact .sb-tab { padding: 0 10px; font-size: 14px; }
 }
