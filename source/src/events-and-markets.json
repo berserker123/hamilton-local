@@ -621,7 +621,9 @@
         "hours": "09:00–12:00",
         "venue": "Western Community Centre, 46 Hyde Avenue, Nawton",
         "source_url": "https://www.goeco.org.nz/event-details/fair-share-market-2026-11-14-09-00",
-        "http_status": 200
+        "http_status": 200,
+        "price_zh": "免费",
+        "price_en": "Free"
       },
       {
         "id": "all-saints-craft-market",
@@ -701,7 +703,9 @@
         "hours": "07:30 起，约 5 小时",
         "venue": "Matamata Primary School (directory)",
         "source_url": "https://thecommunity.co.nz/events/main/matamata-market-and-craft-fair-monthly-local-market/",
-        "http_status": 200
+        "http_status": 200,
+        "price_zh": "免费",
+        "price_en": "Free"
       },
       {
         "id": "morrinsville-country-market",
