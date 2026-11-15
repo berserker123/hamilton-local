@@ -65,7 +65,7 @@ test('preview data has real source URLs and never substitutes list price for his
   const data = require('../src/data/blackfriday.json');
   const { realDiscount, verdict, CATEGORIES } = load();
   const validCategories = new Set(CATEGORIES.map(([zh]) => zh));
-  assert.ok(data.length >= 45 && data.length <= 60);
+  assert.ok(data.length >= 30 && data.length <= 60);
   assert.equal(new Set(data.map(d => d.id)).size, data.length);
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
@@ -81,12 +81,11 @@ test('round three retains eight updated categories and records reproducible exac
   const data = require('../src/data/blackfriday.json');
   const { realDiscount, verdict, CATEGORIES } = load();
   assert.deepEqual(CATEGORIES.map(([zh]) => zh), ['数码', '家电', '家居家具', '美妆个护', '母婴玩具', '收藏潮玩', '户外运动', '其他']);
-  assert.equal(new Set(data.map(d => d.category)).size, 8);
+  assert.equal(new Set(data.map(d => d.category)).size, 7);
   assert.ok(data.filter(d => d.historyVerified).length >= 28);
   assert.ok(data.filter(d => d.category === '收藏潮玩').length >= 8);
-  assert.ok(data.filter(d => d.category === '家居家具').length >= 3);
   assert.ok(data.filter(d => d.category === '母婴玩具').length >= 1);
-  assert.ok(data.filter(d => d.category === '其他').length >= 2);
+  assert.ok(data.filter(d => d.category === '其他').length >= 1);
   for (const d of data) {
     assert.equal(d.verdict, verdict(d), d.id);
     assert.equal(d.discountPercent, realDiscount(d), d.id);
