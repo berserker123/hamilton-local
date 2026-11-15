@@ -40,20 +40,36 @@ function eventNotes(item: Event) {
 function eventClosed(item: Event) {
   return priceTone(item.price_zh, item.price_en) === 'is-faded';
 }
+const TIME_ZH: ReadonlyArray<readonly [string, string]> = [
+  ['Wed\u2013Fri', '周三至周五'],
+  ['Daily', '每天'],
+  ['Mon', '周一'],
+  ['Tue', '周二'],
+  ['Wed', '周三'],
+  ['Thu', '周四'],
+  ['Fri', '周五'],
+  ['Sat', '周六'],
+  ['Sun', '周日'],
+  [' & ', '、'],
+];
+function eventTimeLabel(time: string, t: T) {
+  if (t('中', 'en') === 'en') return time;
+  return TIME_ZH.reduce((text, [from, to]) => text.replaceAll(from, to), time);
+}
 function EventRow({ item, t }: { item: Event; t: T }) {
   const multi = item.dates.length > 1;
   const notes = eventNotes(item);
   const timeUnconfirmed = !multi && item.time.startsWith('待确认');
   const when = multi
     ? `${chineseDate(item.dates[0])} – ${chineseDate(item.dates.at(-1)!)}`
-    : (timeUnconfirmed ? t('时间待确认', 'Time unconfirmed') : item.time);
+    : (timeUnconfirmed ? t('时间待确认', 'Time unconfirmed') : eventTimeLabel(item.time, t));
   const price = displayPrice(item.price_zh, item.price_en);
   return <article className="wa-row wa-event" data-event-id={item.id} data-past={eventClosed(item) ? 'true' : undefined}>
     <p className={'wa-time wa-event-time caption-4' + (timeUnconfirmed ? ' is-tbc' : '')}>{when}</p>
     <div className="wa-main wa-event-copy">
       <BilingualTitle as="h4" className="title-3 wa-event-title" zh={item.title_zh} en={item.title_en} t={t} />
       <p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town) === 'other' ? ` · ${item.town}` : ''}</span></p>
-      {multi && <p className="wa-hours caption-4">{item.time.replace('Sat ', t('周六 ', 'Sat ')).replace('Sun ', t('周日 ', 'Sun '))}</p>}
+      {multi && <p className="wa-hours caption-4">{eventTimeLabel(item.time, t)}</p>}
       {notes.length > 0 && <div className="wa-event-note">{notes.map(note => <p key={note} className="caption-5">{note}</p>)}</div>}
     </div>
     <div className="wa-tail wa-event-side">

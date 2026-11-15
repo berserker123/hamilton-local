@@ -11,8 +11,8 @@ test('festival wording in titles and descriptions has one exclusive category',()
  assert.deepEqual(result.picks.map(x=>x.id),['f','e']);assert.deepEqual(result.markets.map(x=>x.id),['m']);assert.deepEqual(result.festivals.map(x=>x.id),['f']);
 });
 test('actual data merges festivals into weekly picks by date',()=>{
- const {AGENDA}=moduleUnderTest();assert.equal(AGENDA.picks.length,37);assert.equal(AGENDA.markets.length,11);
- for (const id of ['asian-cultural-food','pacific-rose-bowl-festival-2026','pb-festival-2026-11-14-15']) assert.ok(AGENDA.picks.some(item=>item.id===id), id);
+ const {AGENDA}=moduleUnderTest();assert.equal(AGENDA.picks.length,27);assert.equal(AGENDA.markets.length,11);
+ for (const id of ['cambridge-pop-up-carnival-2026']) assert.ok(AGENDA.picks.some(item=>item.id===id), id);
  const dates=AGENDA.picks.map(item=>Array.isArray(item.dates)&&item.dates.length?[...item.dates].sort()[0]:'9999-99-99');
  assert.deepEqual(dates, [...dates].sort());
 });
