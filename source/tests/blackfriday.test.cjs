@@ -63,31 +63,40 @@ test('filters combine and all sorts handle unknown discounts without mutating da
 });
 test('preview data has real source URLs and never substitutes list price for historical evidence', () => {
   const data = require('../src/data/blackfriday.json');
-  const { realDiscount, verdict } = load();
-  assert.ok(data.length >= 20 && data.length <= 30);
+  const { realDiscount, verdict, CATEGORIES } = load();
+  const validCategories = new Set(CATEGORIES.map(([zh]) => zh));
+  assert.ok(data.length >= 45 && data.length <= 60);
   assert.equal(new Set(data.map(d => d.id)).size, data.length);
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
-    assert.ok(d.salePrice > 0 && /^2026-11-15/.test(d.checkedAt));
+    assert.ok(validCategories.has(d.category), `unexpected category ${d.category} on ${d.id}`);
+    assert.ok(d.salePrice > 0 && /^2026-11-(15|16)/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/pricespy.co.nz\/product.php\?p=\d+/);
     if (!d.historyVerified) { assert.equal(d.typicalPrice, null); assert.equal(realDiscount(d), null); assert.equal(verdict(d), '待核实'); }
   }
 });
-test('round two retains eight categories and records reproducible exact-variant history for at least fifteen items', () => {
+test('round three retains eight updated categories and records reproducible exact-variant history', () => {
   const data = require('../src/data/blackfriday.json');
-  const { realDiscount, verdict } = load();
+  const { realDiscount, verdict, CATEGORIES } = load();
+  assert.deepEqual(CATEGORIES.map(([zh]) => zh), ['数码', '家电', '家居家具', '美妆个护', '母婴玩具', '收藏潮玩', '户外运动', '其他']);
   assert.equal(new Set(data.map(d => d.category)).size, 8);
-  assert.ok(data.filter(d => d.historyVerified).length >= 15);
+  assert.ok(data.filter(d => d.historyVerified).length >= 28);
+  assert.ok(data.filter(d => d.category === '收藏潮玩').length >= 8);
+  assert.ok(data.filter(d => d.category === '家居家具').length >= 3);
+  assert.ok(data.filter(d => d.category === '母婴玩具').length >= 1);
+  assert.ok(data.filter(d => d.category === '其他').length >= 2);
   for (const d of data) {
     assert.equal(d.verdict, verdict(d), d.id);
     assert.equal(d.discountPercent, realDiscount(d), d.id);
     if (!d.historyVerified) continue;
     assert.equal(d.historyEvidence.exactVariant, true, d.id);
     assert.equal(d.historyEvidence.dayCount, 90, d.id);
-    assert.equal(d.historyEvidence.windowStart, '2026-08-17', d.id);
-    assert.equal(d.historyEvidence.windowEnd, '2026-11-14', d.id);
+    const validWindow =
+      (d.historyEvidence.windowStart === '2026-08-17' && d.historyEvidence.windowEnd === '2026-11-14') ||
+      (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-15');
+    assert.ok(validWindow, `unexpected 90d window on ${d.id}: ${d.historyEvidence.windowStart}..${d.historyEvidence.windowEnd}`);
     assert.ok(d.sources.includes(d.priceSpyUrl), d.id);
     assert.ok(d.lowestPrice90d > 0 && d.lowestPrice90d <= d.typicalPrice, d.id);
     assert.ok(['market', 'retailer'].includes(d.historyScope), d.id);

@@ -9,8 +9,8 @@ export type Deal = {
   productUrl: string; priceSpyUrl: string | null; sources: string[]; historyNote: string;
 };
 export const CATEGORIES = [
-  ['数码', 'Tech'], ['家电', 'Appliances'], ['家居厨房', 'Home & kitchen'], ['服装鞋包', 'Clothing & shoes'],
-  ['美妆个护', 'Beauty & care'], ['母婴玩具', 'Baby & toys'], ['户外运动', 'Outdoors & sport'], ['超市日用', 'Everyday essentials'],
+  ['数码', 'Tech'], ['家电', 'Appliances'], ['家居家具', 'Home & furniture'], ['美妆个护', 'Beauty & care'],
+  ['母婴玩具', 'Baby & toys'], ['收藏潮玩', 'Collectibles'], ['户外运动', 'Outdoors & sport'], ['其他', 'Other'],
 ] as const;
 export function realDiscount(deal: Deal): number | null {
   if (!deal.historyVerified || deal.typicalPrice == null || deal.typicalPrice <= 0) return null;
