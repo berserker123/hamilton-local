@@ -126,6 +126,7 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', s
   const [openId, setOpenId] = useState<string | null>(null);
   const open = places.find(p => p.id === openId);
   const openPlace = (id: string) => setOpenId(id);
+  let placeholderIndex = 0;
   return <><div className="hl-spot-grid" data-accent={accent}>{places.map(p => {
     const area = t(p.area, p.en.area);
     const pill = showFacts && p.categoryZh ? t(p.categoryZh, p.categoryEn || p.categoryZh) : p.km != null ? `${area} · ${t('约', '~')}${p.km} km` : area;
@@ -136,7 +137,7 @@ function PlaceGrid({ places, lang, t, separateName = false, accent = 'living', s
     const phone = p.phone || '';
     return <article className="hl-spot" key={p.id} data-place-id={p.id}>
       <div className="hl-spot-media">
-        {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /><PhotoPlaceholderCaption id={p.id} /></div>}
+        {'photo' in p && p.photo ? <img src={'./photos/' + p.photo} alt={lang === 'zh' ? p.photoAlt : p.en.photoAlt} /> : <div className="hl-spot-fallback" aria-hidden="true"><Trees /><PhotoPlaceholderCaption id={p.id} index={placeholderIndex++} t={t} /></div>}
         <span className="hl-spot-pill">{pill}</span>
         <button type="button" className="hl-spot-info" aria-label={t('查看来源与详情', 'View source and details')} onClick={() => openPlace(p.id)}><Info aria-hidden="true" /></button>
       </div>
@@ -175,11 +176,11 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
   }
   const markets = SUPERMARKETS.filter(s => [s.name, s.zhName, s.address, s.suburb, ...s.tags.zh, ...s.tags.en].join(' ').toLowerCase().includes(q.trim().toLowerCase()));
   return <><DirectoryHeading eyebrow="GROCERY" zh="亚超与杂货" en="Asian grocers" introZh="按门店、区域或地址，查找日常采买的去处。" introEn="Find everyday grocery stops by store, suburb or address." t={t} /><div className="ia-list-toolbar"><p>{t(`${SUPERMARKETS.length} 家门店 · ${MARKET_CHECKED} 家已核对 · ${MARKET_PENDING} 家品牌待核实`, `${SUPERMARKETS.length} stores · ${MARKET_CHECKED} checked · ${MARKET_PENDING} brand unconfirmed`)}</p><label className="ia-inline-search"><Search /><input type="search" aria-label={t('搜索亚超', 'Search grocers')} value={q} onChange={e => setQ(e.target.value)} placeholder={t('门店、区域或地址', 'Store, suburb or address')} />{q && <button aria-label={t('清除搜索', 'Clear search')} onClick={() => setQ('')}><X /></button>}</label></div>
-  <div className="hl-spot-grid" data-accent="living">{markets.map(s => {
+  <div className="hl-spot-grid" data-accent="living">{markets.map((s, index) => {
     const viewpoint = MARKET_STREET_VIEW[s.id as keyof typeof MARKET_STREET_VIEW];
     return <article key={s.id} data-market-id={s.id} className="hl-spot">
       <div className="hl-spot-media">
-        <div className="hl-spot-fallback" aria-hidden="true"><Store /><PhotoPlaceholderCaption id={s.id} /></div>
+        <div className="hl-spot-fallback" aria-hidden="true"><Store /><PhotoPlaceholderCaption id={s.id} index={index} t={t} /></div>
         <span className="hl-spot-pill">{s.verificationStatus === 'uncertain' ? t('品牌待核实', 'Brand unconfirmed') : placeNames(s.suburb, lang)}</span>
       </div>
       <div className="hl-spot-body">

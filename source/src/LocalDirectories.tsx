@@ -33,14 +33,14 @@ function StayDetail({ item, t, close }: { item: Item; t: T; close: () => void })
   }, []);
   return <dialog ref={ref} className="sb-modal ia-dialog sb-dark ia-stay-detail" aria-labelledby="stay-detail-title" onCancel={e => { e.preventDefault(); close(); }}><div className="sb-modal-heading"><h2 id="stay-detail-title">{t(item.zh, item.name)}</h2><button autoFocus className="sb-action" aria-label={t('关闭', 'Close')} onClick={close}><X /></button></div><p className="ia-secondary-name">{item.name}</p>{item.photo && <figure className="ia-detail-photo"><img src={'./photos/' + item.photo} alt={item.photoAlt || item.name} /><DirectoryPhotoCredit item={item} t={t} /></figure>}<p>{t(item.introZh, item.introEn)}</p>{item.phone && <p><a href={"tel:" + item.phone.replace(/\s/g, "")}>{item.phone}</a>{item.mobile && <> · <a href={"tel:" + item.mobile.replace(/\s/g, "")}>{item.mobile}</a></>}</p>}<p className="sb-icon-line"><MapPin aria-hidden="true" />{item.address}</p><a className="sb-action" href={item.url} target="_blank" rel="noopener noreferrer">{t('住宿详情与预订', 'Property details & booking')}<ArrowUpRight aria-hidden="true" /></a><FeedbackLink section={item.name} /></dialog>;
 }
-function DirectoryCard({ item, t, label, kind, children, onDetails }: { item: Item; t: T; label?: string; official?: boolean; kind: CardKind; children?: React.ReactNode; onDetails?: () => void }) {
+function DirectoryCard({ item, t, label, kind, placeholderIndex, children, onDetails }: { item: Item; t: T; label?: string; official?: boolean; kind: CardKind; placeholderIndex?: number; children?: React.ReactNode; onDetails?: () => void }) {
   const chinese = t('中', 'en') !== 'en';
   const Icon = kind === 'stay' ? BedDouble : kind === 'pet' ? PawPrint : Cherry;
   const pill = label ? `${label} · ${item.area}` : item.area;
   const mapHref = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(item.name + ' ' + item.address);
   return <article className="hl-spot" data-directory-id={item.id} data-card-kind={kind}>
     <div className="hl-spot-media">
-      {item.photo ? <img src={'./photos/' + item.photo} alt={item.photoAlt || item.name} /> : <div className="hl-spot-fallback" aria-hidden="true"><Icon /><PhotoPlaceholderCaption id={item.id} /></div>}
+      {item.photo ? <img src={'./photos/' + item.photo} alt={item.photoAlt || item.name} /> : <div className="hl-spot-fallback" aria-hidden="true"><Icon /><PhotoPlaceholderCaption id={item.id} index={placeholderIndex} t={t} /></div>}
       <span className="hl-spot-pill">{pill}</span>
       {onDetails ? <button type="button" className="hl-spot-info" aria-label={t('查看住宿详情', 'View stay details')} onClick={() => onDetails()}><Info aria-hidden="true" /></button> : <a className="hl-spot-info" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={t('查看来源', 'View source')}><Info aria-hidden="true" /></a>}
     </div>
@@ -61,7 +61,7 @@ function DirectoryCard({ item, t, label, kind, children, onDetails }: { item: It
 }
 export function Stays({ t }: { t: T }) {
   const [selected, setSelected] = useState<Item | null>(null);
-  return <section id="stays" className="v25-directory"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="精选住宿" en="Stays" t={t} /><p>{t('按区域找一处落脚点，房型、价格与空房请查看住宿页面。', 'Find a place to stay by area. Check the property page for rooms, prices and availability.')}</p></div><div className="hl-spot-grid" data-accent="living">{STAYS.map(item => <DirectoryCard key={item.id} item={item} label={item.type} kind="stay" t={t} onDetails={() => setSelected(item)} />)}</div>{selected && <StayDetail item={selected} t={t} close={() => setSelected(null)} />}</section>;
+  return <section id="stays" className="v25-directory"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="精选住宿" en="Stays" t={t} /><p>{t('按区域找一处落脚点，房型、价格与空房请查看住宿页面。', 'Find a place to stay by area. Check the property page for rooms, prices and availability.')}</p></div><div className="hl-spot-grid" data-accent="living">{STAYS.map((item, index) => <DirectoryCard key={item.id} item={item} label={item.type} kind="stay" t={t} placeholderIndex={index} onDetails={() => setSelected(item)} />)}</div>{selected && <StayDetail item={selected} t={t} close={() => setSelected(null)} />}</section>;
 }
 const PET_ORDER = ['shops', 'vets', 'dog-parks', 'boarding', 'grooming', 'daycare'];
 const PET_PLACEHOLDERS = new Set(['boarding', 'grooming', 'daycare']);
@@ -75,7 +75,7 @@ export function Pets({ t }: { t: T }) {
     <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{groups.map(group => <a key={group.id} href={'#/services?tab=pets&at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
     {listed.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
       <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
-      <div className="hl-spot-grid" data-accent="services">{group.items.map(item => <DirectoryCard key={item.id} item={item} kind="pet" t={t} />)}</div>
+      <div className="hl-spot-grid" data-accent="services">{group.items.map((item, index) => <DirectoryCard key={item.id} item={item} kind="pet" t={t} placeholderIndex={index} />)}</div>
       {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政免牵引绳区域名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
     </section>)}
     <div className="v25k-pet-grid">{waiting.map(group => <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
@@ -88,5 +88,5 @@ export function Pets({ t }: { t: T }) {
   </section>;
 }
 export function UPick({ t }: { t: T }) {
-  return <section id="upick" className="v25-directory v25-directory-group"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="季节采摘" en="U-Pick farms" t={t} /><p>{t('果季与开放日随天气、成熟度和余量变化；出发前请确认开放。未核实的月份标为「待确认」。', 'Seasons and opening days vary with weather, ripeness and availability. Confirm opening before visiting. Unverified months are marked Unconfirmed.')}</p></div><div className="hl-spot-grid" data-accent="living">{UPICK.map(item => <DirectoryCard key={item.id} item={item} t={t} kind="upick" official><p className="v25-season">{t(item.fruitZh, item.fruitEn)}<br />{t('采摘月份：', 'Picking months: ')}{t(item.seasonZh, item.seasonEn)}</p><p className="v25-confirm">{t('出发前请确认开放', 'Confirm opening before visiting')}</p></DirectoryCard>)}</div></section>;
+  return <section id="upick" className="v25-directory v25-directory-group"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="季节采摘" en="U-Pick farms" t={t} /><p>{t('果季与开放日随天气、成熟度和余量变化；出发前请确认开放。未核实的月份标为「待确认」。', 'Seasons and opening days vary with weather, ripeness and availability. Confirm opening before visiting. Unverified months are marked Unconfirmed.')}</p></div><div className="hl-spot-grid" data-accent="living">{UPICK.map((item, index) => <DirectoryCard key={item.id} item={item} t={t} kind="upick" placeholderIndex={index} official><p className="v25-season">{t(item.fruitZh, item.fruitEn)}<br />{t('采摘月份：', 'Picking months: ')}{t(item.seasonZh, item.seasonEn)}</p><p className="v25-confirm">{t('出发前请确认开放', 'Confirm opening before visiting')}</p></DirectoryCard>)}</div></section>;
 }
