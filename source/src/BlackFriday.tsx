@@ -30,11 +30,12 @@ export function BlackFriday({ t }: { t: T }) {
       <p className="bf-checked"><ShieldCheck aria-hidden="true" />{t('价格核对', 'Prices checked')}：{dates.join(' – ') || '—'} · NZD</p>
       <p className="bf-research-note">{t('本页为黑五前价格观察。未标明黑五活动的商品显示当前价；历史不足的条目不计算折扣，也不作优惠判断。', 'This is a pre-Black Friday price watch. Listings without an explicit Black Friday promotion show current prices. Incomplete history means no calculated discount or deal verdict.')}</p>
       <details className="bf-method"><summary>{t('怎样判断真假优惠？', 'How are offers assessed?')}</summary><ul>
-        <li><VerdictPill value="真优惠" t={t} />{t('现价低于平时价，且不高于近三个月最低价；已知常规促销除外。', 'Below typical price and at or below the three-month low, excluding known regular promotions.')}</li>
+        <li><VerdictPill value="真优惠" t={t} />{t('现价低于平时价，且不高于近三个月最低价加$1。', 'Below typical price and within $1 of, or below, the three-month low.')}</li>
         <li><VerdictPill value="一般" t={t} />{t('比平时价低，但未达近三个月最低价；低于约10%或常规促销同样适用。', 'Below typical price but above the three-month low, including savings under about 10% or regular promotions.')}</li>
-        <li><VerdictPill value="伪优惠" t={t} />{t('有证据显示先涨后降，或现价不低于平时价。', 'Evidence of a pre-sale increase, or a price at or above typical.')}</li>
+        <li><VerdictPill value="伪优惠" t={t} />{t('现价不低于平时价，或有证据显示先涨后降且现价距平时价不足$1；仅为价格比较标签。', 'At or above typical, or a documented pre-sale rise ending within $1 of typical. This label is a price comparison.')}</li>
         <li><VerdictPill value="待核实" t={t} />{t('缺少近三个月完整历史；商家划线价、RRP不当作平时价。', 'Insufficient three-month history. Retailer “was” prices and RRP are not treated as typical prices.')}</li>
       </ul></details>
+      <p className="bf-research-note">{t('平时价为 PriceSpy 同款商品近90天日价的中位数，按卡片标明的市场最低价或所列商家历史计算。市场数据不代表该商家的日常售价；3月最低采用同一范围与窗口，不含运费及二手商品。', 'Typical price is the ~90-day median of PriceSpy’s daily prices for the exact variant, using either the market-low series or the listed store’s history as marked on each card. Market data is not the store’s usual price. The three-month low uses the same scope and window, excluding delivery and used items.')}</p>
       <p className="bf-disclaimer">{t('价格以商家页面为准，可能随时变动', 'Prices are subject to the retailer’s page and may change at any time.')}</p>
     </div>
     <div className="bf-filters" aria-label={t('筛选优惠', 'Filter listings')}>
@@ -48,8 +49,10 @@ export function BlackFriday({ t }: { t: T }) {
         <div className="bf-card-top"><span>{d.store}</span><VerdictPill value={result} t={t} /></div>
         <div className="bf-product-title"><h3 lang="zh-CN">{d.nameZh}</h3><p lang="en-NZ">{d.name}</p></div>
         <div className="bf-price"><span>{d.blackFridayConfirmed ? t('黑五价', 'Black Friday price') : t('当前价 · 黑五价待确认', 'Current price · BF offer unconfirmed')}</span><strong>{money(d.salePrice)}</strong><small>NZD</small></div>
-        <dl className="bf-comparison"><div><dt>{t('平时价', 'Typical price')}<small>{t('近三个月', 'Last ~3 months')}</small></dt><dd>{d.historyVerified && d.typicalPrice != null ? money(d.typicalPrice) : t('待核实', 'Unverified')}</dd></div><div><dt>{t('真实折扣', 'Real discount')}</dt><dd>{discount == null ? '—' : `${discount}%`}</dd></div></dl>
-        <p className="bf-history-note">{discount == null ? t('历史价格不足，暂不判断是否优惠。', 'Insufficient price history to assess this offer.') : t('以核实的平时价计算，不以RRP计算。', 'Calculated against verified typical price, not RRP.')}</p>
+        <dl className="bf-comparison"><div><dt>{t('平时价', 'Typical price')}<small>{d.historyScope === 'retailer' ? t('近90天商家日价中位数', '90-day store median') : t('近90天市场日价中位数', '90-day market median')}</small></dt><dd>{d.historyVerified && d.typicalPrice != null ? money(d.typicalPrice) : t('待核实', 'Unverified')}</dd></div><div><dt>{t('3月最低', '3-month low')}</dt><dd>{d.historyVerified && d.lowestPrice90d != null ? money(d.lowestPrice90d) : t('待核实', 'Unverified')}</dd></div><div><dt>{t('真实折扣', 'Real discount')}</dt><dd>{discount == null ? '—' : `${discount}%`}</dd></div></dl>
+        <p className="bf-history-note">{discount == null ? t('历史价格不足，暂不判断是否优惠。', 'Insufficient price history to assess this offer.') : d.historyScope === 'retailer' ? t('以同款商家日价中位数计算，不以RRP计算。', 'Compared with this store’s exact-variant median, not RRP.') : t('以同款市场日价中位数计算，不以RRP计算。', 'Compared with the exact variant’s market median, not RRP.')}</p>
+        {d.currentPriceRecheck?.status === 'domain-blocked' && <p className="bf-history-note">{t('本轮未能刷新商家价格；保留同日早前记录。', 'Retailer refresh unavailable; earlier same-day price retained.')}</p>}
+        {d.offerNote && <p className="bf-history-note">{t(d.offerNote, 'Single-item price. The buy-two save-15% promotion is not included.')}</p>}
         <div className="bf-card-meta"><span>{t('核对', 'Checked')} · {d.checkedAt.slice(0, 10)}</span><span>{d.saleEnds ? t('优惠至 ', 'Offer ends ') + d.saleEnds : t('截止日期未注明', 'End date not stated')}</span></div>
         <div className="bf-card-actions"><a href={d.productUrl} target="_blank" rel="noopener noreferrer">{t('去商家', 'Visit store')}<ArrowUpRight aria-hidden="true" /></a>{d.priceSpyUrl ? <a href={d.priceSpyUrl} target="_blank" rel="noopener noreferrer">{t('价格走势', 'Price history')}<ArrowUpRight aria-hidden="true" /></a> : <span>{t('价格走势 · 暂无已核实链接', 'Price history · Link unverified')}</span>}</div>
         {d.priceSpyUrl && <p className="bf-variant-note">{t('PriceSpy 可能合并相关型号、颜色或包装；请先核对具体款式。', 'PriceSpy may combine related models, colours or packs; check the exact variant first.')}</p>}

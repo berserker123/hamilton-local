@@ -19,10 +19,19 @@ test('verdict requires historical evidence and applies fair comparison boundarie
   assert.equal(verdict(item), '真优惠');
   assert.equal(verdict({ ...item, salePrice: 95 }), '一般');
   assert.equal(verdict({ ...item, salePrice: 100 }), '伪优惠');
-  assert.equal(verdict({ ...item, raisedBeforeSale: true }), '伪优惠');
+  assert.equal(verdict({ ...item, raisedBeforeSale: true }), '真优惠');
   assert.equal(verdict({ ...item, typicalPrice: null, lowestPrice90d: null, historyVerified: false }), '待核实');
   assert.equal(verdict({ ...item, lowestPrice90d: null }), '待核实');
-  assert.equal(verdict({ ...item, salePrice: 95, lowestPrice90d: 95, regularPromo: true }), '一般');
+  assert.equal(verdict({ ...item, salePrice: 95, lowestPrice90d: 95, regularPromo: true }), '真优惠');
+});
+test('round two uses a one-dollar low tolerance and requires a pre-sale rise to end near typical', () => {
+  const { verdict } = load();
+  assert.equal(verdict({ ...item, salePrice: 81 }), '真优惠');
+  assert.equal(verdict({ ...item, salePrice: 81.01 }), '一般');
+  assert.equal(verdict({ ...item, salePrice: 90, raisedBeforeSale: true }), '一般');
+  assert.equal(verdict({ ...item, salePrice: 99, raisedBeforeSale: true }), '伪优惠');
+  assert.equal(verdict({ ...item, salePrice: 98.99, raisedBeforeSale: true }), '一般');
+  assert.equal(verdict({ ...item, salePrice: 101 }), '伪优惠');
 });
 test('filters combine and all sorts handle unknown discounts without mutating data', () => {
   const { selectDeals } = load();
@@ -46,5 +55,24 @@ test('preview data has real source URLs and never substitutes list price for his
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/pricespy.co.nz\/product.php\?p=\d+/);
     if (!d.historyVerified) { assert.equal(d.typicalPrice, null); assert.equal(realDiscount(d), null); assert.equal(verdict(d), '待核实'); }
+  }
+});
+test('round two retains eight categories and records reproducible exact-variant history for at least fifteen items', () => {
+  const data = require('../src/data/blackfriday.json');
+  const { realDiscount, verdict } = load();
+  assert.equal(new Set(data.map(d => d.category)).size, 8);
+  assert.ok(data.filter(d => d.historyVerified).length >= 15);
+  for (const d of data) {
+    assert.equal(d.verdict, verdict(d), d.id);
+    assert.equal(d.discountPercent, realDiscount(d), d.id);
+    if (!d.historyVerified) continue;
+    assert.equal(d.historyEvidence.exactVariant, true, d.id);
+    assert.equal(d.historyEvidence.dayCount, 90, d.id);
+    assert.equal(d.historyEvidence.windowStart, '2026-08-17', d.id);
+    assert.equal(d.historyEvidence.windowEnd, '2026-11-14', d.id);
+    assert.ok(d.sources.includes(d.priceSpyUrl), d.id);
+    assert.ok(d.lowestPrice90d > 0 && d.lowestPrice90d <= d.typicalPrice, d.id);
+    assert.ok(['market', 'retailer'].includes(d.historyScope), d.id);
+    assert.match(d.historyEvidence.method, /Median of 90/, d.id);
   }
 });

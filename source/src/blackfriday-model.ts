@@ -3,6 +3,8 @@ export type Deal = {
   id: string; name: string; nameZh: string; category: string; store: string;
   salePrice: number; typicalPrice: number | null; lowestPrice90d: number | null;
   historyVerified: boolean; raisedBeforeSale?: boolean; regularPromo?: boolean;
+  historyScope?: 'market' | 'retailer';
+  currentPriceRecheck?: { status: string }; offerNote?: string;
   blackFridayConfirmed: boolean; saleEnds: string | null; checkedAt: string; addedAt: string;
   productUrl: string; priceSpyUrl: string | null; sources: string[]; historyNote: string;
 };
@@ -17,9 +19,9 @@ export function realDiscount(deal: Deal): number | null {
 export function verdict(deal: Deal): Verdict {
   const discount = realDiscount(deal);
   if (discount == null || deal.lowestPrice90d == null) return '待核实';
-  if (deal.raisedBeforeSale || deal.salePrice >= deal.typicalPrice!) return '伪优惠';
-  if (deal.regularPromo) return '一般';
-  if (deal.salePrice <= deal.lowestPrice90d) return '真优惠';
+  if (deal.salePrice >= deal.typicalPrice!) return '伪优惠';
+  if (deal.salePrice <= deal.lowestPrice90d + 1) return '真优惠';
+  if (deal.raisedBeforeSale && deal.salePrice >= deal.typicalPrice! - 1) return '伪优惠';
   return '一般';
 }
 export function selectDeals<T extends Deal>(deals: T[], category: string, store: string, sort: string): T[] {
