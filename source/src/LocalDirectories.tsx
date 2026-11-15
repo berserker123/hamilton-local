@@ -7,6 +7,7 @@ import UPICK from './upick-v25.json';
 import { CardKind } from './card-style';
 import { PhotoFlip } from './PhotoFlip';
 import { PhotoPlaceholderCaption } from './PhotoPlaceholderCaption';
+import { servicePlaceholderLine } from './service-placeholders';
 
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 
@@ -78,13 +79,17 @@ export function Pets({ t }: { t: T }) {
       <div className="hl-spot-grid" data-accent="services">{group.items.map((item, index) => <DirectoryCard key={item.id} item={item} kind="pet" t={t} placeholderIndex={index} />)}</div>
       {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政免牵引绳区域名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
     </section>)}
-    <div className="v25k-pet-grid">{waiting.map(group => <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
-      <PawPrint className="v25k-pet-icon" aria-hidden="true" />
-      <h3 lang="zh-CN">{group.zh}</h3>
-      <p className="v25k-pet-english" lang="en-NZ">{group.en}</p>
-      <p className="v25k-pet-status">商家招募中 · Listings coming soon</p>
-      <button type="button" className="v25k-pet-enquiry" aria-haspopup="dialog" onClick={e => open('宠物指南-' + group.zh, e.currentTarget, 'business', '宠物指南-' + group.zh + '：商家入驻 / 广告合作')}>商家入驻 / 广告合作<ArrowUpRight aria-hidden="true" /></button>
-    </article>)}</div>
+    <div className="v25k-pet-grid">{waiting.map((group, index) => {
+      const chinese = t('中', 'en') !== 'en';
+      const line = servicePlaceholderLine('pets', index);
+      return <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
+        <div className="ia-card-top"><PawPrint className="v25k-pet-icon" aria-hidden="true" /><span className="sb-tag">{t('招商中', 'Open for listings')}</span></div>
+        <h3 lang="zh-CN">{group.zh}</h3>
+        <p className="v25k-pet-english" lang="en-NZ">{group.en}</p>
+        <p className="v25k-pet-status" lang={chinese ? 'zh-CN' : 'en-NZ'}>{t(line.zh, line.en)}</p>
+        <button type="button" className="v25k-pet-enquiry" aria-haspopup="dialog" onClick={e => open('宠物指南-' + group.zh, e.currentTarget, 'business', '宠物指南-' + group.zh + '：商家入驻 / 广告合作')}>{t('商家入驻 / 广告合作', 'List your business / Enquiries')}<ArrowUpRight aria-hidden="true" /></button>
+      </article>;
+    })}</div>
   </section>;
 }
 export function UPick({ t }: { t: T }) {
