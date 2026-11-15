@@ -8,8 +8,8 @@ const DEALS = DATA as Deal[];
 const STORES = [...new Set(DEALS.map(d => d.store))].sort();
 const ACTIVE_CATEGORIES = CATEGORIES.filter(([zh]) => DEALS.some(d => d.category === zh));
 const money = (price: number) => new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format(price);
-const LABELS: Record<Verdict, string> = { '真优惠': 'Good deal', '一般': 'Standard offer', '伪优惠': 'Misleading offer', '待核实': 'History unverified' };
-const CLASSES: Record<Verdict, string> = { '真优惠': 'good', '一般': 'ordinary', '伪优惠': 'poor', '待核实': 'unverified' };
+const LABELS: Record<Verdict, string> = { '真优惠': 'Good deal', '一般': 'Standard offer', '先别急': 'Wait and compare', '待核实': 'History unverified' };
+const CLASSES: Record<Verdict, string> = { '真优惠': 'good', '一般': 'ordinary', '先别急': 'poor', '待核实': 'unverified' };
 function VerdictPill({ value, t }: { value: Verdict; t: T }) {
   return <span className={'bf-verdict bf-verdict-' + CLASSES[value]}>{t(value, LABELS[value])}</span>;
 }
@@ -32,7 +32,7 @@ export function BlackFriday({ t }: { t: T }) {
       <details className="bf-method"><summary>{t('怎样判断真假优惠？', 'How are offers assessed?')}</summary><ul>
         <li><VerdictPill value="真优惠" t={t} />{t('现价低于平时价，且不高于近三个月最低价加$1。', 'Below typical price and within $1 of, or below, the three-month low.')}</li>
         <li><VerdictPill value="一般" t={t} />{t('比平时价低，但未达近三个月最低价；低于约10%或常规促销同样适用。', 'Below typical price but above the three-month low, including savings under about 10% or regular promotions.')}</li>
-        <li><VerdictPill value="伪优惠" t={t} />{t('现价不低于平时价，或有证据显示先涨后降且现价距平时价不足$1；仅为价格比较标签。', 'At or above typical, or a documented pre-sale rise ending within $1 of typical. This label is a price comparison.')}</li>
+        <li><VerdictPill value="先别急" t={t} />{t('现价不低于平时价，或有证据显示先涨后降且现价距平时价不足$1；仅为价格比较标签。', 'At or above typical, or a documented pre-sale rise ending within $1 of typical. This label is a price comparison.')}</li>
         <li><VerdictPill value="待核实" t={t} />{t('缺少近三个月完整历史；商家划线价、RRP不当作平时价。', 'Insufficient three-month history. Retailer “was” prices and RRP are not treated as typical prices.')}</li>
       </ul></details>
       <p className="bf-research-note">{t('平时价为 PriceSpy 同款商品近90天日价的中位数，按卡片标明的市场最低价或所列商家历史计算。市场数据不代表该商家的日常售价；3月最低采用同一范围与窗口，不含运费及二手商品。', 'Typical price is the ~90-day median of PriceSpy’s daily prices for the exact variant, using either the market-low series or the listed store’s history as marked on each card. Market data is not the store’s usual price. The three-month low uses the same scope and window, excluding delivery and used items.')}</p>

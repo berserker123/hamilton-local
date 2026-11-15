@@ -18,7 +18,7 @@ test('verdict requires historical evidence and applies fair comparison boundarie
   const { verdict } = load();
   assert.equal(verdict(item), '真优惠');
   assert.equal(verdict({ ...item, salePrice: 95 }), '一般');
-  assert.equal(verdict({ ...item, salePrice: 100 }), '伪优惠');
+  assert.equal(verdict({ ...item, salePrice: 100 }), '先别急');
   assert.equal(verdict({ ...item, raisedBeforeSale: true }), '真优惠');
   assert.equal(verdict({ ...item, typicalPrice: null, lowestPrice90d: null, historyVerified: false }), '待核实');
   assert.equal(verdict({ ...item, lowestPrice90d: null }), '待核实');
@@ -29,9 +29,9 @@ test('round two uses a one-dollar low tolerance and requires a pre-sale rise to 
   assert.equal(verdict({ ...item, salePrice: 81 }), '真优惠');
   assert.equal(verdict({ ...item, salePrice: 81.01 }), '一般');
   assert.equal(verdict({ ...item, salePrice: 90, raisedBeforeSale: true }), '一般');
-  assert.equal(verdict({ ...item, salePrice: 99, raisedBeforeSale: true }), '伪优惠');
+  assert.equal(verdict({ ...item, salePrice: 99, raisedBeforeSale: true }), '先别急');
   assert.equal(verdict({ ...item, salePrice: 98.99, raisedBeforeSale: true }), '一般');
-  assert.equal(verdict({ ...item, salePrice: 101 }), '伪优惠');
+  assert.equal(verdict({ ...item, salePrice: 101 }), '先别急');
 });
 test('filters combine and all sorts handle unknown discounts without mutating data', () => {
   const { selectDeals } = load();
