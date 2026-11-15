@@ -31,6 +31,7 @@ import { WeekendPhotoCredit } from './WeekendPhotoCredit';
 import SECTION_PHOTOS from './section-photos.json';
 import { PracticalTools, CommonTools, ToolSources } from './PracticalTools';
 import { SECTION_ORDER, TOOL_TABS, AT_IDS, canonicalHash } from './tool-navigation';
+import { BlackFriday, BlackFridayBanner } from './BlackFriday';
 installCardStyle();
 
 type Lang = 'zh' | 'en';
@@ -56,7 +57,7 @@ const PAGE = {
   tools: { zh: '把日常琐事，安排得更顺手。', en: 'The practical side of life, all in one place.', photo: 'teaser-tools-b.webp' },
 };
 const TABS = {
-  living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays']],
+  living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays'], ['blackfriday', '黑五专区', 'Black Friday']],
   weekend: [['picks', '活动日历', 'Events Calendar'], ['markets', '周末集市', 'Weekend markets']],
   kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
   services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services'], ['pets', PETS_NAME.zh, PETS_NAME.en]],
@@ -95,7 +96,7 @@ function Tabs({ route, tab, t }: { route: Exclude<Route, 'home'>; tab: string; t
     if (next < 0) return;
     e.preventDefault(); location.hash = href(route, tabs[next][0]);
     requestAnimationFrame(() => document.getElementById('tab-' + tabs[next][0])?.focus());
-  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}</div>;
+  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{id === 'blackfriday' ? <span className="bf-tab-label"><span lang="zh-CN">{zh}</span><small lang="en-NZ">{en}</small></span> : t(zh, en)}</a>)}</div>;
 }
 type Place = typeof PLACES[number];
 function placeHref(p: Place) {
@@ -164,6 +165,7 @@ const DAILY_EXTRA_IDS = ['zealong', 'te-awa', 'sanctuary-mountain', 'wairere-fal
 const DAILY_PLACES = PLACES.filter(p => p.id !== 'magical-bridge' && ((p.km != null && p.km <= 10 && !p.indoor) || DAILY_EXTRA_IDS.includes(p.id)));
 function Living({ tab, query, lang, t, toast }: { tab: string; query: string; lang: Lang; t: T; toast: (text: string) => void }) {
   const [q, setQ] = useState(query);
+  if (tab === 'blackfriday') return <BlackFriday t={t} />;
   if (tab === 'upick') return <UPick t={t} />;
   if (tab === 'stays') return <Stays t={t} />;
   if (tab === 'dining') return <><DirectoryHeading eyebrow="DINING" zh="美食探索" en="Food discoveries" introZh="收录本地餐饮信息，核对后再与你分享。" introEn="Local food discoveries, shared after their details are checked." t={t} /><Empty t={t} title={t('美食探索 · 内容整理中', 'Food discoveries · Coming soon')} /></>;
@@ -282,7 +284,7 @@ function Home({ lang, t, scene }: { lang: Lang; t: T; scene: number }) {
     location.hash = href('living', place ? 'places' : 'grocers', q);
   }
   return <><section className="sb-hero"><HeroMedia scene={scene} /><div className="sb-hero-shade" />{readHeroMode() === "window" && <span className="v22-scene-label" aria-hidden="true">{lang === 'zh' ? SCENES[scene].zh + ' · ' + SCENES[scene].en : SCENES[scene].en}</span>}<div className="sb-hero-content"><div className="sb-sticker"><Sparkles size={14} />{t('Hamilton 与 Waikato 的日常生活指南', 'Your everyday guide to Hamilton & Waikato')}</div><h1 className="sb-h1" tabIndex={-1} key={lang}><BlurText className="sb-h1a" text={t('在汉密尔顿，', 'Life in Hamilton,')} /><BlurText className="sb-h1b" delay={120} text={t('把日子过得更顺手', 'made a little easier')} /></h1><p className="sb-lead">{t('从一日三餐到周末时光，从带娃出门到日常琐事。\n在这里，找到离生活近一点的信息。', 'From the weekly shop to a weekend outside. Find the local information that makes everyday life a little easier.')}</p><form className="sb-search ia-hero-search" onSubmit={search}><Search /><input type="search" aria-label={t('搜索本地信息', 'Search local information')} placeholder={t('搜亚超、地点、区域或工具…', 'Search grocers, places or tools…')} value={query} onChange={e => setQuery(e.target.value)} /><button className="sb-btn" type="submit">{t('搜索', 'Search')}</button></form><div className="ia-quick-links"><a href={href('tools', 'bins')}>{t('查垃圾日', 'Bin days')}</a><a href={href('tools', 'urgent', undefined, 'urgent-clinics')}>{t('急诊诊所查询', 'Urgent care')}</a><a href={href('tools', 'other', undefined, 'tool-school-terms')}>{t('学期与假期', 'Terms & holidays')}</a><a href={href('tools', 'other', undefined, 'tool-find-school')}>{t('学区查询', 'School zones')}</a><a href="https://www.gaspy.nz/stats.html" target="_blank" rel="noopener noreferrer">{t('油价查询', 'Fuel prices')}</a></div><a href="#overview" onClick={e => { e.preventDefault(); document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' }); }} className="sb-ghost ia-explore">{t('看看本地生活', 'Explore local life')}<ArrowDown /></a></div><div className="sb-hero-weather"><OutLink id="metservice-hamilton" className="sb-pill ia-weather"><Sun />{t('Hamilton 天气 · 查看预报', 'Hamilton weather · View forecast')}</OutLink></div><span className="sb-hero-location">Hamilton · Waikato · New Zealand</span></section>
-  <CommonTools t={t} /><GuideStats t={t} categories={SERVICE_CATS} /><GuideMarquee t={t} /><GuidePreview t={t} categories={SERVICE_CATS} />
+  <BlackFridayBanner t={t} /><CommonTools t={t} /><GuideStats t={t} categories={SERVICE_CATS} /><GuideMarquee t={t} /><GuidePreview t={t} categories={SERVICE_CATS} />
   <GuideSteps t={t} /></>;
 }
 export default function App() {
