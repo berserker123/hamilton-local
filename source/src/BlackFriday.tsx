@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ArrowUpRight, BadgePercent, Calendar, ShieldCheck } from 'lucide-react';
 import DATA from './data/blackfriday.json';
 import { CATEGORIES, Deal, realDiscount, selectDeals, verdict, Verdict } from './blackfriday-model';
@@ -15,6 +15,31 @@ function VerdictPill({ value, t }: { value: Verdict; t: T }) {
 }
 export function BlackFridayBanner({ t }: { t: T }) {
   return <div className="sb-container bf-banner-wrap"><a className="bf-banner" href="#/living?tab=blackfriday" data-testid="bf-home-banner"><span className="bf-banner-icon"><BadgePercent aria-hidden="true" /></span><span className="bf-banner-copy"><strong lang="zh-CN">黑五专区 · 真假优惠一眼看清</strong><span lang="en-NZ">Black Friday · See what you’re really saving</span></span><span className="bf-banner-date">27 NOV 2026</span><ArrowUpRight aria-label={t('查看黑五专区', 'Explore Black Friday')} /></a></div>;
+}
+function PriceCheckPanel({ t }: { t: T }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return <section className="bf-price-check" aria-labelledby="bf-price-check-title">
+    <div>
+      <h3 id="bf-price-check-title" lang="zh-CN">想比价其他商品？</h3>
+      <p className="bf-price-check-en" lang="en-NZ">Check any product's price history</p>
+    </div>
+    <form role="search" aria-label={t('比价搜索', 'Price check')} action="https://pricespy.co.nz/search" method="get" target="_blank" rel="noopener noreferrer" onSubmit={event => {
+      const input = inputRef.current;
+      if (input) input.value = input.value.trim();
+      if (!input?.value) { event.preventDefault(); input?.focus(); }
+    }}>
+      <div className="bf-price-check-controls">
+        <input ref={inputRef} type="text" name="query" required aria-label={t('输入商品名', 'Product name')} aria-describedby="bf-price-check-help" placeholder="输入商品名，如 iPhone 17、Dyson V15" enterKeyHint="search" />
+        <button type="submit" className="bf-price-check-submit">去比价<ArrowUpRight aria-hidden="true" /></button>
+      </div>
+      <p id="bf-price-check-help" className="bf-price-check-help" lang="zh-CN">跳转到 PriceSpy NZ，查看各家店价格与历史走势</p>
+      <div className="bf-price-check-chips" role="group" aria-label={t('快捷比价', 'Quick price checks')}>
+        {['AirPods', 'PlayStation 5', 'Dyson', 'Air Fryer'].map(query => <button type="button" key={query} onClick={event => {
+          if (inputRef.current) { inputRef.current.value = query; event.currentTarget.form?.requestSubmit(); }
+        }}>{query}</button>)}
+      </div>
+    </form>
+  </section>;
 }
 export function BlackFriday({ t }: { t: T }) {
   const [category, setCategory] = useState('all');
@@ -38,6 +63,7 @@ export function BlackFriday({ t }: { t: T }) {
       <p className="bf-research-note">{t('平时价为 PriceSpy 同款商品近90天日价的中位数，按卡片标明的市场最低价或所列商家历史计算。市场数据不代表该商家的日常售价；3月最低采用同一范围与窗口，不含运费及二手商品。', 'Typical price is the ~90-day median of PriceSpy’s daily prices for the exact variant, using either the market-low series or the listed store’s history as marked on each card. Market data is not the store’s usual price. The three-month low uses the same scope and window, excluding delivery and used items.')}</p>
       <p className="bf-disclaimer">{t('价格以商家页面为准，可能随时变动', 'Prices are subject to the retailer’s page and may change at any time.')}</p>
     </div>
+    <PriceCheckPanel t={t} />
     <div className="bf-filters" aria-label={t('筛选优惠', 'Filter listings')}>
       <div className="bf-categories" role="group" aria-label={t('商品分类', 'Category')}><button type="button" aria-pressed={category === 'all'} onClick={() => setCategory('all')}>{t('全部', 'All')}</button>{ACTIVE_CATEGORIES.map(([zh, en]) => <button type="button" key={zh} aria-pressed={category === zh} onClick={() => setCategory(zh)}>{t(zh, en)}</button>)}</div>
       <div className="bf-selects"><label>{t('商家', 'Store')}<select aria-label={t('选择商家', 'Choose store')} value={store} onChange={e => setStore(e.target.value)}><option value="all">{t('全部商家', 'All stores')}</option>{STORES.map(s => <option key={s}>{s}</option>)}</select></label><label>{t('排序', 'Sort')}<select aria-label={t('排序方式', 'Sort by')} value={sort} onChange={e => setSort(e.target.value)}><option value="discount">{t('折扣最大', 'Biggest discount')}</option><option value="newest">{t('最新加入', 'Newest added')}</option><option value="price">{t('价格从低到高', 'Price: low to high')}</option></select></label></div>

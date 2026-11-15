@@ -8,6 +8,24 @@ function load() {
   return mod.exports;
 }
 const item = { id: 'test', salePrice: 80, typicalPrice: 100, lowestPrice90d: 80, historyVerified: true, category: '数码', store: 'Store A', addedAt: '2026-11-15', raisedBeforeSale: false };
+
+test('price check exposes an isolated new-tab GET search between the intro and filters', () => {
+  const React = require('react');
+  const { renderToStaticMarkup } = require('react-dom/server');
+  const result = esbuild.buildSync({ entryPoints: ['src/BlackFriday.tsx'], bundle: true, platform: 'node', format: 'cjs', external: ['react'], write: false });
+  const mod = { exports: {} };
+  new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
+  const html = renderToStaticMarkup(React.createElement(mod.exports.BlackFriday, { t: zh => zh }));
+  const form = html.match(/<form\b[^>]*>[\s\S]*?<\/form>/)?.[0];
+  assert.ok(form, 'a product search form is rendered');
+  assert.match(form, /action="https:\/\/pricespy.co.nz\/search"/);
+  assert.match(form, /method="get"/);
+  assert.match(form, /target="_blank"/);
+  assert.match(form, /rel="noopener noreferrer"/);
+  assert.match(form, /<input\b[^>]*name="query"[^>]*required=""/);
+  assert.ok(html.indexOf('class="bf-intro"') < html.indexOf(form));
+  assert.ok(html.indexOf(form) < html.indexOf('class="bf-filters"'));
+});
 test('discount uses verified typical price, preserves increases and refuses unknown history', () => {
   const { realDiscount } = load();
   assert.equal(realDiscount(item), 20);
