@@ -70,7 +70,7 @@ test('preview data has real source URLs and never substitutes list price for his
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
     assert.ok(validCategories.has(d.category), `unexpected category ${d.category} on ${d.id}`);
-    assert.ok(d.salePrice > 0 && /^2026-11-(15|16)/.test(d.checkedAt), d.id);
+    assert.ok(d.salePrice > 0 && /^2026-11-(15|16|17)/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/(pricespy\.co\.nz\/product\.php\?p=\d+|www\.priceme\.co\.nz\/[^/]+\/p-\d+\.aspx)/);
@@ -98,13 +98,31 @@ test('round three retains eight updated categories and records reproducible exac
         (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-15') ||
         (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-16')
       )) ||
-      (d.id === 'apple-airpods5-jb' && d.historyEvidence.windowStart === '2026-09-10' && d.historyEvidence.windowEnd === '2026-11-13' && d.historyEvidence.dayCount === 65);
+      (d.id === 'apple-airpods5-jb' && d.historyEvidence.windowStart === '2026-09-10' && d.historyEvidence.windowEnd === '2026-11-15' && d.historyEvidence.dayCount === 67);
     assert.ok(validWindow, `unexpected 90d window on ${d.id}: ${d.historyEvidence.windowStart}..${d.historyEvidence.windowEnd}`);
     assert.ok(d.sources.includes(d.priceSpyUrl), d.id);
     assert.ok(d.lowestPrice90d > 0 && d.lowestPrice90d <= d.typicalPrice, d.id);
     assert.ok(['market', 'retailer'].includes(d.historyScope), d.id);
     assert.match(d.historyEvidence.method, /Median of 90/, d.id);
   }
+});
+test('refresh 2026-11-17: counts, dates and note states come from the data', () => {
+  const React = require('react');
+  const { renderToStaticMarkup } = require('react-dom/server');
+  const data = require('../src/data/blackfriday.json');
+  const result = esbuild.buildSync({ entryPoints: ['src/BlackFriday.tsx'], bundle: true, platform: 'node', format: 'cjs', external: ['react'], write: false });
+  const mod = { exports: {} };
+  new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
+  const html = renderToStaticMarkup(React.createElement(mod.exports.BlackFriday, { t: zh => zh }));
+  assert.ok(html.includes(`${data.length} 件商品 / 共 ${data.length} 件`));
+  const dates = [...new Set(data.map(d => d.checkedAt.slice(0, 10)))].sort();
+  assert.ok(html.includes(`${dates[0]} – ${dates[dates.length - 1]}`));
+  assert.equal(dates.at(-1), '2026-11-17');
+  const blocked = data.filter(d => d.currentPriceRecheck?.status === 'domain-blocked').length;
+  assert.equal((html.match(/保留早前记录/g) || []).length, blocked);
+  const spyConfirmed = data.filter(d => d.currentPriceRecheck?.status === 'pricespy-offer').length;
+  assert.equal((html.match(/按 PriceSpy 当日同店报价核对/g) || []).length, spyConfirmed);
+  for (const d of data) assert.ok(['真优惠', '一般', '先别急', '待核实'].includes(d.verdict), d.id);
 });
 test('unverified items render alternating bilingual humorous labels without exposing 待核实 in UI', () => {
   const React = require('react');
@@ -118,8 +136,10 @@ test('unverified items render alternating bilingual humorous labels without expo
     assert.doesNotMatch(html, /待核实/, `${lang} UI must not show 待核实`);
     assert.doesNotMatch(html, /History unverified/, `${lang} UI must not show History unverified`);
     const badges = [...html.matchAll(/<span class="bf-verdict bf-verdict-unverified"[^>]*>([^<]+)<\/span>/g)].map(m => m[1]);
-    // 2 in legend + 14 unverified cards = 16
-    assert.equal(badges.length, 16, `${lang} badge count`);
+    const unverifiedCount = require('../src/data/blackfriday.json').filter(d => d.verdict === '待核实').length;
+    assert.ok(unverifiedCount > 0);
+    // 2 in legend + one per unverified card, derived from the data
+    assert.equal(badges.length, 2 + unverifiedCount, `${lang} badge count`);
     const cardBadges = badges.slice(2);
     for (let i = 1; i < cardBadges.length; i++) {
       assert.notEqual(cardBadges[i], cardBadges[i - 1], `${lang} neighbouring unverified cards ${i - 1} and ${i} must alternate`);
