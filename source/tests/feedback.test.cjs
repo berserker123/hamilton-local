@@ -17,7 +17,7 @@ test('payload includes type, exact subject, context and safe replyto only for em
 });
 test('PENDING opens a correctly escaped email without submitting and does not claim delivery',async()=>{
  const {deliverFeedback}=load();let mail;const result=await deliverFeedback({...draft,message:'A & B\n中文信息 #1'},context,'zh',{key:'PENDING',fetcher:()=>{throw Error('must not fetch')},openMail:url=>{mail=url}});
- assert.equal(result,'email');assert.ok(mail.startsWith('mailto:hello@hamiltonlocal.nz?'));const u=new URL(mail);assert.equal(u.searchParams.get('subject'),'Hamilton Local 反馈：信息纠错');assert.ok(u.searchParams.get('body').includes('A & B\n中文信息 #1'));assert.ok(u.searchParams.get('body').includes(context.url));assert.ok(u.searchParams.get('body').includes(context.section));
+ assert.equal(result,'email');assert.ok(mail.startsWith('mailto:adminhamiltonlocal@gmail.com?'));const u=new URL(mail);assert.equal(u.searchParams.get('subject'),'Hamilton Local 反馈：信息纠错');assert.ok(u.searchParams.get('body').includes('A & B\n中文信息 #1'));assert.ok(u.searchParams.get('body').includes(context.url));assert.ok(u.searchParams.get('body').includes(context.section));
 });
 test('honeypot prevents network and email even with a valid key',async()=>{
  const {deliverFeedback}=load();assert.equal(await deliverFeedback({...draft,botcheck:'spam'},context,'zh',{key:'key',fetcher:()=>{throw Error('must not fetch')},openMail:()=>{throw Error('must not open')}}),'blocked');

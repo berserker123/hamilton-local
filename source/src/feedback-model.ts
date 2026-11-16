@@ -44,7 +44,7 @@ export function feedbackPayload(draft: FeedbackDraft, context: FeedbackContext, 
 export function feedbackMailto(draft: FeedbackDraft, context: FeedbackContext, lang: 'zh' | 'en') {
   const data = feedbackPayload(draft, context, lang, '');
   const body = [data.type, data.message, '', `Name / 姓名: ${data.name || '—'}`, `Contact / 联系方式: ${data.contact || '—'}`, `Page / 页面: ${data.page_url}`, `Section / 位置: ${data.section}`].join('\n');
-  return 'mailto:hello@hamiltonlocal.nz?subject=' + encodeURIComponent(data.subject) + '&body=' + encodeURIComponent(body);
+  return 'mailto:adminhamiltonlocal@gmail.com?subject=' + encodeURIComponent(data.subject) + '&body=' + encodeURIComponent(body);
 }
 
 export async function deliverFeedback(
