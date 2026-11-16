@@ -28,7 +28,7 @@ export function applyCardStyle(doc?: { documentElement: AttrRoot } | null, style
 export function installCardStyle() {
   if (typeof window === 'undefined') return;
   applyCardStyle();
-  window.addEventListener('hashchange', () => applyCardStyle());
+  window.addEventListener('hl-navigate', () => applyCardStyle());
   window.addEventListener('popstate', () => applyCardStyle());
 }
 

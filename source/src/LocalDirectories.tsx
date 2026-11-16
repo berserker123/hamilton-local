@@ -73,7 +73,7 @@ export function Pets({ t }: { t: T }) {
   const waiting = groups.filter(group => PET_PLACEHOLDERS.has(group.id));
   return <section id="pets" className="v25-directory">
     <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、兽医和市政免牵引绳区域已列出。寄养、洗护美容与狗狗日托仍在招募商家。" introEn="Shops, vets and council off-leash areas are listed. Boarding, grooming and dog daycare are open to merchants." t={t} />
-    <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{groups.map(group => <a key={group.id} href={'#/services?tab=pets&at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
+    <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{groups.map(group => <a key={group.id} href={'/services/pets/?at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
     {listed.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
       <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
       <div className="hl-spot-grid" data-accent="services">{group.items.map((item, index) => <DirectoryCard key={item.id} item={item} kind="pet" t={t} placeholderIndex={index} />)}</div>

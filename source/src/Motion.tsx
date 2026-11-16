@@ -92,10 +92,12 @@ export function HeroMedia({ scene = 0 }: { scene?: number }) {
     motion.addEventListener('change', onMotion);
     window.addEventListener('hashchange', onLocation);
     window.addEventListener('popstate', onLocation);
+    window.addEventListener('hl-navigate', onLocation);
     return () => {
       motion.removeEventListener('change', onMotion);
       window.removeEventListener('hashchange', onLocation);
       window.removeEventListener('popstate', onLocation);
+      window.removeEventListener('hl-navigate', onLocation);
     };
   }, []);
   if (reduced || mode === 'window') return <TrainWindow reduced={reduced} scene={scene} />;

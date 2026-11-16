@@ -41,7 +41,8 @@ test('service placeholder lines match the 5 exact bilingual lines and rotate wit
 
 test('App defines advisors tab after pets with the 4 required sub-groups and no real listings', () => {
   const app = fs.readFileSync('src/App.tsx', 'utf8');
-  assert.match(app, /\['pets', PETS_NAME\.zh, PETS_NAME\.en\], \['advisors', '专业顾问', 'Professional Advice'\]/);
+  const { TABS } = require('../src/site-routes.mjs');
+  assert.deepEqual(TABS.services.slice(-2).map(([id]) => id), ['pets', 'advisors']);
   for (const group of [
     "['金融服务 (贷款、保险、理财)', 'Financial Services']",
     "['移民中介', 'Immigration Advisers']",

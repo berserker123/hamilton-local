@@ -30,7 +30,8 @@ import { PhotoPlaceholderCaption } from './PhotoPlaceholderCaption';
 import { WeekendPhotoCredit } from './WeekendPhotoCredit';
 import SECTION_PHOTOS from './section-photos.json';
 import { PracticalTools, CommonTools, ToolSources } from './PracticalTools';
-import { SECTION_ORDER, TOOL_TABS, AT_IDS, canonicalHash } from './tool-navigation';
+import { SECTION_ORDER, TABS, href, readRoute as readPathRoute, applyDocumentMeta } from './site-routes.mjs';
+import { navigate } from './navigate';
 import { BlackFriday, BlackFridayBanner } from './BlackFriday';
 import { servicePlaceholderLine } from './service-placeholders';
 installCardStyle();
@@ -57,31 +58,7 @@ const PAGE = {
   services: { zh: '家里家外，总有需要帮忙的时候。', en: 'A little help for everyday life.', photo: 'teaser-services-a.webp' },
   tools: { zh: '把日常琐事，安排得更顺手。', en: 'The practical side of life, all in one place.', photo: 'teaser-tools-b.webp' },
 };
-const TABS = {
-  living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays'], ['blackfriday', '黑五专区', 'Black Friday']],
-  weekend: [['picks', '活动日历', 'Events Calendar'], ['markets', '周末集市', 'Weekend markets']],
-  kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
-  services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services'], ['pets', PETS_NAME.zh, PETS_NAME.en], ['advisors', '专业顾问', 'Professional Advice']],
-  tools: TOOL_TABS,
-};
-function href(route: string, tab?: string, q?: string, at?: string) {
-  const params = new URLSearchParams();
-  if (tab) params.set('tab', tab);
-  if (q) params.set('q', q);
-  if (at && AT_IDS.has(at)) params.set('at', at);
-  return '#/' + (route === 'home' ? '' : route) + (params.size ? '?' + params : '');
-}
-function readRoute() {
-  const [rawPath, query] = canonicalHash(location.hash).slice(2).split('?');
-  const path = rawPath === 'whatson' ? 'weekend' : rawPath;
-  const route = (SECTIONS.some(s => s.id === path) ? path : 'home') as Route;
-  const params = new URLSearchParams(query);
-  const tabs = route === 'home' ? [] : TABS[route];
-  if (route === 'living' && params.get('at') === 'upick' && params.get('tab') === 'places') params.set('tab', 'upick');
-  const tab = tabs.find(item => item[0] === params.get('tab'))?.[0] || tabs[0]?.[0] || '';
-  const atParam = params.get('at') || '';
-  return { route, tab, q: params.get('q') || '', at: AT_IDS.has(atParam) ? atParam : '' };
-}
+function readRoute() { return readPathRoute(location.pathname, location.search); }
 function OutLink({ id, children, className = 'sb-action' }: { id: string; children: React.ReactNode; className?: string }) {
   if (!URLS[id]) return null;
   return <a className={className} href={URLS[id]} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight aria-hidden="true" /></a>;
@@ -95,7 +72,7 @@ function Tabs({ route, tab, t }: { route: Exclude<Route, 'home'>; tab: string; t
     const current = tabs.findIndex(item => item[0] === tab);
     const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (next < 0) return;
-    e.preventDefault(); location.hash = href(route, tabs[next][0]);
+    e.preventDefault(); navigate(href(route, tabs[next][0]));
     requestAnimationFrame(() => document.getElementById('tab-' + tabs[next][0])?.focus());
   }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{id === 'blackfriday' ? <span className="bf-tab-label"><span lang="zh-CN">{zh}</span><small lang="en-NZ">{en}</small></span> : t(zh, en)}</a>)}</div>;
 }
@@ -249,10 +226,10 @@ const SHORT_LABELS: Record<string, [string, string]> = {
 };
 const SERVICE_PICKS: CordPick[] = Object.entries(SERVICE_CATS).flatMap(([tab, cats]) => cats.map(([zh, en], index) => {
   const line = servicePlaceholderLine(tab, index);
-  return { id: 'service-' + tab + '-' + index, type: 'category', name: { zh, en }, info: { zh: '招商中 · ' + line.zh, en: 'Open for listings · ' + line.en }, href: '#/services?tab=' + tab, tab, target: 'service-' + tab + '-' + index };
+  return { id: 'service-' + tab + '-' + index, type: 'category', name: { zh, en }, info: { zh: '招商中 · ' + line.zh, en: 'Open for listings · ' + line.en }, href: href('services', tab), tab, target: 'service-' + tab + '-' + index };
 }));
 const TOOL_PICKS: CordPick[] = [
-  { id: 'tip-bins', type: 'tip', name: { zh: TEXT.zh.binH, en: TEXT.en.binH }, info: { zh: TEXT.zh.binTip, en: TEXT.en.binTip }, href: '#/tools?tab=bins', target: 'tool-bins' },
+  { id: 'tip-bins', type: 'tip', name: { zh: TEXT.zh.binH, en: TEXT.en.binH }, info: { zh: TEXT.zh.binTip, en: TEXT.en.binTip }, href: href('tools', 'bins'), target: 'tool-bins' },
   { id: 'tip-bus', type: 'tip', name: { zh: TEXT.zh.busH, en: TEXT.en.busH }, info: { zh: TEXT.zh.planner, en: TEXT.en.planner }, href: URLS.busit },
   ...TOOL_GROUPS.map(g => ({ id: 'tip-' + g.ids[0], type: 'tip', name: { zh: g.zh, en: g.en }, info: { zh: g.ids.map(id => SHORT_LABELS[id][0]).join(' · '), en: g.ids.map(id => SHORT_LABELS[id][1]).join(' · ') }, href: URLS[g.ids[0]] })),
 ];
@@ -288,16 +265,16 @@ function Home({ lang, t, scene }: { lang: Lang; t: T; scene: number }) {
   function search(e: React.FormEvent) {
     e.preventDefault(); const q = query.trim();
     if (!q) return;
-    if (/活动日历|events?\s*calendar/i.test(q)) { location.hash = href('weekend','picks'); return; }
-    if (/pet|宠物|兽医/i.test(q)) { location.hash = href('services','pets',q); return; }
-    if (/pay|tax|salary|kiwi|税后|工资|时薪/i.test(q)) { location.hash = href('tools','pay'); return; }
-    if (/gst|消费税/i.test(q)) { location.hash = href('tools','gst'); return; }
-    if (/unit|convert|换算/i.test(q)) { location.hash = href('tools','units'); return; }
-    if (/arrival|移民|清单/i.test(q)) { location.hash = href('tools','checklist'); return; }
-    if (/fish|shellfish|pollen|flu|钓鱼|采集|花粉|流感/i.test(q)) { location.hash = href('tools','seasonal'); return; }
-    if (/bin|bus|urgent|clinic|weather|school|垃圾|公交|急|天气|学区|工具/i.test(q)) { location.hash = href('tools', /bus|公交|school|学区/i.test(q) ? 'other' : /urgent|clinic|急/i.test(q) ? 'urgent' : /bin|垃圾|school|学区/i.test(q) ? 'bins' : 'pay'); return; }
+    if (/活动日历|events?\s*calendar/i.test(q)) { navigate(href('weekend','picks')); return; }
+    if (/pet|宠物|兽医/i.test(q)) { navigate(href('services','pets',q)); return; }
+    if (/pay|tax|salary|kiwi|税后|工资|时薪/i.test(q)) { navigate(href('tools','pay')); return; }
+    if (/gst|消费税/i.test(q)) { navigate(href('tools','gst')); return; }
+    if (/unit|convert|换算/i.test(q)) { navigate(href('tools','units')); return; }
+    if (/arrival|移民|清单/i.test(q)) { navigate(href('tools','checklist')); return; }
+    if (/fish|shellfish|pollen|flu|钓鱼|采集|花粉|流感/i.test(q)) { navigate(href('tools','seasonal')); return; }
+    if (/bin|bus|urgent|clinic|weather|school|垃圾|公交|急|天气|学区|工具/i.test(q)) { navigate(href('tools', /bus|公交|school|学区/i.test(q) ? 'other' : /urgent|clinic|急/i.test(q) ? 'urgent' : /bin|垃圾|school|学区/i.test(q) ? 'bins' : 'pay')); return; }
     const place = PLACES.some(p => [p.zh, p.name, p.area].join(' ').toLowerCase().includes(q.toLowerCase()));
-    location.hash = href('living', place ? 'places' : 'grocers', q);
+    navigate(href('living', place ? 'places' : 'grocers', q));
   }
   return <><section className="sb-hero"><HeroMedia scene={scene} /><div className="sb-hero-shade" />{readHeroMode() === "window" && <span className="v22-scene-label" aria-hidden="true">{lang === 'zh' ? SCENES[scene].zh + ' · ' + SCENES[scene].en : SCENES[scene].en}</span>}<div className="sb-hero-content"><div className="sb-sticker"><Sparkles size={14} />{t('Hamilton 与 Waikato 的日常生活指南', 'Your everyday guide to Hamilton & Waikato')}</div><h1 className="sb-h1" tabIndex={-1} key={lang}><BlurText className="sb-h1a" text={t('在汉密尔顿，', 'Life in Hamilton,')} /><BlurText className="sb-h1b" delay={120} text={t('把日子过得更顺手', 'made a little easier')} /></h1><p className="sb-lead">{t('从一日三餐到周末时光，从带娃出门到日常琐事。\n在这里，找到离生活近一点的信息。', 'From the weekly shop to a weekend outside. Find the local information that makes everyday life a little easier.')}</p><form className="sb-search ia-hero-search" onSubmit={search}><Search /><input type="search" aria-label={t('搜索本地信息', 'Search local information')} placeholder={t('搜亚超、地点、区域或工具…', 'Search grocers, places or tools…')} value={query} onChange={e => setQuery(e.target.value)} /><button className="sb-btn" type="submit">{t('搜索', 'Search')}</button></form><div className="ia-quick-links"><a href={href('tools', 'bins')}>{t('查垃圾日', 'Bin days')}</a><a href={href('tools', 'urgent', undefined, 'urgent-clinics')}>{t('急诊诊所查询', 'Urgent care')}</a><a href={href('tools', 'other', undefined, 'tool-school-terms')}>{t('学期与假期', 'Terms & holidays')}</a><a href={href('tools', 'other', undefined, 'tool-find-school')}>{t('学区查询', 'School zones')}</a><a href="https://www.gaspy.nz/stats.html" target="_blank" rel="noopener noreferrer">{t('油价查询', 'Fuel prices')}</a></div><a href="#overview" onClick={e => { e.preventDefault(); document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' }); }} className="sb-ghost ia-explore">{t('看看本地生活', 'Explore local life')}<ArrowDown /></a></div><div className="sb-hero-weather"><OutLink id="metservice-hamilton" className="sb-pill ia-weather"><Sun />{t('Hamilton 天气 · 查看预报', 'Hamilton weather · View forecast')}</OutLink></div><span className="sb-hero-location">Hamilton · Waikato · New Zealand</span></section>
   <BlackFridayBanner t={t} /><CommonTools t={t} /><GuideStats t={t} categories={SERVICE_CATS} /><GuideMarquee t={t} /><GuidePreview t={t} categories={SERVICE_CATS} />
@@ -317,8 +294,8 @@ export default function App() {
   const current = SECTIONS.find(s => s.id === state.route)!;
   const sectionPhoto = SECTION_PHOTOS.find(photo => photo.route === state.route);
   function toast(text: string) { setMessage(text); clearTimeout(toastTimer.current); toastTimer.current = setTimeout(() => setMessage(''), 3200); }
-  useEffect(() => { const normalize = () => { const hash = canonicalHash(location.hash); if (hash !== location.hash) history.replaceState(null, '', hash); }; normalize(); const change = () => { normalize(); setState(readRoute()); setModal(null); }; window.addEventListener('hashchange', change); return () => { window.removeEventListener('hashchange', change); clearTimeout(toastTimer.current); }; }, []);
-  useEffect(() => { try { localStorage.setItem('hl-lang', lang); } catch {} document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-NZ'; document.title = t(current.zh, current.en) + ' · Hamilton Local'; }, [lang, state.route]);
+  useEffect(() => { const change = () => { setState(readRoute()); setModal(null); }; window.addEventListener('hl-navigate', change); return () => { window.removeEventListener('hl-navigate', change); clearTimeout(toastTimer.current); }; }, []);
+  useEffect(() => { try { localStorage.setItem('hl-lang', lang); } catch {} applyDocumentMeta(location.pathname, lang); }, [lang, state]);
   const previousRoute = useRef(state.route);
   useEffect(() => {
     const routeChanged = previousRoute.current !== state.route;

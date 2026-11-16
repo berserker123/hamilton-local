@@ -32,7 +32,7 @@ function VerdictPill({ value, t, variant }: { value: Verdict; t: T; variant?: 0 
   return <span className={'bf-verdict bf-verdict-' + CLASSES[value]}>{t(value, LABELS[value])}</span>;
 }
 export function BlackFridayBanner({ t }: { t: T }) {
-  return <div className="sb-container bf-banner-wrap"><a className="bf-banner" href="#/living?tab=blackfriday" data-testid="bf-home-banner"><span className="bf-banner-icon"><BadgePercent aria-hidden="true" /></span><span className="bf-banner-copy"><strong lang="zh-CN">黑五专区 · 真假优惠一眼看清</strong><span lang="en-NZ">Black Friday · See what you’re really saving</span></span><span className="bf-banner-date">27 NOV 2026</span><ArrowUpRight aria-label={t('查看黑五专区', 'Explore Black Friday')} /></a></div>;
+  return <div className="sb-container bf-banner-wrap"><a className="bf-banner" href="/living/blackfriday/" data-testid="bf-home-banner"><span className="bf-banner-icon"><BadgePercent aria-hidden="true" /></span><span className="bf-banner-copy"><strong lang="zh-CN">黑五专区 · 真假优惠一眼看清</strong><span lang="en-NZ">Black Friday · See what you’re really saving</span></span><span className="bf-banner-date">27 NOV 2026</span><ArrowUpRight aria-label={t('查看黑五专区', 'Explore Black Friday')} /></a></div>;
 }
 function PriceCheckPanel({ t }: { t: T }) {
   const inputRef = useRef<HTMLInputElement>(null);

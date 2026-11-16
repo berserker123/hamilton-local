@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {build} from 'esbuild';
 import {execFileSync} from 'node:child_process';
+import {PAGES,renderDocument,renderNotFound,renderSitemap} from './src/site-routes.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
 process.chdir(root);
 const dist=path.resolve(root,'dist');
@@ -10,11 +11,10 @@ if(path.dirname(dist)!==root || path.basename(dist)!=='dist')throw new Error('Un
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(path.join(dist,'photos'),{recursive:true});
 fs.cpSync('public/photos',path.join(dist,'photos'),{recursive:true});
-for(const name of ['index.html'])fs.copyFileSync(name,path.join(dist,name));
 fs.copyFileSync('public/favicon.svg',path.join(dist,'favicon.svg'));
 for (const name of ['favicon-32.png','apple-touch-icon.png','icon-512.png']) fs.copyFileSync(path.join('public',name),path.join(dist,name));
 fs.cpSync('public/brand',path.join(dist,'brand'),{recursive:true});
-for(const name of ['robots.txt','sitemap.xml','og-image.jpg'])fs.copyFileSync(path.join('public',name),path.join(dist,name));
+for(const name of ['robots.txt','og-image.jpg'])fs.copyFileSync(path.join('public',name),path.join(dist,name));
 fs.writeFileSync(path.join(dist,'.nojekyll'),'');
 await build({entryPoints:['src/main.tsx'],bundle:true,minify:true,format:'iife',loader:{'.css':'empty'},define:{'process.env.NODE_ENV':'"production"'},outfile:path.join(dist,'app.js')});
 execFileSync(process.execPath,['node_modules/tailwindcss/lib/cli.js','-c','tailwind.config.js','-i','src/styles.css','-o',path.join(dist,'app.css'),'--minify'],{stdio:'inherit'});
@@ -23,4 +23,23 @@ fs.cpSync('node_modules/leaflet/dist/images',path.join(dist,'images'),{recursive
 fs.mkdirSync(path.join(dist,'licenses'),{recursive:true});
 fs.cpSync('public/licenses',path.join(dist,'licenses'),{recursive:true});
 fs.copyFileSync('node_modules/leaflet/LICENSE',path.join(dist,'licenses/Leaflet.txt'));
-console.log('BUILD_OK: dist (esbuild + Tailwind + local Leaflet)');
+const template=fs.readFileSync('index.html','utf8');
+const repoRoot=path.resolve(root,'..');
+const generated=['app.js','app.css','404.html','sitemap.xml',...PAGES.map(page=>page.path.slice(1)+'index.html')];
+for(const page of PAGES){
+  const file=path.join(dist,page.path.slice(1),'index.html');
+  fs.mkdirSync(path.dirname(file),{recursive:true});
+  fs.writeFileSync(file,renderDocument(template,page));
+}
+fs.writeFileSync(path.join(dist,'404.html'),renderNotFound(template));
+const sitemap=renderSitemap();
+fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
+fs.writeFileSync(path.join(root,'public','sitemap.xml'),sitemap);
+// The deployed repository serves its root. Copy only generated code/HTML/XML;
+// keep the existing assets, CNAME and README exactly as they are.
+for(const name of generated){
+  const target=path.join(repoRoot,name);
+  fs.mkdirSync(path.dirname(target),{recursive:true});
+  fs.copyFileSync(path.join(dist,name),target);
+}
+console.log('BUILD_OK: dist + root deployment files ('+PAGES.length+' canonical pages)');
