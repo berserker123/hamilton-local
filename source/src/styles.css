@@ -4581,3 +4581,15 @@ html[data-theme="night"] .ia-root[data-route="services"] :is(.ia-category, .v25k
 @media (max-width: 1050px) and (min-width: 721px) {
   html body .ia-root[data-route="services"] .ia-tabs.ia-tabs-compact .sb-tab { padding: 0 10px; font-size: 14px; }
 }
+
+/* Privacy uses the existing section sheet, with a comfortable reading measure. */
+html body .ia-root[data-route="privacy"] .hl-privacy > .sb-container { background: color-mix(in srgb, var(--hl-canvas) 94%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.hl-privacy-copy { max-width: 820px; margin-inline: auto; padding: 8px clamp(0px, 2vw, 24px) 16px; }
+.hl-privacy-copy section + section { margin-top: 28px; }
+.hl-privacy-copy h2 { margin: 0 0 12px; font-family: var(--serif); font-size: clamp(22px, 2.4vw, 28px); line-height: 1.5; }
+.hl-privacy-copy p, .hl-privacy-copy li { font-size: 16px; line-height: 1.9; overflow-wrap: anywhere; }
+.hl-privacy-copy p { margin: 0 0 12px; }
+.hl-privacy-copy ul { margin: 0; padding-left: 1.4em; list-style: disc; }
+.hl-privacy-copy li + li { margin-top: 12px; }
+.hl-privacy-copy a { color: var(--hl-clay); text-decoration: underline; text-underline-offset: 3px; }
+.ia-footer .hl-privacy-link { color: var(--hl-footer-accent); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }

@@ -56,18 +56,19 @@ const SECTIONS = {
   weekend: ['周末活动', "What's On", '留一点时间，给周末。', 'Make a little room for the weekend.'],
   kids: ['亲子遛娃', 'Kids & Family', '陪孩子，把城市慢慢逛遍。', 'Small adventures, close to home.'],
   services: ['便民黄页', 'Local Services', '家里家外，总有需要帮忙的时候。', 'A little help for everyday life.'],
+  privacy: ['隐私政策', 'Privacy Policy', 'Hamilton Local 隐私政策：我们如何处理访客统计、反馈与来信，以及你的隐私权利。', 'Hamilton Local privacy policy: how we handle visit statistics, feedback and emails, and your privacy rights.'],
 };
 const sectionPath = route => route === 'weekend' ? 'whatson' : route;
 
 export function href(route, tab, q, at) {
-  const path = route === 'home' || !Object.hasOwn(SECTIONS, route) ? '/' : '/' + sectionPath(route) + '/' + (TABS[route].some(item => item[0] === tab) ? tab + '/' : '');
+  const path = route === 'home' || !Object.hasOwn(SECTIONS, route) ? '/' : '/' + sectionPath(route) + '/' + (TABS[route]?.some(item => item[0] === tab) ? tab + '/' : '');
   const params = new URLSearchParams();
   if (q) params.set('q', q);
   if (AT_IDS.has(at)) params.set('at', at);
   return path + (params.size ? '?' + params : '');
 }
 
-export const PAGES = SECTION_ORDER.flatMap(route => {
+export const PAGES = [...SECTION_ORDER, 'privacy'].flatMap(route => {
   const section = SECTIONS[route];
   const make = (tab = '') => {
     const labels = TABS[route]?.find(item => item[0] === tab);
@@ -86,11 +87,11 @@ function parse(pathname, search = '') {
   const params = new URLSearchParams(search);
   if (parts[1]) params.set('tab', parts[1]);
   if (route === 'supermarkets') { route = 'living'; params.set('tab', 'grocers'); }
-  if (!TABS[route]) route = 'home';
+  if (!Object.hasOwn(SECTIONS, route)) route = 'home';
   // Reuse the current tool, pet and festival compatibility rules.
   const normalized = canonicalHash('#/' + (route === 'home' ? '' : route) + '?' + params);
   const [name, query] = normalized.slice(2).split('?');
-  route = Object.hasOwn(TABS, name) ? name : 'home';
+  route = Object.hasOwn(SECTIONS, name) ? name : 'home';
   const next = new URLSearchParams(query);
   if (route === 'living' && next.get('tab') === 'places' && next.get('at') === 'upick') next.set('tab', 'upick');
   const tab = TABS[route]?.find(item => item[0] === next.get('tab'))?.[0] || TABS[route]?.[0][0] || '';
@@ -125,7 +126,7 @@ export function normalizeLocation({pathname = '/', search = '', hash = ''}) {
     for (const [key, value] of url.searchParams) params.set(key, value);
     return url.pathname + (params.size ? '?' + params : '');
   }
-  const knownSection = ['whatson','weekend','supermarkets',...Object.keys(TABS)].includes(pathname.split('/').filter(Boolean)[0]);
+  const knownSection = ['whatson','weekend','supermarkets','privacy',...Object.keys(TABS)].includes(pathname.split('/').filter(Boolean)[0]);
   if (pathname !== '/' && !knownSection) return pathname + search + hash;
   return pathWithParams(parse(pathname, search)) + hash;
 }
