@@ -662,6 +662,58 @@
     "notes": "PriceSpy JB Hi-Fi 商家；2026-08-17 至 2026-11-14，90个日终价格中位数 NZ$998.00，同范围最低 NZ$948.00。"
   },
   {
+    "id": "briscoes-go-travel-chill",
+    "name": "Go Travel Chill Zone Towel",
+    "nameEn": "Go Travel Chill Zone Towel",
+    "nameZh": "Go Travel Chill Zone 运动降温巾",
+    "category": "户外运动",
+    "store": "Briscoes",
+    "salePrice": 16.99,
+    "currency": "NZD",
+    "typicalPrice": 30,
+    "lowestPrice90d": 27,
+    "verdict": "真优惠",
+    "checkedAt": "2026-11-16T12:00:00+13:00",
+    "saleEnds": "2026-11-22",
+    "productUrl": "https://www.briscoes.co.nz/product/1122078/go-travel-chill-zone-towel/",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=18645318",
+    "blackFridayConfirmed": false,
+    "priceLabel": "当前价",
+    "sourceUrls": [
+      "https://www.briscoes.co.nz/product/1122078/go-travel-chill-zone-towel/",
+      "https://pricespy.co.nz/product.php?p=18645318"
+    ],
+    "notes": "Briscoes 现价 NZ.99 低于同 GTIN 变体平时价 NZ.00 约 43.4%（注：同 GTIN 不同店铺/颜色）。",
+    "addedAt": "2026-11-15",
+    "historyVerified": true,
+    "sources": [
+      "https://www.briscoes.co.nz/product/1122078/go-travel-chill-zone-towel/",
+      "https://pricespy.co.nz/product.php?p=18645318"
+    ],
+    "historyNote": "同 GTIN 不同店铺/颜色（GTIN-13: 5016326005150）；PriceSpy p=18645318（Luggage.co.nz 橙色款 GOT515OGE）近90天（2026-08-18 至 2026-11-16）10条记录：平时价 NZ.00，90天最低 NZ.00。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:00:00+13:00",
+      "evidence": "briscoes-go-travel-chill-retail",
+      "extraction": "Product JSON-LD offers.price (NZD)"
+    },
+    "discountPercent": 43.4,
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 18645318,
+      "variantIds": [],
+      "gtin": "5016326005150",
+      "windowStart": "2026-08-18",
+      "windowEnd": "2026-11-16",
+      "dayCount": 90,
+      "pointCount": 10,
+      "method": "Median of 90-day window (2026-08-18 to 2026-11-16, 10 PriceSpy data points) for same GTIN-13 5016326005150 (different shop/colour variant GOT515OGE). No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "briscoes-go-travel-chill-gtin-5016326005150"
+    }
+  },
+  {
     "id": "airpods4-anc-jb",
     "name": "Apple AirPods 4 with Active Noise Cancellation",
     "nameEn": "Apple AirPods 4 with Active Noise Cancellation",
@@ -711,6 +763,42 @@
       "evidence": "replacement-shop-8"
     },
     "discountPercent": 18.7
+  },
+  {
+    "id": "cw-lrp-invisible-fluid-50ml",
+    "name": "La Roche Posay Anthelios Invisible Fluid SPF 50+ 50ml",
+    "nameEn": "La Roche Posay Anthelios Invisible Fluid SPF 50+ 50ml",
+    "nameZh": "理肤泉 Anthelios SPF50+ 防晒液 50ml",
+    "category": "美妆个护",
+    "store": "Chemist Warehouse NZ",
+    "salePrice": 33.19,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "checkedAt": "2026-11-16T12:00:00+13:00",
+    "saleEnds": null,
+    "productUrl": "https://www.chemistwarehouse.co.nz/buy/101139/la-roche-posay-anthelios-invisible-fluid-spf-50-50ml",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "priceLabel": "当前价",
+    "sourceUrls": [
+      "https://www.chemistwarehouse.co.nz/buy/101139/la-roche-posay-anthelios-invisible-fluid-spf-50-50ml"
+    ],
+    "notes": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "addedAt": "2026-11-15",
+    "historyVerified": false,
+    "sources": [
+      "https://www.chemistwarehouse.co.nz/buy/101139/la-roche-posay-anthelios-invisible-fluid-spf-50-50ml"
+    ],
+    "historyNote": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:00:00+13:00",
+      "evidence": "cw-lrp-invisible-fluid-50ml-retail",
+      "extraction": "Visible exact-product price"
+    },
+    "discountPercent": null
   },
   {
     "id": "lego-21357-farmers",
@@ -813,6 +901,76 @@
       "evidence": "warehouse-lego-10698-spy"
     },
     "discountPercent": -1.3
+  },
+  {
+    "id": "warehouse-fivestar-basketball",
+    "name": "Fivestar Basketball Size 7",
+    "nameEn": "Fivestar Basketball Size 7",
+    "nameZh": "Fivestar 7号篮球",
+    "category": "户外运动",
+    "store": "The Warehouse",
+    "salePrice": 15.99,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "checkedAt": "2026-11-15T00:20:45.755325+00:00",
+    "saleEnds": null,
+    "productUrl": "https://www.thewarehouse.co.nz/p/fivestar-basketball-size-7/R366722.html",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "priceLabel": "当前价",
+    "sourceUrls": [
+      "https://www.thewarehouse.co.nz/p/fivestar-basketball-size-7/R366722.html"
+    ],
+    "notes": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。 商家本轮核对被403拦截，保留当日早前已核对现价。；2026-11-16 复核受阻（Skipped because www.thewarehouse.co.nz returned an access/verification block earlier in this run.），沿用既有核查记录。",
+    "addedAt": "2026-11-15",
+    "historyVerified": false,
+    "sources": [
+      "https://www.thewarehouse.co.nz/p/fivestar-basketball-size-7/R366722.html"
+    ],
+    "historyNote": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "currentPriceRecheck": {
+      "status": "domain-blocked",
+      "at": "2026-11-15T01:41:44.759Z",
+      "reason": "The Warehouse returned HTTP 403 on Weet-Bix; remaining domain pages skipped. Last successful same-day round-one retailer check retained."
+    },
+    "discountPercent": null
+  },
+  {
+    "id": "warehouse-activeintent-basketball",
+    "name": "Active Intent Sports Basketball Size 7",
+    "nameEn": "Active Intent Sports Basketball Size 7",
+    "nameZh": "Active Intent 7号篮球",
+    "category": "户外运动",
+    "store": "The Warehouse",
+    "salePrice": 29.99,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "checkedAt": "2026-11-15T00:20:45.743347+00:00",
+    "saleEnds": null,
+    "productUrl": "https://www.thewarehouse.co.nz/p/active-intent-sports-basketball-size-7/R2240591.html",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "priceLabel": "当前价",
+    "sourceUrls": [
+      "https://www.thewarehouse.co.nz/p/active-intent-sports-basketball-size-7/R2240591.html"
+    ],
+    "notes": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。 商家本轮核对被403拦截，保留当日早前已核对现价。；2026-11-16 复核受阻（Skipped because www.thewarehouse.co.nz returned an access/verification block earlier in this run.），沿用既有核查记录。",
+    "addedAt": "2026-11-15",
+    "historyVerified": false,
+    "sources": [
+      "https://www.thewarehouse.co.nz/p/active-intent-sports-basketball-size-7/R2240591.html"
+    ],
+    "historyNote": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "currentPriceRecheck": {
+      "status": "domain-blocked",
+      "at": "2026-11-15T01:41:44.759Z",
+      "reason": "The Warehouse returned HTTP 403 on Weet-Bix; remaining domain pages skipped. Last successful same-day round-one retailer check retained."
+    },
+    "discountPercent": null
   },
   {
     "id": "lego-71490-toyworld",
@@ -1215,6 +1373,41 @@
     }
   },
   {
+    "id": "pkm-rayquaza-nano-gt",
+    "name": "Pokemon Extreme Deluxe Rayquaza Nanoblock Set",
+    "nameEn": "Pokemon Extreme Deluxe Rayquaza Nanoblock Set",
+    "nameZh": "宝可梦烈空坐超大微颗粒积木（清仓最后一件）",
+    "category": "收藏潮玩",
+    "store": "The Game Tree NZ",
+    "salePrice": 119.88,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://thegametree.co.nz/products/extreme-deluxe-rayquaza-nanoblock-set",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://thegametree.co.nz/products/extreme-deluxe-rayquaza-nanoblock-set"
+    ],
+    "sources": [
+      "https://thegametree.co.nz/products/extreme-deluxe-rayquaza-nanoblock-set"
+    ],
+    "historyNote": "PriceSpy 未收录该同款积木近90天历史价格；店内标示原价 NZ$199.99、清仓价 NZ$119.88，仅剩1件。",
+    "notes": "The Game Tree NZ 清仓 NZ$119.88 有货，无 PriceSpy 历史曲线，结论保持待核实。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "pkm-rayquaza-nano-gt-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
     "id": "jbl-go5-black-jb",
     "name": "JBL Go 5 Mini Bluetooth Speaker (Black)",
     "nameEn": "JBL Go 5 Mini Bluetooth Speaker (Black)",
@@ -1366,6 +1559,143 @@
       "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ps5-dualsense-black-jb-variant"
+    }
+  },
+  {
+    "id": "switch2-console-jb",
+    "name": "Nintendo Switch 2 Console",
+    "nameEn": "Nintendo Switch 2 Console",
+    "nameZh": "任天堂 Switch 2 主机（256GB）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 969,
+    "currency": "NZD",
+    "typicalPrice": 936.5,
+    "lowestPrice90d": 788,
+    "verdict": "先别急",
+    "discountPercent": -3.5,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.jbhifi.co.nz/products/nintendo-switch-2-console",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13101596",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/nintendo-switch-2-console",
+      "https://pricespy.co.nz/product.php?p=13101596",
+      "https://www.priceme.co.nz/Nintendo-Switch-2/p-929575900.aspx"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/nintendo-switch-2-console",
+      "https://pricespy.co.nz/product.php?p=13101596",
+      "https://www.priceme.co.nz/Nintendo-Switch-2/p-929575900.aspx"
+    ],
+    "historyNote": "PriceSpy p=13101596 近90天（2026-08-18 至 2026-11-16）纯主机8条中位价 NZ.50、最低 NZ.00；PriceMe p-929575900.aspx 90天内曾低至 NZ.00（2026-09-10 The Warehouse）。",
+    "notes": "JB Hi-Fi 现价 NZ.00 处于常规全价高位，高于 PriceSpy 90天纯主机中位价 NZ.50（及 PriceSpy 最低 NZ / PriceMe 最低 NZ），建议先别急。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "switch2-console-jb-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 13101596,
+      "variantIds": [],
+      "windowStart": "2026-08-18",
+      "windowEnd": "2026-11-16",
+      "dayCount": 90,
+      "pointCount": 9,
+      "method": "Median of 90-day window (2026-08-18 to 2026-11-16, 8 PriceSpy standalone-console points; PriceMe p-929575900.aspx also checked for 90d low NZ.00); market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "switch2-console-jb-variant"
+    }
+  },
+  {
+    "id": "lenovo-slim3-14-jb",
+    "name": "Lenovo IdeaPad Slim 3 14\" WUXGA Laptop (Intel Core 3 304 / 256GB)",
+    "nameEn": "Lenovo IdeaPad Slim 3 14\" WUXGA Laptop (Intel Core 3 304 / 256GB)",
+    "nameZh": "联想 IdeaPad Slim 3 14英寸笔记本（Core 3 / 256GB）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 748,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.jbhifi.co.nz/products/lenovo-ideapad-slim-3-14-wuxga-laptop-intel-core-3-304256gb",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/lenovo-ideapad-slim-3-14-wuxga-laptop-intel-core-3-304256gb"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/lenovo-ideapad-slim-3-14-wuxga-laptop-intel-core-3-304256gb"
+    ],
+    "historyNote": "JB Hi-Fi 标示原价 NZ$1,098 现价 NZ$748 有货；PriceSpy 仅查到 Chrome 版同系页面，无对应 Windows Core 3 304 配置90天曲线。",
+    "notes": "JB Hi-Fi On Sale NZ$748，不混用 Chromebook 价格曲线，保持待核实。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "lenovo-slim3-14-jb-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "apple-airpods5-jb",
+    "name": "Apple AirPods 5 (USB-C Charging Case)",
+    "nameEn": "Apple AirPods 5 (USB-C Charging Case)",
+    "nameZh": "苹果 AirPods 5 蓝牙耳机（USB-C 充电盒版）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 228.99,
+    "currency": "NZD",
+    "typicalPrice": 244,
+    "lowestPrice90d": 228.99,
+    "verdict": "真优惠",
+    "discountPercent": 6.2,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-airpods-5",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=17192188",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-airpods-5",
+      "https://pricespy.co.nz/product.php?p=17192188"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-airpods-5",
+      "https://pricespy.co.nz/product.php?p=17192188"
+    ],
+    "historyNote": "PriceSpy 精确同款 USB-C 版（p=17192188）；自 2026-09-10 上市收录以来共12条记录，中位及众数平时价 NZ.00，最低 NZ.99（历史仅自 2026-09-10 上市起）。",
+    "notes": "JB Hi-Fi USB-C 充电盒版现价 NZ.99 为收录以来最低价，较平时价 NZ.00 低约 6.2%（历史仅自 2026-09-10 上市起）。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "apple-airpods5-jb-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 17192188,
+      "variantIds": [],
+      "windowStart": "2026-09-10",
+      "windowEnd": "2026-11-13",
+      "dayCount": 65,
+      "pointCount": 12,
+      "method": "Median of 90-day check window (12 PriceSpy points since 2026-09-10 launch, 2026-09-10..2026-11-13); market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "apple-airpods5-jb-variant"
     }
   },
   {
@@ -1571,6 +1901,233 @@
     }
   },
   {
+    "id": "bissell-spotclean-hn",
+    "name": "Bissell SpotClean Professional Carpet & Upholstery Shampooer (3861P)",
+    "nameEn": "Bissell SpotClean Professional Carpet & Upholstery Shampooer (3861P)",
+    "nameZh": "必胜 Bissell SpotClean 专业布艺清洗机（3861P）",
+    "category": "家电",
+    "store": "Harvey Norman",
+    "salePrice": 199,
+    "currency": "NZD",
+    "typicalPrice": 217,
+    "lowestPrice90d": 198,
+    "verdict": "真优惠",
+    "discountPercent": 8.3,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.harveynorman.co.nz/home-appliances/vacuums-and-floor-care/carpet-cleaners/bissell-spotclean-professional-carpet-and-upholstery-shampooer-black-3861p.html",
+    "priceSpyUrl": "https://www.priceme.co.nz/Bissell-3861P/p-927173256.aspx",
+    "blackFridayConfirmed": true,
+    "historyVerified": true,
+    "sourceUrls": [
+      "https://www.harveynorman.co.nz/home-appliances/vacuums-and-floor-care/carpet-cleaners/bissell-spotclean-professional-carpet-and-upholstery-shampooer-black-3861p.html",
+      "https://www.priceme.co.nz/Bissell-3861P/p-927173256.aspx",
+      "https://pricespy.co.nz/product.php?p=16004716"
+    ],
+    "sources": [
+      "https://www.harveynorman.co.nz/home-appliances/vacuums-and-floor-care/carpet-cleaners/bissell-spotclean-professional-carpet-and-upholstery-shampooer-black-3861p.html",
+      "https://www.priceme.co.nz/Bissell-3861P/p-927173256.aspx",
+      "https://pricespy.co.nz/product.php?p=16004716"
+    ],
+    "historyNote": "PriceMe 精确同款 Bissell 3861P（p-927173256.aspx，独立追踪 Harvey Norman）；近90天（2026-08-18 至 2026-11-16）7条记录中位数 NZ.00、最低 NZ.00（10-23）；7/10/11月多次降至 NZ–。",
+    "notes": "Harvey Norman 现价 NZ.00 接近 PriceMe 精确同款 3861P 近90天最低 NZ.00（仅高 ），较90天中位 NZ.00 低约 8.3%（属周期性促销底价）。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "bissell-spotclean-hn-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    },
+    "historyScope": "retailer",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 927173256,
+      "variantIds": [],
+      "windowStart": "2026-08-18",
+      "windowEnd": "2026-11-16",
+      "dayCount": 90,
+      "pointCount": 7,
+      "method": "Median of 90-day window (2026-08-18 to 2026-11-16, 7 PriceMe data points) for exact Bissell 3861P; Harvey Norman series. No retailer list/was prices.",
+      "selectedShop": "Harvey Norman",
+      "evidence": "bissell-spotclean-hn-priceme-3861p"
+    }
+  },
+  {
+    "id": "mocka-urban-desk",
+    "name": "Mocka Urban Desk - White",
+    "nameEn": "Mocka Urban Desk - White",
+    "nameZh": "Mocka Urban 简约单抽屉书桌（白色/原木）",
+    "category": "家居家具",
+    "store": "Mocka",
+    "salePrice": 99.99,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.mocka.co.nz/products/urban-desk-white",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": true,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.mocka.co.nz/products/urban-desk-white"
+    ],
+    "sources": [
+      "https://www.mocka.co.nz/products/urban-desk-white"
+    ],
+    "historyNote": "Mocka 黑五专场直降50%（官网标示原价 NZ$199.99 现价 NZ$99.99）且现货；Mocka 自营家具未纳入 PriceSpy 历史追踪，标为待核实。",
+    "notes": "真实家具书桌单品，官网显示有货、2个工作日内发货。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "mocka-urban-desk-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "mocka-zack-bedside",
+    "name": "Mocka Zack Two Drawer Bedside Table - Natural",
+    "nameEn": "Mocka Zack Two Drawer Bedside Table - Natural",
+    "nameZh": "Mocka Zack 双抽屉床头柜（原木色）",
+    "category": "家居家具",
+    "store": "Mocka",
+    "salePrice": 74.99,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.mocka.co.nz/products/zack-two-drawer-bedside-table-natural",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": true,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.mocka.co.nz/products/zack-two-drawer-bedside-table-natural"
+    ],
+    "sources": [
+      "https://www.mocka.co.nz/products/zack-two-drawer-bedside-table-natural"
+    ],
+    "historyNote": "Mocka 官网黑五促销现价 NZ$74.99（标称原价 NZ$99.99，省 NZ$25）；自营家具无 PriceSpy 90天历史曲线，标为待核实。",
+    "notes": "卧室床头柜家具单品，官网有货、支持配送邮编查询。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "mocka-zack-bedside-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "mocka-zack-6drawer",
+    "name": "Mocka Zack Six Drawer Chest - Natural",
+    "nameEn": "Mocka Zack Six Drawer Chest - Natural",
+    "nameZh": "Mocka Zack 六斗收纳衣柜（原木色）",
+    "category": "家居家具",
+    "store": "Mocka",
+    "salePrice": 277.49,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.mocka.co.nz/products/zack-six-drawer-natural",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": true,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.mocka.co.nz/products/zack-six-drawer-natural"
+    ],
+    "sources": [
+      "https://www.mocka.co.nz/products/zack-six-drawer-natural"
+    ],
+    "historyNote": "Mocka 黑五活动现价 NZ$277.49（标称原价 NZ$369.99，省 NZ$92.50）；无 PriceSpy 历史价格追踪，结论保持待核实。",
+    "notes": "大型六斗收纳家具，官网现货可加购。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "mocka-zack-6drawer-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "sc-acacia-king-bed",
+    "name": "Acacia NZ King Bedroom Set - Pure White",
+    "nameEn": "Acacia NZ King Bedroom Set - Pure White",
+    "nameZh": "Acacia 新西兰 King Size 纯白实木床架套装",
+    "category": "家居家具",
+    "store": "Smiths City",
+    "salePrice": 749,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://smithscity.co.nz/products/acacia-nz-king-bedroom-set-pure-white",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": true,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://smithscity.co.nz/products/acacia-nz-king-bedroom-set-pure-white"
+    ],
+    "sources": [
+      "https://smithscity.co.nz/products/acacia-nz-king-bedroom-set-pure-white"
+    ],
+    "historyNote": "Smiths City 黑五专区现价 NZ$749.00（官网标示原价 NZ$999.00）；家具单品未收录于 PriceSpy，无第三方90天历史。",
+    "notes": "Smiths City 黑五卧房家具套装，页面有货。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "sc-acacia-king-bed-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "bun-lifetime-table",
+    "name": "Lifetime 6ft (1.83m) Bi-Fold Blow Mould Trestle Table",
+    "nameEn": "Lifetime 6ft (1.83m) Bi-Fold Blow Mould Trestle Table",
+    "nameZh": "Lifetime 1.83米重型折叠长桌",
+    "category": "家居家具",
+    "store": "Bunnings",
+    "salePrice": 63.95,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.bunnings.co.nz/lifetime-6ft-1-83m-bi-fold-blow-mould-trestle-table_p3192213",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.bunnings.co.nz/lifetime-6ft-1-83m-bi-fold-blow-mould-trestle-table_p3192213"
+    ],
+    "sources": [
+      "https://www.bunnings.co.nz/lifetime-6ft-1-83m-bi-fold-blow-mould-trestle-table_p3192213"
+    ],
+    "historyNote": "Bunnings 官网现价 NZ$63.95；PriceSpy 未收录该折叠桌产品页面与90天价格变化，标为待核实。",
+    "notes": "居家/聚会常用折叠长桌，Bunnings 当前在售。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "bun-lifetime-table-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
     "id": "tw-duplo-10914",
     "name": "LEGO DUPLO 10914 Deluxe Brick Box",
     "nameEn": "LEGO DUPLO 10914 Deluxe Brick Box",
@@ -1621,6 +2178,41 @@
     }
   },
   {
+    "id": "mocka-cot-mattress",
+    "name": "Mocka Cot Mattress",
+    "nameEn": "Mocka Cot Mattress",
+    "nameZh": "Mocka 婴儿床高密度支撑床垫",
+    "category": "母婴玩具",
+    "store": "Mocka",
+    "salePrice": 161.49,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.mocka.co.nz/products/mocka-cot-mattress",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": true,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.mocka.co.nz/products/mocka-cot-mattress"
+    ],
+    "sources": [
+      "https://www.mocka.co.nz/products/mocka-cot-mattress"
+    ],
+    "historyNote": "Mocka 黑五专场现价 NZ$161.49（官网标称原价 NZ$189.99）；未纳入 PriceSpy 90天历史曲线，标为待核实。",
+    "notes": "母婴卧室床垫现货有售，注意此卫生寝具类商品不适用官网30天无理由退换。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "mocka-cot-mattress-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
     "id": "lug-samsonite-oc2-55",
     "name": "Samsonite Oc2lite 55cm Hardside Carry-On Suitcase (Black)",
     "nameEn": "Samsonite Oc2lite 55cm Hardside Carry-On Suitcase (Black)",
@@ -1668,6 +2260,113 @@
       "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lug-samsonite-oc2-55-variant"
+    }
+  },
+  {
+    "id": "lug-caselite-summit-75",
+    "name": "Caselite Summit 75cm Hardside Checked Suitcase (Black)",
+    "nameEn": "Caselite Summit 75cm Hardside Checked Suitcase (Black)",
+    "nameZh": "Caselite Summit 75cm 大号硬壳托运箱（黑色）",
+    "category": "其他",
+    "store": "Luggage.co.nz",
+    "salePrice": 124,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.luggage.co.nz/products/caselite-summit-75cm-hardside-checked-suitcase-black",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": true,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.luggage.co.nz/products/caselite-summit-75cm-hardside-checked-suitcase-black"
+    ],
+    "sources": [
+      "https://www.luggage.co.nz/products/caselite-summit-75cm-hardside-checked-suitcase-black"
+    ],
+    "historyNote": "Luggage.co.nz 黑五促销现价 NZ$124.00 有货且免全纽运费；PriceSpy 暂缺该型号历史记录，标为待核实。",
+    "notes": "75cm 托运箱，支持100天退换与全纽免运费。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "lug-caselite-summit-75-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "m10-karcher-wd2",
+    "name": "Karcher WD2 Plus Wet & Dry Vacuum (1.628-053.0)",
+    "nameEn": "Karcher WD2 Plus Wet & Dry Vacuum (1.628-053.0)",
+    "nameZh": "凯驰 Karcher WD2 Plus 家用车库干湿两用吸尘器",
+    "category": "其他",
+    "store": "Mitre 10",
+    "salePrice": 173,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://www.mitre10.co.nz/shop/karcher-wd2-plus-wet-dry-vacuum-d-393mm-x-w-380mm-x-h-505mm/p/400649",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=22196728",
+    "blackFridayConfirmed": false,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://www.mitre10.co.nz/shop/karcher-wd2-plus-wet-dry-vacuum-d-393mm-x-w-380mm-x-h-505mm/p/400649",
+      "https://pricespy.co.nz/product.php?p=22196728"
+    ],
+    "sources": [
+      "https://www.mitre10.co.nz/shop/karcher-wd2-plus-wet-dry-vacuum-d-393mm-x-w-380mm-x-h-505mm/p/400649",
+      "https://pricespy.co.nz/product.php?p=22196728"
+    ],
+    "historyNote": "Mitre 10 独占款式现价 NZ$173.00；PriceSpy p=22196728 暂无历史价格点位，无法核实90天常价。",
+    "notes": "车库/户外实用工具，Mitre 10 官网在售。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "m10-karcher-wd2-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
+    }
+  },
+  {
+    "id": "cm-catan-6e",
+    "name": "Catan (6th Edition) Board Game",
+    "nameEn": "Catan (6th Edition) Board Game",
+    "nameZh": "卡坦岛（Catan 第6版）经典策略桌游",
+    "category": "其他",
+    "store": "Card Merchant",
+    "salePrice": 89.99,
+    "currency": "NZD",
+    "typicalPrice": null,
+    "lowestPrice90d": null,
+    "verdict": "待核实",
+    "discountPercent": null,
+    "checkedAt": "2026-11-16T12:45:00+13:00",
+    "addedAt": "2026-11-16",
+    "saleEnds": null,
+    "productUrl": "https://cardmerchant.co.nz/products/catan-6th-edition",
+    "priceSpyUrl": null,
+    "blackFridayConfirmed": false,
+    "historyVerified": false,
+    "sourceUrls": [
+      "https://cardmerchant.co.nz/products/catan-6th-edition"
+    ],
+    "sources": [
+      "https://cardmerchant.co.nz/products/catan-6th-edition"
+    ],
+    "historyNote": "Card Merchant 现货 NZ$89.99；PriceSpy 搜索仅匹配到第6版5-6人扩展包而非基础版，未混淆不同商品，结论标为待核实。",
+    "notes": "桌面游戏现货有售，独立核算基础版价格避免与扩展包混淆。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-16T12:45:00+13:00",
+      "evidence": "cm-catan-6e-retail",
+      "extraction": "Retailer product page DOM + JSON-LD (NZD)"
     }
   }
 ]

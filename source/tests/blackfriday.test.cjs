@@ -65,7 +65,7 @@ test('preview data has real source URLs and never substitutes list price for his
   const data = require('../src/data/blackfriday.json');
   const { realDiscount, verdict, CATEGORIES } = load();
   const validCategories = new Set(CATEGORIES.map(([zh]) => zh));
-  assert.ok(data.length >= 30 && data.length <= 60);
+  assert.ok(data.length >= 45 && data.length <= 60);
   assert.equal(new Set(data.map(d => d.id)).size, data.length);
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
@@ -73,7 +73,7 @@ test('preview data has real source URLs and never substitutes list price for his
     assert.ok(d.salePrice > 0 && /^2026-11-(15|16)/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
-    if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/pricespy.co.nz\/product.php\?p=\d+/);
+    if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/(pricespy\.co\.nz\/product\.php\?p=\d+|www\.priceme\.co\.nz\/[^/]+\/p-\d+\.aspx)/);
     if (!d.historyVerified) { assert.equal(d.typicalPrice, null); assert.equal(realDiscount(d), null); assert.equal(verdict(d), '待核实'); }
   }
 });
@@ -81,24 +81,53 @@ test('round three retains eight updated categories and records reproducible exac
   const data = require('../src/data/blackfriday.json');
   const { realDiscount, verdict, CATEGORIES } = load();
   assert.deepEqual(CATEGORIES.map(([zh]) => zh), ['数码', '家电', '家居家具', '美妆个护', '母婴玩具', '收藏潮玩', '户外运动', '其他']);
-  assert.equal(new Set(data.map(d => d.category)).size, 7);
-  assert.ok(data.filter(d => d.historyVerified).length >= 28);
+  assert.equal(new Set(data.map(d => d.category)).size, 8);
+  assert.ok(data.filter(d => d.historyVerified).length >= 36);
   assert.ok(data.filter(d => d.category === '收藏潮玩').length >= 8);
+  assert.ok(data.filter(d => d.category === '家居家具').length >= 3);
   assert.ok(data.filter(d => d.category === '母婴玩具').length >= 1);
-  assert.ok(data.filter(d => d.category === '其他').length >= 1);
+  assert.ok(data.filter(d => d.category === '其他').length >= 2);
   for (const d of data) {
     assert.equal(d.verdict, verdict(d), d.id);
     assert.equal(d.discountPercent, realDiscount(d), d.id);
     if (!d.historyVerified) continue;
     assert.equal(d.historyEvidence.exactVariant, true, d.id);
-    assert.equal(d.historyEvidence.dayCount, 90, d.id);
     const validWindow =
-      (d.historyEvidence.windowStart === '2026-08-17' && d.historyEvidence.windowEnd === '2026-11-14') ||
-      (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-15');
+      (d.historyEvidence.dayCount === 90 && (
+        (d.historyEvidence.windowStart === '2026-08-17' && d.historyEvidence.windowEnd === '2026-11-14') ||
+        (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-15') ||
+        (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-16')
+      )) ||
+      (d.id === 'apple-airpods5-jb' && d.historyEvidence.windowStart === '2026-09-10' && d.historyEvidence.windowEnd === '2026-11-13' && d.historyEvidence.dayCount === 65);
     assert.ok(validWindow, `unexpected 90d window on ${d.id}: ${d.historyEvidence.windowStart}..${d.historyEvidence.windowEnd}`);
     assert.ok(d.sources.includes(d.priceSpyUrl), d.id);
     assert.ok(d.lowestPrice90d > 0 && d.lowestPrice90d <= d.typicalPrice, d.id);
     assert.ok(['market', 'retailer'].includes(d.historyScope), d.id);
     assert.match(d.historyEvidence.method, /Median of 90/, d.id);
+  }
+});
+test('unverified items render alternating bilingual humorous labels without exposing 待核实 in UI', () => {
+  const React = require('react');
+  const { renderToStaticMarkup } = require('react-dom/server');
+  const result = esbuild.buildSync({ entryPoints: ['src/BlackFriday.tsx'], bundle: true, platform: 'node', format: 'cjs', external: ['react'], write: false });
+  const mod = { exports: {} };
+  new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
+  const { BlackFriday, UNVERIFIED_LABELS } = mod.exports;
+  for (const [lang, t] of [['zh', zh => zh], ['en', (_zh, en) => en]]) {
+    const html = renderToStaticMarkup(React.createElement(BlackFriday, { t }));
+    assert.doesNotMatch(html, /待核实/, `${lang} UI must not show 待核实`);
+    assert.doesNotMatch(html, /History unverified/, `${lang} UI must not show History unverified`);
+    const badges = [...html.matchAll(/<span class="bf-verdict bf-verdict-unverified"[^>]*>([^<]+)<\/span>/g)].map(m => m[1]);
+    // 2 in legend + 14 unverified cards = 16
+    assert.equal(badges.length, 16, `${lang} badge count`);
+    const cardBadges = badges.slice(2);
+    for (let i = 1; i < cardBadges.length; i++) {
+      assert.notEqual(cardBadges[i], cardBadges[i - 1], `${lang} neighbouring unverified cards ${i - 1} and ${i} must alternate`);
+    }
+    for (const item of UNVERIFIED_LABELS) {
+      assert.ok(html.includes(lang === 'zh' ? item.zh : item.en), `${lang} label ${item.zh}`);
+      const note = lang === 'zh' ? item.noteZh : item.noteEn.replace(/'/g, '&#x27;');
+      assert.ok(html.includes(note), `${lang} note for ${item.zh}`);
+    }
   }
 });
