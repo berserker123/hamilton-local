@@ -71,7 +71,7 @@ export function annualToHourly(annual: number) {
 }
 
 export function hourlyInput(value: number) {
-  const rounded = Math.round((value + Number.EPSILON) * 10000) / 10000;
+  const rounded = Math.round((value + Number.EPSILON) * 100) / 100;
   return String(rounded);
 }
 

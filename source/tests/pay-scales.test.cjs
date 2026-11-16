@@ -95,7 +95,7 @@ test('annual conversion label states the printed salary and a 40-hour week', () 
   const label = conversionLabel(77667);
   assert.equal(label.zh, '年薪 $77,667，按每周40小时折算');
   assert.equal(label.en, 'Annual salary $77,667, converted at 40 hours a week.');
-  assert.equal(hourlyInput(annualToHourly(77667)), '37.3399');
+  assert.equal(hourlyInput(annualToHourly(77667)), '37.34');
 });
 
 test('visible scale text leaves out clause references and research notes', () => {
