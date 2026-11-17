@@ -121,8 +121,8 @@ function NewsFront({ data, now }: { data: BriefingData; now?: number }) {
             {kicker(i)}<h3 lang={lang(i)}>{itemText(i)}</h3>{meta(i)}
           </article>)}</div>}
         </div>
-        {latest.length > 0 && <aside className="hl-brief-e-side" aria-label="最新">
-          <h3 className="hl-brief-e-sidehead">最新</h3>
+        {latest.length > 0 && <aside className="hl-brief-e-side" aria-label="更多新闻">
+          <h3 className="hl-brief-e-sidehead">更多新闻</h3>
           <ol className="hl-brief-e-latest">{shownLatest.map(i => <li key={i.id} className={itemTime(i, now) ? undefined : 'no-time'}>
             {itemTime(i, now) && <span className="hl-brief-e-time">{itemTime(i, now)}</span>}
             <div>{kicker(i)}<p lang={lang(i)}>{itemText(i)}</p><div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}</div></div>

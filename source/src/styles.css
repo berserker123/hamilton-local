@@ -4754,8 +4754,9 @@ html body .ia-root[data-route="privacy"] .hl-privacy > .sb-container { backgroun
 .sb-container.hl-brief .hl-brief-e-lead h3 { margin: 0; color: var(--hl-ink); font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; text-wrap: balance; }
 .sb-container.hl-brief .hl-brief-e-en { margin: 0; color: var(--hl-muted); font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .hl-brief-e-second { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+.hl-brief-e-story:nth-child(n+3) { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--hl-line); }
 .hl-brief-e-story { display: grid; gap: 8px; align-content: start; min-width: 0; }
-.hl-brief-e-story + .hl-brief-e-story { padding-left: 24px; border-left: 1px solid var(--hl-line); }
+.hl-brief-e-story:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--hl-line); }
 .sb-container.hl-brief .hl-brief-e-story h3 { margin: 0; color: var(--hl-ink); font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
 .hl-brief-e-side { min-width: 0; padding-left: 28px; border-left: 1px solid var(--hl-line); }
 .sb-container.hl-brief .hl-brief-e-sidehead { margin: 0 0 4px; padding-bottom: 8px; border-bottom: 2px solid var(--hl-ink); color: var(--hl-ink); font-size: 14px; font-weight: 700; letter-spacing: .12em; }
@@ -4773,7 +4774,7 @@ html body .ia-root[data-route="privacy"] .hl-privacy > .sb-container { backgroun
 @media (max-width: 640px) {
   .hl-brief--e .hl-brief-e-card { padding: 18px 16px; }
   .hl-brief-e-second { grid-template-columns: 1fr; gap: 18px; }
-  .hl-brief-e-story + .hl-brief-e-story { padding-left: 0; border-left: 0; padding-top: 18px; border-top: 1px solid var(--hl-line); }
+  .hl-brief-e-story + .hl-brief-e-story, .hl-brief-e-story:nth-child(n+3) { margin-top: 0; padding-left: 0; border-left: 0; padding-top: 18px; border-top: 1px solid var(--hl-line); }
   .hl-brief-e-latest li { grid-template-columns: 56px minmax(0, 1fr); }
   .hl-brief-e-alert { padding: 8px 12px; }
 }

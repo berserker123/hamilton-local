@@ -131,7 +131,7 @@ test('newsLayout: lead is first non-urgent arranged card, secondaries are the ne
  const nonUrgent=cards.filter(i=>!i.urgent);
  const L=model.newsLayout(d.items);
  assert.equal(L.lead.id,nonUrgent[0].id);
- assert.deepEqual(L.secondary.map(i=>i.id),nonUrgent.slice(1,3).map(i=>i.id));
+ assert.deepEqual(L.secondary.map(i=>i.id),nonUrgent.slice(1,1+model.NEWS_SECONDARY).map(i=>i.id));
  assert.deepEqual(L.alerts.map(i=>i.id),['u1']);
  assert.notEqual(L.lead.id,'u1');
  assert.equal(L.lead.id,'dull');
@@ -146,7 +146,7 @@ test('newsLayout: no duplicates; shown + roadworks equals arranged items',()=>{
  const only=model.newsLayout([item('x',{urgent:true})]);
  assert.equal(only.lead,undefined);assert.equal(only.alerts.length,1);
 });
-test('variant e renders alerts strip, lead h3 with English original, 最新 list, roadworks row and derived count',()=>{
+test('variant e renders alerts strip, lead h3 with English original, 更多新闻 list, roadworks row and derived count',()=>{
  const d=many();
  const out=vhtml(d,'e');
  const L=model.newsLayout(d.items);
@@ -155,12 +155,12 @@ test('variant e renders alerts strip, lead h3 with English original, 最新 list
  const lead=out.match(/<article class="hl-brief-e-lead">[\s\S]*?<\/article>/)[0];
  assert.match(lead,/<h3[^>]*>市政赤字<\/h3><p class="hl-brief-e-en"[^>]*>City council baulks/);
  assert.doesNotMatch(lead,/紧急一/);
- assert.equal((out.match(/<article class="hl-brief-e-story">/g)||[]).length,2);
+ assert.equal((out.match(/<article class="hl-brief-e-story">/g)||[]).length,Math.min(model.NEWS_SECONDARY,L.secondary.length));
  assert.match(out,new RegExp('共 '+d.items.length+' 条'));
  assert.match(out,/今天 2 处施工或管制/);
  assert.match(out,/更新于 11月17日 18:30/);
- assert.match(out,new RegExp('查看更多 '+(L.latest.length-6)+' 条'));
- assert.equal((out.match(/<span class="hl-brief-e-time"/g)||[]).length,6);
+ if(L.latest.length>model.NEWS_LATEST_LIMIT) assert.match(out,new RegExp('查看更多 '+(L.latest.length-model.NEWS_LATEST_LIMIT)+' 条')); else assert.doesNotMatch(out,/查看更多/);
+ assert.equal((out.match(/<span class="hl-brief-e-time"/g)||[]).length,Math.min(model.NEWS_LATEST_LIMIT,L.latest.length));
  assert.doesNotMatch(out,/ENGLISH BODY/);
  assert.match(out.match(/<ul class="hl-brief-e-alerts">[\s\S]*?<\/ul>/)[0],/紧急一/);
  for(const a of out.match(/<a [^>]*>/g)||[]){assert.match(a,/target="_blank"/);assert.match(a,/rel="noopener noreferrer"/);}

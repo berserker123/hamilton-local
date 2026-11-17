@@ -86,9 +86,9 @@ export function arrangeItems(items: BriefingItem[]): { cards: BriefingItem[]; ro
   const cards = all.filter(i => !isRoadwork(i)).sort((a, b) => interestScore(b) - interestScore(a) || time(b) - time(a));
   return { cards, roadworks: all.filter(isRoadwork) };
 }
-export const NEWS_SECONDARY = 2;
-export const NEWS_LATEST_LIMIT = 6;
-/** News front-page selection (variant e): urgent -> alert strips, first non-urgent -> lead, next 2 -> secondary, rest -> latest. Order follows arrangeItems; nothing is duplicated. */
+export const NEWS_SECONDARY = 4;
+export const NEWS_LATEST_LIMIT = 5;
+/** News front-page selection (variant e): urgent -> alert strips, first non-urgent -> lead, next NEWS_SECONDARY -> secondary, rest -> latest. Order follows arrangeItems; nothing is duplicated. */
 export function newsLayout(items: BriefingItem[]): { alerts: BriefingItem[]; lead?: BriefingItem; secondary: BriefingItem[]; latest: BriefingItem[]; roadworks: BriefingItem[] } {
   const { cards, roadworks } = arrangeItems(items);
   const alerts = cards.filter(i => i.urgent), rest = cards.filter(i => !i.urgent);
