@@ -36,11 +36,12 @@ test('subscribe form follows the language toggle',()=>{
   assert.ok(html.includes('Weekly events'));
   assert.ok(html.includes('Unsubscribe any time'));
 });
-test('subscribe config is empty data for the preview',()=>{
+test('subscribe config points at the MailerLite form with 3 group ids',()=>{
   const c=JSON.parse(fs.readFileSync('src/data/subscribe.json','utf8'));
   assert.equal(c.provider,'mailerlite');
-  assert.equal(c.formAction,'');
+  assert.match(c.formAction,/^https:\/\/assets\.mailerlite\.com\/jsonp\/\d+\/forms\/\d+\/subscribe$/);
   assert.deepEqual(Object.keys(c.groups),['events','briefing','blackfriday']);
+  for(const v of Object.values(c.groups)) assert.match(v,/^\d+$/);
 });
 test('empty formAction shows opening-soon and makes no network call',async()=>{
   let calls=0;
@@ -155,3 +156,5 @@ test('every page head carries the rss alternate link',async()=>{
     assert.ok(html.indexOf(link)<html.indexOf('</head>'),page.path);
   }
 });
+
+test('MailerLite 200 with success:false counts as error; success:true is ok',async()=>{ const model=load('src/subscribe-model.ts'); const cfg={provider:'mailerlite',formAction:'https://x.test/f',groups:{events:'1',briefing:'2',blackfriday:'3'}}; assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],async()=>({ok:true,json:async()=>({success:false,message:'reCAPTCHA failed'})})),'error'); assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],async()=>({ok:true,json:async()=>({success:true})})),'ok'); });

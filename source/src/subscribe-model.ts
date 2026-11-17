@@ -6,7 +6,7 @@ export const TOPICS: ReadonlyArray<{ id: TopicId; zh: string; en: string }> = [
   { id: 'blackfriday', zh: '黑五优惠', en: 'Black Friday deals' },
 ];
 export type SubscribeResult = 'soon' | 'invalid' | 'ok' | 'error';
-type FetchLike = (url: string, init: { method: string; body: FormData }) => Promise<{ ok: boolean }>;
+type FetchLike = (url: string, init: { method: string; body: FormData }) => Promise<{ ok: boolean; json?: () => Promise<unknown> }>;
 
 export function validEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -24,7 +24,13 @@ export async function submitSubscription(
   body.append('anticsrf', 'true');
   try {
     const res = await fetchImpl(config.formAction, { method: 'POST', body });
-    return res.ok ? 'ok' : 'error';
+    if (!res.ok) return 'error';
+    // MailerLite answers HTTP 200 with {success:false,...} on rejected signups.
+    if (typeof res.json === 'function') {
+      const data = await res.json().catch(() => null) as { success?: boolean } | null;
+      if (data && data.success === false) return 'error';
+    }
+    return 'ok';
   } catch {
     return 'error';
   }
