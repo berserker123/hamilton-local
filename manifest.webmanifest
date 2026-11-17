@@ -1,0 +1,16 @@
+{
+  "name": "Hamilton Local 汉密尔顿生活指南",
+  "short_name": "Hamilton Local",
+  "description": "汉密尔顿本地生活、周末活动、亲子遛娃、便民黄页与实用工具。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#E6DFD5",
+  "theme_color": "#E6DFD5",
+  "lang": "zh-CN",
+  "icons": [
+    {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
