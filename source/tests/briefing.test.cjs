@@ -115,4 +115,66 @@ test('variant b splits civic and lifestyle columns; c shows 8 before expanding; 
  assert.match(vhtml(vdata,'a'),/hl-brief-lead/);
 });
 
-test('homepage default layout is D (magazine cards)',()=>{ const m=load('src/Briefing.tsx'); assert.equal(m.DEFAULT_VARIANT,'d'); const out=renderToStaticMarkup(React.createElement(m.Briefing,{t})); assert.match(out,/hl-brief--d/); });
+test('homepage default layout is E (news front page)',()=>{ const m=load('src/Briefing.tsx'); assert.equal(m.DEFAULT_VARIANT,'e'); assert.equal(m.parseVariant('?bv=e'),'e'); assert.equal(m.parseVariant('?bv=d'),'d'); const out=renderToStaticMarkup(React.createElement(m.Briefing,{t})); assert.match(out,/hl-brief--e/); });
+
+const many=(extra=[])=>({generated_at:'2026-11-17T05:30:00Z',items:[
+ item('u1',{title:'Urgent one',category:'police',urgent:true,summary_zh:'紧急一'}),
+ item('dull',{title:'City council baulks at $50 million venues deficit',category:'council',summary_zh:'市政赤字',published:'2026-11-17T04:00:00Z'}),
+ item('fly',{title:'Airport lands new Queenstown to Hamilton route',category:'news'}),
+ item('w',{title:'Free festival this weekend',category:'news',published:'2026-11-17T02:00:00Z'}),
+ ...Array.from({length:7},(_,i)=>item('n'+i,{title:'Plain news '+i,published:'2026-11-16T0'+i+':00:00Z'})),
+ item('rw1',{title:'Road Work: SH 3',category:'roads'}),item('rw2',{title:'Road Work: SH 1',category:'roads'}),
+ ...extra]});
+test('newsLayout: lead is first non-urgent arranged card, secondaries are the next two, urgent only in alerts',()=>{
+ const d=many();
+ const {cards}=model.arrangeItems(d.items);
+ const nonUrgent=cards.filter(i=>!i.urgent);
+ const L=model.newsLayout(d.items);
+ assert.equal(L.lead.id,nonUrgent[0].id);
+ assert.deepEqual(L.secondary.map(i=>i.id),nonUrgent.slice(1,3).map(i=>i.id));
+ assert.deepEqual(L.alerts.map(i=>i.id),['u1']);
+ assert.notEqual(L.lead.id,'u1');
+ assert.equal(L.lead.id,'dull');
+});
+test('newsLayout: no duplicates; shown + roadworks equals arranged items',()=>{
+ const d=many();
+ const L=model.newsLayout(d.items);
+ const ids=[...L.alerts,L.lead,...L.secondary,...L.latest,...L.roadworks].map(i=>i.id);
+ assert.equal(new Set(ids).size,ids.length);
+ const arr=model.arrangeItems(d.items);
+ assert.equal(ids.length,arr.cards.length+arr.roadworks.length);
+ const only=model.newsLayout([item('x',{urgent:true})]);
+ assert.equal(only.lead,undefined);assert.equal(only.alerts.length,1);
+});
+test('variant e renders alerts strip, lead h3 with English original, 最新 list, roadworks row and derived count',()=>{
+ const d=many();
+ const out=vhtml(d,'e');
+ const L=model.newsLayout(d.items);
+ assert.match(out,/hl-brief--e/);
+ assert.ok(out.indexOf('hl-brief-e-alerts')<out.indexOf('hl-brief-e-lead'));
+ const lead=out.match(/<article class="hl-brief-e-lead">[\s\S]*?<\/article>/)[0];
+ assert.match(lead,/<h3[^>]*>市政赤字<\/h3><p class="hl-brief-e-en"[^>]*>City council baulks/);
+ assert.doesNotMatch(lead,/紧急一/);
+ assert.equal((out.match(/<article class="hl-brief-e-story">/g)||[]).length,2);
+ assert.match(out,new RegExp('共 '+d.items.length+' 条'));
+ assert.match(out,/今天 2 处施工或管制/);
+ assert.match(out,/更新于 11月17日 18:30/);
+ assert.match(out,new RegExp('查看更多 '+(L.latest.length-6)+' 条'));
+ assert.equal((out.match(/<span class="hl-brief-e-time"/g)||[]).length,6);
+ assert.doesNotMatch(out,/ENGLISH BODY/);
+ assert.match(out.match(/<ul class="hl-brief-e-alerts">[\s\S]*?<\/ul>/)[0],/紧急一/);
+ for(const a of out.match(/<a [^>]*>/g)||[]){assert.match(a,/target="_blank"/);assert.match(a,/rel="noopener noreferrer"/);}
+});
+
+test('homepage order: tools before briefing before subscribe; #overview is not on the Briefing',()=>{
+ const app=require('fs').readFileSync('src/App.tsx','utf8');
+ const i=n=>app.indexOf('<'+n+' ');
+ assert.ok(i('BlackFridayBanner')>0&&i('BlackFridayBanner')<i('CommonTools'));
+ assert.ok(i('CommonTools')<i('Briefing'));
+ assert.ok(i('Briefing')<i('Subscribe'));
+ assert.ok(i('Subscribe')<i('GuideStats'));
+ assert.ok(i('GuideStats')<i('GuideMarquee'));
+ assert.doesNotMatch(require('fs').readFileSync('src/Briefing.tsx','utf8'),/id="overview"/);
+ assert.match(app,/<div id="overview"><BlackFridayBanner/);
+ assert.ok(app.indexOf('id="overview"')<i('CommonTools'));
+});

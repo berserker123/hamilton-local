@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import DATA from './data/briefing.json';
 import { BilingualTitle } from './BilingualTitle';
-import { CATEGORY_LABELS, HOME_LIMIT, BriefingData, BriefingItem, formatUpdated, itemText, arrangeItems, itemTime, interestScore } from './briefing-model';
+import { CATEGORY_LABELS, HOME_LIMIT, NEWS_LATEST_LIMIT, newsLayout, BriefingData, BriefingItem, formatUpdated, itemText, arrangeItems, itemTime, interestScore } from './briefing-model';
 
 type T = (zh: string, en: string) => string;
-export type BriefingVariant = 'a' | 'b' | 'c' | 'd';
-/** Owner picked layout D (magazine cards) on 2026-11-17; ?bv= still overrides for previews. */
-export const DEFAULT_VARIANT: BriefingVariant = 'd';
+export type BriefingVariant = 'a' | 'b' | 'c' | 'd' | 'e';
+/** Layout E (news front page) is the default since 2026-11-18; ?bv=a|b|c|d still override for previews. */
+export const DEFAULT_VARIANT: BriefingVariant = 'e';
 
-/** `?bv=a|b|c|d` selects a preview layout; anything else keeps the current layout. */
+/** `?bv=a|b|c|d|e` selects a preview layout; anything else keeps the current layout. */
 export function parseVariant(search: string): BriefingVariant | undefined {
   const v = new URLSearchParams(search).get('bv');
-  return v === 'a' || v === 'b' || v === 'c' || v === 'd' ? v : undefined;
+  return v === 'a' || v === 'b' || v === 'c' || v === 'd' || v === 'e' ? v : undefined;
 }
 const CIVIC_CATS = ['breaking', 'police', 'council', 'weather', 'civil_defence'];
 const isCivic = (i: BriefingItem) => !!i.urgent || CIVIC_CATS.includes(i.category) || interestScore(i) >= 55;
@@ -21,6 +21,7 @@ export function BriefingView({ data, t, now, variant }: { data: BriefingData; t:
   const [roadsOpen, setRoadsOpen] = useState(false);
   const { cards: items, roadworks } = arrangeItems(data.items || []);
   if (!items.length && !roadworks.length) return null;
+  if (variant === 'e') return <NewsFront data={data} now={now} />;
   const limit = variant === 'c' || variant === 'd' ? 8 : variant === 'b' ? 8 : HOME_LIMIT;
   const shown = open ? items : items.slice(0, limit);
   const updated = formatUpdated(data.generated_at);
@@ -64,7 +65,7 @@ export function BriefingView({ data, t, now, variant }: { data: BriefingData; t:
     </li>)}</ul>;
   }
 
-  return <section id="overview" className={'sb-container hl-brief' + (variant ? ' hl-brief--' + variant : '')} aria-label="汉密尔顿每日快讯" data-testid="briefing">
+  return <section className={'sb-container hl-brief' + (variant ? ' hl-brief--' + variant : '')} aria-label="汉密尔顿每日快讯" data-testid="briefing">
     <div className="hl-brief-card">
       <div className="hl-brief-head">
         <div className="hl-brief-title"><BilingualTitle as="h2" zh="汉密尔顿每日快讯" en="Hamilton Daily Briefing" t={t} /></div>
@@ -83,4 +84,57 @@ export function BriefingView({ data, t, now, variant }: { data: BriefingData; t:
 export function Briefing({ t }: { t: T }) {
   const variant = typeof window === 'undefined' ? DEFAULT_VARIANT : parseVariant(window.location.search) ?? DEFAULT_VARIANT;
   return <BriefingView data={DATA as BriefingData} t={t} variant={variant} />;
+}
+
+/** Variant e: news front page. Hierarchy by position and type size, no images. */
+function NewsFront({ data, now }: { data: BriefingData; now?: number }) {
+  const [open, setOpen] = useState(false);
+  const [roadsOpen, setRoadsOpen] = useState(false);
+  const { alerts, lead, secondary, latest, roadworks } = newsLayout(data.items || []);
+  const updated = formatUpdated(data.generated_at);
+  const total = alerts.length + (lead ? 1 : 0) + secondary.length + latest.length + roadworks.length;
+  const lang = (i: BriefingItem) => (i.summary_zh ? 'zh-CN' : 'en-NZ');
+  const link = (i: BriefingItem, label = '原文 ↗') => <a href={i.url} target="_blank" rel="noopener noreferrer">{label}</a>;
+  const kicker = (i: BriefingItem) => <span className={'hl-brief-e-kicker hl-brief-c-' + i.category}>{CATEGORY_LABELS[i.category]}</span>;
+  const meta = (i: BriefingItem, label?: string) => <div className="hl-brief-e-meta"><span>{i.source}</span>{itemTime(i, now) && <span>{itemTime(i, now)}</span>}{link(i, label)}</div>;
+  const en = (i: BriefingItem) => i.summary_zh && i.summary_zh.trim() ? <p className="hl-brief-e-en" lang="en-NZ">{i.title}</p> : null;
+  const shownLatest = open ? latest : latest.slice(0, NEWS_LATEST_LIMIT);
+  const dateMs = Date.parse(data.generated_at);
+  const today = isNaN(dateMs) ? '' : new Intl.DateTimeFormat('zh-CN', { timeZone: 'Pacific/Auckland', month: 'long', day: 'numeric', weekday: 'long' }).format(new Date(dateMs));
+  return <section className="sb-container hl-brief hl-brief--e" aria-label="汉密尔顿每日快讯" data-testid="briefing">
+    <div className="hl-brief-card hl-brief-e-card">
+      <header className="hl-brief-e-mast">
+        <div><h2 className="hl-brief-e-title" lang="zh-CN">汉密尔顿每日快讯</h2><p className="hl-brief-e-sub" lang="en-NZ">Hamilton Daily Briefing</p></div>
+        <div className="hl-brief-meta">{data.sample && <span className="hl-brief-pill hl-brief-sample">示例数据</span>}{today && <span>{today}</span>}{updated && <span>更新于 {updated}</span>}<span>共 {total} 条</span></div>
+      </header>
+      {alerts.length > 0 && <ul className="hl-brief-e-alerts">{alerts.map(i => <li key={i.id} className="hl-brief-e-alert is-urgent">
+        <span className="hl-brief-e-alertlabel">提醒 · {CATEGORY_LABELS[i.category]}</span>
+        <p lang={lang(i)}>{itemText(i)}</p>{meta(i)}
+      </li>)}</ul>}
+      <div className="hl-brief-e-grid">
+        <div className="hl-brief-e-main">
+          {lead && <article className="hl-brief-e-lead">
+            <div className="hl-brief-e-flag"><span className="hl-brief-e-tag">头条</span>{kicker(lead)}</div>
+            <h3 lang={lang(lead)}>{itemText(lead)}</h3>{en(lead)}{meta(lead, '阅读原文 ↗')}
+          </article>}
+          {secondary.length > 0 && <div className="hl-brief-e-second">{secondary.map(i => <article key={i.id} className="hl-brief-e-story">
+            {kicker(i)}<h3 lang={lang(i)}>{itemText(i)}</h3>{meta(i)}
+          </article>)}</div>}
+        </div>
+        {latest.length > 0 && <aside className="hl-brief-e-side" aria-label="最新">
+          <h3 className="hl-brief-e-sidehead">最新</h3>
+          <ol className="hl-brief-e-latest">{shownLatest.map(i => <li key={i.id} className={itemTime(i, now) ? undefined : 'no-time'}>
+            {itemTime(i, now) && <span className="hl-brief-e-time">{itemTime(i, now)}</span>}
+            <div>{kicker(i)}<p lang={lang(i)}>{itemText(i)}</p><div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}</div></div>
+          </li>)}</ol>
+          {latest.length > NEWS_LATEST_LIMIT && <button type="button" className="hl-brief-toggle" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? '收起' : `查看更多 ${latest.length - NEWS_LATEST_LIMIT} 条`}</button>}
+        </aside>}
+      </div>
+      {roadworks.length > 0 && <div className="hl-brief-roads">
+        <button type="button" className="hl-brief-roads-btn" aria-expanded={roadsOpen} onClick={() => setRoadsOpen(!roadsOpen)}><span className="hl-brief-pill hl-brief-cat">路况</span><span>今天 {roadworks.length} 处施工或管制</span><span aria-hidden="true">{roadsOpen ? '▴' : '▾'}</span></button>
+        {roadsOpen && <ul className="hl-brief-roads-list">{roadworks.map(i => <li key={i.id}><span lang={lang(i)}>{itemText(i)}</span> {link(i)}</li>)}</ul>}
+      </div>}
+    </div>
+    <p className="hl-brief-note">摘要仅供参考，详情请以原文为准。</p>
+  </section>;
 }
