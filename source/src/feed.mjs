@@ -1,6 +1,7 @@
 // Builds /feed.xml (RSS 2.0) from the site data files. Nothing is hardcoded.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeCurrency } from './currency.mjs';
 export const SITE = 'https://hamiltonlocal.nz';
 export const FEED_CAP_BLACKFRIDAY = 20;
 export const BRIEFING_CATEGORIES = ['breaking', 'police', 'council', 'roads', 'weather', 'civil_defence', 'news'];
@@ -22,7 +23,7 @@ export function feedItems(root = '.') {
   }
   for (const b of (briefing.items || []).filter(i => BRIEFING_CATEGORIES.includes(i.category))) {
     items.push({
-      source: 'briefing', guid: 'hl-briefing-' + b.id, title: both(b.summary_zh, b.title), link: b.url || SITE + '/', pubDate: b.published,
+      source: 'briefing', guid: 'hl-briefing-' + b.id, title: both(normalizeCurrency(b.summary_zh), b.title), link: b.url || SITE + '/', pubDate: b.published,
       description: [b.source, b.summary_zh ? b.title : ''].filter(Boolean).join(' · '), category: '每日快讯',
     });
   }

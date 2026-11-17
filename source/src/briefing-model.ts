@@ -1,3 +1,4 @@
+import { normalizeCurrency } from './currency.mjs';
 export type BriefingItem = {
   id: string; source: string; title: string; url: string; published: string;
   summary?: string; category: string; urgent?: boolean; summary_zh?: string; date_only?: boolean;
@@ -22,7 +23,7 @@ export function prepareItems(items: BriefingItem[]): BriefingItem[] {
 }
 /** Chinese text only: summary_zh, else the English title. Never the English summary. */
 export function itemText(i: BriefingItem): string {
-  return i.summary_zh && i.summary_zh.trim() ? i.summary_zh : i.title;
+  return i.summary_zh && i.summary_zh.trim() ? normalizeCurrency(i.summary_zh) : i.title;
 }
 export function formatUpdated(iso: string): string {
   const d = new Date(iso);
@@ -86,11 +87,20 @@ export function arrangeItems(items: BriefingItem[]): { cards: BriefingItem[]; ro
   const cards = all.filter(i => !isRoadwork(i)).sort((a, b) => interestScore(b) - interestScore(a) || time(b) - time(a));
   return { cards, roadworks: all.filter(isRoadwork) };
 }
-export const NEWS_SECONDARY = 4;
-export const NEWS_LATEST_LIMIT = 5;
+/** Hamilton place names (city + suburbs) used to spot stories about our own neighbourhoods. */
+export const LOCAL_PLACES = /\b(?:Hamilton|Hillcrest|Fairfield|Rototuna|Chartwell|Flagstaff|Dinsdale|Frankton|Claudelands|Nawton|Melville|Glenview|Silverdale|Pukete|St Andrews|Huntington|Te Rapa|Enderley|Whitiora|Queenwood|Rotokauri|Peacocke|Bader|Fitzroy|Deanwell|Hamilton Lake|Beerescourt|Forest Lake|Maeroa|Crawshaw|Grandview|Western Heights|Riverlea|Ruakura|Tamahere)\b/i;
+/** Everyday-life topics: water, transport, parks, schools, travel, food and festivals; not council finance on its own. */
+export const LOCAL_LIFE = /\b(?:reservoirs?|water|wastewater|stormwater|tanks?|towers?|traffic|lights?|bus(?:es)?|parking|rubbish|bins?|parks?|playgrounds?|schools?|librar(?:y|ies)|pools?|cycleways?|footpaths?|housing|homes?|routes?|airport|flights?|festival|concerts?|markets?|restaurants?|caf[eé]s?|food|hospital|clinics?|power)\b/i;
+export function isLocalLife(i: BriefingItem): boolean {
+  const s = `${i.title} ${i.summary ?? ''}`;
+  return LOCAL_PLACES.test(s) && LOCAL_LIFE.test(s);
+}
+export const NEWS_SECONDARY = 4;export const NEWS_LATEST_LIMIT = 5;
 /** News front-page selection (variant e): urgent -> alert strips, first non-urgent -> lead, next NEWS_SECONDARY -> secondary, rest -> latest. Order follows arrangeItems; nothing is duplicated. */
 export function newsLayout(items: BriefingItem[]): { alerts: BriefingItem[]; lead?: BriefingItem; secondary: BriefingItem[]; latest: BriefingItem[]; roadworks: BriefingItem[] } {
   const { cards, roadworks } = arrangeItems(items);
-  const alerts = cards.filter(i => i.urgent), rest = cards.filter(i => !i.urgent);
+  const alerts = cards.filter(i => i.urgent), nonUrgent = cards.filter(i => !i.urgent);
+  // Owner rule (2026-11-18): the big headlines (lead + secondary) go to stories about everyday life in Hamilton first.
+  const rest = [...nonUrgent.filter(isLocalLife), ...nonUrgent.filter(i => !isLocalLife(i))];
   return { alerts, lead: rest[0], secondary: rest.slice(1, 1 + NEWS_SECONDARY), latest: rest.slice(1 + NEWS_SECONDARY), roadworks };
 }

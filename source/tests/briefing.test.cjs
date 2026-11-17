@@ -128,13 +128,14 @@ const many=(extra=[])=>({generated_at:'2026-11-17T05:30:00Z',items:[
 test('newsLayout: lead is first non-urgent arranged card, secondaries are the next two, urgent only in alerts',()=>{
  const d=many();
  const {cards}=model.arrangeItems(d.items);
- const nonUrgent=cards.filter(i=>!i.urgent);
+ const nu=cards.filter(i=>!i.urgent);
+ const nonUrgent=[...nu.filter(model.isLocalLife),...nu.filter(i=>!model.isLocalLife(i))];
  const L=model.newsLayout(d.items);
  assert.equal(L.lead.id,nonUrgent[0].id);
  assert.deepEqual(L.secondary.map(i=>i.id),nonUrgent.slice(1,1+model.NEWS_SECONDARY).map(i=>i.id));
  assert.deepEqual(L.alerts.map(i=>i.id),['u1']);
  assert.notEqual(L.lead.id,'u1');
- assert.equal(L.lead.id,'dull');
+ assert.equal(L.lead.id,'fly');
 });
 test('newsLayout: no duplicates; shown + roadworks equals arranged items',()=>{
  const d=many();
@@ -153,7 +154,8 @@ test('variant e renders alerts strip, lead h3 with English original, 更多新�
  assert.match(out,/hl-brief--e/);
  assert.ok(out.indexOf('hl-brief-e-alerts')<out.indexOf('hl-brief-e-lead'));
  const lead=out.match(/<article class="hl-brief-e-lead">[\s\S]*?<\/article>/)[0];
- assert.match(lead,/<h3[^>]*>市政赤字<\/h3><p class="hl-brief-e-en"[^>]*>City council baulks/);
+ assert.match(lead,/<h3[^>]*>Airport lands new Queenstown to Hamilton route<\/h3>/);
+ assert.match(out,/市政赤字/);
  assert.doesNotMatch(lead,/紧急一/);
  assert.equal((out.match(/<article class="hl-brief-e-story">/g)||[]).length,Math.min(model.NEWS_SECONDARY,L.secondary.length));
  assert.match(out,new RegExp('共 '+d.items.length+' 条'));
@@ -177,4 +179,25 @@ test('homepage order: tools before briefing before subscribe; #overview is not o
  assert.doesNotMatch(require('fs').readFileSync('src/Briefing.tsx','utf8'),/id="overview"/);
  assert.match(app,/<div id="overview"><BlackFridayBanner/);
  assert.ok(app.indexOf('id="overview"')<i('CommonTools'));
+});
+
+test('owner rule: lead and secondaries prefer everyday Hamilton life stories (real snapshot)',()=>{
+ const data=require('../src/data/briefing.json');
+ const L=model.newsLayout(data.items);
+ assert.match(L.lead.title,/Hillcrest/);
+ for(const i of [L.lead,...L.secondary.filter((_,k)=>k<data.items.filter(model.isLocalLife).length-1)])assert.ok(model.isLocalLife(i),i.title);
+ assert.ok(![L.lead,...L.secondary].some(i=>/dairy farmers/.test(i.title)));
+ assert.equal(model.isLocalLife({title:'Massive wastewater tanks planned for Fairfield Park',category:'news'}),true);
+ assert.equal(model.isLocalLife({title:'Hundreds of Waikato dairy farmers at higher risk',category:'news'}),false);
+});
+test('owner rule: every amount in Chinese text is 纽币',()=>{
+ const {normalizeCurrency}=load('src/currency.mjs');
+ assert.equal(normalizeCurrency('高达5000万新元的赤字'),'高达5000万纽币的赤字');
+ assert.equal(normalizeCurrency('未缴税款已达1100万新西兰元'),'未缴税款已达1100万纽币');
+ assert.equal(normalizeCurrency('花费$50万'),'花费50万纽币');
+ assert.equal(normalizeCurrency('约 NZ$ 1,200'),'约 1,200纽币');
+ const data=require('../src/data/briefing.json');
+ for(const i of data.items){const z=model.itemText(i);assert.doesNotMatch(z,/新元|纽元|美元|新西兰元|\$\d/,z);}
+ const out=renderToStaticMarkup(React.createElement(BriefingView,{data,t,now:Date.parse('2026-11-17T08:00:00Z')}));
+ assert.doesNotMatch(out,/新元/);assert.match(out,/5000万纽币/);
 });
