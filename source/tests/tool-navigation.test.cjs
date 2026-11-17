@@ -19,7 +19,7 @@ test('home and top navigation put tools first; pet guide remains reachable',()=>
   const {SECTION_ORDER}=load();
   assert.deepEqual(SECTION_ORDER,['home','tools','living','weekend','kids','services']);
   const app=fs.readFileSync('src/App.tsx','utf8'),home=fs.readFileSync('src/HomeGuide.tsx','utf8');
-  assert.match(home,/\/services\/pets\//);
+  assert.match(fs.readFileSync('src/site-routes.mjs','utf8'),/\['pets', '宠物指南', 'Pet Guide'\]/);
   assert.doesNotMatch(home,/#\/living\?tab=pets/);
   assert.match(app,/if \(tab === 'pets'\) return <Pets/);
   assert.ok(require('../src/pets-v25.json').length || Object.keys(require('../src/pets-v25.json')).length);

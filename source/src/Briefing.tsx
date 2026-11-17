@@ -64,7 +64,7 @@ export function BriefingView({ data, t, now, variant }: { data: BriefingData; t:
     </li>)}</ul>;
   }
 
-  return <section className={'sb-container hl-brief' + (variant ? ' hl-brief--' + variant : '')} aria-label="汉密尔顿每日快讯" data-testid="briefing">
+  return <section id="overview" className={'sb-container hl-brief' + (variant ? ' hl-brief--' + variant : '')} aria-label="汉密尔顿每日快讯" data-testid="briefing">
     <div className="hl-brief-card">
       <div className="hl-brief-head">
         <div className="hl-brief-title"><BilingualTitle as="h2" zh="汉密尔顿每日快讯" en="Hamilton Daily Briefing" t={t} /></div>
