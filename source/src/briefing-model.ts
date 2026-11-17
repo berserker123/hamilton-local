@@ -1,6 +1,6 @@
 export type BriefingItem = {
   id: string; source: string; title: string; url: string; published: string;
-  summary?: string; category: string; urgent?: boolean; summary_zh?: string;
+  summary?: string; category: string; urgent?: boolean; summary_zh?: string; date_only?: boolean;
 };
 export type BriefingData = { generated_at: string; sample?: boolean; items: BriefingItem[] };
 
@@ -38,4 +38,20 @@ export function relativeTime(iso: string, now: number = Date.now()): string {
   const hrs = Math.floor(mins / 60);
   if (hrs < 24) return `${hrs}小时前`;
   return `${Math.floor(hrs / 24)}天前`;
+}
+
+function nzYmd(ms: number): [number, number, number] {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(new Date(ms)).map(x => [x.type, x.value]));
+  return [Number(p.year), Number(p.month), Number(p.day)];
+}
+/** date_only items show 今天 / 昨天 / M月D日 (NZ calendar dates); others a relative time. */
+export function itemTime(i: Pick<BriefingItem, 'published' | 'date_only'>, now: number = Date.now()): string {
+  if (!i.date_only) return relativeTime(i.published, now);
+  const t = Date.parse(i.published);
+  if (isNaN(t)) return '';
+  const [y, mo, d] = nzYmd(t), [ny, nmo, nd] = nzYmd(now);
+  const diff = Math.round((Date.UTC(ny, nmo - 1, nd) - Date.UTC(y, mo - 1, d)) / 86400000);
+  if (diff === 0) return '今天';
+  if (diff === 1) return '昨天';
+  return `${mo}月${d}日`;
 }

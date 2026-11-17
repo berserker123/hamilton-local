@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DATA from './data/briefing.json';
 import { BilingualTitle } from './BilingualTitle';
-import { CATEGORY_LABELS, HOME_LIMIT, BriefingData, formatUpdated, itemText, prepareItems, relativeTime } from './briefing-model';
+import { CATEGORY_LABELS, HOME_LIMIT, BriefingData, formatUpdated, itemText, prepareItems, itemTime } from './briefing-model';
 
 type T = (zh: string, en: string) => string;
 
@@ -20,7 +20,7 @@ export function BriefingView({ data, t, now }: { data: BriefingData; t: T; now?:
       <ul className="hl-brief-list">{shown.map(i => <li key={i.id} className={'hl-brief-item' + (i.urgent ? ' is-urgent' : '')}>
         <span className="hl-brief-pill hl-brief-cat">{CATEGORY_LABELS[i.category]}</span>
         <p lang={i.summary_zh ? 'zh-CN' : 'en-NZ'}>{itemText(i)}</p>
-        <div className="hl-brief-foot"><span>{i.source}</span><span>{relativeTime(i.published, now)}</span><a href={i.url} target="_blank" rel="noopener noreferrer">原文 ↗</a></div>
+        <div className="hl-brief-foot"><span>{i.source}</span><span>{itemTime(i, now)}</span><a href={i.url} target="_blank" rel="noopener noreferrer">原文 ↗</a></div>
       </li>)}</ul>
       {items.length > HOME_LIMIT && <button type="button" className="hl-brief-toggle" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? '收起' : `查看全部 ${items.length} 条`}</button>}
     </div>

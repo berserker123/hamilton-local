@@ -43,3 +43,14 @@ test('shows at most 6 with a count derived from data, and updated time in Auckla
  assert.match(out,/查看全部 9 条/);
  assert.match(out,/更新于 11月17日 18:30/);
 });
+
+test('date_only items show 今天 / 昨天 / M月D日 in NZ time; others stay relative',()=>{
+ const now=Date.parse('2026-11-17T06:30:00Z'); // 19:30 NZ, 17 Nov
+ assert.equal(model.itemTime({published:'2026-11-17T00:00:00+13:00',date_only:true},now),'今天');
+ assert.equal(model.itemTime({published:'2026-11-16T00:00:00+13:00',date_only:true},now),'昨天');
+ assert.equal(model.itemTime({published:'2026-11-14T00:00:00+13:00',date_only:true},now),'11月14日');
+ assert.equal(model.itemTime({published:'2026-11-17T06:00:00Z'},now),'30分钟前');
+ assert.equal(model.itemTime({published:'2026-11-17T00:00:00+13:00',date_only:false},now),'19小时前');
+ const out=html({generated_at:'2026-11-17T05:30:00Z',items:[item('d',{published:'2026-11-17T00:00:00+13:00',date_only:true,category:'council'})]});
+ assert.match(out,/今天/);assert.doesNotMatch(out,/分钟前|小时前/);
+});
