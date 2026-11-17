@@ -71,3 +71,46 @@ test('interest ranking puts council finance/infrastructure first, then lifestyle
  assert.match(out,/aria-expanded="false"/);
  assert.ok(out.indexOf('baulks')<out.indexOf('Airport lands'));
 });
+const VARIANTS=['a','b','c','d'];
+const vhtml=(data,variant)=>renderToStaticMarkup(React.createElement(BriefingView,{data,t,variant,now:Date.parse('2026-11-17T05:00:00Z')}));
+const vitems=[
+ item('dull',{title:'City council baulks at $50 million venues deficit',category:'news',published:'2026-11-17T04:00:00Z'}),
+ item('rw',{title:'Road Work: SH 3 Te Awamutu',category:'roads'}),
+ item('fly',{title:'Airport lands new Queenstown to Hamilton route',category:'news'}),
+ item('urg',{title:'Road Closure: SH 39',category:'roads',urgent:true}),
+ item('zh',{title:'Zh title',summary_zh:'中文摘要内容',category:'council'}),
+];
+const vdata={generated_at:'2026-11-17T05:30:00Z',items:vitems};
+test('?bv= is parsed; unknown or missing keeps the current layout',()=>{
+ const {parseVariant}=load('src/Briefing.tsx');
+ assert.equal(parseVariant('?bv=c'),'c');assert.equal(parseVariant('?x=1&bv=a'),'a');
+ assert.equal(parseVariant('?bv=z'),undefined);assert.equal(parseVariant(''),undefined);
+ assert.doesNotMatch(vhtml(vdata,undefined),/hl-brief--/);
+});
+for(const v of VARIANTS){
+ test('variant '+v+' renders, keeps ordering, hides English summary, links are safe',()=>{
+  const out=vhtml(vdata,v);
+  assert.match(out,new RegExp('hl-brief--'+v));
+  assert.match(out,/汉密尔顿每日快讯/);assert.match(out,/更新于/);
+  assert.doesNotMatch(out,/ENGLISH BODY/);
+  assert.match(out,/中文摘要内容/);assert.doesNotMatch(out,/Zh title/);
+  assert.match(out,/今天 1 处施工或管制/);
+  assert.match(out,/摘要仅供参考，详情请以原文为准。/);
+  assert.match(out,/is-urgent/);
+  const links=out.match(/<a [^>]*>/g)||[];
+  assert.ok(links.length>=4);
+  for(const a of links){assert.match(a,/target="_blank"/);assert.match(a,/rel="noopener noreferrer"/);}
+  assert.ok(out.indexOf('Road Closure: SH 39')<out.indexOf('baulks'));
+  assert.ok(out.indexOf('baulks')<out.indexOf('Airport lands'));
+ });
+}
+test('variant b splits civic and lifestyle columns; c shows 8 before expanding; d puts urgent in a banner; a has a lead',()=>{
+ const b=vhtml(vdata,'b');
+ assert.match(b,/紧急 · 市政/);assert.match(b,/生活 · 新闻/);
+ const many={generated_at:'2026-11-17T05:30:00Z',items:Array.from({length:10},(_,i)=>item('i'+i))};
+ const c=vhtml(many,'c');
+ assert.equal((c.match(/class="hl-brief-item/g)||[]).length,8);assert.match(c,/查看全部 10 条/);
+ const d=vhtml(vdata,'d');
+ assert.ok(d.indexOf('hl-brief-banners')>-1&&d.indexOf('hl-brief-banners')<d.indexOf('hl-brief-tile'));
+ assert.match(vhtml(vdata,'a'),/hl-brief-lead/);
+});
