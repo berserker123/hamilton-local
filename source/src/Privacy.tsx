@@ -14,7 +14,7 @@ export function Privacy({ t }: { t: T }) {
     <div className="ia-content hl-privacy">
       <article className="sb-container" aria-label={t('隐私政策正文', 'Privacy policy details')}>
         <div className="hl-privacy-copy">
-          <p className="ia-section-note">{t('最后更新：', 'Last updated: ')}<time dateTime="2026-11-16">{t('2026年11月16日', '16 November 2026')}</time></p>
+          <p className="ia-section-note">{t('最后更新：', 'Last updated: ')}<time dateTime="2026-11-18">{t('2026年11月18日', '18 November 2026')}</time></p>
           <section aria-labelledby="privacy-who"><h2 id="privacy-who">{t('我们是谁', 'Who we are')}</h2>
             <p>{t('Hamilton Local 是独立运营的新西兰汉密尔顿本地信息网站。本政策说明我们如何按照新西兰《2020年隐私法》（Privacy Act 2020）处理个人信息。', 'Hamilton Local is an independently run local information website for Hamilton, New Zealand. This policy explains how we handle personal information under New Zealand’s Privacy Act 2020.')}</p>
             <p>{t('隐私问题请联系：', 'For privacy questions, email: ')}<a href="mailto:adminhamiltonlocal@gmail.com">adminhamiltonlocal@gmail.com</a>{t('。', '.')}</p>
@@ -24,6 +24,15 @@ export function Privacy({ t }: { t: T }) {
               <li>{t('访问统计：我们通过 Cloudflare Web Analytics 了解匿名、汇总的访问情况与网页表现。据 Cloudflare 说明，这项分析不使用 Cookie，也不跨网站追踪个人。', 'Visit statistics: we use Cloudflare Web Analytics for anonymous, aggregate visit statistics and page performance. Cloudflare states that this analytics service does not use cookies or track individuals across sites.')} <a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer">{t('了解这项服务', 'About this service')}</a>{t('。', '.')}</li>
               <li>{t('意见反馈：你自愿提交的反馈类型、内容，以及选填的称呼、邮箱或微信号，会连同当前页面网址和所在栏目通过 Web3Forms 发送给我们。表单也会发送反垃圾检查结果；如填写邮箱，会将其用作回复地址。我们仅用这些信息回复你和改进网站，不公开你的联系方式。', 'Feedback: the feedback type, message, optional name and email or WeChat ID you submit are sent to us through Web3Forms, together with the current page URL and section. The form also sends an anti-spam check result; an email contact is also used as the reply address. We use this information only to reply and improve the site, and do not publish your contact details.')}</li>
               <li>{t('来信：当你给我们发邮件时，我们会收到你的邮箱、邮件内容及你主动提供的其他信息，用于处理来信和回复。联系邮箱使用 Gmail；邮件也会由相关邮件服务商处理。', 'Emails: when you email us, we receive your email address, message and any other information you choose to include, to handle and reply to your enquiry. Our contact mailbox uses Gmail; the relevant email providers also process the email.')}</li>
+            </ul>
+          </section>
+          <section aria-labelledby="privacy-newsletter"><h2 id="privacy-newsletter">{t('邮件订阅与 RSS', 'Email newsletter and RSS')}</h2>
+            <ul>
+              <li>{t('你订阅时提供的邮箱和所选主题，保存在第三方邮件服务商 MailerLite（我们的数据处理方）。', 'The email address and topics you choose when subscribing are stored with MailerLite, a third-party processor acting for us.')}</li>
+              <li>{t('我们只用这些信息发送你主动选择的 Hamilton Local 内容，不用于其他用途。', 'We use them only to send the Hamilton Local content you chose, and for nothing else.')}</li>
+              <li>{t('订阅采用双重确认：你需要点击确认邮件中的链接，订阅才会生效。', 'Subscriptions use double opt-in: you must click the link in the confirmation email before anything is sent.')}</li>
+              <li>{t('每封邮件都附有退订链接，你可以随时退订。', 'Every email includes an unsubscribe link, so you can leave at any time.')}</li>
+              <li>{t('RSS 订阅（/feed.xml）不需要任何个人信息。', 'The RSS feed (/feed.xml) needs no personal data.')}</li>
             </ul>
           </section>
           <section aria-labelledby="privacy-technical"><h2 id="privacy-technical">{t('地图、网站运行与偏好设置', 'Maps, site delivery and preferences')}</h2>

@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {build} from 'esbuild';
 import {execFileSync} from 'node:child_process';
+import {renderFeed} from './src/feed.mjs';
 import {PAGES,renderDocument,renderNotFound,renderSitemap} from './src/site-routes.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
 process.chdir(root);
@@ -25,7 +26,7 @@ fs.cpSync('public/licenses',path.join(dist,'licenses'),{recursive:true});
 fs.copyFileSync('node_modules/leaflet/LICENSE',path.join(dist,'licenses/Leaflet.txt'));
 const template=fs.readFileSync('index.html','utf8');
 const repoRoot=path.resolve(root,'..');
-const generated=['app.js','manifest.webmanifest','sw.js','icon-192.png','icon-512-maskable.png','app.css','404.html','sitemap.xml',...PAGES.map(page=>page.path.slice(1)+'index.html')];
+const generated=['app.js','manifest.webmanifest','sw.js','icon-192.png','icon-512-maskable.png','app.css','404.html','sitemap.xml','feed.xml',...PAGES.map(page=>page.path.slice(1)+'index.html')];
 for(const page of PAGES){
   const file=path.join(dist,page.path.slice(1),'index.html');
   fs.mkdirSync(path.dirname(file),{recursive:true});
@@ -35,6 +36,7 @@ fs.writeFileSync(path.join(dist,'404.html'),renderNotFound(template));
 const sitemap=renderSitemap();
 fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
 fs.writeFileSync(path.join(root,'public','sitemap.xml'),sitemap);
+fs.writeFileSync(path.join(dist,'feed.xml'),renderFeed(root));
 // The deployed repository serves its root. Copy only generated code/HTML/XML;
 // keep the existing assets, CNAME and README exactly as they are.
 for(const name of generated){

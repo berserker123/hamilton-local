@@ -1,0 +1,5 @@
+{
+  "provider": "mailerlite",
+  "formAction": "",
+  "groups": { "events": "", "briefing": "", "blackfriday": "" }
+}
