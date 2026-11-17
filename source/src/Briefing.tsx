@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import DATA from './data/briefing.json';
 import { BilingualTitle } from './BilingualTitle';
-import { CATEGORY_LABELS, HOME_LIMIT, BriefingData, formatUpdated, itemText, prepareItems, itemTime } from './briefing-model';
+import { CATEGORY_LABELS, HOME_LIMIT, BriefingData, formatUpdated, itemText, arrangeItems, itemTime } from './briefing-model';
 
 type T = (zh: string, en: string) => string;
 
 export function BriefingView({ data, t, now }: { data: BriefingData; t: T; now?: number }) {
   const [open, setOpen] = useState(false);
-  const items = prepareItems(data.items || []);
-  if (!items.length) return null;
+  const [roadsOpen, setRoadsOpen] = useState(false);
+  const { cards: items, roadworks } = arrangeItems(data.items || []);
+  if (!items.length && !roadworks.length) return null;
   const shown = open ? items : items.slice(0, HOME_LIMIT);
   const updated = formatUpdated(data.generated_at);
   return <section className="sb-container hl-brief" aria-label="汉密尔顿每日快讯" data-testid="briefing">
@@ -22,7 +23,10 @@ export function BriefingView({ data, t, now }: { data: BriefingData; t: T; now?:
         <p lang={i.summary_zh ? 'zh-CN' : 'en-NZ'}>{itemText(i)}</p>
         <div className="hl-brief-foot"><span>{i.source}</span><span>{itemTime(i, now)}</span><a href={i.url} target="_blank" rel="noopener noreferrer">原文 ↗</a></div>
       </li>)}</ul>
-      {items.length > HOME_LIMIT && <button type="button" className="hl-brief-toggle" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? '收起' : `查看全部 ${items.length} 条`}</button>}
+      {roadworks.length > 0 && <div className="hl-brief-roads">
+        <button type="button" className="hl-brief-roads-btn" aria-expanded={roadsOpen} onClick={() => setRoadsOpen(!roadsOpen)}><span className="hl-brief-pill hl-brief-cat">路况</span><span>今天 {roadworks.length} 处施工或管制</span><span aria-hidden="true">{roadsOpen ? '▴' : '▾'}</span></button>
+        {roadsOpen && <ul className="hl-brief-roads-list">{roadworks.map(i => <li key={i.id}><span lang={i.summary_zh ? 'zh-CN' : 'en-NZ'}>{itemText(i)}</span> <a href={i.url} target="_blank" rel="noopener noreferrer">原文 ↗</a></li>)}</ul>}
+      </div>}      {items.length > HOME_LIMIT && <button type="button" className="hl-brief-toggle" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? '收起' : `查看全部 ${items.length} 条`}</button>}
     </div>
     <p className="hl-brief-note">摘要仅供参考，详情请以原文为准。</p>
   </section>;

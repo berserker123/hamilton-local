@@ -55,3 +55,34 @@ export function itemTime(i: Pick<BriefingItem, 'published' | 'date_only'>, now: 
   if (diff === 1) return '昨天';
   return `${mo}月${d}日`;
 }
+/** Reader-interest ranking (owner request 2026-11-17): lifestyle first, routine roadworks collapsed. */
+export const INTEREST_RULES = {
+  lifestyle: /\b(?:food|eat(?:s|ing)?|restaurants?|caf[eé]s?|dish(?:es)?|menu|bestsellers?|festival|concerts?|gigs?|shows?|arts?|music|singing|markets?|events?|flights?|routes?|airport|airlines?|hotels?|openings?|opens|shops?|stores?|deals?|sales?|discounts?|free|family|kids|holidays?|christmas|black friday|beach|zoo|gardens)\b/i,
+  people: /\b(?:awards?|honours?|honors?|wins?|winners?|celebrat\w*|the (?:man|woman|people) behind)\b/i,
+  residentImpact: /\b(?:fees?|rates? (?:rise|increase|hike)|water (?:outage|shutdown|restrictions?)|boil water|rubbish|bins?|parking|bus(?:es)?|power cut)\b/i,
+  dull: /\b(?:deficit|coffers|unpaid|wastewater|reservoir|non-compliance|credit rating|long-term plan)\b/i,
+  roadwork: /\b(?:road ?works?|road closures?|closures?|stop\/go|SH ?\d+\w?)\b/i,
+};
+const ruleText = (i: BriefingItem) => `${i.title} ${i.summary ?? ''}`;
+/** Routine (non-urgent) road items, plus news items that are really roadworks or closures. */
+export function isRoadwork(i: BriefingItem): boolean {
+  if (i.urgent) return false;
+  if (i.category === 'roads') return true;
+  return i.category === 'news' && INTEREST_RULES.roadwork.test(i.title);
+}
+export function interestScore(i: BriefingItem): number {
+  if (i.urgent) return 100;
+  const s = ruleText(i), r = INTEREST_RULES;
+  if (i.category === 'weather' || i.category === 'civil_defence' || i.category === 'breaking') return 60;
+  if (r.lifestyle.test(s) && !r.dull.test(s)) return 50;
+  if (r.residentImpact.test(s)) return 35;
+  if (r.people.test(s)) return 30;
+  if (r.dull.test(s)) return 5;
+  return i.category === 'police' ? 20 : i.category === 'council' ? 10 : 15;
+}
+export function arrangeItems(items: BriefingItem[]): { cards: BriefingItem[]; roadworks: BriefingItem[] } {
+  const all = prepareItems(items);
+  const time = (i: BriefingItem) => Date.parse(i.published) || 0;
+  const cards = all.filter(i => !isRoadwork(i)).sort((a, b) => interestScore(b) - interestScore(a) || time(b) - time(a));
+  return { cards, roadworks: all.filter(isRoadwork) };
+}

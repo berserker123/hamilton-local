@@ -54,3 +54,20 @@ test('date_only items show 今天 / 昨天 / M月D日 in NZ time; others stay re
  const out=html({generated_at:'2026-11-17T05:30:00Z',items:[item('d',{published:'2026-11-17T00:00:00+13:00',date_only:true,category:'council'})]});
  assert.match(out,/今天/);assert.doesNotMatch(out,/分钟前|小时前/);
 });
+
+test('interest ranking puts lifestyle first, collapses routine roadworks, keeps urgent on top',()=>{
+ const items=[
+  item('dull',{title:'City council baulks at $50 million venues deficit',category:'news',published:'2026-11-17T04:00:00Z'}),
+  item('rw',{title:'Road Work: SH 3 Te Awamutu',category:'roads'}),
+  item('sh1',{title:'In Brief: Overnight closures coming for SH1',category:'news'}),
+  item('fly',{title:'Airport lands new Queenstown to Hamilton route',category:'news',published:'2026-11-17T01:00:00Z'}),
+  item('urg',{title:'Road Closure: SH 39',category:'roads',urgent:true}),
+ ];
+ const {cards,roadworks}=model.arrangeItems(items);
+ assert.deepEqual(cards.map(i=>i.id),['urg','fly','dull']);
+ assert.deepEqual(roadworks.map(i=>i.id).sort(),['rw','sh1']);
+ const out=html({generated_at:'2026-11-17T05:30:00Z',items});
+ assert.match(out,/今天 2 处施工或管制/);
+ assert.match(out,/aria-expanded="false"/);
+ assert.ok(out.indexOf('Airport lands')<out.indexOf('baulks'));
+});
