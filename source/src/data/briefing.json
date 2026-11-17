@@ -1,0 +1,92 @@
+{
+  "sample": true,
+  "generated_at": "2026-11-17T05:30:00.000Z",
+  "items": [
+    {
+      "id": "sample-1",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 1 (news)",
+      "url": "#",
+      "published": "2026-11-17T00:00:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "news",
+      "urgent": false,
+      "summary_zh": "[示例] 本地新闻示例：社区活动本周末举行"
+    },
+    {
+      "id": "sample-2",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 2 (breaking)",
+      "url": "#",
+      "published": "2026-11-17T04:20:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "breaking",
+      "urgent": true,
+      "summary_zh": "[示例] 突发示例：市中心某路段临时封闭"
+    },
+    {
+      "id": "sample-3",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 3 (police)",
+      "url": "#",
+      "published": "2026-11-17T03:00:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "police",
+      "urgent": false,
+      "summary_zh": "[示例] 警方示例：提醒居民锁好车辆"
+    },
+    {
+      "id": "sample-4",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 4 (council)",
+      "url": "#",
+      "published": "2026-11-17T01:40:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "council",
+      "urgent": false,
+      "summary_zh": "[示例] 市政示例：公共图书馆开放时间调整"
+    },
+    {
+      "id": "sample-5",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 5 (roads)",
+      "url": "#",
+      "published": "2026-11-17T03:30:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "roads",
+      "urgent": false
+    },
+    {
+      "id": "sample-6",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 6 (weather)",
+      "url": "#",
+      "published": "2026-11-17T04:40:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "weather",
+      "urgent": true,
+      "summary_zh": "[示例] 天气示例：今晚有强风，请留意"
+    },
+    {
+      "id": "sample-7",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 7 (civil_defence)",
+      "url": "#",
+      "published": "2026-11-16T20:40:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "civil_defence",
+      "urgent": false,
+      "summary_zh": "[示例] 民防示例：暴雨预警已解除"
+    },
+    {
+      "id": "sample-8",
+      "source": "示例来源",
+      "title": "[示例] Sample headline 8 (news)",
+      "url": "#",
+      "published": "2026-11-16T17:20:00.000Z",
+      "summary": "Sample English summary body that must never be rendered.",
+      "category": "news",
+      "urgent": false
+    }
+  ]
+}
