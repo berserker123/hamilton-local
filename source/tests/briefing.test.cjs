@@ -55,7 +55,7 @@ test('date_only items show 今天 / 昨天 / M月D日 in NZ time; others stay re
  assert.match(out,/今天/);assert.doesNotMatch(out,/分钟前|小时前/);
 });
 
-test('interest ranking puts lifestyle first, collapses routine roadworks, keeps urgent on top',()=>{
+test('interest ranking puts council finance/infrastructure first, then lifestyle, collapses routine roadworks, keeps urgent on top',()=>{
  const items=[
   item('dull',{title:'City council baulks at $50 million venues deficit',category:'news',published:'2026-11-17T04:00:00Z'}),
   item('rw',{title:'Road Work: SH 3 Te Awamutu',category:'roads'}),
@@ -64,10 +64,10 @@ test('interest ranking puts lifestyle first, collapses routine roadworks, keeps 
   item('urg',{title:'Road Closure: SH 39',category:'roads',urgent:true}),
  ];
  const {cards,roadworks}=model.arrangeItems(items);
- assert.deepEqual(cards.map(i=>i.id),['urg','fly','dull']);
+ assert.deepEqual(cards.map(i=>i.id),['urg','dull','fly']);
  assert.deepEqual(roadworks.map(i=>i.id).sort(),['rw','sh1']);
  const out=html({generated_at:'2026-11-17T05:30:00Z',items});
  assert.match(out,/今天 2 处施工或管制/);
  assert.match(out,/aria-expanded="false"/);
- assert.ok(out.indexOf('Airport lands')<out.indexOf('baulks'));
+ assert.ok(out.indexOf('baulks')<out.indexOf('Airport lands'));
 });
