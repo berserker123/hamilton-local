@@ -5,6 +5,8 @@ import { CATEGORY_LABELS, HOME_LIMIT, BriefingData, BriefingItem, formatUpdated,
 
 type T = (zh: string, en: string) => string;
 export type BriefingVariant = 'a' | 'b' | 'c' | 'd';
+/** Owner picked layout D (magazine cards) on 2026-11-17; ?bv= still overrides for previews. */
+export const DEFAULT_VARIANT: BriefingVariant = 'd';
 
 /** `?bv=a|b|c|d` selects a preview layout; anything else keeps the current layout. */
 export function parseVariant(search: string): BriefingVariant | undefined {
@@ -79,6 +81,6 @@ export function BriefingView({ data, t, now, variant }: { data: BriefingData; t:
   </section>;
 }
 export function Briefing({ t }: { t: T }) {
-  const variant = typeof window === 'undefined' ? undefined : parseVariant(window.location.search);
+  const variant = typeof window === 'undefined' ? DEFAULT_VARIANT : parseVariant(window.location.search) ?? DEFAULT_VARIANT;
   return <BriefingView data={DATA as BriefingData} t={t} variant={variant} />;
 }

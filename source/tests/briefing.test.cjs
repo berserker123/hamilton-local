@@ -114,3 +114,5 @@ test('variant b splits civic and lifestyle columns; c shows 8 before expanding; 
  assert.ok(d.indexOf('hl-brief-banners')>-1&&d.indexOf('hl-brief-banners')<d.indexOf('hl-brief-tile'));
  assert.match(vhtml(vdata,'a'),/hl-brief-lead/);
 });
+
+test('homepage default layout is D (magazine cards)',()=>{ const m=load('src/Briefing.tsx'); assert.equal(m.DEFAULT_VARIANT,'d'); const out=renderToStaticMarkup(React.createElement(m.Briefing,{t})); assert.match(out,/hl-brief--d/); });
