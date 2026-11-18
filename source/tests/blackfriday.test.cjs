@@ -65,7 +65,7 @@ test('preview data has real source URLs and never substitutes list price for his
   const data = require('../src/data/blackfriday.json');
   const { realDiscount, verdict, CATEGORIES } = load();
   const validCategories = new Set(CATEGORIES.map(([zh]) => zh));
-  assert.ok(data.length >= 45 && data.length <= 60);
+  assert.ok(data.length >= 45);
   assert.equal(new Set(data.map(d => d.id)).size, data.length);
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
@@ -99,7 +99,7 @@ test('round three retains eight updated categories and records reproducible exac
         (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-16') ||
         (d.historyEvidence.windowStart === '2026-08-20' && d.historyEvidence.windowEnd === '2026-11-17')
       )) ||
-      (d.id === 'apple-airpods5-jb' && d.historyEvidence.windowStart === '2026-09-10' && (
+      (['apple-airpods5-jb', 'apple-iphone18-pro-256-jb', 'apple-iphone18-promax-256-jb'].includes(d.id) && d.historyEvidence.windowStart === '2026-09-10' && (
         (d.historyEvidence.windowEnd === '2026-11-15' && d.historyEvidence.dayCount === 67) ||
         (d.historyEvidence.windowEnd === '2026-11-17' && d.historyEvidence.dayCount === 69)
       ));
@@ -161,4 +161,34 @@ test('unverified items render alternating bilingual humorous labels without expo
       assert.ok(html.includes(note), `${lang} note for ${item.zh}`);
     }
   }
+});
+test('apple flagship items include verified airport tax-free tips without affecting GST-inclusive verdicts', () => {
+  const React = require('react');
+  const { renderToStaticMarkup } = require('react-dom/server');
+  const data = require('../src/data/blackfriday.json');
+  const { realDiscount, verdict } = load();
+  const result = esbuild.buildSync({ entryPoints: ['src/BlackFriday.tsx'], bundle: true, platform: 'node', format: 'cjs', external: ['react'], write: false });
+  const mod = { exports: {} };
+  new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
+  const taxFreeDeals = data.filter(d => d.taxFreeOffer);
+  assert.ok(taxFreeDeals.length >= 6, 'at least 6 Apple flagship deals carry verified airport tax-free tips');
+  for (const d of taxFreeDeals) {
+    assert.ok(d.taxFreeOffer.price > 0 && d.taxFreeOffer.price < d.salePrice, `tax-free price lower than GST-inclusive price on ${d.id}`);
+    assert.match(d.taxFreeOffer.url, /^https:\/\//, d.id);
+    assert.ok(d.sources.includes(d.taxFreeOffer.url), `tax-free source recorded on ${d.id}`);
+    // Verdict and discount remain strictly based on normal GST-inclusive price
+    assert.equal(realDiscount(d), realDiscount({ ...d, taxFreeOffer: undefined }), d.id);
+    assert.equal(verdict(d), verdict({ ...d, taxFreeOffer: undefined }), d.id);
+  }
+  const htmlZh = renderToStaticMarkup(React.createElement(mod.exports.BlackFriday, { t: zh => zh }));
+  const htmlEn = renderToStaticMarkup(React.createElement(mod.exports.BlackFriday, { t: (_zh, en) => en }));
+  assert.equal((htmlZh.match(/data-testid="bf-taxfree-tip"/g) || []).length, taxFreeDeals.length);
+  assert.equal((htmlEn.match(/data-testid="bf-taxfree-tip"/g) || []).length, taxFreeDeals.length);
+  assert.ok(htmlZh.includes('超级省钱妙招 · 机场免税'));
+  assert.ok(htmlZh.includes('仅限3个月内乘国际航班离境新西兰的旅客'));
+  assert.ok(htmlEn.includes('Money-saving tip · Airport tax-free'));
+  assert.ok(htmlEn.includes('flying out of NZ within 3 months'));
+  // Store filter options and counts remain derived from data
+  const stores = [...new Set(data.map(d => d.store))].sort();
+  for (const store of stores) assert.ok(htmlZh.includes(`<option>${store}</option>`));
 });

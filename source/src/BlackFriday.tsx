@@ -103,6 +103,17 @@ export function BlackFriday({ t }: { t: T }) {
           {d.currentPriceRecheck?.status === 'domain-blocked' && <p className="bf-history-note">{t('本轮未能刷新商家价格；保留早前记录，核对日期见下。', 'Retailer refresh unavailable; earlier price retained, see the checked date below.')}</p>}
           {d.currentPriceRecheck?.status === 'pricespy-offer' && <p className="bf-history-note">{t('商家页面暂时无法打开；现价按 PriceSpy 当日同店报价核对。', 'Retailer page unavailable; price confirmed against the same store’s live PriceSpy offer.')}</p>}
           {d.offerNote && <p className="bf-history-note">{t(d.offerNote, 'Single-item price. The buy-two save-15% promotion is not included.')}</p>}
+          {d.taxFreeOffer && <div className="bf-taxfree-tip" data-testid="bf-taxfree-tip">
+            <div className="bf-taxfree-head">
+              <span className="bf-taxfree-badge">{t('超级省钱妙招 · 机场免税', 'Money-saving tip · Airport tax-free')}</span>
+              <strong>{money(d.taxFreeOffer.price)}<small>NZD</small></strong>
+            </div>
+            <p>{t(
+              `${d.taxFreeOffer.storeZh}${d.taxFreeOffer.includesSurcharge ? '（已含机场服务费）' : ''}。仅限3个月内乘国际航班离境新西兰的旅客：可在 PB Tech 下单机场自提，或直接在奥克兰机场 The Mall / 免税店购买。`,
+              `${d.taxFreeOffer.storeEn}${d.taxFreeOffer.includesSurcharge ? ' (incl. airport surcharge)' : ''}. Only for travellers flying out of NZ within 3 months: order via PB Tech for airport pickup, or buy directly at The Mall / airport duty-free.`
+            )}</p>
+            <a href={d.taxFreeOffer.url} target="_blank" rel="noopener noreferrer">{t('查看机场免税价', 'View airport tax-free offer')}<ArrowUpRight aria-hidden="true" /></a>
+          </div>}
           <div className="bf-card-meta"><span>{t('核对', 'Checked')} · {d.checkedAt.slice(0, 10)}</span><span>{d.saleEnds ? t('优惠至 ', 'Offer ends ') + d.saleEnds : t('截止日期未注明', 'End date not stated')}</span></div>
           <div className="bf-card-actions"><a href={d.productUrl} target="_blank" rel="noopener noreferrer">{t('去商家', 'Visit store')}<ArrowUpRight aria-hidden="true" /></a>{d.priceSpyUrl ? <a href={d.priceSpyUrl} target="_blank" rel="noopener noreferrer">{t('价格走势', 'Price history')}<ArrowUpRight aria-hidden="true" /></a> : <span>{t('价格走势 · 暂无已核实链接', 'Price history · Link unverified')}</span>}</div>
           {d.priceSpyUrl && <p className="bf-variant-note">{t('PriceSpy 可能合并相关型号、颜色或包装；请先核对具体款式。', 'PriceSpy may combine related models, colours or packs; check the exact variant first.')}</p>}

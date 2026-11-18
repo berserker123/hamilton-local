@@ -2744,5 +2744,365 @@
     "verdict": "待核实",
     "discountPercent": null,
     "notes": "Bunnings 官网现价 NZ$98.00；PriceSpy 未收录该款户外收纳箱产品页面与90天价格记录，标为待核实。"
+  },
+  {
+    "id": "apple-mba13-m5-jb",
+    "name": "Apple MacBook Air 13-inch with M5 Chip, 16GB/512GB (Midnight)",
+    "nameEn": "Apple MacBook Air 13-inch with M5 Chip, 16GB/512GB (Midnight)",
+    "nameZh": "苹果 MacBook Air 13英寸 M5（16GB／512GB，午夜色）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 2228,
+    "currency": "NZD",
+    "typicalPrice": 2518.73,
+    "lowestPrice90d": 2245,
+    "historyVerified": true,
+    "blackFridayConfirmed": false,
+    "saleEnds": null,
+    "checkedAt": "2026-11-19T10:40:00+13:00",
+    "addedAt": "2026-11-19",
+    "offerLabel": "JB Hi-Fi Red Hot Deal（16GB/512GB 为 M5 标配；Noel Leeming 同价 NZ$2,228，PB Tech NZ$2,245 赠 Orico USB-C 扩展坞）",
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-macbook-air-13-inch-with-m5-chip-512gb-16gb-midnight",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=16257883",
+    "taxFreeOffer": {
+      "price": 2040.02,
+      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
+      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
+      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351351212/apple-macbook-air-13-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-silver.html",
+      "includesSurcharge": true
+    },
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-macbook-air-13-inch-with-m5-chip-512gb-16gb-midnight",
+      "https://pricespy.co.nz/product.php?p=16257883",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351351212/apple-macbook-air-13-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-silver.html"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-macbook-air-13-inch-with-m5-chip-512gb-16gb-midnight",
+      "https://pricespy.co.nz/product.php?p=16257883",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351351212/apple-macbook-air-13-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-silver.html"
+    ],
+    "historyScope": "market",
+    "historyNote": "PriceSpy 精确同款 M5 10核CPU/8核GPU 16GB/512GB 标配版（p=16257883）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,518.73，同范围最低 NZ$2,245.00。现价低于近3个月最低价。",
+    "notes": "PriceSpy 精确同款 M5 10核CPU/8核GPU 16GB/512GB 标配版（p=16257883）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,518.73，同范围最低 NZ$2,245.00。现价低于近3个月最低价。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-19T10:40:00+13:00",
+      "evidence": "mba13-jb-midnight",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 16257883,
+      "variantIds": [],
+      "windowStart": "2026-08-20",
+      "windowEnd": "2026-11-17",
+      "dayCount": 90,
+      "pointCount": 20,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "spy-mba13-m5"
+    },
+    "discountPercent": 11.5,
+    "verdict": "真优惠"
+  },
+  {
+    "id": "apple-mba15-m5-jb",
+    "name": "Apple MacBook Air 15-inch with M5 Chip, 16GB/512GB (Starlight)",
+    "nameEn": "Apple MacBook Air 15-inch with M5 Chip, 16GB/512GB (Starlight)",
+    "nameZh": "苹果 MacBook Air 15英寸 M5（16GB／512GB，星光色）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 2528,
+    "currency": "NZD",
+    "typicalPrice": 2835,
+    "lowestPrice90d": 2545,
+    "historyVerified": true,
+    "blackFridayConfirmed": false,
+    "saleEnds": null,
+    "checkedAt": "2026-11-19T10:40:00+13:00",
+    "addedAt": "2026-11-19",
+    "offerLabel": "JB Hi-Fi Red Hot Deal（16GB/512GB 为 15英寸 M5 标配；Noel Leeming 同价 NZ$2,528，PB Tech NZ$2,545）",
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-macbook-air-15-inch-with-m5-chip-512gb-16gb-starlight",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=16258590",
+    "taxFreeOffer": {
+      "price": 2312.63,
+      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
+      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
+      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351551213/apple-macbook-air-15-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-starlight.html",
+      "includesSurcharge": true
+    },
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-macbook-air-15-inch-with-m5-chip-512gb-16gb-starlight",
+      "https://pricespy.co.nz/product.php?p=16258590",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351551213/apple-macbook-air-15-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-starlight.html"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-macbook-air-15-inch-with-m5-chip-512gb-16gb-starlight",
+      "https://pricespy.co.nz/product.php?p=16258590",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351551213/apple-macbook-air-15-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-starlight.html"
+    ],
+    "historyScope": "market",
+    "historyNote": "PriceSpy 精确同款 M5 10核CPU/10核GPU 16GB/512GB 标配版（p=16258590）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,835.00，同范围最低 NZ$2,545.00。现价低于近3个月最低价。",
+    "notes": "PriceSpy 精确同款 M5 10核CPU/10核GPU 16GB/512GB 标配版（p=16258590）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,835.00，同范围最低 NZ$2,545.00。现价低于近3个月最低价。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-19T10:40:00+13:00",
+      "evidence": "mba15-jb-starlight",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 16258590,
+      "variantIds": [],
+      "windowStart": "2026-08-20",
+      "windowEnd": "2026-11-17",
+      "dayCount": 90,
+      "pointCount": 9,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "spy-mba15-m5"
+    },
+    "discountPercent": 10.8,
+    "verdict": "真优惠"
+  },
+  {
+    "id": "apple-iphone17-pro-256-jb",
+    "name": "Apple iPhone 17 Pro 256GB (Deep Blue)",
+    "nameEn": "Apple iPhone 17 Pro 256GB (Deep Blue)",
+    "nameZh": "苹果 iPhone 17 Pro 256GB（深蓝色）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 2021,
+    "currency": "NZD",
+    "typicalPrice": 2019.5,
+    "lowestPrice90d": 1999,
+    "historyVerified": true,
+    "blackFridayConfirmed": false,
+    "saleEnds": null,
+    "checkedAt": "2026-11-19T10:40:00+13:00",
+    "addedAt": "2026-11-19",
+    "offerLabel": "JB Hi-Fi Red Hot Deal（裸机价；跳过需绑套餐的 One NZ $1,949；PB Tech 在 PriceSpy 实时报价 NZ$2,018）",
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-256gb-deep-blue",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15094415",
+    "taxFreeOffer": {
+      "price": 1833.74,
+      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
+      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
+      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817202/apple-iphone-17-pro-256gb-deep-blue.html",
+      "includesSurcharge": true
+    },
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-256gb-deep-blue",
+      "https://pricespy.co.nz/product.php?p=15094415",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817202/apple-iphone-17-pro-256gb-deep-blue.html"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-256gb-deep-blue",
+      "https://pricespy.co.nz/product.php?p=15094415",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817202/apple-iphone-17-pro-256gb-deep-blue.html"
+    ],
+    "historyScope": "market",
+    "historyNote": "PriceSpy 精确同款 256GB（p=15094415）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,019.50，同范围最低 NZ$1,999.00。裸机现价略高于平时中位数。",
+    "notes": "PriceSpy 精确同款 256GB（p=15094415）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,019.50，同范围最低 NZ$1,999.00。裸机现价略高于平时中位数。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-19T10:40:00+13:00",
+      "evidence": "ip17p-jb-blue",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 15094415,
+      "variantIds": [],
+      "windowStart": "2026-08-20",
+      "windowEnd": "2026-11-17",
+      "dayCount": 90,
+      "pointCount": 10,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "spy-iphone17pro-256"
+    },
+    "discountPercent": -0.1,
+    "verdict": "先别急"
+  },
+  {
+    "id": "apple-iphone17-promax-256-jb",
+    "name": "Apple iPhone 17 Pro Max 256GB (Deep Blue)",
+    "nameEn": "Apple iPhone 17 Pro Max 256GB (Deep Blue)",
+    "nameZh": "苹果 iPhone 17 Pro Max 256GB（深蓝色）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 2211,
+    "currency": "NZD",
+    "typicalPrice": 2208,
+    "lowestPrice90d": 2188,
+    "historyVerified": true,
+    "blackFridayConfirmed": false,
+    "saleEnds": null,
+    "checkedAt": "2026-11-19T10:40:00+13:00",
+    "addedAt": "2026-11-19",
+    "offerLabel": "JB Hi-Fi Red Hot Deal（裸机价；跳过需绑套餐的 One NZ $2,149；PB Tech 在 PriceSpy 实时报价 NZ$2,208）",
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-max-256gb-deep-blue",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14969852",
+    "taxFreeOffer": {
+      "price": 2006.4,
+      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
+      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
+      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817302/apple-iphone-17-pro-max-256gb-deep-blue.html",
+      "includesSurcharge": true
+    },
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-max-256gb-deep-blue",
+      "https://pricespy.co.nz/product.php?p=14969852",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817302/apple-iphone-17-pro-max-256gb-deep-blue.html"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-max-256gb-deep-blue",
+      "https://pricespy.co.nz/product.php?p=14969852",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817302/apple-iphone-17-pro-max-256gb-deep-blue.html"
+    ],
+    "historyScope": "market",
+    "historyNote": "PriceSpy 精确同款 256GB（p=14969852）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,208.00，同范围最低 NZ$2,188.00。裸机现价略高于平时中位数。",
+    "notes": "PriceSpy 精确同款 256GB（p=14969852）；2026-08-20 至 2026-11-17，90个日终价格中位数 NZ$2,208.00，同范围最低 NZ$2,188.00。裸机现价略高于平时中位数。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-19T10:40:00+13:00",
+      "evidence": "ip17pm-jb-blue",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 14969852,
+      "variantIds": [],
+      "windowStart": "2026-08-20",
+      "windowEnd": "2026-11-17",
+      "dayCount": 90,
+      "pointCount": 15,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "spy-ip17promax-256"
+    },
+    "discountPercent": -0.1,
+    "verdict": "先别急"
+  },
+  {
+    "id": "apple-iphone18-pro-256-jb",
+    "name": "Apple iPhone 18 Pro 256GB (Black)",
+    "nameEn": "Apple iPhone 18 Pro 256GB (Black)",
+    "nameZh": "苹果 iPhone 18 Pro 256GB（黑色）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 2409,
+    "currency": "NZD",
+    "typicalPrice": 2499,
+    "lowestPrice90d": 2399,
+    "historyVerified": true,
+    "blackFridayConfirmed": false,
+    "saleEnds": null,
+    "checkedAt": "2026-11-19T10:40:00+13:00",
+    "addedAt": "2026-11-19",
+    "offerLabel": "JB Hi-Fi On Sale（较官价 $2,549 省 $140；Noel Leeming / Harvey Norman 同价 NZ$2,409，PB Tech 在 PriceSpy 实时报价 NZ$2,408.87）",
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-256gb-black",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=17128235",
+    "taxFreeOffer": {
+      "price": 2188.93,
+      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
+      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
+      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818200/apple-iphone-18-pro-256gb-black.html",
+      "includesSurcharge": true
+    },
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-256gb-black",
+      "https://pricespy.co.nz/product.php?p=17128235",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818200/apple-iphone-18-pro-256gb-black.html"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-256gb-black",
+      "https://pricespy.co.nz/product.php?p=17128235",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818200/apple-iphone-18-pro-256gb-black.html"
+    ],
+    "historyScope": "market",
+    "historyNote": "PriceSpy 精确同款 256GB（p=17128235）；自 2026-09-10 上市收录以来（至 2026-11-17，69个日终价格）中位平时价 NZ$2,499.00，同窗口最低 NZ$2,399.00（历史仅自上市起）。",
+    "notes": "PriceSpy 精确同款 256GB（p=17128235）；自 2026-09-10 上市收录以来（至 2026-11-17，69个日终价格）中位平时价 NZ$2,499.00，同窗口最低 NZ$2,399.00（历史仅自上市起）。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-19T10:40:00+13:00",
+      "evidence": "ip18p-jb-black",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 17128235,
+      "variantIds": [],
+      "windowStart": "2026-09-10",
+      "windowEnd": "2026-11-17",
+      "dayCount": 69,
+      "pointCount": 9,
+      "method": "Median of 90-day check window (9 PriceSpy points since 2026-09-10 launch, 2026-09-10..2026-11-17); market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "spy-iphone18pro-256"
+    },
+    "discountPercent": 3.6,
+    "verdict": "一般"
+  },
+  {
+    "id": "apple-iphone18-promax-256-jb",
+    "name": "Apple iPhone 18 Pro Max 256GB (Black)",
+    "nameEn": "Apple iPhone 18 Pro Max 256GB (Black)",
+    "nameZh": "苹果 iPhone 18 Pro Max 256GB（黑色）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 2598,
+    "currency": "NZD",
+    "typicalPrice": 2649,
+    "lowestPrice90d": 2549,
+    "historyVerified": true,
+    "blackFridayConfirmed": false,
+    "saleEnds": null,
+    "checkedAt": "2026-11-19T10:40:00+13:00",
+    "addedAt": "2026-11-19",
+    "offerLabel": "JB Hi-Fi On Sale（较官价 $2,749 省 $151；Noel Leeming 同价 NZ$2,598，PB Tech 在 PriceSpy 实时报价 NZ$2,597.87）",
+    "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-max-256gb-black",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15835075",
+    "taxFreeOffer": {
+      "price": 2360.68,
+      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
+      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
+      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818300/apple-iphone-18-pro-max-256gb-black.html",
+      "includesSurcharge": true
+    },
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-max-256gb-black",
+      "https://pricespy.co.nz/product.php?p=15835075",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818300/apple-iphone-18-pro-max-256gb-black.html"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-max-256gb-black",
+      "https://pricespy.co.nz/product.php?p=15835075",
+      "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818300/apple-iphone-18-pro-max-256gb-black.html"
+    ],
+    "historyScope": "market",
+    "historyNote": "PriceSpy 精确同款 256GB（p=15835075）；自 2026-09-10 上市收录以来（至 2026-11-17，69个日终价格）中位平时价 NZ$2,649.00，同窗口最低 NZ$2,549.00（历史仅自上市起）。",
+    "notes": "PriceSpy 精确同款 256GB（p=15835075）；自 2026-09-10 上市收录以来（至 2026-11-17，69个日终价格）中位平时价 NZ$2,649.00，同窗口最低 NZ$2,549.00（历史仅自上市起）。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-19T10:40:00+13:00",
+      "evidence": "ip18pm-jb-black",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 15835075,
+      "variantIds": [],
+      "windowStart": "2026-09-10",
+      "windowEnd": "2026-11-17",
+      "dayCount": 69,
+      "pointCount": 15,
+      "method": "Median of 90-day check window (15 PriceSpy points since 2026-09-10 launch, 2026-09-10..2026-11-17); market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "spy-ip18promax-256"
+    },
+    "discountPercent": 1.9,
+    "verdict": "一般"
   }
 ]

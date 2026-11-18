@@ -4509,6 +4509,15 @@ html body .ia-root .pg-place-actions svg { width: 14px; height: 14px; }
 .bf-comparison dt small { display: block; font-size: 10px; margin-top: 2px; }
 .bf-comparison dd { font-size: 15px; margin: 7px 0 0; }
 .bf-page .bf-history-note { font-size: 11px; color: var(--hl-muted); line-height: 1.7; }
+.bf-taxfree-tip { margin-top: 12px; padding: 11px 13px; border-radius: 14px; border: 1px dashed color-mix(in srgb, var(--sec) 38%, var(--hl-line)); background: color-mix(in srgb, var(--sec) 7%, var(--hl-surface)); }
+.bf-taxfree-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.bf-taxfree-badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--sec) 14%, var(--hl-surface)); color: var(--sec); font-size: 10px; font-weight: 600; white-space: nowrap; }
+.bf-taxfree-head strong { font-size: 17px; font-weight: 700; color: var(--hl-ink); letter-spacing: -.02em; }
+.bf-taxfree-head strong small { margin-left: 4px; font-size: 10px; font-weight: 500; color: var(--hl-muted); }
+.bf-page .bf-taxfree-tip p { font-size: 11px; line-height: 1.6; color: var(--hl-muted); margin: 0 0 7px; }
+.bf-taxfree-tip a { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--sec); text-decoration: none; }
+.bf-taxfree-tip a:hover { text-decoration: underline; }
+.bf-taxfree-tip a svg { width: 12px; height: 12px; }
 .bf-card-meta { display: flex; flex-direction: column; gap: 5px; color: var(--hl-muted); font-size: 10px; margin: 14px 0; }
 .bf-card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .bf-card-actions a { display: inline-flex; justify-content: center; align-items: center; gap: 5px; min-height: 40px; padding: 8px 12px; border: 1px solid var(--hl-line); border-radius: 999px; color: var(--hl-ink); font-size: 12px; text-decoration: none; }

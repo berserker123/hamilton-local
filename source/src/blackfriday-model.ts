@@ -1,10 +1,18 @@
 export type Verdict = '真优惠' | '一般' | '先别急' | '待核实';
+export type TaxFreeOffer = {
+  price: number;
+  storeZh: string;
+  storeEn: string;
+  url: string;
+  includesSurcharge?: boolean;
+};
 export type Deal = {
   id: string; name: string; nameZh: string; category: string; store: string;
   salePrice: number; typicalPrice: number | null; lowestPrice90d: number | null;
   historyVerified: boolean; raisedBeforeSale?: boolean; regularPromo?: boolean;
   historyScope?: 'market' | 'retailer';
   currentPriceRecheck?: { status: string }; offerNote?: string;
+  taxFreeOffer?: TaxFreeOffer;
   blackFridayConfirmed: boolean; saleEnds: string | null; checkedAt: string; addedAt: string;
   productUrl: string; priceSpyUrl: string | null; sources: string[]; historyNote: string;
 };
