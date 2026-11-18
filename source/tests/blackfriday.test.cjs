@@ -192,3 +192,38 @@ test('apple flagship items include verified airport tax-free tips without affect
   const stores = [...new Set(data.map(d => d.store))].sort();
   for (const store of stores) assert.ok(htmlZh.includes(`<option>${store}</option>`));
 });
+
+test('batching, keyword search, EN homepage banner and >=12px font sizes', () => {
+  const fs = require('node:fs');
+  const React = require('react');
+  const { renderToStaticMarkup } = require('react-dom/server');
+  const data = require('../src/data/blackfriday.json');
+  const result = esbuild.buildSync({ entryPoints: ['src/BlackFriday.tsx'], bundle: true, platform: 'node', format: 'cjs', external: ['react'], write: false });
+  const mod = { exports: {} };
+  new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
+  const { BlackFriday, BlackFridayBanner, BF_BATCH_SIZE } = mod.exports;
+
+  assert.equal(BF_BATCH_SIZE, 12);
+  const pagedHtml = renderToStaticMarkup(React.createElement(BlackFriday, { t: zh => zh, pageSize: 12 }));
+  assert.equal((pagedHtml.match(/data-deal-id="/g) || []).length, 12);
+  assert.match(pagedHtml, /data-testid="bf-pager"/);
+  assert.ok(pagedHtml.includes(`显示更多（还有 ${data.length - 12} 件）`));
+
+  const dysonHtml = renderToStaticMarkup(React.createElement(BlackFriday, { t: zh => zh, query: '戴森', pageSize: 12 }));
+  const dysonCount = (dysonHtml.match(/data-deal-id="/g) || []).length;
+  assert.ok(dysonCount >= 2, '戴森 matches Dyson deals');
+  assert.doesNotMatch(dysonHtml, /data-testid="bf-pager"/);
+
+  const appleHtml = renderToStaticMarkup(React.createElement(BlackFriday, { t: (_zh, en) => en, query: 'Apple', pageSize: 12 }));
+  assert.match(appleHtml, /data-testid="bf-taxfree-tip"/);
+
+  const bannerEn = renderToStaticMarkup(React.createElement(BlackFridayBanner, { t: (_zh, en) => en }));
+  assert.match(bannerEn, /<strong lang="en-NZ">Black Friday/);
+  assert.doesNotMatch(bannerEn, /黑五专区/);
+
+  const css = fs.readFileSync('src/styles.css', 'utf8');
+  const bfBlock = css.slice(css.indexOf('/* Black Friday preview'), css.indexOf('.ia-root .v25k-pet-card'));
+  for (const [, px] of bfBlock.matchAll(/font-size:\s*(\d+(?:\.\d+)?)px/g)) {
+    assert.ok(Number(px) >= 12, `Black Friday CSS font-size ${px}px must be >= 12px`);
+  }
+});

@@ -6,7 +6,7 @@ const routes=()=>import('../src/site-routes.mjs');
 test('every current section and tab round-trips through a canonical trailing-slash URL',async()=>{
   const {PAGES,readRoute,href,legacyHashPath}=await routes();
   const tabs={tools:['bins','urgent','bus','pay','checklist','gst','units','seasonal','other'],living:['grocers','dining','places','upick','stays','blackfriday'],weekend:['picks','markets'],kids:['map','places','parties'],services:['home','trades','daily','pets','advisors']};
-  assert.equal(PAGES.length,32);
+  assert.equal(PAGES.length,33);
   assert.equal(href('home'),'/');
   for(const [route,items] of Object.entries(tabs)){
     const section=route==='weekend'?'whatson':route;
@@ -73,10 +73,20 @@ test('each static document has distinct title, description, canonical and matchi
     assert.match(html,/<base href="\/">/);
     assert.match(html,/<div id="root"><\/div>/); // no added visible copy
   }
-  assert.equal(titles.size,32);assert.equal(descriptions.size,32);
+  assert.equal(titles.size,33);assert.equal(descriptions.size,33);
   const sitemap=renderSitemap();
-  assert.equal((sitemap.match(/<loc>/g)||[]).length,32);
-  for(const path of ['/tools/bus/','/living/blackfriday/','/services/advisors/','/whatson/picks/'])assert.ok(sitemap.includes('https://hamiltonlocal.nz'+path));
+  const excluded=['/living/dining/','/services/home/','/services/trades/','/services/daily/','/services/advisors/','/search/'];
+  assert.equal((sitemap.match(/<loc>/g)||[]).length,33-excluded.length);
+  for(const path of ['/tools/bus/','/living/blackfriday/','/services/pets/','/whatson/picks/'])assert.ok(sitemap.includes('https://hamiltonlocal.nz'+path),path);
+  for(const path of excluded){
+    assert.ok(!sitemap.includes('<loc>https://hamiltonlocal.nz'+path+'</loc>'),path+' must be excluded from sitemap');
+    const page=PAGES.find(p=>p.path===path);
+    assert.ok(page&&page.noindex,path+' marked noindex');
+    assert.match(renderDocument(template,page),/<meta name="robots" content="noindex">/,path+' HTML has noindex');
+  }
+  for(const page of PAGES.filter(p=>!p.noindex)){
+    assert.doesNotMatch(renderDocument(template,page),/<meta name="robots" content="noindex">/,page.path+' should be indexable');
+  }
   for(const [,url] of sitemap.matchAll(/<loc>(.*?)<\/loc>/g))assert.doesNotMatch(url,/#|\?/);
   assert.match(renderNotFound(template),/<meta name="robots" content="noindex">/);
 });

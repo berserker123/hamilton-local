@@ -51,7 +51,7 @@ export function GuideMarquee({ t }: { t: T }) {
     { name: t(PLAYGROUNDS[0].zh, PLAYGROUNDS[0].name), href: '/kids/map/' },
     { name: t('派对与场地', 'Parties & venues'), href: '/kids/parties/' },
     { name: t('周末集市', 'Weekend markets'), href: '/whatson/markets/' },
-    { name: t('垃圾清运', 'Bin days'), href: '/tools/bins/' },
+    { name: t('垃圾分类与收运', 'Rubbish & recycling'), href: '/tools/bins/' },
     { name: t('急诊诊所查询', 'Urgent care'), href: '/tools/urgent/' },
   ];
   return <nav className={'v23-marquee' + (paused ? ' is-paused' : '')} aria-label={t('本地生活快捷入口', 'Local life shortcuts')}>

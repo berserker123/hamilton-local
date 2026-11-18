@@ -57,7 +57,16 @@ const SECTIONS = {
   kids: ['亲子遛娃', 'Kids & Family', '陪孩子，把城市慢慢逛遍。', 'Small adventures, close to home.'],
   services: ['便民黄页', 'Local Services', '家里家外，总有需要帮忙的时候。', 'A little help for everyday life.'],
   privacy: ['隐私政策', 'Privacy Policy', 'Hamilton Local 隐私政策：我们如何处理访客统计、反馈与来信，以及你的隐私权利。', 'Hamilton Local privacy policy: how we handle visit statistics, feedback and emails, and your privacy rights.'],
+  search: ['搜索结果', 'Search', '在 Hamilton Local 查找汉密尔顿本地生活、实用工具、周末活动与亲子信息。', 'Search Hamilton Local for daily essentials, local living, events and family outings.'],
 };
+export const NOINDEX_PATHS = new Set([
+  '/living/dining/',
+  '/services/home/',
+  '/services/trades/',
+  '/services/daily/',
+  '/services/advisors/',
+  '/search/',
+]);
 const sectionPath = route => route === 'weekend' ? 'whatson' : route;
 
 export function href(route, tab, q, at) {
@@ -68,12 +77,14 @@ export function href(route, tab, q, at) {
   return path + (params.size ? '?' + params : '');
 }
 
-export const PAGES = [...SECTION_ORDER, 'privacy'].flatMap(route => {
+export const PAGES = [...SECTION_ORDER, 'privacy', 'search'].flatMap(route => {
   const section = SECTIONS[route];
   const make = (tab = '') => {
     const labels = TABS[route]?.find(item => item[0] === tab);
+    const path = href(route, tab);
     return {
-      path: href(route, tab), route, tab: tab || TABS[route]?.[0][0] || '',
+      path, route, tab: tab || TABS[route]?.[0][0] || '',
+      noindex: NOINDEX_PATHS.has(path),
       zh: { title: (labels ? labels[1] + ' · ' + section[0] : section[0]) + ' · Hamilton Local', description: labels ? 'Hamilton Local · ' + section[0] + ' · ' + labels[1] + '：' + section[2] : section[2] },
       en: { title: (labels ? labels[2] + ' · ' + section[1] : section[1]) + ' · Hamilton Local', description: labels ? 'Hamilton Local · ' + section[1] + ' · ' + labels[2] + ': ' + section[3] : section[3] },
     };
@@ -126,7 +137,7 @@ export function normalizeLocation({pathname = '/', search = '', hash = ''}) {
     for (const [key, value] of url.searchParams) params.set(key, value);
     return url.pathname + (params.size ? '?' + params : '');
   }
-  const knownSection = ['whatson','weekend','supermarkets','privacy',...Object.keys(TABS)].includes(pathname.split('/').filter(Boolean)[0]);
+  const knownSection = ['whatson','weekend','supermarkets','privacy','search',...Object.keys(TABS)].includes(pathname.split('/').filter(Boolean)[0]);
   if (pathname !== '/' && !knownSection) return pathname + search + hash;
   return pathWithParams(parse(pathname, search)) + hash;
 }
@@ -135,7 +146,8 @@ const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<'
 export function renderDocument(template, page) {
   const {title,description} = page.zh;
   const url = SITE_ORIGIN + page.path;
-  return template.replace(/\r\n/g, '\n').replace('<head>', '<head><base href="/">')
+  const baseTag = page.noindex ? '<base href="/"><meta name="robots" content="noindex">' : '<base href="/">';
+  return template.replace(/\r\n/g, '\n').replace('<head>', '<head>' + baseTag)
     .replace(/<title>.*?<\/title>/, () => '<title>' + esc(title) + '</title>')
     .replace(/(<meta (?:name="(?:description|twitter:description)"|property="og:description") content=")[^"]*(")/g, (_all,start,end) => start + esc(description) + end)
     .replace(/(<meta (?:name="twitter:title"|property="og:title") content=")[^"]*(")/g, (_all,start,end) => start + esc(title) + end)
@@ -144,16 +156,29 @@ export function renderDocument(template, page) {
 }
 
 export function renderNotFound(template) {
-  return renderDocument(template, PAGES[0]).replace('<base href="/">', '<base href="/"><meta name="robots" content="noindex">');
+  return renderDocument(template, { ...PAGES[0], noindex: true });
 }
 
 export function renderSitemap() {
-  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + PAGES.map(page => '  <url><loc>' + SITE_ORIGIN + page.path + '</loc></url>').join('\n') + '\n</urlset>\n';
+  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + PAGES.filter(page => !page.noindex).map(page => '  <url><loc>' + SITE_ORIGIN + page.path + '</loc></url>').join('\n')
+    + '\n</urlset>\n';
 }
 
 export function applyDocumentMeta(pathname, lang) {
   const page = PAGES.find(page => page.path === pathname);
-  if (page) document.querySelector('meta[name="robots"][content="noindex"]')?.remove();
+  const shouldNoindex = !page || !!page.noindex;
+  const existing = document.querySelector('meta[name="robots"][content="noindex"]');
+  if (shouldNoindex) {
+    if (!existing) {
+      const meta = document.createElement('meta');
+      meta.setAttribute('name', 'robots');
+      meta.setAttribute('content', 'noindex');
+      document.head.appendChild(meta);
+    }
+  } else {
+    existing?.remove();
+  }
   const copy = (page || PAGES[0])[lang === 'en' ? 'en' : 'zh'];
   document.title = copy.title;
   document.documentElement.lang = lang === 'en' ? 'en-NZ' : 'zh-CN';

@@ -72,3 +72,30 @@ test('temperature, mainland jin, international pounds and square feet convert bo
   assert.equal(convertUnits(1,'ft2','m2'),.09290304);
   for (const [a,b] of [['f','c'],['kg','lb'],['jin','lb'],['m2','ft2']]) assert.ok(Math.abs(convertUnits(convertUnits(123.456,a,b),b,a)-123.456)<1e-8);
 });
+
+test('8: pay calculator rejects >168h/week and negatives; temperature rejects below absolute zero; decimals capped', () => {
+  const { calculatePay, convertUnits, formatUnitResult, MAX_WEEKLY_HOURS } = load();
+  assert.equal(MAX_WEEKLY_HOURS, 168);
+  assert.ok(calculatePay(25, 168, 0.035, false) !== null);
+  assert.equal(calculatePay(25, 168.1, 0.035, false), null);
+  assert.equal(calculatePay(25, 200, 0.035, false), null);
+  assert.equal(calculatePay(25, -5, 0.035, false), null);
+  assert.equal(calculatePay(-10, 40, 0.035, false), null);
+
+  // Absolute zero boundaries
+  assert.ok(convertUnits(-273.15, 'c', 'f') !== null);
+  assert.equal(convertUnits(-273.16, 'c', 'f'), null);
+  assert.equal(convertUnits(-300, 'c', 'f'), null);
+  assert.ok(convertUnits(-459.67, 'f', 'c') !== null);
+  assert.equal(convertUnits(-459.68, 'f', 'c'), null);
+  assert.equal(convertUnits(-500, 'f', 'c'), null);
+  assert.ok(convertUnits(0, 'k', 'c') !== null);
+  assert.equal(convertUnits(-0.01, 'k', 'c'), null);
+
+  // Decimal formatting caps (no 6-decimal artifacts)
+  assert.equal(formatUnitResult(convertUnits(350, 'f', 'c'), 'temperature'), '176.7');
+  assert.equal(formatUnitResult(convertUnits(32, 'f', 'c'), 'temperature'), '0');
+  assert.equal(formatUnitResult(-0.01, 'temperature'), '0');
+  assert.equal(formatUnitResult(convertUnits(1, 'kg', 'lb'), 'weight'), '2.2');
+  assert.equal(formatUnitResult(convertUnits(100, 'm2', 'ft2'), 'area'), '1,076.39');
+});

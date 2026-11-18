@@ -66,13 +66,13 @@ test('configured formAction POSTs fields[email] and selected groups[] and report
   assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],async()=>({ok:false})),'error');
   assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],async()=>{throw new Error('x');}),'error');
 });
-test('home places the full form after the briefing; footer has the compact form on every page',()=>{
+test('home places the full form after the briefing and omits the duplicate footer form; other pages keep footer compact form',()=>{
   const app=fs.readFileSync('src/App.tsx','utf8');
   assert.ok(app.includes('<Briefing t={t} /><Subscribe t={t} variant="full" />'));
   const start=app.indexOf('<footer className="sb-footer ia-footer">');
   assert.ok(start>0);
   const footer=app.slice(start,app.indexOf('</footer>',start));
-  assert.ok(footer.includes('<Subscribe t={t} variant="compact" />'));
+  assert.ok(footer.includes("{state.route !== 'home' && <Subscribe t={t} variant=\"compact\" />}"));
   assert.equal(app.split('<footer ').length-1,1,'one shared footer for all routes');
 });
 test('privacy page has a bilingual newsletter section',()=>{

@@ -190,7 +190,7 @@ test('owner rule: lead and secondaries prefer everyday Hamilton life stories (re
  assert.equal(model.isLocalLife({title:'Massive wastewater tanks planned for Fairfield Park',category:'news'}),true);
  assert.equal(model.isLocalLife({title:'Hundreds of Waikato dairy farmers at higher risk',category:'news'}),false);
 });
-test('owner rule: every amount in Chinese text is 纽币',()=>{
+ test('owner rule: every amount in Chinese text is 纽币',()=>{
  const {normalizeCurrency}=load('src/currency.mjs');
  assert.equal(normalizeCurrency('高达5000万新元的赤字'),'高达5000万纽币的赤字');
  assert.equal(normalizeCurrency('未缴税款已达1100万新西兰元'),'未缴税款已达1100万纽币');
@@ -198,6 +198,68 @@ test('owner rule: every amount in Chinese text is 纽币',()=>{
  assert.equal(normalizeCurrency('约 NZ$ 1,200'),'约 1,200纽币');
  const data=require('../src/data/briefing.json');
  for(const i of data.items){const z=model.itemText(i);assert.doesNotMatch(z,/新元|纽元|美元|新西兰元|\$\d/,z);}
- const out=renderToStaticMarkup(React.createElement(BriefingView,{data,t,now:Date.parse('2026-11-17T08:00:00Z')}));
+ const out=renderToStaticMarkup(React.createElement(BriefingView,{data,t,now:Date.parse('2026-11-19T00:00:00Z')}));
  assert.doesNotMatch(out,/新元/);assert.match(out,/5000万纽币/);
+});
+
+test('1b: relative times are computed from view time in ZH and EN; header uses generated_at',()=>{
+ const pub='2026-11-19T00:00:00Z';
+ const at2h=Date.parse('2026-11-19T02:00:00Z');
+ const at30h=Date.parse('2026-11-20T06:00:00Z');
+ assert.equal(model.relativeTime(pub,at2h,'zh'),'2小时前');
+ assert.equal(model.relativeTime(pub,at2h,'en'),'2 hours ago');
+ assert.equal(model.relativeTime(pub,at30h,'zh'),'1天前');
+ assert.equal(model.relativeTime(pub,at30h,'en'),'1 day ago');
+ const d={generated_at:'2026-11-19T09:00:02+13:00',items:[item('a',{published:pub,summary_zh:'测试'})]};
+ const out2h=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:at2h}));
+ const out30h=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:at30h}));
+ assert.match(out2h,/更新于 11月19日 09:00/);
+ assert.match(out2h,/2小时前/);
+ assert.match(out30h,/更新于 11月19日 09:00/);
+ assert.match(out30h,/1天前/);
+});
+
+test('1c: stale notice renders when briefing data is older than 36 hours (ZH & EN)',()=>{
+ const gen='2026-11-17T06:00:00Z';
+ const fresh=Date.parse('2026-11-18T18:00:00Z'); // exactly 36h -> not stale
+ const stale=Date.parse('2026-11-18T18:01:00Z'); // 36h 1m -> stale
+ assert.equal(model.isStaleBriefing(gen,fresh),false);
+ assert.equal(model.isStaleBriefing(gen,stale),true);
+ const d={generated_at:gen,items:[item('a',{summary_zh:'测试'})]};
+ const freshHtml=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:fresh}));
+ const staleZh=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:stale}));
+ const staleEn=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t:(_zh,en)=>en,variant:'e',now:stale}));
+ assert.doesNotMatch(freshHtml,/data-testid="briefing-stale"/);
+ assert.match(staleZh,/data-testid="briefing-stale"/);
+ assert.match(staleZh,/快讯暂未更新，最近更新于/);
+ assert.match(staleEn,/data-testid="briefing-stale"/);
+ assert.match(staleEn,/Briefing not recently updated/);
+});
+
+test('1d: structured expires_at/reopen_at items hide once past; future items stay visible',()=>{
+ const now=Date.parse('2026-11-19T00:00:00Z');
+ const past=item('old',{reopen_at:'2026-11-18T12:00:00+13:00',title:'Past road closure'});
+ const future=item('cur',{reopen_at:'2026-11-20T12:00:00+13:00',title:'Ongoing road closure'});
+ const plain=item('plain',{title:'Regular story'});
+ assert.equal(model.isExpiredItem(past,now),true);
+ assert.equal(model.isExpiredItem(future,now),false);
+ assert.equal(model.isExpiredItem(plain,now),false);
+ const L=model.newsLayout([past,future,plain],now);
+ const ids=[...L.alerts,L.lead,...L.secondary,...L.latest,...L.roadworks].filter(Boolean).map(x=>x.id);
+ assert.ok(!ids.includes('old'));
+ assert.ok(ids.includes('cur')&&ids.includes('plain'));
+});
+
+test('4: English mode translates all briefing labels and uses original English titles',()=>{
+ const d=many();
+ const out=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t:(_zh,en)=>en,variant:'e',now:Date.parse('2026-11-17T08:00:00Z')}));
+ assert.match(out,/Hamilton Daily Briefing/);
+ assert.match(out,/Updated 17 Nov, 18:30/);
+ assert.match(out,/Lead/);
+ assert.match(out,/More news/);
+ assert.match(out,/Read source ↗/);
+ assert.match(out,/Alert · Police/);
+ assert.match(out,/roadworks or traffic controls today/);
+ assert.match(out,/Urgent one/);
+ assert.doesNotMatch(out,/更新于|头条|更多新闻|原文|施工或管制|摘要仅供参考|紧急一/);
 });
