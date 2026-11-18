@@ -1,7 +1,7 @@
 // Shared by the SPA and the static GitHub Pages build.
 export const SECTION_ORDER = ['home','tools','living','weekend','kids','services'];
 export const TOOL_TABS = [
-  ['bins','垃圾清运','Bins'], ['urgent','急诊信息','Urgent care'], ['bus','市区公交','City buses'],
+  ['bins','垃圾分类与收运','Rubbish & recycling'], ['urgent','急诊信息','Urgent care'], ['bus','市区公交','City buses'],
   ['pay','税后收入','Pay calculator'], ['checklist','新移民清单','Arrival checklist'],
   ['gst','GST计算','GST calculator'], ['units','单位换算','Unit converter'],
   ['seasonal','季节提醒','Seasonal'], ['other','其他工具','Other tools'],

@@ -3795,7 +3795,7 @@ html[data-theme="night"] :is(.hl-spot-address svg, .hl-spot-fallback, #guide-tab
     min-height: 32px;
     height: 32px;
     padding: 0 8px;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1;
   }
   html body .ia-root .sb-header .sb-language svg { width: 12px; height: 12px; }

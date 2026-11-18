@@ -227,3 +227,13 @@ test('batching, keyword search, EN homepage banner and >=12px font sizes', () =>
     assert.ok(Number(px) >= 12, `Black Friday CSS font-size ${px}px must be >= 12px`);
   }
 });
+
+test('mobile header theme pill (shown on the Black Friday page) is never below 12px', () => {
+  const fs = require('node:fs');
+  const css = fs.readFileSync('src/styles.css', 'utf8');
+  for (const m of css.matchAll(/[^{}]*\.sb-language[^{}]*\{([^}]*)\}/g)) {
+    for (const [, px] of m[1].matchAll(/font-size:\s*(\d+(?:\.\d+)?)px/g)) {
+      assert.ok(Number(px) >= 12, `.sb-language font-size ${px}px must be >= 12px`);
+    }
+  }
+});
