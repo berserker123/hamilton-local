@@ -70,7 +70,7 @@ test('preview data has real source URLs and never substitutes list price for his
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
     assert.ok(validCategories.has(d.category), `unexpected category ${d.category} on ${d.id}`);
-    assert.ok(d.salePrice > 0 && /^2026-11-(15|16|17)/.test(d.checkedAt), d.id);
+    assert.ok(d.salePrice > 0 && /^2026-11-(15|16|17|18|19)/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/(pricespy\.co\.nz\/product\.php\?p=\d+|www\.priceme\.co\.nz\/[^/]+\/p-\d+\.aspx)/);
@@ -96,9 +96,13 @@ test('round three retains eight updated categories and records reproducible exac
       (d.historyEvidence.dayCount === 90 && (
         (d.historyEvidence.windowStart === '2026-08-17' && d.historyEvidence.windowEnd === '2026-11-14') ||
         (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-15') ||
-        (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-16')
+        (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-16') ||
+        (d.historyEvidence.windowStart === '2026-08-20' && d.historyEvidence.windowEnd === '2026-11-17')
       )) ||
-      (d.id === 'apple-airpods5-jb' && d.historyEvidence.windowStart === '2026-09-10' && d.historyEvidence.windowEnd === '2026-11-15' && d.historyEvidence.dayCount === 67);
+      (d.id === 'apple-airpods5-jb' && d.historyEvidence.windowStart === '2026-09-10' && (
+        (d.historyEvidence.windowEnd === '2026-11-15' && d.historyEvidence.dayCount === 67) ||
+        (d.historyEvidence.windowEnd === '2026-11-17' && d.historyEvidence.dayCount === 69)
+      ));
     assert.ok(validWindow, `unexpected 90d window on ${d.id}: ${d.historyEvidence.windowStart}..${d.historyEvidence.windowEnd}`);
     assert.ok(d.sources.includes(d.priceSpyUrl), d.id);
     assert.ok(d.lowestPrice90d > 0 && d.lowestPrice90d <= d.typicalPrice, d.id);
@@ -106,10 +110,11 @@ test('round three retains eight updated categories and records reproducible exac
     assert.match(d.historyEvidence.method, /Median of 90/, d.id);
   }
 });
-test('refresh 2026-11-17: counts, dates and note states come from the data', () => {
+test('refresh 2026-11-19: counts, dates, retailer filters (including Bunnings & Mitre 10) and note states come from the data', () => {
   const React = require('react');
   const { renderToStaticMarkup } = require('react-dom/server');
   const data = require('../src/data/blackfriday.json');
+  const { selectDeals } = load();
   const result = esbuild.buildSync({ entryPoints: ['src/BlackFriday.tsx'], bundle: true, platform: 'node', format: 'cjs', external: ['react'], write: false });
   const mod = { exports: {} };
   new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
@@ -117,11 +122,17 @@ test('refresh 2026-11-17: counts, dates and note states come from the data', () 
   assert.ok(html.includes(`${data.length} 件商品 / 共 ${data.length} 件`));
   const dates = [...new Set(data.map(d => d.checkedAt.slice(0, 10)))].sort();
   assert.ok(html.includes(`${dates[0]} – ${dates[dates.length - 1]}`));
-  assert.equal(dates.at(-1), '2026-11-17');
+  assert.equal(dates.at(-1), '2026-11-19');
   const blocked = data.filter(d => d.currentPriceRecheck?.status === 'domain-blocked').length;
   assert.equal((html.match(/保留早前记录/g) || []).length, blocked);
   const spyConfirmed = data.filter(d => d.currentPriceRecheck?.status === 'pricespy-offer').length;
   assert.equal((html.match(/按 PriceSpy 当日同店报价核对/g) || []).length, spyConfirmed);
+  for (const store of ['Bunnings', 'Mitre 10']) {
+    const storeDeals = data.filter(d => d.store === store);
+    assert.ok(storeDeals.length >= 5, `expected at least 5 ${store} items`);
+    assert.ok(html.includes(`<option>${store}</option>`), `store filter includes ${store}`);
+    assert.equal(selectDeals(data, 'all', store, 'discount').length, storeDeals.length);
+  }
   for (const d of data) assert.ok(['真优惠', '一般', '先别急', '待核实'].includes(d.verdict), d.id);
 });
 test('unverified items render alternating bilingual humorous labels without exposing 待核实 in UI', () => {
