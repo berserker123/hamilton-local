@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { normalizeCurrency } from '../src/currency.mjs';
 import { renderFeed } from '../src/feed.mjs';
+import { sanitizeBriefingText } from '../src/briefing-sanitize.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(root, '..');
@@ -41,19 +42,9 @@ export function sourceLabel(url) {
 export function shortenAfternoonText(text) {
   let t = String(text || '').trim();
   t = t.replace(/^(?:今日|今天|日前|昨日|近日)?\s*[^，,]{1,15}报道[，,]\s*/, '');
-  const postMatch = t.match(/^(?:有网友(?:在\s*r\/\w+\s*)?发帖|社区论坛有帖子)(?:称|提及|提到|询问|表示)?\s*/);
-  const commentsMatch = t.match(/[，,]?该帖共(?:获得|有|收到)?\s*(\d+)\s*条评论[。.]?$/);
-  if (commentsMatch) {
-    t = t.slice(0, commentsMatch.index);
-  }
-  if (postMatch) {
-    t = '网友热议：' + t.slice(postMatch[0].length);
-  }
-  t = t.replace(/[。.]+$/, '');
-  if (commentsMatch) {
-    t += `（${commentsMatch[1]} 条评论）`;
-  }
-  return t;
+  // No forum framing and no comment counts: items must read as news (Frank, 2026-11-20).
+  t = sanitizeBriefingText(t);
+  return t.replace(/[。.]+$/, '');
 }
 
 function categoryForAfternoonUrl(url) {
@@ -145,8 +136,10 @@ export function normalizeBriefingData(data) {
     ...data,
     items: data.items.map(item => ({
       ...item,
+      title: sanitizeBriefingText(item.title),
+      summary: sanitizeBriefingText(item.summary),
       summary_zh: typeof item.summary_zh === 'string' && item.summary_zh.trim()
-        ? normalizeCurrency(item.summary_zh)
+        ? normalizeCurrency(sanitizeBriefingText(item.summary_zh))
         : item.summary_zh,
     })),
   };

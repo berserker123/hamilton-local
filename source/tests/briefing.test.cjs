@@ -308,7 +308,8 @@ test('5: afternoon brief parser trims boilerplate, skips unlinked/weather sectio
  assert.equal(stuffItem.published,generated);
  assert.equal(stuffItem.category,'news');
  const redditItem=parsed.items.find(i=>i.source==='r/thetron');
- assert.equal(redditItem.summary_zh,'网友热议：在政府招标网站看到了 Hillcrest 图书馆招标信息（34 条评论）');
+ assert.equal(redditItem.summary_zh,'政府招标网站看到了 Hillcrest 图书馆招标信息');
+ assert.doesNotMatch(JSON.stringify(parsed),/条评论|网友热议|\d+ comments/);
  assert.equal(redditItem.title,linked[1].title);
  const councilItem=parsed.items.find(i=>i.category==='council');
  assert.equal(councilItem.title,'');
@@ -372,4 +373,37 @@ test('6: syncBriefing selects whichever source (afternoon brief vs watch latest.
  }finally{
   fs.rmSync(tmp,{recursive:true,force:true});
  }
+});
+test('7: sanitizer strips comment counts (zh/en) and forum lead-ins from every briefing field, without adding text',async()=>{
+ const {sanitizeBriefingText,hasCommentCount}=await import('../src/briefing-sanitize.mjs');
+ const {normalizeBriefingData}=await import('../scripts/sync-briefing.mjs');
+ const cases=[
+  ['网友热议：体育用品连锁店 Stirling Sports 处于清算程序中（16 条评论）','体育用品连锁店 Stirling Sports 处于清算程序中'],
+  ['有网友在 r/thetron 发帖称在政府招标网站看到了 Hillcrest 图书馆设计服务的招标信息，该帖共获得 34 条评论。','政府招标网站看到了 Hillcrest 图书馆设计服务的招标信息。'],
+  ['有网友发帖提及体育用品连锁店 Stirling Sports 处于清算程序中，该帖共有 16 条评论。','体育用品连锁店 Stirling Sports 处于清算程序中。'],
+  ['有网友发帖询问住在繁忙主路旁的住户户外散养猫咪的情况，该帖共有 29 条评论','住在繁忙主路旁的住户户外散养猫咪的情况'],
+  ['Stirling Sports in liquidation (16 comments)','Stirling Sports in liquidation'],
+  ['Hillcrest library tender · 34 comments','Hillcrest library tender'],
+  ['Council approves budget, with 12 replies','Council approves budget'],
+  ['市议会通过2027年预算，投入500万纽币。','市议会通过2027年预算，投入500万纽币。'],
+  ['Warriors to play in Hamilton in 2027','Warriors to play in Hamilton in 2027'],
+  ['**勇士队2027年赛程公布**：三场比赛落地汉密尔顿','勇士队2027年赛程公布：三场比赛落地汉密尔顿'],
+ ];
+ for(const [input,expected] of cases){
+  assert.equal(sanitizeBriefingText(input),expected,input);
+  assert.equal(hasCommentCount(sanitizeBriefingText(input)),false,input);
+ }
+ assert.equal(sanitizeBriefingText(null),null);
+ assert.equal(sanitizeBriefingText('Council received 300 comments on plan'),'Council received 300 comments on plan'); // mid-sentence news facts are kept
+ const out=normalizeBriefingData({generated_at:'2026-11-20T03:15:02Z',items:[{id:'x',source:'r/thetron',title:'Stirling Sports in liquidation (16 comments)',summary:'Thread, 16 comments',url:'https://www.reddit.com/r/thetron/comments/x/',summary_zh:'网友热议：Stirling Sports 清算（16 条评论）'}]});
+ assert.equal(out.items[0].summary_zh,'Stirling Sports 清算');
+ assert.equal(out.items[0].title,'Stirling Sports in liquidation');
+ assert.equal(out.items[0].summary,'Thread');
+ const live=require('../src/data/briefing.json');
+ for(const i of live.items) for(const k of ['summary_zh','title','summary']){
+  assert.equal(hasCommentCount(i[k]),false,k+': '+i[k]);
+  assert.doesNotMatch(String(i[k]||''),/网友热议|有网友发帖/);
+ }
+ const feed=require('fs').readFileSync('../feed.xml','utf8');
+ assert.equal(hasCommentCount(feed.replace(/<link>[^<]*<\/link>|<guid[^>]*>[^<]*<\/guid>/g,'')),false);
 });
