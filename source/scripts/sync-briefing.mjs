@@ -213,6 +213,43 @@ export function selectNewestSource(watchPath, dailyDir, dailyDate) {
   return candidates[0];
 }
 
+/** NZ calendar date (YYYY-MM-DD) of an ISO timestamp. */
+export function nzDate(iso) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Pacific/Auckland', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));
+}
+
+/**
+ * Owner-supplied manual briefing (src/data/briefing-manual.json, {date, generated_at, items}).
+ * It applies only to its own NZ date: used when the automatic source is from that date or older,
+ * ignored once a newer day's source exists, so it never blocks tomorrow's sync.
+ */
+export function applyManualOverride(selected, manualPath) {
+  if (!manualPath || !fs.existsSync(manualPath)) return selected;
+  const manual = JSON.parse(fs.readFileSync(manualPath, 'utf8'));
+  if (!manual || !/^\d{4}-\d{2}-\d{2}$/.test(manual.date || '') || !Array.isArray(manual.items) || !manual.items.length) {
+    throw new Error('unexpected schema in ' + manualPath);
+  }
+  const genTs = Date.parse(manual.generated_at);
+  if (!Number.isFinite(genTs) || nzDate(manual.generated_at) !== manual.date) throw new Error('manual generated_at must be on manual.date');
+  if (nzDate(new Date(selected.ts).toISOString()) > manual.date) return selected;
+  const items = manual.items.map((it, idx) => ({
+    id: it.id || crypto.createHash('sha1').update('manual:' + manual.date + ':' + idx).digest('hex').slice(0, 12),
+    source: it.source || (it.url ? sourceLabel(it.url) : ''),
+    title: it.title || '',
+    url: it.url || '',
+    published: it.published || manual.generated_at,
+    date_only: false,
+    summary: it.summary || '',
+    summary_zh: it.summary_zh,
+    headline_zh: it.headline_zh || '',
+    category: it.category || 'news',
+    urgent: !!it.urgent,
+    order: idx + 1,
+    manual: true,
+  }));
+  return { kind: 'manual', ts: genTs, sourcePath: manualPath, data: { generated_at: manual.generated_at, items } };
+}
+
 export function syncBriefing(
   sourcePath = process.argv[2] || process.env.BRIEFING_SOURCE || DEFAULT_WATCH_PATH,
   sourceRoot = root,
@@ -223,7 +260,8 @@ export function syncBriefing(
   const dailyDir = options.dailyDir !== undefined
     ? options.dailyDir
     : (process.argv[3] ?? (envDaily !== undefined ? envDaily : DEFAULT_DAILY_DIR));
-  const selected = selectNewestSource(sourcePath, dailyDir, options.dailyDate);
+  const manualPath = options.manualPath !== undefined ? options.manualPath : path.join(sourceRoot, 'src', 'data', 'briefing-manual.json');
+  const selected = applyManualOverride(selectNewestSource(sourcePath, dailyDir, options.dailyDate), manualPath);
   const normalized = normalizeBriefingData(selected.data);
   const dest = path.join(sourceRoot, 'src', 'data', 'briefing.json');
   fs.writeFileSync(dest, JSON.stringify(normalized, null, 2) + '\n');

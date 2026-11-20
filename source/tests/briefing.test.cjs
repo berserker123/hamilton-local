@@ -423,3 +423,40 @@ test('8: long bold-headline afternoon briefs are cut to the headline (+ first se
  assert.equal(parsed.items[1].summary_zh,'Stirling Sports 处于清算程序中');
  assert.equal(parsed.items[1].detail_zh,'');
 });
+
+test('9: owner manual briefing overrides only its own date, keeps owner order/wording, shows headline + verbatim summary',async()=>{
+ const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+ const {applyManualOverride,syncBriefing}=await import('../scripts/sync-briefing.mjs');
+ const manual=JSON.parse(fs.readFileSync('src/data/briefing-manual.json','utf8'));
+ const isSubseq=(h,s)=>{let k=0;for(const ch of s){if(ch===h[k])k++;}return k===h.length;};
+ for(const it of manual.items){assert.ok(isSubseq(it.headline_zh,it.summary_zh),'headline trimmed from text: '+it.headline_zh);assert.doesNotMatch(it.title||'',/reddit|comments/i);}
+ const mp=path.join(fs.mkdtempSync(path.join(os.tmpdir(),'hl-man-')),'m.json');
+ fs.writeFileSync(mp,JSON.stringify(manual));
+ const same={kind:'daily',ts:Date.parse('2026-11-20T03:15:02Z'),data:{generated_at:'x',items:[]}};
+ assert.equal(applyManualOverride(same,mp).kind,'manual');
+ const next={kind:'watch',ts:Date.parse('2026-11-20T20:00:01Z'),data:{generated_at:'2026-11-21T09:00:01+13:00',items:[]}}; // 21 Nov 09:00 NZDT
+ assert.equal(applyManualOverride(next,mp),next,'manual must not block the next day');
+ assert.equal(applyManualOverride(same,path.join(os.tmpdir(),'nope.json')),same);
+ // full sync into a temp tree
+ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'hl-man-sync-'));
+ const srcRoot=path.join(tmp,'source'),deployRoot=path.join(tmp,'deploy');
+ fs.mkdirSync(path.join(srcRoot,'src','data'),{recursive:true});fs.mkdirSync(deployRoot,{recursive:true});
+ fs.writeFileSync(path.join(srcRoot,'src','events-and-markets.json'),JSON.stringify({events_this_week:[]}));
+ fs.writeFileSync(path.join(srcRoot,'src','data','blackfriday.json'),'[]');
+ const watch=path.join(tmp,'latest.json');
+ fs.writeFileSync(watch,JSON.stringify({generated_at:'2026-11-20T09:00:03+13:00',items:[{id:'w',source:'RNZ',title:'Morning',url:'https://www.rnz.co.nz/n',published:'2026-11-20T09:00:03+13:00',summary_zh:'早报',category:'news'}]}));
+ const res=syncBriefing(watch,srcRoot,deployRoot,{dailyDir:'',manualPath:mp});
+ assert.equal(res.kind,'manual');
+ assert.equal(res.count,manual.items.length);
+ const synced=JSON.parse(fs.readFileSync(path.join(srcRoot,'src','data','briefing.json'),'utf8'));
+ assert.deepEqual(synced.items.map(i=>i.summary_zh),manual.items.map(i=>i.summary_zh),'owner wording verbatim');
+ const {newsLayout}=model;
+ const lay=newsLayout(synced.items,Date.parse(synced.generated_at));
+ assert.equal(lay.lead.headline_zh,manual.items[0].headline_zh,'item 1 is the lead');
+ assert.deepEqual([lay.lead,...lay.secondary,...lay.latest].map(i=>i.headline_zh),manual.items.map(i=>i.headline_zh),'owner order kept, police story not dropped');
+ const zh=renderToStaticMarkup(React.createElement(BriefingView,{data:synced,t,variant:'e',now:Date.parse(synced.generated_at)}));
+ assert.match(zh,new RegExp('共 '+manual.items.length+' 条'));
+ for(const it of manual.items){assert.ok(zh.includes(it.headline_zh));assert.ok(zh.includes(it.summary_zh.replace(/&/g,'&amp;')));}
+ assert.doesNotMatch(zh,/Just saw government tender|Looks like we/);
+ for(const it of manual.items) if(it.title) assert.ok(!zh.includes('>'+it.title.replace(/'/g,'&#x27;')+'<'),'no English subline in zh');
+});

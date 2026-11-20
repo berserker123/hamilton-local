@@ -5,6 +5,8 @@ export type BriefingItem = {
   id: string; source: string; title: string; url: string; published: string | null;
   summary?: string; category: string; urgent?: boolean; summary_zh?: string; date_only?: boolean;
   expires_at?: string | null; ends_at?: string | null; reopen_at?: string | null;
+  /** Manual editorial items (briefing-manual.json): short Chinese headline and fixed display order. */
+  headline_zh?: string; order?: number; manual?: boolean;
 };
 export type BriefingData = { generated_at: string; sample?: boolean; items: BriefingItem[] };
 
@@ -70,6 +72,13 @@ export function itemText(i: BriefingItem, lang: BriefingLang = 'zh'): string {
   }
   return i.summary_zh && i.summary_zh.trim() ? normalizeCurrency(i.summary_zh) : i.title;
 }
+/** Headline text: manual items show headline_zh in ZH (summary_zh then goes underneath); otherwise itemText. */
+export function itemHeadline(i: BriefingItem, lang: BriefingLang = 'zh'): string {
+  if (lang === 'zh' && i.headline_zh && i.headline_zh.trim()) return i.headline_zh.trim();
+  return itemText(i, lang);
+}
+/** True when an item has an explicit editorial order (manual briefing). */
+export const hasOrder = (i: BriefingItem) => typeof i.order === 'number' && Number.isFinite(i.order);
 export function itemLang(i: BriefingItem, lang: BriefingLang = 'zh'): string {
   if (lang === 'en') return i.title?.trim() || i.summary?.trim() ? 'en-NZ' : 'zh-CN';
   return i.summary_zh && i.summary_zh.trim() ? 'zh-CN' : 'en-NZ';
@@ -159,7 +168,9 @@ export function interestScore(i: BriefingItem): number {
 export function arrangeItems(items: BriefingItem[], now?: number): { cards: BriefingItem[]; roadworks: BriefingItem[] } {
   const all = prepareItems(items, now);
   const time = (i: BriefingItem) => (i.published ? Date.parse(i.published) || 0 : 0);
-  const cards = all.filter(i => !isRoadwork(i)).sort((a, b) => interestScore(b) - interestScore(a) || time(b) - time(a));
+  const ord = (i: BriefingItem) => (hasOrder(i) ? i.order! : Infinity);
+  // Manual editorial order (owner-supplied items) wins over interest ranking.
+  const cards = all.filter(i => !isRoadwork(i)).sort((a, b) => (ord(a) - ord(b) || 0) || interestScore(b) - interestScore(a) || time(b) - time(a));
   return { cards, roadworks: all.filter(isRoadwork) };
 }
 /** Hamilton place names (city + suburbs) used to spot stories about our own neighbourhoods. */
@@ -177,6 +188,6 @@ export function newsLayout(items: BriefingItem[], now?: number): { alerts: Brief
   const { cards, roadworks } = arrangeItems(items, now);
   const alerts = cards.filter(i => i.urgent), nonUrgent = cards.filter(i => !i.urgent);
   // Owner rule (2026-11-18): the big headlines (lead + secondary) go to stories about everyday life in Hamilton first.
-  const rest = [...nonUrgent.filter(isLocalLife), ...nonUrgent.filter(i => !isLocalLife(i))];
+  const rest = nonUrgent.length && nonUrgent.every(hasOrder) ? nonUrgent : [...nonUrgent.filter(isLocalLife), ...nonUrgent.filter(i => !isLocalLife(i))];
   return { alerts, lead: rest[0], secondary: rest.slice(1, 1 + NEWS_SECONDARY), latest: rest.slice(1 + NEWS_SECONDARY), roadworks };
 }

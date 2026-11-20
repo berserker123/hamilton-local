@@ -4,8 +4,7 @@ import { BilingualTitle } from './BilingualTitle';
 import {
   HOME_LIMIT, NEWS_LATEST_LIMIT, newsLayout, BriefingData, BriefingItem, BriefingLang,
   categoryLabel, formatBriefingDate, formatUpdated, isStaleBriefing, itemLang, itemText,
-  arrangeItems, itemTime, interestScore,
-} from './briefing-model';
+  arrangeItems, itemTime, interestScore, itemHeadline } from './briefing-model';
 
 type T = (zh: string, en: string) => string;
 export type BriefingVariant = 'a' | 'b' | 'c' | 'd' | 'e';
@@ -129,7 +128,10 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
     const timeLabel = itemTime(i, now, uiLang);
     return <div className="hl-brief-e-meta"><span>{i.source}</span>{timeLabel && <span>{timeLabel}</span>}{link(i, label)}</div>;
   };
+  const zhSummary = (i: BriefingItem) => uiLang === 'zh' && i.headline_zh && i.headline_zh.trim() && i.summary_zh && i.summary_zh.trim()
+    ? <p className="hl-brief-e-en hl-brief-e-summary" lang="zh-CN">{i.summary_zh.trim()}</p> : null;
   const subline = (i: BriefingItem) => {
+    if (uiLang === 'zh' && i.headline_zh && i.headline_zh.trim()) return zhSummary(i);
     if (uiLang === 'en') {
       return i.title?.trim() && i.summary && i.summary.trim() ? <p className="hl-brief-e-en" lang="en-NZ">{i.summary.trim()}</p> : null;
     }
@@ -160,10 +162,10 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
         <div className="hl-brief-e-main">
           {lead && <article className="hl-brief-e-lead">
             <div className="hl-brief-e-flag"><span className="hl-brief-e-tag">{t('头条', 'Lead')}</span>{kicker(lead)}</div>
-            <h3 lang={lang(lead)}>{itemText(lead, uiLang)}</h3>{subline(lead)}{meta(lead, t('阅读原文 ↗', 'Read source ↗'))}
+            <h3 lang={lang(lead)}>{itemHeadline(lead, uiLang)}</h3>{subline(lead)}{meta(lead, t('阅读原文 ↗', 'Read source ↗'))}
           </article>}
           {secondary.length > 0 && <div className="hl-brief-e-second">{secondary.map(i => <article key={i.id} className="hl-brief-e-story">
-            {kicker(i)}<h3 lang={lang(i)}>{itemText(i, uiLang)}</h3>{meta(i)}
+            {kicker(i)}<h3 lang={lang(i)}>{itemHeadline(i, uiLang)}</h3>{zhSummary(i)}{meta(i)}
           </article>)}</div>}
         </div>
         {latest.length > 0 && <aside className="hl-brief-e-side" aria-label={t('更多新闻', 'More news')}>
@@ -172,7 +174,7 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
             const timeLabel = itemTime(i, now, uiLang);
             return <li key={i.id} className={timeLabel ? undefined : 'no-time'}>
               {timeLabel && <span className="hl-brief-e-time">{timeLabel}</span>}
-              <div>{kicker(i)}<p lang={lang(i)}>{itemText(i, uiLang)}</p><div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}</div></div>
+              <div>{kicker(i)}<p lang={lang(i)}>{itemHeadline(i, uiLang)}</p>{zhSummary(i)}<div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}</div></div>
             </li>;
           })}</ol>
           {latest.length > NEWS_LATEST_LIMIT && <button type="button" className="hl-brief-toggle" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? t('收起', 'Show less') : t(`查看更多 ${latest.length - NEWS_LATEST_LIMIT} 条`, `Show ${latest.length - NEWS_LATEST_LIMIT} more`)}</button>}
