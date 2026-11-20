@@ -133,7 +133,7 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
     if (uiLang === 'en') {
       return i.title?.trim() && i.summary && i.summary.trim() ? <p className="hl-brief-e-en" lang="en-NZ">{i.summary.trim()}</p> : null;
     }
-    return i.summary_zh && i.summary_zh.trim() ? <p className="hl-brief-e-en" lang="en-NZ">{i.title}</p> : null;
+    return i.summary_zh && i.summary_zh.trim() && i.title && i.title.trim() ? <p className="hl-brief-e-en" lang="en-NZ">{i.title}</p> : null;
   };
   const shownLatest = open ? latest : latest.slice(0, NEWS_LATEST_LIMIT);
   const today = formatBriefingDate(data.generated_at, uiLang);

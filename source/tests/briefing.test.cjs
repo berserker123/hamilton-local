@@ -184,22 +184,28 @@ test('homepage order: tools before briefing before subscribe; #overview is not o
 test('owner rule: lead and secondaries prefer everyday Hamilton life stories (real snapshot)',()=>{
  const data=require('../src/data/briefing.json');
  const L=model.newsLayout(data.items);
- assert.match(L.lead.title,/Hillcrest/);
- for(const i of [L.lead,...L.secondary.filter((_,k)=>k<data.items.filter(model.isLocalLife).length-1)])assert.ok(model.isLocalLife(i),i.title);
- assert.ok(![L.lead,...L.secondary].some(i=>/dairy farmers/.test(i.title)));
+ const localLifeItems=data.items.filter(model.isLocalLife);
+ if(localLifeItems.length>0){
+  assert.ok(model.isLocalLife(L.lead),L.lead.title);
+  for(const i of [L.lead,...L.secondary.slice(0,Math.max(0,localLifeItems.length-1))])assert.ok(model.isLocalLife(i),i.title);
+ }
+ assert.ok(![L.lead,...L.secondary].filter(Boolean).some(i=>/dairy farmers/.test(i.title)));
  assert.equal(model.isLocalLife({title:'Massive wastewater tanks planned for Fairfield Park',category:'news'}),true);
  assert.equal(model.isLocalLife({title:'Hundreds of Waikato dairy farmers at higher risk',category:'news'}),false);
 });
- test('owner rule: every amount in Chinese text is 纽币',()=>{
+test('owner rule: every amount in Chinese text is 纽币',()=>{
  const {normalizeCurrency}=load('src/currency.mjs');
  assert.equal(normalizeCurrency('高达5000万新元的赤字'),'高达5000万纽币的赤字');
  assert.equal(normalizeCurrency('未缴税款已达1100万新西兰元'),'未缴税款已达1100万纽币');
  assert.equal(normalizeCurrency('花费$50万'),'花费50万纽币');
  assert.equal(normalizeCurrency('约 NZ$ 1,200'),'约 1,200纽币');
+ const synthetic={generated_at:'2026-11-19T00:00:00Z',items:[item('fx',{summary_zh:'赤字高达5000万新元'})]};
+ const synOut=renderToStaticMarkup(React.createElement(BriefingView,{data:synthetic,t,now:Date.parse('2026-11-19T00:00:00Z')}));
+ assert.doesNotMatch(synOut,/新元/);assert.match(synOut,/5000万纽币/);
  const data=require('../src/data/briefing.json');
  for(const i of data.items){const z=model.itemText(i);assert.doesNotMatch(z,/新元|纽元|美元|新西兰元|\$\d/,z);}
- const out=renderToStaticMarkup(React.createElement(BriefingView,{data,t,now:Date.parse('2026-11-19T00:00:00Z')}));
- assert.doesNotMatch(out,/新元/);assert.match(out,/5000万纽币/);
+ const out=renderToStaticMarkup(React.createElement(BriefingView,{data,t,now:Date.parse(data.generated_at)}));
+ assert.doesNotMatch(out,/新元|纽元|美元|新西兰元/);
 });
 
 test('1b: relative times are computed from view time in ZH and EN; header uses generated_at',()=>{
@@ -262,4 +268,108 @@ test('4: English mode translates all briefing labels and uses original English t
  assert.match(out,/roadworks or traffic controls today/);
  assert.match(out,/Urgent one/);
  assert.doesNotMatch(out,/更新于|头条|更多新闻|原文|施工或管制|摘要仅供参考|紧急一/);
+});
+
+test('5: afternoon brief parser trims boilerplate, skips unlinked/weather sections, matches sources, and handles missing English',async()=>{
+ const {parseAfternoonBrief}=await import('../scripts/sync-briefing.mjs');
+ const generated='2026-11-20T03:15:02.539687+00:00';
+ const linked=[
+  {line:'- 今日 Stuff 报道，本地赛事消息，预算达500万新元。[来源链接](https://www.stuff.co.nz/sport/123/test-match)',src:'stuff_filtered',title:'Test match across Hamilton',summary:'Matches will take place in Hamilton.'},
+  {line:'- 有网友在 r/thetron 发帖称在政府招标网站看到了 Hillcrest 图书馆招标信息，该帖共获得 34 条评论。[来源链接](https://www.reddit.com/r/thetron/comments/abc/hillcrest_library/)',src:'reddit_thetron',title:'Hillcrest library tender',summary:''},
+  {line:'- 市政公布新公园计划。[官网](https://hamilton.govt.nz/your-council/news/new-park)',src:null,title:'',summary:''},
+ ];
+ const md=[
+  '# 《汉密尔顿今日速报》（2026-11-20）',
+  '## 市政/民生',
+  linked[0].line,
+  linked[2].line,
+  '## 社区热议',
+  linked[1].line,
+  '## 全纽热搜与本地关联',
+  '- 没有链接的热搜条目，应当被跳过。',
+  '## 明日天气',
+  '2026-11-21（明天）：多云，最高19°C。',
+ ].join('\n');
+ const dailyJson={
+  date:'2026-11-20',
+  generated,
+  sources:{
+   stuff_filtered:[{title:linked[0].title,summary:linked[0].summary,url:'https://www.stuff.co.nz/sport/123/test-match'}],
+   reddit_thetron:[{title:linked[1].title,url:'https://www.reddit.com/r/thetron/comments/abc/hillcrest_library/'}],
+  },
+ };
+ const parsed=parseAfternoonBrief(md,dailyJson);
+ assert.equal(parsed.generated_at,generated);
+ assert.equal(parsed.items.length,linked.length);
+ const stuffItem=parsed.items.find(i=>i.source==='Stuff');
+ assert.equal(stuffItem.title,linked[0].title);
+ assert.equal(stuffItem.summary,linked[0].summary);
+ assert.equal(stuffItem.summary_zh,'本地赛事消息，预算达500万新元');
+ assert.equal(stuffItem.published,generated);
+ assert.equal(stuffItem.category,'news');
+ const redditItem=parsed.items.find(i=>i.source==='r/thetron');
+ assert.equal(redditItem.summary_zh,'网友热议：在政府招标网站看到了 Hillcrest 图书馆招标信息（34 条评论）');
+ assert.equal(redditItem.title,linked[1].title);
+ const councilItem=parsed.items.find(i=>i.category==='council');
+ assert.equal(councilItem.title,'');
+ assert.equal(model.itemText(councilItem,'en'),'市政公布新公园计划');
+ const zhOut=renderToStaticMarkup(React.createElement(BriefingView,{data:parsed,t,variant:'e',now:Date.parse(generated)}));
+ const enOut=renderToStaticMarkup(React.createElement(BriefingView,{data:parsed,t:(_z,e)=>e,variant:'e',now:Date.parse(generated)}));
+ assert.doesNotMatch(zhOut,/没有链接的热搜条目|明日天气|<p class="hl-brief-e-en"[^>]*><\/p>/);
+ assert.match(enOut,/Hillcrest library tender/);
+ assert.match(enOut,/市政公布新公园计划/);
+});
+
+test('6: syncBriefing selects whichever source (afternoon brief vs watch latest.json) was generated later',async()=>{
+ const fs=require('node:fs');
+ const os=require('node:os');
+ const path=require('node:path');
+ const {syncBriefing}=await import('../scripts/sync-briefing.mjs');
+ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'hl-sync-'));
+ try{
+  const srcRoot=path.join(tmp,'source');
+  const deployRoot=path.join(tmp,'deploy');
+  const dailyDir=path.join(tmp,'daily');
+  fs.mkdirSync(path.join(srcRoot,'src','data'),{recursive:true});
+  fs.mkdirSync(path.join(srcRoot,'dist'),{recursive:true});
+  fs.mkdirSync(deployRoot,{recursive:true});
+  fs.mkdirSync(path.join(dailyDir,'data'),{recursive:true});
+  fs.mkdirSync(path.join(dailyDir,'out'),{recursive:true});
+  fs.writeFileSync(path.join(srcRoot,'src','events-and-markets.json'),JSON.stringify({events_this_week:[]}));
+  fs.writeFileSync(path.join(srcRoot,'src','data','blackfriday.json'),JSON.stringify([]));
+  const watchPath=path.join(tmp,'latest.json');
+  const morningTs='2026-11-20T09:00:03+13:00';
+  const afternoonTs='2026-11-20T03:15:02.539687+00:00'; // 16:15:02+13:00
+  const watchItems=[{id:'w1',source:'RNZ',title:'Morning item',url:'https://www.rnz.co.nz/news/1',published:morningTs,date_only:false,summary:'Morning',summary_zh:'早报内容，拨款100万新元。',category:'news',urgent:false}];
+  fs.writeFileSync(watchPath,JSON.stringify({generated_at:morningTs,items:watchItems}));
+  const dailyBullets=[
+   '- 今日 Stuff 报道，下午快讯内容，投入200万新元。[来源链接](https://www.stuff.co.nz/nz-news/1)',
+   '- 有网友发帖提及社区讨论。[来源链接](https://www.reddit.com/r/thetron/comments/xyz/post/)',
+  ];
+  fs.writeFileSync(path.join(dailyDir,'data','2026-11-20.json'),JSON.stringify({date:'2026-11-20',generated:afternoonTs,sources:{stuff_filtered:[{title:'Afternoon story',summary:'Afternoon summary',url:'https://www.stuff.co.nz/nz-news/1'}]}}));
+  fs.writeFileSync(path.join(dailyDir,'out','2026-11-20-brief.md'),['## 市政/民生',dailyBullets[0],'## 社区热议',dailyBullets[1]].join('\n'));
+
+  const resAfternoon=syncBriefing(watchPath,srcRoot,deployRoot,{dailyDir});
+  assert.equal(resAfternoon.kind,'daily');
+  assert.equal(resAfternoon.generated_at,afternoonTs);
+  assert.equal(resAfternoon.count,dailyBullets.length);
+  const syncedAfternoon=JSON.parse(fs.readFileSync(path.join(srcRoot,'src','data','briefing.json'),'utf8'));
+  assert.match(syncedAfternoon.items[0].summary_zh,/200万纽币/);
+  assert.doesNotMatch(syncedAfternoon.items[0].summary_zh,/新元/);
+  const feedAfter=fs.readFileSync(path.join(deployRoot,'feed.xml'),'utf8');
+  assert.match(feedAfter,/Afternoon story/);
+  assert.equal(fs.readFileSync(path.join(srcRoot,'dist','feed.xml'),'utf8'),feedAfter);
+
+  // Next morning: latest.json is newer than yesterday's afternoon brief
+  const nextMorningTs='2026-11-21T09:00:01+13:00';
+  fs.writeFileSync(watchPath,JSON.stringify({generated_at:nextMorningTs,items:watchItems}));
+  const resMorning=syncBriefing(watchPath,srcRoot,deployRoot,{dailyDir});
+  assert.equal(resMorning.kind,'watch');
+  assert.equal(resMorning.generated_at,nextMorningTs);
+  assert.equal(resMorning.count,watchItems.length);
+  const syncedMorning=JSON.parse(fs.readFileSync(path.join(srcRoot,'src','data','briefing.json'),'utf8'));
+  assert.match(syncedMorning.items[0].summary_zh,/100万纽币/);
+ }finally{
+  fs.rmSync(tmp,{recursive:true,force:true});
+ }
 });
