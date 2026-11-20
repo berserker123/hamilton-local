@@ -47,6 +47,21 @@ export function shortenAfternoonText(text) {
   return t.replace(/[。.]+$/, '');
 }
 
+/**
+ * Short-form guard (Frank, 2026-11-20): the afternoon brief may come as "**headline**：long paragraph".
+ * The site then shows only the bold headline, and keeps at most the first sentence of the rest as
+ * detail_zh. Trim only; never adds words. Plain items fall back to shortenAfternoonText.
+ */
+export function afternoonShortForm(text) {
+  const t = String(text || '').trim();
+  const m = t.match(/^\*\*(.+?)\*\*\s*[：:]?\s*([\s\S]*)$/);
+  if (!m) return { summary_zh: shortenAfternoonText(t), detail_zh: '' };
+  const headline = sanitizeBriefingText(m[1]).replace(/[。.]+$/, '');
+  const rest = sanitizeBriefingText(m[2] || '');
+  const first = (rest.match(/^[^。！？!?；;]*[。！？!?]?/) || [''])[0].replace(/[；;，,\s]+$/, '').trim();
+  return { summary_zh: headline, detail_zh: first };
+}
+
 function categoryForAfternoonUrl(url) {
   let host = '';
   let pathname = '';
@@ -119,7 +134,7 @@ export function parseAfternoonBrief(mdText, dailyJson) {
       published: generated,
       date_only: false,
       summary: srcMeta.summary,
-      summary_zh: shortenAfternoonText(rawBody),
+      ...afternoonShortForm(rawBody),
       category: categoryForAfternoonUrl(url),
       urgent: false,
     });

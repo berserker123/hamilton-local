@@ -407,3 +407,19 @@ test('7: sanitizer strips comment counts (zh/en) and forum lead-ins from every b
  const feed=require('fs').readFileSync('../feed.xml','utf8');
  assert.equal(hasCommentCount(feed.replace(/<link>[^<]*<\/link>|<guid[^>]*>[^<]*<\/guid>/g,'')),false);
 });
+
+test('8: long bold-headline afternoon briefs are cut to the headline (+ first sentence as detail), trim only',async()=>{
+ const {parseAfternoonBrief,afternoonShortForm}=await import('../scripts/sync-briefing.mjs');
+ const long='**NRL新西兰勇士队（Warriors）2027年赛程公布，三场比赛落地汉密尔顿**：男队将于2027年2月20日（周六）17:00在汉密尔顿FMG Stadium Waikato进行季前挑战赛，主场迎战Penrith Panthers；女队（NRLW）将在汉密尔顿进行两场常规赛。';
+ const f=afternoonShortForm(long);
+ assert.equal(f.summary_zh,'NRL新西兰勇士队（Warriors）2027年赛程公布，三场比赛落地汉密尔顿');
+ assert.equal(f.detail_zh,'男队将于2027年2月20日（周六）17:00在汉密尔顿FMG Stadium Waikato进行季前挑战赛，主场迎战Penrith Panthers');
+ assert.ok(long.includes(f.summary_zh)&&long.includes(f.detail_zh),'trim only');
+ const md=['## 市政/民生','- '+long+'[Stuff](https://www.stuff.co.nz/sport/1/warriors)','## 社区热议','- 有网友发帖提及 Stirling Sports 处于清算程序中，该帖共有 16 条评论。[来源链接](https://www.reddit.com/r/thetron/comments/x/y/)'].join('\n');
+ const parsed=parseAfternoonBrief(md,{generated:'2026-11-20T03:15:02Z',sources:{}});
+ assert.equal(parsed.items[0].summary_zh,f.summary_zh);
+ assert.ok(parsed.items[0].summary_zh.length<=60);
+ assert.doesNotMatch(JSON.stringify(parsed),/\*\*|条评论|网友热议/);
+ assert.equal(parsed.items[1].summary_zh,'Stirling Sports 处于清算程序中');
+ assert.equal(parsed.items[1].detail_zh,'');
+});
