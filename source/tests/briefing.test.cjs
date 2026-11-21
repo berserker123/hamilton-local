@@ -152,20 +152,27 @@ test('variant e renders alerts strip, lead h3 with English original, 更多新�
  const out=vhtml(d,'e');
  const L=model.newsLayout(d.items);
  assert.match(out,/hl-brief--e/);
- assert.ok(out.indexOf('hl-brief-e-alerts')<out.indexOf('hl-brief-e-lead'));
- const lead=out.match(/<article class="hl-brief-e-lead">[\s\S]*?<\/article>/)[0];
+ assert.match(out,/hl-brief-cards/);
+ assert.ok(out.indexOf('hl-brief-e-alerts')<out.indexOf('hl-brief-cards'));
+ const lead=out.match(/<article class="hl-brief-mini">[\s\S]*?Airport lands new Queenstown to Hamilton route[\s\S]*?<\/article>/)[0];
  assert.match(lead,/<h3[^>]*>Airport lands new Queenstown to Hamilton route<\/h3>/);
+ assert.match(lead,/class="hl-brief-more"/);
  assert.match(out,/市政赤字/);
  assert.doesNotMatch(lead,/紧急一/);
- assert.equal((out.match(/<article class="hl-brief-e-story">/g)||[]).length,Math.min(model.NEWS_SECONDARY,L.secondary.length));
+ const shown=(L.lead?1:0)+L.secondary.length+Math.min(model.NEWS_LATEST_LIMIT,L.latest.length);
+ assert.equal((out.match(/<article class="hl-brief-mini">/g)||[]).length,shown);
  assert.match(out,new RegExp('共 '+d.items.length+' 条'));
  assert.match(out,/今天 2 处施工或管制/);
  assert.match(out,/更新于 11月17日 18:30/);
- if(L.latest.length>model.NEWS_LATEST_LIMIT) assert.match(out,new RegExp('查看更多 '+(L.latest.length-model.NEWS_LATEST_LIMIT)+' 条')); else assert.doesNotMatch(out,/查看更多/);
- assert.equal((out.match(/<span class="hl-brief-e-time"/g)||[]).length,Math.min(model.NEWS_LATEST_LIMIT,L.latest.length));
+ if(L.latest.length>model.NEWS_LATEST_LIMIT) assert.match(out,/查看全部新闻/); else assert.doesNotMatch(out,/查看全部新闻/);
+ assert.match(out,/href="\/news\/"/);
+ assert.equal((out.match(/<span class="hl-brief-mini-date"/g)||[]).length,shown);
  assert.doesNotMatch(out,/ENGLISH BODY/);
  assert.match(out.match(/<ul class="hl-brief-e-alerts">[\s\S]*?<\/ul>/)[0],/紧急一/);
- for(const a of out.match(/<a [^>]*>/g)||[]){assert.match(a,/target="_blank"/);assert.match(a,/rel="noopener noreferrer"/);}
+ for(const a of out.match(/<a [^>]*>/g)||[]){
+  if(/href="https?:/.test(a)){assert.match(a,/target="_blank"/);assert.match(a,/rel="noopener noreferrer"/);}
+  else assert.match(a,/href="\/news\//);
+ }
 });
 
 test('homepage order: tools before briefing before subscribe; #overview is not on the Briefing',()=>{
@@ -220,9 +227,11 @@ test('1b: relative times are computed from view time in ZH and EN; header uses g
  const out2h=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:at2h}));
  const out30h=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:at30h}));
  assert.match(out2h,/更新于 11月19日 09:00/);
- assert.match(out2h,/2小时前/);
+ assert.match(out2h,/class="hl-brief-mini-date">11月19日/);
+ assert.doesNotMatch(out2h,/2小时前/);
  assert.match(out30h,/更新于 11月19日 09:00/);
- assert.match(out30h,/1天前/);
+ assert.match(out30h,/class="hl-brief-mini-date">11月19日/);
+ assert.doesNotMatch(out30h,/1天前/);
 });
 
 test('1c: stale notice renders when briefing data is older than 36 hours (ZH & EN)',()=>{
@@ -261,9 +270,9 @@ test('4: English mode translates all briefing labels and uses original English t
  const out=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t:(_zh,en)=>en,variant:'e',now:Date.parse('2026-11-17T08:00:00Z')}));
  assert.match(out,/Hamilton Daily Briefing/);
  assert.match(out,/Updated 17 Nov, 18:30/);
- assert.match(out,/Lead/);
- assert.match(out,/More news/);
- assert.match(out,/Read source ↗/);
+ assert.match(out,/All news/);
+ assert.match(out,/>More</);
+ assert.match(out,/Source ↗/);
  assert.match(out,/Alert · Police/);
  assert.match(out,/roadworks or traffic controls today/);
  assert.match(out,/Urgent one/);
@@ -434,7 +443,9 @@ test('9: owner manual briefing overrides only its own date, keeps owner order/wo
  fs.writeFileSync(mp,JSON.stringify(manual));
  const same={kind:'daily',ts:Date.parse('2026-11-20T03:15:02Z'),data:{generated_at:'x',items:[]}};
  assert.equal(applyManualOverride(same,mp).kind,'manual');
- const next={kind:'watch',ts:Date.parse('2026-11-20T20:00:01Z'),data:{generated_at:'2026-11-21T09:00:01+13:00',items:[]}}; // 21 Nov 09:00 NZDT
+ const nextDay=new Date(Date.parse(manual.date+'T00:00:00Z')+86400000).toISOString().slice(0,10);
+ const nextAt=nextDay+'T09:00:01+13:00';
+ const next={kind:'watch',ts:Date.parse(nextAt),data:{generated_at:nextAt,items:[]}};
  assert.equal(applyManualOverride(next,mp),next,'manual must not block the next day');
  assert.equal(applyManualOverride(same,path.join(os.tmpdir(),'nope.json')),same);
  // full sync into a temp tree
@@ -456,7 +467,40 @@ test('9: owner manual briefing overrides only its own date, keeps owner order/wo
  assert.deepEqual([lay.lead,...lay.secondary,...lay.latest].map(i=>i.headline_zh),manual.items.map(i=>i.headline_zh),'owner order kept, police story not dropped');
  const zh=renderToStaticMarkup(React.createElement(BriefingView,{data:synced,t,variant:'e',now:Date.parse(synced.generated_at)}));
  assert.match(zh,new RegExp('共 '+manual.items.length+' 条'));
- for(const it of manual.items){assert.ok(zh.includes(it.headline_zh));assert.ok(zh.includes(it.summary_zh.replace(/&/g,'&amp;')));}
+ for(const it of manual.items){
+  assert.ok(zh.includes(it.headline_zh));
+  const view=model.itemDisplay(synced.items.find(i=>i.headline_zh===it.headline_zh),'zh');
+  if(view.teaser) assert.ok(zh.includes(view.teaser.replace(/&/g,'&amp;')),view.teaser);
+  const tail=it.summary_zh.slice(-8);
+  if(view.teaser && !view.teaser.includes(tail)) assert.ok(!zh.includes(tail),'homepage keeps the short summary, not the ending: '+tail);
+  assert.match(zh,new RegExp('href="/news/'+synced.items.find(i=>i.headline_zh===it.headline_zh).id+'/"'));
+ }
  assert.doesNotMatch(zh,/Just saw government tender|Looks like we/);
  for(const it of manual.items) if(it.title) assert.ok(!zh.includes('>'+it.title.replace(/'/g,'&#x27;')+'<'),'no English subline in zh');
+ const {NewsPage}=load('src/News.tsx');
+ for(const it of synced.items){
+  const article=renderToStaticMarkup(React.createElement(NewsPage,{t,data:synced,now:Date.parse(synced.generated_at),pathname:'/news/'+it.id+'/'}));
+  assert.match(article,/data-testid="news-article"/);
+  assert.ok(article.includes(it.headline_zh));
+  assert.ok(article.includes(it.summary_zh.replace(/&/g,'&amp;')),'full text on the article');
+ }
+ const list=renderToStaticMarkup(React.createElement(NewsPage,{t,data:synced,now:Date.parse(synced.generated_at),pathname:'/news/'}));
+ assert.match(list,/data-testid="news-list"/);
+ assert.equal((list.match(/class="hl-brief-more"/g)||[]).length,synced.items.length);
+});
+
+test('homepage teasers stay inside one or two sentences and do not split a character',()=>{
+ const long='男队2027年2月20日17:00在汉密尔顿FMG Stadium Waikato打季前赛，对阵Penrith Panthers；女队（NRLW）将在汉密尔顿打两场常规赛，8月14日19:15对Wests Tigers，8月29日15:45对Cronulla Sharks。票务尚待官方公布。';
+ const teaser=model.itemTeaser(long);
+ assert.match(teaser,/Penrith Panthers…$/);
+ assert.doesNotMatch(teaser,/票务尚待/);
+ assert.equal(model.itemTeaser('第一句很短。第二句也很短。第三句不要。'),'第一句很短。第二句也很短。');
+ const word='Closure near Hamilton continues overnight for resurfacing';
+ const cut=model.itemTeaser(word,24);
+ assert.doesNotMatch(cut,/Hamilt…|Ham…/);
+ assert.equal(cut.endsWith('…'),true);
+ const emoji='甲乙丙😀后面还有很多字，需要被截断才看得出边界。';
+ const safe=model.itemTeaser(emoji,8);
+ assert.equal(safe.isWellFormed(),true);
+ assert.doesNotMatch(safe,/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/);
 });

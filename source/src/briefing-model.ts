@@ -7,6 +7,10 @@ export type BriefingItem = {
   expires_at?: string | null; ends_at?: string | null; reopen_at?: string | null;
   /** Manual editorial items (briefing-manual.json): short Chinese headline and fixed display order. */
   headline_zh?: string; order?: number; manual?: boolean;
+  /** First sentence kept when an afternoon brief is shortened to a headline. */
+  detail_zh?: string;
+  /** Second source when an item cites more than one link. */
+  also_url?: string; also_source?: string;
 };
 export type BriefingData = { generated_at: string; sample?: boolean; items: BriefingItem[] };
 
@@ -77,6 +81,130 @@ export function itemHeadline(i: BriefingItem, lang: BriefingLang = 'zh'): string
   if (lang === 'zh' && i.headline_zh && i.headline_zh.trim()) return i.headline_zh.trim();
   return itemText(i, lang);
 }
+
+/** Up to two sentences, if they fit. A longer first sentence is cut at a clause instead. */
+export const TEASER_MAX = 100;
+/** Window used when the first sentence itself is longer than TEASER_MAX. */
+export const TEASER_CLAUSE = 78;
+
+const OPEN_BRACKETS = new Set(['（', '「', '『', '《', '(', '【', '“', '‘']);
+const CLOSE_BRACKETS = new Set(['）', '」', '』', '》', ')', '】', '”', '’']);
+
+function codePoints(text: string): string[] {
+  return Array.from(text);
+}
+
+/** Full Chinese write-up (summary plus any detail sentence). English falls back to the same text. */
+export function itemFullText(i: BriefingItem, lang: BriefingLang = 'zh'): string {
+  const summary = i.summary_zh && i.summary_zh.trim() ? normalizeCurrency(i.summary_zh.trim()) : '';
+  const detail = i.detail_zh && i.detail_zh.trim() ? normalizeCurrency(i.detail_zh.trim()) : '';
+  let zh = summary;
+  if (detail && !summary.includes(detail)) zh = summary ? summary + (/[。！？!?]$/.test(summary) ? '' : '。') + detail : detail;
+  if (lang === 'en') {
+    if (i.summary && i.summary.trim()) return i.summary.trim();
+    if (!zh && i.title && i.title.trim()) return i.title.trim();
+  }
+  return zh || (i.title && i.title.trim()) || '';
+}
+
+/** Body for the article page: the Chinese write-up, or the English text when that is all there is. */
+export function itemArticleText(i: BriefingItem): string {
+  return itemFullText(i, 'zh') || (i.summary && i.summary.trim()) || (i.title && i.title.trim()) || '';
+}
+
+/** Text that follows a headline already shown as the title. Exact prefix only, so wording stays intact. */
+export function textAfterHeadline(full: string, headline: string): string {
+  const body = full.trim();
+  const head = headline.trim();
+  if (!body || !head || body === head) return body === head ? '' : body;
+  if (body.startsWith(head)) return body.slice(head.length).replace(/^[：:，,。.!！？?\s]+/, '').trim();
+  return body;
+}
+
+function splitSentences(text: string): string[] {
+  const out: string[] = [];
+  let buf = '';
+  for (const ch of text) {
+    buf += ch;
+    if (ch === '。' || ch === '！' || ch === '？' || ch === '!' || ch === '?') {
+      if (buf.trim()) out.push(buf.trim());
+      buf = '';
+    }
+  }
+  if (buf.trim()) out.push(buf.trim());
+  return out;
+}
+
+function truncateAtClause(text: string, max: number): string {
+  const chars = codePoints(text.trim());
+  if (chars.length <= max) return chars.join('');
+  const slice = chars.slice(0, max);
+  let depth = 0;
+  let strong = -1;
+  let soft = -1;
+  const minStrong = Math.floor(max * 0.35);
+  const minSoft = Math.floor(max * 0.45);
+  for (let i = 0; i < slice.length; i++) {
+    const ch = slice[i];
+    if (OPEN_BRACKETS.has(ch)) depth++;
+    else if (CLOSE_BRACKETS.has(ch)) depth = Math.max(0, depth - 1);
+    else if (depth === 0) {
+      if ('。！？!?；;'.includes(ch)) strong = i;
+      else if ('，,、'.includes(ch)) soft = i;
+    }
+  }
+  let cut = strong >= minStrong ? strong : soft >= minSoft ? soft : -1;
+  let keepPunct = false;
+  if (cut >= 0) keepPunct = '。！？!?'.includes(slice[cut]);
+  let end = cut >= 0 ? (keepPunct ? cut + 1 : cut) : max;
+  if (cut < 0) {
+    const at = slice[end - 1] || '';
+    if (/[A-Za-z0-9]/.test(at)) {
+      let i = end - 1;
+      while (i > 0 && /[A-Za-z0-9]/.test(slice[i])) i--;
+      if (i >= minSoft) end = i;
+    }
+    // Back out of an unclosed bracket so we never end inside （Hamilton）.
+    depth = 0;
+    let openAt = -1;
+    for (let i = 0; i < end; i++) {
+      if (OPEN_BRACKETS.has(slice[i])) { depth++; openAt = i; }
+      else if (CLOSE_BRACKETS.has(slice[i])) { depth = Math.max(0, depth - 1); if (!depth) openAt = -1; }
+    }
+    if (depth > 0 && openAt >= minSoft) end = openAt;
+  }
+  let result = chars.slice(0, end).join('').replace(/[\s，,、；;：:]+$/u, '').trim();
+  if (!result) result = chars.slice(0, Math.min(max, chars.length)).join('').trim();
+  if (result && !/[。！？!?…]$/.test(result)) result += '…';
+  return result;
+}
+
+/** 1–2 sentences, or a clause cut when the first sentence is longer. Never splits a code point. */
+export function itemTeaser(text: string, max: number = TEASER_MAX): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (!clean) return '';
+  const parts = splitSentences(clean);
+  let chosen = '';
+  for (let n = 1; n <= Math.min(2, parts.length); n++) {
+    const candidate = parts.slice(0, n).join('');
+    if (codePoints(candidate).length <= max) chosen = candidate;
+    else break;
+  }
+  if (chosen) return chosen;
+  return truncateAtClause(parts[0] || clean, Math.min(max, TEASER_CLAUSE));
+}
+
+/** Homepage title plus a short summary. Full wording stays on the article page. */
+export function itemDisplay(i: BriefingItem, lang: BriefingLang = 'zh'): { title: string; teaser: string } {
+  if (lang === 'en' && i.title && i.title.trim()) {
+    return { title: i.title.trim(), teaser: itemTeaser(i.summary && i.summary.trim() ? i.summary.trim() : '') };
+  }
+  const title = ((i.headline_zh && i.headline_zh.trim()) || itemHeadline(i, lang)).trim();
+  const extra = textAfterHeadline(itemFullText(i, 'zh'), title);
+  if (extra) return { title, teaser: itemTeaser(extra) };
+  if (codePoints(title).length > TEASER_CLAUSE) return { title: itemTeaser(title, TEASER_CLAUSE), teaser: '' };
+  return { title, teaser: '' };
+}
 /** True when an item has an explicit editorial order (manual briefing). */
 export const hasOrder = (i: BriefingItem) => typeof i.order === 'number' && Number.isFinite(i.order);
 export function itemLang(i: BriefingItem, lang: BriefingLang = 'zh'): string {
@@ -138,6 +266,15 @@ export function itemTime(i: Pick<BriefingItem, 'published' | 'date_only'>, now: 
   const diff = Math.round((Date.UTC(ny, nmo - 1, nd) - Date.UTC(y, mo - 1, d)) / 86400000);
   if (diff === 0) return lang === 'en' ? 'Today' : '今天';
   if (diff === 1) return lang === 'en' ? 'Yesterday' : '昨天';
+  return lang === 'en' ? `${d} ${MONTHS_EN[mo - 1]}` : `${mo}月${d}日`;
+}
+/** Calendar date for a homepage card. Date-only items keep 今天 / 昨天. */
+export function itemCardDate(i: Pick<BriefingItem, 'published' | 'date_only'>, now: number = Date.now(), lang: BriefingLang = 'zh'): string {
+  if (!i.published) return '';
+  if (i.date_only) return itemTime(i, now, lang);
+  const t = Date.parse(i.published);
+  if (isNaN(t)) return '';
+  const [, mo, d] = nzYmd(t);
   return lang === 'en' ? `${d} ${MONTHS_EN[mo - 1]}` : `${mo}月${d}日`;
 }
 /** Reader-interest ranking (owner requests 2026-11-17): council finance/infrastructure first, then lifestyle; routine roadworks collapsed. */

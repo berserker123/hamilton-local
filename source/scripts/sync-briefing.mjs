@@ -156,6 +156,9 @@ export function normalizeBriefingData(data) {
       summary_zh: typeof item.summary_zh === 'string' && item.summary_zh.trim()
         ? normalizeCurrency(sanitizeBriefingText(item.summary_zh))
         : item.summary_zh,
+      detail_zh: typeof item.detail_zh === 'string' && item.detail_zh.trim()
+        ? normalizeCurrency(sanitizeBriefingText(item.detail_zh))
+        : item.detail_zh,
     })),
   };
 }
@@ -242,6 +245,8 @@ export function applyManualOverride(selected, manualPath) {
     summary: it.summary || '',
     summary_zh: it.summary_zh,
     headline_zh: it.headline_zh || '',
+    also_url: it.also_url || '',
+    also_source: it.also_source || '',
     category: it.category || 'news',
     urgent: !!it.urgent,
     order: idx + 1,
