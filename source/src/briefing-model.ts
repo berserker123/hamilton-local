@@ -268,6 +268,15 @@ export function itemTime(i: Pick<BriefingItem, 'published' | 'date_only'>, now: 
   if (diff === 1) return lang === 'en' ? 'Yesterday' : '昨天';
   return lang === 'en' ? `${d} ${MONTHS_EN[mo - 1]}` : `${mo}月${d}日`;
 }
+/** Calendar date for a homepage card. Date-only items keep 今天 / 昨天. */
+export function itemCardDate(i: Pick<BriefingItem, 'published' | 'date_only'>, now: number = Date.now(), lang: BriefingLang = 'zh'): string {
+  if (!i.published) return '';
+  if (i.date_only) return itemTime(i, now, lang);
+  const t = Date.parse(i.published);
+  if (isNaN(t)) return '';
+  const [, mo, d] = nzYmd(t);
+  return lang === 'en' ? `${d} ${MONTHS_EN[mo - 1]}` : `${mo}月${d}日`;
+}
 /** Reader-interest ranking (owner requests 2026-11-17): council finance/infrastructure first, then lifestyle; routine roadworks collapsed. */
 export const INTEREST_RULES = {
   lifestyle: /\b(?:food|eat(?:s|ing)?|restaurants?|caf[eé]s?|dish(?:es)?|menu|bestsellers?|festival|concerts?|gigs?|shows?|arts?|music|singing|markets?|events?|flights?|routes?|airport|airlines?|hotels?|openings?|opens|shops?|stores?|deals?|sales?|discounts?|free|family|kids|holidays?|christmas|black friday|beach|zoo|gardens)\b/i,

@@ -152,18 +152,21 @@ test('variant e renders alerts strip, lead h3 with English original, 更多新�
  const out=vhtml(d,'e');
  const L=model.newsLayout(d.items);
  assert.match(out,/hl-brief--e/);
- assert.ok(out.indexOf('hl-brief-e-alerts')<out.indexOf('hl-brief-e-lead'));
- const lead=out.match(/<article class="hl-brief-e-lead">[\s\S]*?<\/article>/)[0];
+ assert.match(out,/hl-brief-cards/);
+ assert.ok(out.indexOf('hl-brief-e-alerts')<out.indexOf('hl-brief-cards'));
+ const lead=out.match(/<article class="hl-brief-mini">[\s\S]*?Airport lands new Queenstown to Hamilton route[\s\S]*?<\/article>/)[0];
  assert.match(lead,/<h3[^>]*>Airport lands new Queenstown to Hamilton route<\/h3>/);
+ assert.match(lead,/class="hl-brief-more"/);
  assert.match(out,/市政赤字/);
  assert.doesNotMatch(lead,/紧急一/);
- assert.equal((out.match(/<article class="hl-brief-e-story">/g)||[]).length,Math.min(model.NEWS_SECONDARY,L.secondary.length));
+ const shown=(L.lead?1:0)+L.secondary.length+Math.min(model.NEWS_LATEST_LIMIT,L.latest.length);
+ assert.equal((out.match(/<article class="hl-brief-mini">/g)||[]).length,shown);
  assert.match(out,new RegExp('共 '+d.items.length+' 条'));
  assert.match(out,/今天 2 处施工或管制/);
  assert.match(out,/更新于 11月17日 18:30/);
  if(L.latest.length>model.NEWS_LATEST_LIMIT) assert.match(out,/查看全部新闻/); else assert.doesNotMatch(out,/查看全部新闻/);
  assert.match(out,/href="\/news\/"/);
- assert.equal((out.match(/<span class="hl-brief-e-time"/g)||[]).length,Math.min(model.NEWS_LATEST_LIMIT,L.latest.length));
+ assert.equal((out.match(/<span class="hl-brief-mini-date"/g)||[]).length,shown);
  assert.doesNotMatch(out,/ENGLISH BODY/);
  assert.match(out.match(/<ul class="hl-brief-e-alerts">[\s\S]*?<\/ul>/)[0],/紧急一/);
  for(const a of out.match(/<a [^>]*>/g)||[]){
@@ -224,9 +227,11 @@ test('1b: relative times are computed from view time in ZH and EN; header uses g
  const out2h=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:at2h}));
  const out30h=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t,variant:'e',now:at30h}));
  assert.match(out2h,/更新于 11月19日 09:00/);
- assert.match(out2h,/2小时前/);
+ assert.match(out2h,/class="hl-brief-mini-date">11月19日/);
+ assert.doesNotMatch(out2h,/2小时前/);
  assert.match(out30h,/更新于 11月19日 09:00/);
- assert.match(out30h,/1天前/);
+ assert.match(out30h,/class="hl-brief-mini-date">11月19日/);
+ assert.doesNotMatch(out30h,/1天前/);
 });
 
 test('1c: stale notice renders when briefing data is older than 36 hours (ZH & EN)',()=>{
@@ -265,9 +270,9 @@ test('4: English mode translates all briefing labels and uses original English t
  const out=renderToStaticMarkup(React.createElement(BriefingView,{data:d,t:(_zh,en)=>en,variant:'e',now:Date.parse('2026-11-17T08:00:00Z')}));
  assert.match(out,/Hamilton Daily Briefing/);
  assert.match(out,/Updated 17 Nov, 18:30/);
- assert.match(out,/Lead/);
- assert.match(out,/More news/);
- assert.match(out,/Read source ↗/);
+ assert.match(out,/All news/);
+ assert.match(out,/>More</);
+ assert.match(out,/Source ↗/);
  assert.match(out,/Alert · Police/);
  assert.match(out,/roadworks or traffic controls today/);
  assert.match(out,/Urgent one/);

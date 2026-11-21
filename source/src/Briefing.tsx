@@ -5,7 +5,7 @@ import { newsHref } from './site-routes.mjs';
 import {
   HOME_LIMIT, NEWS_LATEST_LIMIT, newsLayout, BriefingData, BriefingItem, BriefingLang,
   categoryLabel, formatBriefingDate, formatUpdated, isStaleBriefing, itemLang, itemText,
-  arrangeItems, itemTime, interestScore, itemDisplay } from './briefing-model';
+  arrangeItems, itemTime, interestScore, itemDisplay, itemCardDate } from './briefing-model';
 
 type T = (zh: string, en: string) => string;
 export type BriefingVariant = 'a' | 'b' | 'c' | 'd' | 'e';
@@ -136,7 +136,20 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
     return <p className="hl-brief-e-en hl-brief-e-summary" lang={textLang}>{teaser}</p>;
   };
   const shownLatest = latest.slice(0, NEWS_LATEST_LIMIT);
+  const cards = [...(lead ? [lead] : []), ...secondary, ...shownLatest];
   const today = formatBriefingDate(data.generated_at, uiLang);
+  const card = (i: BriefingItem) => {
+    const dateLabel = itemCardDate(i, now, uiLang);
+    return <article key={i.id} className="hl-brief-mini">
+      {kicker(i)}
+      <h3 lang={lang(i)}>{itemDisplay(i, uiLang).title}</h3>
+      <div className="hl-brief-mini-summary">{blurb(i)}</div>
+      <div className="hl-brief-mini-foot">
+        <p className="hl-brief-mini-meta">{i.source && <span>{i.source}</span>}{dateLabel && <span className="hl-brief-mini-date">{dateLabel}</span>}</p>
+        {more(i)}
+      </div>
+    </article>;
+  };
   return <section className="sb-container hl-brief hl-brief--e" aria-label={t('汉密尔顿每日快讯', 'Hamilton Daily Briefing')} data-testid="briefing">
     <div className="hl-brief-card hl-brief-e-card">
       <header className="hl-brief-e-mast">
@@ -157,28 +170,8 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
         <span className="hl-brief-e-alertlabel">{t('提醒', 'Alert')} · {categoryLabel(i.category, uiLang)}</span>
         <p lang={lang(i)}>{itemDisplay(i, uiLang).title}</p>{blurb(i)}{meta(i)}
       </li>)}</ul>}
-      <div className="hl-brief-e-grid">
-        <div className="hl-brief-e-main">
-          {lead && <article className="hl-brief-e-lead">
-            <div className="hl-brief-e-flag"><span className="hl-brief-e-tag">{t('头条', 'Lead')}</span>{kicker(lead)}</div>
-            <h3 lang={lang(lead)}>{itemDisplay(lead, uiLang).title}</h3>{blurb(lead)}{meta(lead, t('阅读原文 ↗', 'Read source ↗'))}
-          </article>}
-          {secondary.length > 0 && <div className="hl-brief-e-second">{secondary.map(i => <article key={i.id} className="hl-brief-e-story">
-            {kicker(i)}<h3 lang={lang(i)}>{itemDisplay(i, uiLang).title}</h3>{blurb(i)}{meta(i)}
-          </article>)}</div>}
-        </div>
-        {latest.length > 0 && <aside className="hl-brief-e-side" aria-label={t('更多新闻', 'More news')}>
-          <h3 className="hl-brief-e-sidehead">{t('更多新闻', 'More news')}</h3>
-          <ol className="hl-brief-e-latest">{shownLatest.map(i => {
-            const timeLabel = itemTime(i, now, uiLang);
-            return <li key={i.id} className={timeLabel ? undefined : 'no-time'}>
-              {timeLabel && <span className="hl-brief-e-time">{timeLabel}</span>}
-              <div>{kicker(i)}<p lang={lang(i)}>{itemDisplay(i, uiLang).title}</p>{blurb(i)}<div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}{i.also_url ? <a href={i.also_url} target="_blank" rel="noopener noreferrer">{(i.also_source || t('另一来源', 'Also')) + ' ↗'}</a> : null}{more(i)}</div></div>
-            </li>;
-          })}</ol>
-          {latest.length > NEWS_LATEST_LIMIT && <a className="hl-brief-toggle" href={newsHref()}>{t('查看全部新闻', 'All news')}</a>}
-        </aside>}
-      </div>
+      {cards.length > 0 && <div className="hl-brief-cards">{cards.map(card)}</div>}
+      {latest.length > NEWS_LATEST_LIMIT && <a className="hl-brief-toggle" href={newsHref()}>{t('查看全部新闻', 'All news')}</a>}
       {roadworks.length > 0 && <div className="hl-brief-roads">
         <button type="button" className="hl-brief-roads-btn" aria-expanded={roadsOpen} onClick={() => setRoadsOpen(!roadsOpen)}><span className="hl-brief-pill hl-brief-cat">{categoryLabel('roads', uiLang)}</span><span>{t(`今天 ${roadworks.length} 处施工或管制`, `${roadworks.length} roadworks or traffic controls today`)}</span><span aria-hidden="true">{roadsOpen ? '▴' : '▾'}</span></button>
         {roadsOpen && <ul className="hl-brief-roads-list">{roadworks.map(i => <li key={i.id}><span lang={lang(i)}>{itemText(i, uiLang)}</span> {link(i)}</li>)}</ul>}
