@@ -39,6 +39,8 @@ fs.writeFileSync(path.join(root,'public','sitemap.xml'),sitemap);
 fs.writeFileSync(path.join(dist,'feed.xml'),renderFeed(root));
 // The deployed repository serves its root. Copy only generated code/HTML/XML;
 // keep the existing assets, CNAME and README exactly as they are.
+// News article folders are regenerated from the current briefing, so drop stale ids first.
+fs.rmSync(path.join(repoRoot,'news'),{recursive:true,force:true});
 for(const name of generated){
   const target=path.join(repoRoot,name);
   fs.mkdirSync(path.dirname(target),{recursive:true});

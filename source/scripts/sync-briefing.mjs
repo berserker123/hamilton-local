@@ -156,6 +156,9 @@ export function normalizeBriefingData(data) {
       summary_zh: typeof item.summary_zh === 'string' && item.summary_zh.trim()
         ? normalizeCurrency(sanitizeBriefingText(item.summary_zh))
         : item.summary_zh,
+      detail_zh: typeof item.detail_zh === 'string' && item.detail_zh.trim()
+        ? normalizeCurrency(sanitizeBriefingText(item.detail_zh))
+        : item.detail_zh,
     })),
   };
 }

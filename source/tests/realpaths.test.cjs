@@ -6,7 +6,18 @@ const routes=()=>import('../src/site-routes.mjs');
 test('every current section and tab round-trips through a canonical trailing-slash URL',async()=>{
   const {PAGES,readRoute,href,legacyHashPath}=await routes();
   const tabs={tools:['bins','urgent','bus','pay','checklist','gst','units','seasonal','other'],living:['grocers','dining','places','upick','stays','blackfriday'],weekend:['picks','markets'],kids:['map','places','parties'],services:['home','trades','daily','pets','advisors']};
-  assert.equal(PAGES.length,33);
+  const sectionPages=PAGES.filter(p=>!p.path.startsWith('/news/'));
+  assert.equal(sectionPages.length,33);
+  const newsPages=PAGES.filter(p=>p.path.startsWith('/news/'));
+  const briefing=require('../src/data/briefing.json');
+  assert.equal(newsPages.length,1+briefing.items.length);
+  assert.ok(newsPages.some(p=>p.path==='/news/'));
+  for(const item of briefing.items){
+    const path='/news/'+encodeURIComponent(item.id)+'/';
+    assert.ok(newsPages.some(p=>p.path===path),path);
+    assert.deepEqual(readRoute(path),{route:'news',tab:'',q:'',at:''});
+  }
+  assert.deepEqual(readRoute('/news/'),{route:'news',tab:'',q:'',at:''});
   assert.equal(href('home'),'/');
   for(const [route,items] of Object.entries(tabs)){
     const section=route==='weekend'?'whatson':route;
@@ -51,6 +62,8 @@ test('canonicalization handles slashless paths, section queries, old path aliase
     ['/tools/transport/','','','/tools/bus/?at=tool-transport'],
     ['/','?cards=a&hero=window','#/tools?tab=bins','/tools/bins/?cards=a&hero=window'],
     ['/tools/bins/','?q=x','#overview','/tools/bins/?q=x#overview'],
+    ['/news','','','/news/'],
+    ['/news/abc','','','/news/abc/'],
   ])assert.equal(normalizeLocation({pathname,search,hash}),want);
   assert.deepEqual(readRoute('/tools/','?tab=unknown&at=bad'),{route:'tools',tab:'bins',q:'',at:''});
   assert.deepEqual(readRoute('/missing/'),{route:'home',tab:'',q:'',at:''});
@@ -73,10 +86,10 @@ test('each static document has distinct title, description, canonical and matchi
     assert.match(html,/<base href="\/">/);
     assert.match(html,/<div id="root"><\/div>/); // no added visible copy
   }
-  assert.equal(titles.size,33);assert.equal(descriptions.size,33);
+  assert.equal(titles.size,PAGES.length);assert.equal(descriptions.size,PAGES.length);
   const sitemap=renderSitemap();
   const excluded=['/living/dining/','/services/home/','/services/trades/','/services/daily/','/services/advisors/','/search/'];
-  assert.equal((sitemap.match(/<loc>/g)||[]).length,33-excluded.length);
+  assert.equal((sitemap.match(/<loc>/g)||[]).length,PAGES.filter(p=>!p.noindex).length);
   for(const path of ['/tools/bus/','/living/blackfriday/','/services/pets/','/whatson/picks/'])assert.ok(sitemap.includes('https://hamiltonlocal.nz'+path),path);
   for(const path of excluded){
     assert.ok(!sitemap.includes('<loc>https://hamiltonlocal.nz'+path+'</loc>'),path+' must be excluded from sitemap');
