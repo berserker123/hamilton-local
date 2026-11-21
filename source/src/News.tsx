@@ -74,6 +74,7 @@ function NewsArticle({ item, t, uiLang, now, generatedAt }: { item: BriefingItem
           {item.source && <span>{item.source}</span>}
           {timeLabel && <span>{timeLabel}</span>}
           {item.url && <a href={item.url} target="_blank" rel="noopener noreferrer">{t('阅读原文 ↗', 'Read source ↗')}</a>}
+          {item.also_url && <a href={item.also_url} target="_blank" rel="noopener noreferrer">{(item.also_source || t('另一来源', 'Also')) + ' ↗'}</a>}
           <a className="hl-brief-more" href={newsHref()}>{t('全部新闻', 'All news')}</a>
         </div>
       </article>

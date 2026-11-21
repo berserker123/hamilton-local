@@ -9,6 +9,8 @@ export type BriefingItem = {
   headline_zh?: string; order?: number; manual?: boolean;
   /** First sentence kept when an afternoon brief is shortened to a headline. */
   detail_zh?: string;
+  /** Second source when an item cites more than one link. */
+  also_url?: string; also_source?: string;
 };
 export type BriefingData = { generated_at: string; sample?: boolean; items: BriefingItem[] };
 

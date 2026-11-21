@@ -245,6 +245,8 @@ export function applyManualOverride(selected, manualPath) {
     summary: it.summary || '',
     summary_zh: it.summary_zh,
     headline_zh: it.headline_zh || '',
+    also_url: it.also_url || '',
+    also_source: it.also_source || '',
     category: it.category || 'news',
     urgent: !!it.urgent,
     order: idx + 1,

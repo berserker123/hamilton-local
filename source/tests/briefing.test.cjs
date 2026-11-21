@@ -438,7 +438,9 @@ test('9: owner manual briefing overrides only its own date, keeps owner order/wo
  fs.writeFileSync(mp,JSON.stringify(manual));
  const same={kind:'daily',ts:Date.parse('2026-11-20T03:15:02Z'),data:{generated_at:'x',items:[]}};
  assert.equal(applyManualOverride(same,mp).kind,'manual');
- const next={kind:'watch',ts:Date.parse('2026-11-20T20:00:01Z'),data:{generated_at:'2026-11-21T09:00:01+13:00',items:[]}}; // 21 Nov 09:00 NZDT
+ const nextDay=new Date(Date.parse(manual.date+'T00:00:00Z')+86400000).toISOString().slice(0,10);
+ const nextAt=nextDay+'T09:00:01+13:00';
+ const next={kind:'watch',ts:Date.parse(nextAt),data:{generated_at:nextAt,items:[]}};
  assert.equal(applyManualOverride(next,mp),next,'manual must not block the next day');
  assert.equal(applyManualOverride(same,path.join(os.tmpdir(),'nope.json')),same);
  // full sync into a temp tree

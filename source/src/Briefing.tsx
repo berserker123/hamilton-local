@@ -127,7 +127,7 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
   const kicker = (i: BriefingItem) => <span className={'hl-brief-e-kicker hl-brief-c-' + i.category}>{categoryLabel(i.category, uiLang)}</span>;
   const meta = (i: BriefingItem, label?: string) => {
     const timeLabel = itemTime(i, now, uiLang);
-    return <div className="hl-brief-e-meta"><span>{i.source}</span>{timeLabel && <span>{timeLabel}</span>}{link(i, label)}{more(i)}</div>;
+    return <div className="hl-brief-e-meta"><span>{i.source}</span>{timeLabel && <span>{timeLabel}</span>}{link(i, label)}{i.also_url ? <a href={i.also_url} target="_blank" rel="noopener noreferrer">{(i.also_source || t('另一来源', 'Also')) + ' ↗'}</a> : null}{more(i)}</div>;
   };
   const blurb = (i: BriefingItem) => {
     const teaser = itemDisplay(i, uiLang).teaser;
@@ -173,7 +173,7 @@ function NewsFront({ data, t, now, uiLang }: { data: BriefingData; t: T; now: nu
             const timeLabel = itemTime(i, now, uiLang);
             return <li key={i.id} className={timeLabel ? undefined : 'no-time'}>
               {timeLabel && <span className="hl-brief-e-time">{timeLabel}</span>}
-              <div>{kicker(i)}<p lang={lang(i)}>{itemDisplay(i, uiLang).title}</p>{blurb(i)}<div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}{more(i)}</div></div>
+              <div>{kicker(i)}<p lang={lang(i)}>{itemDisplay(i, uiLang).title}</p>{blurb(i)}<div className="hl-brief-e-meta"><span>{i.source}</span>{link(i)}{i.also_url ? <a href={i.also_url} target="_blank" rel="noopener noreferrer">{(i.also_source || t('另一来源', 'Also')) + ' ↗'}</a> : null}{more(i)}</div></div>
             </li>;
           })}</ol>
           {latest.length > NEWS_LATEST_LIMIT && <a className="hl-brief-toggle" href={newsHref()}>{t('查看全部新闻', 'All news')}</a>}
