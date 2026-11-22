@@ -683,7 +683,10 @@
         "also": [
           "https://claudelands.co.nz/events/all-events/event/hamilton-farmers-market"
         ],
-        "note_zh": "现站“周末集市”两张卡片其实指向同一市场（主办官网 + Claudelands 场馆页）。请保留并避免再加一条重复的同一市场。"
+        "note_zh": "本周（11月29日）临时改到 Innes Common（湖边），不在平时的 The Barn。因 Claudelands 的二手房车展占场；入口在 Lake Crescent 与 Lake Domain Drive。",
+        "note_en": "This week (29 November) the market is at Innes Common by Hamilton Lake, not The Barn, because the second-hand motorhome show is at Claudelands. Enter via Lake Crescent and Lake Domain Drive.",
+        "price_zh": "免费",
+        "price_en": "Free"
       }
     ],
     "hamilton_new": [

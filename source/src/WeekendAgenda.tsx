@@ -78,6 +78,12 @@ function EventRow({ item, t }: { item: Event; t: T }) {
     </div>
   </article>;
 }
+function marketPublicNote(item: Market, t: T) {
+  if (!('note_zh' in item) || !item.note_zh) return null;
+  if (item.id === 'cambridge-trash-n-treasure') return <p className="wa-caution caption-5">{item.note_zh}</p>;
+  if (item.id === 'hamilton-farmers-market') return <p className="wa-caution caption-5">{t(item.note_zh, 'note_en' in item && item.note_en ? String(item.note_en) : item.note_zh)}</p>;
+  return null;
+}
 function MarketRow({ item, t }: { item: Market; t: T }) {
   const day = item.day.replace('Every Sunday', t('每周日', 'Every Sunday')).replace('2026-10-02', '10月2日');
   const past = ['cambridge-trash-n-treasure', 'morrinsville-country-market'].includes(item.id);
@@ -87,7 +93,7 @@ function MarketRow({ item, t }: { item: Market; t: T }) {
   const tone = priceTone(raw.zh, raw.en, past);
   return <article className="wa-row" data-weekend-market-id={item.id}>
     <div className={'wa-time caption-4' + (item.hours.startsWith('待确认') ? ' is-tbc' : '')}><span>{item.hours.startsWith('待确认') ? t('时间待确认', 'Time unconfirmed') : item.hours}</span></div>
-    <div className="wa-main"><BilingualTitle as="h4" className="title-3" zh={item.title_zh} en={item.title_en} t={t} /><p className={'wa-hours caption-4' + (past ? ' wa-caution' : '')}>{past ? t('本周无场次 · ', 'No session this week · ') : ''}{day}</p><p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town)==='other'?` · ${item.town}`:''}</span></p>{item.hours.startsWith('待确认') && <p className="wa-caution caption-5">{item.hours}</p>}{'note_zh' in item && item.note_zh && item.id === 'cambridge-trash-n-treasure' ? <p className="wa-caution caption-5">{item.note_zh}</p> : null}</div>
+    <div className="wa-main"><BilingualTitle as="h4" className="title-3" zh={item.title_zh} en={item.title_en} t={t} /><p className={'wa-hours caption-4' + (past ? ' wa-caution' : '')}>{past ? t('本周无场次 · ', 'No session this week · ') : ''}{day}</p><p className="wa-venue caption-4"><MapPin aria-hidden="true" /><span>{t(item.venue, item.venue)}{regionOf(item.town)==='other'?` · ${item.town}`:''}</span></p>{item.hours.startsWith('待确认') && <p className="wa-caution caption-5">{item.hours}</p>}{marketPublicNote(item, t)}</div>
     <div className="wa-tail"><p className={'wa-price caption-4 ' + tone}>{t(price.zh, price.en)}</p><Sources item={item} t={t} /></div>
   </article>;
 }
