@@ -3278,5 +3278,364 @@
     "verdict": "待核实",
     "discountPercent": null,
     "notes": "Mitre 10 黑五 Weber 烧烤炉9折活动现价 NZ$629.10（页面标示原价 NZ$699.00，不作历史依据）；PriceSpy p=2742665 近90天无活跃历史价格点位，标为待核实。"
+  },
+  {
+    "id": "ssd-kingston-fury-2tb-hs-pb",
+    "name": "Kingston Fury Renegade 2TB M.2 NVMe SSD with Heatsink (PS5 Ready, SFYRDK/2000G)",
+    "nameEn": "Kingston Fury Renegade 2TB M.2 NVMe SSD with Heatsink (PS5 Ready, SFYRDK/2000G)",
+    "nameZh": "金士顿 Fury Renegade 2TB M.2 NVMe 固态硬盘（带散热片，PS5 可用）",
+    "category": "数码",
+    "store": "PB Tech",
+    "salePrice": 599,
+    "currency": "NZD",
+    "typicalPrice": 746.35,
+    "lowestPrice90d": 599,
+    "verdict": "真优惠",
+    "discountPercent": 19.7,
+    "checkedAt": "2026-11-22T18:17:06+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.pbtech.co.nz/product/HDDKIN24200/Kingston-Fury-Renegade-2TB-M2-NVMe-Internal-SSD-wi",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=7323821",
+    "blackFridayConfirmed": true,
+    "historyVerified": true,
+    "offerLabel": "PB Tech price；Black Friday；结账输入优惠码 GTA6SSD",
+    "sourceUrls": [
+      "https://www.pbtech.co.nz/product/HDDKIN24200/Kingston-Fury-Renegade-2TB-M2-NVMe-Internal-SSD-wi",
+      "https://pricespy.co.nz/product.php?p=7323821"
+    ],
+    "sources": [
+      "https://www.pbtech.co.nz/product/HDDKIN24200/Kingston-Fury-Renegade-2TB-M2-NVMe-Internal-SSD-wi",
+      "https://pricespy.co.nz/product.php?p=7323821"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$746.35，同范围最低 NZ$599.00。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$746.35，同范围最低 NZ$599.00。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:17:06+13:00",
+      "evidence": "ssd-fury-2tb-hs-retail",
+      "extraction": "Visible \"With promo code\" price on the product page (code GTA6SSD, GST inclusive); Product JSON-LD offers.price shows NZ$746.35 without the code"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 7323821,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 6,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "ssd-fury-2tb-hs-spy"
+    },
+    "offerNote": "需在结账时输入优惠码 GTA6SSD 才是此价；不用码为 NZ$746.35。",
+    "offerNoteEn": "This price needs promo code GTA6SSD at checkout; without the code it is NZ$746.35."
+  },
+  {
+    "id": "ssd-wd-black-sn850p-1tb-jb",
+    "name": "WD_Black SN850P NVMe SSD with Heatsink for PS5 (1TB)",
+    "nameEn": "WD_Black SN850P NVMe SSD with Heatsink for PS5 (1TB)",
+    "nameZh": "西部数据 WD_Black SN850P 1TB 固态硬盘（带散热片，PS5 专用）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 695,
+    "currency": "NZD",
+    "typicalPrice": 799,
+    "lowestPrice90d": 695,
+    "verdict": "真优惠",
+    "discountPercent": 13,
+    "checkedAt": "2026-11-22T18:16:41+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.jbhifi.co.nz/products/wd_black-sn850p-nvme-ssd-with-heatsink-for-ps5-1tb",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13155342",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "offerLabel": "JB Hi-Fi price",
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/wd_black-sn850p-nvme-ssd-with-heatsink-for-ps5-1tb",
+      "https://pricespy.co.nz/product.php?p=13155342"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/wd_black-sn850p-nvme-ssd-with-heatsink-for-ps5-1tb",
+      "https://pricespy.co.nz/product.php?p=13155342"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$799.00，同范围最低 NZ$695.00。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$799.00，同范围最低 NZ$695.00。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:16:41+13:00",
+      "evidence": "ssd-sn850p-1tb-retail",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 13155342,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 2,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "ssd-sn850p-1tb-spy"
+    }
+  },
+  {
+    "id": "ssd-samsung-990pro-2tb-hs-pb",
+    "name": "Samsung 990 Pro With Heatsink 2TB M.2 NVMe Internal SSD PCIe Gen 4 (MZ-V9P2T0CW)",
+    "nameEn": "Samsung 990 Pro With Heatsink 2TB M.2 NVMe Internal SSD PCIe Gen 4 (MZ-V9P2T0CW)",
+    "nameZh": "三星 990 Pro 2TB M.2 NVMe 固态硬盘（带散热片）",
+    "category": "数码",
+    "store": "PB Tech",
+    "salePrice": 861.35,
+    "currency": "NZD",
+    "typicalPrice": 859,
+    "lowestPrice90d": 803.85,
+    "verdict": "先别急",
+    "discountPercent": -0.3,
+    "checkedAt": "2026-11-22T18:13:04+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.pbtech.co.nz/product/HDDSAM990210/Samsung-990-Pro-With-Heatsink-2TB-M2-NVMe-Internal",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=11700466",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "offerLabel": "PB Tech price；每位顾客限购3件",
+    "sourceUrls": [
+      "https://www.pbtech.co.nz/product/HDDSAM990210/Samsung-990-Pro-With-Heatsink-2TB-M2-NVMe-Internal",
+      "https://pricespy.co.nz/product.php?p=11700466"
+    ],
+    "sources": [
+      "https://www.pbtech.co.nz/product/HDDSAM990210/Samsung-990-Pro-With-Heatsink-2TB-M2-NVMe-Internal",
+      "https://pricespy.co.nz/product.php?p=11700466"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$859.00，同范围最低 NZ$803.85。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$859.00，同范围最低 NZ$803.85。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:13:04+13:00",
+      "evidence": "ssd-990pro-2tb-retail",
+      "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 11700466,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 4,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "ssd-990pro-2tb-spy"
+    }
+  },
+  {
+    "id": "tplink-deco-be25-3pk-pb",
+    "name": "TP-Link Deco BE25 (BE5000) Dual-Band WiFi 7 Whole Home Mesh System - 3 Pack",
+    "nameEn": "TP-Link Deco BE25 (BE5000) Dual-Band WiFi 7 Whole Home Mesh System - 3 Pack",
+    "nameZh": "TP-Link Deco BE25 WiFi 7 全屋 Mesh 路由套装（3 件装）",
+    "category": "数码",
+    "store": "PB Tech",
+    "salePrice": 534.09,
+    "currency": "NZD",
+    "typicalPrice": 573.36,
+    "lowestPrice90d": 489.01,
+    "verdict": "一般",
+    "discountPercent": 6.8,
+    "checkedAt": "2026-11-22T18:13:10+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.pbtech.co.nz/product/NETTPL87253/TP-Link-Deco-BE25-BE5000-Dual-Band-WiFi-7-Whole-Ho",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13623625",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "offerLabel": "PB Tech price",
+    "sourceUrls": [
+      "https://www.pbtech.co.nz/product/NETTPL87253/TP-Link-Deco-BE25-BE5000-Dual-Band-WiFi-7-Whole-Ho",
+      "https://pricespy.co.nz/product.php?p=13623625"
+    ],
+    "sources": [
+      "https://www.pbtech.co.nz/product/NETTPL87253/TP-Link-Deco-BE25-BE5000-Dual-Band-WiFi-7-Whole-Ho",
+      "https://pricespy.co.nz/product.php?p=13623625"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$573.36，同范围最低 NZ$489.01。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$573.36，同范围最低 NZ$489.01。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:13:10+13:00",
+      "evidence": "mesh-deco-be25-3-retail",
+      "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 13623625,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 23,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "mesh-deco-be25-3-spy"
+    }
+  },
+  {
+    "id": "ps5-dualsense-charging-station-jb",
+    "name": "Sony PS5 DualSense Charging Station",
+    "nameEn": "Sony PS5 DualSense Charging Station",
+    "nameZh": "索尼 PS5 DualSense 手柄充电座",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 48,
+    "currency": "NZD",
+    "typicalPrice": 52.99,
+    "lowestPrice90d": 44,
+    "verdict": "一般",
+    "discountPercent": 9.4,
+    "checkedAt": "2026-11-22T18:16:49+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-charging-station",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=5532480",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "offerLabel": "JB Hi-Fi price",
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-charging-station",
+      "https://pricespy.co.nz/product.php?p=5532480"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-charging-station",
+      "https://pricespy.co.nz/product.php?p=5532480"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$52.99，同范围最低 NZ$44.00。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$52.99，同范围最低 NZ$44.00。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:16:49+13:00",
+      "evidence": "dock-sony-jb-retail",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 5532480,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 38,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "dock-sony-spy"
+    }
+  },
+  {
+    "id": "ps5-pulse-elite-black-jb",
+    "name": "Sony PS5 PULSE Elite Wireless Headset - Midnight Black",
+    "nameEn": "Sony PS5 PULSE Elite Wireless Headset - Midnight Black",
+    "nameZh": "索尼 PS5 PULSE Elite 无线耳机（午夜黑）",
+    "category": "数码",
+    "store": "JB Hi-Fi",
+    "salePrice": 178,
+    "currency": "NZD",
+    "typicalPrice": 253.92,
+    "lowestPrice90d": 157,
+    "verdict": "一般",
+    "discountPercent": 29.9,
+    "checkedAt": "2026-11-22T18:16:45+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.jbhifi.co.nz/products/ps5-playstation-5-pulse-elite-wireless-headset-midnight-black",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=12745622",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "offerLabel": "JB Hi-Fi price",
+    "sourceUrls": [
+      "https://www.jbhifi.co.nz/products/ps5-playstation-5-pulse-elite-wireless-headset-midnight-black",
+      "https://pricespy.co.nz/product.php?p=12745622"
+    ],
+    "sources": [
+      "https://www.jbhifi.co.nz/products/ps5-playstation-5-pulse-elite-wireless-headset-midnight-black",
+      "https://pricespy.co.nz/product.php?p=12745622"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$253.92，同范围最低 NZ$157.00。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$253.92，同范围最低 NZ$157.00。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:16:45+13:00",
+      "evidence": "hs-pulse-elite-retail",
+      "extraction": "Product JSON-LD offers.price"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 12745622,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 30,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "hs-pulse-elite-spy"
+    }
+  },
+  {
+    "id": "hue-play-gradient-65-nl",
+    "name": "Philips Hue Play Gradient Lightstrip for 65+ TV",
+    "nameEn": "Philips Hue Play Gradient Lightstrip for 65+ TV",
+    "nameZh": "飞利浦 Hue Play Gradient 电视灯带（适用 65 寸以上）",
+    "category": "数码",
+    "store": "Noel Leeming",
+    "salePrice": 358.38,
+    "currency": "NZD",
+    "typicalPrice": 484.99,
+    "lowestPrice90d": 358.38,
+    "verdict": "真优惠",
+    "discountPercent": 26.1,
+    "checkedAt": "2026-11-22T18:16:12+13:00",
+    "addedAt": "2026-11-22",
+    "saleEnds": null,
+    "productUrl": "https://www.noelleeming.co.nz/p/philips-hue-play-gradient-lightstrip-for-65-tv/N201948.html",
+    "priceSpyUrl": "https://pricespy.co.nz/product.php?p=5512587",
+    "blackFridayConfirmed": false,
+    "historyVerified": true,
+    "offerLabel": "Noel Leeming price",
+    "sourceUrls": [
+      "https://www.noelleeming.co.nz/p/philips-hue-play-gradient-lightstrip-for-65-tv/N201948.html",
+      "https://pricespy.co.nz/product.php?p=5512587"
+    ],
+    "sources": [
+      "https://www.noelleeming.co.nz/p/philips-hue-play-gradient-lightstrip-for-65-tv/N201948.html",
+      "https://pricespy.co.nz/product.php?p=5512587"
+    ],
+    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$484.99，同范围最低 NZ$358.38。",
+    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$484.99，同范围最低 NZ$358.38。",
+    "currentPriceRecheck": {
+      "status": "verified",
+      "at": "2026-11-22T18:16:12+13:00",
+      "evidence": "led-hue-65-retail",
+      "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
+    },
+    "historyScope": "market",
+    "historyEvidence": {
+      "exactVariant": true,
+      "productId": 5512587,
+      "variantIds": [],
+      "windowStart": "2026-08-24",
+      "windowEnd": "2026-11-21",
+      "dayCount": 90,
+      "pointCount": 13,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "selectedShop": null,
+      "evidence": "led-hue-65-spy"
+    }
   }
 ]
