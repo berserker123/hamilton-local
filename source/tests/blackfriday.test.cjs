@@ -70,7 +70,7 @@ test('preview data has real source URLs and never substitutes list price for his
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
     assert.ok(validCategories.has(d.category), `unexpected category ${d.category} on ${d.id}`);
-    assert.ok(d.salePrice > 0 && /^2026-11-(15|16|17|18|19|21)/.test(d.checkedAt), d.id);
+    assert.ok(d.salePrice > 0 && /^2026-11-(15|16|17|18|19|21|22)/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/(pricespy\.co\.nz\/product\.php\?p=\d+|www\.priceme\.co\.nz\/[^/]+\/p-\d+\.aspx)/);
@@ -98,7 +98,8 @@ test('round three retains eight updated categories and records reproducible exac
         (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-15') ||
         (d.historyEvidence.windowStart === '2026-08-18' && d.historyEvidence.windowEnd === '2026-11-16') ||
         (d.historyEvidence.windowStart === '2026-08-20' && d.historyEvidence.windowEnd === '2026-11-17') ||
-        (d.historyEvidence.windowStart === '2026-08-22' && d.historyEvidence.windowEnd === '2026-11-19')
+        (d.historyEvidence.windowStart === '2026-08-22' && d.historyEvidence.windowEnd === '2026-11-19') ||
+        (d.historyEvidence.windowStart === '2026-08-24' && d.historyEvidence.windowEnd === '2026-11-21')
       )) ||
       (['apple-airpods5-jb', 'apple-iphone18-pro-256-jb', 'apple-iphone18-promax-256-jb'].includes(d.id) && d.historyEvidence.windowStart === '2026-09-10' && (
         (d.historyEvidence.windowEnd === '2026-11-15' && d.historyEvidence.dayCount === 67) ||
@@ -125,7 +126,7 @@ test('refresh 2026-11-21: counts, dates, retailer filters (including Bunnings & 
   const dates = [...new Set(data.map(d => d.checkedAt.slice(0, 10)))].sort();
   const expectedRange = dates.length > 1 ? `${dates[0]} – ${dates[dates.length - 1]}` : dates[0];
   assert.ok(html.includes(expectedRange));
-  assert.equal(dates.at(-1), '2026-11-21');
+  assert.equal(dates.at(-1), '2026-11-22');
   const blocked = data.filter(d => d.currentPriceRecheck?.status === 'domain-blocked').length;
   assert.equal((html.match(/保留早前记录/g) || []).length, blocked);
   const spyConfirmed = data.filter(d => d.currentPriceRecheck?.status === 'pricespy-offer').length;

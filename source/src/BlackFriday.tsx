@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, BadgePercent, Calendar, ShieldCheck } from 'lucide-react';
 import DATA from './data/blackfriday.json';
 import { CATEGORIES, Deal, realDiscount, selectDeals, verdict, Verdict } from './blackfriday-model';
+import KIT from './data/gta6-kit.json';
+import { KitSlotConfig, kitSummary, resolveKit } from './gta6-kit-model';
 
 type T = (zh: string, en: string) => string;
 const DEALS = DATA as Deal[];
+const KIT_SLOTS = resolveKit(KIT.slots as KitSlotConfig[], DEALS);
 const STORES = [...new Set(DEALS.map(d => d.store))].sort();
 const ACTIVE_CATEGORIES = CATEGORIES.filter(([zh]) => DEALS.some(d => d.category === zh));
 export const BF_BATCH_SIZE = 12;
@@ -32,7 +35,52 @@ function VerdictPill({ value, t, variant }: { value: Verdict; t: T; variant?: 0 
   }
   return <span className={'bf-verdict bf-verdict-' + CLASSES[value]}>{t(value, LABELS[value])}</span>;
 }
-export function BlackFridayBanner({ t }: { t: T }) {
+const SINGLE_ITEM_NOTE_EN = 'Single-item price. The buy-two save-15% promotion is not included.';
+function Gta6Kit({ t }: { t: T }) {
+  const english = t('中', 'en') === 'en';
+  const summary = kitSummary(KIT_SLOTS);
+  const checked = summary.firstChecked === summary.lastChecked ? summary.lastChecked : `${summary.firstChecked} – ${summary.lastChecked}`;
+  return <section className="bf-kit" aria-labelledby="bf-kit-title" data-testid="bf-gta6-kit">
+    <div className="bf-kit-head">
+      <div>
+        <p className="bf-kicker">{t('玩之前，先把装备备齐', 'Get set before you play')}</p>
+        {english
+          ? <h3 id="bf-kit-title" lang="en-NZ">GTA6 Gear List</h3>
+          : <><h3 id="bf-kit-title" lang="zh-CN">GTA6 装备清单</h3><p className="bf-kit-en" lang="en-NZ">GTA6 Gear List</p></>}
+      </div>
+      <div className="bf-kit-total" data-testid="bf-kit-total">
+        <span>{t(`${summary.slotCount} 项推荐款合计`, `${summary.slotCount} recommended picks`)}</span>
+        <strong>{money(summary.total)}<small>NZD</small></strong>
+        <span>{t(`其中 ${summary.goodCount} 项为真优惠`, `${summary.goodCount} rated Good deal`)}</span>
+      </div>
+    </div>
+    <p className="bf-kit-lede">{t('手柄、电视、固态硬盘之外，再补上网络、零食、充电座、耳机和氛围灯。每一项都用同一套评级，价格取自新西兰商家页面。', 'Beyond the controller, TV and SSD: network, snacks, a charging dock, a headset and backlighting. Every pick is rated the same way, with prices from NZ retailer pages.')}</p>
+    <div className="bf-kit-grid">{KIT_SLOTS.map(slot => {
+      const { pick, alternatives } = slot, discount = realDiscount(pick);
+      return <article className={'bf-kit-card' + (alternatives.length ? ' bf-kit-card-wide' : '')} key={slot.id} data-kit-slot={slot.id}>
+        <div className="bf-kit-main">
+        <div className="bf-card-top"><span>{t(slot.zh, slot.en)}</span><VerdictPill value={verdict(pick)} t={t} /></div>
+        <h4 lang={english ? 'en-NZ' : 'zh-CN'}>{english ? pick.name : pick.nameZh}</h4>
+        <p className="bf-kit-store">{pick.store}</p>
+        <div className="bf-kit-price"><strong>{money(pick.salePrice)}</strong><small>NZD</small></div>
+        {pick.typicalPrice != null && <p className="bf-kit-compare">{t(`平时价 ${money(pick.typicalPrice)}`, `Typical ${money(pick.typicalPrice)}`)}{discount != null && <> · {t(`真实折扣 ${discount}%`, `Real discount ${discount}%`)}</>}</p>}
+        <p className="bf-kit-note">{t(slot.noteZh, slot.noteEn)}</p>
+        {pick.offerNote && <p className="bf-kit-offer">{t(pick.offerNote, pick.offerNoteEn ?? SINGLE_ITEM_NOTE_EN)}</p>}
+        <div className="bf-kit-links"><a href={pick.productUrl} target="_blank" rel="noopener noreferrer">{t('去商家', 'Visit store')}<ArrowUpRight aria-hidden="true" /></a>{pick.priceSpyUrl && <a href={pick.priceSpyUrl} target="_blank" rel="noopener noreferrer">{t('价格走势', 'Price history')}<ArrowUpRight aria-hidden="true" /></a>}</div>
+        </div>
+        {alternatives.length > 0 && <div className="bf-kit-alts">
+          <p>{t(`另外 ${alternatives.length} 款可选`, `${alternatives.length} more to consider`)}</p>
+          <ul>{alternatives.map(alt => <li key={alt.id}>
+            <a href={alt.productUrl} target="_blank" rel="noopener noreferrer">{english ? alt.name : alt.nameZh}</a>
+            <span>{alt.store} · {money(alt.salePrice)}</span>
+            <VerdictPill value={verdict(alt)} t={t} />
+          </li>)}</ul>
+        </div>}
+      </article>;
+    })}</div>
+    <p className="bf-kit-foot">{t(`价格核对：${checked} · NZD。合计为每项推荐款现价相加${summary.hasPromoCode ? '，其中有需要优惠码的价格，见卡片说明' : ''}。价格以商家页面为准，可能随时变动。`, `Prices checked: ${checked} · NZD. The total adds up the current price of each recommended pick${summary.hasPromoCode ? '; some prices need a promo code, see the card notes' : ''}. Prices follow the retailer page and may change at any time.`)}</p>
+  </section>;
+}export function BlackFridayBanner({ t }: { t: T }) {
   const english = t('中', 'en') === 'en';
   return <div className="sb-container bf-banner-wrap"><a className="bf-banner" href="/living/blackfriday/" data-testid="bf-home-banner"><span className="bf-banner-icon"><BadgePercent aria-hidden="true" /></span><span className="bf-banner-copy">{english
     ? <><strong lang="en-NZ">Black Friday · See what you’re really saving</strong><span lang="en-NZ">Compare retailer prices with 90-day typical prices</span></>
@@ -100,6 +148,7 @@ export function BlackFriday({ t, query = '', pageSize }: { t: T; query?: string;
       <p className="bf-disclaimer">{t('价格以商家页面为准，可能随时变动', 'Prices are subject to the retailer’s page and may change at any time.')}</p>
     </div>
     <PriceCheckPanel t={t} />
+    <Gta6Kit t={t} />
     <div className="bf-filters" aria-label={t('筛选优惠', 'Filter listings')}>
       <div className="bf-categories" role="group" aria-label={t('商品分类', 'Category')}><button type="button" aria-pressed={category === 'all'} onClick={() => setCategory('all')}>{t('全部', 'All')}</button>{ACTIVE_CATEGORIES.map(([zh, en]) => <button type="button" key={zh} aria-pressed={category === zh} onClick={() => setCategory(zh)}>{t(zh, en)}</button>)}</div>
       <div className="bf-selects"><label>{t('商家', 'Store')}<select aria-label={t('选择商家', 'Choose store')} value={store} onChange={e => setStore(e.target.value)}><option value="all">{t('全部商家', 'All stores')}</option>{STORES.map(s => <option key={s}>{s}</option>)}</select></label><label>{t('排序', 'Sort')}<select aria-label={t('排序方式', 'Sort by')} value={sort} onChange={e => setSort(e.target.value)}><option value="discount">{t('折扣最大', 'Biggest discount')}</option><option value="newest">{t('最新加入', 'Newest added')}</option><option value="price">{t('价格从低到高', 'Price: low to high')}</option></select></label></div>
@@ -122,7 +171,7 @@ export function BlackFriday({ t, query = '', pageSize }: { t: T; query?: string;
           <p className="bf-history-note">{humor ? t(humor.noteZh, humor.noteEn) : discount == null ? t('历史价格不足，暂不判断是否优惠。', 'Insufficient price history to assess this offer.') : d.historyScope === 'retailer' ? t('以同款商家日价中位数计算，不以RRP计算。', 'Compared with this store’s exact-variant median, not RRP.') : t('以同款市场日价中位数计算，不以RRP计算。', 'Compared with the exact variant’s market median, not RRP.')}</p>
           {d.currentPriceRecheck?.status === 'domain-blocked' && <p className="bf-history-note">{t('本轮未能刷新商家价格；保留早前记录，核对日期见下。', 'Retailer refresh unavailable; earlier price retained, see the checked date below.')}</p>}
           {d.currentPriceRecheck?.status === 'pricespy-offer' && <p className="bf-history-note">{t('商家页面暂时无法打开；现价按 PriceSpy 当日同店报价核对。', 'Retailer page unavailable; price confirmed against the same store’s live PriceSpy offer.')}</p>}
-          {d.offerNote && <p className="bf-history-note">{t(d.offerNote, 'Single-item price. The buy-two save-15% promotion is not included.')}</p>}
+          {d.offerNote && <p className="bf-history-note">{t(d.offerNote, d.offerNoteEn ?? SINGLE_ITEM_NOTE_EN)}</p>}
           {d.taxFreeOffer && <div className="bf-taxfree-tip" data-testid="bf-taxfree-tip">
             <div className="bf-taxfree-head">
               <span className="bf-taxfree-badge">{t('超级省钱妙招 · 机场免税', 'Money-saving tip · Airport tax-free')}</span>
