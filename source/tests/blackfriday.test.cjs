@@ -242,3 +242,24 @@ test('mobile header theme pill (shown on the Black Friday page) is never below 1
     }
   }
 });
+
+test('Local Living Black Friday tab uses a single label matching the other tabs without a second-line subtitle', async () => {
+  const fs = require('node:fs');
+  const app = fs.readFileSync('src/App.tsx', 'utf8');
+  const tabsMatch = app.match(/function Tabs\([\s\S]*?\n\}/);
+  assert.ok(tabsMatch, 'Tabs function exists in src/App.tsx');
+  const tabsFn = tabsMatch[0];
+  assert.doesNotMatch(tabsFn, /bf-tab-label/, 'Tabs must not use bf-tab-label');
+  assert.doesNotMatch(tabsFn, /<small\b/i, 'Tabs must not render a <small> subtitle');
+  assert.doesNotMatch(tabsFn, /blackfriday/, 'Tabs must not special-case blackfriday');
+  assert.match(tabsFn, /tabs\.map\(\(\[id,\s*zh,\s*en\]\)\s*=>\s*<a\b[^>]*>\{t\(zh,\s*en\)\}<\/a>\)/, 'all tabs render single-label t(zh, en)');
+
+  const css = fs.readFileSync('src/styles.css', 'utf8');
+  assert.doesNotMatch(css, /\.bf-tab-label\b/, 'unused .bf-tab-label CSS must not exist');
+  assert.doesNotMatch(css, /#tab-blackfriday\s*\{/, '#tab-blackfriday must not have custom height/padding overrides');
+  assert.match(css, /html body \.ia-root\[data-route="living"\] \.ia-tabs\.ia-tabs-compact:has\(#tab-blackfriday\)\s*\{\s*grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\);\s*\}/);
+  assert.match(css, /html body \.ia-root\[data-route="living"\] \.ia-tabs\.ia-tabs-compact:has\(#tab-blackfriday\)\s*\{\s*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);\s*\}/);
+
+  const { TABS } = await import('../src/site-routes.mjs');
+  assert.deepEqual(TABS.living.find(([id]) => id === 'blackfriday'), ['blackfriday', '黑五专区', 'Black Friday']);
+});

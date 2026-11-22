@@ -74,14 +74,13 @@ function Empty({ t, title, detail }: { t: T; title?: string; detail?: string }) 
 }
 function Tabs({ route, tab, t }: { route: Exclude<Route, 'home' | 'privacy' | 'search'>; tab: string; t: T }) {
   const tabs = TABS[route].filter(([id]) => !(route === 'living' && id === 'dining'));
-  const english = t('中', 'en') === 'en';
   return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className="sb-tabs ia-tabs ia-tabs-compact" onKeyDown={e => {
     const current = tabs.findIndex(item => item[0] === tab);
     const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (next < 0) return;
     e.preventDefault(); navigate(href(route, tabs[next][0]));
     requestAnimationFrame(() => document.getElementById('tab-' + tabs[next][0])?.focus());
-  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{id === 'blackfriday' && !english ? <span className="bf-tab-label"><span lang="zh-CN">{zh}</span><small lang="en-NZ">{en}</small></span> : t(zh, en)}</a>)}</div>;
+  }}>{tabs.map(([id, zh, en]) => <a key={id} id={'tab-' + id} data-testid={'tab-' + id} role="tab" aria-selected={id === tab} aria-controls="section-panel" tabIndex={id === tab ? 0 : -1} href={href(route, id)} className={'sb-tab ' + (id === tab ? 'sb-tab-on' : '')}>{t(zh, en)}</a>)}</div>;
 }
 type Place = typeof PLACES[number];
 function placeHref(p: Place) {

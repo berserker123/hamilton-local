@@ -4572,10 +4572,8 @@ html body .ia-root .pg-place-actions svg { width: 14px; height: 14px; }
 .bf-kit-alts ul { display: grid; gap: 14px; list-style: none; margin: 0; padding: 0; }
 .bf-kit-alts li { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; color: var(--hl-muted); font-size: 12px; line-height: 1.5; }
 .bf-kit-alts li a { font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
-.bf-page .bf-kit-foot { margin-top: 14px; color: var(--hl-muted); font-size: 12px; line-height: 1.7; }html body .ia-root[data-route="living"] .ia-tabs.ia-tabs-compact:has(#tab-blackfriday) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-html body .ia-root[data-route="living"] .ia-tabs.ia-tabs-compact #tab-blackfriday { height: auto; min-height: 44px; padding: 5px 8px; }
-.bf-tab-label { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.bf-tab-label small { font-size: 12px; font-weight: 400; line-height: 1.2; }
+.bf-page .bf-kit-foot { margin-top: 14px; color: var(--hl-muted); font-size: 12px; line-height: 1.7; }
+html body .ia-root[data-route="living"] .ia-tabs.ia-tabs-compact:has(#tab-blackfriday) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .bf-page :is(button, a, select, summary):focus-visible, .bf-banner:focus-visible { outline: 2px solid var(--sec, var(--hl-accent)); outline-offset: 4px; }
 @media (max-width: 960px) { .bf-grid, .bf-kit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 720px) {
