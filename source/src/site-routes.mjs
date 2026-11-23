@@ -1,5 +1,6 @@
 // Shared by the SPA and the static GitHub Pages build.
-import briefingData from './data/briefing.json' with { type: 'json' };
+import riverTalkData from './data/river-talk.json' with { type: 'json' };
+import { talkHref, talkIdFromPath } from './river-talk.mjs';
 export const SECTION_ORDER = ['home','tools','living','weekend','kids','services'];
 export const TOOL_TABS = [
   ['bins','垃圾分类与收运','Rubbish & recycling'], ['urgent','急诊信息','Urgent care'], ['bus','市区公交','City buses'],
@@ -59,39 +60,12 @@ const SECTIONS = {
   services: ['便民黄页', 'Local Services', '家里家外，总有需要帮忙的时候。', 'A little help for everyday life.'],
   privacy: ['隐私政策', 'Privacy Policy', 'Hamilton Local 隐私政策：我们如何处理访客统计、反馈与来信，以及你的隐私权利。', 'Hamilton Local privacy policy: how we handle visit statistics, feedback and emails, and your privacy rights.'],
   search: ['搜索结果', 'Search', '在 Hamilton Local 查找汉密尔顿本地生活、实用工具、周末活动与亲子信息。', 'Search Hamilton Local for daily essentials, local living, events and family outings.'],
-  news: ['每日快讯', 'Daily Briefing', '汉密尔顿与怀卡托的每日新闻摘要，点进可看全文。', 'Daily news summaries for Hamilton and Waikato. Open a story for the full text.'],
+  talk: ['屯里二三事', 'Tron Talk', '屯里大事小事，给你唠明白。市政大白话、人生通关攻略、抠门研究所，讲清汉密尔顿的事跟你有什么关系。', 'Big and small news from The Tron: council news in plain words, life guides and money-saving notes.'],
 };
-export function newsHref(id) {
-  if (!id) return '/news/';
-  return '/news/' + encodeURIComponent(id) + '/';
-}
-export function newsIdFromPath(pathname = '/') {
-  const parts = String(pathname || '').split('/').filter(Boolean);
-  if (parts[0] !== 'news' || !parts[1]) return '';
-  try { return decodeURIComponent(parts[1]); } catch { return ''; }
-}
 function clipChars(text, max) {
   const chars = Array.from(String(text || '').replace(/\s+/g, ' ').trim());
   if (chars.length <= max) return chars.join('');
   return chars.slice(0, max).join('') + '…';
-}
-function newsArticlePages(usedTitles, usedDesc) {
-  const section = SECTIONS.news;
-  return (briefingData.items || []).filter(item => item && item.id).map(item => {
-    const headline = String(item.headline_zh || item.summary_zh || item.title || '新闻').trim();
-    let title = headline + ' · ' + section[0] + ' · Hamilton Local';
-    if (usedTitles.has(title)) title = headline + ' · ' + (item.source || item.id) + ' · Hamilton Local';
-    usedTitles.add(title);
-    let description = '每日快讯：' + (clipChars(item.summary_zh || item.detail_zh || headline, 90) || headline);
-    if (usedDesc.has(description)) description += '（' + item.id + '）';
-    usedDesc.add(description);
-    const enHeadline = String(item.title || '').trim() || headline;
-    return {
-      path: newsHref(item.id), route: 'news', tab: '', noindex: false,
-      zh: { title, description },
-      en: { title: enHeadline + ' · ' + section[1] + ' · Hamilton Local', description: clipChars(item.summary || item.title || description, 140) || description },
-    };
-  });
 }
 export const NOINDEX_PATHS = new Set([
   '/living/dining/',
@@ -125,23 +99,22 @@ const CORE_PAGES = [...SECTION_ORDER, 'privacy', 'search'].flatMap(route => {
   };
   return [make(), ...(TABS[route] || []).map(([tab]) => make(tab))];
 });
-const newsSection = SECTIONS.news;
-const newsIndexTitle = newsSection[0] + ' · Hamilton Local';
-const newsIndexDesc = newsSection[2];
-const newsTitleUsed = new Set(CORE_PAGES.map(page => page.zh.title));
-const newsDescUsed = new Set(CORE_PAGES.map(page => page.zh.description));
-newsTitleUsed.add(newsIndexTitle);
-newsDescUsed.add(newsIndexDesc);
 export const PAGES = [...CORE_PAGES, {
-  path: '/news/', route: 'news', tab: '', noindex: false,
-  zh: { title: newsIndexTitle, description: newsIndexDesc },
-  en: { title: newsSection[1] + ' · Hamilton Local', description: newsSection[3] },
-}, ...newsArticlePages(newsTitleUsed, newsDescUsed)];
+  path: '/talk/', route: 'talk', tab: '', noindex: false,
+  zh: { title: SECTIONS.talk[0] + ' · Hamilton Local', description: SECTIONS.talk[2] },
+  en: { title: SECTIONS.talk[1] + ' · Hamilton Local', description: SECTIONS.talk[3] },
+}, ...riverTalkData.articles.map(article => ({
+  path: talkHref(article.id), route: 'talk', tab: '', noindex: false,
+  zh: { title: article.titleZh + ' · ' + SECTIONS.talk[0] + ' · Hamilton Local', description: clipChars(article.answerZh, 120) },
+  en: { title: article.titleEn + ' · ' + SECTIONS.talk[1] + ' · Hamilton Local', description: clipChars(article.answerEn, 160) },
+}))];
 
 function parse(pathname, search = '') {
   const parts = pathname.split('/').filter(Boolean);
   const params = new URLSearchParams(search);
-  if (parts[0] === 'news') return { route: 'news', tab: '', params, explicitTab: false, newsId: newsIdFromPath(pathname) };
+  // The daily briefing was retired; its old links land on the column.
+  if (parts[0] === 'news') return { route: 'talk', tab: '', params, explicitTab: false, talkId: '' };
+  if (parts[0] === 'talk') return { route: 'talk', tab: '', params, explicitTab: false, talkId: talkIdFromPath(pathname) };
   let route = parts[0] === 'whatson' ? 'weekend' : parts[0];
   if (parts[1]) params.set('tab', parts[1]);
   if (route === 'supermarkets') { route = 'living'; params.set('tab', 'grocers'); }
@@ -153,7 +126,7 @@ function parse(pathname, search = '') {
   const next = new URLSearchParams(query);
   if (route === 'living' && next.get('tab') === 'places' && next.get('at') === 'upick') next.set('tab', 'upick');
   const tab = TABS[route]?.find(item => item[0] === next.get('tab'))?.[0] || TABS[route]?.[0][0] || '';
-  return { route, tab, params: next, explicitTab: next.has('tab'), newsId: '' };
+  return { route, tab, params: next, explicitTab: next.has('tab') };
 }
 
 export function readRoute(pathname = '/', search = '') {
@@ -164,7 +137,7 @@ export function readRoute(pathname = '/', search = '') {
 function pathWithParams(parsed) {
   const {route,tab,params,explicitTab} = parsed;
   params.delete('tab');
-  const base = route === 'news' ? newsHref(parsed.newsId) : href(route, explicitTab ? tab : undefined);
+  const base = route === 'talk' ? talkHref(parsed.talkId) : href(route, explicitTab ? tab : undefined);
   return base + (params.size ? '?' + params : '');
 }
 
@@ -185,7 +158,7 @@ export function normalizeLocation({pathname = '/', search = '', hash = ''}) {
     for (const [key, value] of url.searchParams) params.set(key, value);
     return url.pathname + (params.size ? '?' + params : '');
   }
-  const knownSection = ['whatson','weekend','supermarkets','privacy','search','news',...Object.keys(TABS)].includes(pathname.split('/').filter(Boolean)[0]);
+  const knownSection = ['whatson','weekend','supermarkets','privacy','search','news','talk',...Object.keys(TABS)].includes(pathname.split('/').filter(Boolean)[0]);
   if (pathname !== '/' && !knownSection) return pathname + search + hash;
   return pathWithParams(parse(pathname, search)) + hash;
 }

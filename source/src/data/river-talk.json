@@ -1,0 +1,155 @@
+{
+  "boards": [
+    { "id": "council", "zh": "市政大白话", "en": "Council, in Plain Words", "taglineZh": "官方说了一千字，我们说三句", "taglineEn": "They wrote a thousand words. Here are three lines." },
+    { "id": "levels", "zh": "人生通关攻略", "en": "Life, Level by Level", "taglineZh": "新西兰这一关，有人替你踩过坑", "taglineEn": "Someone already hit this wall for you." },
+    { "id": "frugal", "zh": "抠门研究所", "en": "The Thrift Institute", "taglineZh": "能省一块是一块，不丢人", "taglineEn": "A dollar saved is nothing to be shy about." },
+    { "id": "lookup", "zh": "一键查", "en": "Quick Lookup", "taglineZh": "输入地址，别的不用管", "taglineEn": "Type your address. That's it.", "soon": true }
+  ],
+  "alerts": [
+    {
+      "id": "parking-nov-28",
+      "zh": "11月28日（周六）下午3点到午夜，Garden Place 停车场免费。",
+      "en": "Garden Place Car Park is free from 3pm to midnight on Saturday 28 November.",
+      "until": "2026-11-28",
+      "href": "/talk/festive-free-parking/"
+    },
+    {
+      "id": "farmers-market-nov-29",
+      "zh": "11月29日（周日）农贸市场临时搬到湖边 Innes Common，上午8点到12点，从 Lake Cres 或 Lake Domain Drive 进。",
+      "en": "Hamilton Farmers' Market moves to Innes Common by the lake on Sunday 29 November, 8am to 12pm. Enter via Lake Cres or Lake Domain Drive.",
+      "until": "2026-11-29",
+      "href": "https://www.waikatofarmersmarkets.co.nz/"
+    },
+    {
+      "id": "fairfield-submissions",
+      "zh": "Fairfield Park 地下污水池项目，12月11日前可以提交意见。",
+      "en": "Submissions on the Fairfield Park wastewater tanks close on 11 December.",
+      "until": "2026-12-11",
+      "href": "/talk/fairfield-wastewater-tanks/"
+    }
+  ],
+  "articles": [
+    {
+      "id": "fairfield-wastewater-tanks",
+      "board": "council",
+      "published": "2026-11-23",
+      "checked": "2026-11-23",
+      "validUntil": "2026-12-11",
+      "titleZh": "Fairfield Park 地下要修污水池，住附近要知道什么？",
+      "titleEn": "Wastewater tanks under Fairfield Park: what neighbours should know",
+      "answerZh": "水务公司 IAWAI 计划在 Fairfield Park 西南角地下修两座污水调蓄池，第一座预计 2028 年开工。有意见的话，12 月 11 日前可以提交。",
+      "answerEn": "Water company IAWAI plans two underground wastewater tanks at the south-west end of Fairfield Park, with work on the first expected in 2028. Submissions close on 11 December.",
+      "whoZh": "住在 Fairfield、Heaphy Terrace 一带，或者常去这个公园散步、遛狗的人。",
+      "whoEn": "People living around Fairfield and Heaphy Terrace, and anyone who walks or exercises a dog in the park.",
+      "factsZh": [
+        "第一座容积 4000 立方米，预计 2028 年开工，工期 18 个月到两年。",
+        "第二座容积 2000 立方米，至少 10 年后才装，要看实际需求。",
+        "项目范围共 11,310 平方米，临 Heaphy Terrace；运动场和休闲设施在公园中部，不在施工区内。",
+        "要移除 9 棵树、修剪 4 棵，施工期间步道要绕行。",
+        "水池平时是空的，只在下大雨、管网撑不住时启用，用来减少污水溢流。维护时公园里可能闻到轻微气味。",
+        "报告没有列出造价。"
+      ],
+      "factsEn": [
+        "The first tank holds 4,000 m³. Work is expected in 2028 and should take 18 months to two years.",
+        "The second holds 2,000 m³ and would not be installed for at least 10 years, depending on demand.",
+        "The designated area is 11,310 m² fronting Heaphy Terrace. Sports fields and recreation facilities are in the central part of the park, away from the site.",
+        "Nine trees would be removed and four trimmed, and walking routes would be diverted during construction.",
+        "The tanks stay empty until wet weather overwhelms the network, reducing the risk of overflows. Maintenance could cause low levels of odour in the park.",
+        "The report did not include a cost estimate."
+      ],
+      "actionsZh": [
+        "住得近或常去公园，先看看施工位置会不会影响你的路线。",
+        "担心噪音、气味、树木或步道，可以向 Hamilton City Council 提交意见。",
+        "提交截止日期是 12 月 11 日。"
+      ],
+      "actionsEn": [
+        "If you live nearby or use the park, check how the site affects your route.",
+        "If noise, odour, trees or paths concern you, make a submission to Hamilton City Council.",
+        "Submissions close on 11 December."
+      ],
+      "sources": [
+        { "label": "1News / Local Democracy Reporting", "url": "https://www.1news.co.nz/2026/11/16/massive-wastewater-tanks-planned-beneath-hamilton-park/" }
+      ]
+    },
+    {
+      "id": "level-1-just-landed",
+      "board": "levels",
+      "level": 1,
+      "published": "2026-11-23",
+      "checked": "2026-11-23",
+      "validUntil": "2027-05-23",
+      "titleZh": "第一关：刚落地，这 5 件事先办",
+      "titleEn": "Level 1: just landed? Sort these five things first",
+      "answerZh": "先办税号和银行账户，尽早登记家庭医生，驾照和社区服务卡按自己的情况办。",
+      "answerEn": "Get your IRD number and bank account first, enrol with a GP early, then handle your licence and Community Services Card as they apply to you.",
+      "whoZh": "刚到新西兰，或者到了一阵子但这些事还没办完的人。",
+      "whoEn": "New arrivals, and anyone who has been here a while with some of this still unfinished.",
+      "factsZh": [
+        "税号（IRD）：按新抵埠流程在 myIR 申请，获批后 2 天内以短信或邮件收到。",
+        "银行账户：以 ANZ 为例，网上填表，按邮件补材料，到分行核验身份后才能完整使用。",
+        "家庭医生：符合资格的人登记免费，但可能最长要 3 个月，别等生病才办。",
+        "驾照：中国大陆驾照走非豁免流程，首次全部通过的官方费用合计 157.70 纽币，翻译费另算。",
+        "社区服务卡：看居留身份和家庭收入，符合条件可以申请。"
+      ],
+      "factsEn": [
+        "IRD number: apply through myIR using the new-arrival process. Approved numbers arrive by text or email within 2 days.",
+        "Bank account: using ANZ as an example, fill in the online form, send the documents requested, then verify your identity at a branch for full access.",
+        "GP: enrolment is free for eligible people but can take up to 3 months, so do it before you get sick.",
+        "Licence: mainland China licences use the non-exempt process. Official fees total NZ$157.70 if you pass everything first time, with translation extra.",
+        "Community Services Card: depends on residence and household income."
+      ],
+      "actionsZh": [
+        "打开网站的「新移民清单」，每一步要带什么材料都写好了。",
+        "办完一件划掉一件，优先把税号给雇主。"
+      ],
+      "actionsEn": [
+        "Open the Arrival checklist on this site for the documents each step needs.",
+        "Tick them off as you go, and give your employer your IRD number first."
+      ],
+      "cta": { "href": "/tools/checklist/", "zh": "打开新移民清单", "en": "Open the Arrival checklist" },
+      "sources": [
+        { "label": "Inland Revenue", "url": "https://www.ird.govt.nz/new-arrival" },
+        { "label": "ANZ", "url": "https://www.anz.co.nz/personal/moving-to-new-zealand/" },
+        { "label": "Health NZ", "url": "https://www.healthnz.govt.nz/hospitals-services/services-support/asian-migrant-and-refugee-health/signing-up-with-a-healthcare-provider" },
+        { "label": "NZTA", "url": "https://www.nzta.govt.nz/driver-licences/apply-for-a-car-licence/licence-fees" },
+        { "label": "Work and Income", "url": "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card/index.html" }
+      ]
+    },
+    {
+      "id": "festive-free-parking",
+      "board": "frugal",
+      "published": "2026-11-23",
+      "checked": "2026-11-23",
+      "validUntil": "2026-12-26",
+      "titleZh": "圣诞季市中心免费停车，别白交钱",
+      "titleEn": "Free central city parking this festive season",
+      "answerZh": "11 月底到节礼日，Garden Place 停车场有 5 天免费（其中 2 天从下午 3 点起），12 月 21 日至 24 日下午 3 点后路边短时车位也免费。",
+      "answerEn": "Garden Place Car Park is free on five days up to Boxing Day (two of them from 3pm), and on-street short-stay parking is free after 3pm from 21 to 24 December.",
+      "whoZh": "圣诞前后要去市中心购物、吃饭、看圣诞树的人。",
+      "whoEn": "Anyone heading into the central city to shop, eat out or see the Christmas tree.",
+      "factsZh": [
+        "Garden Place 停车场：11 月 28 日、12 月 5 日，下午 3 点到午夜免费。",
+        "Garden Place 停车场：12 月 19 日、24 日、26 日，早 6 点到午夜免费。节礼日免费是第一次。",
+        "路边短时收费车位：12 月 21 日至 24 日，每天下午 3 点后免费。",
+        "公众假期路边停车也免费，但仍要遵守路牌上的限制。"
+      ],
+      "factsEn": [
+        "Garden Place Car Park: free from 3pm to midnight on 28 November and 5 December.",
+        "Garden Place Car Park: free from 6am to midnight on 19, 24 and 26 December. Boxing Day is a first.",
+        "On-street short-stay paid parking: free after 3pm each day from 21 to 24 December.",
+        "On-street parking is also free on public holidays, subject to posted restrictions."
+      ],
+      "actionsZh": [
+        "能晚点去就下午 3 点后到。",
+        "3 点前到的话平时规则照旧，包括要登记两小时免费停车。"
+      ],
+      "actionsEn": [
+        "If you can, arrive after 3pm.",
+        "Before 3pm the normal rules apply, including registering for two hours of free parking."
+      ],
+      "sources": [
+        { "label": "Hamilton City Council", "url": "https://hamilton.govt.nz/your-council/news/hamilton-unwraps-free-parking-this-festive-season" }
+      ]
+    }
+  ]
+}

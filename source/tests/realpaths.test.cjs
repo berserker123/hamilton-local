@@ -6,18 +6,11 @@ const routes=()=>import('../src/site-routes.mjs');
 test('every current section and tab round-trips through a canonical trailing-slash URL',async()=>{
   const {PAGES,readRoute,href,legacyHashPath}=await routes();
   const tabs={tools:['bins','urgent','bus','pay','checklist','gst','units','seasonal','other'],living:['grocers','dining','places','upick','stays','blackfriday'],weekend:['picks','markets'],kids:['map','places','parties'],services:['home','trades','daily','pets','advisors']};
-  const sectionPages=PAGES.filter(p=>!p.path.startsWith('/news/'));
+  const sectionPages=PAGES.filter(p=>!p.path.startsWith('/talk/'));
   assert.equal(sectionPages.length,33);
-  const newsPages=PAGES.filter(p=>p.path.startsWith('/news/'));
-  const briefing=require('../src/data/briefing.json');
-  assert.equal(newsPages.length,1+briefing.items.length);
-  assert.ok(newsPages.some(p=>p.path==='/news/'));
-  for(const item of briefing.items){
-    const path='/news/'+encodeURIComponent(item.id)+'/';
-    assert.ok(newsPages.some(p=>p.path===path),path);
-    assert.deepEqual(readRoute(path),{route:'news',tab:'',q:'',at:''});
-  }
-  assert.deepEqual(readRoute('/news/'),{route:'news',tab:'',q:'',at:''});
+  assert.ok(!PAGES.some(p=>p.path.startsWith('/news/')));
+  assert.deepEqual(readRoute('/news/'),{route:'talk',tab:'',q:'',at:''});
+  assert.deepEqual(readRoute('/news/old-story/'),{route:'talk',tab:'',q:'',at:''});
   assert.equal(href('home'),'/');
   for(const [route,items] of Object.entries(tabs)){
     const section=route==='weekend'?'whatson':route;
@@ -62,8 +55,8 @@ test('canonicalization handles slashless paths, section queries, old path aliase
     ['/tools/transport/','','','/tools/bus/?at=tool-transport'],
     ['/','?cards=a&hero=window','#/tools?tab=bins','/tools/bins/?cards=a&hero=window'],
     ['/tools/bins/','?q=x','#overview','/tools/bins/?q=x#overview'],
-    ['/news','','','/news/'],
-    ['/news/abc','','','/news/abc/'],
+    ['/news','','','/talk/'],
+    ['/news/abc','','','/talk/'],
   ])assert.equal(normalizeLocation({pathname,search,hash}),want);
   assert.deepEqual(readRoute('/tools/','?tab=unknown&at=bad'),{route:'tools',tab:'bins',q:'',at:''});
   assert.deepEqual(readRoute('/missing/'),{route:'home',tab:'',q:'',at:''});

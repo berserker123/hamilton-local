@@ -2,16 +2,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { normalizeCurrency } from './currency.mjs';
+import { activeArticles, talkHref } from './river-talk.mjs';
 export const SITE = 'https://hamiltonlocal.nz';
 export const FEED_CAP_BLACKFRIDAY = 20;
-export const BRIEFING_CATEGORIES = ['breaking', 'police', 'council', 'roads', 'weather', 'civil_defence', 'news'];
 const readJson = (root, rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
 const xmlEsc = v => String(v ?? '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 const both = (zh, en) => zh && en && zh !== en ? zh + ' / ' + en : (zh || en || '');
 
 export function feedItems(root = '.') {
   const events = readJson(root, 'src/events-and-markets.json');
-  const briefing = readJson(root, 'src/data/briefing.json');
   const deals = readJson(root, 'src/data/blackfriday.json');
   const items = [];
   for (const e of events.events_this_week || []) {
@@ -21,10 +20,11 @@ export function feedItems(root = '.') {
       description: [span, e.time, e.venue, e.price_zh].filter(Boolean).join(' · '), category: '周末活动',
     });
   }
-  for (const b of (briefing.items || []).filter(i => BRIEFING_CATEGORIES.includes(i.category))) {
+  const talkPath = path.join(root, 'src/data/river-talk.json');
+  for (const a of fs.existsSync(talkPath) ? activeArticles(JSON.parse(fs.readFileSync(talkPath, 'utf8'))) : []) {
     items.push({
-      source: 'briefing', guid: 'hl-briefing-' + b.id, title: both(normalizeCurrency(b.summary_zh), b.title), link: b.url || SITE + '/', pubDate: b.published,
-      description: [b.source, b.summary_zh ? b.title : ''].filter(Boolean).join(' · '), category: '每日快讯',
+      source: 'river-talk', guid: 'hl-talk-' + a.id, title: both(a.titleZh, a.titleEn), link: SITE + talkHref(a.id), pubDate: a.published + 'T00:00:00+13:00',
+      description: a.answerZh, category: '屯里二三事',
     });
   }
   const discount = d => d.historyVerified && d.typicalPrice > 0 ? 1 - d.salePrice / d.typicalPrice : -Infinity;
@@ -43,7 +43,7 @@ export function renderFeed(root = '.') {
   const dates = items.map(i => Date.parse(i.pubDate)).filter(Number.isFinite);
   const out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">', '<channel>',
     '<title>Hamilton Local 汉密尔顿本地</title>', '<link>' + SITE + '/</link>',
-    '<description>' + xmlEsc('汉密尔顿本地活动、每日快讯与黑五优惠 · Hamilton events, daily briefing and Black Friday deals') + '</description>',
+    '<description>' + xmlEsc('汉密尔顿本地活动、屯里二三事与黑五优惠 · Hamilton events, Tron Talk and Black Friday deals') + '</description>',
     '<language>zh-CN</language>', '<atom:link href="' + SITE + '/feed.xml" rel="self" type="application/rss+xml"/>'];
   if (dates.length) out.push('<lastBuildDate>' + new Date(Math.max(...dates)).toUTCString() + '</lastBuildDate>');
   for (const i of items) {

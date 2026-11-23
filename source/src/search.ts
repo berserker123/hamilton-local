@@ -4,6 +4,8 @@ import PLACES from './places.json';
 import PLAYGROUNDS from './playgrounds.json';
 import BLACKFRIDAY from './data/blackfriday.json';
 import { Deal, matchesDealQuery } from './blackfriday-model';
+import TALK from './data/river-talk.json';
+import { activeArticles, talkHref } from './river-talk.mjs';
 
 export type SearchResultItem = {
   id: string;
@@ -72,12 +74,32 @@ const PLAYGROUND_PATTERN = /\bplaygrounds?\b|游乐场|儿童乐园|滑梯/i;
 const BLACKFRIDAY_GENERIC = /黑五|black\s*friday/i;
 const GROCER_GENERIC = /亚超|亚洲超市|华人超市|杂货|asian\s*grocer|grocers?|supermarkets?/i;
 
+const TALK_COLUMN = /屯里|二三事|tron\s*talk|市政大白话|人生通关|通关攻略|抠门研究所|喊一嗓子|^(?:每日)?快讯$|^新闻$|^news$|^daily\s*briefing$/i;
+
 const DAILY_EXTRA_IDS = ['zealong', 'te-awa', 'sanctuary-mountain', 'wairere-falls'];
 const DAILY_PLACES = PLACES.filter(p => p.id !== 'magical-bridge' && ((p.km != null && p.km <= 10 && !p.indoor) || DAILY_EXTRA_IDS.includes(p.id)));
 const DEALS = BLACKFRIDAY as Deal[];
 
 function isMeaningfulToken(q: string): boolean {
   return q.length >= 2 || /[\u3400-\u9fff]/.test(q);
+}
+
+/** Current column articles whose text contains the query. Single characters are too broad to match. */
+function talkMatches(q: string, now = Date.now()): SearchResultItem[] {
+  if (Array.from(q).length < 2) return [];
+  const lower = q.toLowerCase();
+  return activeArticles(TALK, now).filter(a => {
+    const board = TALK.boards.find(b => b.id === a.board);
+    return [a.titleZh, a.titleEn, a.answerZh, a.answerEn, a.whoZh, a.whoEn, ...a.factsZh, ...a.factsEn, ...a.actionsZh, ...a.actionsEn, board?.zh, board?.en]
+      .join(' ').toLowerCase().includes(lower);
+  }).map(a => {
+    const board = TALK.boards.find(b => b.id === a.board);
+    return {
+      id: 'talk-' + a.id, href: talkHref(a.id),
+      tagZh: '屯里二三事 · ' + (board?.zh || ''), tagEn: 'Tron Talk · ' + (board?.en || ''),
+      titleZh: a.titleZh, titleEn: a.titleEn, descZh: a.answerZh, descEn: a.answerEn,
+    };
+  });
 }
 
 /** Multi-destination matches displayed on the /search/ page (e.g. GP -> Urgent care + Arrival checklist). */
@@ -108,7 +130,7 @@ export function searchMatches(query: string): SearchResultItem[] {
       },
     ];
   }
-  return [];
+  return talkMatches(q);
 }
 
 /** Resolves a search query to a destination URL. Never defaults unmatched queries to the grocers page. */
@@ -116,6 +138,7 @@ export function resolveSearch(query: string): string {
   const q = query.trim();
   if (!q) return href('search');
 
+  if (TALK_COLUMN.test(q)) return talkHref();
   if (GP_PATTERN.test(q)) return href('search', undefined, q);
   if (PLAYGROUND_PATTERN.test(q)) return href('kids', 'map');
   if (isMeaningfulToken(q) && PLAYGROUNDS.some(p => [p.zh, p.name, p.area].join(' ').toLowerCase().includes(q.toLowerCase()))) {

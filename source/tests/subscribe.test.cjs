@@ -9,11 +9,10 @@ const {renderToStaticMarkup}=require('react-dom/server');
 function load(entry){const r=esbuild.buildSync({entryPoints:[entry],bundle:true,platform:'node',format:'cjs',write:false,external:['react','react-dom','lucide-react'],loader:{'.json':'json'}});const m={exports:{}};new Function('module','exports','require',r.outputFiles[0].text)(m,m.exports,require);return m.exports;}
 const {Subscribe}=load('src/Subscribe.tsx');
 const model=load('src/subscribe-model.ts');
-const briefingModel=load('src/briefing-model.ts');
 const t=zh=>zh;
 const render=variant=>renderToStaticMarkup(React.createElement(Subscribe,{t,variant}));
 
-for(const variant of ['full','compact'])test('subscribe form renders ('+variant+') with label, required email and 3 checked topics',()=>{
+for(const variant of ['full','compact'])test('subscribe form renders ('+variant+') with label, required email and 2 checked topics',()=>{
   const html=render(variant);
   const id='subscribe-'+variant+'-email';
   assert.match(html,new RegExp('<label[^>]*for="'+id+'"'));
@@ -22,9 +21,10 @@ for(const variant of ['full','compact'])test('subscribe form renders ('+variant+
   assert.match(input,/required=""/);
   assert.match(input,/autoComplete="email"|autocomplete="email"/i);
   const boxes=html.match(/<input[^>]*type="checkbox"[^>]*>/g)||[];
-  assert.equal(boxes.length,3);
+  assert.equal(boxes.length,2);
   for(const b of boxes)assert.match(b,/checked=""/);
-  for(const zh of ['每周活动日历','每日快讯摘要','黑五优惠'])assert.ok(html.includes(zh));
+  for(const zh of ['每周活动日历','黑五优惠'])assert.ok(html.includes(zh));
+  assert.ok(!html.includes('每日快讯'));
   assert.ok(html.includes('我们只用你的邮箱发送 Hamilton Local 内容，随时可退订。'));
   assert.match(html,/href="\/privacy\/"/);
   assert.match(html,/aria-live="polite"/);
@@ -36,11 +36,11 @@ test('subscribe form follows the language toggle',()=>{
   assert.ok(html.includes('Weekly events'));
   assert.ok(html.includes('Unsubscribe any time'));
 });
-test('subscribe config points at the MailerLite form with 3 group ids',()=>{
+test('subscribe config points at the MailerLite form with 2 group ids',()=>{
   const c=JSON.parse(fs.readFileSync('src/data/subscribe.json','utf8'));
   assert.equal(c.provider,'mailerlite');
   assert.match(c.formAction,/^https:\/\/assets\.mailerlite\.com\/jsonp\/\d+\/forms\/\d+\/subscribe$/);
-  assert.deepEqual(Object.keys(c.groups),['events','briefing','blackfriday']);
+  assert.deepEqual(Object.keys(c.groups),['events','blackfriday']);
   for(const v of Object.values(c.groups)) assert.match(v,/^\d+$/);
 });
 test('empty formAction shows opening-soon and makes no network call',async()=>{
@@ -68,7 +68,7 @@ test('configured formAction POSTs fields[email] and selected groups[] and report
 });
 test('home places the full form after the briefing and omits the duplicate footer form; other pages keep footer compact form',()=>{
   const app=fs.readFileSync('src/App.tsx','utf8');
-  assert.ok(app.includes('<Briefing t={t} /><Subscribe t={t} variant="full" />'));
+  assert.ok(app.includes('<RiverTalkHome t={t} /><Subscribe t={t} variant="full" />'));
   const start=app.indexOf('<footer className="sb-footer ia-footer">');
   assert.ok(start>0);
   const footer=app.slice(start,app.indexOf('</footer>',start));
@@ -116,12 +116,12 @@ test('feed.xml is well-formed RSS 2.0 whose item count matches the data',async()
   assert.ok(xml.includes('<link>https://hamiltonlocal.nz/</link>'));
   const items=parseXml(xml);
   const events=JSON.parse(fs.readFileSync('src/events-and-markets.json','utf8')).events_this_week.length;
-  const brief=briefingModel.visibleItems(JSON.parse(fs.readFileSync('src/data/briefing.json','utf8')).items).length;
   const deals=Math.min(20,JSON.parse(fs.readFileSync('src/data/blackfriday.json','utf8')).length);
-  assert.equal(items.length,events+brief+deals);
+  const talk=feed.feedItems('.').filter(i=>i.source==='river-talk').length;
+  assert.equal(items.length,events+deals+talk);
   const by=s=>feed.feedItems('.').filter(i=>i.source===s).length;
   assert.equal(by('events'),events);
-  assert.equal(by('briefing'),brief);
+  assert.equal(by('briefing'),0);
   assert.equal(by('blackfriday'),deals);
   const guids=new Set();
   for(const it of items){
@@ -136,7 +136,6 @@ test('feed escapes special characters',async()=>{
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'feed-'));
   fs.mkdirSync(path.join(root,'src/data'),{recursive:true});
   fs.writeFileSync(path.join(root,'src/events-and-markets.json'),JSON.stringify({events_this_week:[{id:'x1',title_zh:'A & B <i>"q"</i>',title_en:"it's",source_url:'https://x.test/?a=1&b=2',dates:['2026-11-16'],time:'<t>'}]}));
-  fs.writeFileSync(path.join(root,'src/data/briefing.json'),JSON.stringify({items:[]}));
   fs.writeFileSync(path.join(root,'src/data/blackfriday.json'),JSON.stringify([]));
   const feed=await import('../src/feed.mjs');
   const xml=feed.renderFeed(root);
@@ -158,3 +157,16 @@ test('every page head carries the rss alternate link',async()=>{
 });
 
 test('MailerLite 200 with success:false counts as error; success:true is ok',async()=>{ const model=load('src/subscribe-model.ts'); const cfg={provider:'mailerlite',formAction:'https://x.test/f',groups:{events:'1',briefing:'2',blackfriday:'3'}}; assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],async()=>({ok:true,json:async()=>({success:false,message:'reCAPTCHA failed'})})),'error'); assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],async()=>({ok:true,json:async()=>({success:true})})),'ok'); });
+
+test('every signup also joins the Hamilton Local group that receives the Monday email',async()=>{
+  const live=JSON.parse(fs.readFileSync('src/data/subscribe.json','utf8'));
+  const newsletter='204706103624205324';
+  assert.deepEqual(live.baseGroups,[newsletter]);
+  let seen;
+  const ok=async(url,init)=>{seen=init.body;return {ok:true};};
+  const cfg={provider:'mailerlite',formAction:'https://example.test/subscribe',groups:{events:'11',blackfriday:'33'},baseGroups:['99']};
+  assert.equal(await model.submitSubscription(cfg,'a@b.co',['events'],ok),'ok');
+  assert.deepEqual(seen.getAll('groups[]'),['11','99']);
+  assert.equal(await model.submitSubscription({...cfg,baseGroups:['11']},'a@b.co',['events'],ok),'ok');
+  assert.deepEqual(seen.getAll('groups[]'),['11']);
+});
