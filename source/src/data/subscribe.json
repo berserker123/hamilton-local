@@ -1,1 +1,1 @@
-{ "provider": "mailerlite", "formAction": "https://assets.mailerlite.com/jsonp/2802905/forms/204381781694089089/subscribe", "baseGroups": ["204706103624205324"], "groups": { "events": "204381697473513412", "blackfriday": "204381724133557826" } }
+{ "provider": "mailerlite", "formAction": "https://assets.mailerlite.com/jsonp/2802905/forms/204381781694089089/subscribe", "baseGroups": ["204706103624205324"], "groups": {} }

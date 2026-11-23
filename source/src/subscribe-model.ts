@@ -1,9 +1,4 @@
 export type SubscribeConfig = { provider: string; formAction: string; groups: Record<string, string>; baseGroups?: string[] };
-export type TopicId = 'events' | 'blackfriday';
-export const TOPICS: ReadonlyArray<{ id: TopicId; zh: string; en: string }> = [
-  { id: 'events', zh: '每周活动日历', en: 'Weekly events' },
-  { id: 'blackfriday', zh: '黑五优惠', en: 'Black Friday deals' },
-];
 export type SubscribeResult = 'soon' | 'invalid' | 'ok' | 'error';
 type FetchLike = (url: string, init: { method: string; body: FormData }) => Promise<{ ok: boolean; json?: () => Promise<unknown> }>;
 
@@ -12,7 +7,7 @@ export function validEmail(email: string): boolean {
 }
 /** MailerLite embedded-form style POST. With no formAction nothing is sent. */
 export async function submitSubscription(
-  config: SubscribeConfig, email: string, topics: TopicId[], fetchImpl: FetchLike = fetch as unknown as FetchLike,
+  config: SubscribeConfig, email: string, topics: string[], fetchImpl: FetchLike = fetch as unknown as FetchLike,
 ): Promise<SubscribeResult> {
   if (!validEmail(email)) return 'invalid';
   if (!config.formAction) return 'soon';

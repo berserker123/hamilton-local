@@ -4963,3 +4963,6 @@ a.hl-brief-toggle { display: inline-block; text-decoration: none; text-align: ce
 .hl-talk-page .hl-talk-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .hl-talk-section .hl-talk-board { display: none; }
 @media (max-width: 900px) { .hl-talk-grid { grid-template-columns: 1fr; } }
+
+.hl-sub-plan { margin: 0; color: var(--hl-muted); font-size: 15px; line-height: 1.6; }
+.hl-sub--compact .hl-sub-plan { color: var(--hl-footer-muted); font-size: 14px; }

@@ -12,7 +12,7 @@ const model=load('src/subscribe-model.ts');
 const t=zh=>zh;
 const render=variant=>renderToStaticMarkup(React.createElement(Subscribe,{t,variant}));
 
-for(const variant of ['full','compact'])test('subscribe form renders ('+variant+') with label, required email and 2 checked topics',()=>{
+for(const variant of ['full','compact'])test('subscribe form renders ('+variant+') with label, required email and one unified plan',()=>{
   const html=render(variant);
   const id='subscribe-'+variant+'-email';
   assert.match(html,new RegExp('<label[^>]*for="'+id+'"'));
@@ -21,10 +21,9 @@ for(const variant of ['full','compact'])test('subscribe form renders ('+variant+
   assert.match(input,/required=""/);
   assert.match(input,/autoComplete="email"|autocomplete="email"/i);
   const boxes=html.match(/<input[^>]*type="checkbox"[^>]*>/g)||[];
-  assert.equal(boxes.length,2);
-  for(const b of boxes)assert.match(b,/checked=""/);
-  for(const zh of ['每周活动日历','黑五优惠'])assert.ok(html.includes(zh));
-  assert.ok(!html.includes('每日快讯'));
+  assert.equal(boxes.length,0);
+  assert.ok(html.includes('每周一：本周活动 · 每周五：屯里二三事'));
+  for(const old of ['每日快讯','黑五优惠','每周活动日历'])assert.ok(!html.includes(old));
   assert.ok(html.includes('我们只用你的邮箱发送 Hamilton Local 内容，随时可退订。'));
   assert.match(html,/href="\/privacy\/"/);
   assert.match(html,/aria-live="polite"/);
@@ -33,14 +32,15 @@ for(const variant of ['full','compact'])test('subscribe form renders ('+variant+
 });
 test('subscribe form follows the language toggle',()=>{
   const html=renderToStaticMarkup(React.createElement(Subscribe,{t:(zh,en)=>en,variant:'full'}));
-  assert.ok(html.includes('Weekly events'));
+  assert.ok(html.includes('Fridays: Tron Talk'));
   assert.ok(html.includes('Unsubscribe any time'));
 });
-test('subscribe config points at the MailerLite form with 2 group ids',()=>{
+test('subscribe config points at the MailerLite form and only the Hamilton Local group',()=>{
   const c=JSON.parse(fs.readFileSync('src/data/subscribe.json','utf8'));
   assert.equal(c.provider,'mailerlite');
   assert.match(c.formAction,/^https:\/\/assets\.mailerlite\.com\/jsonp\/\d+\/forms\/\d+\/subscribe$/);
-  assert.deepEqual(Object.keys(c.groups),['events','blackfriday']);
+  assert.deepEqual(c.groups,{});
+  assert.deepEqual(c.baseGroups,['204706103624205324']);
   for(const v of Object.values(c.groups)) assert.match(v,/^\d+$/);
 });
 test('empty formAction shows opening-soon and makes no network call',async()=>{
