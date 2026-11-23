@@ -12,6 +12,6 @@ export function guideStats(serviceCategories: number) {
     { id: 'parties', count: uniqueCount(PARTIES), label: { zh: '派对与场地条目', en: 'Party & venue entries' }, note: { zh: 'Hamilton 与 Waikato', en: 'Hamilton & Waikato' }, href: '/kids/parties/' },
     { id: 'playgrounds', count: uniqueCount(PLAYGROUNDS), label: { zh: '游乐场地点', en: 'Playground locations' }, note: { zh: '地图、设施与导航', en: 'Map, facilities & directions' }, href: '/kids/map/' },
     { id: 'picks', count: uniqueCount(AGENDA.picks), label: { zh: '活动日历条目', en: 'Events Calendar entries' }, note: { zh: DATA.week_label_zh + ' · ' + DATA.window.start.slice(0, 4), en: DATA.week_label_en }, href: '/whatson/picks/' },
-    { id: 'categories', count: serviceCategories, label: { zh: '便民服务分类', en: 'Service categories' }, note: { zh: '内容整理中 · 暂无商家', en: 'No listings yet · Coming soon' }, href: '/services/home/' },
+    { id: 'categories', count: serviceCategories, label: { zh: '便民服务分类', en: 'Service categories' }, note: { zh: '招商中 · 免费入驻', en: 'Open for listings · Free' }, href: '/services/home/' },
   ];
 }

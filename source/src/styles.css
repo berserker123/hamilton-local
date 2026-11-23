@@ -4966,3 +4966,8 @@ a.hl-brief-toggle { display: inline-block; text-decoration: none; text-align: ce
 
 .hl-sub-plan { margin: 0; color: var(--hl-muted); font-size: 15px; line-height: 1.6; }
 .hl-sub--compact .hl-sub-plan { color: var(--hl-footer-muted); font-size: 14px; }
+
+/* Local Services: free listing buttons */
+/* Services: free-listing buttons (ADR-0004). Wrap long English labels instead of overflowing. */
+.ia-root .ia-category .sb-action[data-services-join] { margin-top: 16px; align-self: flex-start; max-width: 100%; white-space: normal; font-size: 13px; }
+.ia-root .ia-join .sb-action[data-services-join] { flex-shrink: 0; white-space: normal; }

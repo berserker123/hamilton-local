@@ -35,6 +35,7 @@ import { navigate } from './navigate';
 import { RiverTalkHome, RiverTalkPage } from './RiverTalk';
 import { BlackFriday, BlackFridayBanner } from './BlackFriday';
 import { servicePlaceholderLine } from './service-placeholders';
+import { servicesJoinHref, servicesJoinIsExternal } from './services-config';
 import { Privacy } from './Privacy';
 import { Subscribe } from './Subscribe';
 import { SearchResults } from './SearchResults';
@@ -198,7 +199,7 @@ function Kids({ tab, lang, t }: { tab: string; lang: Lang; t: T }) {
   if (tab === 'parties') return <PartyVenues t={t} lang={lang} />;
   return <PlaygroundMap lang={lang} t={t} />;
 }
-const SERVICE_CATS = {
+export const SERVICE_CATS = {
   home: [['园艺与庭院', 'Garden & grounds'], ['房屋维修', 'Home repairs'], ['清洁整理', 'Cleaning']],
   trades: [['水管服务', 'Plumbing'], ['电工服务', 'Electrical'], ['木工与油漆', 'Carpentry & painting']],
   daily: [['搬家运输', 'Moving'], ['生活协助', 'Everyday help'], ['社区服务', 'Community services']],
@@ -209,14 +210,18 @@ const SERVICE_CATS = {
     ['律师', 'Lawyers'],
   ],
 };
-function Services({ tab, t, toast }: { tab: string; t: T; toast: (text: string) => void }) {
+function ServicesJoinButton({ t, className = 'sb-action', testId }: { t: T; className?: string; testId?: string }) {
+  const external = servicesJoinIsExternal();
+  return <a className={className} data-testid={testId} data-services-join="" href={servicesJoinHref()} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{t('免费入驻', 'List your business free')}<ArrowUpRight aria-hidden="true" /></a>;
+}
+export function Services({ tab, t }: { tab: string; t: T; toast?: (text: string) => void }) {
   if (tab === 'pets') return <Pets t={t} />;
   const chinese = t('中', 'en') !== 'en';
   const categories = SERVICE_CATS[tab as keyof typeof SERVICE_CATS] || SERVICE_CATS.home;
   return <><div className="ia-category-grid">{categories.map(([zh, en], index) => {
     const line = servicePlaceholderLine(tab, index);
-    return <div id={"service-" + tab + "-" + index} className="sb-card ia-category" key={en}><div className="ia-card-top"><Wrench aria-hidden="true" /><span className="sb-tag">{t('招商中', 'Open for listings')}</span></div><BilingualTitle as="h2" zh={zh} en={en} t={t} /><span lang={chinese ? 'zh-CN' : 'en-NZ'}>{t(line.zh, line.en)}</span></div>;
-  })}</div><div className="sb-card ia-join"><div><p className="ia-kicker">{t('一起完善本地指南', 'Build a better local guide')}</p><h2>{t('在 Hamilton 提供服务？', 'Work with the Hamilton community?')}</h2><p>{t('商家入驻即将开放。', 'Business listings are coming soon.')}</p></div><button className="sb-action ia-primary" data-testid="join" onClick={() => toast(t('商家入驻 · 即将开放', 'Business listings · Coming soon'))}>{t('商家入驻', 'List your business')}<ArrowUpRight /></button></div></>;
+    return <div id={"service-" + tab + "-" + index} className="sb-card ia-category" key={en}><div className="ia-card-top"><Wrench aria-hidden="true" /><span className="sb-tag">{t('招商中', 'Open for listings')}</span></div><BilingualTitle as="h2" zh={zh} en={en} t={t} /><span lang={chinese ? 'zh-CN' : 'en-NZ'}>{t(line.zh, line.en)}</span><ServicesJoinButton t={t} /></div>;
+  })}</div><div className="sb-card ia-join"><div><p className="ia-kicker">{t('一起完善本地指南', 'Build a better local guide')}</p><h2>{t('在 Hamilton 提供服务？', 'Work with the Hamilton community?')}</h2><p>{t('免费入驻已开放：填表提交，我们核实后上线。', "Free listings are open: submit the form and we'll list you once verified.")}</p></div><ServicesJoinButton t={t} className="sb-action ia-primary" testId="join" /></div></>;
 }
 const TOOL_GROUPS = [
   { id: 'tool-weather', zh: 'UV 与天气', en: 'Weather & UV', Icon: Sun, ids: ['metservice-hamilton', 'niwa-uv', 'niwa-uv-index'] },

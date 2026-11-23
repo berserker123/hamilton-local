@@ -7,7 +7,7 @@ test('homepage counts reflect actual party, playground and non-festival pick rec
  const stats=guideStats(9);
  assert.deepEqual(stats.map(s=>s.count),[118,12,32,9]);
  assert.deepEqual(stats.map(s=>s.href),['/kids/parties/','/kids/map/','/whatson/picks/','/services/home/']);
- assert.match(stats[3].note.en,/No listings/);
+ assert.match(stats[3].note.en,/Open for listings/);
  assert.equal(guideStats(0)[3].count,0);
 });
 test('count helper counts unique records and preview picks exclude festivals',()=>{
