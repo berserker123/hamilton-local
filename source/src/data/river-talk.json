@@ -1,9 +1,33 @@
 {
   "boards": [
-    { "id": "council", "zh": "市政大白话", "en": "Council, in Plain Words", "taglineZh": "官方说了一千字，我们说三句", "taglineEn": "They wrote a thousand words. Here are three lines." },
-    { "id": "levels", "zh": "人生通关攻略", "en": "Life, Level by Level", "taglineZh": "新西兰这一关，有人替你踩过坑", "taglineEn": "Someone already hit this wall for you." },
-    { "id": "frugal", "zh": "抠门研究所", "en": "The Thrift Institute", "taglineZh": "能省一块是一块，不丢人", "taglineEn": "A dollar saved is nothing to be shy about." },
-    { "id": "lookup", "zh": "一键查", "en": "Quick Lookup", "taglineZh": "输入地址，别的不用管", "taglineEn": "Type your address. That's it.", "soon": true }
+    {
+      "id": "council",
+      "zh": "市政大白话",
+      "en": "Council, in Plain Words",
+      "taglineZh": "官方说了一千字，我们说三句",
+      "taglineEn": "They wrote a thousand words. Here are three lines."
+    },
+    {
+      "id": "tips",
+      "zh": "生活小妙招",
+      "en": "Handy Tips",
+      "taglineZh": "小妙招小窍门，拿去就能用",
+      "taglineEn": "Small tricks you can use today"
+    },
+    {
+      "id": "levels",
+      "zh": "人生通关攻略",
+      "en": "Life, Level by Level",
+      "taglineZh": "新西兰这一关，有人替你踩过坑",
+      "taglineEn": "Someone already hit this wall for you."
+    },
+    {
+      "id": "frugal",
+      "zh": "抠门研究所",
+      "en": "The Thrift Institute",
+      "taglineZh": "能省一块是一块，不丢人",
+      "taglineEn": "A dollar saved is nothing to be shy about."
+    }
   ],
   "alerts": [
     {
@@ -29,6 +53,94 @@
     }
   ],
   "articles": [
+    {
+      "id": "ai-storytelling-10-minutes",
+      "board": "tips",
+      "topics": [
+        "kids"
+      ],
+      "published": "2026-11-24",
+      "checked": "2026-11-24",
+      "validUntil": "2027-05-24",
+      "titleZh": "每天 10 分钟，陪孩子用 AI 练英语讲故事",
+      "titleEn": "Ten minutes a day: practise English storytelling with AI",
+      "answerZh": "家长拿手机，孩子开口讲，AI 只负责提问。重点不是听 AI 讲故事，而是让孩子自己把故事讲出来。",
+      "answerEn": "The parent holds the phone, the child tells the story, and AI only asks questions. The point is for your child to do the talking.",
+      "whoZh": "6 到 12 岁、已经能说简单英语句子的孩子，以及愿意陪 10 分钟的家长。家长英语不流利也能带。",
+      "whoEn": "Children aged 6 to 12 who can say simple English sentences, with a parent who can sit beside them for 10 minutes. Parents do not need strong English.",
+      "noteZh": "先说清楚：ChatGPT 要求用户至少 13 岁，所以账号和手机都由家长使用，孩子只和家长说话。其他 AI 工具请先看各自的年龄规定。AI 可能出错，内容要家长把关，这个方法也不保证提分。",
+      "noteEn": "Important: ChatGPT users must be at least 13, so the parent keeps the account and the phone, and the child talks only to the parent. Check the age rules of any other AI tool. AI can make mistakes, so stay involved. This method does not promise better grades.",
+      "factsTitleZh": "10 分钟怎么练",
+      "factsTitleEn": "The 10-minute routine",
+      "factsZh": [
+        "选题（1 分钟）：孩子选主角、地点和一个麻烦。",
+        "共创（5 分钟）：孩子说一句，家长复述给 AI，再把 AI 的问题读给孩子。情节由孩子决定。",
+        "复述（2 分钟）：孩子不看提示，把故事从头讲一遍。这一步最重要。",
+        "升级（1 分钟）：AI 表扬一个具体优点，只给一个改进点。",
+        "收尾（1 分钟）：孩子用三句话说出开头、中间和结尾。"
+      ],
+      "factsEn": [
+        "Choose (1 minute): your child picks a hero, a place and a problem.",
+        "Build (5 minutes): your child says a line, you repeat it to AI, then read its question aloud. Your child decides the plot.",
+        "Retell (2 minutes): your child tells the whole story without prompts. This is the most important step.",
+        "Improve (1 minute): AI gives one specific piece of praise and one small next step.",
+        "Finish (1 minute): your child sums up the beginning, middle and end in three sentences."
+      ],
+      "actionsTitleZh": "开始前检查",
+      "actionsTitleEn": "Before you start",
+      "actionsZh": [
+        "手机在家长手里，孩子不单独使用。",
+        "只用昵称，不说真实姓名、学校、住址、照片或家庭细节。",
+        "关闭记忆功能，或使用临时对话。",
+        "不生成分享链接，因为里面可能有孩子的故事和个人信息。",
+        "定好结束时间，10 分钟到就停。"
+      ],
+      "actionsEn": [
+        "Keep the phone in your hands. Your child does not use it alone.",
+        "Use a nickname. Do not share real names, school, address, photos or family details.",
+        "Turn memory off or use a temporary chat.",
+        "Do not create share links, which could expose your child's stories or details.",
+        "Set an end time and stop at 10 minutes."
+      ],
+      "prompts": [
+        {
+          "titleZh": "第一步：先发这段（把方括号换成你的信息）",
+          "titleEn": "Step 1: send this first (fill in the brackets)",
+          "text": "You are Story Partner, a warm and playful English storytelling coach.\n\nSETUP\nI am the parent and the only person using this account. My child, nicknamed [NICKNAME], is [AGE] years old and is sitting beside me. I will repeat my child's words to you. Write every reply so I can read it aloud to my child.\nEnglish level: [BEGINNER / INTERMEDIATE / CONFIDENT]\nToday's mode: [MODE, or \"free story\"]\n\nYOUR GOAL\nHelp my child do most of the talking and build the story. You are the helper, not the author.\n\nRULES\n1. Keep each reply to 2 short sentences at most.\n2. Ask exactly one question per reply, then stop and wait.\n3. Never add a major plot event, character, or ending unless my child asks for help.\n4. Prefer open questions such as \"What happens next?\" or \"How does she feel?\"\n5. Offer two choices only if my child is stuck.\n6. Do not correct every mistake. Naturally repeat the sentence in correct English, then continue.\n7. Use words suited to this age. Introduce at most one new word per session.\n8. Keep content gentle: no scary, violent, romantic, or unsafe themes.\n9. Never ask for real names, school, location, photos, or personal details. If my child shares any, do not repeat it and steer back to the story.\n10. Do not act as my child's friend or encourage more screen time.\n\nSESSION FLOW\nA. Ask for a hero, a place, and a problem, one at a time.\nB. Build the story together for about 6 turns.\nC. Say: \"Now you tell the whole story, from the beginning!\" Then only listen.\nD. Give one specific praise and one small next step.\nE. Ask my child to say the story in three sentences: beginning, middle, end.\nF. End warmly and tell us it is time to stop.\n\nStart now with one short, fun question."
+        },
+        {
+          "titleZh": "玩法一：三词故事",
+          "titleEn": "Game 1: Three Words",
+          "text": "Mode: Three Words. Give 3 random, funny words. My child must use all 3 in a story."
+        },
+        {
+          "titleZh": "玩法二：英雄遇麻烦",
+          "titleEn": "Game 2: Hero Problem",
+          "text": "Mode: Hero Problem. Guide who, where, problem, attempt, solution."
+        },
+        {
+          "titleZh": "玩法三：你一句我一句",
+          "titleEn": "Game 3: Sentence Relay",
+          "text": "Mode: Sentence Relay. Add one small sentence after each of my child's sentences. Never resolve the problem."
+        },
+        {
+          "titleZh": "家长英语不自信？再加这段",
+          "titleEn": "Less confident in English? Add this",
+          "text": "Parent support: My English is not strong. I may speak to you in Chinese. In every reply, first give me one short note in Simplified Chinese labeled 家长提示. Then give one simple English line labeled Read aloud. Do not ask me to correct my child's pronunciation."
+        }
+      ],
+      "sources": [
+        {
+          "label": "OpenAI Terms of Use",
+          "url": "https://openai.com/policies/row-terms-of-use/"
+        },
+        {
+          "label": "OpenAI Help",
+          "url": "https://help.openai.com/en/articles/8313401-is-chatgpt-safe-for-all-ages"
+        }
+      ],
+      "home": 3
+    },
     {
       "id": "fairfield-wastewater-tanks",
       "board": "council",
@@ -59,17 +171,28 @@
       ],
       "actionsZh": [
         "住得近或常去公园，先看看施工位置会不会影响你的路线。",
-        "担心噪音、气味、树木或步道，可以向 Hamilton City Council 提交意见。",
+        "担心噪音、气味、树木或步道，可以向 Hamilton City Council 提交意见，入口在下面的 1News 报道里。",
         "提交截止日期是 12 月 11 日。"
       ],
       "actionsEn": [
         "If you live nearby or use the park, check how the site affects your route.",
-        "If noise, odour, trees or paths concern you, make a submission to Hamilton City Council.",
+        "If noise, odour, trees or paths concern you, make a submission to Hamilton City Council. The 1News report below links to it.",
         "Submissions close on 11 December."
       ],
       "sources": [
-        { "label": "1News / Local Democracy Reporting", "url": "https://www.1news.co.nz/2026/11/16/massive-wastewater-tanks-planned-beneath-hamilton-park/" }
-      ]
+        {
+          "label": "1News / Local Democracy Reporting",
+          "url": "https://www.1news.co.nz/2026/11/16/massive-wastewater-tanks-planned-beneath-hamilton-park/"
+        }
+      ],
+      "topics": [
+        "travel"
+      ],
+      "cta": {
+        "href": "https://www.1news.co.nz/2026/11/16/massive-wastewater-tanks-planned-beneath-hamilton-park/",
+        "zh": "看新闻和提交入口",
+        "en": "Read the report and submit"
+      }
     },
     {
       "id": "level-1-just-landed",
@@ -106,13 +229,36 @@
         "Open the Arrival checklist on this site for the documents each step needs.",
         "Tick them off as you go, and give your employer your IRD number first."
       ],
-      "cta": { "href": "/tools/checklist/", "zh": "打开新移民清单", "en": "Open the Arrival checklist" },
+      "cta": {
+        "href": "/tools/checklist/",
+        "zh": "打开新移民清单",
+        "en": "Open the Arrival checklist"
+      },
       "sources": [
-        { "label": "Inland Revenue", "url": "https://www.ird.govt.nz/new-arrival" },
-        { "label": "ANZ", "url": "https://www.anz.co.nz/personal/moving-to-new-zealand/" },
-        { "label": "Health NZ", "url": "https://www.healthnz.govt.nz/hospitals-services/services-support/asian-migrant-and-refugee-health/signing-up-with-a-healthcare-provider" },
-        { "label": "NZTA", "url": "https://www.nzta.govt.nz/driver-licences/apply-for-a-car-licence/licence-fees" },
-        { "label": "Work and Income", "url": "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card/index.html" }
+        {
+          "label": "Inland Revenue",
+          "url": "https://www.ird.govt.nz/new-arrival"
+        },
+        {
+          "label": "ANZ",
+          "url": "https://www.anz.co.nz/personal/moving-to-new-zealand/"
+        },
+        {
+          "label": "Health NZ",
+          "url": "https://www.healthnz.govt.nz/hospitals-services/services-support/asian-migrant-and-refugee-health/signing-up-with-a-healthcare-provider"
+        },
+        {
+          "label": "NZTA",
+          "url": "https://www.nzta.govt.nz/driver-licences/apply-for-a-car-licence/licence-fees"
+        },
+        {
+          "label": "Work and Income",
+          "url": "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card/index.html"
+        }
+      ],
+      "topics": [
+        "money",
+        "health"
       ]
     },
     {
@@ -148,8 +294,156 @@
         "Before 3pm the normal rules apply, including registering for two hours of free parking."
       ],
       "sources": [
-        { "label": "Hamilton City Council", "url": "https://hamilton.govt.nz/your-council/news/hamilton-unwraps-free-parking-this-festive-season" }
-      ]
+        {
+          "label": "Hamilton City Council",
+          "url": "https://hamilton.govt.nz/your-council/news/hamilton-unwraps-free-parking-this-festive-season"
+        }
+      ],
+      "topics": [
+        "money",
+        "travel"
+      ],
+      "home": 4
+    }
+  ],
+  "news": [
+    {
+      "id": "el-nino-water",
+      "date": "2026-11-23",
+      "until": "2027-03-31",
+      "topics": [
+        "money",
+        "health"
+      ],
+      "titleZh": "严重厄尔尼诺可能要来，怀卡托提前备水",
+      "titleEn": "Waikato prepares its water supply for El Niño",
+      "bodyZh": "水务公司 IAWAI 担心干旱让怀卡托河水位下降，已备好一艘驳船当浮动泵站，也准备了限水方案，必要时家庭用水也要配合。",
+      "bodyEn": "Water company IAWAI is preparing for low river levels, with a barge ready as a floating pump station and water restriction plans that could include households.",
+      "takeZh": "今年夏天洗车、浇花可以先省着点，别等限水了才改习惯。",
+      "takeEn": "Go easy on car washing and garden watering before restrictions force the change.",
+      "source": "RNZ",
+      "url": "https://www.rnz.co.nz/news/regions/2752046/waikato-water-company-has-a-barge-on-stand-by-in-preparation-for-el-nino",
+      "home": 2
+    },
+    {
+      "id": "christmas-tree",
+      "date": "2026-11-23",
+      "until": "2026-12-26",
+      "topics": [
+        "kids",
+        "travel"
+      ],
+      "titleZh": "Garden Place 的 27 米圣诞树，今年可能是最后一次",
+      "titleEn": "Garden Place's 27 m Christmas tree may be in its last year",
+      "bodyZh": "支撑圣诞树的钢架已焊修多次，专家认为不能继续用。更换报价约 22 万到 25 万纽币，除非有人出资，今年就是最后一次。",
+      "bodyEn": "Experts say the repeatedly welded steel frame is no longer safe to reuse. A replacement is quoted at NZ$220,000 to NZ$250,000, so this may be its last year unless someone funds it.",
+      "takeZh": "想带孩子看的，这个圣诞别错过。",
+      "takeEn": "If the kids love it, do not leave it for next year.",
+      "source": "RNZ",
+      "url": "https://www.rnz.co.nz/news/community/2751782/hamilton-s-christmas-wish-someone-to-save-its-giant-christmas-tree",
+      "home": 1
+    },
+    {
+      "id": "hillcrest-library",
+      "date": "2026-11-23",
+      "until": "2027-01-31",
+      "topics": [
+        "kids",
+        "money"
+      ],
+      "titleZh": "Hillcrest 图书馆开始招设计团队，目标 2028 年重开",
+      "titleEn": "Hillcrest Library seeks a design team, aiming to reopen in 2028",
+      "bodyZh": "图书馆去年因火灾受损。市议会正在招标设计，项目估算 500 万到 700 万纽币，12 月 11 日截标，预计 2027 年动工。",
+      "bodyEn": "The library was damaged by fire last year. The council is tendering for design on a project estimated at NZ$5 million to NZ$7 million. Tenders close on 11 December, with construction expected in 2027.",
+      "takeZh": "这还只是估算，等设计出来才知道最后要花多少。",
+      "takeEn": "This is still an estimate. The real bill comes after the design.",
+      "source": "Waikato Times",
+      "url": "https://www.waikatotimes.co.nz/nz-news/361119370/hamilton-city-council-hunt-design-team-resurrect-hillcrest-library",
+      "home": 6
+    },
+    {
+      "id": "sh1-ngaruawahia",
+      "date": "2026-11-23",
+      "until": "2026-12-07",
+      "topics": [
+        "travel"
+      ],
+      "titleZh": "Ngāruawāhia 段高速施工，去奥克兰多留时间",
+      "titleEn": "Expressway works at Ngāruawāhia: allow extra time",
+      "bodyZh": "SH1 Waikato Expressway 的 Ngaruawahia 路段因路面修复，双向各缩为 1 条车道，限速 50 和 70 公里。预计从 11 月 23 日起持续约 2 周。",
+      "bodyEn": "Pavement repairs have reduced the SH1 Ngaruawahia section to one lane each way, with 50 and 70 km/h limits, for about two weeks from 23 November.",
+      "takeZh": "高峰期去奥克兰或赶飞机，记得早点出门。",
+      "takeEn": "Leave earlier for Auckland or the airport at peak times.",
+      "source": "NZTA Journeys",
+      "url": "https://www.journeys.nzta.govt.nz/traffic/regions/waikato#event-568471"
+    },
+    {
+      "id": "sh23-raglan",
+      "date": "2026-11-23",
+      "until": "2026-11-30",
+      "topics": [
+        "travel"
+      ],
+      "titleZh": "去 Raglan 的路上有施工",
+      "titleEn": "Roadworks on the way to Raglan",
+      "bodyZh": "SH23 Whatawhata 的 Ferguson Road 和 Wallace Road 路口附近有停走管制，临时限速 30 公里。",
+      "bodyEn": "SH23 at Whatawhata has stop/go traffic management near Ferguson Road and Wallace Road, with a temporary 30 km/h limit.",
+      "takeZh": "周末去海边，出发前看一眼路况。",
+      "takeEn": "Check the road before a weekend beach trip.",
+      "source": "NZTA Journeys",
+      "url": "https://www.journeys.nzta.govt.nz/traffic/regions/waikato#event-568230"
+    },
+    {
+      "id": "food-insecurity",
+      "date": "2026-11-22",
+      "until": "2026-12-31",
+      "topics": [
+        "money",
+        "health"
+      ],
+      "titleZh": "产粮大区，却有三分之一的人吃饭成问题",
+      "titleEn": "A food-producing region where a third struggle to eat",
+      "bodyZh": "NZ Food Network 的报告显示，怀卡托有 36% 的人更容易面临食物短缺。Vinnies Hamilton 今年开了社会超市，这家机构每年为近 5 万人提供食物。",
+      "bodyEn": "A NZ Food Network report found 36% of people in Waikato are more likely to face food insecurity. Vinnies Hamilton opened a social supermarket this year and feeds almost 50,000 people annually.",
+      "takeZh": "手头紧不丢人，真有需要可以找这类机构。",
+      "takeEn": "There is no shame in asking for help when money is tight.",
+      "source": "RNZ",
+      "url": "https://www.rnz.co.nz/news/regions_waikato/2737520/more-than-a-third-struggling-to-put-food-on-the-table-in-waikato"
+    },
+    {
+      "id": "regional-spatial-plan",
+      "date": "2026-11-21",
+      "until": "2027-03-31",
+      "topics": [
+        "money"
+      ],
+      "titleZh": "30 年区域规划要来，账单可能落到 rates 上",
+      "titleEn": "A 30-year regional plan could land on ratepayers",
+      "bodyZh": "政府要求怀卡托 11 个议会共同做区域空间规划，费用可能达 3000 万纽币。汉密尔顿议员担心时间太赶，也担心本市分摊最多。草案须在 2028 年 6 月前公布。",
+      "bodyEn": "Eleven Waikato councils must produce a regional spatial plan that could cost NZ$30 million. Hamilton councillors are worried about the timeline and the city's share. A draft is due by June 2028.",
+      "takeZh": "有房的朋友可以留意后面的 rates 讨论。",
+      "takeEn": "Homeowners should watch the coming rates discussion.",
+      "source": "Waikato Times",
+      "url": "https://www.waikatotimes.co.nz/nz-news/361121266/mutiny-brewing-city-leaders-concerned-over-regional-spatial-plan-costs"
+    },
+    {
+      "id": "beach-water-testing",
+      "date": "2026-11-21",
+      "until": "2027-03-31",
+      "topics": [
+        "health",
+        "kids",
+        "travel"
+      ],
+      "titleZh": "夏季海滩水质检测开始了，下水前先查",
+      "titleEn": "Summer beach water testing has begun",
+      "bodyZh": "怀卡托地区议会到明年 3 月底检测 9 处海滩和 4 个河口，包括 Raglan 的 Ngarunui Beach。议会提醒河口水质波动更大，下雨后尤其要注意。",
+      "bodyEn": "Waikato Regional Council will test nine beaches and four estuaries until the end of March, including Ngarunui Beach in Raglan. Estuaries vary more, especially after rain.",
+      "takeZh": "带孩子玩水前看一眼 LAWA，下过雨就更要查。",
+      "takeEn": "Check LAWA before the kids swim, especially after rain.",
+      "source": "NZ Herald",
+      "url": "https://www.nzherald.co.nz/nz/waikato-water-testing-which-beaches-and-estuaries-are-being-monitored/PM5HHPH3FBA63KMPS3WDPBISYQ/",
+      "home": 5
     }
   ]
 }

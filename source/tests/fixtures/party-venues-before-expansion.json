@@ -1,0 +1,770 @@
+[
+  {
+    "id": "chipmunks-hamilton",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "花栗鼠室内乐园",
+    "name_en": "Chipmunks Hamilton",
+    "type": "indoor",
+    "address": "8 Maui Street, Pukete, Hamilton 3200",
+    "ages_zh": "0至11岁；按年龄分区",
+    "ages_en": "0–11 years; age-specific play zones",
+    "details_zh": "8名儿童套餐，含1小时派对房；额外儿童另收费。可自带生日蛋糕，其他餐饮按场地规定。",
+    "details_en": "Packages for 8 children include a one-hour party room. Additional children cost extra. Birthday cakes may be brought in; check food rules.",
+    "price_zh": "NZ$365 / $465 / $565（8名儿童套餐）",
+    "price_en": "NZ$365 / $465 / $565 per 8-child package",
+    "url": "https://chipmunksplayland.co.nz/hamilton/birthday-party-packages/",
+    "sources": [
+      {
+        "url": "https://chipmunksplayland.co.nz/hamilton/birthday-party-packages/",
+        "title": "Chipmunks Hamilton birthday party packages",
+        "evidence": "Official Hamilton page lists Basic $365, Bash $465, Bonanza $565, each with entry for 8 children and a one-hour party room; extra-child charges differ. It permits bringing a birthday cake."
+      },
+      {
+        "url": "https://chipmunksplayland.co.nz/hamilton/contact-us/",
+        "title": "Chipmunks Hamilton contact",
+        "evidence": "Official contact page gives 8 Maui Street, Pukete, Hamilton 3200 and daily opening hours."
+      },
+      {
+        "url": "https://chipmunksplayland.co.nz/playground-rules/",
+        "title": "Chipmunks playground rules",
+        "evidence": "National rules restrict playground use to ages 0–11, with Mini Zone 0–4 and Main Zone 5–11; adult supervision is required."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "ninja-valley-hamilton",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "忍者谷障碍乐园",
+    "name_en": "Ninja Valley Hamilton",
+    "type": "sport",
+    "address": "9–11 Norton Road, Frankton, Hamilton",
+    "ages_zh": "待确认（官网另列5岁及以下套餐说明）",
+    "ages_en": "Unconfirmed; the party page separately explains passes for ages 5 and under",
+    "details_zh": "至少8名付费参与者。周末及公假含1小时游玩和2小时派对房；可自带食物，需指定防滑袜。",
+    "details_en": "Minimum 8 paid players. Weekend/public-holiday parties include one hour in the arena and two hours in a party room. Bring food or order from the café; Ninja Grip Socks are required.",
+    "price_zh": "周末及公假 NZ$30/参与者；袜子及平日方案另确认",
+    "price_en": "NZ$30 per player on weekends/public holidays; confirm socks and weekday costs",
+    "url": "https://ninjavalley.co.nz/hamilton/parties-and-events",
+    "sources": [
+      {
+        "url": "https://ninjavalley.co.nz/hamilton/parties-and-events",
+        "title": "Ninja Valley Hamilton parties and events",
+        "evidence": "Current party page explicitly lists $30 per playing guest at peak times, minimum 8 arena passes, a two-hour room and one-hour arena session; Ninja Grip Socks are required. Under-5-and-under wording includes the adult supervisor in that pass. Food can be brought in."
+      },
+      {
+        "url": "https://ninjavalley.co.nz/hamilton/contact",
+        "title": "Ninja Valley Hamilton contact",
+        "evidence": "Official address is 9–11 Norton Road, Frankton, Hamilton."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "extreme-edge-hamilton",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "极限边缘攀岩",
+    "name_en": "Extreme Edge Hamilton / ClimbZone",
+    "type": "sport",
+    "address": "90 Greenwood Street, Frankton, Hamilton 3204",
+    "ages_zh": "3岁起；16岁以下须成人主动看护",
+    "ages_en": "From 3 years; under-16s need active adult supervision",
+    "details_zh": "至少8名儿童可预订派对区域，最多使用2小时；可自带食物，场地不提供派对餐饮。入场及装备另计。",
+    "details_en": "A party area can be reserved for 8 or more children for up to two hours. Bring your own food; party catering is not supplied. Entry and equipment charges apply.",
+    "price_zh": "派对总价待确认；普通儿童入场 NZ$15（5岁以下）/ $21（5至15岁），装备另计",
+    "price_en": "Party total unconfirmed; casual child entry NZ$15 under 5 / $21 ages 5–15, equipment extra",
+    "url": "https://www.extremeedgehamilton.co.nz/parties/",
+    "sources": [
+      {
+        "url": "https://www.extremeedgehamilton.co.nz/parties/",
+        "title": "Extreme Edge Hamilton kids parties",
+        "evidence": "The official party page requires 8 or more children for a party area, allows up to two hours, permits own food and says catering is not provided."
+      },
+      {
+        "url": "https://www.extremeedgehamilton.co.nz/prices-and-hours/",
+        "title": "Extreme Edge Hamilton prices and hours",
+        "evidence": "Official prices list casual under-5 entry $15 and ages 5–15 $21, equipment hire separate; children from age 3 are suitable, and under-16s must be actively supervised."
+      },
+      {
+        "url": "https://www.extremeedgehamilton.co.nz/",
+        "title": "Extreme Edge Hamilton home/contact",
+        "evidence": "Official home page gives 90 Greenwood St, Frankton, Hamilton 3204."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "bowl-social-hamilton",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "保龄球生日派对",
+    "name_en": "Bowl & Social",
+    "type": "sport",
+    "address": "Level Two, 346 Victoria Street, Hamilton Central, Hamilton 3204",
+    "ages_zh": "儿童套餐5至9岁；少年套餐9至14岁",
+    "ages_en": "Kids package ages 5–9; tweens package ages 9–14",
+    "details_zh": "儿童及少年套餐含一局保龄球与餐饮；咨询表注明至少6人。外带食物饮料受限制，蛋糕请提前与经理确认。",
+    "details_en": "Kids and tweens packages include a bowling game and food; enquiry form states a 6-guest minimum. Outside food/drink is restricted; arrange cake permission with the manager.",
+    "price_zh": "派对套餐价待确认",
+    "price_en": "Party package price unconfirmed",
+    "url": "https://skycityhamilton.co.nz/whats-on/entertainment/birthday-packages/",
+    "sources": [
+      {
+        "url": "https://skycityhamilton.co.nz/whats-on/entertainment/birthday-packages/",
+        "title": "Bowl & Social birthday packages",
+        "evidence": "Official page gives kids ages 5–9 and tweens ages 9–14, bowling plus food, a minimum-6 enquiry field and no outside food/drink. Linked price PDFs were not retrievable, so party price is left unconfirmed."
+      },
+      {
+        "url": "https://skycityhamilton.co.nz/bowl-and-social/",
+        "title": "Bowl & Social venue/contact/FAQ",
+        "evidence": "Venue page gives Level Two, 346 Victoria Street, Hamilton Central 3204; under-14s cannot be left unattended and cake permission should be discussed with the relevant manager."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "waterworld-parties",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "水世界泳池派对",
+    "name_en": "Waterworld",
+    "type": "sport",
+    "address": "Garnett Avenue, Te Rapa, Hamilton 3200",
+    "ages_zh": "年龄限制待确认；水滑梯须身高超过1米",
+    "ages_en": "Confirm age limits; hydroslides require height over 1 metre",
+    "details_zh": "两种套餐均含10名儿童和4名成人全天游泳。基础含1.5小时派对房；滑梯方案含2.5小时派对房，须核对滑梯开放时段。",
+    "details_en": "Both packages include all-day swimming for 10 children and 4 adults. Base room hire is 1.5 hours; the slide package has 2.5 hours. Check slide operating times.",
+    "price_zh": "NZ$126.70（泳池与房间）/ $292.70（含滑梯）；额外人数另计",
+    "price_en": "NZ$126.70 pool/room or $292.70 including slides; additional guests extra",
+    "url": "https://www.hamiltonpools.co.nz/book-an-event/",
+    "sources": [
+      {
+        "url": "https://www.hamiltonpools.co.nz/book-an-event/",
+        "title": "Hamilton Pools bookings",
+        "evidence": "Waterworld packages are $126.70 and $292.70, each for 10 children and 4 adults; room durations 1.5/2.5 hours. Slides require over 1 metre height and run only during stated hours. Venue listed as Garnett Ave Hamilton 3200."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "gallagher-aquatic-parties",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "加拉格尔泳池烧烤派对",
+    "name_en": "Gallagher Aquatic Centre",
+    "type": "sport",
+    "address": "Collins Road, Melville, Hamilton 3206",
+    "ages_zh": "各年龄可游泳；14岁以下须陪同，幼儿另有看护规定",
+    "ages_en": "All ages; under-14s accompanied, with closer supervision rules for younger children",
+    "details_zh": "含10名儿童与4名成人全天游泳、1小时烧烤区。官网预订页与场地页门牌不一致，出发前确认。 预订页写20号，设施页写22号；地图仅按道路定位。",
+    "details_en": "Includes all-day swim entry for 10 children and 4 adults and one hour of BBQ use. Confirm the street number, which differs across official pages. Booking page says number 20; facility page says 22. Directions use the road only.",
+    "price_zh": "NZ$85.30/泳池与烧烤套餐",
+    "price_en": "NZ$85.30 per swim and BBQ package",
+    "url": "https://www.hamiltonpools.co.nz/book-an-event/",
+    "sources": [
+      {
+        "url": "https://www.hamiltonpools.co.nz/book-an-event/",
+        "title": "Hamilton Pools bookings",
+        "evidence": "Gallagher swim-and-BBQ package is $85.30 for 10 child/4 adult day entries and one hour BBQ use; booking page gives 20 Collins Rd."
+      },
+      {
+        "url": "https://www.hamiltonpools.co.nz/facilities/gallagher-aquatic-centre/",
+        "title": "Gallagher Aquatic Centre facilities and supervision",
+        "evidence": "Facility page gives 22 Collins Road (conflicts with booking page 20), says all ages, under-14s accompanied, under-8s actively supervised and under-5s within arm's reach in the water."
+      }
+    ],
+    "verified_on": "2026-11-11",
+    "unconfirmed": [
+      "官网预订页写20 Collins Rd，场地页写22 Collins Road；出发前与场地确认门牌。"
+    ]
+  },
+  {
+    "id": "hamilton-zoo-groups",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "汉密尔顿动物园团体派对",
+    "name_en": "Hamilton Zoo",
+    "type": "outdoor",
+    "address": "183 Brymer Road, Hamilton 3289",
+    "ages_zh": "年龄限制待确认（儿童团体票为3至15岁）",
+    "ages_en": "Age limits unconfirmed; child group-ticket band is 3–15 years",
+    "details_zh": "10名及以上付费访客可订团体票，官网明确适用于生日与家庭聚会。可自带食物，野餐区先到先得，不含专属派对房承诺。",
+    "details_en": "Group rates apply from 10 paying visitors and explicitly cover birthdays/family outings. Bring food; picnic areas are first come, first served. No private party room is promised.",
+    "price_zh": "团体票儿童 NZ$10/人（3至15岁），成人 $20/人；合资格优惠票 $15/人",
+    "price_en": "Group entry: NZ$10 child ages 3–15, $20 adult, $15 eligible concession",
+    "url": "https://hamiltonzoo.co.nz/ticket-info/groups",
+    "sources": [
+      {
+        "url": "https://hamiltonzoo.co.nz/ticket-info/groups",
+        "title": "Hamilton Zoo group tickets",
+        "evidence": "Official birthday/family-outing group rates require 10 paying visitors: adults $20, children 3–15 $10, eligible cardholders 16+ $15. Footer gives 183 Brymer Road, Hamilton."
+      },
+      {
+        "url": "https://hamiltonzoo.co.nz/public/about/contact",
+        "title": "Hamilton Zoo contact/FAQ",
+        "evidence": "Official FAQ allows visitors to bring food and use picnic areas first come, first served."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "good-news-community-centre",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "好消息社区中心",
+    "name_en": "Good News Community Centre",
+    "type": "hire",
+    "address": "Corner Dominion Road and Breckons Avenue, Nawton, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "大厅约100个座位，租金含厨房与桌椅；适用于生日及家庭庆祝。禁酒、禁烟及电子烟，需可退押金。",
+    "details_en": "Hall seats around 100 and includes kitchen, tables and chairs; the council explicitly lists birthdays. Alcohol, smoking and vaping prohibited; refundable bond required.",
+    "price_zh": "大厅 NZ$35/小时；半日 $120、全日 $250；可退押金 $100",
+    "price_en": "Hall NZ$35/hour, part day $120, full day $250; refundable $100 bond",
+    "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/good-news-community-centre",
+    "sources": [
+      {
+        "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/good-news-community-centre",
+        "title": "Hamilton City Council: Good News Community Centre",
+        "evidence": "Council listing gives corner Dominion/Breckons, birthdays, about 100 seated, kitchen/tables/chairs, hall $35/hour, $120 part day, $250 full day and refundable bond $100. No alcohol/smoking/vaping."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "glenview-community-centre",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "格伦维尤社区中心",
+    "name_en": "Glenview Community Centre",
+    "type": "hire",
+    "address": "12 Tomin Road, Glenview, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "市议会明确列为适合派对；大厅可分为两间，最多100人，含厨房及桌椅。具体儿童活动安排与档期待确认。",
+    "details_en": "Council-listed for parties. Divisible hall accommodates up to 100 with a kitchen, tables and chairs. Confirm dates and children's activity arrangements.",
+    "price_zh": "待确认",
+    "price_en": "Unconfirmed",
+    "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/glenview-community-centre",
+    "sources": [
+      {
+        "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/glenview-community-centre",
+        "title": "Hamilton City Council: Glenview Community Centre",
+        "evidence": "Council listing gives 12 Tomin Road, capacity 100, divisible hall, fully equipped kitchen, tables/chairs and parties as a suitable use; no hire price was published in the retrieved page."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "frankton-railway-hall",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "弗兰克顿铁路会堂",
+    "name_en": "Frankton Railway Institute Hall",
+    "type": "hire",
+    "address": "Corner Kaka Street and Pukeko Street, Frankton, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "历史会堂设主厅、厨房及侧室可租，市议会列为适合庆祝、派对与私人活动。人数上限待确认。",
+    "details_en": "Historic main hall, kitchen and side rooms available to hire. Council lists celebrations, parties and private functions; confirm guest capacity.",
+    "price_zh": "待确认",
+    "price_en": "Unconfirmed",
+    "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/frankton-railway-institute-hall",
+    "sources": [
+      {
+        "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/frankton-railway-institute-hall",
+        "title": "Hamilton City Council: Frankton Railway Institute Hall",
+        "evidence": "Council listing confirms Kaka/Pukeko corner, hall/kitchen/side rooms and party hire. Its capacity field displays zero, which is treated as missing rather than a real capacity."
+      }
+    ],
+    "verified_on": "2026-11-11",
+    "unconfirmed": [
+      "市议会容量栏显示0，视为缺失值，未作为真实容量展示。"
+    ]
+  },
+  {
+    "id": "te-whanau-putahi",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "费尔菲尔德家庭中心",
+    "name_en": "Te Whānau Pūtahi, Fairfield",
+    "type": "hire",
+    "address": "37 Oxford Street, Fairfield, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "会堂约70至100座，市议会列为适合派对及私人活动；有商业厨房、桌椅，活动安排与可用设施请预订时确认。",
+    "details_en": "Hall seats about 70–100; council lists party and private-function hire with a commercial kitchen, tables and chairs. Confirm event arrangements and available facilities.",
+    "price_zh": "待确认",
+    "price_en": "Unconfirmed",
+    "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/te-whaanau-puutahi-fairfield/",
+    "sources": [
+      {
+        "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/te-whaanau-puutahi-fairfield/",
+        "title": "Hamilton City Council: Te Whānau Pūtahi, Fairfield",
+        "evidence": "Current council page lists 37 Oxford Street, hall for 70–100, commercial kitchen, tables/chairs and suitable use for parties and private functions; price not stated."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "st-peters-scout-hall",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "圣彼得童军会堂",
+    "name_en": "Kirikiriroa and Saint Peters Scout Group Hall",
+    "type": "hire",
+    "address": "31 Lorne Street, Melville, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "会堂及厨房可租用于最多60人的聚会，另有最多30人的小会议室。适用于庆祝，儿童派对具体安排待确认。",
+    "details_en": "Hall and kitchen for functions up to 60, plus a conference room up to 30. Council lists celebrations; confirm specific children's-party arrangements.",
+    "price_zh": "待确认",
+    "price_en": "Unconfirmed",
+    "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/kirikiriroa-and-saint-peters-scout-group-hall/",
+    "sources": [
+      {
+        "url": "https://hamilton.govt.nz/community-spaces/finding-and-booking-a-community-venue/detail/kirikiriroa-and-saint-peters-scout-group-hall/",
+        "title": "Hamilton City Council: Kirikiriroa and Saint Peters Scout Group Hall",
+        "evidence": "Official council listing gives 31 Lorne Street Melville, hall/kitchen hire for 60, conference room for 30 and celebrations as a suitable use. Children's packages, ages and prices are not stated."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "hamilton-gardens-pavilion",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "汉密尔顿花园会馆",
+    "name_en": "Hamilton Gardens Pavilion",
+    "type": "hire",
+    "address": "Hungerford Crescent, Cobham Drive, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "五个可租空间适用于不同规模聚会；宴会、会议及庆祝可咨询。儿童派对方案待确认，餐饮须通过指定供应商，桌椅等可能另收费。",
+    "details_en": "Five hireable spaces suit different group sizes. Enquire about celebrations; children's-party arrangements are unconfirmed. Preferred caterers required and equipment may cost extra.",
+    "price_zh": "待确认",
+    "price_en": "Unconfirmed",
+    "url": "https://hamiltongardens.co.nz/public/venue-hire-in-hamilton",
+    "sources": [
+      {
+        "url": "https://hamiltongardens.co.nz/public/venue-hire-in-hamilton",
+        "title": "Hamilton Gardens venue hire",
+        "evidence": "Official page confirms five Pavilion spaces, general private event hire, Hungerford Crescent/Cobham Drive address, preferred catering, extra-cost furniture/equipment and possible bond. No children's package or numerical hire prices are specified."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "waikato-museum-hire",
+    "region": "Hamilton",
+    "town": "Hamilton",
+    "name_zh": "怀卡托博物馆场地租用",
+    "name_en": "Te Whare Taonga o Waikato Museum & Gallery",
+    "type": "hire",
+    "address": "1 Grantham Street, Hamilton",
+    "ages_zh": "待确认",
+    "ages_en": "Unconfirmed",
+    "details_zh": "提供门厅及展厅等私人活动空间，可提交租用咨询。儿童生日套餐、可用时段及活动规则待确认；普通参观免费不代表场地免费。",
+    "details_en": "Foyer/gallery spaces are available for private functions through a hire enquiry. Confirm children's birthday arrangements, available times and event rules; free general admission is not free venue hire.",
+    "price_zh": "待确认",
+    "price_en": "Unconfirmed",
+    "url": "https://tewharetaonga.nz/public/venue-hire",
+    "sources": [
+      {
+        "url": "https://tewharetaonga.nz/public/venue-hire",
+        "title": "Te Whare Taonga o Waikato: Venue Hire",
+        "evidence": "Official current hire page lists foyer/galleries, private functions and tailored events. It does not publish a children's party package or hire price."
+      },
+      {
+        "url": "https://tewharetaonga.nz/venue-hire/venue-hire-enquiry",
+        "title": "Te Whare Taonga venue hire enquiry",
+        "evidence": "Official enquiry page gives 1 Grantham Street Hamilton and a venue-hire form with self-catering option. General admission is free but no venue hire price is stated."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "cambridge-gymnastics",
+    "region": "Cambridge",
+    "town": "Cambridge",
+    "name_zh": "剑桥体操俱乐部",
+    "name_en": "Cambridge Gymnastics",
+    "type": "sport",
+    "address": "187 Shakespeare Street, Leamington, Cambridge",
+    "ages_zh": "3岁及以上",
+    "ages_en": "Ages 3+",
+    "details_zh": "教练带领1小时体操，之后阁楼用餐区最多使用1小时；自备食物和蛋糕。通常需提前4周预约。",
+    "details_en": "One hour of coached gymnastics, then up to one hour in the mezzanine for your own food and cake. Book four weeks ahead.",
+    "price_zh": "NZ$250／最多8名儿童；每增加1名儿童 NZ$15",
+    "price_en": "NZ$250 for up to 8 children; NZ$15 per additional child",
+    "url": "https://cambridgegymnasticsnz.co.nz/bookings",
+    "sources": [
+      {
+        "url": "https://cambridgegymnasticsnz.co.nz/bookings",
+        "title": "Cambridge Gymnastics Birthday Party",
+        "evidence": "Live page and direct HTTP 200: coached hour, mezzanine hour, ages 3+, $250 up to eight children, $15 each extra, four weeks notice; footer supplies address. Current page supersedes obsolete 2021 PDF pricing."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "perry-aquatic-centre",
+    "region": "Cambridge",
+    "town": "Cambridge",
+    "name_zh": "佩里水上中心",
+    "name_en": "Perry Aquatic Centre",
+    "type": "sport",
+    "address": "23 Williamson Street, Cambridge 3434",
+    "ages_zh": "适合年龄待确认；充气设施限5岁及以上且需通过游泳测试",
+    "ages_en": "Party ages to confirm; inflatable users must be 5+ and pass a swim test",
+    "details_zh": "夏季泳池旁烧烤设施可租用，适合家庭聚会；派对人数、时段及烧烤租费需向场馆确认。",
+    "details_en": "Poolside BBQs are available to hire in summer. Confirm party size, booking times and BBQ hire fees with the centre.",
+    "price_zh": "派对及烧烤租费待确认；普通入场儿童 NZ$5.50、成人 NZ$8.50／人",
+    "price_en": "Party and BBQ hire to confirm; ordinary admission NZ$5.50 child, NZ$8.50 adult per person",
+    "url": "https://www.gowaipa.com/perry-aquatic-centre-cambridge",
+    "sources": [
+      {
+        "url": "https://www.gowaipa.com/perry-aquatic-centre-cambridge",
+        "title": "Perry Aquatic Centre",
+        "evidence": "Official live facility page confirms on-site summer BBQ hire, $5.50 child and $8.50 adult admission. Inflatable users must be 5+ and pass a swim test. No party package total inferred."
+      },
+      {
+        "url": "https://www.gowaipa.com/contact",
+        "title": "GoWaipa contact",
+        "evidence": "Official address: 23 Williamson Street, Cambridge 3434."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "hautapu-clubrooms",
+    "region": "Cambridge",
+    "town": "Cambridge",
+    "name_zh": "豪塔普体育俱乐部会所",
+    "name_en": "Hautapu Sports Clubrooms",
+    "type": "hire",
+    "address": "8 Laurent Road, Cambridge",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "会所可用于生日及家庭庆祝，包含厨房与室外烧烤区；官网不接受18岁和21岁生日派对。餐饮可另行洽谈。",
+    "details_en": "Clubroom hire for birthdays and celebrations, with kitchen and outdoor BBQ area. No 18th or 21st birthday parties. Catering by arrangement.",
+    "price_zh": "官网估价：半天最多4小时 NZ$150 加GST，另收清洁费 NZ$120；最终报价待确认",
+    "price_en": "Website estimate: NZ$150 plus GST for up to 4 hours, plus NZ$120 cleaning; confirm final quote",
+    "url": "https://hautapusports.co.nz/hautapu-clubroom-bookings",
+    "sources": [
+      {
+        "url": "https://hautapusports.co.nz/hautapu-clubroom-bookings",
+        "title": "Hautapu Clubroom Bookings",
+        "evidence": "Official page lists 8 Laurent Road, birthday/function hire, kitchen and BBQ; half day $150+GST plus $120 cleaning. It labels all prices estimates and excludes 18th and 21st birthday parties."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "cambridge-golf-clubhouse",
+    "region": "Cambridge",
+    "town": "Cambridge",
+    "name_zh": "剑桥高尔夫俱乐部会所",
+    "name_en": "Cambridge Golf Club Clubhouse",
+    "type": "hire",
+    "address": "112 Tirau Road, Cambridge",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "官网明确接受生日、周年纪念及家庭聚会；驻场餐饮可按人数和活动类型安排。儿童派对安排需先确认。",
+    "details_en": "Officially available for birthdays, anniversaries and family gatherings. On-site catering can be tailored; confirm arrangements for children.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://www.cambridgegolf.co.nz/functions-and-facility-hire?ComeFromCat=2702",
+    "sources": [
+      {
+        "url": "https://www.cambridgegolf.co.nz/functions-and-facility-hire?ComeFromCat=2702",
+        "title": "Cambridge Golf Club Functions & Facility Hire",
+        "evidence": "Official page explicitly offers birthdays and family gatherings; on-site catering and clubhouse overlooking 18th green; address 112 Tirau Road. No hire price or child age restriction published."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "te-awamutu-stadium",
+    "region": "Te Awamutu",
+    "town": "Te Awamutu",
+    "name_zh": "蒂阿瓦穆图活动中心体育馆",
+    "name_en": "Te Awamutu Events Centre Stadium",
+    "type": "sport",
+    "address": "3 Selwyn Lane, Te Awamutu 3800",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "可为私人庆祝活动配置体育馆，亦可预约篮球、无挡板篮球等室内运动场地；派对活动和餐饮安排需洽谈。",
+    "details_en": "Stadium layouts can accommodate private celebrations, with indoor courts available to book. Discuss activities and catering arrangements.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://www.gowaipa.com/book-a-venue",
+    "sources": [
+      {
+        "url": "https://www.gowaipa.com/book-a-venue",
+        "title": "GoWaipa Venue Hire",
+        "evidence": "Official page explicitly says stadium accommodates private celebrations and recreational court bookings."
+      },
+      {
+        "url": "https://www.gowaipa.com/stadium",
+        "title": "Te Awamutu Stadium",
+        "evidence": "Official venue page lists hall, meeting room, kitchen and booking enquiry."
+      },
+      {
+        "url": "https://www.gowaipa.com/contact",
+        "title": "GoWaipa contact",
+        "evidence": "Events Centre & Stadium address is 3 Selwyn Lane, Te Awamutu 3800."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "st-johns-te-awamutu",
+    "region": "Te Awamutu",
+    "town": "Te Awamutu",
+    "name_zh": "圣约翰教区礼堂",
+    "name_en": "St John's Parish Hall & Lounge",
+    "type": "hire",
+    "address": "162 Arawata Street, Te Awamutu 3840",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "教区礼堂及休息厅可租作特别活动；需联系办公室确认家庭或儿童派对是否获准，并填写租用申请表。",
+    "details_en": "Parish hall and lounge can be hired for special events. Ask the office to approve the proposed family or children’s event and submit the hire form.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://www.stjohnsparishteawamutu.com/whats-on/",
+    "sources": [
+      {
+        "url": "https://www.stjohnsparishteawamutu.com/whats-on/",
+        "title": "St John’s Parish Venue Hire",
+        "evidence": "Official page offers church, parish hall and lounge for special events, with booking form and office approval; address 162 Arawata Street. Child-party permission and pricing are not asserted."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "te-awamutu-sports-club",
+    "region": "Te Awamutu",
+    "town": "Te Awamutu",
+    "name_zh": "蒂阿瓦穆图橄榄球与康乐俱乐部",
+    "name_en": "Te Awamutu Rugby Sports & Recreation Club",
+    "type": "hire",
+    "address": "420 Albert Park Drive, Te Awamutu",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "官网提供一次性或定期场地租用，可与负责人讨论活动和预算；儿童或家庭派对形式需预先确认。",
+    "details_en": "One-off or regular venue hire is offered, with tailored events by enquiry. Confirm the proposed children’s or family party with the manager.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://tasports.co.nz/venue-hire",
+    "sources": [
+      {
+        "url": "https://tasports.co.nz/venue-hire",
+        "title": "Te Awamutu Sports Venue Hire",
+        "evidence": "Direct HTTP 200 official hire page confirms one-off/regular facility rental and event tailoring; footer gives 420 Albert Park Drive. No price, ages or specific child party package published."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "raglan-town-hall",
+    "region": "Raglan",
+    "town": "Raglan",
+    "name_zh": "拉格伦市政礼堂",
+    "name_en": "Raglan Town Hall",
+    "type": "hire",
+    "address": "41 Bow Street, Raglan",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "区议会列明用于家庭活动；设主礼堂、用餐室及厨房，可向拉格伦图书馆与议会办公室咨询租用。",
+    "details_en": "Council lists family events among its uses. Main hall, supper room and kitchen; enquire with Raglan Library and Council Office.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://www.waikatodistrict.govt.nz/recreation/community-halls",
+    "sources": [
+      {
+        "url": "https://www.waikatodistrict.govt.nz/recreation/community-halls",
+        "title": "Waikato District Council Community Halls — Raglan Town Hall",
+        "evidence": "Council listing gives 41 Bow Street, main hall, supper room, kitchen and family-event use. Booking contact is Raglan Library and Council Office. Room-specific fees not imported without reviewing their schedule."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "te-uku-memorial-hall",
+    "region": "Raglan",
+    "town": "Te Uku / Raglan",
+    "name_zh": "蒂乌库纪念社区礼堂",
+    "name_en": "Te Uku Memorial Community Hall",
+    "type": "hire",
+    "address": "38 Matakotea Road, Raglan 3295",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "官网明确接受生日派对和家庭庆祝，提供主厅、厨房及桌椅；可在线查看可用日期。",
+    "details_en": "Officially offered for birthday parties and family celebrations, with main hall, kitchen, tables and chairs. Check availability online.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://teukuhall.co.nz/",
+    "sources": [
+      {
+        "url": "https://teukuhall.co.nz/",
+        "title": "Te Uku Hall Rentals",
+        "evidence": "Official current site offers birthday and family celebration rentals and kitchen/tables/chairs."
+      },
+      {
+        "url": "https://teukuhall.co.nz/contact-us/",
+        "title": "Te Uku Hall Contact",
+        "evidence": "Direct HTTP 200 official contact page gives 38 Matakotea Road, Raglan 3295. This differs from third-party event listings; official address used."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "huntly-aquatic-centre",
+    "region": "other",
+    "town": "Huntly",
+    "name_zh": "亨特利水上中心",
+    "name_en": "Huntly Aquatic Centre",
+    "type": "sport",
+    "address": "21 Wight Street, Huntly 3700",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "全年运营，可洽谈单泳道、整池或健身空间租用；儿童派对人数、监督比例和可用时段待确认。",
+    "details_en": "Year-round centre offering lane, whole-pool or gym-space hire by enquiry. Confirm child-party capacity, supervision and available times.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://www.huntlyaquaticcentre.co.nz/venue/",
+    "sources": [
+      {
+        "url": "https://www.huntlyaquaticcentre.co.nz/venue/",
+        "title": "Huntly Aquatic Centre Venue",
+        "evidence": "Official page confirms year-round operation and lane, whole-pool or gym-space hire for groups/events."
+      },
+      {
+        "url": "https://www.huntlyaquaticcentre.co.nz/contact/get-in-touch/",
+        "title": "Huntly Aquatic Centre Contact",
+        "evidence": "Official contact page supplies 21 Wight Street, Huntly 3700 and current operating hours."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "swim-zone-matamata",
+    "region": "other",
+    "town": "Matamata",
+    "name_zh": "玛塔玛塔泳池派对",
+    "name_en": "Swim Zone Matamata",
+    "type": "sport",
+    "address": "10 Meura Street, Matamata 3400",
+    "ages_zh": "适合年龄待确认；8岁以下须由16岁及以上照护者主动看护",
+    "ages_en": "Party ages to confirm; under 8s require active supervision by a caregiver aged 16+",
+    "details_zh": "官网接受生日派对预约；烧烤区需另订。泳池仍可能向公众开放，包场与设施可用情况需确认。",
+    "details_en": "Birthday group bookings are available; book BBQ use separately. Pools may remain open to the public, so confirm exclusivity and available facilities.",
+    "price_zh": "烧烤区 NZ$20／小时；派对总价及入场费待确认",
+    "price_en": "BBQ area NZ$20 per hour; party total and admissions to confirm",
+    "url": "https://www.swimzonepools.co.nz/group-booking/bookings",
+    "sources": [
+      {
+        "url": "https://www.swimzonepools.co.nz/group-booking/bookings",
+        "title": "Swim Zone Group Bookings",
+        "evidence": "Official page explicitly offers birthday pool parties; all pools have BBQ hire $20/hour; bookings essential."
+      },
+      {
+        "url": "https://www.swimzonepools.co.nz/footercontact",
+        "title": "Swim Zone Contact",
+        "evidence": "Official address is 10 Meura Street, Matamata 3400; group bookings require minimum 10 people."
+      },
+      {
+        "url": "https://www.swimzonepools.co.nz/our-facilities/swim-zone-matamata",
+        "title": "Swim Zone Matamata",
+        "evidence": "Under 8s must be actively supervised by a caregiver 16+. Spa and toddler availability are restricted; no guarantee of these facilities included."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "firth-tower",
+    "region": "other",
+    "town": "Matamata",
+    "name_zh": "弗斯塔博物馆与花园",
+    "name_en": "Firth Tower Museum & Reserve",
+    "type": "outdoor",
+    "address": "266A Tower Road, Matamata 3400",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "区议会明确列出家庭野餐、庆祝及室内外场地租用；需预约，具体活动区域及租用条件由场馆确认。",
+    "details_en": "Council offers indoor and outdoor venue hire for family picnics and celebrations. Bookings essential; confirm spaces and hire conditions.",
+    "price_zh": "待确认",
+    "price_en": "To confirm",
+    "url": "https://www.mpdc.govt.nz/our-facilities/firth-tower",
+    "sources": [
+      {
+        "url": "https://www.mpdc.govt.nz/our-facilities/firth-tower",
+        "title": "Matamata-Piako District Council Firth Tower",
+        "evidence": "Council gives physical venue address 266 A Tower Road and explicitly welcomes family picnics/celebrations with indoor and outdoor hire; bookings essential."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "morrinsville-sports-club",
+    "region": "other",
+    "town": "Morrinsville",
+    "name_zh": "莫林斯维尔体育俱乐部会所",
+    "name_en": "Morrinsville Rugby & Sports Club",
+    "type": "hire",
+    "address": "Campbell Park, Thames Street, Morrinsville",
+    "ages_zh": "待确认",
+    "ages_en": "To confirm",
+    "details_zh": "会所可租作生日或家庭庆祝，配厨房；非会员若需酒吧服务，须至少提前20个工作日安排特别许可。儿童活动安排需先确认。",
+    "details_en": "Clubrooms are available for birthdays and celebrations, with kitchen. Non-members needing bar service require at least 20 working days for licensing; confirm child-party arrangements.",
+    "price_zh": "全场含酒吧 NZ$1,000 加GST；或 NZ$750 加GST且须消费 NZ$1,500 酒吧账单",
+    "price_en": "Full hire with bar NZ$1,000 plus GST; or NZ$750 plus GST with NZ$1,500 bar tab",
+    "url": "https://www.sporty.co.nz/morrinsvillesports/venue-hire/Clubroom-Hire-1",
+    "sources": [
+      {
+        "url": "https://www.sporty.co.nz/morrinsvillesports/venue-hire/Clubroom-Hire-1",
+        "title": "Morrinsville Sports Club Clubroom Hire",
+        "evidence": "Official page confirms birthday functions, Campbell Park Thames Street, kitchen, full hire $1000+GST or $750+GST with $1500 bar tab; non-member bar licence requires 20 working days."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  },
+  {
+    "id": "south-waikato-sport-events",
+    "region": "other",
+    "town": "Tokoroa",
+    "name_zh": "南怀卡托体育与活动中心",
+    "name_en": "South Waikato Sport & Events Centre",
+    "type": "sport",
+    "address": "25 Mossop Road, Tokoroa 3420",
+    "ages_zh": "派对适合年龄待确认",
+    "ages_en": "Party ages to confirm",
+    "details_zh": "可租活动室和运动空间；议会曾公布运动及软体游乐派对，现行套餐内容与日期需向中心确认。",
+    "details_en": "Function rooms and sports spaces can be hired. Council has advertised sports and soft-play parties; confirm the current package and dates.",
+    "price_zh": "2026/27场租：私人半馆 NZ$50／小时、全馆 NZ$100／小时；派对总价待确认",
+    "price_en": "2026/27 private gym hire: half NZ$50/hour, full NZ$100/hour; party total to confirm",
+    "url": "https://www.southwaikato.govt.nz/our-council/fees-and-charges/sport-and-events-centre-charges",
+    "sources": [
+      {
+        "url": "https://www.southwaikato.govt.nz/our-council/fees-and-charges/sport-and-events-centre-charges",
+        "title": "SWDC Sport and Events Centre 2026–27 Fees",
+        "evidence": "Current official fee schedule confirms private half gym $50/hour, full gym $100/hour; these are hire rates, not a party package total."
+      },
+      {
+        "url": "https://www.southwaikato.govt.nz/our-council/council-contacts/1-opening-hours",
+        "title": "SWDC Current Opening Hours",
+        "evidence": "Current council listing supplies 25 Mossop Road, Tokoroa 3420. Older 2024 newsletter gives 23 Mossop; current listing used."
+      },
+      {
+        "url": "https://www.southwaikato.govt.nz/repository/libraries/id%3A24rtvarkd17q9s3wxfnn/hierarchy/our-council/news/in-touch/2025/In%20Touch%20%2380%E2%80%93%20March%202025",
+        "title": "SWDC In Touch March 2025",
+        "evidence": "Council newsletter advertised sporty and soft-play party packages with room hire and an activity leader. Historical offer; current package details explicitly marked to confirm."
+      }
+    ],
+    "verified_on": "2026-11-11"
+  }
+]

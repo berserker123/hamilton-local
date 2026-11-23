@@ -9,7 +9,7 @@ export const TOOL_TABS = [
   ['seasonal','季节提醒','Seasonal'], ['other','其他工具','Other tools'],
 ];
 const toolAnchors = {
-  'tool-bins':'bins', 'urgent-clinics':'urgent', 'tool-transport':'bus', 'tool-pay':'pay', 'tool-checklist':'checklist',
+  'tool-bins':'bins', 'urgent-clinics':'urgent', 'tool-transport':'bus', 'tool-pay':'pay', 'tool-checklist':'checklist', 'tool-beds':'units',
   'tool-gst':'gst', 'tool-units':'units', 'tool-fishing':'seasonal', 'tool-pollen-flu':'seasonal',
   'tool-school-terms':'other', 'tool-find-school':'other',
   'tool-weather':'other', 'tool-outages':'other', 'tool-government':'other', 'tool-fuel':'other',

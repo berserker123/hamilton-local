@@ -1,6 +1,12 @@
-// 河边茶馆 / River Talk: shared by the SPA, static build, feed and tests.
+// 屯里二三事 / Tron Talk: shared by the SPA, static build, feed and tests.
 export const ALERT_LIMIT = 3;
-export const HOME_ARTICLE_LIMIT = 3;
+export const HOME_CARD_LIMIT = 6;
+export const TALK_TOPICS = [
+  { id: 'money', zh: '钱袋子', en: 'Money' },
+  { id: 'travel', zh: '出门在外', en: 'Getting around' },
+  { id: 'kids', zh: '带娃日常', en: 'Kids' },
+  { id: 'health', zh: '身子骨', en: 'Health' },
+];
 
 export function talkHref(id) {
   return id ? '/talk/' + encodeURIComponent(id) + '/' : '/talk/';
@@ -31,6 +37,24 @@ export function activeArticles(data, now = Date.now()) {
     .filter(article => isCurrent(article.validUntil, now))
     .sort((a, b) => b.published.localeCompare(a.published));
 }
+
+export function activeNews(data, now = Date.now()) {
+  return (data.news || [])
+    .filter(item => isCurrent(item.until, now))
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+/** Homepage cards: hand-picked items first, then the newest. Expired items drop out automatically. */
+export function homeFeed(data, now = Date.now()) {
+  const news = activeNews(data, now).map(item => ({ kind: 'news', item, date: item.date }));
+  const articles = activeArticles(data, now).map(item => ({ kind: 'article', item, date: item.published }));
+  const rank = entry => entry.item.home ?? Number.MAX_SAFE_INTEGER;
+  return [...news, ...articles]
+    .sort((a, b) => rank(a) - rank(b) || b.date.localeCompare(a.date))
+    .slice(0, HOME_CARD_LIMIT);
+}
+
+export const hasTopic = (item, topic) => topic === 'all' || (item.topics || []).includes(topic);
 
 export function articlesForBoard(data, board, now = Date.now()) {
   return activeArticles(data, now).filter(article => article.board === board);

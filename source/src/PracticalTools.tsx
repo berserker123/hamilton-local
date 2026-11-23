@@ -1,7 +1,8 @@
 import { href } from './site-routes.mjs';
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Calculator, CheckSquare, ChevronDown, Ruler, Fish, HeartPulse, ArrowRightLeft, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Calculator, CheckSquare, ChevronDown, Ruler, Fish, HeartPulse, ArrowRightLeft, ArrowRight, BookOpen, BedDouble } from 'lucide-react';
 import { BilingualTitle } from './BilingualTitle';
+import { BedSizeGuide } from './BedSizes';
 import SOURCES from './tool-sources.json';
 import { ARRIVAL_STEPS, SHELLFISH } from './tool-content';
 import { ABSOLUTE_ZERO, MAX_WEEKLY_HOURS, PAY_RULES, KIWISAVER_RATES, calculatePay, calculateGST, convertUnits, formatUnitResult, parseNumber, Unit, UnitKind } from './tool-calculators';
@@ -204,19 +205,20 @@ export function SeasonalReminders({ t }: {t:T}) {
 const SHORTCUTS = [
   {tab:'pay',at:'tool-pay',zh:'税后收入计算',en:'Take-home pay',noteZh:'工资与扣款，一眼看清',noteEn:'See your pay after deductions',Icon:Calculator},
   {tab:'gst',at:'tool-gst',zh:'消费税计算',en:'GST calculator',noteZh:'含税与不含税双向换算',noteEn:'Add or remove GST',Icon:Calculator},
-  {tab:'units',at:'tool-units',zh:'单位换算',en:'Unit converter',noteZh:'温度、重量与面积',noteEn:'Temperature, weight & area',Icon:Ruler},
   {tab:'checklist',at:'tool-checklist',zh:'新移民办事清单',en:'Arrival checklist',noteZh:'从税号到家庭医生',noteEn:'From tax numbers to a GP',Icon:CheckSquare},
   {tab:'seasonal',at:'tool-fishing',zh:'钓鱼采集限量',en:'Fishing rules',noteZh:'先查海区，再出发',noteEn:'Check your area before you go',Icon:Fish},
   {tab:'urgent',at:'urgent-clinics',zh:'急诊与健康热线',en:'Urgent care',noteZh:'需要时，快速找到帮助',noteEn:'Find help when you need it',Icon:HeartPulse},
+  {tab:'other',at:'tool-find-school',zh:'学区查询',en:'Find a school',noteZh:'输入地址，查学校和学区',noteEn:'Check schools and zones',Icon:BookOpen},
+  {tab:'units',at:'tool-beds',zh:'床和床垫尺寸',en:'Bed sizes',noteZh:'新西兰和国内对照',noteEn:'NZ and China compared',Icon:BedDouble},
 ] as const;
 export function CommonTools({t}:{t:T}) {
-  return <section className="v25g-common" id="common-tools"><div className="sb-container"><div className="v25g-common-heading"><div><BilingualTitle as="h2" zh="常用工具" en="Everyday tools" t={t} /></div><a href="/tools/pay/" className="sb-action">{t('全部工具','All tools')}<ArrowRight aria-hidden="true" /></a></div><div className="v25g-shortcuts">{SHORTCUTS.map(item=><a className="sb-card v25g-shortcut" href={href('tools', item.tab, undefined, item.at)} key={item.tab}><item.Icon aria-hidden="true" /><BilingualTitle zh={item.zh} en={item.en} t={t} /><p>{t(item.noteZh,item.noteEn)}</p><ArrowUpRight className="v25g-shortcut-arrow" aria-hidden="true" /></a>)}</div></div></section>;
+  return <section className="v25g-common" id="common-tools"><div className="sb-container"><div className="v25g-common-heading"><div><BilingualTitle as="h2" zh="常用工具" en="Everyday tools" t={t} /></div><a href="/tools/pay/" className="sb-action">{t('全部工具','All tools')}<ArrowRight aria-hidden="true" /></a></div><div className="v25g-shortcuts">{SHORTCUTS.map(item=><a className="sb-card v25g-shortcut" href={href('tools', item.tab, undefined, item.at)} key={item.at}><item.Icon aria-hidden="true" /><BilingualTitle zh={item.zh} en={item.en} t={t} /></a>)}</div></div></section>;
 }
 export function PracticalTools({tab,t}:{tab:string;t:T}) {
   if(tab==='checklist')return <ArrivalChecklist t={t} />;
   if(tab==='pay')return <PayCalculator t={t} />;
   if(tab==='gst')return <><GSTCalculator t={t} /><UnitConverter t={t} /></>;
-  if(tab==='units')return <UnitConverter t={t} />;
+  if(tab==='units')return <><UnitConverter t={t} /><BedSizeGuide t={t} /></>;
   if(tab==='seasonal')return <SeasonalReminders t={t} />;
   return null;
 }

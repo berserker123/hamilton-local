@@ -54,7 +54,7 @@ test('regional paging is bounded and expansion covers the reported omissions',()
  const venues=require('../src/party-venues.json');
  for(const name of ['Timezone The Base Hamilton','The Peak'])assert.ok(venues.some(v=>v.name_en===name),name);
  for(const v of venues){assert.ok(PARTY_REGIONS.some(r=>r.id===v.region),v.id+': region');assert.ok(PARTY_TYPES.some(r=>r.id===v.type),v.id+': type');if(v.type==='mobile'){assert.equal(v.region,'mobile');assert.ok(v.service_regions?.length,v.id+': official service coverage');}}
- const baseline=require('../../out/research/party-venues-before-expansion.json');
+ const baseline=require('./fixtures/party-venues-before-expansion.json');
  for(const v of baseline)assert.ok(venues.some(n=>n.id===v.id),'retained '+v.id);
 });
 test('directions preserve complete address in Google Maps destination',()=>{

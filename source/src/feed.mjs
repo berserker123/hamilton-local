@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { normalizeCurrency } from './currency.mjs';
-import { activeArticles, talkHref } from './river-talk.mjs';
+import { activeArticles, activeNews, talkHref } from './river-talk.mjs';
 export const SITE = 'https://hamiltonlocal.nz';
 export const FEED_CAP_BLACKFRIDAY = 20;
 const readJson = (root, rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
@@ -21,7 +21,14 @@ export function feedItems(root = '.') {
     });
   }
   const talkPath = path.join(root, 'src/data/river-talk.json');
-  for (const a of fs.existsSync(talkPath) ? activeArticles(JSON.parse(fs.readFileSync(talkPath, 'utf8'))) : []) {
+  const talk = fs.existsSync(talkPath) ? JSON.parse(fs.readFileSync(talkPath, 'utf8')) : {};
+  for (const n of activeNews(talk)) {
+    items.push({
+      source: 'river-talk', guid: 'hl-talk-news-' + n.id, title: both(n.titleZh, n.titleEn), link: n.url, pubDate: n.date + 'T00:00:00+13:00',
+      description: n.bodyZh, category: '屯里二三事',
+    });
+  }
+  for (const a of activeArticles(talk)) {
     items.push({
       source: 'river-talk', guid: 'hl-talk-' + a.id, title: both(a.titleZh, a.titleEn), link: SITE + talkHref(a.id), pubDate: a.published + 'T00:00:00+13:00',
       description: a.answerZh, category: '屯里二三事',

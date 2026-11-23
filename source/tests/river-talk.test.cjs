@@ -6,7 +6,7 @@ const model=()=>import('../src/river-talk.mjs');
 const at=(date,time='12:00:00')=>Date.parse(`${date}T${time}+13:00`);
 
 test('boards keep the approved names in order',()=>{
-  assert.deepEqual(data.boards.map(b=>b.zh),['市政大白话','人生通关攻略','抠门研究所','一键查']);
+  assert.deepEqual(data.boards.map(b=>b.zh),['市政大白话','生活小妙招','人生通关攻略','抠门研究所']);
 });
 
 test('every article follows the template and cites an https source',()=>{
@@ -83,4 +83,66 @@ test('the daily briefing is gone from the site',()=>{
   const app=fs.readFileSync('src/App.tsx','utf8');
   assert.ok(!app.includes('每日快讯'));
   assert.ok(!fs.readFileSync('src/subscribe-model.ts','utf8').includes('briefing'));
+});
+
+test('every article and news item carries a known topic and a dated https source',async()=>{
+  const {TALK_TOPICS}=await model();
+  const topics=new Set(TALK_TOPICS.map(x=>x.id));
+  assert.deepEqual(TALK_TOPICS.map(x=>x.zh),['钱袋子','出门在外','带娃日常','身子骨']);
+  for(const item of [...data.articles,...data.news]){
+    assert.ok(item.topics.length&&item.topics.every(x=>topics.has(x)),item.id);
+  }
+  for(const n of data.news){
+    for(const key of ['titleZh','titleEn','bodyZh','bodyEn','takeZh','takeEn','source','date','until'])assert.ok(n[key],n.id+' '+key);
+    assert.match(n.url,/^https:/);
+    assert.ok(n.until>=n.date,n.id);
+    assert.doesNotMatch(n.bodyZh+n.takeZh,/条评论|网友热议/);
+  }
+});
+
+test('the storytelling article keeps the parent in charge',()=>{
+  const a=data.articles.find(x=>x.id==='ai-storytelling-10-minutes');
+  assert.match(a.noteZh,/13 岁/);
+  assert.match(a.noteZh,/不保证/);
+  assert.ok(a.topics.includes('kids'));
+  assert.match(a.prompts[0].text,/I am the parent and the only person using this account/);
+  assert.match(a.prompts[0].text,/Never ask for real names/);
+  assert.doesNotMatch(JSON.stringify(a),/Gakku|皮卡丘|奥特曼/);
+});
+
+test('bed guide finds close sizes and flags fitted sheets that will be tight',async()=>{
+  const {NZ_BEDS,CN_BEDS,closestBed,beddingFit}=await import('../src/bed-sizes.mjs');
+  const queen=NZ_BEDS.find(b=>b.id==='nz-queen');
+  const cn=closestBed(queen,CN_BEDS);
+  assert.equal(cn.id,'cn-150-200');
+  assert.equal(beddingFit(queen,cn).level,'tight');
+  assert.equal(beddingFit(cn,queen).level,'loose');
+  assert.equal(beddingFit(queen,queen).level,'same');
+  assert.equal(beddingFit(NZ_BEDS.find(b=>b.id==='nz-king'),CN_BEDS.find(b=>b.id==='cn-180-200')).level,'different');
+});
+
+test('home shortcuts include school finder and bed sizes',async()=>{
+  const tools=fs.readFileSync('src/PracticalTools.tsx','utf8');
+  assert.match(tools,/at:'tool-find-school'/);
+  assert.match(tools,/at:'tool-beds'/);
+  const {AT_IDS}=await import('../src/site-routes.mjs');
+  assert.ok(AT_IDS.has('tool-beds'));
+});
+
+test('homepage shows six cards, led by the Christmas tree, and refills when items expire',async()=>{
+  const {homeFeed,HOME_CARD_LIMIT}=await model();
+  assert.equal(HOME_CARD_LIMIT,6);
+  const cards=homeFeed(data,at('2026-11-24'));
+  assert.equal(cards.length,6);
+  assert.equal(cards[0].item.id,'christmas-tree');
+  assert.ok(cards.some(c=>c.kind==='article')&&cards.some(c=>c.kind==='news'));
+  const later=homeFeed(data,at('2026-12-27'));
+  assert.ok(!later.some(c=>c.item.id==='christmas-tree'));
+});
+
+test('Tron Talk sits next to Home in both navigations and unit converter leaves the shortcuts',()=>{
+  const app=fs.readFileSync('src/App.tsx','utf8');
+  assert.match(app,/NAV_ITEMS = \[SECTIONS\[0\], \{ id: 'talk', zh: '屯里二三事'/);
+  assert.equal(app.split("{NAV_ITEMS.map(s =>").length-1,2);
+  assert.doesNotMatch(fs.readFileSync('src/PracticalTools.tsx','utf8'),/at:'tool-units'/);
 });

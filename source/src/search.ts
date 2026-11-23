@@ -5,7 +5,7 @@ import PLAYGROUNDS from './playgrounds.json';
 import BLACKFRIDAY from './data/blackfriday.json';
 import { Deal, matchesDealQuery } from './blackfriday-model';
 import TALK from './data/river-talk.json';
-import { activeArticles, talkHref } from './river-talk.mjs';
+import { activeArticles, activeNews, talkHref } from './river-talk.mjs';
 
 export type SearchResultItem = {
   id: string;
@@ -102,6 +102,15 @@ function talkMatches(q: string, now = Date.now()): SearchResultItem[] {
   });
 }
 
+function talkNewsMatches(q: string, now = Date.now()): SearchResultItem[] {
+  if (Array.from(q).length < 2) return [];
+  const lower = q.toLowerCase();
+  return activeNews(TALK, now).filter(n => [n.titleZh, n.titleEn, n.bodyZh, n.bodyEn, n.takeZh, n.takeEn].join(' ').toLowerCase().includes(lower)).map(n => ({
+    id: 'talk-news-' + n.id, href: talkHref(), tagZh: '屯里二三事 · 屯里这阵子', tagEn: 'Tron Talk · Lately',
+    titleZh: n.titleZh, titleEn: n.titleEn, descZh: n.bodyZh, descEn: n.bodyEn,
+  }));
+}
+
 /** Multi-destination matches displayed on the /search/ page (e.g. GP -> Urgent care + Arrival checklist). */
 export function searchMatches(query: string): SearchResultItem[] {
   const q = query.trim();
@@ -130,7 +139,7 @@ export function searchMatches(query: string): SearchResultItem[] {
       },
     ];
   }
-  return talkMatches(q);
+  return [...talkMatches(q), ...talkNewsMatches(q)];
 }
 
 /** Resolves a search query to a destination URL. Never defaults unmatched queries to the grocers page. */
@@ -139,6 +148,7 @@ export function resolveSearch(query: string): string {
   if (!q) return href('search');
 
   if (TALK_COLUMN.test(q)) return talkHref();
+  if (/床垫|床单|床笠|床尺寸|bed\s*sizes?|mattress\s*sizes?/i.test(q)) return href('tools', 'units', undefined, 'tool-beds');
   if (GP_PATTERN.test(q)) return href('search', undefined, q);
   if (PLAYGROUND_PATTERN.test(q)) return href('kids', 'map');
   if (isMeaningfulToken(q) && PLAYGROUNDS.some(p => [p.zh, p.name, p.area].join(' ').toLowerCase().includes(q.toLowerCase()))) {
