@@ -70,7 +70,7 @@ test('preview data has real source URLs and never substitutes list price for his
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
     assert.ok(validCategories.has(d.category), `unexpected category ${d.category} on ${d.id}`);
-    assert.ok(d.salePrice > 0 && /^2026-11-23/.test(d.checkedAt), d.id);
+    assert.ok(d.salePrice > 0 && /^2026-11-25/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/(pricespy\.co\.nz\/product\.php\?p=\d+|www\.priceme\.co\.nz\/[^/]+\/p-\d+\.aspx)/);
@@ -94,12 +94,12 @@ test('round three retains eight updated categories and records reproducible exac
     assert.equal(d.historyEvidence.exactVariant, true, d.id);
     const validWindow =
       (d.historyEvidence.dayCount === 90 &&
-        d.historyEvidence.windowStart === '2026-08-24' &&
-        d.historyEvidence.windowEnd === '2026-11-21') ||
+        d.historyEvidence.windowStart === '2026-08-26' &&
+        d.historyEvidence.windowEnd === '2026-11-23') ||
       (['apple-airpods5-jb', 'apple-iphone18-pro-256-jb', 'apple-iphone18-promax-256-jb'].includes(d.id) &&
         d.historyEvidence.windowStart === '2026-09-10' &&
-        d.historyEvidence.windowEnd === '2026-11-21' &&
-        d.historyEvidence.dayCount === 73);
+        d.historyEvidence.windowEnd === '2026-11-23' &&
+        d.historyEvidence.dayCount === 75);
     assert.ok(validWindow, `unexpected 90d window on ${d.id}: ${d.historyEvidence.windowStart}..${d.historyEvidence.windowEnd}`);
     assert.ok(d.sources.includes(d.priceSpyUrl), d.id);
     assert.ok(d.lowestPrice90d > 0 && d.lowestPrice90d <= d.typicalPrice, d.id);
@@ -107,7 +107,7 @@ test('round three retains eight updated categories and records reproducible exac
     assert.match(d.historyEvidence.method, /Median of 90/, d.id);
   }
 });
-test('refresh 2026-11-23: counts, dates, retailer filters (including Bunnings & Mitre 10) and note states come from the data', () => {
+test('refresh 2026-11-25: counts, dates, retailer filters (including Bunnings & Mitre 10) and note states come from the data', () => {
   const React = require('react');
   const { renderToStaticMarkup } = require('react-dom/server');
   const data = require('../src/data/blackfriday.json');
@@ -120,7 +120,7 @@ test('refresh 2026-11-23: counts, dates, retailer filters (including Bunnings & 
   const dates = [...new Set(data.map(d => d.checkedAt.slice(0, 10)))].sort();
   const expectedRange = dates.length > 1 ? `${dates[0]} – ${dates[dates.length - 1]}` : dates[0];
   assert.ok(html.includes(expectedRange));
-  assert.equal(dates.at(-1), '2026-11-23');
+  assert.equal(dates.at(-1), '2026-11-25');
   const blocked = data.filter(d => d.currentPriceRecheck?.status === 'domain-blocked').length;
   assert.equal((html.match(/保留早前记录/g) || []).length, blocked);
   const spyConfirmed = data.filter(d => d.currentPriceRecheck?.status === 'pricespy-offer').length;
@@ -178,7 +178,8 @@ test('apple flagship items include verified airport tax-free tips without affect
   const mod = { exports: {} };
   new Function('module', 'exports', 'require', result.outputFiles[0].text)(mod, mod.exports, require);
   const taxFreeDeals = data.filter(d => d.taxFreeOffer);
-  assert.ok(taxFreeDeals.length >= 6, 'at least 6 Apple flagship deals carry verified airport tax-free tips');
+  assert.equal(taxFreeDeals.length, 5, 'five available Apple airport offers remain after recheck');
+  assert.equal(data.find(d => d.id === 'apple-iphone18-promax-256-jb').taxFreeOffer, undefined, 'sold-out airport offer is removed');
   for (const d of taxFreeDeals) {
     assert.ok(d.taxFreeOffer.price > 0 && d.taxFreeOffer.price < d.salePrice, `tax-free price lower than GST-inclusive price on ${d.id}`);
     assert.match(d.taxFreeOffer.url, /^https:\/\//, d.id);

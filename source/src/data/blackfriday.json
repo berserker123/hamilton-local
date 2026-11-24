@@ -8,13 +8,10 @@
     "salePrice": 417,
     "productUrl": "https://www.pbtech.co.nz/product/HSTSNY010050/Sony-WH-1000XM5-Wireless-Over-Ear-Noise-Cancelling",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=6219512&a-116257=Black",
-    "observedLowestPrice90d": 419,
-    "offerLabel": "PB Tech price；Black Friday Price Protect；赠耳机架至 01/12/2026",
-    "evidence": "PB Tech price $428.00 inc GST; MPN WH1000XM5B; In stock at PB Tech.",
-    "note": "PriceSpy 3 mos lowest $419/highest $439; aggregates colours and shops. Bonus expiry is not the price expiry.",
+    "evidence": "2026-11-25 retailer product page: NZ$417.00; Product JSON-LD offers.price (Scrapling StealthyFetcher); https://schema.org/InStock.",
     "nameEn": "Sony WH-1000XM5 Wireless Over-Ear Noise Cancelling Headphones - Black",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 439,
     "lowestPrice90d": 417,
     "historyVerified": true,
@@ -30,12 +27,12 @@
       "https://www.pbtech.co.nz/product/HSTSNY010050/Sony-WH-1000XM5-Wireless-Over-Ear-Noise-Cancelling",
       "https://pricespy.co.nz/product.php?p=6219512&a-116257=Black"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$439.00，同范围最低 NZ$417.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$439.00，同范围最低 NZ$417.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
-      "evidence": "sony-xm5-pb-retail",
-      "extraction": "Product JSON-LD offers.price"
+      "at": "2026-11-24T21:13:09.991573+00:00",
+      "evidence": "sony-xm5-pb-retail-stealth",
+      "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
     "historyScope": "market",
     "historyEvidence": {
@@ -44,16 +41,16 @@
       "variantIds": [
         16796922
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 12,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "sony-xm5-pb-spy"
     },
     "discountPercent": 5,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$439.00，同范围最低 NZ$417.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$439.00，同范围最低 NZ$417.00。"
   },
   {
     "id": "airpods-pro3-jb",
@@ -64,19 +61,16 @@
     "salePrice": 385,
     "productUrl": "https://www.jbhifi.co.nz/products/apple-airpods-pro-3",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15415649",
-    "observedLowestPrice90d": 368.99,
-    "evidence": "Model MFHP4X/A; Price $369; Delivery and Click & Collect available.",
-    "note": "PriceSpy 3 mos lowest $368.99/highest $459.00; no daily series available.",
+    "evidence": "2026-11-25 retailer product page: NZ$385.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Apple AirPods Pro 3",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 444,
     "lowestPrice90d": 368.99,
     "historyVerified": true,
     "verdict": "一般",
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "offerLabel": "Price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-airpods-pro-3",
       "https://pricespy.co.nz/product.php?p=15415649"
@@ -86,10 +80,10 @@
       "https://www.jbhifi.co.nz/products/apple-airpods-pro-3",
       "https://pricespy.co.nz/product.php?p=15415649"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$444.00，同范围最低 NZ$368.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$444.00，同范围最低 NZ$368.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:01.785Z",
       "evidence": "airpods-pro3-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -98,16 +92,16 @@
       "exactVariant": true,
       "productId": 15415649,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 35,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 34,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "airpods-pro3-jb-spy"
     },
     "discountPercent": 13.3,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$444.00，同范围最低 NZ$368.99。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$444.00，同范围最低 NZ$368.99。"
   },
   {
     "id": "sony-xm6-jb",
@@ -115,22 +109,19 @@
     "nameZh": "索尼 WH-1000XM6 降噪耳机（银色）",
     "category": "数码",
     "store": "JB Hi-Fi",
-    "salePrice": 485,
+    "salePrice": 549,
     "productUrl": "https://www.jbhifi.co.nz/products/sony-wh-1000xm6-premium-noise-cancelling-wireless-over-ear-headphones-platinum-silver",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13508897&a-116257=Platinum+Silver",
-    "observedLowestPrice90d": 536,
-    "evidence": "Model WH1000XM6S; Price $579; Delivery and Click & Collect available.",
-    "note": "PriceSpy 3 mos lowest $536/highest $595; aggregates colours and shops.",
+    "evidence": "2026-11-25 retailer product page: NZ$549.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Sony WH-1000XM6 Premium Noise Cancelling Wireless Over-Ear Headphones (Platinum Silver)",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 584,
     "lowestPrice90d": 485,
     "historyVerified": true,
-    "verdict": "真优惠",
+    "verdict": "一般",
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "offerLabel": "Price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/sony-wh-1000xm6-premium-noise-cancelling-wireless-over-ear-headphones-platinum-silver",
       "https://pricespy.co.nz/product.php?p=13508897&a-116257=Platinum+Silver"
@@ -140,10 +131,10 @@
       "https://www.jbhifi.co.nz/products/sony-wh-1000xm6-premium-noise-cancelling-wireless-over-ear-headphones-platinum-silver",
       "https://pricespy.co.nz/product.php?p=13508897&a-116257=Platinum+Silver"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$584.00，同范围最低 NZ$485.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$584.00，同范围最低 NZ$485.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:07.277Z",
       "evidence": "sony-xm6-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -154,16 +145,16 @@
       "variantIds": [
         16796921
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 55,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 56,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "sony-xm6-jb-spy"
     },
-    "discountPercent": 17,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$584.00，同范围最低 NZ$485.00。"
+    "discountPercent": 6,
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$584.00，同范围最低 NZ$485.00。"
   },
   {
     "id": "bose-qc-jb",
@@ -174,19 +165,16 @@
     "salePrice": 228,
     "productUrl": "https://www.jbhifi.co.nz/products/bose-quietcomfort-earbuds-black",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13877830&a-116257=Black",
-    "observedLowestPrice90d": 218,
-    "evidence": "SKU 445234; Price $298; Delivery and Click & Collect available.",
-    "note": "PriceSpy 2024 model, 3 mos lowest $218/highest $329; aggregates colours. Lower offers at other stores do not establish this store's normal price.",
+    "evidence": "2026-11-25 retailer product page: NZ$228.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Bose QuietComfort Earbuds (Black)",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 281,
     "lowestPrice90d": 218,
     "historyVerified": true,
     "verdict": "一般",
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "offerLabel": "Price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/bose-quietcomfort-earbuds-black",
       "https://pricespy.co.nz/product.php?p=13877830&a-116257=Black"
@@ -196,10 +184,10 @@
       "https://www.jbhifi.co.nz/products/bose-quietcomfort-earbuds-black",
       "https://pricespy.co.nz/product.php?p=13877830&a-116257=Black"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$281.00，同范围最低 NZ$218.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$281.00，同范围最低 NZ$218.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:13.265Z",
       "evidence": "bose-qc-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -210,16 +198,16 @@
       "variantIds": [
         16797049
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 28,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "bose-qc-jb-spy"
     },
     "discountPercent": 18.9,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$281.00，同范围最低 NZ$218.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$281.00，同范围最低 NZ$218.00。"
   },
   {
     "id": "firetv-plus-jb",
@@ -230,15 +218,12 @@
     "salePrice": 64,
     "productUrl": "https://www.jbhifi.co.nz/products/amazon-fire-tv-stick-4k-plus-2025",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15735943",
-    "offerLabel": "Sale price",
-    "evidence": "SKU 464828; Regular price $149.99; Sale price $64; Delivery and Click & Collect available.",
-    "note": "$149.99 is the retailer's struck-through regular price, not a verified 3-month typical. PriceSpy exact product page not located.",
+    "evidence": "2026-11-25 retailer product page: NZ$64.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Amazon Fire TV Stick 4K Plus [2025]",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 99,
     "lowestPrice90d": 62,
-    "observedLowestPrice90d": null,
     "historyVerified": true,
     "verdict": "一般",
     "blackFridayConfirmed": false,
@@ -252,10 +237,10 @@
       "https://www.jbhifi.co.nz/products/amazon-fire-tv-stick-4k-plus-2025",
       "https://pricespy.co.nz/product.php?p=15735943"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$99.00，同范围最低 NZ$62.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$99.00，同范围最低 NZ$62.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:18.472Z",
       "evidence": "firetv-plus-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -264,16 +249,16 @@
       "exactVariant": true,
       "productId": 15735943,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 10,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "firetv-plus-jb-spy"
     },
     "discountPercent": 35.4,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$99.00，同范围最低 NZ$62.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$99.00，同范围最低 NZ$62.00。"
   },
   {
     "id": "jbl-charge6-jb",
@@ -281,22 +266,19 @@
     "nameZh": "JBL Charge 6 蓝牙音箱（黑色）",
     "category": "数码",
     "store": "JB Hi-Fi",
-    "salePrice": 178,
+    "salePrice": 174,
     "productUrl": "https://www.jbhifi.co.nz/products/jbl-charge-6-portable-bluetooth-speaker-black",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14516826&a-116257=Black",
-    "observedLowestPrice90d": 174,
-    "evidence": "Model 6494047; SKU 455816; Price $212; Delivery and Click & Collect available.",
-    "note": "PriceSpy 3 mos lowest $174/highest $209; aggregates colours and shops.",
+    "evidence": "2026-11-25 retailer product page: NZ$174.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "JBL Charge 6 Portable Bluetooth Speaker (Black)",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 212,
     "lowestPrice90d": 174,
     "historyVerified": true,
-    "verdict": "一般",
+    "verdict": "真优惠",
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "offerLabel": "Price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/jbl-charge-6-portable-bluetooth-speaker-black",
       "https://pricespy.co.nz/product.php?p=14516826&a-116257=Black"
@@ -306,10 +288,10 @@
       "https://www.jbhifi.co.nz/products/jbl-charge-6-portable-bluetooth-speaker-black",
       "https://pricespy.co.nz/product.php?p=14516826&a-116257=Black"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$212.00，同范围最低 NZ$174.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$212.00，同范围最低 NZ$174.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:23.905Z",
       "evidence": "jbl-charge6-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -320,16 +302,16 @@
       "variantIds": [
         16701645
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 45,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 44,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "jbl-charge6-jb-spy"
     },
-    "discountPercent": 16,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$212.00，同范围最低 NZ$174.00。"
+    "discountPercent": 17.9,
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$212.00，同范围最低 NZ$174.00。"
   },
   {
     "id": "dell-s2725qc-pb",
@@ -341,12 +323,10 @@
     "productUrl": "https://www.pbtech.co.nz/product/MONDEL16276/Dell-S2725QC-27-4K-UHD-120Hz-USB-C-Business-Monito",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14586535",
     "saleEnds": null,
-    "offerLabel": "NOW",
-    "evidence": "NOW $179.00; Offer ends 02/12/2026; Model TB302SLANZ.",
-    "note": "PriceSpy product title is TB301 and links this NL listing; 3 mos lowest $179/highest $279. Model suffix differs, so history is related-family context only, not exact-variant proof.",
+    "evidence": "2026-11-25 retailer product page: NZ$549.00; Product JSON-LD offers.price (Scrapling StealthyFetcher); https://schema.org/InStock.",
     "nameEn": "Dell S2725QC 27\" 4K UHD 120Hz USB-C Business Monitor 3840x2160 - IPS Panel - 2x HDMI - USB-C 65W - USB Hub - Speakers - Height / Swivel / Tilt Adjustable - 100x100 VESA",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 598,
     "lowestPrice90d": 528,
     "historyVerified": true,
@@ -361,11 +341,11 @@
       "https://www.pbtech.co.nz/product/MONDEL16276/Dell-S2725QC-27-4K-UHD-120Hz-USB-C-Business-Monito",
       "https://pricespy.co.nz/product.php?p=14586535"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$598.00，同范围最低 NZ$528.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$598.00，同范围最低 NZ$528.00。",
     "priceLabel": "当前价",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:13.321225+00:00",
       "evidence": "dell-s2725qc-pb-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
@@ -374,16 +354,16 @@
       "exactVariant": true,
       "productId": 14586535,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 16,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "dell-s2725qc-pb-spy"
     },
     "discountPercent": 8.2,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$598.00，同范围最低 NZ$528.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$598.00，同范围最低 NZ$528.00。"
   },
   {
     "id": "ninja-blendboss-jb",
@@ -394,15 +374,12 @@
     "salePrice": 158,
     "productUrl": "https://www.jbhifi.co.nz/products/ninja-blendboss-tumbler-blender-stone-mint",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=16133737&a-116257=Stone",
-    "observedLowestPrice90d": 148,
     "saleEnds": null,
-    "offerLabel": "NOW",
-    "evidence": "NOW $199.00; Offer ends 17/11/2026; Model DB351SDANZ.",
-    "note": "PriceSpy BlendBOSS 3 mos lowest $148/highest $208; aggregates colour variants.",
+    "evidence": "2026-11-25 retailer product page: NZ$158.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Ninja BlendBOSS Tumbler Blender - Stone Mint",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
-    "typicalPrice": 198,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
+    "typicalPrice": 189,
     "lowestPrice90d": 148,
     "historyVerified": true,
     "verdict": "一般",
@@ -416,10 +393,10 @@
       "https://www.jbhifi.co.nz/products/ninja-blendboss-tumbler-blender-stone-mint",
       "https://pricespy.co.nz/product.php?p=16133737&a-116257=Stone"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$198.00，同范围最低 NZ$148.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$189.00，同范围最低 NZ$148.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:34.377Z",
       "evidence": "ninja-blendboss-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -430,16 +407,16 @@
       "variantIds": [
         17058126
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 26,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 23,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ninja-blendboss-jb-spy"
     },
-    "discountPercent": 20.2,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$198.00，同范围最低 NZ$148.00。"
+    "discountPercent": 16.4,
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$189.00，同范围最低 NZ$148.00。"
   },
   {
     "id": "samsung-a11plus-silver-jb",
@@ -451,12 +428,10 @@
     "productUrl": "https://www.jbhifi.co.nz/products/samsung-galaxy-tab-a11-11-wi-fi-128gb-silver",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15795942&a-116257=Silver",
     "saleEnds": null,
-    "offerLabel": "NOW",
-    "evidence": "NOW $98.00; Offer ends 18/11/2026; Model BC251LDANZ.",
-    "note": "PriceSpy title BC251EU links NZ BC251 listings; 3 mos lowest $79/highest $108. Region/colour suffix differs; treat as related-family context only.",
+    "evidence": "2026-11-25 retailer product page: NZ$338.00; Product JSON-LD offers.price; https://schema.org/BackOrder.",
     "nameEn": "Samsung Galaxy Tab A11+ 11\" Wi-Fi 128GB (Silver)",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 399,
     "lowestPrice90d": 338,
     "historyVerified": true,
@@ -471,11 +446,11 @@
       "https://www.jbhifi.co.nz/products/samsung-galaxy-tab-a11-11-wi-fi-128gb-silver",
       "https://pricespy.co.nz/product.php?p=15795942&a-116257=Silver"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$399.00，同范围最低 NZ$338.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$399.00，同范围最低 NZ$338.00。",
     "priceLabel": "当前价",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:39.837Z",
       "evidence": "samsung-a11plus-silver-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -486,16 +461,16 @@
       "variantIds": [
         18216185
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 19,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "samsung-a11plus-silver-jb-spy"
     },
     "discountPercent": 15.3,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$399.00，同范围最低 NZ$338.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$399.00，同范围最低 NZ$338.00。"
   },
   {
     "id": "oralb-ios3b-hn",
@@ -507,12 +482,10 @@
     "productUrl": "https://www.harveynorman.co.nz/personal-care-and-health/oral-hygiene/electric-toothbrushes-and-flossers/oral-b-io-series-3-electric-toothbrush-with-travel-case-matte-black-ios3b.html",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=12614525",
     "saleEnds": "2026-12-02",
-    "offerLabel": "NOW",
-    "evidence": "NOW $89.00; Offer ends 02/12/2026; Model RHAF2762; limit 1 per customer.",
-    "note": "Exact matching PriceSpy product/history not located. Retailer says Check In-Store Availability, so stock must be checked.",
+    "evidence": "2026-11-25 retailer product page: NZ$118.00; Product JSON-LD offers.price; http://schema.org/InStock.",
     "nameEn": "Oral-B iO Series 3 Electric Toothbrush with Travel Case - Matte Black (IOS3B)",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 164,
     "lowestPrice90d": 118,
     "historyVerified": true,
@@ -527,11 +500,11 @@
       "https://www.harveynorman.co.nz/personal-care-and-health/oral-hygiene/electric-toothbrushes-and-flossers/oral-b-io-series-3-electric-toothbrush-with-travel-case-matte-black-ios3b.html",
       "https://pricespy.co.nz/product.php?p=12614525"
     ],
-    "historyNote": "PriceSpy Harvey Norman 商家；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$164.00，同范围最低 NZ$118.00。",
+    "historyNote": "PriceSpy Harvey Norman 商家同款；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$164.00，同范围最低 NZ$118.00。",
     "priceLabel": "当前价",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:46.814Z",
       "evidence": "oralb-ios3b-hn-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -540,16 +513,16 @@
       "exactVariant": true,
       "productId": 12614525,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 10,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; Harvey Norman selected-shop series, exact variant only. No retailer list/was prices.",
+      "pointCount": 9,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; selected retailer series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": "Harvey Norman",
       "evidence": "oralb-ios3b-hn-spy"
     },
     "discountPercent": 28,
-    "notes": "PriceSpy Harvey Norman 商家；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$164.00，同范围最低 NZ$118.00。"
+    "notes": "PriceSpy Harvey Norman 商家同款；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$164.00，同范围最低 NZ$118.00。"
   },
   {
     "id": "garmin-vivoactive6-black-jb",
@@ -561,12 +534,10 @@
     "productUrl": "https://www.jbhifi.co.nz/products/garmin-vivoactive-6-gps-smartwatch-slate-black-band",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14570488&a-116257=Black%2FSlate",
     "saleEnds": null,
-    "offerLabel": "NOW",
-    "evidence": "NOW $129.00; Offer ends 02/12/2026; Model AF181ANZ.",
-    "note": "PriceSpy search found AF181 retailer offers but no exact standalone product/history page. No typical or low inferred.",
+    "evidence": "2026-11-25 retailer product page: NZ$478.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Garmin VivoActive 6 GPS Smartwatch (Slate/Black Band)",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 534,
     "lowestPrice90d": 449,
     "historyVerified": true,
@@ -581,11 +552,11 @@
       "https://www.jbhifi.co.nz/products/garmin-vivoactive-6-gps-smartwatch-slate-black-band",
       "https://pricespy.co.nz/product.php?p=14570488&a-116257=Black%2FSlate"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$534.00，同范围最低 NZ$449.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$534.00，同范围最低 NZ$449.00。",
     "priceLabel": "当前价",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:52.264Z",
       "evidence": "garmin-vivoactive6-black-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -596,16 +567,16 @@
       "variantIds": [
         16700245
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 116,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 110,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "garmin-vivoactive6-black-jb-spy"
     },
     "discountPercent": 10.5,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$534.00，同范围最低 NZ$449.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$534.00，同范围最低 NZ$449.00。"
   },
   {
     "id": "dyson-v16-jb",
@@ -617,12 +588,10 @@
     "productUrl": "https://www.jbhifi.co.nz/products/dyson-piston-animal-stick-vacuum",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15294446",
     "saleEnds": null,
-    "offerLabel": "NOW",
-    "evidence": "NOW $359.99; Offer ends 15/11/2026; Model FS301ANZ; limit 1 per customer.",
-    "note": "PriceSpy live 3 mos lowest $297/highest $399 (older search result $299 is not used). Aggregates colours and shops.",
+    "evidence": "2026-11-25 retailer product page: NZ$948.00; Product JSON-LD offers.price; https://schema.org/InStock.",
     "nameEn": "Dyson Piston Animal Stick Vacuum",
     "currency": "NZD",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "typicalPrice": 998,
     "lowestPrice90d": 948,
     "historyVerified": true,
@@ -637,11 +606,11 @@
       "https://www.jbhifi.co.nz/products/dyson-piston-animal-stick-vacuum",
       "https://pricespy.co.nz/product.php?p=15294446"
     ],
-    "historyNote": "PriceSpy JB Hi-Fi 商家；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$998.00，同范围最低 NZ$948.00。",
+    "historyNote": "PriceSpy JB Hi-Fi 商家同款；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$998.00，同范围最低 NZ$948.00。",
     "priceLabel": "当前价",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:12:57.734Z",
       "evidence": "dyson-v16-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -650,16 +619,16 @@
       "exactVariant": true,
       "productId": 15294446,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 7,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; JB Hi-Fi selected-shop series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; selected retailer series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": "JB Hi-Fi",
       "evidence": "dyson-v16-jb-spy"
     },
     "discountPercent": 5,
-    "notes": "PriceSpy JB Hi-Fi 商家；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$998.00，同范围最低 NZ$948.00。"
+    "notes": "PriceSpy JB Hi-Fi 商家同款；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$998.00，同范围最低 NZ$948.00。"
   },
   {
     "id": "briscoes-go-travel-chill",
@@ -673,7 +642,7 @@
     "typicalPrice": 27,
     "lowestPrice90d": 27,
     "verdict": "先别急",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.briscoes.co.nz/product/1122078/go-travel-chill-zone-towel/",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=18645318",
@@ -683,17 +652,17 @@
       "https://www.briscoes.co.nz/product/1122078/go-travel-chill-zone-towel/",
       "https://pricespy.co.nz/product.php?p=18645318"
     ],
-    "notes": "同 GTIN 不同店铺/颜色（GTIN-13: 5016326005150）；PriceSpy p=18645318（Luggage.co.nz 橙色款 GOT515OGE）近90天（2026-08-24 至 2026-11-21）8条记录：平时价 NZ$27.00，90天最低 NZ$27.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$27.00，同范围最低 NZ$27.00。",
     "addedAt": "2026-11-15",
     "historyVerified": true,
     "sources": [
       "https://www.briscoes.co.nz/product/1122078/go-travel-chill-zone-towel/",
       "https://pricespy.co.nz/product.php?p=18645318"
     ],
-    "historyNote": "同 GTIN 不同店铺/颜色（GTIN-13: 5016326005150）；PriceSpy p=18645318（Luggage.co.nz 橙色款 GOT515OGE）近90天（2026-08-24 至 2026-11-21）8条记录：平时价 NZ$27.00，90天最低 NZ$27.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$27.00，同范围最低 NZ$27.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:03.628Z",
       "evidence": "briscoes-go-travel-chill-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -703,15 +672,15 @@
       "exactVariant": true,
       "productId": 18645318,
       "variantIds": [],
-      "gtin": "5016326005150",
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 8,
-      "method": "Median of 90-day window (2026-08-18 to 2026-11-16, 10 PriceSpy data points) for same GTIN-13 5016326005150 (different shop/colour variant GOT515OGE). No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "briscoes-go-travel-chill-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$28.99; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "airpods4-anc-jb",
@@ -720,12 +689,12 @@
     "nameZh": "苹果 AirPods 4 主动降噪款",
     "category": "数码",
     "store": "JB Hi-Fi",
-    "salePrice": 257,
+    "salePrice": 227,
     "currency": "NZD",
     "typicalPrice": 316,
-    "lowestPrice90d": 254,
-    "verdict": "一般",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "lowestPrice90d": 227,
+    "verdict": "真优惠",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/apple-airpods-4-with-active-noise-cancellation",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13854647",
@@ -735,17 +704,17 @@
       "https://www.jbhifi.co.nz/products/apple-airpods-4-with-active-noise-cancellation",
       "https://pricespy.co.nz/product.php?p=13854647"
     ],
-    "notes": "PriceSpy JB Hi-Fi 商家；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$316.00，同范围最低 NZ$254.00。",
+    "notes": "PriceSpy JB Hi-Fi 商家同款；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$316.00，同范围最低 NZ$227.00。",
     "addedAt": "2026-11-15",
     "historyVerified": true,
     "sources": [
       "https://www.jbhifi.co.nz/products/apple-airpods-4-with-active-noise-cancellation",
       "https://pricespy.co.nz/product.php?p=13854647"
     ],
-    "historyNote": "PriceSpy JB Hi-Fi 商家；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$316.00，同范围最低 NZ$254.00。",
+    "historyNote": "PriceSpy JB Hi-Fi 商家同款；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$316.00，同范围最低 NZ$227.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:09.076Z",
       "evidence": "airpods4-anc-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -754,15 +723,16 @@
       "exactVariant": true,
       "productId": 13854647,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 11,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; JB Hi-Fi selected-shop series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; selected retailer series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": "JB Hi-Fi",
       "evidence": "airpods4-anc-jb-spy"
     },
-    "discountPercent": 18.7
+    "discountPercent": 28.2,
+    "evidence": "2026-11-25 retailer product page: NZ$227.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "cw-lrp-invisible-fluid-50ml",
@@ -776,7 +746,7 @@
     "typicalPrice": null,
     "lowestPrice90d": null,
     "verdict": "待核实",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.chemistwarehouse.co.nz/buy/101139/la-roche-posay-anthelios-invisible-fluid-spf-50-50ml",
     "priceSpyUrl": null,
@@ -785,20 +755,21 @@
     "sourceUrls": [
       "https://www.chemistwarehouse.co.nz/buy/101139/la-roche-posay-anthelios-invisible-fluid-spf-50-50ml"
     ],
-    "notes": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "notes": "2026-11-25 已核对商家现价 NZ$33.19；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "addedAt": "2026-11-15",
     "historyVerified": false,
     "sources": [
       "https://www.chemistwarehouse.co.nz/buy/101139/la-roche-posay-anthelios-invisible-fluid-spf-50-50ml"
     ],
-    "historyNote": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$33.19；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:14.904Z",
       "evidence": "cw-lrp-invisible-fluid-50ml-retail",
       "extraction": "Visible exact-product price"
     },
-    "discountPercent": null
+    "discountPercent": null,
+    "evidence": "2026-11-25 retailer product page: NZ$33.19; Visible exact-product price; visible exact-product price."
   },
   {
     "id": "lego-21357-farmers",
@@ -812,7 +783,7 @@
     "typicalPrice": 116.99,
     "lowestPrice90d": 92.99,
     "verdict": "先别急",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.farmers.co.nz/6979586",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14650426",
@@ -822,35 +793,36 @@
       "https://www.farmers.co.nz/6979586",
       "https://pricespy.co.nz/product.php?p=14650426"
     ],
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$116.99，同范围最低 NZ$92.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$116.99，同范围最低 NZ$92.99。",
     "addedAt": "2026-11-15",
     "historyVerified": true,
     "sources": [
       "https://www.farmers.co.nz/6979586",
       "https://pricespy.co.nz/product.php?p=14650426"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$116.99，同范围最低 NZ$92.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$116.99，同范围最低 NZ$92.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
-      "evidence": "lego-21357-farmers-retail",
-      "extraction": "Product JSON-LD offers.price"
+      "at": "2026-11-24T21:14:07.237964+00:00",
+      "evidence": "lego-21357-farmers-retail-stealth",
+      "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
     "historyScope": "market",
     "historyEvidence": {
       "exactVariant": true,
       "productId": 14650426,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 11,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 10,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lego-21357-farmers-spy"
     },
     "discountPercent": -11.1,
-    "offerNote": "单件价；买2件省15%的活动未计入。"
+    "offerNote": "单件价；买2件省15%的活动未计入。",
+    "evidence": "2026-11-25 retailer product page: NZ$129.99; Product JSON-LD offers.price (Scrapling StealthyFetcher); https://schema.org/InStock."
   },
   {
     "id": "warehouse-lego-10698",
@@ -864,7 +836,7 @@
     "typicalPrice": 79,
     "lowestPrice90d": 69.99,
     "verdict": "先别急",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.thewarehouse.co.nz/p/lego-classic-large-creative-brick-box-v29-10698/R1923582.html",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=2959296",
@@ -874,17 +846,17 @@
       "https://www.thewarehouse.co.nz/p/lego-classic-large-creative-brick-box-v29-10698/R1923582.html",
       "https://pricespy.co.nz/product.php?p=2959296"
     ],
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$79.00，同范围最低 NZ$69.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$79.00，同范围最低 NZ$69.99。",
     "addedAt": "2026-11-15",
     "historyVerified": true,
     "sources": [
       "https://www.thewarehouse.co.nz/p/lego-classic-large-creative-brick-box-v29-10698/R1923582.html",
       "https://pricespy.co.nz/product.php?p=2959296"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$79.00，同范围最低 NZ$69.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$79.00，同范围最低 NZ$69.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:26.883485+00:00",
       "evidence": "warehouse-lego-10698-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
@@ -893,15 +865,16 @@
       "exactVariant": true,
       "productId": 2959296,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 5,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "warehouse-lego-10698-spy"
     },
-    "discountPercent": -1.3
+    "discountPercent": -1.3,
+    "evidence": "2026-11-25 retailer product page: NZ$79.99; Product JSON-LD offers.price (Scrapling StealthyFetcher); http://schema.org/InStock."
   },
   {
     "id": "warehouse-fivestar-basketball",
@@ -915,7 +888,7 @@
     "typicalPrice": null,
     "lowestPrice90d": null,
     "verdict": "待核实",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.thewarehouse.co.nz/p/fivestar-basketball-size-7/R366722.html",
     "priceSpyUrl": null,
@@ -924,20 +897,21 @@
     "sourceUrls": [
       "https://www.thewarehouse.co.nz/p/fivestar-basketball-size-7/R366722.html"
     ],
-    "notes": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "notes": "2026-11-25 已核对商家现价 NZ$15.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "addedAt": "2026-11-15",
     "historyVerified": false,
     "sources": [
       "https://www.thewarehouse.co.nz/p/fivestar-basketball-size-7/R366722.html"
     ],
-    "historyNote": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$15.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:38.022921+00:00",
       "evidence": "warehouse-fivestar-basketball-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
-    "discountPercent": null
+    "discountPercent": null,
+    "evidence": "2026-11-25 retailer product page: NZ$15.99; Product JSON-LD offers.price (Scrapling StealthyFetcher); http://schema.org/InStock."
   },
   {
     "id": "warehouse-activeintent-basketball",
@@ -951,7 +925,7 @@
     "typicalPrice": null,
     "lowestPrice90d": null,
     "verdict": "待核实",
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "saleEnds": null,
     "productUrl": "https://www.thewarehouse.co.nz/p/active-intent-sports-basketball-size-7/R2240591.html",
     "priceSpyUrl": null,
@@ -960,20 +934,21 @@
     "sourceUrls": [
       "https://www.thewarehouse.co.nz/p/active-intent-sports-basketball-size-7/R2240591.html"
     ],
-    "notes": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "notes": "2026-11-25 已核对商家现价 NZ$29.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "addedAt": "2026-11-15",
     "historyVerified": false,
     "sources": [
       "https://www.thewarehouse.co.nz/p/active-intent-sports-basketball-size-7/R2240591.html"
     ],
-    "historyNote": "PriceSpy 产品搜索未取得可核实的同款近90天历史；平时价、3月最低和折扣留空。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$29.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:50.377374+00:00",
       "evidence": "warehouse-activeintent-basketball-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
-    "discountPercent": null
+    "discountPercent": null,
+    "evidence": "2026-11-25 retailer product page: NZ$29.99; Product JSON-LD offers.price (Scrapling StealthyFetcher); http://schema.org/InStock."
   },
   {
     "id": "lego-71490-toyworld",
@@ -988,7 +963,7 @@
     "lowestPrice90d": 21.99,
     "verdict": "真优惠",
     "discountPercent": 46,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.toyworld.co.nz/products/lego-71490-dreamzzz-izzie-and-bunchurro-the-gaming-bunny",
@@ -1003,11 +978,11 @@
       "https://www.toyworld.co.nz/products/lego-71490-dreamzzz-izzie-and-bunchurro-the-gaming-bunny",
       "https://pricespy.co.nz/product.php?p=14289911"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$36.97，同范围最低 NZ$21.99。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$36.97，同范围最低 NZ$21.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$36.97，同范围最低 NZ$21.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$36.97，同范围最低 NZ$21.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:31.752Z",
       "evidence": "lego-71490-toyworld-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1016,14 +991,15 @@
       "exactVariant": true,
       "productId": 14289911,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 11,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lego-71490-toyworld-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$19.97; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "lego-75358-toyworld",
@@ -1034,11 +1010,11 @@
     "store": "Toyworld",
     "salePrice": 52.97,
     "currency": "NZD",
-    "typicalPrice": 88.61,
+    "typicalPrice": 89.09,
     "lowestPrice90d": 74.99,
     "verdict": "真优惠",
-    "discountPercent": 40.2,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "discountPercent": 40.5,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.toyworld.co.nz/products/lego-75358-star-wars-tenoo-jedi-temple",
@@ -1053,11 +1029,11 @@
       "https://www.toyworld.co.nz/products/lego-75358-star-wars-tenoo-jedi-temple",
       "https://pricespy.co.nz/product.php?p=9844628"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$88.61，同范围最低 NZ$74.99。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$88.61，同范围最低 NZ$74.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$89.09，同范围最低 NZ$74.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$89.09，同范围最低 NZ$74.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:37.166Z",
       "evidence": "lego-75358-toyworld-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1066,14 +1042,15 @@
       "exactVariant": true,
       "productId": 9844628,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 15,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "pointCount": 16,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lego-75358-toyworld-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$52.97; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "mtg-tmnt-tin-jb",
@@ -1088,7 +1065,7 @@
     "lowestPrice90d": 30,
     "verdict": "真优惠",
     "discountPercent": 25,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/card-game-magic-the-gathering-trading-card-game-teenage-mutant-ninja-turtles-booster-tin",
@@ -1103,11 +1080,11 @@
       "https://www.jbhifi.co.nz/products/card-game-magic-the-gathering-trading-card-game-teenage-mutant-ninja-turtles-booster-tin",
       "https://pricespy.co.nz/product.php?p=19261274"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$39.99，同范围最低 NZ$30.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$39.99，同范围最低 NZ$30.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$39.99，同范围最低 NZ$30.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$39.99，同范围最低 NZ$30.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:42.622Z",
       "evidence": "mtg-tmnt-tin-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1116,14 +1093,15 @@
       "exactVariant": true,
       "productId": 19261274,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 2,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "mtg-tmnt-tin-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$30.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lego-71491-toyworld",
@@ -1138,7 +1116,7 @@
     "lowestPrice90d": 65,
     "verdict": "真优惠",
     "discountPercent": 23.1,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.toyworld.co.nz/products/lego-71491-dreamzzz-mateo-and-the-z-blob-action-race-car",
@@ -1153,11 +1131,11 @@
       "https://www.toyworld.co.nz/products/lego-71491-dreamzzz-mateo-and-the-z-blob-action-race-car",
       "https://pricespy.co.nz/product.php?p=14289579"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$65.00，同范围最低 NZ$65.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$65.00，同范围最低 NZ$65.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$65.00，同范围最低 NZ$65.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$65.00，同范围最低 NZ$65.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:48.342Z",
       "evidence": "lego-71491-toyworld-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1166,14 +1144,15 @@
       "exactVariant": true,
       "productId": 14289579,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 1,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lego-71491-toyworld-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$49.97; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "lego-42151-legonz",
@@ -1188,7 +1167,7 @@
     "lowestPrice90d": 79,
     "verdict": "真优惠",
     "discountPercent": 20.3,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.lego.com/en-nz/product/bugatti-bolide-42151",
@@ -1203,11 +1182,11 @@
       "https://www.lego.com/en-nz/product/bugatti-bolide-42151",
       "https://pricespy.co.nz/product.php?p=7280367"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$79.00，同范围最低 NZ$79.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$79.00，同范围最低 NZ$79.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$79.00，同范围最低 NZ$79.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$79.00，同范围最低 NZ$79.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:13:55.218Z",
       "evidence": "lego-42151-legonz-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1216,14 +1195,15 @@
       "exactVariant": true,
       "productId": 7280367,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 2,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lego-42151-legonz-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$62.99; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "pkm-lumiose-tin-wp",
@@ -1238,7 +1218,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://wpgames.co.nz/products/pokemon-tcg-lumiose-city-mini-tin",
@@ -1253,14 +1233,15 @@
       "https://wpgames.co.nz/products/pokemon-tcg-lumiose-city-mini-tin",
       "https://pricespy.co.nz/product.php?p=16658505"
     ],
-    "historyNote": "WP Games 现货促销价 NZ$22.99；PriceSpy p=16658505 早前8月18日单店报价已于8月20日下架，当前近90天窗口（2026-08-20 至 2026-11-17）已无有效历史价格数据，转标为待核实。",
-    "notes": "WP Games 现货促销价 NZ$22.99；PriceSpy p=16658505 早前8月18日单店报价已于8月20日下架，当前近90天窗口（2026-08-20 至 2026-11-17）已无有效历史价格数据，转标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$22.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$22.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:00.712Z",
       "evidence": "pkm-lumiose-tin-wp-retail",
       "extraction": "Visible \"Sale price\" on product page"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$22.99; Visible \"Sale price\" on product page; visible exact-product price."
   },
   {
     "id": "pkm-lucario-cm",
@@ -1275,7 +1256,7 @@
     "lowestPrice90d": 66.99,
     "verdict": "一般",
     "discountPercent": 2.8,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://cardmerchant.co.nz/products/pkm-league-battle-deck-mega-lucario-ex",
@@ -1290,11 +1271,11 @@
       "https://cardmerchant.co.nz/products/pkm-league-battle-deck-mega-lucario-ex",
       "https://pricespy.co.nz/product.php?p=16458242"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$72.00，同范围最低 NZ$66.99。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$72.00，同范围最低 NZ$66.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$72.00，同范围最低 NZ$66.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$72.00，同范围最低 NZ$66.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:06.429Z",
       "evidence": "pkm-lucario-cm-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1303,14 +1284,15 @@
       "exactVariant": true,
       "productId": 16458242,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 2,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "pkm-lucario-cm-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$69.99; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lego-43262-toyworld",
@@ -1325,7 +1307,7 @@
     "lowestPrice90d": 86.99,
     "verdict": "真优惠",
     "discountPercent": 2.2,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.toyworld.co.nz/products/lego-43262-disney-villains-maleficent-s-and-cruella-de-vil-s-dresses",
@@ -1340,11 +1322,11 @@
       "https://www.toyworld.co.nz/products/lego-43262-disney-villains-maleficent-s-and-cruella-de-vil-s-dresses",
       "https://pricespy.co.nz/product.php?p=14361067"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$89.98，同范围最低 NZ$86.99。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$89.98，同范围最低 NZ$86.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$89.98，同范围最低 NZ$86.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$89.98，同范围最低 NZ$86.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:12.107Z",
       "evidence": "lego-43262-toyworld-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1353,14 +1335,15 @@
       "exactVariant": true,
       "productId": 14361067,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 2,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lego-43262-toyworld-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$87.97; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "pkm-rayquaza-nano-gt",
@@ -1375,7 +1358,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://thegametree.co.nz/products/extreme-deluxe-rayquaza-nanoblock-set",
@@ -1388,14 +1371,15 @@
     "sources": [
       "https://thegametree.co.nz/products/extreme-deluxe-rayquaza-nanoblock-set"
     ],
-    "historyNote": "PriceSpy 未收录该同款积木近90天历史价格；店内标示原价 NZ$199.99、清仓价 NZ$119.88，仅剩1件。",
-    "notes": "PriceSpy 未收录该同款积木近90天历史价格；店内标示原价 NZ$199.99、清仓价 NZ$119.88，仅剩1件。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$119.88；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$119.88；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:17.503Z",
       "evidence": "pkm-rayquaza-nano-gt-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$119.88; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "jbl-go5-black-jb",
@@ -1404,13 +1388,13 @@
     "nameZh": "JBL Go 5 迷你便携蓝牙音箱（黑色）",
     "category": "数码",
     "store": "JB Hi-Fi",
-    "salePrice": 54,
+    "salePrice": 58,
     "currency": "NZD",
     "typicalPrice": 69,
     "lowestPrice90d": 33,
     "verdict": "一般",
-    "discountPercent": 21.7,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "discountPercent": 15.9,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/jbl-go-5-mini-bluetooth-speaker-black",
@@ -1425,11 +1409,11 @@
       "https://www.jbhifi.co.nz/products/jbl-go-5-mini-bluetooth-speaker-black",
       "https://pricespy.co.nz/product.php?p=16451546&a-116257=Black"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$69.00，同范围最低 NZ$33.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$69.00，同范围最低 NZ$33.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$69.00，同范围最低 NZ$33.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$69.00，同范围最低 NZ$33.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:22.797Z",
       "evidence": "jbl-go5-black-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1440,14 +1424,15 @@
       "variantIds": [
         16702133
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 8,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "jbl-go5-black-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$58.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "tapo-c210-2pk-jb",
@@ -1462,7 +1447,7 @@
     "lowestPrice90d": 77,
     "verdict": "一般",
     "discountPercent": 20.2,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/tp-link-tapo-c210-indoor-pan-tilt-wi-fi-security-camera-2-pack",
@@ -1477,11 +1462,11 @@
       "https://www.jbhifi.co.nz/products/tp-link-tapo-c210-indoor-pan-tilt-wi-fi-security-camera-2-pack",
       "https://pricespy.co.nz/product.php?p=12435614"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$99.00，同范围最低 NZ$77.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$99.00，同范围最低 NZ$77.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$99.00，同范围最低 NZ$77.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$99.00，同范围最低 NZ$77.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:28.357Z",
       "evidence": "tapo-c210-2pk-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1490,14 +1475,15 @@
       "exactVariant": true,
       "productId": 12435614,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 6,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "tapo-c210-2pk-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$79.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "ps5-dualsense-black-jb",
@@ -1512,7 +1498,7 @@
     "lowestPrice90d": 84.99,
     "verdict": "真优惠",
     "discountPercent": 18.3,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-wireless-controller-midnight-black",
@@ -1527,11 +1513,11 @@
       "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-wireless-controller-midnight-black",
       "https://pricespy.co.nz/product.php?p=5334714&a-116257=Midnight+Black"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$104.00，同范围最低 NZ$84.99。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$104.00，同范围最低 NZ$84.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$104.00，同范围最低 NZ$84.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$104.00，同范围最低 NZ$84.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:33.967Z",
       "evidence": "ps5-dualsense-black-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1542,14 +1528,15 @@
       "variantIds": [
         16866610
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 37,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "pointCount": 36,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ps5-dualsense-black-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$85.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "switch2-console-jb",
@@ -1560,11 +1547,11 @@
     "store": "JB Hi-Fi",
     "salePrice": 955,
     "currency": "NZD",
-    "typicalPrice": 935,
+    "typicalPrice": 943.99,
     "lowestPrice90d": 829,
     "verdict": "先别急",
-    "discountPercent": -2.1,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "discountPercent": -1.2,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/nintendo-switch-2-console",
@@ -1581,11 +1568,11 @@
       "https://pricespy.co.nz/product.php?p=13101596",
       "https://www.priceme.co.nz/Nintendo-Switch-2/p-929575900.aspx"
     ],
-    "historyNote": "PriceSpy p=13101596 近90天（2026-08-24 至 2026-11-21）日终价格中位数 NZ$935.00，最低 NZ$829.00。",
-    "notes": "PriceSpy p=13101596 近90天（2026-08-24 至 2026-11-21）日终价格中位数 NZ$935.00，最低 NZ$829.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$943.99，同范围最低 NZ$829.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$943.99，同范围最低 NZ$829.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:39.520Z",
       "evidence": "switch2-console-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1594,14 +1581,15 @@
       "exactVariant": true,
       "productId": 13101596,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 10,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "switch2-console-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$955.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lenovo-slim3-14-jb",
@@ -1616,7 +1604,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/lenovo-ideapad-slim-3-14-wuxga-laptop-intel-core-3-304256gb",
@@ -1629,14 +1617,15 @@
     "sources": [
       "https://www.jbhifi.co.nz/products/lenovo-ideapad-slim-3-14-wuxga-laptop-intel-core-3-304256gb"
     ],
-    "historyNote": "JB Hi-Fi 标示原价 NZ$1,098 现价 NZ$748 有货；PriceSpy 仅查到 Chrome 版同系页面，无对应 Windows Core 3 304 配置90天曲线。",
-    "notes": "JB Hi-Fi 标示原价 NZ$1,098 现价 NZ$748 有货；PriceSpy 仅查到 Chrome 版同系页面，无对应 Windows Core 3 304 配置90天曲线。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$748.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$748.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:45.017Z",
       "evidence": "lenovo-slim3-14-jb-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$748.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "apple-airpods5-jb",
@@ -1651,7 +1640,7 @@
     "lowestPrice90d": 228.98,
     "verdict": "真优惠",
     "discountPercent": 8,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/apple-airpods-5",
@@ -1666,11 +1655,11 @@
       "https://www.jbhifi.co.nz/products/apple-airpods-5",
       "https://pricespy.co.nz/product.php?p=17192188"
     ],
-    "historyNote": "PriceSpy 精确同款 USB-C 版（p=17192188）；自 2026-09-10 上市收录以来（至 2026-11-21，73个日终价格）中位平时价 NZ$249.00，最低 NZ$228.98（历史仅自上市起）。",
-    "notes": "PriceSpy 精确同款 USB-C 版（p=17192188）；自 2026-09-10 上市收录以来（至 2026-11-21，73个日终价格）中位平时价 NZ$249.00，最低 NZ$228.98（历史仅自上市起）。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-09-10 至 2026-11-23，75个 UTC 日终价格中位数 NZ$249.00，同范围最低 NZ$228.98。历史仅自上市起。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-09-10 至 2026-11-23，75个 UTC 日终价格中位数 NZ$249.00，同范围最低 NZ$228.98。历史仅自上市起。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:50.550Z",
       "evidence": "apple-airpods5-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1680,13 +1669,14 @@
       "productId": 17192188,
       "variantIds": [],
       "windowStart": "2026-09-10",
-      "windowEnd": "2026-11-21",
-      "dayCount": 73,
+      "windowEnd": "2026-11-23",
+      "dayCount": 75,
       "pointCount": 13,
-      "method": "Median of 90-day check window (12 PriceSpy points since 2026-09-10 launch, 2026-09-10..2026-11-13); market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 (75 available since launch) UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-airpods5-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$229.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "dyson-v8-adv-jb",
@@ -1701,7 +1691,7 @@
     "lowestPrice90d": 370,
     "verdict": "一般",
     "discountPercent": 49.9,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/dyson-v8-advanced-car-cleaning-kit",
@@ -1716,11 +1706,11 @@
       "https://www.jbhifi.co.nz/products/dyson-v8-advanced-car-cleaning-kit",
       "https://pricespy.co.nz/product.php?p=13860590"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$747.00，同范围最低 NZ$370.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$747.00，同范围最低 NZ$370.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$747.00，同范围最低 NZ$370.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$747.00，同范围最低 NZ$370.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:55.954Z",
       "evidence": "dyson-v8-adv-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1729,14 +1719,15 @@
       "exactVariant": true,
       "productId": 13860590,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 9,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "dyson-v8-adv-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$374.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "delonghi-magnifica-jb",
@@ -1751,7 +1742,7 @@
     "lowestPrice90d": 597,
     "verdict": "真优惠",
     "discountPercent": 7.7,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/delonghi-magnifica-start-fully-automatic-coffee-machine-silver",
@@ -1766,11 +1757,11 @@
       "https://www.jbhifi.co.nz/products/delonghi-magnifica-start-fully-automatic-coffee-machine-silver",
       "https://pricespy.co.nz/product.php?p=12366506&a-116257=Silver+Black"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$648.00，同范围最低 NZ$597.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$648.00，同范围最低 NZ$597.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$648.00，同范围最低 NZ$597.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$648.00，同范围最低 NZ$597.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:01.466Z",
       "evidence": "delonghi-magnifica-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1781,14 +1772,15 @@
       "variantIds": [
         16716732
       ],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 33,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "delonghi-magnifica-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$598.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lg-neochef-25l-jb",
@@ -1803,7 +1795,7 @@
     "lowestPrice90d": 198,
     "verdict": "真优惠",
     "discountPercent": 9.6,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/lg-neochef-25l-smart-inverter-microwave-oven",
@@ -1818,11 +1810,11 @@
       "https://www.jbhifi.co.nz/products/lg-neochef-25l-smart-inverter-microwave-oven",
       "https://pricespy.co.nz/product.php?p=4312893"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$219.00，同范围最低 NZ$198.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$219.00，同范围最低 NZ$198.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$219.00，同范围最低 NZ$198.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$219.00，同范围最低 NZ$198.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:07.066Z",
       "evidence": "lg-neochef-25l-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1831,14 +1823,15 @@
       "exactVariant": true,
       "productId": 4312893,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 19,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "pointCount": 18,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lg-neochef-25l-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$198.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "bissell-spotclean-hn",
@@ -1847,15 +1840,15 @@
     "nameZh": "必胜 Bissell SpotClean 专业布艺清洗机（3861P）",
     "category": "家电",
     "store": "Harvey Norman",
-    "salePrice": 188,
+    "salePrice": 199,
     "currency": "NZD",
     "typicalPrice": 299,
     "lowestPrice90d": 188,
-    "verdict": "真优惠",
-    "discountPercent": 37.1,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "verdict": "一般",
+    "discountPercent": 33.4,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
-    "saleEnds": "2026-11-24",
+    "saleEnds": "2026-12-02",
     "productUrl": "https://www.harveynorman.co.nz/home-appliances/vacuums-and-floor-care/carpet-cleaners/bissell-spotclean-professional-carpet-and-upholstery-shampooer-black-3861p.html",
     "priceSpyUrl": "https://www.priceme.co.nz/Bissell-3861P/p-927173256.aspx",
     "blackFridayConfirmed": true,
@@ -1870,11 +1863,11 @@
       "https://www.priceme.co.nz/Bissell-3861P/p-927173256.aspx",
       "https://pricespy.co.nz/product.php?p=16004716"
     ],
-    "historyNote": "PriceMe 精确同款 Bissell 3861P（独立追踪 Harvey Norman，PriceSpy p=16004716 合并3861F/3861P 仍不作历史依据）；2026-08-24 至 2026-11-21，90个日终价格（按 PriceMe 历史表前向填充）中位数 NZ$299.00，同范围最低 NZ$188.00。优惠至 2026-11-24。",
-    "notes": "PriceMe 精确同款 Bissell 3861P（独立追踪 Harvey Norman，PriceSpy p=16004716 合并3861F/3861P 仍不作历史依据）；2026-08-24 至 2026-11-21，90个日终价格（按 PriceMe 历史表前向填充）中位数 NZ$299.00，同范围最低 NZ$188.00。优惠至 2026-11-24。",
+    "historyNote": "PriceMe 精确同款 Bissell 3861P（Harvey Norman）；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$299.00，同范围最低 NZ$188.00。",
+    "notes": "PriceMe 精确同款 Bissell 3861P（Harvey Norman）；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$299.00，同范围最低 NZ$188.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:15.093Z",
       "evidence": "bissell-spotclean-hn-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -1883,14 +1876,15 @@
       "exactVariant": true,
       "productId": 927173256,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 10,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceMe HTML price-history table (2026-08-24 to 2026-11-21, Harvey Norman series) for exact Bissell 3861P. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceMe HTML price-history table; selected retailer series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": "Harvey Norman",
       "evidence": "bissell-spotclean-hn-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$199.00; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "mocka-urban-desk",
@@ -1905,7 +1899,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.mocka.co.nz/products/urban-desk-white",
@@ -1918,14 +1912,15 @@
     "sources": [
       "https://www.mocka.co.nz/products/urban-desk-white"
     ],
-    "historyNote": "Mocka 黑五专场直降50%（官网标示原价 NZ$199.99 现价 NZ$99.99）且现货；Mocka 自营家具未纳入 PriceSpy 历史追踪，标为待核实。",
-    "notes": "Mocka 黑五专场直降50%（官网标示原价 NZ$199.99 现价 NZ$99.99）且现货；Mocka 自营家具未纳入 PriceSpy 历史追踪，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$99.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$99.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:20.972Z",
       "evidence": "mocka-urban-desk-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$99.99; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "mocka-zack-bedside",
@@ -1940,7 +1935,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.mocka.co.nz/products/zack-two-drawer-bedside-table-natural",
@@ -1953,14 +1948,15 @@
     "sources": [
       "https://www.mocka.co.nz/products/zack-two-drawer-bedside-table-natural"
     ],
-    "historyNote": "Mocka 官网黑五促销现价 NZ$74.99（标称原价 NZ$99.99，省 NZ$25）；自营家具无 PriceSpy 90天历史曲线，标为待核实。",
-    "notes": "Mocka 官网黑五促销现价 NZ$74.99（标称原价 NZ$99.99，省 NZ$25）；自营家具无 PriceSpy 90天历史曲线，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$74.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$74.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:26.783Z",
       "evidence": "mocka-zack-bedside-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$74.99; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "mocka-zack-6drawer",
@@ -1975,7 +1971,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.mocka.co.nz/products/zack-six-drawer-natural",
@@ -1988,14 +1984,15 @@
     "sources": [
       "https://www.mocka.co.nz/products/zack-six-drawer-natural"
     ],
-    "historyNote": "Mocka 黑五活动现价 NZ$277.49（标称原价 NZ$369.99，省 NZ$92.50）；无 PriceSpy 历史价格追踪，结论保持待核实。",
-    "notes": "Mocka 黑五活动现价 NZ$277.49（标称原价 NZ$369.99，省 NZ$92.50）；无 PriceSpy 历史价格追踪，结论保持待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$277.49；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$277.49；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:32.655Z",
       "evidence": "mocka-zack-6drawer-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$277.49; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "sc-acacia-king-bed",
@@ -2010,12 +2007,12 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://smithscity.co.nz/products/acacia-nz-king-bedroom-set-pure-white",
     "priceSpyUrl": null,
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://smithscity.co.nz/products/acacia-nz-king-bedroom-set-pure-white"
@@ -2023,14 +2020,15 @@
     "sources": [
       "https://smithscity.co.nz/products/acacia-nz-king-bedroom-set-pure-white"
     ],
-    "historyNote": "Smiths City 黑五专区现价 NZ$749.00（官网标示原价 NZ$999.00）；家具单品未收录于 PriceSpy，无第三方90天历史。",
-    "notes": "Smiths City 黑五专区现价 NZ$749.00（官网标示原价 NZ$999.00）；家具单品未收录于 PriceSpy，无第三方90天历史。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$749.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$749.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:38.256Z",
       "evidence": "sc-acacia-king-bed-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$749.00; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "bun-lifetime-table",
@@ -2045,7 +2043,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.bunnings.co.nz/lifetime-6ft-1-83m-bi-fold-blow-mould-trestle-table_p3192213",
@@ -2058,14 +2056,15 @@
     "sources": [
       "https://www.bunnings.co.nz/lifetime-6ft-1-83m-bi-fold-blow-mould-trestle-table_p3192213"
     ],
-    "historyNote": "Bunnings 官网现价 NZ$63.95；PriceSpy 未收录该折叠桌产品页面与90天价格变化，标为待核实。",
-    "notes": "Bunnings 官网现价 NZ$63.95；PriceSpy 未收录该折叠桌产品页面与90天价格变化，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$63.95；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$63.95；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:44.049Z",
       "evidence": "bun-lifetime-table-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$63.95; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "tw-duplo-10914",
@@ -2080,7 +2079,7 @@
     "lowestPrice90d": 67.99,
     "verdict": "先别急",
     "discountPercent": -14.3,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.toyworld.co.nz/products/lego-duplo-deluxe-brick-box-10914",
@@ -2095,11 +2094,11 @@
       "https://www.toyworld.co.nz/products/lego-duplo-deluxe-brick-box-10914",
       "https://pricespy.co.nz/product.php?p=5256016"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$70.00，同范围最低 NZ$67.99。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$70.00，同范围最低 NZ$67.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$70.00，同范围最低 NZ$67.99。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$70.00，同范围最低 NZ$67.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:49.891Z",
       "evidence": "tw-duplo-10914-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2108,14 +2107,15 @@
       "exactVariant": true,
       "productId": 5256016,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 3,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "tw-duplo-10914-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$79.99; Product JSON-LD offers.price; http://schema.org/InStock."
   },
   {
     "id": "mocka-cot-mattress",
@@ -2130,7 +2130,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.mocka.co.nz/products/mocka-cot-mattress",
@@ -2143,14 +2143,15 @@
     "sources": [
       "https://www.mocka.co.nz/products/mocka-cot-mattress"
     ],
-    "historyNote": "Mocka 黑五专场现价 NZ$161.49（官网标称原价 NZ$189.99）；未纳入 PriceSpy 90天历史曲线，标为待核实。",
-    "notes": "Mocka 黑五专场现价 NZ$161.49（官网标称原价 NZ$189.99）；未纳入 PriceSpy 90天历史曲线，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$161.49；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$161.49；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:15:55.732Z",
       "evidence": "mocka-cot-mattress-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$161.49; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lug-samsonite-oc2-55",
@@ -2165,7 +2166,7 @@
     "lowestPrice90d": 223.13,
     "verdict": "先别急",
     "discountPercent": 0,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.luggage.co.nz/products/samsonite-oc2lite-55cm-hardside-carry-on-suitcase-black",
@@ -2180,11 +2181,11 @@
       "https://www.luggage.co.nz/products/samsonite-oc2lite-55cm-hardside-carry-on-suitcase-black",
       "https://pricespy.co.nz/product.php?p=5908337"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$223.13，同范围最低 NZ$223.13。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$223.13，同范围最低 NZ$223.13。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$223.13，同范围最低 NZ$223.13。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$223.13，同范围最低 NZ$223.13。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:01.594Z",
       "evidence": "lug-samsonite-oc2-55-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2193,14 +2194,15 @@
       "exactVariant": true,
       "productId": 5908337,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 5,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lug-samsonite-oc2-55-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$223.13; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lug-caselite-summit-75",
@@ -2215,7 +2217,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.luggage.co.nz/products/caselite-summit-75cm-hardside-checked-suitcase-black",
@@ -2228,14 +2230,15 @@
     "sources": [
       "https://www.luggage.co.nz/products/caselite-summit-75cm-hardside-checked-suitcase-black"
     ],
-    "historyNote": "Luggage.co.nz 黑五促销现价 NZ$124.00 有货且免全纽运费；PriceSpy 暂缺该型号历史记录，标为待核实。",
-    "notes": "Luggage.co.nz 黑五促销现价 NZ$124.00 有货且免全纽运费；PriceSpy 暂缺该型号历史记录，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$124.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$124.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:07.400Z",
       "evidence": "lug-caselite-summit-75-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$124.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "m10-karcher-wd2",
@@ -2250,7 +2253,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/karcher-wd2-plus-wet-dry-vacuum-d-393mm-x-w-380mm-x-h-505mm/p/400649",
@@ -2265,14 +2268,15 @@
       "https://www.mitre10.co.nz/shop/karcher-wd2-plus-wet-dry-vacuum-d-393mm-x-w-380mm-x-h-505mm/p/400649",
       "https://pricespy.co.nz/product.php?p=22196728"
     ],
-    "historyNote": "Mitre 10 独占款式现价 NZ$173.00；PriceSpy p=22196728 暂无历史价格点位，无法核实90天常价。",
-    "notes": "Mitre 10 独占款式现价 NZ$173.00；PriceSpy p=22196728 暂无历史价格点位，无法核实90天常价。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$173.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$173.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:13.459Z",
       "evidence": "m10-karcher-wd2-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$173.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "cm-catan-6e",
@@ -2287,7 +2291,7 @@
     "lowestPrice90d": null,
     "verdict": "待核实",
     "discountPercent": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-16",
     "saleEnds": null,
     "productUrl": "https://cardmerchant.co.nz/products/catan-6th-edition",
@@ -2300,14 +2304,15 @@
     "sources": [
       "https://cardmerchant.co.nz/products/catan-6th-edition"
     ],
-    "historyNote": "Card Merchant 现货 NZ$89.99；PriceSpy 搜索仅匹配到第6版5-6人扩展包而非基础版，未混淆不同商品，结论标为待核实。",
-    "notes": "Card Merchant 现货 NZ$89.99；PriceSpy 搜索仅匹配到第6版5-6人扩展包而非基础版，未混淆不同商品，结论标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$89.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "notes": "2026-11-25 已核对商家现价 NZ$89.99；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:19.139Z",
       "evidence": "cm-catan-6e-retail",
       "extraction": "Product JSON-LD offers.price"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$89.99; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "m10-traeger-pro22",
@@ -2320,12 +2325,12 @@
     "currency": "NZD",
     "typicalPrice": 1299.99,
     "lowestPrice90d": 1299.99,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/traeger-pro-22-wood-pellet-smoker/p/336917",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=3475518",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": true,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/traeger-pro-22-wood-pellet-smoker/p/336917",
@@ -2335,10 +2340,10 @@
       "https://www.mitre10.co.nz/shop/traeger-pro-22-wood-pellet-smoker/p/336917",
       "https://pricespy.co.nz/product.php?p=3475518"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$1,299.99，同范围最低 NZ$1,299.99。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$1299.99，同范围最低 NZ$1299.99。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:25.058Z",
       "evidence": "m10-traeger-pro22-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2347,17 +2352,18 @@
       "exactVariant": true,
       "productId": 3475518,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 1,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "m10-traeger-pro22-spy"
     },
     "verdict": "真优惠",
     "discountPercent": 23.2,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$1,299.99，同范围最低 NZ$1,299.99。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$1299.99，同范围最低 NZ$1299.99。",
+    "evidence": "2026-11-25 retailer product page: NZ$999.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "m10-weber-babyq-1000n",
@@ -2370,12 +2376,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/weber-baby-q-1000n-bbq-black/p/2016382",
     "priceSpyUrl": null,
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/weber-baby-q-1000n-bbq-black/p/2016382"
@@ -2383,16 +2389,17 @@
     "sources": [
       "https://www.mitre10.co.nz/shop/weber-baby-q-1000n-bbq-black/p/2016382"
     ],
-    "historyNote": "Mitre 10 黑五 Weber 烧烤炉9折活动现价 NZ$422.10（页面标示原价 NZ$469.00，不作历史依据）；PriceSpy 未收录该型号90天历史，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$422.10；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:31.288Z",
       "evidence": "m10-weber-babyq-1000n-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Mitre 10 黑五 Weber 烧烤炉9折活动现价 NZ$422.10（页面标示原价 NZ$469.00，不作历史依据）；PriceSpy 未收录该型号90天历史，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$422.10；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$422.10; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "m10-dewalt-18v-2pc-kit",
@@ -2405,12 +2412,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/dewalt-18v-xr-2-piece-drill-driver-kit-2-0ah/p/317836",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=4579252",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/dewalt-18v-xr-2-piece-drill-driver-kit-2-0ah/p/317836",
@@ -2420,16 +2427,17 @@
       "https://www.mitre10.co.nz/shop/dewalt-18v-xr-2-piece-drill-driver-kit-2-0ah/p/317836",
       "https://pricespy.co.nz/product.php?p=4579252"
     ],
-    "historyNote": "Mitre 10 黑五专场现价 NZ$275.00（页面标示原价 NZ$399.00，不作历史依据）；PriceSpy p=4579252 近90天无活跃历史价格点位，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$275.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:38.002Z",
       "evidence": "m10-dewalt-18v-2pc-kit-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Mitre 10 黑五专场现价 NZ$275.00（页面标示原价 NZ$399.00，不作历史依据）；PriceSpy p=4579252 近90天无活跃历史价格点位，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$275.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$275.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "m10-bosch-aquatak-135",
@@ -2442,12 +2450,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/bosch-diy-universalaquatak-135-water-blaster-1900-watt/p/347485",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=4292309",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/bosch-diy-universalaquatak-135-water-blaster-1900-watt/p/347485",
@@ -2457,16 +2465,17 @@
       "https://www.mitre10.co.nz/shop/bosch-diy-universalaquatak-135-water-blaster-1900-watt/p/347485",
       "https://pricespy.co.nz/product.php?p=4292309"
     ],
-    "historyNote": "Mitre 10 黑五专场现价 NZ$249.00（页面标示原价 NZ$419.00，不作历史依据）；PriceSpy p=4292309 近90天无活跃历史价格记录，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$249.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:45.277Z",
       "evidence": "m10-bosch-aquatak-135-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Mitre 10 黑五专场现价 NZ$249.00（页面标示原价 NZ$419.00，不作历史依据）；PriceSpy p=4292309 近90天无活跃历史价格记录，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$249.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$249.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "m10-nouveau-egg-chair",
@@ -2479,12 +2488,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/nouveau-dove-outdoor-rope-hanging-egg-chair/p/2027798",
     "priceSpyUrl": null,
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/nouveau-dove-outdoor-rope-hanging-egg-chair/p/2027798"
@@ -2492,16 +2501,17 @@
     "sources": [
       "https://www.mitre10.co.nz/shop/nouveau-dove-outdoor-rope-hanging-egg-chair/p/2027798"
     ],
-    "historyNote": "Mitre 10 黑五专场户外家具现价 NZ$299.00（页面标示原价 NZ$499.00，不作历史依据）；自有品牌未收录于 PriceSpy，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$299.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:51.206Z",
       "evidence": "m10-nouveau-egg-chair-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Mitre 10 黑五专场户外家具现价 NZ$299.00（页面标示原价 NZ$499.00，不作历史依据）；自有品牌未收录于 PriceSpy，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$299.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$299.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "bun-karcher-k4-premium",
@@ -2514,7 +2524,7 @@
     "currency": "NZD",
     "typicalPrice": 629,
     "lowestPrice90d": 629,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
     "saleEnds": null,
     "productUrl": "https://www.bunnings.co.nz/karcher-k4-premium-power-control-water-blaster_p0362056",
@@ -2529,10 +2539,10 @@
       "https://www.bunnings.co.nz/karcher-k4-premium-power-control-water-blaster_p0362056",
       "https://pricespy.co.nz/product.php?p=5682228"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$629.00，同范围最低 NZ$629.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$629.00，同范围最低 NZ$629.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:57.036Z",
       "evidence": "bun-karcher-k4-premium-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2541,17 +2551,18 @@
       "exactVariant": true,
       "productId": 5682228,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 2,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "bun-karcher-k4-premium-spy"
     },
     "verdict": "先别急",
     "discountPercent": -9.7,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$629.00，同范围最低 NZ$629.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$629.00，同范围最低 NZ$629.00。",
+    "evidence": "2026-11-25 retailer product page: NZ$689.99; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "bun-dewalt-18v-chainsaw-5ah",
@@ -2560,11 +2571,11 @@
     "nameZh": "得伟 DeWALT 18V XR 无刷电链锯套装（含5.0Ah电池）",
     "category": "其他",
     "store": "Bunnings",
-    "salePrice": 348.9,
+    "salePrice": 273,
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
     "saleEnds": null,
     "productUrl": "https://www.bunnings.co.nz/dewalt-18v-xr-brushless-chainsaw-kit-5-0ah-dcm565p1-xe_p0634150",
@@ -2579,16 +2590,17 @@
       "https://www.bunnings.co.nz/dewalt-18v-xr-brushless-chainsaw-kit-5-0ah-dcm565p1-xe_p0634150",
       "https://pricespy.co.nz/product.php?p=4670646"
     ],
-    "historyNote": "Bunnings 现价 NZ$348.90（较 11-21 NZ$273.00 回升，未确认黑五活动）；PriceSpy p=4670646 近90天仍无活跃历史价格点位，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$273.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:02.918Z",
       "evidence": "bun-dewalt-18v-chainsaw-5ah-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Bunnings 现价 NZ$348.90（较 11-21 NZ$273.00 回升，未确认黑五活动）；PriceSpy p=4670646 近90天仍无活跃历史价格点位，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$273.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$273.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "bun-ryobi-18v-mower-4ah",
@@ -2601,7 +2613,7 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
     "saleEnds": null,
     "productUrl": "https://www.bunnings.co.nz/ryobi-18v-one-37cm-hp-brushless-lawn-mower-4-0ah-kit_p0347672",
@@ -2614,16 +2626,17 @@
     "sources": [
       "https://www.bunnings.co.nz/ryobi-18v-one-37cm-hp-brushless-lawn-mower-4-0ah-kit_p0347672"
     ],
-    "historyNote": "Bunnings 独占渠道品牌 Ryobi 现价 NZ$398.00；PriceSpy 未收录该款割草机90天历史价格，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$398.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:08.629Z",
       "evidence": "bun-ryobi-18v-mower-4ah-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Bunnings 独占渠道品牌 Ryobi 现价 NZ$398.00；PriceSpy 未收录该款割草机90天历史价格，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$398.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$398.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "bun-jumbuck-2b-bbq",
@@ -2636,7 +2649,7 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
     "saleEnds": null,
     "productUrl": "https://www.bunnings.co.nz/jumbuck-2-burner-portable-gas-bbq_p0434419",
@@ -2649,16 +2662,17 @@
     "sources": [
       "https://www.bunnings.co.nz/jumbuck-2-burner-portable-gas-bbq_p0434419"
     ],
-    "historyNote": "Bunnings 自有品牌 Jumbuck 现价 NZ$259.00；未纳入 PriceSpy 第三方90天价格走势追踪，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$259.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:14.197Z",
       "evidence": "bun-jumbuck-2b-bbq-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Bunnings 自有品牌 Jumbuck 现价 NZ$259.00；未纳入 PriceSpy 第三方90天价格走势追踪，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$259.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$259.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "bun-keter-270l-box",
@@ -2671,7 +2685,7 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
     "saleEnds": null,
     "productUrl": "https://www.bunnings.co.nz/keter-270l-graphite-marvel-plus-outdoor-storage-box_p0429261",
@@ -2684,16 +2698,17 @@
     "sources": [
       "https://www.bunnings.co.nz/keter-270l-graphite-marvel-plus-outdoor-storage-box_p0429261"
     ],
-    "historyNote": "Bunnings 官网现价 NZ$98.00；PriceSpy 未收录该款户外收纳箱产品页面与90天价格记录，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$98.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:19.842Z",
       "evidence": "bun-keter-270l-box-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Bunnings 官网现价 NZ$98.00；PriceSpy 未收录该款户外收纳箱产品页面与90天价格记录，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$98.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$98.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "apple-mba13-m5-jb",
@@ -2704,14 +2719,13 @@
     "store": "JB Hi-Fi",
     "salePrice": 2228,
     "currency": "NZD",
-    "typicalPrice": 2498,
+    "typicalPrice": 2471.86,
     "lowestPrice90d": 2225,
     "historyVerified": true,
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "offerLabel": "JB Hi-Fi Red Hot Deal（16GB/512GB 为 M5 标配；Noel Leeming 同价 NZ$2,228，PB Tech NZ$2,245 赠 Orico USB-C 扩展坞）",
     "productUrl": "https://www.jbhifi.co.nz/products/apple-macbook-air-13-inch-with-m5-chip-512gb-16gb-midnight",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=16257883",
     "taxFreeOffer": {
@@ -2719,7 +2733,8 @@
       "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
       "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
       "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351351212/apple-macbook-air-13-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-silver.html",
-      "includesSurcharge": true
+      "includesSurcharge": true,
+      "checkedAt": "2026-11-24T21:18:59.227Z"
     },
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-macbook-air-13-inch-with-m5-chip-512gb-16gb-midnight",
@@ -2732,11 +2747,11 @@
       "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351351212/apple-macbook-air-13-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-silver.html"
     ],
     "historyScope": "market",
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,498.00，同范围最低 NZ$2,225.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,498.00，同范围最低 NZ$2,225.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2471.86，同范围最低 NZ$2225.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2471.86，同范围最低 NZ$2225.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:25.417Z",
       "evidence": "apple-mba13-m5-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2744,16 +2759,17 @@
       "exactVariant": true,
       "productId": 16257883,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 22,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-mba13-m5-jb-spy"
     },
-    "discountPercent": 10.8,
-    "verdict": "一般"
+    "discountPercent": 9.9,
+    "verdict": "一般",
+    "evidence": "2026-11-25 retailer product page: NZ$2228.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "apple-mba15-m5-jb",
@@ -2769,9 +2785,8 @@
     "historyVerified": true,
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "offerLabel": "JB Hi-Fi Red Hot Deal（16GB/512GB 为 15英寸 M5 标配；Noel Leeming 同价 NZ$2,528，PB Tech NZ$2,545）",
     "productUrl": "https://www.jbhifi.co.nz/products/apple-macbook-air-15-inch-with-m5-chip-512gb-16gb-starlight",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=16258590",
     "taxFreeOffer": {
@@ -2779,7 +2794,8 @@
       "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
       "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
       "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351551213/apple-macbook-air-15-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-starlight.html",
-      "includesSurcharge": true
+      "includesSurcharge": true,
+      "checkedAt": "2026-11-24T21:18:59.225Z"
     },
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-macbook-air-15-inch-with-m5-chip-512gb-16gb-starlight",
@@ -2792,11 +2808,11 @@
       "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_NBKAPP351551213/apple-macbook-air-15-inch-laptop-with-m5-chip-16gb-ram-512gb-ssd-starlight.html"
     ],
     "historyScope": "market",
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,835.00，同范围最低 NZ$2,528.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,835.00，同范围最低 NZ$2,528.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2835.00，同范围最低 NZ$2528.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2835.00，同范围最低 NZ$2528.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:36.288Z",
       "evidence": "apple-mba15-m5-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2804,16 +2820,17 @@
       "exactVariant": true,
       "productId": 16258590,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 10,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-mba15-m5-jb-spy"
     },
     "discountPercent": 10.8,
-    "verdict": "真优惠"
+    "verdict": "真优惠",
+    "evidence": "2026-11-25 retailer product page: NZ$2528.00; Product JSON-LD offers.price; https://schema.org/BackOrder."
   },
   {
     "id": "apple-iphone17-pro-256-jb",
@@ -2829,9 +2846,8 @@
     "historyVerified": true,
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "offerLabel": "JB Hi-Fi Red Hot Deal（裸机价；跳过需绑套餐的 One NZ $1,949；PB Tech 在 PriceSpy 实时报价 NZ$2,018）",
     "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-256gb-deep-blue",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15094415",
     "taxFreeOffer": {
@@ -2839,7 +2855,8 @@
       "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
       "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
       "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817202/apple-iphone-17-pro-256gb-deep-blue.html",
-      "includesSurcharge": true
+      "includesSurcharge": true,
+      "checkedAt": "2026-11-24T21:18:59.226Z"
     },
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-256gb-deep-blue",
@@ -2852,11 +2869,11 @@
       "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817202/apple-iphone-17-pro-256gb-deep-blue.html"
     ],
     "historyScope": "market",
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,018.00，同范围最低 NZ$1,999.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,018.00，同范围最低 NZ$1,999.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2018.00，同范围最低 NZ$1999.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2018.00，同范围最低 NZ$1999.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:47.047Z",
       "evidence": "apple-iphone17-pro-256-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2864,16 +2881,17 @@
       "exactVariant": true,
       "productId": 15094415,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 9,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-iphone17-pro-256-jb-spy"
     },
     "discountPercent": -0.1,
-    "verdict": "先别急"
+    "verdict": "先别急",
+    "evidence": "2026-11-25 retailer product page: NZ$2021.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "apple-iphone17-promax-256-jb",
@@ -2889,9 +2907,8 @@
     "historyVerified": true,
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "offerLabel": "JB Hi-Fi Red Hot Deal（裸机价；跳过需绑套餐的 One NZ $2,149；PB Tech 在 PriceSpy 实时报价 NZ$2,208）",
     "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-max-256gb-deep-blue",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14969852",
     "taxFreeOffer": {
@@ -2899,7 +2916,8 @@
       "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
       "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
       "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817302/apple-iphone-17-pro-max-256gb-deep-blue.html",
-      "includesSurcharge": true
+      "includesSurcharge": true,
+      "checkedAt": "2026-11-24T21:19:03.681Z"
     },
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-iphone-17-pro-max-256gb-deep-blue",
@@ -2912,11 +2930,11 @@
       "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP817302/apple-iphone-17-pro-max-256gb-deep-blue.html"
     ],
     "historyScope": "market",
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,208.00，同范围最低 NZ$2,188.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$2,208.00，同范围最低 NZ$2,188.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2208.00，同范围最低 NZ$2188.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$2208.00，同范围最低 NZ$2188.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:17:57.520Z",
       "evidence": "apple-iphone17-promax-256-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2924,16 +2942,17 @@
       "exactVariant": true,
       "productId": 14969852,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 14,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-iphone17-promax-256-jb-spy"
     },
     "discountPercent": -0.1,
-    "verdict": "先别急"
+    "verdict": "先别急",
+    "evidence": "2026-11-25 retailer product page: NZ$2211.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "apple-iphone18-pro-256-jb",
@@ -2949,9 +2968,8 @@
     "historyVerified": true,
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "offerLabel": "JB Hi-Fi On Sale（较官价 $2,549 省 $140；Noel Leeming / Harvey Norman 同价 NZ$2,409，PB Tech 在 PriceSpy 实时报价 NZ$2,408.87）",
     "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-256gb-black",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=17128235",
     "taxFreeOffer": {
@@ -2959,7 +2977,8 @@
       "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
       "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
       "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818200/apple-iphone-18-pro-256gb-black.html",
-      "includesSurcharge": true
+      "includesSurcharge": true,
+      "checkedAt": "2026-11-24T21:19:03.606Z"
     },
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-256gb-black",
@@ -2972,11 +2991,11 @@
       "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818200/apple-iphone-18-pro-256gb-black.html"
     ],
     "historyScope": "market",
-    "historyNote": "PriceSpy 同款全市场最低价（p=17128235）；自 2026-09-10 上市收录以来（至 2026-11-21，73个日终价格）中位平时价 NZ$2,499.00，最低 NZ$2,389.00（历史仅自上市起）。",
-    "notes": "PriceSpy 同款全市场最低价（p=17128235）；自 2026-09-10 上市收录以来（至 2026-11-21，73个日终价格）中位平时价 NZ$2,499.00，最低 NZ$2,389.00（历史仅自上市起）。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-09-10 至 2026-11-23，75个 UTC 日终价格中位数 NZ$2499.00，同范围最低 NZ$2389.00。历史仅自上市起。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-09-10 至 2026-11-23，75个 UTC 日终价格中位数 NZ$2499.00，同范围最低 NZ$2389.00。历史仅自上市起。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:08.267Z",
       "evidence": "apple-iphone18-pro-256-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -2985,15 +3004,16 @@
       "productId": 17128235,
       "variantIds": [],
       "windowStart": "2026-09-10",
-      "windowEnd": "2026-11-21",
-      "dayCount": 73,
+      "windowEnd": "2026-11-23",
+      "dayCount": 75,
       "pointCount": 10,
-      "method": "Median of 90-day check window (9 PriceSpy points since 2026-09-10 launch, 2026-09-10..2026-11-17); market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 (75 available since launch) UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-iphone18-pro-256-jb-spy"
     },
     "discountPercent": 3.6,
-    "verdict": "一般"
+    "verdict": "一般",
+    "evidence": "2026-11-25 retailer product page: NZ$2409.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "apple-iphone18-promax-256-jb",
@@ -3009,18 +3029,10 @@
     "historyVerified": true,
     "blackFridayConfirmed": false,
     "saleEnds": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-19",
-    "offerLabel": "JB Hi-Fi On Sale（较官价 $2,749 省 $151；Noel Leeming 同价 NZ$2,598，PB Tech 在 PriceSpy 实时报价 NZ$2,597.87）",
     "productUrl": "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-max-256gb-black",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=15835075",
-    "taxFreeOffer": {
-      "price": 2360.68,
-      "storeZh": "The Mall 奥克兰机场（PB Tech 机场自提）",
-      "storeEn": "The Mall Auckland Airport (PB Tech airport pickup)",
-      "url": "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818300/apple-iphone-18-pro-max-256gb-black.html",
-      "includesSurcharge": true
-    },
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/apple-iphone-18-pro-max-256gb-black",
       "https://pricespy.co.nz/product.php?p=15835075",
@@ -3032,11 +3044,11 @@
       "https://themall.aucklandairport.co.nz/en/intl-duty-free/product/pb-tech-m_MPHAPP818300/apple-iphone-18-pro-max-256gb-black.html"
     ],
     "historyScope": "market",
-    "historyNote": "PriceSpy 同款全市场最低价（p=15835075）；自 2026-09-10 上市收录以来（至 2026-11-21，73个日终价格）中位平时价 NZ$2,649.00，最低 NZ$2,549.00（历史仅自上市起）。",
-    "notes": "PriceSpy 同款全市场最低价（p=15835075）；自 2026-09-10 上市收录以来（至 2026-11-21，73个日终价格）中位平时价 NZ$2,649.00，最低 NZ$2,549.00（历史仅自上市起）。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-09-10 至 2026-11-23，75个 UTC 日终价格中位数 NZ$2649.00，同范围最低 NZ$2549.00。历史仅自上市起。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-09-10 至 2026-11-23，75个 UTC 日终价格中位数 NZ$2649.00，同范围最低 NZ$2549.00。历史仅自上市起。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:19.207Z",
       "evidence": "apple-iphone18-promax-256-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -3045,15 +3057,16 @@
       "productId": 15835075,
       "variantIds": [],
       "windowStart": "2026-09-10",
-      "windowEnd": "2026-11-21",
-      "dayCount": 73,
+      "windowEnd": "2026-11-23",
+      "dayCount": 75,
       "pointCount": 15,
-      "method": "Median of 90-day check window (15 PriceSpy points since 2026-09-10 launch, 2026-09-10..2026-11-17); market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 (75 available since launch) UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "apple-iphone18-promax-256-jb-spy"
     },
     "discountPercent": 1.9,
-    "verdict": "一般"
+    "verdict": "一般",
+    "evidence": "2026-11-25 retailer product page: NZ$2598.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "ninja-crispi-jb",
@@ -3066,12 +3079,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-21",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/ninja-crispi-4-in-1-portable-glass-air-fryer-stone",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14419856",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/ninja-crispi-4-in-1-portable-glass-air-fryer-stone",
@@ -3081,16 +3094,17 @@
       "https://www.jbhifi.co.nz/products/ninja-crispi-4-in-1-portable-glass-air-fryer-stone",
       "https://pricespy.co.nz/product.php?p=14419856"
     ],
-    "historyNote": "JB Hi-Fi 黑五专场现价仍为 NZ$178.00；2026-11-23 复核 PriceSpy p=14419856 暂时显示无在售报价与历史价格数据（2026-11-21 曾测得90天中位数 NZ$219.00），本轮按规则标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$178.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:30.342Z",
       "evidence": "ninja-crispi-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "JB Hi-Fi 黑五专场现价仍为 NZ$178.00；2026-11-23 复核 PriceSpy p=14419856 暂时显示无在售报价与历史价格数据（2026-11-21 曾测得90天中位数 NZ$219.00），本轮按规则标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$178.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$178.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "jbl-spinner-bt-jb",
@@ -3103,12 +3117,12 @@
     "currency": "NZD",
     "typicalPrice": 522,
     "lowestPrice90d": 355,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-21",
-    "saleEnds": "2026-12-31",
+    "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/jbl-spinner-bt-bluetooth-turntable-white-gold",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=12644358",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": true,
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/jbl-spinner-bt-bluetooth-turntable-white-gold",
@@ -3118,10 +3132,10 @@
       "https://www.jbhifi.co.nz/products/jbl-spinner-bt-bluetooth-turntable-white-gold",
       "https://pricespy.co.nz/product.php?p=12644358"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$522.00，同范围最低 NZ$355.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$522.00，同范围最低 NZ$355.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:35.557Z",
       "evidence": "jbl-spinner-bt-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -3130,17 +3144,18 @@
       "exactVariant": true,
       "productId": 12644358,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 12,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "jbl-spinner-bt-jb-spy"
     },
     "verdict": "真优惠",
     "discountPercent": 32,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$522.00，同范围最低 NZ$355.00。"
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$522.00，同范围最低 NZ$355.00。",
+    "evidence": "2026-11-25 retailer product page: NZ$355.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "lg-c6-65-oled-jb",
@@ -3151,14 +3166,14 @@
     "store": "JB Hi-Fi",
     "salePrice": 3185,
     "currency": "NZD",
-    "typicalPrice": 3997,
+    "typicalPrice": 3948,
     "lowestPrice90d": 3184,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-21",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/lg-65-oled-evo-ai-c6-4k-smart-tv-2026",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=16687063",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": true,
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/lg-65-oled-evo-ai-c6-4k-smart-tv-2026",
@@ -3168,10 +3183,10 @@
       "https://www.jbhifi.co.nz/products/lg-65-oled-evo-ai-c6-4k-smart-tv-2026",
       "https://pricespy.co.nz/product.php?p=16687063"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$3,997.00，同范围最低 NZ$3,184.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$3948.00，同范围最低 NZ$3184.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:40.951Z",
       "evidence": "lg-c6-65-oled-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -3180,17 +3195,18 @@
       "exactVariant": true,
       "productId": 16687063,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 21,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "lg-c6-65-oled-jb-spy"
     },
     "verdict": "真优惠",
-    "discountPercent": 20.3,
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$3,997.00，同范围最低 NZ$3,184.00。"
+    "discountPercent": 19.3,
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$3948.00，同范围最低 NZ$3184.00。",
+    "evidence": "2026-11-25 retailer product page: NZ$3185.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "m10-karcher-k4-classic-car",
@@ -3203,12 +3219,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-21",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/karcher-k4-classic-car-water-blaster/p/2082914",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=14576079",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/karcher-k4-classic-car-water-blaster/p/2082914",
@@ -3218,16 +3234,17 @@
       "https://www.mitre10.co.nz/shop/karcher-k4-classic-car-water-blaster/p/2082914",
       "https://pricespy.co.nz/product.php?p=14576079"
     ],
-    "historyNote": "Mitre 10 黑五专场现价 NZ$399.00（页面标示原价 NZ$699.00，不作历史依据）；PriceSpy p=14576079 近90天无活跃历史价格点位，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$399.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:46.854Z",
       "evidence": "m10-karcher-k4-classic-car-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Mitre 10 黑五专场现价 NZ$399.00（页面标示原价 NZ$699.00，不作历史依据）；PriceSpy p=14576079 近90天无活跃历史价格点位，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$399.00；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$399.00; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "m10-weber-mastertouch",
@@ -3240,12 +3257,12 @@
     "currency": "NZD",
     "typicalPrice": null,
     "lowestPrice90d": null,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-21",
-    "saleEnds": "2026-12-02",
+    "saleEnds": null,
     "productUrl": "https://www.mitre10.co.nz/shop/weber-master-touch-kettle-charcoal-bbq-57cm/p/348304",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=2742665",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": false,
     "sourceUrls": [
       "https://www.mitre10.co.nz/shop/weber-master-touch-kettle-charcoal-bbq-57cm/p/348304",
@@ -3255,16 +3272,17 @@
       "https://www.mitre10.co.nz/shop/weber-master-touch-kettle-charcoal-bbq-57cm/p/348304",
       "https://pricespy.co.nz/product.php?p=2742665"
     ],
-    "historyNote": "Mitre 10 黑五 Weber 烧烤炉9折活动现价 NZ$629.10（页面标示原价 NZ$699.00，不作历史依据）；PriceSpy p=2742665 近90天无活跃历史价格点位，标为待核实。",
+    "historyNote": "2026-11-25 已核对商家现价 NZ$629.10；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:52.723Z",
       "evidence": "m10-weber-mastertouch-retail",
       "extraction": "Product JSON-LD offers.price"
     },
     "verdict": "待核实",
     "discountPercent": null,
-    "notes": "Mitre 10 黑五 Weber 烧烤炉9折活动现价 NZ$629.10（页面标示原价 NZ$699.00，不作历史依据）；PriceSpy p=2742665 近90天无活跃历史价格点位，标为待核实。"
+    "notes": "2026-11-25 已核对商家现价 NZ$629.10；2026-08-26 至 2026-11-23 无可核实的完整精确同款历史，暂不计算折扣。",
+    "evidence": "2026-11-25 retailer product page: NZ$629.10; Product JSON-LD offers.price; visible exact-product price."
   },
   {
     "id": "ssd-kingston-fury-2tb-hs-pb",
@@ -3273,20 +3291,19 @@
     "nameZh": "金士顿 Fury Renegade 2TB M.2 NVMe 固态硬盘（带散热片，PS5 可用）",
     "category": "数码",
     "store": "PB Tech",
-    "salePrice": 599,
+    "salePrice": 746.35,
     "currency": "NZD",
     "typicalPrice": 746.35,
     "lowestPrice90d": 599,
-    "verdict": "真优惠",
-    "discountPercent": 19.7,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "verdict": "先别急",
+    "discountPercent": 0,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": null,
     "productUrl": "https://www.pbtech.co.nz/product/HDDKIN24200/Kingston-Fury-Renegade-2TB-M2-NVMe-Internal-SSD-wi",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=7323821",
-    "blackFridayConfirmed": true,
+    "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "PB Tech price；Black Friday；结账输入优惠码 GTA6SSD",
     "sourceUrls": [
       "https://www.pbtech.co.nz/product/HDDKIN24200/Kingston-Fury-Renegade-2TB-M2-NVMe-Internal-SSD-wi",
       "https://pricespy.co.nz/product.php?p=7323821"
@@ -3295,29 +3312,28 @@
       "https://www.pbtech.co.nz/product/HDDKIN24200/Kingston-Fury-Renegade-2TB-M2-NVMe-Internal-SSD-wi",
       "https://pricespy.co.nz/product.php?p=7323821"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$746.35，同范围最低 NZ$599.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$746.35，同范围最低 NZ$599.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$746.35，同范围最低 NZ$599.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$746.35，同范围最低 NZ$599.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:22.366535+00:00",
       "evidence": "ssd-kingston-fury-2tb-hs-pb-retail-stealth",
-      "extraction": "Visible \"With promo code\" price on the product page (code GTA6SSD, GST inclusive); Product JSON-LD offers.price shows NZ$746.35 without the code"
+      "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
     "historyScope": "market",
     "historyEvidence": {
       "exactVariant": true,
       "productId": 7323821,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 6,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ssd-kingston-fury-2tb-hs-pb-spy"
     },
-    "offerNote": "需在结账时输入优惠码 GTA6SSD 才是此价；不用码为 NZ$746.35。",
-    "offerNoteEn": "This price needs promo code GTA6SSD at checkout; without the code it is NZ$746.35."
+    "evidence": "2026-11-25 retailer product page: NZ$746.35; Product JSON-LD offers.price (Scrapling StealthyFetcher); https://schema.org/InStock."
   },
   {
     "id": "ssd-wd-black-sn850p-1tb-jb",
@@ -3332,14 +3348,13 @@
     "lowestPrice90d": 695,
     "verdict": "真优惠",
     "discountPercent": 13,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/wd_black-sn850p-nvme-ssd-with-heatsink-for-ps5-1tb",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13155342",
     "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "JB Hi-Fi price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/wd_black-sn850p-nvme-ssd-with-heatsink-for-ps5-1tb",
       "https://pricespy.co.nz/product.php?p=13155342"
@@ -3348,11 +3363,11 @@
       "https://www.jbhifi.co.nz/products/wd_black-sn850p-nvme-ssd-with-heatsink-for-ps5-1tb",
       "https://pricespy.co.nz/product.php?p=13155342"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$799.00，同范围最低 NZ$695.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$799.00，同范围最低 NZ$695.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$799.00，同范围最低 NZ$695.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$799.00，同范围最低 NZ$695.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:18:58.269Z",
       "evidence": "ssd-wd-black-sn850p-1tb-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -3361,14 +3376,15 @@
       "exactVariant": true,
       "productId": 13155342,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 2,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ssd-wd-black-sn850p-1tb-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$695.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "ssd-samsung-990pro-2tb-hs-pb",
@@ -3383,14 +3399,13 @@
     "lowestPrice90d": 803.85,
     "verdict": "先别急",
     "discountPercent": -0.3,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": null,
     "productUrl": "https://www.pbtech.co.nz/product/HDDSAM990210/Samsung-990-Pro-With-Heatsink-2TB-M2-NVMe-Internal",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=11700466",
     "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "PB Tech price；每位顾客限购3件",
     "sourceUrls": [
       "https://www.pbtech.co.nz/product/HDDSAM990210/Samsung-990-Pro-With-Heatsink-2TB-M2-NVMe-Internal",
       "https://pricespy.co.nz/product.php?p=11700466"
@@ -3399,11 +3414,11 @@
       "https://www.pbtech.co.nz/product/HDDSAM990210/Samsung-990-Pro-With-Heatsink-2TB-M2-NVMe-Internal",
       "https://pricespy.co.nz/product.php?p=11700466"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$859.00，同范围最低 NZ$803.85。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$859.00，同范围最低 NZ$803.85。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$859.00，同范围最低 NZ$803.85。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$859.00，同范围最低 NZ$803.85。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:28.437415+00:00",
       "evidence": "ssd-samsung-990pro-2tb-hs-pb-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
@@ -3412,14 +3427,15 @@
       "exactVariant": true,
       "productId": 11700466,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 4,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ssd-samsung-990pro-2tb-hs-pb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$861.35; Product JSON-LD offers.price (Scrapling StealthyFetcher); https://schema.org/InStock."
   },
   {
     "id": "tplink-deco-be25-3pk-pb",
@@ -3430,18 +3446,17 @@
     "store": "PB Tech",
     "salePrice": 534.09,
     "currency": "NZD",
-    "typicalPrice": 573.36,
+    "typicalPrice": 559.2,
     "lowestPrice90d": 489.01,
     "verdict": "一般",
-    "discountPercent": 6.8,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "discountPercent": 4.5,
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": null,
     "productUrl": "https://www.pbtech.co.nz/product/NETTPL87253/TP-Link-Deco-BE25-BE5000-Dual-Band-WiFi-7-Whole-Ho",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=13623625",
     "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "PB Tech price",
     "sourceUrls": [
       "https://www.pbtech.co.nz/product/NETTPL87253/TP-Link-Deco-BE25-BE5000-Dual-Band-WiFi-7-Whole-Ho",
       "https://pricespy.co.nz/product.php?p=13623625"
@@ -3450,11 +3465,11 @@
       "https://www.pbtech.co.nz/product/NETTPL87253/TP-Link-Deco-BE25-BE5000-Dual-Band-WiFi-7-Whole-Ho",
       "https://pricespy.co.nz/product.php?p=13623625"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$573.36，同范围最低 NZ$489.01。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$573.36，同范围最低 NZ$489.01。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$559.20，同范围最低 NZ$489.01。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$559.20，同范围最低 NZ$489.01。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:14:34.620753+00:00",
       "evidence": "tplink-deco-be25-3pk-pb-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
@@ -3463,14 +3478,15 @@
       "exactVariant": true,
       "productId": 13623625,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 23,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 21,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "tplink-deco-be25-3pk-pb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$534.09; Product JSON-LD offers.price (Scrapling StealthyFetcher); https://schema.org/InStock."
   },
   {
     "id": "ps5-dualsense-charging-station-jb",
@@ -3485,14 +3501,13 @@
     "lowestPrice90d": 44,
     "verdict": "一般",
     "discountPercent": 9.4,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-charging-station",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=5532480",
     "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "JB Hi-Fi price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-charging-station",
       "https://pricespy.co.nz/product.php?p=5532480"
@@ -3501,11 +3516,11 @@
       "https://www.jbhifi.co.nz/products/ps5-playstation-5-dualsense-charging-station",
       "https://pricespy.co.nz/product.php?p=5532480"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$52.99，同范围最低 NZ$44.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$52.99，同范围最低 NZ$44.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$52.99，同范围最低 NZ$44.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$52.99，同范围最低 NZ$44.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:19:03.770Z",
       "evidence": "ps5-dualsense-charging-station-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -3514,14 +3529,15 @@
       "exactVariant": true,
       "productId": 5532480,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
       "pointCount": 38,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ps5-dualsense-charging-station-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$48.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "ps5-pulse-elite-black-jb",
@@ -3536,14 +3552,13 @@
     "lowestPrice90d": 157,
     "verdict": "一般",
     "discountPercent": 29.9,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": null,
     "productUrl": "https://www.jbhifi.co.nz/products/ps5-playstation-5-pulse-elite-wireless-headset-midnight-black",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=12745622",
     "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "JB Hi-Fi price",
     "sourceUrls": [
       "https://www.jbhifi.co.nz/products/ps5-playstation-5-pulse-elite-wireless-headset-midnight-black",
       "https://pricespy.co.nz/product.php?p=12745622"
@@ -3552,11 +3567,11 @@
       "https://www.jbhifi.co.nz/products/ps5-playstation-5-pulse-elite-wireless-headset-midnight-black",
       "https://pricespy.co.nz/product.php?p=12745622"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$253.92，同范围最低 NZ$157.00。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$253.92，同范围最低 NZ$157.00。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$253.92，同范围最低 NZ$157.00。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$253.92，同范围最低 NZ$157.00。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:19:09.264Z",
       "evidence": "ps5-pulse-elite-black-jb-retail",
       "extraction": "Product JSON-LD offers.price"
     },
@@ -3565,14 +3580,15 @@
       "exactVariant": true,
       "productId": 12745622,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 30,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 31,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "ps5-pulse-elite-black-jb-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$178.00; Product JSON-LD offers.price; https://schema.org/InStock."
   },
   {
     "id": "hue-play-gradient-65-nl",
@@ -3587,14 +3603,13 @@
     "lowestPrice90d": 358.38,
     "verdict": "真优惠",
     "discountPercent": 26.1,
-    "checkedAt": "2026-11-23T09:05:00+13:00",
+    "checkedAt": "2026-11-25T10:19:50+13:00",
     "addedAt": "2026-11-22",
     "saleEnds": "2026-12-02",
     "productUrl": "https://www.noelleeming.co.nz/p/philips-hue-play-gradient-lightstrip-for-65-tv/N201948.html",
     "priceSpyUrl": "https://pricespy.co.nz/product.php?p=5512587",
     "blackFridayConfirmed": false,
     "historyVerified": true,
-    "offerLabel": "Noel Leeming price",
     "sourceUrls": [
       "https://www.noelleeming.co.nz/p/philips-hue-play-gradient-lightstrip-for-65-tv/N201948.html",
       "https://pricespy.co.nz/product.php?p=5512587"
@@ -3603,11 +3618,11 @@
       "https://www.noelleeming.co.nz/p/philips-hue-play-gradient-lightstrip-for-65-tv/N201948.html",
       "https://pricespy.co.nz/product.php?p=5512587"
     ],
-    "historyNote": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$484.99，同范围最低 NZ$358.38。",
-    "notes": "PriceSpy 同款全市场最低价；2026-08-24 至 2026-11-21，90个日终价格中位数 NZ$484.99，同范围最低 NZ$358.38。",
+    "historyNote": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$484.99，同范围最低 NZ$358.38。",
+    "notes": "PriceSpy 精确同款全市场最低价；2026-08-26 至 2026-11-23，90个 UTC 日终价格中位数 NZ$484.99，同范围最低 NZ$358.38。",
     "currentPriceRecheck": {
       "status": "verified",
-      "at": "2026-11-23T09:05:00+13:00",
+      "at": "2026-11-24T21:16:04.585489+00:00",
       "evidence": "hue-play-gradient-65-nl-retail-stealth",
       "extraction": "Product JSON-LD offers.price (Scrapling StealthyFetcher)"
     },
@@ -3616,13 +3631,14 @@
       "exactVariant": true,
       "productId": 5512587,
       "variantIds": [],
-      "windowStart": "2026-08-24",
-      "windowEnd": "2026-11-21",
+      "windowStart": "2026-08-26",
+      "windowEnd": "2026-11-23",
       "dayCount": 90,
-      "pointCount": 13,
-      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart price steps; market-low series, exact variant only. No retailer list/was prices.",
+      "pointCount": 12,
+      "method": "Median of 90 UTC end-of-day observations from forward-filled PriceSpy chart steps; market-low series, exact variant. Lowest held/eligible point in the same window. No retailer list/was prices.",
       "selectedShop": null,
       "evidence": "hue-play-gradient-65-nl-spy"
-    }
+    },
+    "evidence": "2026-11-25 retailer product page: NZ$358.38; Product JSON-LD offers.price (Scrapling StealthyFetcher); http://schema.org/InStock."
   }
 ]

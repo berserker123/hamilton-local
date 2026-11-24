@@ -2,7 +2,7 @@
   "slots": [
     { "id": "controller", "zh": "手柄", "en": "Controller", "noteZh": "原装 DualSense，双人同玩可以多备一支。", "noteEn": "Official DualSense; grab a second one for co-op nights.", "dealIds": ["ps5-dualsense-black-jb"] },
     { "id": "tv", "zh": "电视", "en": "TV", "noteZh": "OLED 画面，大场景更出彩。", "noteEn": "OLED picture makes big open-world scenes pop.", "dealIds": ["lg-c6-65-oled-jb"] },
-    { "id": "ssd", "zh": "固态硬盘", "en": "M.2 SSD", "noteZh": "PS5 可加装 M.2 固态扩容，选带散热片的款式。", "noteEn": "The PS5 takes an M.2 SSD for extra storage; pick one with a heatsink.", "dealIds": ["ssd-kingston-fury-2tb-hs-pb", "ssd-wd-black-sn850p-1tb-jb", "ssd-samsung-990pro-2tb-hs-pb"] },
+    { "id": "ssd", "zh": "固态硬盘", "en": "M.2 SSD", "noteZh": "PS5 可加装 M.2 固态扩容，选带散热片的款式。", "noteEn": "The PS5 takes an M.2 SSD for extra storage; pick one with a heatsink.", "dealIds": ["ssd-wd-black-sn850p-1tb-jb", "ssd-kingston-fury-2tb-hs-pb", "ssd-samsung-990pro-2tb-hs-pb"] },
     { "id": "network", "zh": "网络升级", "en": "Network upgrade", "noteZh": "大型更新包和联机都吃网速，Mesh 补全家里的死角。", "noteEn": "Big downloads and online play need a solid connection; mesh fills the dead spots.", "dealIds": ["tplink-deco-be25-3pk-pb"] },
     { "id": "snacks", "zh": "零食装备", "en": "Snack gear", "noteZh": "通宵开黑的小零食，空气炸锅搞定。", "noteEn": "Late-night snacks, handled by an air fryer.", "dealIds": ["ninja-crispi-jb"] },
     { "id": "dock", "zh": "手柄充电座", "en": "Charging dock", "noteZh": "手柄放上去就充电，不用来回找线。", "noteEn": "Rest the controller on it and it charges; no more hunting for cables.", "dealIds": ["ps5-dualsense-charging-station-jb"] },

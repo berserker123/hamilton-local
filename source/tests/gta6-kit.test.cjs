@@ -74,8 +74,8 @@ test('new kit deals carry a sourced NZ retailer page, PriceSpy NZ history and th
     assert.match(d.priceSpyUrl, /^https:\/\/pricespy\.co\.nz\/product\.php\?p=\d+$/, d.id);
     assert.equal(d.historyVerified, true, d.id);
     assert.equal(d.historyScope, 'market', d.id);
-    assert.equal(d.historyEvidence.windowStart, '2026-08-24', d.id);
-    assert.equal(d.historyEvidence.windowEnd, '2026-11-21', d.id);
+    assert.equal(d.historyEvidence.windowStart, '2026-08-26', d.id);
+    assert.equal(d.historyEvidence.windowEnd, '2026-11-23', d.id);
     assert.equal(d.historyEvidence.dayCount, 90, d.id);
     assert.equal(d.currentPriceRecheck.status, 'verified', d.id);
     assert.equal(d.currency, 'NZD', d.id);
@@ -84,8 +84,8 @@ test('new kit deals carry a sourced NZ retailer page, PriceSpy NZ history and th
     assert.equal(d.category, '数码', d.id);
   }
   const code = byId.get('ssd-kingston-fury-2tb-hs-pb');
-  assert.match(code.offerNote, /GTA6SSD/);
-  assert.match(code.offerNoteEn, /GTA6SSD/);
+  assert.equal(code.offerNote, undefined, 'expired GTA6SSD offer is removed after retailer recheck');
+  assert.equal(code.offerNoteEn, undefined);
 });
 
 test('the rendered kit section lists every slot with derived prices, in both languages', () => {
@@ -103,7 +103,7 @@ test('the rendered kit section lists every slot with derived prices, in both lan
       assert.ok(kitHtml.includes(money(slot.pick.salePrice)), `${lang} ${slot.id} pick price`);
       for (const alt of slot.alternatives) assert.ok(kitHtml.includes(money(alt.salePrice)) && kitHtml.includes(alt.productUrl), `${lang} ${slot.id} alternative ${alt.id}`);
     }
-    assert.ok(kitHtml.includes('GTA6SSD'), `${lang} promo code is disclosed`);
+    assert.equal(kitHtml.includes('GTA6SSD'), false, `${lang} expired promo code is not displayed`);
     assert.ok(html.indexOf('class="bf-intro"') < html.indexOf('class="bf-kit"'));
     assert.ok(html.indexOf('class="bf-kit"') < html.indexOf('class="bf-filters"'));
     assert.ok(html.includes(`${DEALS.length} ${lang === 'zh' ? '件商品 / 共' : 'of'} ${DEALS.length}`) || html.includes(`${DEALS.length} of ${DEALS.length} listings`), `${lang} listing count follows the data`);
