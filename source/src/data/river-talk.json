@@ -54,6 +54,87 @@
   ],
   "articles": [
     {
+      "id": "hamilton-tui-kereru-spots",
+      "board": "tips",
+      "topics": [
+        "kids",
+        "travel"
+      ],
+      "published": "2026-11-25",
+      "checked": "2026-11-25",
+      "validUntil": "2027-05-25",
+      "titleZh": "在 Hamilton 想看 Tūī 和 Kererū，去这几个地方",
+      "titleEn": "Where to spot tūī and kererū around Hamilton",
+      "answerZh": "Tūī 在城里越来越常见，绿地和开花的树附近最容易听到。Kererū 在本地少一些，想稳稳看到，就去 Hamilton Zoo 或 Maungatautari 保护区。",
+      "answerEn": "Tūī are now common in the city, so listen near green spaces and flowering trees. Kererū are scarcer here. For a sure sighting, go to Hamilton Zoo or Sanctuary Mountain Maungatautari.",
+      "whoZh": "周末想带娃出门、喜欢拍鸟，或者刚来新西兰、想认识本地鸟的人。",
+      "whoEn": "Families looking for a weekend outing, bird photographers, and newcomers who want to meet New Zealand's birds.",
+      "noteZh": "野鸟不保证出现，看到了也别投喂。",
+      "noteEn": "Wild birds turn up on their own schedule, and please do not feed them.",
+      "factsTitleZh": "去哪儿看",
+      "factsTitleEn": "Where to go",
+      "factsZh": [
+        "Waiwhakareke Natural Heritage Park（Horseshoe Lake）：65 公顷多的原生林、湿地和湖，步道平缓，就在 Hamilton Zoo 对面。",
+        "Hamilton Zoo：有 kererū 展区，可以近距离看清楚它的绿紫色羽毛。动物园要买门票。",
+        "Taitua Arboretum：城西的大植物园，步道多、鸟也多，有人在这里的桉树上看到过 kākā。",
+        "Sanctuary Mountain Maungatautari：在 Cambridge 和 Te Awamutu 之间，四周有 47 公里长的防虫围栏，可以看到 tūī 和 kākā，湿地里还有 takahē。要买票，10 月到 1 月是 takahē 繁殖季，可能限制参观。",
+        "为什么 tūī 变多了：Hamilton Halo 计划从 2007 年开始，在城市周围约 20 公里范围内控鼠、控负鼠。2004 到 2019 年，Hamilton 城里的 tūī 数量涨了大约 25 倍。",
+        "Kererū 在本地仍然少见。冬末到春天，可以留意树苜蓿（tree lucerne）和 kōwhai，它们爱吃这两种树的叶子和花。"
+      ],
+      "factsEn": [
+        "Waiwhakareke Natural Heritage Park (Horseshoe Lake): more than 65 hectares of native bush, wetland and lake, with gentle tracks, right opposite Hamilton Zoo.",
+        "Hamilton Zoo: has a kererū exhibit, so you can see the green and purple feathers up close. Admission applies.",
+        "Taitua Arboretum: a large arboretum on the west side of the city with plenty of tracks and birdlife. Kākā have been seen in its eucalypts.",
+        "Sanctuary Mountain Maungatautari: between Cambridge and Te Awamutu, inside a 47 km pest-proof fence. Look for tūī and kākā, and takahē in the wetland. Tickets apply, and takahē viewing may be limited during breeding season, October to January.",
+        "Why there are more tūī: the Hamilton Halo project started in 2007 and controls rats and possums within about 20 km of the city. From 2004 to 2019, tūī numbers in Hamilton rose about 25-fold.",
+        "Kererū are still uncommon locally. From late winter into spring, check tree lucerne and kōwhai, whose leaves and flowers they love."
+      ],
+      "actionsTitleZh": "小贴士",
+      "actionsTitleEn": "Tips",
+      "actionsZh": [
+        "先听后看：tūī 的叫声又响又杂，还会学别的声音，听到了再抬头找。",
+        "早上去，鸟最活跃。带个望远镜，或者用手机长焦。",
+        "在 Waikato Regional Council 网站上报你看到的 tūī 或 kererū，帮他们统计数量。",
+        "想让 tūī 来自家院子，可以种不同季节开花的原生植物，参考 Waikato Regional Council 的 tūī 食物日历。"
+      ],
+      "actionsEn": [
+        "Listen first: tūī calls are loud and varied, and they mimic other sounds. Look up once you hear one.",
+        "Go in the morning, when birds are most active. Bring binoculars or use your phone's zoom lens.",
+        "Report tūī or kererū sightings to Waikato Regional Council to help their counts.",
+        "To bring tūī to your garden, plant natives that flower in different seasons. Waikato Regional Council has a tūī food calendar."
+      ],
+      "sources": [
+        {
+          "label": "Waikato Regional Council · Hamilton Halo",
+          "url": "https://waikatoregion.govt.nz/assets/WRC/HamiltonHalofactsheet.pdf"
+        },
+        {
+          "label": "Science Learning Hub",
+          "url": "https://www.sciencelearn.org.nz/resources/1167-hamilton-halo-bringing-tui-back-to-hamilton-city"
+        },
+        {
+          "label": "Hamilton & Waikato Tourism",
+          "url": "https://www.waikatonz.com/walking-and-hiking-trails/waiwhakareke-natural-heritage-park/"
+        },
+        {
+          "label": "Hamilton Zoo",
+          "url": "https://hamiltonzoo.co.nz/animals/all/kereru"
+        },
+        {
+          "label": "Sanctuary Mountain Maungatautari",
+          "url": "https://www.sanctuarymountain.co.nz/"
+        },
+        {
+          "label": "Waikato Regional Council · Report a sighting",
+          "url": "https://waikatoregion.govt.nz/forms/bird-sighting"
+        },
+        {
+          "label": "Waikato Regional Council · Tūī food calendar",
+          "url": "https://www.waikatoregion.govt.nz/assets/WRC/Tuiandbellbirdfoodcalendargardenersguide.pdf"
+        }
+      ]
+    },
+    {
       "id": "ai-storytelling-10-minutes",
       "board": "tips",
       "topics": [
