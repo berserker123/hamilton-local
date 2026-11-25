@@ -54,3 +54,8 @@ test('dice pick never repeats the last place and covers every place',async()=>{
   for(let i=0;i<50;i++)assert.notEqual(pickRandom(data.places,data.places[0].id).id,data.places[0].id);
   assert.equal(pickRandom([],null),null);
 });
+
+test('the guide never names or links media outlets',()=>{
+  const text=JSON.stringify(data);
+  assert.doesNotMatch(text,/spinoff/i);
+});

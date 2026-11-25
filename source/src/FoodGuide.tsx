@@ -102,7 +102,7 @@ export function FoodGuide({ t }: { t: T }) {
       ? <><p className="hl-food-count">{t(`${DATA.perks.length} 个生日福利，大多要先加入会员，以官方说明为准。`, `${DATA.perks.length} birthday perks. Most need a membership first; check the official terms.`)}</p>
         <div className="hl-food-grid">{DATA.perks.map(p => <PerkCard key={p.name} perk={p} t={t} />)}</div></>
       : <><p className="hl-food-count">{t(`${places.length} 家 · 按店名排序`, `${places.length} places · sorted by name`)}</p>
-        {occasion === 'trending' && <p className="hl-food-tip">{t('这里收的是 2025 至 2026 年被媒体写过的店，卡片里附报道链接。', 'Places featured by the media in 2025–2026, with a link to each article.')}</p>}
+        {occasion === 'trending' && <p className="hl-food-tip">{t('收录标准：2025—2026 年间获本地媒体报道或推荐的餐厅。', 'Selection: restaurants featured or recommended by local media in 2025–2026.')}</p>}
         {occasion === 'kids' && <p className="hl-food-tip">{t('给孩子办生日派对？', 'Planning a kids party?')} <a href={href('kids', 'parties')}>{t('去看派对与场地', 'See party venues')}</a></p>}
         <div className="hl-food-grid">{places.map(p => <PlaceCard key={p.id} place={p} occasion={occasion} t={t} />)}</div></>}
     <p className="hl-food-note">{t(`信息核对于 ${DATA.checked}。营业时间和价格会变，出发前请以餐厅官网为准。`, `Checked ${DATA.checked}. Hours and prices change, so check the restaurant's website before you go.`)} {t('开餐厅想让大家找到你？', 'Run a restaurant?')} <a href={href('services')}>{t('便民黄页免费入驻', 'List free in Local Services')}</a></p>
