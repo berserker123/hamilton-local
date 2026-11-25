@@ -45,7 +45,7 @@ export function canonicalHash(hash) {
 
 export const SITE_ORIGIN = 'https://hamiltonlocal.nz';
 export const TABS = {
-  living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '美食探索', 'Food discoveries'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays'], ['blackfriday', '黑五专区', 'Black Friday']],
+  living: [['grocers', '亚超与杂货', 'Asian grocers'], ['dining', '屯里食堂', 'Tron Eats'], ['places', '日常好去处', 'Everyday outings'], ['upick', '季节采摘', 'U-Pick farms'], ['stays', '精选住宿', 'Stays'], ['blackfriday', '黑五专区', 'Black Friday']],
   weekend: [['picks', '活动日历', 'Events Calendar'], ['markets', '周末集市', 'Weekend markets']],
   kids: [['map', 'Playground 地图', 'Playground map'], ['places', '遛娃好去处', 'Family outings'], ['parties', '派对与场地', 'Parties & venues']],
   services: [['home', '房屋维护', 'Home maintenance'], ['trades', '专业工种', 'Skilled trades'], ['daily', '生活便民', 'Everyday services'], ['pets', '宠物指南', 'Pet Guide'], ['advisors', '专业顾问', 'Professional Advice']],

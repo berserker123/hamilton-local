@@ -1,0 +1,2509 @@
+{
+  "checked": "2026-11-25",
+  "places": [
+    {
+      "id": "banh-mi-caphe",
+      "name": "Banh Mi Caphe",
+      "cuisineZh": "越南菜",
+      "cuisineEn": "Vietnamese",
+      "suburb": "Hamilton Central",
+      "address": "Shop 8, Riverbank Lane, 298 Victoria street, Hamilton 3210",
+      "website": "https://www.banhmicaphe.co.nz/",
+      "hours": [
+        {
+          "text": "Tuesday - Saturday | 12pm until late (closed bwtn 3-5pm)",
+          "url": "https://www.banhmicaphe.co.nz/reservations"
+        },
+        {
+          "text": "Sunday – Monday | CLOSED",
+          "url": "https://www.banhmicaphe.co.nz/reservations"
+        }
+      ],
+      "price": {
+        "text": "Feed me chef 3 courses NZ$69 per person; minimum 3 guests; sample menu",
+        "url": "https://www.banhmicaphe.co.nz/set-menus"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "套餐采用家庭分享方式。",
+          "whyEn": "The set menu is served family style."
+        },
+        {
+          "id": "group",
+          "whyZh": "官网明确接受 12 人起团体预订。",
+          "whyEn": "Reservations for 12 or more are explicitly supported."
+        },
+        {
+          "id": "solo",
+          "whyZh": "餐厅约一半座位留给未预订客人。",
+          "whyEn": "Half the restaurant is kept for walk-ins."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "官网另列纯素菜单。",
+          "whyEn": "A separate vegan menu is published."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "越南餐厅，位于 Victoria Street 298 号 Riverbank Lane 8 号店。",
+          "en": "Vietnamese eatery at Shop 8, Riverbank Lane, 298 Victoria Street, Hamilton.",
+          "url": "https://www.banhmicaphe.co.nz/"
+        },
+        {
+          "zh": "约一半座位留给未预订客人，可电话、电邮或在线订位。",
+          "en": "About half the tables are reserved for walk-ins; bookings available by phone/email and online.",
+          "url": "https://www.banhmicaphe.co.nz/reservations"
+        },
+        {
+          "zh": "12 人起预订须提供银行卡资料；24 小时内取消或未到场可能每人收取 25 纽币，可能须用套餐。",
+          "en": "Groups of 12+ require card details; cancellations within 24 hours/no-shows may cost NZ$25 per person; set menus may apply.",
+          "url": "https://www.banhmicaphe.co.nz/reservations"
+        },
+        {
+          "zh": "Feed me chef 是三人起的三道菜分享套餐，内容可能调整。",
+          "en": "Feed me chef is a three-course sharing menu for at least three, subject to change.",
+          "url": "https://www.banhmicaphe.co.nz/set-menus"
+        },
+        {
+          "zh": "官网另列纯素菜单；严格纯素饮食者需核实个别菜式原料。",
+          "en": "A separate vegan menu is published; ingredient descriptions need checking for strict vegan diets.",
+          "url": "https://www.banhmicaphe.co.nz/menu-vegan"
+        }
+      ]
+    },
+    {
+      "id": "cafe-fresca",
+      "name": "Café Fresca",
+      "cuisineZh": "咖啡馆早午餐",
+      "cuisineEn": "Cafe breakfast and lunch",
+      "suburb": "Hamilton Lake",
+      "address": "78 Alison Street, Hamilton, 3204",
+      "website": "https://www.cafefresca.co.nz/cafe-hamilton",
+      "hours": [
+        {
+          "text": "MON 7.30am to 3pm; TUES - FRI 7.30am to 4pm; SAT - SUN 8am to 4pm; Public Holidays 8am to 2.30pm",
+          "url": "https://www.cafefresca.co.nz/cafe-hamilton"
+        },
+        {
+          "text": "Kitchen closes at 2.30pm Tues-Sun / 2pm on Mondays & public holidays; coffee/drinks & cabinet food available until closing.",
+          "url": "https://www.cafefresca.co.nz/cafe-hamilton"
+        }
+      ],
+      "price": {
+        "text": "Eggs on toast NZ$15; pancake stack NZ$23.5; Fresca big breakfast NZ$31",
+        "url": "https://www.cafefresca.co.nz/media/1/FINAL_Menu_JUNE_2026.pdf"
+      },
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "可在有户外座位的花园咖啡馆吃早午餐。",
+          "whyEn": "Breakfast and lunch are served in a garden cafe with outdoor seating."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网列有全天早餐和午餐、户外座位及免费停车。",
+          "en": "The cafe advertises all-day breakfast/lunch, outdoor seating and free parking.",
+          "url": "https://www.cafefresca.co.nz/cafe-hamilton"
+        },
+        {
+          "zh": "官网链接的2026年6月菜单有鸡蛋吐司、松饼、汉堡及儿童餐。",
+          "en": "The linked June 2026 menu lists eggs on toast, pancakes, burgers and a kids' menu.",
+          "url": "https://www.cafefresca.co.nz/media/1/FINAL_Menu_JUNE_2026.pdf"
+        }
+      ]
+    },
+    {
+      "id": "canton-hong-kong",
+      "name": "Canton Hong Kong Restaurant",
+      "cuisineZh": "中餐、港式烧味及点心",
+      "cuisineEn": "Chinese; Cantonese roast meats and dim sum",
+      "suburb": "Hamilton Central",
+      "address": "32 Alexandra Street, Hamilton Central, Hamilton 3204, New Zealand",
+      "website": "https://cantonhongkonghamilton.booknorder.co.nz/",
+      "hours": [
+        {
+          "text": "Pickup/delivery page — Monday 11:30 am - 02:30 pm; 05:00 pm - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Tuesday 11:30 am - 02:30 pm; 05:00 pm - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Wednesday 05:00 pm - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Thursday 11:30 am - 02:30 pm; 05:00 pm - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Friday 11:30 am - 02:30 pm; 05:00 pm - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Saturday 11:30 am - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Sunday 11:30 am - 09:00 pm",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Small fish congee NZ$13.00; whole roast duck NZ$48.00",
+        "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有整只烧鸭和烧味拼盘，可安排分享餐。",
+          "whyEn": "Whole roast duck and roast-meat combination platters offer shared-dish options."
+        },
+        {
+          "id": "solo",
+          "whyZh": "可点小碗粥。",
+          "whyEn": "Small congee bowls are available."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "餐厅点餐页列地址为 Hamilton Central的 Alexandra Street 32号，供应港式烧味及点心。",
+          "en": "The restaurant's ordering page gives 32 Alexandra Street, Hamilton Central, and a menu of Chinese roast meats and dim sum.",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "zh": "菜单有整只烧鸭、整只姜蓉鸡，以及烧味双拼、三拼和四拼。",
+          "en": "Whole roast duck, whole ginger-sauce chicken and two-, three- or four-meat roast combinations are listed.",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "zh": "粥有小、中、大碗，小碗鱼片粥为13纽币。",
+          "en": "Congee is offered in small, medium and large sizes; small fish congee is NZ$13.00.",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        },
+        {
+          "zh": "所列时间来自自取及外送点餐页；未核实独立堂食及饮茶供应时间。",
+          "en": "The hours appear on a pickup/delivery page; separate dine-in and yum cha service hours were not verified.",
+          "url": "https://cantonhongkonghamilton.booknorder.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "chim-choo-ree",
+      "name": "Chim Choo Ree",
+      "cuisineZh": "新西兰及欧洲融合菜",
+      "cuisineEn": "New Zealand and European fusion",
+      "suburb": "Hamilton Central",
+      "address": "14 Anzac Parade, Hamilton Central, Waikato, 3204",
+      "website": "https://www.chimchooreehamilton.com/",
+      "hours": [
+        {
+          "text": "Mon - Fri: 6pm - late",
+          "url": "https://www.chimchooreehamilton.com/"
+        },
+        {
+          "text": "Saturday: 6pm - late",
+          "url": "https://www.chimchooreehamilton.com/"
+        },
+        {
+          "text": "Sunday: Closed ( There may be Events)",
+          "url": "https://www.chimchooreehamilton.com/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "birthday",
+          "whyZh": "超过 10 人的生日聚餐可联系餐厅商议。",
+          "whyEn": "The restaurant invites enquiries for bookings over 10."
+        },
+        {
+          "id": "group",
+          "whyZh": "超过 10 人的预订由餐厅直接处理。",
+          "whyEn": "Bookings over 10 are handled directly."
+        },
+        {
+          "id": "date",
+          "whyZh": "可预订在历史酿酒厂建筑内用餐。",
+          "whyEn": "Reservations are available in a historic brewery building."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：Hamilton Central，Anzac Parade 14 号，供应新西兰及欧洲融合菜。",
+          "en": "Address: 14 Anzac Parade, Hamilton Central; serves New Zealand and European fusion cuisine.",
+          "url": "https://www.chimchooreehamilton.com/"
+        },
+        {
+          "zh": "超过 10 人的预订须联系餐厅。",
+          "en": "For reservations over 10 people, contact the restaurant.",
+          "url": "https://www.chimchooreehamilton.com/"
+        },
+        {
+          "zh": "餐厅设于建于 1887 年的 Waikato Brewery 历史建筑内。",
+          "en": "The restaurant occupies the historic Waikato Brewery Building, built in 1887.",
+          "url": "https://www.chimchooreehamilton.com/"
+        }
+      ]
+    },
+    {
+      "id": "chim-thai",
+      "name": "Chim Thai",
+      "cuisineZh": "泰餐及分享小盘",
+      "cuisineEn": "Thai; tapas and sharing plates",
+      "suburb": "Rototuna",
+      "address": "Unit 9/111 Thomas Road, Rototuna, Hamilton",
+      "website": "https://www.chimthai.co.nz/",
+      "hours": [
+        {
+          "text": "Sats-Sun for lunch 12 pm to 2.30 pm; dinner Tues-Sun 4:30 pm-9:00 pm",
+          "url": "https://www.chimthai.co.nz/"
+        },
+        {
+          "text": "Closed: We are closed on Mondays.",
+          "url": "https://www.chimthai.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有泰式小盘及分享菜。",
+          "whyEn": "The menu includes Thai-style tapas and sharing plates."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "官网接受生日活动安排。",
+          "whyEn": "The official site offers to organise birthday functions."
+        },
+        {
+          "id": "date",
+          "whyZh": "可在室内或露台用餐，官网建议晚餐订位。",
+          "whyEn": "Dinner reservations are recommended for indoor or terrace dining."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "泰餐厅位于 Thomas Road 111号9铺，官网称该区域为 Rototuna。",
+          "en": "Thai restaurant at Unit 9/111 Thomas Road, identified by its own site as Rototuna, Hamilton.",
+          "url": "https://www.chimthai.co.nz/"
+        },
+        {
+          "zh": "供应泰式分享小盘，可选室内或露台用餐，并接受生日活动；官网建议晚餐订位。",
+          "en": "Offers Thai-style tapas and sharing plates, indoor/terrace dining, and birthday functions; dinner reservations are recommended.",
+          "url": "https://www.chimthai.co.nz/"
+        },
+        {
+          "zh": "午餐为周六、周日12点至14:30；晚餐为周二至周日16:30至21点；周一休息。",
+          "en": "Lunch is Saturday–Sunday 12 pm–2.30 pm; dinner Tuesday–Sunday 4:30 pm–9:00 pm; closed Monday.",
+          "url": "https://www.chimthai.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "cream-eatery",
+      "name": "Cream Eatery",
+      "cuisineZh": "咖啡馆餐、蛋糕及咖啡",
+      "cuisineEn": "Cafe, cakes and coffee",
+      "suburb": "Hamilton Central",
+      "address": "14 Garden Place, Hamilton",
+      "website": "https://www.creameatery.nz/",
+      "hours": [
+        {
+          "text": "Monday - Friday: 7am - 3.30pm",
+          "url": "https://www.creameatery.nz/"
+        },
+        {
+          "text": "Saturdays: 8am - 3pm",
+          "url": "https://www.creameatery.nz/"
+        },
+        {
+          "text": "Sundays: Closed",
+          "url": "https://www.creameatery.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "仅接待直接到店的客人。",
+          "whyEn": "The cafe accepts walk-ins only."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 推荐：这里的甜点随便挑。",
+          "whyEn": "The Spinoff: any of the sweets here."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于汉密尔顿 Garden Place 14 号，供应咖啡、午餐和蛋糕。",
+          "en": "At 14 Garden Place, Hamilton; serves coffee, lunch and cakes.",
+          "url": "https://www.creameatery.nz/"
+        },
+        {
+          "zh": "不接受预订，仅接待直接到店的客人。",
+          "en": "No bookings: walk-ins only.",
+          "url": "https://www.creameatery.nz/"
+        },
+        {
+          "zh": "官网列有咖啡、午餐及蛋糕，店内座位接待直接到店的客人。",
+          "en": "The official site lists coffee, lunch and cakes, with tables for walk-in guests.",
+          "url": "https://www.creameatery.nz/"
+        },
+        {
+          "zh": "The Spinoff于2026年8月8日发布的汉密尔顿市中心用餐指南收录了这家店。",
+          "en": "The Spinoff's central Hamilton dining guide (8 August 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/08-08-2026/where-to-eat-in-central-hamilton-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "daikoku-hamilton",
+      "name": "Daikoku Hamilton",
+      "cuisineZh": "日式铁板烧",
+      "cuisineEn": "Japanese teppanyaki",
+      "suburb": null,
+      "address": "65 Bryce Street, Centre Place, Hamilton",
+      "website": "https://www.daikoku.co.nz/hamilton/",
+      "hours": [
+        {
+          "text": "Hamilton page main hours block — Monday Closed",
+          "url": "https://www.daikoku.co.nz/hamilton/"
+        },
+        {
+          "text": "Hamilton page main hours block — Lunch Wed -Sun 12:00 - 2:00pm",
+          "url": "https://www.daikoku.co.nz/hamilton/"
+        },
+        {
+          "text": "Hamilton page main hours block — Dinner Tue-Thur & Sun 17:30 - till late (last walk-in 20:30)",
+          "url": "https://www.daikoku.co.nz/hamilton/"
+        }
+      ],
+      "price": {
+        "text": "Group courses A/B/C/D/E NZ$58.00 / NZ$68.00 / NZ$78.00 / NZ$88.00 / NZ$120.00 per person; 15+ guests",
+        "url": "https://www.daikoku.co.nz/wp-content/uploads/2026/10/Group-menu-2026Oct_Hamilton.pdf"
+      },
+      "occasions": [
+        {
+          "id": "birthday",
+          "whyZh": "汉密尔顿店有生日优惠，点四份主菜时最便宜的一份免费。",
+          "whyEn": "An official Hamilton birthday promotion discounts the cheapest main when four mains are ordered."
+        },
+        {
+          "id": "group",
+          "whyZh": "有15人起的团体套餐。",
+          "whyEn": "A set group menu is offered for 15 or more people."
+        },
+        {
+          "id": "client",
+          "whyZh": "15人以上可提前安排晚餐套餐。",
+          "whyEn": "Pre-arranged dinner courses are offered for groups of 15 or more."
+        },
+        {
+          "id": "kids",
+          "whyZh": "汉密尔顿菜单页链接了仅晚餐供应的儿童餐。",
+          "whyEn": "The Hamilton menu index links a dinner-only kids meal."
+        },
+        {
+          "id": "date",
+          "whyZh": "厨师在客人桌前制作铁板烧。",
+          "whyEn": "The chef cooks teppanyaki at the table in front of diners."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "Daikoku汉密尔顿店位于 Centre Place的 Bryce Street 65号；订位申请须经餐厅确认。",
+          "en": "Daikoku Hamilton is at 65 Bryce Street, Centre Place, Hamilton; the page accepts booking requests subject to confirmation.",
+          "url": "https://www.daikoku.co.nz/hamilton/"
+        },
+        {
+          "zh": "团体晚餐套餐15人起，须提前三天预订，整团选择同一套餐；公众假日加收15%。",
+          "en": "For 15 or more people, group dinner courses must be ordered three days ahead; one course is chosen for the whole group. Public holidays add 15%.",
+          "url": "https://www.daikoku.co.nz/wp-content/uploads/2026/10/Group-menu-2026Oct_Hamilton.pdf"
+        },
+        {
+          "zh": "厨师在客人桌前制作铁板烧。",
+          "en": "Teppanyaki is cooked by a chef at the diners' table.",
+          "url": "https://www.daikoku.co.nz/wp-content/uploads/2026/10/Group-menu-2026Oct_Hamilton.pdf"
+        },
+        {
+          "zh": "汉密尔顿菜单栏目链接了仅晚餐供应的儿童餐和现行生日优惠。",
+          "en": "The Hamilton menu section links a dinner-only kids meal and the current birthday promotion.",
+          "url": "https://www.daikoku.co.nz/menu/"
+        },
+        {
+          "zh": "生日当天点四份主菜，最便宜的一份免费；须带证件证明当日生日，不可与其他优惠同用。",
+          "en": "The birthday promotion makes the cheapest main free when four mains are ordered; bring ID proving it is your birthday when dining; no other discount or promotion applies.",
+          "url": "https://www.daikoku.co.nz/wp-content/uploads/2026/08/Hamilton_Birthday-Promotion-Ver2.pdf"
+        },
+        {
+          "zh": "汉密尔顿页面下方另有不一致的时间表；“营业至较晚”未给出确定关门时间。",
+          "en": "The Hamilton page repeats inconsistent hours lower down; 'till late' has no verified closing time.",
+          "url": "https://www.daikoku.co.nz/hamilton/"
+        }
+      ]
+    },
+    {
+      "id": "ducky-chinese",
+      "name": "Ducky 有鸭 Chinese Restaurant",
+      "cuisineZh": "中餐，主打鸭菜",
+      "cuisineEn": "Chinese, duck dishes a speciality",
+      "suburb": "Hamilton Central",
+      "address": "242 Victoria Street, Hamilton Central, Hamilton",
+      "website": "https://www.instagram.com/duckychinese/",
+      "hours": [],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "主打鸭菜，一桌人点几道分着吃。",
+          "whyEn": "Duck is the speciality, good for sharing a few dishes at one table."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "店家简介写明专做鸭菜，也有其他菜式。",
+          "en": "Its own profile says it specialises in duck dishes, with other dishes too.",
+          "url": "https://www.instagram.com/duckychinese/"
+        },
+        {
+          "zh": "店里可以堂食：2026 年父亲节活动写明面向来店用餐的客人。",
+          "en": "Dine-in: its 2026 Father's Day offer was for dads who dine in.",
+          "url": "https://www.instagram.com/duckychinese/"
+        }
+      ]
+    },
+    {
+      "id": "dumpling-house-grey-street",
+      "name": "Dumpling House — Grey Street",
+      "cuisineZh": "中式饺子、饭类及面食",
+      "cuisineEn": "Chinese dumplings, rice and noodles",
+      "suburb": "Hamilton East",
+      "address": "698 Grey St, Hamilton East, Hamilton 3216",
+      "website": "https://www.dumplinghouse-online.co.nz/greystreet",
+      "hours": [],
+      "price": {
+        "text": "Wonton noodle soup NZ$18.90; braised pork belly on rice NZ$21.90",
+        "url": "https://www.dumplinghouse-online.co.nz/greystreet/menu"
+      },
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "可单点馄饨面及盖饭。",
+          "whyEn": "Wonton noodle soup and individual dishes on rice are listed."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "餐厅点餐页列地址为 Hamilton East的 Grey St 698号，供应中餐。",
+          "en": "The restaurant's ordering page lists 698 Grey St, Hamilton East, Hamilton 3216, and Chinese cuisine.",
+          "url": "https://www.dumplinghouse-online.co.nz/greystreet"
+        },
+        {
+          "zh": "自取菜单有单点馄饨面及红烧肉饭。",
+          "en": "The pickup menu lists wonton noodle soup and braised pork belly on rice as separately priced meals.",
+          "url": "https://www.dumplinghouse-online.co.nz/greystreet/menu"
+        },
+        {
+          "zh": "菜单明确列出铁板素面，未核实独立素食栏目。",
+          "en": "Sizzling vegetarian noodles are explicitly named on the menu; a dedicated vegetarian section was not verified.",
+          "url": "https://www.dumplinghouse-online.co.nz/greystreet/menu"
+        }
+      ]
+    },
+    {
+      "id": "eden-noodles-hamilton",
+      "name": "Eden Noodles Cafe Hamilton",
+      "cuisineZh": "川味面食、饺子及抄手",
+      "cuisineEn": "Sichuan noodles, dumplings and wontons",
+      "suburb": null,
+      "address": "Shop SH0055A, Te Awa Shopping Centre, Corner of Te Rapa Road & Wairere Drive, Hamilton 3200",
+      "website": "https://www.edennoodleshamilton.co.nz/",
+      "hours": [
+        {
+          "text": "Mon - Sun: 11 am - 9 pm",
+          "url": "https://www.edennoodleshamilton.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Dandan noodles S NZ$9.99 / M NZ$13 / L NZ$15 / XL NZ$17; chicken-soup wontons S (5 pcs) NZ$7",
+        "url": "https://www.edennoodleshamilton.co.nz/menu"
+      },
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "担担面可选小份，抄手可选五个装。",
+          "whyEn": "Dandan noodles come in a small portion, and wontons have a five-piece option."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "菜单明确标注素面及素饺馅。",
+          "whyEn": "The menu labels vegetarian noodles and vegetarian dumpling fillings."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "汉密尔顿官网说明供应川味菜，列 Te Awa 购物中心店址，每天11点至21点营业。",
+          "en": "The official Hamilton site describes Sichuan cuisine and gives the Te Awa Shopping Centre address and daily 11 am - 9 pm hours.",
+          "url": "https://www.edennoodleshamilton.co.nz/"
+        },
+        {
+          "zh": "担担面有小、中、大及特大份；鸡汤抄手有5个、15个及20个装。",
+          "en": "Dandan noodles have S/M/L/XL sizes; chicken-soup wontons have 5-, 15- and 20-piece sizes.",
+          "url": "https://www.edennoodleshamilton.co.nz/menu"
+        },
+        {
+          "zh": "菜单上的素面和酸辣汤面标了 V（素食），饺子可加 1 纽币换素馅。",
+          "en": "Vegetarian noodles and hot-and-sour noodles are marked V; dumplings can have a vegetarian filling for NZ$1 extra.",
+          "url": "https://www.edennoodleshamilton.co.nz/menu"
+        }
+      ]
+    },
+    {
+      "id": "edo-japanese",
+      "name": "Edo Japanese Restaurant",
+      "cuisineZh": "日料、拉面、寿司及盖饭",
+      "cuisineEn": "Japanese; ramen, sushi and donburi",
+      "suburb": null,
+      "address": "711 Victoria St, Hamilton 3204",
+      "website": "https://www.edojapanese-online.co.nz/",
+      "hours": [
+        {
+          "text": "Pickup/delivery operating hours — Wednesday 10am to 8:30pm",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery operating hours — Thursday 10am to 8:30pm",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery operating hours — Friday 10am to 8:30pm",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery operating hours — Saturday 10am to 8:30pm",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery operating hours — Sunday 10am to 8:30pm",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery operating hours — Monday 10am to 8:30pm",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery operating hours — Tuesday Closed",
+          "url": "https://www.edojapanese-online.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Shoyu ramen NZ$23.70; teriyaki chicken donburi NZ$24.80",
+        "url": "https://www.edojapanese-online.co.nz/menu"
+      },
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "可单点拉面及盖饭。",
+          "whyEn": "Ramen and donburi are listed as separately priced meals."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "日料餐厅点餐页列地址为汉密尔顿 Victoria St 711号。",
+          "en": "The Japanese restaurant's ordering page gives 711 Victoria St, Hamilton 3204.",
+          "url": "https://www.edojapanese-online.co.nz/"
+        },
+        {
+          "zh": "菜单有单点酱油拉面、味噌拉面、牛肉饭和照烧鸡肉饭。",
+          "en": "The menu includes shoyu ramen, miso ramen, gyudon and teriyaki chicken donburi as separate dishes.",
+          "url": "https://www.edojapanese-online.co.nz/menu"
+        },
+        {
+          "zh": "营业时间表来自自取及外送点餐页；未核实独立堂食时间。",
+          "en": "The operating-hours table is on a pickup/delivery page; independent dine-in hours were not verified.",
+          "url": "https://www.edojapanese-online.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "ethos",
+      "name": "Ethos",
+      "cuisineZh": "咖啡馆餐及柜台餐食",
+      "cuisineEn": "Cafe meals and cabinet food",
+      "suburb": "Hillcrest",
+      "address": "Te Ara Hou, 100 Morrinsville Road, Hillcrest, Kirikiriroa",
+      "website": "https://www.ethos.org.nz/",
+      "hours": [
+        {
+          "text": "tuesday - saturday: 8:30am - 2:30pm",
+          "url": "https://www.ethos.org.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "在Hillcrest可选菜单餐食或柜台餐食。",
+          "whyEn": "Choose a meal from the menu or cabinet at this Hillcrest cafe."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网说明Ethos为可用餐的咖啡馆，可选菜单餐饮或柜台餐食。",
+          "en": "The official site describes Ethos as a cafe where visitors can enjoy a meal and choose food and drinks from its menu or cabinet.",
+          "url": "https://www.ethos.org.nz/"
+        },
+        {
+          "zh": "店址为Hillcrest的Te Ara Hou，Morrinsville Road 100号。",
+          "en": "The cafe is at Te Ara Hou, 100 Morrinsville Road, Hillcrest.",
+          "url": "https://www.ethos.org.nz/"
+        }
+      ]
+    },
+    {
+      "id": "gather-food-house",
+      "name": "Gather Food House",
+      "cuisineZh": "早午餐、汉堡及烘焙",
+      "cuisineEn": "Cafe brunch, burgers and baking",
+      "suburb": "Frankton",
+      "address": "5 Somerset Street, Frankton, Hamilton, NZ",
+      "website": "https://www.gatherfoodhouse.co.nz/",
+      "hours": [
+        {
+          "text": "Mon - Fri 7am – 3.00pm; Sat & Sun 8am – 2.00pm",
+          "url": "https://www.gatherfoodhouse.co.nz/cafe"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "午餐可选早午餐菜、汉堡或柜台餐食。",
+          "whyEn": "Brunch, burgers and cabinet food offer several lunch choices."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网说明供应早午餐及汉堡，柜台餐食会更换，通常包括自制派和沙拉。",
+          "en": "The cafe describes a menu ranging from brunch to burgers, with changing cabinet food that usually includes homemade pies and salads.",
+          "url": "https://www.gatherfoodhouse.co.nz/"
+        },
+        {
+          "zh": "官方咖啡馆页面提供订位，并列出Frankton地址。",
+          "en": "The official cafe page offers table bookings and gives its Frankton address.",
+          "url": "https://www.gatherfoodhouse.co.nz/cafe"
+        }
+      ]
+    },
+    {
+      "id": "good-george-dining-hall",
+      "name": "Good George Dining Hall",
+      "cuisineZh": "汉堡、披萨及酒馆餐",
+      "cuisineEn": "Burgers, pizza and pub food",
+      "suburb": "Frankton",
+      "address": "32a Somerset Street, Frankton, Hamilton",
+      "website": "https://dininghall.co.nz/",
+      "hours": [
+        {
+          "text": "Monday to Thursday 11.30am – late",
+          "url": "https://dininghall.co.nz/"
+        },
+        {
+          "text": "Friday to Sunday 11am – late",
+          "url": "https://dininghall.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有店内停车位。",
+          "whyEn": "Parking is available onsite."
+        },
+        {
+          "id": "kids",
+          "whyZh": "菜单列有儿童便当。",
+          "whyEn": "A children's bento box is listed."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：Frankton，Somerset Street 32a 号，可在店内或旁边道路停车。",
+          "en": "Address: 32a Somerset Street, Frankton, Hamilton; parking onsite or on the side road.",
+          "url": "https://dininghall.co.nz/"
+        },
+        {
+          "zh": "菜单有汉堡、披萨、分享拼盘及儿童便当，并用 V、VE 标示素食及纯素。",
+          "en": "The menu includes burgers, pizzas, sharing platters and a children's bento box, with V/VE dietary labels.",
+          "url": "https://cdn.shopify.com/s/files/1/0600/4729/4515/files/Mains_Menu_October_2026.pdf?v=1792440566"
+        }
+      ]
+    },
+    {
+      "id": "gothenburg",
+      "name": "Gothenburg",
+      "cuisineZh": "多国风味分享小盘",
+      "cuisineEn": "International tapas",
+      "suburb": "Hamilton Central",
+      "address": "ANZ Centre, 17 Grantham Street, Hamilton, New Zealand",
+      "website": "https://gothenburg.co.nz/",
+      "hours": [
+        {
+          "text": "Monday – Friday: 10:00am to 11:00am – Coffee and hot drinks.",
+          "url": "https://gothenburg.co.nz/functions/"
+        },
+        {
+          "text": "Monday – Saturday: 11:00am to 2:30pm – Lunch; 2:30pm to 5:00pm – Afternoon Menu; From 5:00pm – Dinner",
+          "url": "https://gothenburg.co.nz/functions/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有包间和分享小盘，适合家庭聚餐。",
+          "whyEn": "A private room and shared tapas suit a family meal."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "包间可容纳最多 40 人用餐。",
+          "whyEn": "Private dining seats up to 40 guests."
+        },
+        {
+          "id": "date",
+          "whyZh": "可在怀卡托河畔用餐。",
+          "whyEn": "Dine beside the Waikato River."
+        },
+        {
+          "id": "group",
+          "whyZh": "包间最多可坐 40 人。",
+          "whyEn": "The private room seats up to 40."
+        },
+        {
+          "id": "client",
+          "whyZh": "包间有演示设备，适合商务聚餐。",
+          "whyEn": "The private room has presentation equipment."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：汉密尔顿 Grantham Street 17 号 ANZ Centre，供应分享小盘。",
+          "en": "Address: ANZ Centre, 17 Grantham Street, Hamilton; serves tapas.",
+          "url": "https://gothenburg.co.nz/functions/"
+        },
+        {
+          "zh": "包间可坐 40 人或容纳 70 人站立交流，有影音设备和遮光帘。",
+          "en": "Private room: 40 seated or 70 mingling; AV equipment and privacy blinds.",
+          "url": "https://gothenburg.co.nz/functions/"
+        },
+        {
+          "zh": "套餐采用整桌分享方式。",
+          "en": "Set menus feature dishes shared at the table.",
+          "url": "https://gothenburg.co.nz/functions/"
+        },
+        {
+          "zh": "位于市中心河畔较安静的位置。",
+          "en": "Riverside venue in a quiet central-city spot.",
+          "url": "https://gothenburg.co.nz/functions/"
+        },
+        {
+          "zh": "2026 年 12 月 25 日起休息，2027 年 1 月 7 日恢复营业。",
+          "en": "Closed 25 December 2026; reopens 7 January 2027.",
+          "url": "https://gothenburg.co.nz/functions/"
+        }
+      ]
+    },
+    {
+      "id": "hayes-common",
+      "name": "Hayes Common",
+      "cuisineZh": "时令早午餐",
+      "cuisineEn": "Seasonal cafe breakfast and lunch",
+      "suburb": "Hamilton East",
+      "address": "33 Jellicoe Drive, Hamilton East",
+      "website": "https://www.hayescommon.co.nz/",
+      "hours": [
+        {
+          "text": "WED – SUN: 8:30 AM TILL 3:30 PM; FRI & SAT: 4:30 PM TILL 9:30 PM; Closed on public holidays",
+          "url": "https://www.hayescommon.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "白天供应时令早餐和午餐。",
+          "whyEn": "Its daytime menu offers seasonal breakfast and lunch."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 推荐：吃完早午餐，顺着河边遛狗。",
+          "whyEn": "The Spinoff: brunch, then a riverside walk with the dog."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "餐厅供应时令早餐及午餐，可订位。",
+          "en": "The eatery serves a seasonal breakfast and lunch menu and offers table bookings.",
+          "url": "https://www.hayescommon.co.nz/"
+        },
+        {
+          "zh": "饮品包括Atomic咖啡、鸡尾酒、精酿啤酒及葡萄酒。",
+          "en": "The drinks list includes Atomic coffee, cocktails, craft beer and wine.",
+          "url": "https://www.hayescommon.co.nz/"
+        },
+        {
+          "zh": "The Spinoff于2026年9月12日发布的Hamilton East用餐指南收录了这家店。",
+          "en": "The Spinoff's Hamilton East dining guide (12 September 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/12-09-2026/where-to-eat-in-hamilton-east-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "iguana",
+      "name": "Iguana Street Bar & Restaurant",
+      "cuisineZh": null,
+      "cuisineEn": null,
+      "suburb": "Hamilton Central",
+      "address": "203 Victoria Street, Hamilton Central, Hamilton, Waikato 3204, New Zealand",
+      "website": "https://iguana.co.nz/",
+      "hours": [],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "Red Room 比主餐厅安静。",
+          "whyEn": "The Red Room is quieter than the main restaurant."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "Red Room 可用于生日聚餐。",
+          "whyEn": "The Red Room is offered for birthday dinners."
+        },
+        {
+          "id": "group",
+          "whyZh": "Red Room 最多可坐 15 人。",
+          "whyEn": "The Red Room seats up to 15."
+        },
+        {
+          "id": "client",
+          "whyZh": "Red Room 可用于工作会议。",
+          "whyEn": "The Red Room is offered for work meetings."
+        },
+        {
+          "id": "kids",
+          "whyZh": "有 12 岁以下儿童菜单，未成年人须由自己的家长陪同。",
+          "whyEn": "There is an under-12s menu, with parental accompaniment required."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：Hamilton Central，Victoria Street 203 号。",
+          "en": "Address: 203 Victoria Street, Hamilton Central.",
+          "url": "https://iguana.co.nz/contact/"
+        },
+        {
+          "zh": "有帘子隔开的 Red Room 可坐 15 人，可单独调低音乐，无预订费或订金。",
+          "en": "The curtained Red Room seats 15; music can be lowered independently; no booking fee or deposit.",
+          "url": "https://iguana.co.nz/functions/"
+        },
+        {
+          "zh": "Green Room 可坐 50 人或站立容纳 60 人，无预订费，需付 250 纽币订金。",
+          "en": "Green Room: 50 seated or 60 standing; no booking fee, but a NZ$250 deposit.",
+          "url": "https://iguana.co.nz/functions/"
+        },
+        {
+          "zh": "官网有 12 岁以下儿童菜单；未满 18 岁须由自己的家长陪同。",
+          "en": "A children's menu is published for under-12s; under-18s must be accompanied by their own parent.",
+          "url": "https://iguana.co.nz/menu/kids-menu/"
+        }
+      ]
+    },
+    {
+      "id": "jukebox-diner",
+      "name": "Jukebox Diner",
+      "cuisineZh": "汉堡及咖啡馆餐",
+      "cuisineEn": "Diner burgers and cafe food",
+      "suburb": "Dinsdale",
+      "address": "11 Railside Place, Hamilton, NZ",
+      "website": "https://www.jukeboxdiner.net.nz/",
+      "hours": [
+        {
+          "text": "Monday to Friday: 7am to 3pm ( Kitchen closes at 2pm )",
+          "url": "https://www.jukeboxdiner.net.nz/contact"
+        },
+        {
+          "text": "Saturday to Sunday: 8am to 3pm ( Kitchen closes at 2pm )",
+          "url": "https://www.jukeboxdiner.net.nz/contact"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "餐厅确认有无障碍通行设施。",
+          "whyEn": "The diner confirms wheelchair accessibility."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "生日聚餐可自带蛋糕。",
+          "whyEn": "Guests may bring their own cake."
+        },
+        {
+          "id": "kids",
+          "whyZh": "有围栏儿童活动区。",
+          "whyEn": "There is a fenced children's area."
+        },
+        {
+          "id": "solo",
+          "whyZh": "欢迎直接到店用餐。",
+          "whyEn": "Walk-ins are welcome."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于 Dinsdale 的 Railside Place 11 号，供应汉堡和沙拉。",
+          "en": "At 11 Railside Place, Dinsdale; the diner serves burgers and salads.",
+          "url": "https://www.jukeboxdiner.net.nz/"
+        },
+        {
+          "zh": "欢迎直接到店；繁忙时段及较大团体建议预订；官网确认无障碍通行。",
+          "en": "Walk-ins welcome; booking recommended for busy periods and larger groups; fully accessible.",
+          "url": "https://www.jukeboxdiner.net.nz/contact"
+        },
+        {
+          "zh": "生日派对可自带蛋糕，店内有围栏儿童活动区。",
+          "en": "Birthday parties can bring their own cake; a fenced children's area is provided.",
+          "url": "https://www.jukeboxdiner.net.nz/events-and-functions"
+        }
+      ]
+    },
+    {
+      "id": "last-place",
+      "name": "Last Place",
+      "cuisineZh": "汉堡及酒吧小食",
+      "cuisineEn": "Burgers and bar snacks",
+      "suburb": "Hamilton Central",
+      "address": "54 Collingwood Street, Hamilton Central, New Zealand",
+      "website": "https://lastplacedivebar.co.nz/",
+      "hours": [
+        {
+          "text": "4 - LATE; Tuesday - Saturday",
+          "url": "https://lastplacedivebar.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Smash burger: single NZ$17; double NZ$22; triple NZ$27",
+        "url": "https://lastplacedivebar.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "薄牛肉饼汉堡可选单层、双层或三层。",
+          "whyEn": "Choose a single, double or triple smash burger."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 推荐：深夜想吃东西就来这里。",
+          "whyEn": "The Spinoff: the late-night food fix."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于Collingwood Street 54号，官网有汉堡小食菜单及店内相册。",
+          "en": "The bar at 54 Collingwood Street publishes a burgers-and-snacks menu and an on-site gallery.",
+          "url": "https://lastplacedivebar.co.nz/"
+        },
+        {
+          "zh": "薄牛肉饼汉堡可选单层、双层或三层，也有炸鸡、鱼肉及豆腐汉堡。",
+          "en": "Smash burgers come in single, double and triple versions; the menu also lists fried-chicken, fish and tofu burgers.",
+          "url": "https://lastplacedivebar.co.nz/"
+        },
+        {
+          "zh": "The Spinoff于2026年8月8日发布的汉密尔顿市中心用餐指南收录了这家店。",
+          "en": "The Spinoff's central Hamilton dining guide (8 August 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/08-08-2026/where-to-eat-in-central-hamilton-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "little-honey",
+      "name": "Little Honey",
+      "cuisineZh": "现代咖啡馆餐及多国分享小盘",
+      "cuisineEn": "Modern cafe and international share plates",
+      "suburb": "Hamilton Central",
+      "address": "217 Victoria Street, Hamilton Central.",
+      "website": "https://www.littlehoney.nz/",
+      "hours": [
+        {
+          "text": "Monday: Closed",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "text": "Tue – Wed: 7am – 4pm",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "text": "Thursday: 7am – 11pm",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "text": "Friday: 7am – 11.30pm",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "text": "Saturday: 8am – 11.30pm",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "text": "Sunday: 8am – 10pm",
+          "url": "https://www.littlehoney.nz/"
+        }
+      ],
+      "price": {
+        "text": "Just Feed Me! from NZ$150 per person",
+        "url": "https://www.littlehoney.nz/"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "晚餐菜式采用整桌分享方式。",
+          "whyEn": "Evening dishes are designed for sharing."
+        },
+        {
+          "id": "date",
+          "whyZh": "可预订座位和定制主厨菜单。",
+          "whyEn": "Reservations and a custom chef's menu are offered."
+        },
+        {
+          "id": "solo",
+          "whyZh": "欢迎直接到店用餐。",
+          "whyEn": "Walk-ins are welcome."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "菜单有 Vege Eats 栏目及素食筛选。",
+          "whyEn": "The menu includes a Vege Eats section and vegetarian filters."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：Hamilton Central，Victoria Street 217 号，白天供应咖啡馆餐，晚上供应分享小盘。",
+          "en": "Address: 217 Victoria Street, Hamilton Central; cafe food by day, share plates by night.",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "zh": "欢迎直接到店，也可在线订位。",
+          "en": "Walk-ins welcome; online table booking available.",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "zh": "官网列有附近的 Museum 停车场及 Hood Street 或 Alexandra Street 停车楼。",
+          "en": "Names nearby Museum car park and parking buildings on Hood or Alexandra Street.",
+          "url": "https://www.littlehoney.nz/"
+        },
+        {
+          "zh": "官网有素食及纯素筛选和 Vege Eats 栏目；部分菜式需调整。",
+          "en": "Vegetarian/vegan filters and Vege Eats section are published; some dishes require adaptation.",
+          "url": "https://www.littlehoney.nz/"
+        }
+      ]
+    },
+    {
+      "id": "lone-star-rototuna",
+      "name": "Lone Star Rototuna",
+      "cuisineZh": "牛排、排骨及汉堡",
+      "cuisineEn": "Steaks, ribs and burgers",
+      "suburb": "Rototuna",
+      "address": "Unit E, 16 Horsham Downs Road Hamilton",
+      "website": "https://www.lonestar.co.nz/restaurants/rototuna/",
+      "hours": [
+        {
+          "text": "Mon: 4pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "text": "Tues: 4pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "text": "Wed: 4pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "text": "Thurs: 4pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "text": "Fri: 12pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "text": "Sat: 12pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "text": "Sun: 12pm - Late",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "birthday",
+          "whyZh": "活动空间最多可坐 40 人，适合生日聚餐。",
+          "whyEn": "Function spaces accommodate up to 40 seated guests."
+        },
+        {
+          "id": "kids",
+          "whyZh": "有专门的儿童菜单。",
+          "whyEn": "Children have their own menu."
+        },
+        {
+          "id": "group",
+          "whyZh": "活动最多可坐 40 人或站立容纳 60 人。",
+          "whyEn": "Functions accommodate 40 seated or 60 standing."
+        },
+        {
+          "id": "client",
+          "whyZh": "可安排私人晚餐及会议活动。",
+          "whyEn": "Function spaces are offered for private dinners and meetings."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：汉密尔顿 Horsham Downs Road 16 号 E 单元。",
+          "en": "Address: Unit E, 16 Horsham Downs Road, Hamilton.",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "zh": "Rototuna 活动空间可坐 40 人或站立容纳 60 人，可安排私人晚餐及会议。",
+          "en": "Rototuna function spaces: up to 40 seated or 60 standing; private dinners and meetings welcome.",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "zh": "儿童有单独菜单；活动可选主菜单、套餐或小食菜单。",
+          "en": "Children have a separate menu; functions can choose main, set or nibbles menus.",
+          "url": "https://www.lonestar.co.nz/restaurants/rototuna/"
+        },
+        {
+          "zh": "菜单有牛排、排骨和汉堡；常规团体套餐须至少 12 人并提前预订。",
+          "en": "The food menu includes steaks, ribs and burgers; ordinary set menus require at least 12 diners and advance booking.",
+          "url": "https://www.lonestar.co.nz/menu"
+        }
+      ]
+    },
+    {
+      "id": "master-house",
+      "name": "Master House Chinese Restaurant",
+      "cuisineZh": "粤菜、饮茶点心",
+      "cuisineEn": "Cantonese; yum cha",
+      "suburb": null,
+      "address": "303 Victoria Street, Hamilton 3204, New Zealand",
+      "website": "https://www.masterhouse.co.nz/",
+      "hours": [
+        {
+          "text": "Lunch 11 AM - 3:00 PM; Dinner 5:30 PM - 10 PM; We are closed on Wednesdays.",
+          "url": "https://www.masterhouse.co.nz/contact"
+        }
+      ],
+      "price": {
+        "text": "Wonton noodle soup NZ$20; table service NZ$1 per person",
+        "url": "https://www.masterhouse.co.nz/s/Mhouse_DimSum_Menu_LR.pdf"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有点心及中、大份炒饭，可安排家庭分享餐。",
+          "whyEn": "Dim sum and medium or large fried-rice portions offer options for a shared meal."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "官网说明餐厅曾接待生日聚餐。",
+          "whyEn": "The official site says the restaurant has hosted birthdays."
+        },
+        {
+          "id": "solo",
+          "whyZh": "可单点馄饨面。",
+          "whyEn": "Wonton noodle soup is available as a separately priced dish."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址为汉密尔顿 Victoria Street 303号；午餐11点至15点，晚餐17:30至22点；周三休息。",
+          "en": "Address: 303 Victoria Street, Hamilton 3204; lunch 11 AM–3:00 PM and dinner 5:30 PM–10 PM; closed Wednesdays.",
+          "url": "https://www.masterhouse.co.nz/contact"
+        },
+        {
+          "zh": "供应粤式点心、小炒和海鲜；官网列出曾接待生日聚餐。",
+          "en": "Serves Cantonese dim sum, stir-fries and seafood; the site identifies birthdays among occasions hosted.",
+          "url": "https://www.masterhouse.co.nz/our-story"
+        },
+        {
+          "zh": "接受电话订位。",
+          "en": "Telephone reservations are offered.",
+          "url": "https://www.masterhouse.co.nz/"
+        },
+        {
+          "zh": "点心菜单有馄饨面及中、大份什锦炒饭；茶、水和酱料的服务费为每人1纽币。",
+          "en": "The dim sum menu includes wonton noodle soup and medium/large combination fried rice; table service for tea, water and sauce is NZ$1 per person.",
+          "url": "https://www.masterhouse.co.nz/s/Mhouse_DimSum_Menu_LR.pdf"
+        },
+        {
+          "zh": "官方酒水单列自带酒开瓶费10纽币，未说明收费单位或酒类限制。",
+          "en": "The official drinks menu lists BYO corkage at NZ$10; it does not state the charging unit or alcohol restriction.",
+          "url": "https://www.masterhouse.co.nz/drinks-menu"
+        }
+      ]
+    },
+    {
+      "id": "mizzoni-hamilton",
+      "name": "Mizzoni — Hamilton",
+      "cuisineZh": "柴火披萨及意式面食",
+      "cuisineEn": "Woodfired pizza and Italian-style pasta",
+      "suburb": "Pukete",
+      "address": "8a Maui Street, Pukete, Hamilton 3200",
+      "website": "https://www.terapamizzoni.co.nz/",
+      "hours": [
+        {
+          "text": "Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday: 11:00 am - 09:00 pm; Monday is not listed.",
+          "url": "https://www.terapamizzoni.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "可在店内吃柴火披萨和意面。",
+          "whyEn": "Woodfired pizza and pasta are available for dine-in."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "汉密尔顿官网明确提供堂食、自取及外送，地址为Pukete的Maui Street 8a号。",
+          "en": "The Hamilton site explicitly offers dine-in, pickup and delivery at 8a Maui Street, Pukete.",
+          "url": "https://www.terapamizzoni.co.nz/"
+        },
+        {
+          "zh": "披萨接单后用柴火炉烘烤，也供应意面、前菜、配菜及甜点。",
+          "en": "Pizza is made to order in a wood-fired oven; the menu also includes pasta, antipasti, sides and desserts.",
+          "url": "https://www.terapamizzoni.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "nua-thai",
+      "name": "NUA Restaurant",
+      "cuisineZh": "泰餐",
+      "cuisineEn": "Thai",
+      "suburb": null,
+      "address": "337 Victoria Street, Hamilton",
+      "website": "https://www.nua.nz/",
+      "hours": [
+        {
+          "text": "Mon-Fri : 11.30AM - 3PM | 5PM-8.30PM",
+          "url": "https://www.nua.nz/"
+        },
+        {
+          "text": "Sat-Sun 11AM - 8.30PM | 5PM-8.30PM (overlapping periods as published)",
+          "url": "https://www.nua.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "group",
+          "whyZh": "官网接受大团体订位，并标明可自带酒。",
+          "whyEn": "The official site accepts big-group reservations and advertises BYOB."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "泰餐厅位于汉密尔顿 Victoria Street 337号；官网有订位链接。",
+          "en": "Thai restaurant at 337 Victoria Street, Hamilton; table booking is linked from its website.",
+          "url": "https://www.nua.nz/"
+        },
+        {
+          "zh": "官网接受大团体订位，并写明可自带酒；未列团体人数上限、酒类限制或开瓶费。",
+          "en": "The site offers big-group reservations and says BYOB; it does not give a numeric group maximum, permitted alcohol types or a corkage fee.",
+          "url": "https://www.nua.nz/"
+        },
+        {
+          "zh": "网页页首列周日营业至20:30，但周末时段有重叠；此处未自行修正。",
+          "en": "The header gives Sunday service to 8.30PM but prints overlapping weekend intervals; no alternative interval has been inferred.",
+          "url": "https://www.nua.nz/"
+        }
+      ]
+    },
+    {
+      "id": "on-a-roll-vialou",
+      "name": "On a Roll — Vialou Street",
+      "cuisineZh": "亚洲风味刈包及越南法棍",
+      "cuisineEn": "Asian street-food-inspired bao and banh mi",
+      "suburb": "Hamilton Central",
+      "address": "1/7 Vialou Street, Hamilton Central, Hamilton 3204, New Zealand",
+      "website": "https://www.onaroll.co.nz/",
+      "hours": [],
+      "price": {
+        "text": "Single bao NZ$10.00; banh mi NZ$17.00; noodle salad NZ$27.00",
+        "url": "https://onarollhamilton.booknorder.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "午餐可选刈包、越南法棍或米粉沙拉。",
+          "whyEn": "Bao, banh mi and noodle salad offer different lunch choices."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网可在线订桌，有菜单，地址在市中心 Vialou Street 7 号。",
+          "en": "Its website takes table bookings and links a menu; the address is 7 Vialou Street, Hamilton CBD.",
+          "url": "https://www.onaroll.co.nz/"
+        },
+        {
+          "zh": "官网链接的点餐订位页有单个刈包、越南法棍、米粉沙拉及素食午餐盒。",
+          "en": "The linked official ordering and booking page lists single bao, banh mi, noodle salad and vegetarian lunch boxes.",
+          "url": "https://onarollhamilton.booknorder.co.nz/"
+        },
+        {
+          "zh": "订位页列餐厅地址为Hamilton Central的Vialou Street 1/7号。",
+          "en": "The booking page gives 1/7 Vialou Street, Hamilton Central as the restaurant address.",
+          "url": "https://onarollhamilton.booknorder.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "palate",
+      "name": "Palate",
+      "cuisineZh": "新西兰时令菜",
+      "cuisineEn": "Seasonal New Zealand",
+      "suburb": "Hamilton Central",
+      "address": "SKYCITY HAMILTON, 346 VICTORIA STREET, HAMILTON",
+      "website": "https://palaterestaurant.co.nz/",
+      "hours": [
+        {
+          "text": "Dinner: Tuesday - Saturday from 5pm",
+          "url": "https://palaterestaurant.co.nz/"
+        },
+        {
+          "text": "Lunch: friday - Saturday from 12pm-3pm",
+          "url": "https://palaterestaurant.co.nz/"
+        },
+        {
+          "text": "Closed Sunday and Monday",
+          "url": "https://palaterestaurant.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Kitchen Table 7 courses NZ$140 per person; optional wine match NZ$70 per person",
+        "url": "https://palaterestaurant.co.nz/kitchen-table/"
+      },
+      "occasions": [
+        {
+          "id": "birthday",
+          "whyZh": "有适用于 10 人起庆祝聚餐的套餐。",
+          "whyEn": "Group celebration menus are available for 10 or more."
+        },
+        {
+          "id": "group",
+          "whyZh": "团体套餐适用于 10 人起聚餐。",
+          "whyEn": "Group set menus apply to parties of 10 or more."
+        },
+        {
+          "id": "client",
+          "whyZh": "位于市中心，并有团体套餐。",
+          "whyEn": "Central-city dining offers group set menus."
+        },
+        {
+          "id": "date",
+          "whyZh": "可预订七道菜的 Kitchen Table 晚餐。",
+          "whyEn": "Book a seven-course Kitchen Table dinner."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于 Victoria Street 346 号 SkyCity Hamilton，菜式以本地时令食材为主。",
+          "en": "At SkyCity Hamilton, 346 Victoria Street; cuisine focuses on seasonal local produce.",
+          "url": "https://palaterestaurant.co.nz/"
+        },
+        {
+          "zh": "每桌用餐时间为两小时；超过八人须直接联系餐厅。",
+          "en": "Tables have a two-hour dining allocation; groups over eight contact the restaurant directly.",
+          "url": "https://palaterestaurant.co.nz/"
+        },
+        {
+          "zh": "团体套餐适用于 10 人起，网页所列为需与餐厅商议的示例。",
+          "en": "Group menus are for 10+ and are samples to discuss with the restaurant.",
+          "url": "https://palaterestaurant.co.nz/menu-tabs-2/set-menu/"
+        },
+        {
+          "zh": "Kitchen Table 提供七道定制菜，接待 2–8 人，须电话预订，每人订金 70 纽币。",
+          "en": "Kitchen Table: bespoke seven courses, 2–8 guests, essential phone booking and NZ$70 per person deposit.",
+          "url": "https://palaterestaurant.co.nz/kitchen-table/"
+        }
+      ]
+    },
+    {
+      "id": "reggies",
+      "name": "Reggie's",
+      "cuisineZh": "意式披萨及意面",
+      "cuisineEn": "Italian-style pizza and pasta",
+      "suburb": "Hamilton East",
+      "address": "401 Grey Street, Hamilton",
+      "website": "https://www.reggies.co.nz/",
+      "hours": [
+        {
+          "text": "Open 7 days, 12 til' late",
+          "url": "https://www.reggies.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "在Made楼顶可吃披萨和意面。",
+          "whyEn": "Pizza and pasta are served on the rooftop at Made."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 推荐：一群人庆祝就订这里。",
+          "whyEn": "The Spinoff: book here when celebrating with a group."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于Made楼顶，供应披萨和意面，官网有订位入口。",
+          "en": "The restaurant serves pizza and pasta on the rooftop at Made, with a booking link on its website.",
+          "url": "https://www.reggies.co.nz/"
+        },
+        {
+          "zh": "The Spinoff于2026年9月12日发布的Hamilton East用餐指南收录了这家店。",
+          "en": "The Spinoff's Hamilton East dining guide (12 September 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/12-09-2026/where-to-eat-in-hamilton-east-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "rice-rice-baby-hamilton",
+      "name": "Rice Rice Baby — Hamilton East",
+      "cuisineZh": "越南菜",
+      "cuisineEn": "Vietnamese",
+      "suburb": "Hamilton East",
+      "address": "Grey Street Hamilton East Waikato",
+      "website": "https://ricericebaby.co.nz/",
+      "hours": [
+        {
+          "text": "Everyday 11:30am – Late",
+          "url": "https://ricericebaby.co.nz/contact/"
+        }
+      ],
+      "price": {
+        "text": "Banh mi NZ$17; traditional beef noodle soup NZ$26",
+        "url": "https://ricericebaby.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "可吃牛肉河粉，也可选不同馅料的越南法棍。",
+          "whyEn": "The menu offers beef pho and several banh mi fillings."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 点名这里的牛肉河粉。",
+          "whyEn": "The Spinoff singles out the beef phở."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网列有Grey Street的Hamilton East门店，提供餐食、鸡尾酒、葡萄酒及啤酒。",
+          "en": "The official site lists a Hamilton East venue on Grey Street, with a food menu and cocktails, wine and beer.",
+          "url": "https://ricericebaby.co.nz/"
+        },
+        {
+          "zh": "菜单有传统牛肉河粉、鸡肉汤粉，以及猪肉、鸡肉或豆腐牛油果越南法棍。",
+          "en": "The menu includes traditional beef noodle soup, chicken noodle soup and banh mi with pork, chicken or tofu-and-avocado options.",
+          "url": "https://ricericebaby.co.nz/"
+        },
+        {
+          "zh": "The Spinoff于2026年9月12日发布的Hamilton East用餐指南收录了这家店。",
+          "en": "The Spinoff's Hamilton East dining guide (12 September 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/12-09-2026/where-to-eat-in-hamilton-east-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "saigon-noon-cbd",
+      "name": "Saigon Noon CBD",
+      "cuisineZh": "越南菜",
+      "cuisineEn": "Vietnamese",
+      "suburb": "Hamilton Central",
+      "address": "103 Alexandra Street, Hamilton Central 3204",
+      "website": "https://saigonnoon.co.nz/",
+      "hours": [
+        {
+          "text": "Mon 11am – 3pm / Tue – Sat 11am – 7:45pm",
+          "url": "https://saigonnoon.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "CBD bánh mì NZ$14.80; phở NZ$18.00",
+        "url": "https://saigonnoon.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "这家以午餐为主的分店欢迎直接到店。",
+          "whyEn": "Walk-ins are welcome at this lunch-focused branch."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "地址：Hamilton Central，Alexandra Street 103 号，供应越南菜。",
+          "en": "Vietnamese food at 103 Alexandra Street, Hamilton Central.",
+          "url": "https://saigonnoon.co.nz/"
+        },
+        {
+          "zh": "欢迎直接到店，官网将市中心店介绍为快捷午餐场所。",
+          "en": "Walk-ins welcome; the CBD branch is described as a quick lunch venue.",
+          "url": "https://saigonnoon.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "shanghai-skycity",
+      "name": "Shanghai Restaurant — SkyCity Hamilton",
+      "cuisineZh": "中餐及亚洲融合菜、饮茶点心",
+      "cuisineEn": "Chinese and Asian fusion; yum cha",
+      "suburb": "Hamilton Central",
+      "address": "SkyCity Hamilton, Ground Floor, 346 Victoria Street, Hamilton, New Zealand",
+      "website": "https://www.shanghaihamilton.co.nz/skycity-hamilton.html",
+      "hours": [
+        {
+          "text": "Monday, Tuesday, Wednesday, Thursday and Sunday 11:00am-2:30pm, 4:30pm-10:00pm",
+          "url": "https://www.shanghaihamilton.co.nz/skycity-hamilton.html"
+        },
+        {
+          "text": "Friday and Saturday 11:00am-2:30pm, 4:30pm-11:00pm",
+          "url": "https://www.shanghaihamilton.co.nz/skycity-hamilton.html"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有私人用餐空间。",
+          "whyEn": "Private dining spaces are available."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "生日聚餐可考虑私人用餐空间。",
+          "whyEn": "Private dining spaces offer an option for a celebration meal."
+        },
+        {
+          "id": "group",
+          "whyZh": "餐厅接待团体，并提供私人用餐空间。",
+          "whyEn": "The restaurant offers private dining spaces for groups."
+        },
+        {
+          "id": "client",
+          "whyZh": "市中心有私人用餐空间。",
+          "whyEn": "Private dining is available in Hamilton CBD."
+        },
+        {
+          "id": "date",
+          "whyZh": "可预订座位，餐厅设开放式厨房。",
+          "whyEn": "Reservations are offered at the restaurant with an open kitchen."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于汉密尔顿市中心 SkyCity底层，供应中餐及亚洲融合菜，可订位，设开放式厨房。",
+          "en": "Chinese/Asian fusion restaurant at the SkyCity ground-floor address in Hamilton CBD; reservations and an open kitchen are advertised.",
+          "url": "https://www.shanghaihamilton.co.nz/skycity-hamilton.html"
+        },
+        {
+          "zh": "有私人用餐空间，网页未列人数上限。",
+          "en": "Private dining spaces are offered; their capacity is not stated.",
+          "url": "https://www.shanghaihamilton.co.nz/skycity-hamilton.html"
+        },
+        {
+          "zh": "点心仅午餐供应，公布的午餐时间为11点至14:30；周日晚餐16:30至22点，公众假日时间可能不同。",
+          "en": "Yum cha is lunch only; published lunch hours are 11:00am–2:30pm. Sunday dinner is 4:30pm–10:00pm; public-holiday hours may vary.",
+          "url": "https://www.shanghaihamilton.co.nz/skycity-hamilton.html"
+        },
+        {
+          "zh": "SkyCity店10人及以上须电话订位；网上申请须收到邮件确认。",
+          "en": "For groups of 10 or more, the SkyCity restaurant requires booking by phone; online requests require email confirmation.",
+          "url": "https://www.shanghaihamilton.co.nz/reservation.html"
+        },
+        {
+          "zh": "仅可自带750毫升装葡萄酒；订位页未列开瓶费。",
+          "en": "BYO is available for 750ml wine only; the reservation page does not state corkage.",
+          "url": "https://www.shanghaihamilton.co.nz/reservation.html"
+        }
+      ]
+    },
+    {
+      "id": "shinjuku",
+      "name": "Shinjuku Japanese Restaurant",
+      "cuisineZh": "日料",
+      "cuisineEn": "Japanese",
+      "suburb": "Hamilton Central",
+      "address": "7 Alexandra Street, Hamilton Central, Hamilton",
+      "website": "https://www.shinjukunz.com/",
+      "hours": [
+        {
+          "text": "Lunch / Mon - Sat : 12:00pm - 2:00pm",
+          "url": "https://www.shinjukunz.com/"
+        },
+        {
+          "text": "Dinner / Mon - Wed : 5:30pm - 9:00pm",
+          "url": "https://www.shinjukunz.com/"
+        },
+        {
+          "text": "Thu - Sat : 5.30pm - 10.00pm",
+          "url": "https://www.shinjukunz.com/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有最多容纳12人的包间。",
+          "whyEn": "A private room accommodates up to 12 people."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "包间可接待最多12人的聚会。",
+          "whyEn": "The private room is offered for parties of up to 12."
+        },
+        {
+          "id": "group",
+          "whyZh": "包间最多容纳12人，适合十人以上小团体。",
+          "whyEn": "The private room accommodates up to 12 guests."
+        },
+        {
+          "id": "client",
+          "whyZh": "官网明确说明包间可用于商务会面。",
+          "whyEn": "The private room is explicitly offered for business meetings."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "日料餐厅位于 Hamilton Central的 Alexandra Street 7号，可订位。",
+          "en": "Japanese restaurant at 7 Alexandra Street, Hamilton Central, Hamilton; reservations are offered.",
+          "url": "https://www.shinjukunz.com/"
+        },
+        {
+          "zh": "包间最多容纳12人，可用于派对、社交聚会及商务会面。",
+          "en": "A private room accommodates up to 12 people and is offered for parties, social gatherings and business meetings.",
+          "url": "https://www.shinjukunz.com/"
+        },
+        {
+          "zh": "公布的午、晚餐时间覆盖周一至周六，未列周日时间。",
+          "en": "The published schedule lists lunch Monday–Saturday and dinner Monday–Wednesday and Thursday–Saturday; no Sunday schedule is given.",
+          "url": "https://www.shinjukunz.com/"
+        }
+      ]
+    },
+    {
+      "id": "shivani-hamilton",
+      "name": "Shivani Hamilton",
+      "cuisineZh": "印度素食",
+      "cuisineEn": "Vegetarian Indian",
+      "suburb": "Melville",
+      "address": "1 Normandy Ave, Melville, Hamilton",
+      "website": "https://shivani.co.nz/",
+      "hours": [],
+      "price": null,
+      "occasions": [
+        {
+          "id": "vegetarian",
+          "whyZh": "官网标示素食餐饮，并列有汉密尔顿分店。",
+          "whyEn": "The official site advertises pure-vegetarian food and lists its Hamilton branch."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网标示素食餐饮，并列汉密尔顿店地址为 Melville 的 Normandy Ave 1 号。",
+          "en": "The official site advertises 100% pure vegetarian food and lists Hamilton at 1 Normandy Ave, Melville.",
+          "url": "https://www.shivani.co.nz/deals"
+        },
+        {
+          "zh": "网站正在调整，未核实分店完整每周营业时间。",
+          "en": "The site is undergoing changes; a full weekly branch schedule was not verified.",
+          "url": "https://shivani.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "sichuan-style-hamilton",
+      "name": "Sichuan Style — Hamilton",
+      "cuisineZh": "川菜",
+      "cuisineEn": "Sichuan Chinese",
+      "suburb": "Hamilton Central",
+      "address": "24 Collingwood St, Hamilton",
+      "website": "https://sichuanstyle.co.nz/",
+      "hours": [
+        {
+          "text": "Mon-Fri: 12:00PM-2:30PM; 5:00PM-9:00PM",
+          "url": "https://sichuanstyle.co.nz/contact/"
+        },
+        {
+          "text": "Sat-Sun: 12:00PM-9:00PM",
+          "url": "https://sichuanstyle.co.nz/contact/"
+        }
+      ],
+      "price": {
+        "text": "Combination fried rice NZ$23.8; kung-pao chicken NZ$29.8",
+        "url": "https://sichuanstyle.co.nz/menu-best-sellers/"
+      },
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "可单点什锦炒饭。",
+          "whyEn": "Combination fried rice is available as a separately priced dish."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 市中心吃饭指南收录。",
+          "whyEn": "In The Spinoff's central Hamilton guide."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "汉密尔顿店位于 Collingwood St 24号；周六、周日12点至21点营业，可电话订位。",
+          "en": "Hamilton restaurant address is 24 Collingwood St; Saturday and Sunday hours are 12:00PM–9:00PM; table bookings are by phone.",
+          "url": "https://sichuanstyle.co.nz/contact/"
+        },
+        {
+          "zh": "怀卡托旅游局列其位于 Hamilton Central。",
+          "en": "Waikato tourism identifies the suburb as Hamilton Central.",
+          "url": "https://www.waikatonz.com/eat-and-drink/best-of-waikato/guide-to-chinese-cuisine-in-waikato/"
+        },
+        {
+          "zh": "菜单有宫保鸡丁、重庆烤鱼及单点什锦炒饭。",
+          "en": "The menu lists Sichuan dishes including kung-pao chicken, grilled fish in chilli sauce and individually priced combination fried rice.",
+          "url": "https://sichuanstyle.co.nz/menu-best-sellers/"
+        },
+        {
+          "zh": "官网列有孜然羊肉及肉末铁板茄子，并列汉密尔顿店址为Collingwood Street 24号。",
+          "en": "The official site lists cumin lamb and sizzling eggplant with pork mince, and identifies its Hamilton restaurant at 24 Collingwood Street.",
+          "url": "https://sichuanstyle.co.nz/"
+        },
+        {
+          "zh": "The Spinoff于2026年8月8日发布的汉密尔顿市中心用餐指南收录了这家店。",
+          "en": "The Spinoff's central Hamilton dining guide (8 August 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/08-08-2026/where-to-eat-in-central-hamilton-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "singh-sweets",
+      "name": "Singh Sweets",
+      "cuisineZh": "印度素食",
+      "cuisineEn": "Vegetarian Indian",
+      "suburb": null,
+      "address": "83 Commerce Street, Hamilton, NI 3204",
+      "website": "https://www.singhsweets.co.nz/",
+      "hours": [],
+      "price": null,
+      "occasions": [
+        {
+          "id": "vegetarian",
+          "whyZh": "这家汉密尔顿餐厅明确标示只供应素食。",
+          "whyEn": "The Hamilton restaurant explicitly describes itself as pure vegetarian."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网说明 Singh Sweets 是汉密尔顿的印度素食餐厅，有旁遮普菜、塔利套餐和南印度菜。",
+          "en": "The official site identifies Singh Sweets as a Hamilton pure-vegetarian Indian restaurant, with Punjabi dishes, thalis and South Indian food.",
+          "url": "https://www.singhsweets.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "smith-and-mckenzie",
+      "name": "Smith & McKenzie Steak House",
+      "cuisineZh": "牛排馆",
+      "cuisineEn": "Steakhouse",
+      "suburb": "Chartwell",
+      "address": "13 Lynden Court, Chartwell, Hamilton 3210",
+      "website": "https://www.smithandmckenzie.co.nz/",
+      "hours": [
+        {
+          "text": "Mon : Closed",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "text": "Tues : 12:00pm - 9:30pm",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "text": "Wed : 12:00pm - 9:30pm",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "text": "Thurs : 12:00pm - 10:00pm",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "text": "Fri: 12:00pm - Late",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "text": "Sat : 12:00pm - Late",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "text": "Sun : 12:00pm - 9:30pm",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "McKenzie Room 可安排私人用餐。",
+          "whyEn": "The McKenzie Room offers private dining."
+        },
+        {
+          "id": "date",
+          "whyZh": "餐厅设有大型壁炉。",
+          "whyEn": "The dining room features a large fireplace."
+        },
+        {
+          "id": "group",
+          "whyZh": "有私人活动空间及定制团体套餐。",
+          "whyEn": "Private function spaces and customised set menus are offered."
+        },
+        {
+          "id": "client",
+          "whyZh": "私人 McKenzie Room 可安排商务活动。",
+          "whyEn": "The private McKenzie Room is offered for corporate events."
+        },
+        {
+          "id": "birthday",
+          "whyZh": "可自带生日蛋糕，切蛋糕费已公布。",
+          "whyEn": "You can bring a birthday cake, and the cakeage fee is published."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "牛排馆，位于 Chartwell 的 Lynden Court 13 号，餐厅有大型壁炉。",
+          "en": "Steakhouse at 13 Lynden Court, Chartwell, Hamilton 3210; dining room has a large fireplace.",
+          "url": "https://www.smithandmckenzie.co.nz/"
+        },
+        {
+          "zh": "私人 McKenzie Room 有独立酒吧，可安排商务活动，并提供定制套餐。",
+          "en": "The private McKenzie Room has its own bar and is offered for corporate events; customised set menus available.",
+          "url": "https://www.smithandmckenzie.co.nz/private-functions/"
+        },
+        {
+          "zh": "官网接受大型团体预订及包场；网页文字未列包间人数上限。",
+          "en": "The site offers large group bookings and exclusive venue hire; room capacities are not stated in the page text.",
+          "url": "https://www.smithandmckenzie.co.nz/private-functions"
+        },
+        {
+          "zh": "可带庆祝蛋糕，切蛋糕费 30 纽币。",
+          "en": "Celebration cakes are welcome with a NZ$30 cakeage fee.",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        },
+        {
+          "zh": "14 人以内可在线订位，15 人以上要发邮件联系。",
+          "en": "Book up to 14 guests online; email for groups of 15 or more.",
+          "url": "https://www.smithandmckenzie.co.nz/reservations"
+        }
+      ]
+    },
+    {
+      "id": "soul-boul-hamilton",
+      "name": "Soul Boul — Hamilton",
+      "cuisineZh": "思慕雪碗、巴西莓碗及吐司",
+      "cuisineEn": "Smoothie bowls, acai bowls and toast",
+      "suburb": "Hamilton East",
+      "address": "401 Grey Street, Hamilton East",
+      "website": "https://www.soulboul.com/hamilton",
+      "hours": [
+        {
+          "text": "Mon - Sun: 7am - 4pm",
+          "url": "https://www.soulboul.com/hamilton"
+        }
+      ],
+      "price": {
+        "text": "Listed acai bowls NZ$19.5; gourmet toast NZ$16.0 for 1 slice / NZ$29.0 for 2 slices",
+        "url": "https://www.soulboul.com/hamilton"
+      },
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "巴西莓碗及甜咸吐司适合简餐。",
+          "whyEn": "Acai bowls and sweet or savoury toast suit a light meal."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 推荐：牛油果吐司配冰榛子拿铁。",
+          "whyEn": "The Spinoff: avo toast and an iced hazelnut latte."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "汉密尔顿菜单有巴西莓碗，以及牛油果咸吐司或花生酱甜吐司。",
+          "en": "The Hamilton menu lists acai bowls and sourdough toast with savoury avocado or sweet peanut-butter toppings.",
+          "url": "https://www.soulboul.com/hamilton"
+        },
+        {
+          "zh": "常见问题页说明主要接待直接到店的客人，较大团体可另行安排。",
+          "en": "Its FAQ says the cafes mainly accept walk-ins and can accommodate larger groups by arrangement.",
+          "url": "https://www.soulboul.com/faq"
+        },
+        {
+          "zh": "The Spinoff于2026年9月12日发布的Hamilton East用餐指南收录了这家店。",
+          "en": "The Spinoff's Hamilton East dining guide (12 September 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/12-09-2026/where-to-eat-in-hamilton-east-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "tasty-garden",
+      "name": "Tasty Garden",
+      "cuisineZh": "中餐、饮茶点心及粤式菜",
+      "cuisineEn": "Chinese; yum cha and Cantonese-style dishes",
+      "suburb": "Chartwell",
+      "address": "2/4 Gordonton Road, Chartwell, Hamilton 3281, New Zealand",
+      "website": "https://tastygarden.booknorder.co.nz/",
+      "hours": [
+        {
+          "text": "Booking/pickup/delivery page — Monday, Wednesday, Thursday, Friday, Saturday, Sunday: 10:30 am - 03:00 pm; 05:00 pm - 09:00 pm. Tuesday is not listed.",
+          "url": "https://tastygarden.booknorder.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Prawn dumpling NZ$8.80; mixed starter platter NZ$33.80; BYO NZ$6.00, unit unspecified",
+        "url": "https://tastygarden.booknorder.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "有饮茶点心和什锦头盘，可安排分享餐。",
+          "whyEn": "Dim sum and a mixed starter platter offer dishes to share."
+        },
+        {
+          "id": "solo",
+          "whyZh": "可单点馄饨面和盖饭。",
+          "whyEn": "The menu lists separately priced wonton noodle soup and dishes served on rice."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "菜单明确标注纯素炒面、炒饭和肠粉。",
+          "whyEn": "Vegan noodles, fried rice and rice rolls are explicitly labelled."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "订位及点餐页列出 Chartwell 地址，提供订位、自取及外送。",
+          "en": "The booking and ordering page gives the Chartwell address and offers table booking, pickup and delivery.",
+          "url": "https://tastygarden.booknorder.co.nz/"
+        },
+        {
+          "zh": "菜单有虾饺、烧卖及含六种小吃的什锦头盘。",
+          "en": "The menu lists prawn dumplings, pork-and-prawn dim sum and a mixed starter platter containing six kinds of starters.",
+          "url": "https://tastygarden.booknorder.co.nz/"
+        },
+        {
+          "zh": "菜单明确列出纯素炒面、炒河粉、炒饭及肠粉。",
+          "en": "Vegan soft noodles, rice noodles, fried rice and rice rolls are explicitly named.",
+          "url": "https://tastygarden.booknorder.co.nz/"
+        },
+        {
+          "zh": "饮品栏列自带酒收费6纽币，未说明酒类或按瓶、按人计费。",
+          "en": "The drinks list includes BYO at NZ$6.00; alcohol type and whether this is per bottle or person are not stated.",
+          "url": "https://tastygarden.booknorder.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "thai-classic",
+      "name": "Thai Classic",
+      "cuisineZh": "泰餐",
+      "cuisineEn": "Thai",
+      "suburb": null,
+      "address": "783 Victoria St, Hamilton",
+      "website": "https://www.thaiclassic.co.nz/",
+      "hours": [
+        {
+          "text": "Dine in Monday to Sunday: 11:00 AM to 2:00 PM; 4:00 PM to 9:00 PM",
+          "url": "https://www.thaiclassic.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "date",
+          "whyZh": "官网说明适合浪漫晚餐，并接受订位。",
+          "whyEn": "The official site describes an atmosphere for romantic dinners and offers reservations."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "泰餐厅位于汉密尔顿 Victoria St 783号；官网接受订位，并说明适合浪漫晚餐。",
+          "en": "Thai restaurant at 783 Victoria St, Hamilton; its site offers table reservations and describes romantic dinners.",
+          "url": "https://www.thaiclassic.co.nz/"
+        },
+        {
+          "zh": "仅可自带葡萄酒，每瓶开瓶费10纽币；此项政策并不代表已核实可接待十人团体。",
+          "en": "BYO is wine only, with NZ$10 corkage per bottle; this does not establish capacity for a group of 10 or more.",
+          "url": "https://www.thaiclassic.co.nz/"
+        },
+        {
+          "zh": "堂食时间为周一至周日11点至14点，以及16点至21点。",
+          "en": "Dine-in hours are Monday–Sunday 11:00 AM–2:00 PM and 4:00 PM–9:00 PM.",
+          "url": "https://www.thaiclassic.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "the-chilli-house-hamilton",
+      "name": "The Chilli House — Hamilton",
+      "cuisineZh": "川菜、饺子、面食及锅类",
+      "cuisineEn": "Sichuan Chinese; dumplings, noodles and hot pot",
+      "suburb": "Hamilton Central",
+      "address": "237 Victoria Street, Hamilton Central, Hamilton 3204",
+      "website": "https://chillihouse.co.nz/",
+      "hours": [
+        {
+          "text": "Monday – Friday: Lunch: 12.00 pm–2.30 pm; Dinner: 5.00 pm – 9.00 pm",
+          "url": "https://chillihouse.co.nz/hours-locations/"
+        },
+        {
+          "text": "Saturday & Sunday: 12.00 pm–9 pm (open all day)",
+          "url": "https://chillihouse.co.nz/hours-locations/"
+        }
+      ],
+      "price": {
+        "text": "Boiled dumplings (10 pcs) NZ$16.9; listed soup noodles NZ$18.9; signature assorted hot pot NZ$38.9",
+        "url": "https://chillihouse.co.nz/menu/"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "菜单有分享菜栏目。",
+          "whyEn": "The menu has a section of dishes intended for sharing."
+        },
+        {
+          "id": "solo",
+          "whyZh": "可单点面食或盖饭。",
+          "whyEn": "Individually priced noodle and rice dishes are available."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "菜单明确列出素面和素食饭类选项。",
+          "whyEn": "The menu explicitly identifies vegetarian noodle and rice options."
+        },
+        {
+          "id": "group",
+          "whyZh": "超过10人的团体可电话订位。",
+          "whyEn": "Parties of over 10 can arrange their reservation by phone."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "汉密尔顿店位于 Hamilton Central的 Victoria Street 237号；周六、周日12点至21点营业。",
+          "en": "Hamilton branch: 237 Victoria Street, Hamilton Central; Saturday and Sunday 12.00 pm–9 pm.",
+          "url": "https://chillihouse.co.nz/hours-locations/"
+        },
+        {
+          "zh": "菜单有分享菜、招牌什锦锅、手工饺子，以及单点面食和饭类。",
+          "en": "The menu has sharing dishes, a signature assorted hot pot, handmade dumplings, and separately priced noodles and rice dishes.",
+          "url": "https://chillihouse.co.nz/menu/"
+        },
+        {
+          "zh": "多款面食和麻婆豆腐饭明确有素食选项，其他部分菜品标有V。",
+          "en": "Noodle choices and mapo tofu on rice explicitly include vegetarian options; other menu items carry V labels.",
+          "url": "https://chillihouse.co.nz/menu/"
+        },
+        {
+          "zh": "每周七天接受订位，最多可提前90天；超过10人须电话订位。",
+          "en": "The restaurant accepts reservations seven days a week up to 90 days ahead and asks parties of over 10 to book by phone.",
+          "url": "https://chillihouse.co.nz/reserve/"
+        }
+      ]
+    },
+    {
+      "id": "the-cook",
+      "name": "The Cook",
+      "cuisineZh": "酒馆餐、汉堡及披萨",
+      "cuisineEn": "Pub meals, burgers and pizza",
+      "suburb": "Hamilton East",
+      "address": "7 Cook Street, Hamilton, New Zealand",
+      "website": "https://thecook.co.nz/",
+      "hours": [
+        {
+          "text": "Mon – Fri: 11am – Late | Sat – Sun: 10am – Late",
+          "url": "https://thecook.co.nz/view-menus/"
+        }
+      ],
+      "price": {
+        "text": "Listed burgers NZ$24, served with fries; listed pizzas NZ$24",
+        "url": "https://thecook.co.nz/view-menus/"
+      },
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "可选配薯条的汉堡或披萨。",
+          "whyEn": "Burgers with fries and pizzas offer straightforward meal choices."
+        },
+        {
+          "id": "trending",
+          "whyZh": "The Spinoff 推荐：一家经典的新西兰酒馆。",
+          "whyEn": "The Spinoff: a classic Kiwi pub."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官网夏季菜单有牛肉、鸡肉、鱼肉及素食汉堡，均配薯条，也有披萨。",
+          "en": "The official summer menu includes beef, chicken, fish and vegetarian burgers, all served with fries, plus pizzas.",
+          "url": "https://thecook.co.nz/view-menus/"
+        },
+        {
+          "zh": "官网提供订位，并列有含薯条、水果、蔬菜条及布朗尼的儿童便当。",
+          "en": "The site provides table booking and lists a kids' bento box with fries, fruit, vegetable sticks and brownie.",
+          "url": "https://thecook.co.nz/view-menus/"
+        },
+        {
+          "zh": "The Spinoff于2026年9月12日发布的Hamilton East用餐指南收录了这家店。",
+          "en": "The Spinoff's Hamilton East dining guide (12 September 2026) includes this place.",
+          "url": "https://thespinoff.co.nz/kai/12-09-2026/where-to-eat-in-hamilton-east-an-insiders-guide"
+        }
+      ]
+    },
+    {
+      "id": "thyme-square",
+      "name": "Thyme Square",
+      "cuisineZh": "素食晚餐菜",
+      "cuisineEn": "Vegetarian dinner dishes",
+      "suburb": "Hamilton East",
+      "address": "259 Grey Street, Hamilton East",
+      "website": "https://www.thymesquare.co.nz/",
+      "hours": [
+        {
+          "text": "Tuesday - Saturday: 2pm to 10pm",
+          "url": "https://www.thymesquare.co.nz/vegetarian-menu/"
+        }
+      ],
+      "price": {
+        "text": "Vegetarian mains NZ$38–46; Trust The Chefs 2 courses NZ$75 / 3 courses NZ$89 / 5 courses NZ$125 per person",
+        "url": "https://www.thymesquare.co.nz/vegetarian-menu/"
+      },
+      "occasions": [
+        {
+          "id": "date",
+          "whyZh": "素食菜单有五道菜品鉴套餐。",
+          "whyEn": "The vegetarian menu offers a five-course tasting option."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "官网有单独的素食晚餐菜单。",
+          "whyEn": "A separate vegetarian dinner menu is published."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于 Hamilton East 的 Grey Street 259 号，官网列有素食晚餐菜单。",
+          "en": "At 259 Grey Street, Hamilton East; a vegetarian dinner menu is published.",
+          "url": "https://www.thymesquare.co.nz/vegetarian-menu/"
+        },
+        {
+          "zh": "Trust The Chefs 有两道、三道或五道菜的整桌套餐；大多数菜式可提供植物性替代版本。",
+          "en": "Trust The Chefs offers two, three or five courses for the whole table; plant-based alternatives available for most dishes.",
+          "url": "https://www.thymesquare.co.nz/vegetarian-menu/"
+        }
+      ]
+    },
+    {
+      "id": "tongkun",
+      "name": "Tongkun BBQ & Chicken",
+      "cuisineZh": "韩式炭火烤肉自助及炸鸡",
+      "cuisineEn": "Korean charcoal BBQ buffet and fried chicken",
+      "suburb": "Hamilton Central",
+      "address": "161 Victoria Street Hamilton Central 3204",
+      "website": "https://tongkun.co.nz/",
+      "hours": [],
+      "price": {
+        "text": "Buffet adult NZ$39; ages 8–12 NZ$28; ages 4–7 NZ$25",
+        "url": "https://tongkun.co.nz/blog/price-update-notice/"
+      },
+      "occasions": [
+        {
+          "id": "birthday",
+          "whyZh": "预订政策明确接待12名及以上成人的团体。",
+          "whyEn": "The booking policy explicitly accommodates groups of 12 or more adults."
+        },
+        {
+          "id": "group",
+          "whyZh": "12名及以上成人订位有明确订金政策。",
+          "whyEn": "Bookings of 12 or more adults have a stated deposit policy."
+        },
+        {
+          "id": "kids",
+          "whyZh": "自助餐有儿童年龄分档，三岁及以下免费。",
+          "whyEn": "The buffet has children's age bands and free dining for ages three and under."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "市议会资料列 Tongkun位于 Hamilton Central的 Victoria Street 161号；酒牌许可时间不作为营业时间。",
+          "en": "Hamilton City Council identifies Tongkun Korean BBQ at 161 Victoria Street, Hamilton Central 3204; licence hours are not treated as trading hours.",
+          "url": "https://hamilton.govt.nz/assets/Uploads/Documents/Public-Notices/2024/Renewal-On-Licence-Tongkun-Korean-BBQ.pdf"
+        },
+        {
+          "zh": "提供韩式炭火烤肉、炸鸡、拌饭和小菜，用餐限时90分钟。",
+          "en": "Offers Korean charcoal BBQ, fried chicken, bibimbap and side dishes; seating is limited to 90 minutes.",
+          "url": "https://tongkun.co.nz/"
+        },
+        {
+          "zh": "须至少提前五小时预订；12名及以上成人的订单，每位在册客人均需付10纽币订金。",
+          "en": "Book at least five hours ahead. For 12 or more adults, a NZ$10-per-person deposit applies to every guest in the booking.",
+          "url": "https://tongkun.co.nz/"
+        },
+        {
+          "zh": "儿童分4至7岁及8至12岁收费，三岁及以下免费；官网要求家长看护儿童，注意炭火。",
+          "en": "Children are priced in ages 4–7 and 8–12 bands; ages three and under are free. The site requires children to be supervised around hot charcoal.",
+          "url": "https://tongkun.co.nz/"
+        },
+        {
+          "zh": "官网另列每人10纽币环保附加费，未完整说明具体收取条件。",
+          "en": "The site also lists an environmental surcharge of NZ$10 per person without fully explaining its charging trigger.",
+          "url": "https://tongkun.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "valentines-hamilton",
+      "name": "Valentines Hamilton",
+      "cuisineZh": "自助餐",
+      "cuisineEn": "Buffet",
+      "suburb": "Hamilton Central",
+      "address": "563 Victoria Street, Hamilton Central, Hamilton 3204",
+      "website": "https://valentines.co.nz/pages/hamilton",
+      "hours": [
+        {
+          "text": "Lunch Buffet: Wednesday - Friday; Saturday - Sunday; 12PM - 2PM",
+          "url": "https://valentines.co.nz/pages/hamilton"
+        },
+        {
+          "text": "Dinner Buffet: Monday - Friday; Saturday - Sunday; 5:30PM TILL LATE",
+          "url": "https://valentines.co.nz/pages/hamilton"
+        }
+      ],
+      "price": {
+        "text": "Adult lunch NZ$36 Wed–Fri / NZ$44 Sat–Sun; adult dinner NZ$60 Mon–Fri / NZ$62 Sat–Sun; holiday/promotional prices vary",
+        "url": "https://valentines.co.nz/pages/hamilton"
+      },
+      "occasions": [
+        {
+          "id": "birthday",
+          "whyZh": "符合条件的寿星与三位全价客人同行可免费用餐。",
+          "whyEn": "Eligible birthday guests dine free with three full-paying guests."
+        },
+        {
+          "id": "kids",
+          "whyZh": "周末午餐从中午开始，儿童自助餐按年龄计费。",
+          "whyEn": "Weekend lunch starts at noon and child buffet bands are published."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "自助餐厅，位于 Hamilton Central 的 Victoria Street 563 号。",
+          "en": "Buffet restaurant at 563 Victoria Street, Hamilton Central.",
+          "url": "https://valentines.co.nz/pages/hamilton"
+        },
+        {
+          "zh": "儿童按 1–4 岁、5–8 岁及 9–12 岁计费，婴儿免费。",
+          "en": "Children's pricing covers ages 1–4, 5–8 and 9–12; infants are free.",
+          "url": "https://valentines.co.nz/pages/hamilton"
+        },
+        {
+          "zh": "生日优惠须出示生日证明、加入会员，并与另外三位全价客人同行，无须预订。",
+          "en": "Birthday offer requires birthday proof, loyalty membership and three other full-paying guests; no booking required.",
+          "url": "https://valentines.co.nz/pages/promotions"
+        }
+      ]
+    },
+    {
+      "id": "victors-place",
+      "name": "Victor's Place",
+      "cuisineZh": "马来西亚菜及中餐、饮茶点心",
+      "cuisineEn": "Malaysian and Chinese; yum cha",
+      "suburb": "Hamilton Central",
+      "address": "3 Collingwood Street, Hamilton Central, Hamilton 3204, New Zealand",
+      "website": "https://www.victorsplace.co.nz/",
+      "hours": [
+        {
+          "text": "Pickup/delivery page — Tuesday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Wednesday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Thursday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Friday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Saturday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "text": "Pickup/delivery page — Sunday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
+          "url": "https://order.victorsplace.co.nz/"
+        }
+      ],
+      "price": {
+        "text": "Small Gathering sets NZ$79.00; Happy Sharing sets NZ$138.00",
+        "url": "https://order.victorsplace.co.nz/"
+      },
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "菜单有分享套餐及小聚套餐。",
+          "whyEn": "The menu includes named sharing and small-gathering sets."
+        },
+        {
+          "id": "solo",
+          "whyZh": "可单点鸡肉叻沙或叉烧汤面。",
+          "whyEn": "Chicken laksa and BBQ noodle soup are separately priced dishes."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "官方点餐子域名列地址为 Hamilton Central的 Collingwood Street 3号；菜单有马来西亚菜和饮茶点心栏目。",
+          "en": "The official ordering subdomain gives 3 Collingwood Street, Hamilton Central; its menu includes Malaysian dishes and a yum cha section.",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "zh": "有分享套餐、小聚套餐，以及单点鸡肉叻沙和叉烧汤面。",
+          "en": "The menu lists Happy Sharing and Small Gathering sets, plus chicken laksa and BBQ noodle soup.",
+          "url": "https://order.victorsplace.co.nz/"
+        },
+        {
+          "zh": "可读取的来源为自取及外送点餐页；独立堂食时间、饮茶时段及包间人数未核实。",
+          "en": "The readable source is the pickup/delivery storefront; separate dine-in hours, yum cha hours and private-room capacity remain unverified.",
+          "url": "https://order.victorsplace.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "weave-eatery",
+      "name": "Weave Eatery",
+      "cuisineZh": "时令咖啡馆餐及烘焙",
+      "cuisineEn": "Seasonal cafe meals and baking",
+      "suburb": "Ruakura",
+      "address": "Sky Point Building, Waikato Innovation Park, 3 Melody Lane, Ruakura",
+      "website": "https://weaveeatery.co.nz/",
+      "hours": [
+        {
+          "text": "Monday–Friday 8:00am – 3pm",
+          "url": "https://weaveeatery.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "工作日午餐可选每日更换的柜台餐食或全天菜单。",
+          "whyEn": "A changing cabinet and all-day menu give weekday lunch choices."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "咖啡馆可订位，提供全天菜单堂食，店内空间采光明亮。",
+          "en": "The cafe offers table booking and dine-in from its all-day menu in a light dining space.",
+          "url": "https://weaveeatery.co.nz/"
+        },
+        {
+          "zh": "柜台每天更换，供应新鲜烘焙、甜点及简便午餐。",
+          "en": "The cabinet changes daily and includes fresh bakes, sweets and quicker lunch options.",
+          "url": "https://weaveeatery.co.nz/"
+        }
+      ]
+    }
+  ],
+  "perks": [
+    {
+      "name": "Valentines Hamilton",
+      "where": "563 Victoria Street, Hamilton Central (branch: https://valentines.co.nz/pages/hamilton)",
+      "perkZh": "寿星免费用餐。",
+      "perkEn": "The birthday guest dines free.",
+      "conditionsZh": "生日当天使用，须出示生日证明、加入会员，并与另外三位全价客人同行；无须预订。",
+      "conditionsEn": "On the birthday; bring birthday proof, belong to the loyalty programme and dine with three other full-paying guests; no booking required.",
+      "url": "https://valentines.co.nz/pages/promotions"
+    },
+    {
+      "name": "BurgerFuel VIB Club",
+      "where": "Hamilton stores include Five Cross Roads, Frankton, Rototuna and Te Rapa (locations: https://www.burgerfuel.com/nz/locations)",
+      "perkZh": "长期常客可获免费汉堡；新会员或较少光顾者获汉堡买一送一。",
+      "perkEn": "Regular longstanding members get a free burger; new/infrequent members get a birthday 2-for-1 offer.",
+      "conditionsZh": "须为活跃会员，填写正确生日并至少提前 24 小时加入。仅生日当天使用一次，售完为止，不含改配，不可叠加，可能须查证件。优惠由消费活跃度决定；官网对买一送一适用款式的说明不一致，以收到的券为准。",
+      "conditionsEn": "Active member with correct birthdate, joined at least 24 hours before birthday. Birthday only, once, while stocks last; no customisations or combining offers; ID may be required. Engagement determines offer; eligible 2-for-1 burgers conflict within the page, so check the issued voucher.",
+      "url": "https://www.burgerfuel.com/nz/vib-club-birthday-hook-up"
+    },
+    {
+      "name": "Star Social",
+      "where": "The Roaming Giant (789 Heaphy Terrace, Claudelands, Hamilton) and The Wayward Pigeon (2a Gordonton Road, Hamilton)",
+      "perkZh": "生日券：Rising Star 30 纽币、Super Star 50 纽币、Mega Star 75 纽币、Social Star 100 纽币。",
+      "perkEn": "Birthday voucher: Rising Star NZ$30, Super Star NZ$50, Mega Star NZ$75, Social Star NZ$100.",
+      "conditionsZh": "由 Star Hospitality Group Limited运营。须为会员，生日券金额按等级。常见问题页称生日月月初发券，条款称前一个月首日发券，两者不一致。限参与门店使用，有效期以应用内显示为准，须一次用完，余额不保留。",
+      "conditionsEn": "Owned and operated by Star Hospitality Group Limited. Membership required; voucher value depends on tier. The FAQ says issue at the start of the birthday month, while the terms say the first day of the preceding month. Terms require use at participating venues, app-displayed expiry and redemption in one transaction with no remaining balance carried forward.",
+      "url": "https://stargroup.nz/starsocial-faqs"
+    },
+    {
+      "name": "Columbus Coffee Rewards",
+      "where": "Columbus Coffee at Mitre 10 MEGA Te Rapa, Hamilton (branch: https://www.columbuscoffee.co.nz/find-a-store/columbus-coffee-at-mitre-10-mega-te-rapa)",
+      "perkZh": "生日赠券；会员页未说明面额或具体赠品。",
+      "perkEn": "A birthday voucher; its value and contents are not specified on the rewards page.",
+      "conditionsZh": "须注册 Columbus Rewards；所查会员页未说明生日券有效期、最低消费或注册截止时间。",
+      "conditionsEn": "Register for Columbus Rewards. The opened rewards page does not specify the birthday voucher's expiry, minimum spend or signup deadline.",
+      "url": "https://www.columbuscoffee.co.nz/rewards?modal=rewards"
+    },
+    {
+      "name": "Starbucks Rewards NZ",
+      "where": "Starbucks Chartwell, Hamilton (branch: https://www.chartwellshopping.co.nz/stores/starbucks)",
+      "perkZh": "Green：一次标准饮品改配；Gold：任意杯型手调饮品一杯，含最多两项标准改配；Reserve：手调饮品一杯及食品一份，总值最多 20 纽币。",
+      "perkEn": "Green: one standard drink customisation; Gold: one handcrafted drink of any size with up to two standard customisations; Reserve: one handcrafted drink plus one food item, combined maximum NZ$20.",
+      "conditionsZh": "须保存生日并提前符合等级条件。Green 须至少提前七天加入，且生日之前有一笔不少于 10 纽币的合资格消费。生日开始的兑换期：Green 一天、Gold 七天、Reserve 30 天；Reserve 须同一笔兑换，可到店或通过应用兑换。",
+      "conditionsEn": "Save birthdate and meet tier eligibility before birthday. Green requires joining seven days ahead and a prior eligible NZ$10+ transaction. Redemption windows from birthday: Green one day, Gold seven days, Reserve 30 days; Reserve items in one transaction. In-store/app redemption.",
+      "url": "https://starbucksnz.zendesk.com/hc/en-us/articles/17878130136847-Do-I-receive-Birthday-Rewards"
+    },
+    {
+      "name": "Muffin Break Rewards NZ",
+      "where": "Muffin Break, The Base, Hamilton (branch: https://www.the-base.co.nz/en/directory/detail/muffin-break)",
+      "perkZh": "生日月免费松饼一份。",
+      "perkEn": "One free muffin during the birthday month.",
+      "conditionsZh": "须在生日月之前在线注册会员；生日月内才注册，要等到下一年。须在生日月内兑换，并出示及扫描已注册会员卡。",
+      "conditionsEn": "Register the loyalty account online before the birthday month; registering during that month defers the reward until next year. Redeem during the birthday month; present/scan the registered rewards card (card rule: https://muffinbreak.co.nz/muffin-break-club-terms-conditions/).",
+      "url": "https://muffinbreak.co.nz/rewards/"
+    },
+    {
+      "name": "Daikoku Hamilton",
+      "where": "65 Bryce Street, Centre Place, Hamilton",
+      "perkZh": "生日优惠：点四份主菜时，最便宜的一份免费。",
+      "perkEn": "Birthday promotion: when four mains are ordered, the cheapest main is free.",
+      "conditionsZh": "用餐时须出示证件证明当日生日，不可与其他优惠同用。当前汉密尔顿菜单链接此2026年8月传单，未列截止日期及其他排除条件。",
+      "conditionsEn": "Present ID proving it is your birthday when dining. Cannot combine with other discounts or promotions. The current Hamilton menu index links this August 2026 flyer; it gives no end date or further exclusions.",
+      "url": "https://www.daikoku.co.nz/wp-content/uploads/2026/08/Hamilton_Birthday-Promotion-Ver2.pdf"
+    }
+  ]
+}

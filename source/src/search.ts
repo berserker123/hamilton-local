@@ -6,6 +6,8 @@ import BLACKFRIDAY from './data/blackfriday.json';
 import { Deal, matchesDealQuery } from './blackfriday-model';
 import TALK from './data/river-talk.json';
 import { activeArticles, activeNews, talkHref } from './river-talk.mjs';
+import FOOD from './data/food-guide.json';
+import { FOOD_OCCASIONS } from './food-guide.mjs';
 
 export type SearchResultItem = {
   id: string;
@@ -111,6 +113,28 @@ function talkNewsMatches(q: string, now = Date.now()): SearchResultItem[] {
   }));
 }
 
+const FOOD_WORDS = /美食|餐厅|饭店|吃饭|好吃|早茶|饮茶|生日|约会|素食|聚餐|食堂|restaurant|dining|food|eat|yum cha|dim sum|vegetarian|birthday/i;
+
+function foodMatches(q: string): SearchResultItem[] {
+  if (Array.from(q).length < 2) return [];
+  const lower = q.toLowerCase();
+  const places = FOOD.places.filter(p => [p.name, p.cuisineZh, p.cuisineEn, p.suburb, ...p.occasions.flatMap(o => [o.whyZh, o.whyEn]), ...p.facts.flatMap(f => [f.zh, f.en])].join(' ').toLowerCase().includes(lower));
+  const results: SearchResultItem[] = places.slice(0, 6).map(p => {
+    const first = p.occasions[0];
+    const occasion = FOOD_OCCASIONS.find(o => o.id === first.id)!;
+    return {
+      id: 'food-' + p.id, href: href('living', 'dining') + '?o=' + first.id, tagZh: '本地生活 · 屯里食堂 · ' + occasion.zh, tagEn: 'Local Living · Tron Eats · ' + occasion.en,
+      titleZh: p.name, titleEn: p.name, descZh: [p.cuisineZh, first.whyZh].filter(Boolean).join(' · '), descEn: [p.cuisineEn, first.whyEn].filter(Boolean).join(' · '),
+    };
+  });
+  if (!results.length && FOOD_WORDS.test(q)) results.push({
+    id: 'food-guide', href: href('living', 'dining'), tagZh: '本地生活 · 屯里食堂', tagEn: 'Local Living · Tron Eats',
+    titleZh: '屯里食堂：按场合找地方吃饭', titleEn: 'Tron Eats: where to eat, by occasion',
+    descZh: '带爸妈、过生日、带娃、约会、聚餐、请客户、一个人吃、素食、日常好吃、网红打卡，还有生日福利。', descEn: 'With parents, birthdays, kids, dates, groups, clients, solo, vegetarian, everyday, trending and birthday perks.',
+  });
+  return results;
+}
+
 /** Multi-destination matches displayed on the /search/ page (e.g. GP -> Urgent care + Arrival checklist). */
 export function searchMatches(query: string): SearchResultItem[] {
   const q = query.trim();
@@ -139,7 +163,7 @@ export function searchMatches(query: string): SearchResultItem[] {
       },
     ];
   }
-  return [...talkMatches(q), ...talkNewsMatches(q)];
+  return [...talkMatches(q), ...talkNewsMatches(q), ...foodMatches(q)];
 }
 
 /** Resolves a search query to a destination URL. Never defaults unmatched queries to the grocers page. */

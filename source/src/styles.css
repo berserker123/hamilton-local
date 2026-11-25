@@ -918,6 +918,9 @@ body, .ia-root { background: var(--charcoal); color: #eeede6; font-family: var(-
 }
 .ia-root .sb-brand { min-height: 44px; }
 .ia-breadcrumb a, .ia-quick-links a { min-width: 44px; justify-content: center; }
+/* Breadcrumb and big titles line up with the English line under them (2026-11-25). */
+.ia-root .ia-breadcrumb a { min-width: 0; justify-content: flex-start; }
+.ia-page-title:lang(zh) { margin-left: -0.05em; }
 .ia-root a, .ia-root button { min-width: 44px; }
 
 /* Original Hamilton Local carriage: chrome is a sibling of the clipped scenery.
@@ -5014,9 +5017,10 @@ html body .ia-root .v25g-shortcut .ia-secondary-name { margin: 1px 0 0; font-siz
 
 /* Seven navigation items on phones */
 @media (max-width: 639px) {
-  html body .ia-root .sb-mobile-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; padding: 5px; }
-  html body .ia-root .sb-mnav { padding-inline: 2px; font-size: 12px; }
-  html body .ia-root .sb-mnav:last-child { grid-column: span 2; }
+  /* 4 items on the first row, 3 equal items on the second, no empty slot (2026-11-25). */
+  html body .ia-root .sb-mobile-nav { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; padding: 5px; }
+  html body .ia-root .sb-mnav { grid-column: span 3; padding-inline: 2px; font-size: 12px; }
+  html body .ia-root .sb-mnav:nth-child(n+5), html body .ia-root .sb-mnav:last-child { grid-column: span 4; }
 }
 
 /* Homepage news cards and links into the column */
@@ -5058,3 +5062,45 @@ html body .ia-root .v25g-shortcut .ia-secondary-name { margin: 1px 0 0; font-siz
 
 html body .ia-root .v25g-shortcut h3:last-child { grid-row: 1 / span 2; align-self: center; }
 .hl-talk-item > .hl-talk-board, .hl-talk-item > .hl-talk-tags { display: inline-flex; align-items: center; min-height: 28px; }
+
+/* Â±ØÈáåÈ£üÂ†Ç Tron Eats */
+.hl-food { display: flex; flex-direction: column; gap: 18px; }
+.hl-food-filter { display: flex; flex-wrap: wrap; gap: 10px; }
+.hl-food-filter button { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 18px; border: 1px solid var(--hl-control); border-radius: 999px; background: transparent; color: var(--hl-ink); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.hl-food-filter button svg { width: 16px; height: 16px; }
+.hl-food-filter button:hover { border-color: var(--hl-accent); }
+.hl-food-filter button[aria-pressed="true"] { background: var(--hl-fill); border-color: var(--hl-fill); color: var(--hl-on-fill); }
+.hl-food-filter button:focus-visible { outline: 2px solid var(--hl-accent); outline-offset: 2px; }
+.hl-food-count, .hl-food-tip, .hl-food-note { margin: 0; color: var(--hl-muted); font-size: 14px; line-height: 1.65; }
+.hl-food-tip a, .hl-food-note a { color: var(--hl-ink); font-weight: 600; text-underline-offset: 3px; }
+.hl-food-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.hl-food-card { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; padding: 20px; border: 1px solid var(--hl-line); border-radius: 14px; background: var(--hl-surface); }
+.hl-food-card h3 { margin: 0; color: var(--hl-ink); font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.hl-food-meta { margin: -4px 0 0; color: var(--hl-muted); font-size: 13px; }
+.hl-food-why { margin: 0; color: var(--hl-ink); font-size: 15px; font-weight: 600; line-height: 1.6; }
+.hl-food-facts { display: grid; gap: 6px; width: 100%; margin: 0; padding: 0; list-style: none; }
+.hl-food-facts li { position: relative; padding-left: 14px; color: var(--hl-muted); font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.hl-food-facts li::before { content: ""; position: absolute; left: 0; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--hl-accent); }
+.hl-food-source { display: inline-flex; align-items: center; gap: 2px; margin-left: 6px; color: var(--hl-muted); font-size: 12px; white-space: nowrap; text-underline-offset: 3px; }
+.hl-food-source svg { width: 12px; height: 12px; }
+.hl-food-line, .hl-food-conditions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0; color: var(--hl-muted); font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.hl-food-line > svg { flex: none; width: 15px; height: 15px; align-self: center; }
+.hl-food-label { color: var(--hl-ink); font-size: 13px; font-weight: 600; }
+.hl-food-more { width: 100%; padding-top: 8px; border-top: 1px solid var(--hl-line); color: var(--hl-muted); font-size: 14px; }
+.hl-food-more summary { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; color: var(--hl-ink); font-size: 14px; font-weight: 600; cursor: pointer; }
+.hl-food-more summary svg { width: 15px; height: 15px; }
+.hl-food-more summary:focus-visible { outline: 2px solid var(--hl-accent); outline-offset: 2px; }
+.hl-food-more .hl-food-facts { margin: 8px 0 4px; }
+.hl-food-hours { margin: 6px 0; padding-left: 18px; line-height: 1.6; }
+.hl-food-site { margin-top: auto; padding-top: 4px; }
+@media (max-width: 900px) { .hl-food-grid { grid-template-columns: 1fr; } }
+
+/* ÕÕ¿Ô ≥Ã√ dice pick */
+.hl-food-dice { display: flex; flex-direction: column; gap: 12px; }
+.hl-food-dice-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.hl-food-dice-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 20px; border: 1px solid var(--hl-fill); border-radius: 999px; background: var(--hl-fill); color: var(--hl-on-fill); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.hl-food-dice-btn svg { width: 18px; height: 18px; }
+.hl-food-dice-btn:focus-visible, .hl-food-dice-close:focus-visible { outline: 2px solid var(--hl-accent); outline-offset: 2px; }
+.hl-food-dice-close { min-height: 44px; padding: 8px 16px; border: 1px solid var(--hl-control); border-radius: 999px; background: transparent; color: var(--hl-ink); font: inherit; font-size: 14px; cursor: pointer; }
+.hl-food-dice-rolling { color: var(--hl-muted); font-size: 15px; font-family: var(--serif); }
+.hl-food-dice-result { display: flex; flex-direction: column; gap: 8px; max-width: 640px; }

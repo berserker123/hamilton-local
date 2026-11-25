@@ -33,6 +33,7 @@ import { PracticalTools, CommonTools, ToolSources } from './PracticalTools';
 import { SECTION_ORDER, TABS, href, readRoute as readPathRoute, applyDocumentMeta } from './site-routes.mjs';
 import { navigate } from './navigate';
 import { RiverTalkHome, RiverTalkPage } from './RiverTalk';
+import { FoodGuide } from './FoodGuide';
 import { BlackFriday, BlackFridayBanner } from './BlackFriday';
 import { servicePlaceholderLine } from './service-placeholders';
 import { servicesJoinHref, servicesJoinIsExternal } from './services-config';
@@ -74,7 +75,7 @@ function Empty({ t, title, detail }: { t: T; title?: string; detail?: string }) 
   return <div className="ia-empty sb-card" data-testid="empty-state"><span className="sb-icon-disc"><BookOpen /></span><p className="ia-kicker">{t('慢慢整理，认真收录', 'A guide worth taking time over')}</p><h2>{title || t('内容整理中', 'Coming soon')}</h2><p>{detail || t('确认好实用的信息，再和你分享。', 'We’re gathering useful local information to share here.')}</p></div>;
 }
 function Tabs({ route, tab, t }: { route: Exclude<Route, 'home' | 'privacy' | 'search'>; tab: string; t: T }) {
-  const tabs = TABS[route].filter(([id]) => !(route === 'living' && id === 'dining'));
+  const tabs = TABS[route];
   return <div role="tablist" aria-label={t(SECTIONS.find(s => s.id === route)!.zh, SECTIONS.find(s => s.id === route)!.en)} className="sb-tabs ia-tabs ia-tabs-compact" onKeyDown={e => {
     const current = tabs.findIndex(item => item[0] === tab);
     const next = e.key === 'ArrowRight' ? (current + 1) % tabs.length : e.key === 'ArrowLeft' ? (current + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
@@ -154,7 +155,7 @@ function Living({ tab, query, lang, t, toast }: { tab: string; query: string; la
   if (tab === 'blackfriday') return <BlackFriday t={t} query={q} />;
   if (tab === 'upick') return <UPick t={t} />;
   if (tab === 'stays') return <Stays t={t} />;
-  if (tab === 'dining') return <><DirectoryHeading eyebrow="DINING" zh="美食探索" en="Food discoveries" introZh="收录本地餐饮信息，核对后再与你分享。" introEn="Local food discoveries, shared after their details are checked." t={t} /><Empty t={t} title={t('美食探索 · 内容整理中', 'Food discoveries · Coming soon')} /></>;
+  if (tab === 'dining') return <FoodGuide t={t} />;
   if (tab === 'places') {
     const places = DAILY_PLACES.filter(p => !q || [p.zh, p.name, p.area, p.description, p.en.description].join(' ').toLowerCase().includes(q.toLowerCase()));
     return <><div id="everyday-places"><DirectoryHeading eyebrow="PLACES" zh="日常好去处" en="Everyday outings" introZh="从公园到步道，找一处适合今天出门的地方。" introEn="Find a park, a walk or somewhere to spend a little time outside." t={t} />{q && <div className="ia-list-toolbar"><p>{t('搜索', 'Search')}: {q}</p><button className="sb-action" onClick={() => setQ('')}>{t('清除搜索', 'Clear search')}<X /></button></div>}{places.length ? <PlaceGrid places={places} lang={lang} t={t} accent="living" /> : <Empty t={t} title={t('没有匹配的地点', 'No matching places')} detail={t('试试其他关键词，或清除搜索。', 'Try another keyword or clear your search.')} />}</div></>;
