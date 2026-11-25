@@ -1,0 +1,34 @@
+{
+  "title": ["IF NZ BIRDS HAD", "A GROUP CHAT"],
+  "strip": "TAG A KIWI WHO NEEDS THIS",
+  "watermark": "hamiltonlocal.nz",
+  "group": "Aotearoa Birds",
+  "group_initials": "AB",
+  "me": "Kiwi",
+  "cast": {
+    "Kiwi":    {"avatar": [120, 85, 50],   "name": "#B0703A"},
+    "Tūī":     {"avatar": [40, 60, 90],    "name": "#3A6FB0"},
+    "Seagull": {"avatar": [150, 150, 160], "name": "#D2691E"},
+    "Pūkeko":  {"avatar": [40, 70, 150],   "name": "#2E55C8"},
+    "Kererū":  {"avatar": [60, 130, 90],   "name": "#2E8B57"},
+    "Kea":     {"avatar": [90, 120, 50],   "name": "#6B8E23"},
+    "Takahē":  {"avatar": [50, 110, 140],  "name": "#1F7A8C"}
+  },
+  "script": [
+    ["sys", "Kiwi created the group \"Aotearoa Birds\""],
+    ["Kiwi", "Morning all. Just a reminder I'm the national icon"],
+    ["Tūī", "Morning all. Just a reminder I'm the national icon"],
+    ["Kiwi", "Stop copying me"],
+    ["Tūī", "Stop copying me"],
+    ["Seagull", "anyone got chips"],
+    ["Pūkeko", "Crossing State Highway 1 rn. Cars can wait"],
+    ["Kererū", "ate some fermented berries. fell off a branch. 10/10 would recommend"],
+    ["Kea", "Just took a tourist's windscreen wiper. Anyone need one?"],
+    ["Kiwi", "Must be nice to fly"],
+    ["Seagull", "anyone got chips??"],
+    ["Takahē", "Sorry been offline. Was extinct till 1948"],
+    ["Seagull", "CHIPS???"],
+    ["sys", "Possum joined the group"],
+    ["sys", "Kiwi removed Possum"]
+  ]
+}

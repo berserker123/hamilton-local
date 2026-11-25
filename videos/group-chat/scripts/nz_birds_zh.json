@@ -1,0 +1,40 @@
+{
+  "title": ["如果新西兰的鸟", "有个群聊"],
+  "strip": "转给在新西兰的朋友看看",
+  "watermark": "Hamilton Local",
+  "group": "Aotearoa Birds",
+  "group_initials": "AB",
+  "input_hint": "输入消息",
+  "me": "Kiwi",
+  "timing": {"zh_cps": 7},
+  "cast": {
+    "Kiwi":    {"avatar": [120, 85, 50],   "name": "#B0703A"},
+    "Tūī":     {"avatar": [40, 60, 90],    "name": "#3A6FB0"},
+    "Seagull": {"avatar": [150, 150, 160], "name": "#D2691E"},
+    "Pūkeko":  {"avatar": [40, 70, 150],   "name": "#2E55C8"},
+    "Kererū":  {"avatar": [60, 130, 90],   "name": "#2E8B57"},
+    "Kea":     {"avatar": [90, 120, 50],   "name": "#6B8E23"},
+    "Takahē":  {"avatar": [50, 110, 140],  "name": "#1F7A8C"}
+  },
+  "script": [
+    ["sys", "Kiwi 创建了群聊 “Aotearoa Birds”"],
+    ["Kiwi", "Morning all. Just a reminder I'm the national icon", "大家早，提醒一下，我才是国鸟"],
+    ["Tūī", "Morning all. Just a reminder I'm the national icon", "大家早，提醒一下，我才是国鸟"],
+    ["Kiwi", "Stop copying me", "别学我说话"],
+    ["Tūī", "Stop copying me", "别学我说话"],
+    ["Seagull", "anyone got chips", "有人有薯条吗"],
+    ["Pūkeko", "Crossing State Highway 1 rn. Cars can wait", "正在横穿一号国道，车等着吧"],
+    ["Kererū", "ate some fermented berries. fell off a branch. 10/10 would recommend", "吃了发酵浆果，从树上掉下来了，强烈推荐"],
+    ["Kea", "Just took a tourist's windscreen wiper. Anyone need one?", "刚拆了个游客的雨刮器，谁要？"],
+    ["Kiwi", "Must be nice to fly", "会飞了不起哦"],
+    ["Seagull", "anyone got chips??", "有人有薯条吗？？"],
+    ["Takahē", "Sorry been offline. Was extinct till 1948", "不好意思刚上线，1948 年之前我都算灭绝了"],
+    ["Seagull", "CHIPS???", "薯条！！！"],
+    ["sys", "Possum（新西兰头号公敌）加入了群聊"],
+    ["sys", "Kiwi 把 Possum 移出了群聊"]
+  ],
+  "outro": {
+    "lines": ["Hamilton 哪里能看到 Tūī？", "地点整理好了 · 搜 Hamilton Local"],
+    "hold": 3.0
+  }
+}

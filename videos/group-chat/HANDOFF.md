@@ -36,17 +36,15 @@
 - 顶部固定：紫色标题条 + 白色副标题条（"TAG A KIWI WHO NEEDS THIS"）
 - 背景音乐不在视频里，发布时在 TikTok 或 Reels app 里加热门音乐
 
-## 5. make.py 用法
+## 5. make.py 用法（2026-11-25 已改为读取 JSON 剧本）
 ```bash
-python3 make.py preview 5 20 99    # 导出指定秒数的预览帧 prev_<秒>.png，并打印总时长 END
-python3 make.py out_tmp.mp4 && mv out_tmp.mp4 final.mp4   # 完整渲染
+python3 make.py scripts/nz_birds.json preview 5 20 40    # 预览帧输出到 out/，并打印总时长 END
+python3 make.py scripts/nz_birds.json out/nz_birds.mp4   # 完整渲染
 ```
-- 换剧本：改 `SCRIPT` 列表，格式为 `(角色名, 文本)`，系统消息用 `("sys", 文本)`
-- 换角色：改 `BIRDS` 字典，格式为 `名字: (头像颜色 RGB, 名字文字颜色)`
-- `ME` 决定哪个角色显示在右侧
-- 标题文字、副标题、群名都在"static background"那一段
-- 字体：Inter（/usr/share/fonts/opentype/inter/），换环境时要确认字体路径
-- 调时长：改 `typ`、`max(1.75, len(txt) / 16)`、系统消息的 `t += 1.3`、`END = t + 1.5`，先用 preview 看 END 再渲染
+- 剧本都放在 `scripts/`，格式说明见 `scripts/README.md`
+- 现有剧本：`nz_birds.json`（英文原版，45.6 秒）、`nz_birds_zh.json`（中英双语字幕版，发小红书，48.3 秒，结尾有引流卡片）
+- 支持：中文字幕（每条消息第三项）、水印（`watermark`）、结尾引流卡片（`outro`）、节奏参数（`timing`）
+- `out/` 里是渲染结果，不进 git
 
 ## 6. 选题库（同一个模板，换剧本即可）
 - **新西兰动物/鸟**：Kiwi、Tūī、海鸥、Pūkeko、羊、负鼠（全国追杀）等，可以做 10 条以上
@@ -79,9 +77,9 @@ python3 make.py out_tmp.mp4 && mv out_tmp.mp4 final.mp4   # 完整渲染
 - 小红书：不能放外链，在主页写"搜 Hamilton Local"，或者引导私信
 
 ## 10. 待办 / 下一步
-- [ ] Frank 确认账号名后，在视频角落加水印
+- [x] 水印：已支持 `watermark` 字段。英文版暂用 `hamiltonlocal.nz`，中文版用 `Hamilton Local`（小红书视频里出现网址容易被限流）。Frank 确认账号名后改 JSON 即可
 - [ ] 做中文版，例如"华人家长群 vs Kiwi 家长群"，结尾引流到网站的学校、生活信息
-- [ ] 鸟类视频可以加中文字幕版，发到小红书
-- [ ] 在网站上写对应的观鸟文章
-- [ ] 把模板改成读取外部剧本文件（JSON/YAML），方便批量出片
+- [x] 鸟类视频中文字幕版：`scripts/nz_birds_zh.json`，结尾卡片写“地点整理好了 · 搜 Hamilton Local”
+- [x] 观鸟文章：屯里二三事 → 生活小妙招《在 Hamilton 想看 Tūī 和 Kererū，去这几个地方》，地址 `/talk/hamilton-tui-kereru-spots/`
+- [x] 模板改成读取外部 JSON 剧本
 - [ ] 目标更新频率：每周 3 到 5 条，坚持 1 到 2 个月再评估效果
