@@ -358,6 +358,41 @@
       ]
     },
     {
+      "id": "dagu-rice-noodle-hamilton",
+      "name": "Dagu Rice Noodle — Hamilton",
+      "cuisineZh": "云南风味米线",
+      "cuisineEn": "Yunnan-style rice noodles",
+      "suburb": "Hamilton Central",
+      "address": "36 Bryce Street, Hamilton Central, Hamilton",
+      "website": "https://www.daguricenoodle.co.nz/",
+      "hours": [
+        {
+          "text": "Mon–Sun 11:00 am–10:00 pm (restaurant website)",
+          "url": "https://www.daguricenoodle.co.nz/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "番茄肥牛米线和酸菜鱼米线都是可以单点的一碗主食。",
+          "whyEn": "Tomato beef and pickled-cabbage fish rice noodles are available as individual bowls."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "品牌以云南昆明的米线为灵感，汉密尔顿店位于 Bryce Street 36 号。",
+          "en": "The brand traces its rice-noodle style to Kunming, Yunnan, and lists its Hamilton branch at 36 Bryce Street.",
+          "url": "https://www.daguricenoodle.co.nz/"
+        },
+        {
+          "zh": "品牌官网的米线菜单列有番茄肥牛米线、酸菜鱼米线和野生菌汤米线。",
+          "en": "The brand's rice-noodle menu lists tomato beef, pickled-cabbage fish and wild mushroom soup rice noodles.",
+          "url": "https://www.daguricenoodle.co.nz/menu-2"
+        }
+      ]
+    },
+    {
       "id": "daikoku-hamilton",
       "name": "Daikoku Hamilton",
       "cuisineZh": "日式铁板烧",
@@ -440,6 +475,45 @@
           "zh": "汉密尔顿页面下方另有不一致的时间表；“营业至较晚”未给出确定关门时间。",
           "en": "The Hamilton page repeats inconsistent hours lower down; 'till late' has no verified closing time.",
           "url": "https://www.daikoku.co.nz/hamilton/"
+        }
+      ]
+    },
+    {
+      "id": "duck-island-grey-street",
+      "name": "Duck Island Ice Cream — Grey Street",
+      "cuisineZh": "冰淇淋",
+      "cuisineEn": "Ice cream",
+      "suburb": "Hamilton East",
+      "address": "300A Grey Street, Hamilton East",
+      "website": "https://www.duckislandicecream.co.nz/store-location/grey-street",
+      "hours": [
+        {
+          "text": "Sunday–Wednesday: 11am–10pm",
+          "url": "https://www.duckislandicecream.co.nz/store-location/grey-street"
+        },
+        {
+          "text": "Thursday–Saturday: 11am–11pm",
+          "url": "https://www.duckislandicecream.co.nz/store-location/grey-street"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "trending",
+          "whyZh": "Grey Street 店每天供应 24 种口味，也有冰淇淋三明治。",
+          "whyEn": "The Grey Street shop scoops 24 flavours daily and stocks ice cream sandwiches."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "门店位于 Grey Street 300A 号，在 Cook Street 路口。",
+          "en": "The shop is at 300A Grey Street, on the corner of Cook Street.",
+          "url": "https://www.duckislandicecream.co.nz/store-location/grey-street"
+        },
+        {
+          "zh": "每天有无乳制品及无麸质选项，也有盒装冰淇淋可带走。",
+          "en": "Dairy-free and gluten-free options are available daily, along with take-home pints.",
+          "url": "https://www.duckislandicecream.co.nz/store-location/grey-street"
         }
       ]
     },
@@ -662,6 +736,46 @@
       ]
     },
     {
+      "id": "garden-place-noodle-bar",
+      "name": "Garden Place Noodle Bar",
+      "cuisineZh": "中式手工面和米粉",
+      "cuisineEn": "Chinese handmade noodles and rice noodles",
+      "suburb": "Hamilton Central",
+      "address": "21 Worley Place, Hamilton Central, Hamilton 3204",
+      "website": "https://www.lovethecentre.co.nz/directory/garden-place-noodle-bar/",
+      "hours": [
+        {
+          "text": "Mon–Sat 11:00 am–8:30 pm",
+          "url": "https://localista.co.nz/listing/garden-place-noodle-bar?place=hamilton+central%2C+nz"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "米粉可以点汤粉或干拌，适合一人点一碗。",
+          "whyEn": "Rice noodles can be ordered by the bowl, served dry or in soup."
+        },
+        {
+          "id": "vegetarian",
+          "whyZh": "米粉有明确标注的素食选项。",
+          "whyEn": "A vegetarian rice-noodle option is listed."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "店内从头制作手工面，客人可以看到拉面的过程。",
+          "en": "Noodles are made by hand from scratch where diners can see them being pulled.",
+          "url": "https://www.lovethecentre.co.nz/directory/garden-place-noodle-bar/"
+        },
+        {
+          "zh": "米粉可做成汤粉或干拌，有猪肉末、海鲜和素食等选项。",
+          "en": "Rice noodles come dry or in soup, with options including minced pork, seafood and a vegetarian choice.",
+          "url": "https://www.lovethecentre.co.nz/directory/garden-place-noodle-bar/"
+        }
+      ]
+    },
+    {
       "id": "gather-food-house",
       "name": "Gather Food House",
       "cuisineZh": "早午餐、汉堡及烘焙",
@@ -815,6 +929,45 @@
       ]
     },
     {
+      "id": "hamilton-hotel-public-bar-bistro",
+      "name": "Hamilton Hotel Public Bar & Bistro",
+      "cuisineZh": "新西兰小酒馆菜及酒吧餐",
+      "cuisineEn": "New Zealand bistro and pub food",
+      "suburb": "Hamilton Central",
+      "address": "170 Victoria Street, Hamilton Central",
+      "website": "https://www.hamiltonhotel.nz/",
+      "hours": [
+        {
+          "text": "Tuesday–Sunday: venue opens at noon",
+          "url": "https://www.waikatonz.com/where-to-eat/hamilton-hotel-public-bar-bistro/"
+        },
+        {
+          "text": "Monday: closed",
+          "url": "https://www.hamiltonhotel.nz/before-you-visit"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "trending",
+          "whyZh": "BNZ Theatre 隔壁有提供正餐的小餐馆，也有供应餐食和饮品的酒吧。",
+          "whyEn": "Next to BNZ Theatre, there’s a sit-down bistro and a public bar serving food and drinks."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于 Hamilton Central 的 Victoria Street 170 号，紧邻 BNZ Theatre。",
+          "en": "It’s at 170 Victoria Street, Hamilton Central, beside BNZ Theatre.",
+          "url": "https://www.hamiltonhotel.nz/before-you-visit"
+        },
+        {
+          "zh": "酒吧接待直接到店的客人，场内各区域均可供轮椅通行。",
+          "en": "The public bar welcomes walk-ins, and all venue spaces are wheelchair-accessible.",
+          "url": "https://www.hamiltonhotel.nz/before-you-visit"
+        }
+      ]
+    },
+    {
       "id": "hayes-common",
       "name": "Hayes Common",
       "cuisineZh": "时令早午餐",
@@ -862,7 +1015,24 @@
       "suburb": "Hamilton Central",
       "address": "203 Victoria Street, Hamilton Central, Hamilton, Waikato 3204, New Zealand",
       "website": "https://iguana.co.nz/",
-      "hours": [],
+      "hours": [
+        {
+          "text": "Sat–Sun brunch 10:30 am–1 pm",
+          "url": "https://iguana.co.nz/menu/weekend-brunch/"
+        },
+        {
+          "text": "Daily lunch 12–3 pm",
+          "url": "https://iguana.co.nz/menu/lunch-menu/"
+        },
+        {
+          "text": "Daily dinner 4:30 pm until late",
+          "url": "https://iguana.co.nz/menu/dinner-menu/"
+        },
+        {
+          "text": "Sunday sharing plates noon until late",
+          "url": "https://iguana.co.nz/menu/sunday-sharing-plates/"
+        }
+      ],
       "price": null,
       "occasions": [
         {
@@ -974,6 +1144,50 @@
       ]
     },
     {
+      "id": "king-of-skewers-hamilton",
+      "name": "King of Skewers Hotpot — Hamilton",
+      "cuisineZh": "四川风味串串火锅",
+      "cuisineEn": "Sichuan-style skewer hot pot",
+      "suburb": "Hamilton Central",
+      "address": "68 Bryce Street, Hamilton Central, Hamilton 3204",
+      "website": "https://kingofskewershamilton.booknorder.co.nz/",
+      "hours": [
+        {
+          "text": "Tue–Sun dinner 5:00 pm–9:30 pm",
+          "url": "https://www.firsttable.co.nz/waikato/hamilton/hamilton-central/king-of-skewers"
+        },
+        {
+          "text": "Mon closed",
+          "url": "https://www.firsttable.co.nz/waikato/hamilton/hamilton-central/king-of-skewers"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "everyday",
+          "whyZh": "吃火锅时可选番茄汤、猪肉汤或麻辣汤，再自配蘸料。",
+          "whyEn": "For a casual hot-pot dinner, choose tomato, pork or spicy broth and mix a dipping sauce at the sauce station."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "餐厅列有猪肉汤底、番茄汤底和四川风味麻辣汤底。",
+          "en": "The restaurant lists pork, tomato and Sichuan-style spicy broths.",
+          "url": "https://kingofskewershamilton.booknorder.co.nz/"
+        },
+        {
+          "zh": "堂食可在蘸料台自行调配，也可选店家的四川风味蘸料。",
+          "en": "At the dine-in sauce station, diners can mix their own sauce or choose the house Sichuan-style blend.",
+          "url": "https://www.firsttable.co.nz/waikato/hamilton/hamilton-central/king-of-skewers"
+        },
+        {
+          "zh": "配菜和甜点包括炸酥肉和红糖糍粑。",
+          "en": "Sides and sweets include crispy fried pork and brown-sugar rice cakes.",
+          "url": "https://kingofskewershamilton.booknorder.co.nz/"
+        }
+      ]
+    },
+    {
       "id": "last-place",
       "name": "Last Place",
       "cuisineZh": "汉堡及酒吧小食",
@@ -1074,6 +1288,11 @@
           "id": "vegetarian",
           "whyZh": "菜单有 Vege Eats 栏目及素食筛选。",
           "whyEn": "The menu includes a Vege Eats section and vegetarian filters."
+        },
+        {
+          "id": "trending",
+          "whyZh": "白天有煎蛋培根酥饼，晚餐供应柚子冰生蚝等分享小盘。",
+          "whyEn": "The daytime menu includes a flaky flatbread with fried egg and bacon. Evening share plates include oysters with yuzu ice."
         }
       ],
       "facts": [
@@ -1333,7 +1552,12 @@
       "suburb": "Hamilton Central",
       "address": "1/7 Vialou Street, Hamilton Central, Hamilton 3204, New Zealand",
       "website": "https://www.onaroll.co.nz/",
-      "hours": [],
+      "hours": [
+        {
+          "text": "Tue–Fri 11 am–3 pm and 5–8 pm",
+          "url": "https://onarollhamilton.booknorder.co.nz/"
+        }
+      ],
       "price": {
         "text": "Single bao NZ$10.00; banh mi NZ$17.00; noodle salad NZ$27.00",
         "url": "https://onarollhamilton.booknorder.co.nz/"
@@ -1551,6 +1775,49 @@
       ]
     },
     {
+      "id": "shang-hai-chinese-rototuna",
+      "name": "Shang Hai Chinese Restaurant — Rototuna",
+      "cuisineZh": "中餐、炒菜和饺子",
+      "cuisineEn": "Chinese stir-fries and dumplings",
+      "suburb": "Rototuna North",
+      "address": "6B/44 Horsham Downs Road, Rototuna, Hamilton",
+      "website": "https://www.shanghaihamilton.co.nz/rototuna.html",
+      "hours": [
+        {
+          "text": "Mon–Tue and Thu–Sun 11:00 am–10:00 pm",
+          "url": "https://www.shanghaihamilton.co.nz/rototuna.html"
+        },
+        {
+          "text": "Wed 5:00 pm–10:00 pm",
+          "url": "https://www.shanghaihamilton.co.nz/rototuna.html"
+        },
+        {
+          "text": "Public holiday hours may vary.",
+          "url": "https://www.shanghaihamilton.co.nz/rototuna.html"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "parents",
+          "whyZh": "可以点锅贴、家常炒菜和炒面一起分着吃。",
+          "whyEn": "Potstickers, stir-fries and fried noodles make it easy to order several dishes to share."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "Rototuna 门店在 New World 旁，提供堂食。",
+          "en": "The Rototuna branch is next to New World and offers dine-in.",
+          "url": "https://www.shanghaihamilton.co.nz/rototuna.html"
+        },
+        {
+          "zh": "这家分店的菜单有生煎锅贴、水饺、糖醋炒猪肉和鸡肉炒面。",
+          "en": "The branch menu lists pan-fried pork dumplings, boiled dumplings, sweet-and-sour pork and chicken fried noodles.",
+          "url": "https://www.shanghaichinese.co.nz/zh"
+        }
+      ]
+    },
+    {
       "id": "shanghai-skycity",
       "name": "Shanghai Restaurant — SkyCity Hamilton",
       "cuisineZh": "中餐及亚洲融合菜、饮茶点心",
@@ -1695,7 +1962,12 @@
       "suburb": "Melville",
       "address": "1 Normandy Ave, Melville, Hamilton",
       "website": "https://shivani.co.nz/",
-      "hours": [],
+      "hours": [
+        {
+          "text": "Tue–Sun 10 am–9 pm",
+          "url": "https://www.dinefind.co.nz/listing/shivani-melville"
+        }
+      ],
       "price": null,
       "occasions": [
         {
@@ -1709,11 +1981,6 @@
           "zh": "官网标示素食餐饮，并列汉密尔顿店地址为 Melville 的 Normandy Ave 1 号。",
           "en": "The official site advertises 100% pure vegetarian food and lists Hamilton at 1 Normandy Ave, Melville.",
           "url": "https://www.shivani.co.nz/deals"
-        },
-        {
-          "zh": "网站正在调整，未核实分店完整每周营业时间。",
-          "en": "The site is undergoing changes; a full weekly branch schedule was not verified.",
-          "url": "https://shivani.co.nz/"
         }
       ]
     },
@@ -1874,7 +2141,7 @@
         {
           "zh": "私人 McKenzie Room 有独立酒吧，可安排商务活动，并提供定制套餐。",
           "en": "The private McKenzie Room has its own bar and is offered for corporate events; customised set menus available.",
-          "url": "https://www.smithandmckenzie.co.nz/private-functions/"
+          "url": "https://www.smithandmckenzie.co.nz/private-functions"
         },
         {
           "zh": "官网接受大型团体预订及包场；网页文字未列包间人数上限。",
@@ -2145,6 +2412,44 @@
       ]
     },
     {
+      "id": "the-green",
+      "name": "The Green",
+      "cuisineZh": "新西兰时令品尝套餐",
+      "cuisineEn": "Seasonal New Zealand tasting menu",
+      "suburb": "Hamilton East",
+      "address": "Unit 2, Made Sheds, 401 Grey Street, Hamilton East",
+      "website": "https://thegreenrestaurant.co.nz/",
+      "hours": [
+        {
+          "text": "Tuesday–Saturday: 6:30pm, bookings only",
+          "url": "https://madehamilton.co.nz/vendors/thegreenrestaurant"
+        }
+      ],
+      "price": {
+        "text": "Tasting menu NZ$185 per person, food only",
+        "url": "https://thegreenrestaurant.co.nz/our-food/"
+      },
+      "occasions": [
+        {
+          "id": "trending",
+          "whyZh": "在厨师餐桌品尝随季节调整的套餐，食材来自怀卡托本地供应商。",
+          "whyEn": "The chef’s table serves a changing tasting menu built around seasonal produce from Waikato growers."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "位于 Grey Street 401 号 Made Sheds 2 单元。",
+          "en": "Find it in Unit 2 of Made Sheds at 401 Grey Street.",
+          "url": "https://thegreenrestaurant.co.nz/contact-2/"
+        },
+        {
+          "zh": "示例菜单有本地蜂蜜面包配发酵黄油，以及味噌和高汤调味的鰤鱼与鳗鱼。",
+          "en": "Sample dishes include local honey bread with cultured butter and kingfish and eel with miso and dashi.",
+          "url": "https://thegreenrestaurant.co.nz/our-food/"
+        }
+      ]
+    },
+    {
       "id": "thyme-square",
       "name": "Thyme Square",
       "cuisineZh": "素食晚餐菜",
@@ -2307,28 +2612,8 @@
       "website": "https://www.victorsplace.co.nz/",
       "hours": [
         {
-          "text": "Pickup/delivery page — Tuesday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
-          "url": "https://order.victorsplace.co.nz/"
-        },
-        {
-          "text": "Pickup/delivery page — Wednesday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
-          "url": "https://order.victorsplace.co.nz/"
-        },
-        {
-          "text": "Pickup/delivery page — Thursday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
-          "url": "https://order.victorsplace.co.nz/"
-        },
-        {
-          "text": "Pickup/delivery page — Friday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
-          "url": "https://order.victorsplace.co.nz/"
-        },
-        {
-          "text": "Pickup/delivery page — Saturday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
-          "url": "https://order.victorsplace.co.nz/"
-        },
-        {
-          "text": "Pickup/delivery page — Sunday 11:00 am - 3:00 pm; 5:00 pm - 10:00 pm",
-          "url": "https://order.victorsplace.co.nz/"
+          "text": "Tuesday - Sunday: 11:00am – 3:00pm | 5:00pm – 10:00pm",
+          "url": "https://www.victorsplace.co.nz/"
         }
       ],
       "price": {
@@ -2359,9 +2644,9 @@
           "url": "https://order.victorsplace.co.nz/"
         },
         {
-          "zh": "可读取的来源为自取及外送点餐页；独立堂食时间、饮茶时段及包间人数未核实。",
-          "en": "The readable source is the pickup/delivery storefront; separate dine-in hours, yum cha hours and private-room capacity remain unverified.",
-          "url": "https://order.victorsplace.co.nz/"
+          "zh": "官网主页公布周二至周日 11:00–15:00 和 17:00–22:00 营业；饮茶时段及包间人数未核实。",
+          "en": "The homepage publishes Tuesday–Sunday 11 am–3 pm and 5–10 pm; yum cha hours and private-room capacity are unverified.",
+          "url": "https://www.victorsplace.co.nz/"
         }
       ]
     },
@@ -2397,6 +2682,46 @@
           "zh": "柜台每天更换，供应新鲜烘焙、甜点及简便午餐。",
           "en": "The cabinet changes daily and includes fresh bakes, sweets and quicker lunch options.",
           "url": "https://weaveeatery.co.nz/"
+        }
+      ]
+    },
+    {
+      "id": "xian-food-bar-hamilton",
+      "name": "Xi’an Food Bar — Hamilton",
+      "cuisineZh": "陕西西安风味面食和小吃",
+      "cuisineEn": "Xi’an-style Shaanxi noodles and snacks",
+      "suburb": "Hamilton Central",
+      "address": "7 Collingwood Street, Hamilton Central, Hamilton",
+      "website": "https://xianfoods.co.nz/hamilton/",
+      "hours": [
+        {
+          "text": "Mon–Sun 11:30 am–9:30 pm",
+          "url": "https://xianfoods.co.nz/hamilton/contact-us/"
+        }
+      ],
+      "price": null,
+      "occasions": [
+        {
+          "id": "solo",
+          "whyZh": "可以单点一碗羊汤手扯面、红烧牛肉手扯汤面或油泼手扯面。",
+          "whyEn": "Order an individual bowl of hand-pulled noodles with lamb broth, braised beef broth or chilli oil."
+        }
+      ],
+      "facts": [
+        {
+          "zh": "Collingwood Street 7 号的汉密尔顿店提供堂食。",
+          "en": "The Hamilton branch offers dine-in at 7 Collingwood Street.",
+          "url": "https://cnfood.co.nz/en/hamilton/restaurants/xi-an-food-bar-hamilton-central"
+        },
+        {
+          "zh": "汉密尔顿店的菜单列有羊汤手扯面、红烧牛肉手扯汤面和油泼手扯面。",
+          "en": "The Hamilton menu lists hand-pulled noodles with lamb broth, braised beef broth and chilli oil.",
+          "url": "https://xianfoods.co.nz/hamilton/menu-desktop/"
+        },
+        {
+          "zh": "汉密尔顿店列有肉夹馍、西安凉皮和冰峰汽水的组合。",
+          "en": "The Hamilton branch lists a combo of a Chinese burger, Xi’an-style cold noodles and Ice Peak soda.",
+          "url": "https://xianfoods.co.nz/hamilton/"
         }
       ]
     }
