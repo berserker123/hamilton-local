@@ -4547,6 +4547,25 @@ html body .ia-root .pg-place-actions svg { width: 14px; height: 14px; }
 .bf-banner-date { color: var(--hl-muted); font-size: 12px; letter-spacing: .06em; white-space: nowrap; }
 .bf-banner > svg { width: 18px; flex-shrink: 0; }
 .bf-kit { margin-top: 20px; padding: 24px; background: var(--hl-surface); border: 1px solid var(--hl-line); border-radius: 20px; }
+.bf-today { margin-top: 20px; padding: 24px; background: var(--hl-surface); border: 1px solid var(--hl-line); border-radius: 20px; }
+.bf-today h3 { margin: 6px 0 2px; font-size: 22px; font-weight: 600; line-height: 1.4; }
+.bf-today-note { margin: 10px 0 0; color: var(--hl-muted); font-size: 13px; }
+.bf-today-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.bf-today-card { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: 16px; background: var(--hl-canvas); border: 1px solid var(--hl-line); border-radius: 14px; }
+.bf-today-ends { color: var(--sec); font-size: 12px; text-align: right; }
+.bf-today-card ul, .bf-today-chain ul { margin: 0; padding: 0; list-style: none; }
+.bf-today-card li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px solid var(--hl-line); }
+.bf-today-name { display: flex; flex-direction: column; min-width: 0; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.bf-today-name small { color: var(--hl-muted); font-size: 12px; }
+.bf-today-card li strong { flex: none; font-size: 15px; font-variant-numeric: tabular-nums; }
+.bf-today-card .bf-card-actions { margin-top: auto; }
+.bf-today-sub { margin: 24px 0 0; font-size: 17px; font-weight: 600; }
+.bf-today-chains { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px 20px; margin-top: 12px; }
+.bf-today-chain li { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-top: 1px solid var(--hl-line); font-size: 14px; line-height: 1.5; }
+.bf-today-chain li a { color: var(--hl-ink); font-weight: 600; }
+.bf-today-chain li span { color: var(--hl-muted); font-size: 13px; }
+@media (max-width: 960px) { .bf-today-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .bf-today { padding: 18px; } .bf-today-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
 .bf-kit-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; }
 .bf-kit-head h3 { margin: 6px 0 2px; font-size: 22px; font-weight: 600; line-height: 1.4; }
 .bf-page .bf-kit-en { color: var(--hl-muted); font-size: 13px; line-height: 1.6; }

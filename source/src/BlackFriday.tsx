@@ -3,6 +3,7 @@ import { ArrowUpRight, BadgePercent, Calendar, ShieldCheck } from 'lucide-react'
 import DATA from './data/blackfriday.json';
 import { CATEGORIES, Deal, realDiscount, selectDeals, verdict, Verdict } from './blackfriday-model';
 import KIT from './data/gta6-kit.json';
+import TODAY_DATA from './data/blackfriday-today.json';
 import { KitSlotConfig, kitSummary, resolveKit } from './gta6-kit-model';
 
 type T = (zh: string, en: string) => string;
@@ -87,6 +88,35 @@ function Gta6Kit({ t }: { t: T }) {
     : <><strong lang="zh-CN">黑五专区 · 真假优惠一眼看清</strong><span lang="en-NZ">Black Friday · See what you’re really saving</span></>
   }</span><span className="bf-banner-date">27 NOV 2026</span><ArrowUpRight aria-label={t('查看黑五专区', 'Explore Black Friday')} /></a></div>;
 }
+type TodayItem = { zh: string; en: string; price: number; noteZh?: string; noteEn?: string };
+type TodayPick = { store: string; url: string; endsZh: string; endsEn: string; items: TodayItem[] };
+type ChainStore = { store: string; url: string; zh: string; en: string };
+type ChainGroup = { zh: string; en: string; stores: ChainStore[] };
+const TODAY = TODAY_DATA as { checkedAt: string; picks: TodayPick[]; chains: ChainGroup[] };
+function TodayDeals({ t }: { t: T }) {
+  const english = t('中', 'en') === 'en';
+  return <section className="bf-today" aria-labelledby="bf-today-title" data-testid="bf-today">
+    <div className="bf-kit-head"><div>
+      <p className="bf-kicker">{t('11月27日 黑五当天', 'Black Friday, 27 November')}</p>
+      {english ? <h3 id="bf-today-title" lang="en-NZ">New today</h3>
+        : <><h3 id="bf-today-title" lang="zh-CN">今天新上的黑五</h3><p className="bf-kit-en" lang="en-NZ">New today</p></>}
+    </div></div>
+    <p className="bf-today-note">{t(`${TODAY.checkedAt} 上午在各家官网核对。「标省」「标价」是商家自己写的，没有用价格历史核过，以店内为准。`, `Checked on each retailer’s website on the morning of ${TODAY.checkedAt}. “Save” and “ticket” figures are the retailer’s own and have not been checked against price history.`)}</p>
+    <div className="bf-today-grid">{TODAY.picks.map(p => <article className="bf-today-card" key={p.store}>
+      <div className="bf-card-top"><span>{p.store}</span><span className="bf-today-ends">{t(p.endsZh, p.endsEn)}</span></div>
+      <ul>{p.items.map(i => <li key={i.en}>
+        <span className="bf-today-name">{t(i.zh, i.en)}{(english ? i.noteEn : i.noteZh) && <small>{t(i.noteZh ?? '', i.noteEn ?? '')}</small>}</span>
+        <strong>{money(i.price)}</strong>
+      </li>)}</ul>
+      <div className="bf-card-actions"><a href={p.url} target="_blank" rel="noopener noreferrer">{t('去官网看', 'Visit store')}<ArrowUpRight aria-hidden="true" /></a></div>
+    </article>)}</div>
+    <h4 className="bf-today-sub">{t('各大连锁店折扣', 'Storewide sales at the big chains')}</h4>
+    <div className="bf-today-chains">{TODAY.chains.map(g => <div className="bf-today-chain" key={g.en}>
+      <p className="bf-kicker">{t(g.zh, g.en)}</p>
+      <ul>{g.stores.map(s => <li key={s.store}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.store}</a><span>{t(s.zh, s.en)}</span></li>)}</ul>
+    </div>)}</div>
+  </section>;
+}
 function PriceCheckPanel({ t }: { t: T }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const english = t('中', 'en') === 'en';
@@ -147,6 +177,7 @@ export function BlackFriday({ t, query = '', pageSize }: { t: T; query?: string;
       <p className="bf-research-note">{t('平时价为 PriceSpy 同款商品近90天日价的中位数，按卡片标明的市场最低价或所列商家历史计算。市场数据不代表该商家的日常售价；3月最低采用同一范围与窗口，不含运费及二手商品。', 'Typical price is the ~90-day median of PriceSpy’s daily prices for the exact variant, using either the market-low series or the listed store’s history as marked on each card. Market data is not the store’s usual price. The three-month low uses the same scope and window, excluding delivery and used items.')}</p>
       <p className="bf-disclaimer">{t('价格以商家页面为准，可能随时变动', 'Prices are subject to the retailer’s page and may change at any time.')}</p>
     </div>
+    <TodayDeals t={t} />
     <PriceCheckPanel t={t} />
     <Gta6Kit t={t} />
     <div className="bf-filters" aria-label={t('筛选优惠', 'Filter listings')}>

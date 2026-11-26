@@ -1,0 +1,114 @@
+{
+  "checkedAt": "2026-11-27",
+  "picks": [
+    {
+      "store": "Harvey Norman",
+      "url": "https://www.harveynorman.co.nz/event/black-friday-1-day-only-deals/",
+      "endsZh": "只限今天 11/27",
+      "endsEn": "Today only, 27 Nov",
+      "items": [
+        { "zh": "Ninja 9.5L 双区空气炸锅", "en": "Ninja Foodi Max 9.5L dual-zone air fryer", "price": 188 },
+        { "zh": "Breville Barista Express 咖啡机", "en": "Breville Barista Express coffee machine", "price": 498, "noteZh": "标省 $218，送咖啡入门包", "noteEn": "Store says save $218; bonus espresso starter pack" },
+        { "zh": "Dyson V8 Advanced 吸尘器", "en": "Dyson V8 Advanced stick vacuum", "price": 347, "noteZh": "送车用清洁套件", "noteEn": "With car cleaning kit" },
+        { "zh": "Bose QuietComfort 降噪耳机", "en": "Bose QuietComfort headphones", "price": 284, "noteZh": "标省 $210 以上", "noteEn": "Store says save over $210" },
+        { "zh": "Canon Pixma TS3465 多功能打印机", "en": "Canon Pixma TS3465 all-in-one printer", "price": 25 }
+      ]
+    },
+    {
+      "store": "Noel Leeming",
+      "url": "https://www.noelleeming.co.nz/c/black-friday/doorbuster-deals",
+      "endsZh": "限量抢购，卖完即止",
+      "endsEn": "Doorbusters, while stocks last",
+      "items": [
+        { "zh": "Apple AirPods 5", "en": "Apple AirPods 5", "price": 175, "noteZh": "JB Hi-Fi 同款今天 $229", "noteEn": "Same model is $229 at JB Hi-Fi today" },
+        { "zh": "Blink Outdoor 4 户外摄像头 3 只装", "en": "Blink Outdoor 4, 3-pack", "price": 49, "noteZh": "标省 $210", "noteEn": "Store says save $210" },
+        { "zh": "Laser 20W USB-C 充电头", "en": "Laser 20W USB-C GaN charger", "price": 9 },
+        { "zh": "Laser 2 万毫安充电宝", "en": "Laser 20K power bank", "price": 19 },
+        { "zh": "Sheffield 12 瓶红酒柜", "en": "Sheffield 12-bottle wine cooler", "price": 89 },
+        { "zh": "Samsung 55 寸 M70H Mini LED 电视", "en": "Samsung 55\" M70H Mini LED TV", "price": 988 }
+      ]
+    },
+    {
+      "store": "JB Hi-Fi",
+      "url": "https://www.jbhifi.co.nz/pages/black-friday",
+      "endsZh": "电视只限今天，其余到 12/2",
+      "endsEn": "TV today only; others to 2 Dec",
+      "items": [
+        { "zh": "LG 55 寸 MRGB86 Mini RGB 电视", "en": "LG 55\" MRGB86 Mini RGB TV", "price": 1596, "noteZh": "标价 $2,088，只限今天", "noteEn": "Ticket $2,088; today only" },
+        { "zh": "Kindle 11 代 16GB", "en": "Kindle 11th Gen 16GB", "price": 188, "noteZh": "标价 $299", "noteEn": "Ticket $299" },
+        { "zh": "Navman MiVue 160 行车记录仪", "en": "Navman MiVue 160 dash cam", "price": 69.5, "noteZh": "半价", "noteEn": "Half price" }
+      ]
+    },
+    {
+      "store": "PB Tech",
+      "url": "https://www.pbtech.co.nz/promotions/black-friday-price-smash",
+      "endsZh": "到 12/1",
+      "endsEn": "Until 1 Dec",
+      "items": [
+        { "zh": "金士顿 Fury Renegade 2TB 固态（PS5 可用）", "en": "Kingston Fury Renegade 2TB SSD (PS5 ready)", "price": 599, "noteZh": "11/25 还是 $746.35", "noteEn": "Was $746.35 on 25 Nov" },
+        { "zh": "Edifier WH700NB Pro 降噪耳机", "en": "Edifier WH700NB Pro ANC headphones", "price": 57.99, "noteZh": "标价 $99.98", "noteEn": "Normally $99.98" },
+        { "zh": "Samsung Odyssey G9 49 寸带鱼屏", "en": "Samsung Odyssey G9 49\" monitor", "price": 1099, "noteZh": "标价 $1,499", "noteEn": "Normally $1,499" }
+      ]
+    },
+    {
+      "store": "The Warehouse",
+      "url": "https://www.thewarehouse.co.nz/c/black-friday-sale",
+      "endsZh": "截止日期未写",
+      "endsEn": "End date not stated",
+      "items": [
+        { "zh": "Country Life 6 号鸡蛋 6 只装", "en": "Country Life size 6 eggs, 6-pack", "price": 1.99, "noteZh": "仅门店", "noteEn": "In-store only" },
+        { "zh": "Milazo 铝合金单车（指定款）", "en": "Selected Milazo alloy bikes", "price": 199.99 }
+      ]
+    },
+    {
+      "store": "Kmart",
+      "url": "https://www.kmart.co.nz/category/black-friday/shop-all-black-friday/",
+      "endsZh": "截止日期未写",
+      "endsEn": "End date not stated",
+      "items": [
+        { "zh": "普拉提床 Pilates Reformer", "en": "Pilates Reformer", "price": 299 },
+        { "zh": "5 件套行李箱", "en": "5-piece luggage set", "price": 109 }
+      ]
+    }
+  ],
+  "chains": [
+    {
+      "zh": "百货", "en": "Department store",
+      "stores": [
+        { "store": "Farmers", "url": "https://www.farmers.co.nz/", "zh": "只限今天：衣服最低 6 折，小家电最低 5 折，圣诞装饰 5 折，玩具 8 折，乐高 85 折，Sheridan 毛巾 5 折", "en": "Today only: clothing up to 40% off, small appliances up to 50% off, Christmas shop 50% off, toys 20% off, LEGO 15% off, Sheridan towels 50% off" }
+      ]
+    },
+    {
+      "zh": "服装", "en": "Clothing",
+      "stores": [
+        { "store": "Cotton On", "url": "https://cottonon.com/NZ/", "zh": "全场 7 折；连衣裙、鞋子 6 折；T 恤 $12", "en": "30% off storewide; dresses and footwear 40% off; $12 tops" },
+        { "store": "Glassons", "url": "https://www.glassons.com/", "zh": "全场 8 折", "en": "20% off everything" },
+        { "store": "Hallensteins", "url": "https://www.hallensteins.com/", "zh": "T 恤 $19.99，卫衣两件 $69，牛仔裤 $39.99 起", "en": "Tees $19.99, sweats 2 for $69, jeans from $39.99" }
+      ]
+    },
+    {
+      "zh": "鞋子 · 运动", "en": "Shoes and sport",
+      "stores": [
+        { "store": "Platypus", "url": "https://www.platypusshoes.co.nz/", "zh": "全场 5–8 折", "en": "20–50% off sitewide" },
+        { "store": "Number One Shoes / Hannahs", "url": "https://www.numberoneshoesandhannahs.co.nz/", "zh": "全场 5–8 折，童鞋 $40 以下", "en": "20–50% off storewide; kids' shoes under $40" },
+        { "store": "Rebel Sport", "url": "https://www.rebelsport.co.nz/", "zh": "全场 6–7 折，满 $300 返 $30", "en": "30–40% off storewide; spend $300, earn a $30 reward" }
+      ]
+    },
+    {
+      "zh": "户外", "en": "Outdoor",
+      "stores": [
+        { "store": "Kathmandu", "url": "https://www.kathmandu.co.nz/", "zh": "美利奴 5 折，露营装备 6 折，40L 登机箱 $199，儿童羽绒服 $89 起", "en": "50% off merino, 40% off camping gear, 40L carry-on $199, kids' puffers from $89" },
+        { "store": "Macpac", "url": "https://www.macpac.co.nz/", "zh": "美利奴上衣 5 折，背包、雨衣最低 5 折，到 12/1", "en": "50% off merino tops, up to 50% off packs and rainwear, until 1 Dec" }
+      ]
+    },
+    {
+      "zh": "美妆 · 家居", "en": "Beauty and home",
+      "stores": [
+        { "store": "Life Pharmacy", "url": "https://www.lifepharmacy.co.nz/", "zh": "Lancôme 7 折，No7 护肤 6 折，Estée Lauder 75 折", "en": "Lancôme 30% off, No7 skincare 40% off, Estée Lauder 25% off" },
+        { "store": "Chemist Warehouse", "url": "https://www.chemistwarehouse.co.nz/", "zh": "维生素、护肤、护发黑五价，到 12/2", "en": "Black Friday prices on vitamins, cosmetics and haircare, until 2 Dec" },
+        { "store": "Spotlight", "url": "https://www.spotlightstores.com/en-nz", "zh": "床品、毛巾、地毯黑五特价", "en": "Black Friday sale on bedding, towels and rugs" },
+        { "store": "Mitre 10", "url": "https://www.mitre10.co.nz/", "zh": "黑五特价到 11/30", "en": "Black Friday deals until 30 Nov" }
+      ]
+    }
+  ]
+}
