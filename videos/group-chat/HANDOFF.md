@@ -16,7 +16,7 @@
 | 样片 #1 中英双语版（发小红书） | ✅ 已完成，48.3 秒，有结尾引流卡片 | `scripts/nz_birds_zh.json` |
 | 配套文章《在 Hamilton 想看 Tūī 和 Kererū，去这几个地方》 | ⏸ 已写好，Frank 决定暂不上线 | 网站 `/talk/hamilton-tui-kereru-spots/` |
 | 模板改成读取 JSON 剧本 | ✅ 已完成 | `make.py` + `scripts/README.md` |
-| 水印 | ✅ 已支持，账号名待定 | JSON 里的 `watermark` 字段 |
+| 水印 | ✅ 已完成，账号名 2026-11-26 定为 Hamilton Local | JSON 里的 `watermark` 字段 |
 | 中文原创版“华人家长群 vs Kiwi 家长群” | ⬜ 未开始 | — |
 | 视频实际发布 | ⬜ 未发布 | — |
 
@@ -107,7 +107,7 @@ python3 make.py scripts/nz_birds.json out/nz_birds.mp4   # 完整渲染，约 1 
 
 ## 12. 待办 / 下一步
 - [ ] 观鸟文章上线：**2026-11-26 Frank 决定先不上线**，分支保持不合并。以后要上线时再合并到 `main`。在那之前，双语版结尾“地点整理好了”的钩子没有落点，发布前要么先上线文章，要么改掉 `nz_birds_zh.json` 的 `outro`
-- [ ] **Frank 决定**：账号名。确定后改各 JSON 的 `watermark`，重新渲染
+- [x] 账号名：**2026-11-26 Frank 定为 Hamilton Local**，所有平台统一。英文平台用户名用 `@hamiltonlocalnz`，小红书和视频号昵称用 `Hamilton Local`。现有水印不变（英文版 `hamiltonlocal.nz`，中文版 `Hamilton Local`），不用重新渲染。注册前要在各平台确认这个名字还没被占用
 - [ ] 发布样片 #1：英文版发 TikTok、FB Reels、IG Reels；双语版发小红书、视频号
 - [ ] 做中文版“华人家长群 vs Kiwi 家长群”，结尾引流到网站的学校、生活信息，并配一篇对应文章
 - [ ] 从选题库挑下一批剧本，目标每周 3 到 5 条，坚持 1 到 2 个月再评估效果（看涨粉数和网站访问量）
