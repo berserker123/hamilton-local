@@ -17,7 +17,7 @@
 | 配套文章《在 Hamilton 想看 Tūī 和 Kererū，去这几个地方》 | ⏸ 已写好，Frank 决定暂不上线 | 网站 `/talk/hamilton-tui-kereru-spots/` |
 | 模板改成读取 JSON 剧本 | ✅ 已完成 | `make.py` + `scripts/README.md` |
 | 水印 | ✅ 已完成，账号名 2026-11-26 定为 Hamilton Local | JSON 里的 `watermark` 字段 |
-| 中文原创版“华人家长群 vs Kiwi 家长群” | ⬜ 未开始 | — |
+| 中文原创版“华人家长群 vs Kiwi 家长群” | 🟡 样片已出，48.5 秒，等 Frank 看 | `scripts/parents_group.json` |
 | 视频实际发布 | ⬜ 未发布 | — |
 
 ## 3. 目录结构
@@ -42,6 +42,7 @@ python3 make.py scripts/nz_birds.json out/nz_birds.mp4   # 完整渲染，约 1 
 - 每条台词：`["角色", "英文"]`，要加中文字幕就写 `["角色", "英文", "中文"]`；系统消息写成 `["sys", "文字"]`。
 - 字段完整说明见 `scripts/README.md`。
 - **依赖**：Python 3 + Pillow、ffmpeg、Inter 字体（`/usr/share/fonts/opentype/inter/`）、文泉驿正黑（`/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`）。换环境时先确认这两个字体路径。
+- **在 Frank 的 Windows 电脑上**：`make.py` 会自动改用 Segoe UI 和微软雅黑（雅黑有真粗体，不再描边）。系统自带的 Python 3.10 的 pip 坏了，用 F 盘的环境：`F:\Bo\.venvs\groupchat\Scripts\python.exe make.py ...`（已装 Pillow；ffmpeg 已在 PATH 里）。分支的工作目录在 `F:\Bo\codex-work\hl-videos`
 
 ## 5. 已确定的规格和偏好
 - 1080×1920 竖屏，30fps，H.264，**无声音**（发布时在 TikTok 或 Reels app 里加热门音乐）

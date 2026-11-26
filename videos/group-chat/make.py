@@ -14,12 +14,21 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 W, H, FPS = 1080, 1920, 30
 LATIN_DIR = "/usr/share/fonts/opentype/inter/"
 CJK_FONT = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
+# Windows has no Inter or WenQuanYi: use Segoe UI and Microsoft YaHei instead.
+WIN = os.name == "nt"
+WIN_FONTS = os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts")
+WIN_LATIN = {"Regular": "segoeui.ttf", "Medium": "segoeui.ttf", "SemiBold": "seguisb.ttf", "Bold": "segoeuib.ttf"}
+WIN_CJK = {"Regular": "msyh.ttc", "Medium": "msyh.ttc", "SemiBold": "msyhbd.ttc", "Bold": "msyhbd.ttc"}
 
 _cache = {}
 def F(weight, size, cjk=False):
     key = (weight, size, cjk)
     if key not in _cache:
-        _cache[key] = ImageFont.truetype(CJK_FONT, size) if cjk else ImageFont.truetype(LATIN_DIR + f"Inter-{weight}.otf", size)
+        if WIN:
+            path = os.path.join(WIN_FONTS, (WIN_CJK if cjk else WIN_LATIN)[weight])
+        else:
+            path = CJK_FONT if cjk else LATIN_DIR + f"Inter-{weight}.otf"
+        _cache[key] = ImageFont.truetype(path, size)
     return _cache[key]
 
 def is_cjk(ch):
@@ -32,7 +41,8 @@ class Text:
         self.lat, self.cjk = F(weight, size), F(weight, size, cjk=True)
         self.size = size
         # WenQuanYi has one weight: fake bold with a thin stroke.
-        self.stroke = {"Bold": 2, "SemiBold": 1}.get(weight, 0)
+        # YaHei on Windows has a real bold, so no stroke there.
+        self.stroke = 0 if WIN else {"Bold": 2, "SemiBold": 1}.get(weight, 0)
     def runs(self, s):
         out = []
         for ch in s:

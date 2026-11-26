@@ -1,0 +1,40 @@
+{
+  "title": ["当华人家长和 Kiwi 家长", "进了同一个班级群"],
+  "strip": "有没有说中你？转给家长群",
+  "watermark": "Hamilton Local",
+  "group": "Room 8 Parents",
+  "group_initials": "R8",
+  "input_hint": "输入消息",
+  "me": "王妈妈",
+  "timing": {"zh_cps": 7},
+  "cast": {
+    "王妈妈":    {"avatar": [200, 90, 110],  "name": "#C0506A"},
+    "Mrs Brown": {"avatar": [70, 50, 110],   "name": "#6A4FB0"},
+    "张妈妈":    {"avatar": [210, 140, 40],  "name": "#C77D10"},
+    "李爸爸":    {"avatar": [40, 90, 160],   "name": "#2E62B8"},
+    "Sarah":     {"avatar": [60, 140, 90],   "name": "#2E8B57"},
+    "Dave":      {"avatar": [110, 90, 70],   "name": "#8B5A2B"}
+  },
+  "script": [
+    ["sys", "Mrs Brown 创建了群聊 “Room 8 Parents”"],
+    ["Mrs Brown", "Kia ora! Good news: no homework this term", "Kia ora！好消息：这学期没有作业"],
+    ["张妈妈", "没有作业？？那我自己出"],
+    ["李爸爸", "我家报了奥数、钢琴、游泳、中文。周日还空着，求推荐"],
+    ["Sarah", "Mine just plays in the mud after school", "我家放学就在泥里玩"],
+    ["王妈妈", "泥里玩是什么班？一节课多少钱？"],
+    ["Dave", "Free, mate. It's called the backyard", "免费的兄弟，叫后院"],
+    ["Mrs Brown", "Reminder: no hat, no play", "提醒一下：没戴帽子不能出去玩"],
+    ["张妈妈", "帽子、SPF50 防晒霜、防晒袖套都备好了，还买了个小风扇"],
+    ["Sarah", "Jake went to school barefoot today", "Jake 今天光脚去上学了"],
+    ["李爸爸", "鞋呢？？"],
+    ["Dave", "Probably at the beach", "可能在海边吧"],
+    ["Mrs Brown", "Cross country next week! Just have fun", "下周越野跑！开心就好"],
+    ["王妈妈", "有排名吗？我家已经每天晨跑 5 公里了"],
+    ["Dave", "Relax. She'll be right", "放轻松，She'll be right"],
+    ["张妈妈", "She 是谁？哪个班的？"]
+  ],
+  "outro": {
+    "lines": ["在 Hamilton 怎么查学区？", "学区查询、学期日期 · 搜 Hamilton Local"],
+    "hold": 3.0
+  }
+}
