@@ -308,6 +308,90 @@
   ],
   "news": [
     {
+      "id": "hamilton-east-flips",
+      "date": "2026-11-27",
+      "until": "2026-12-31",
+      "topics": [
+        "money"
+      ],
+      "titleZh": "汉密尔顿东区（Hamilton East）选区翻盘，工党 Georgie Dansey 胜出",
+      "titleEn": "Hamilton East flips to Labour's Georgie Dansey",
+      "bodyZh": "今天（11 月 27 日）公布的大选最终结果（含特殊票）显示，工党（Labour）的 Georgie Dansey 以 173 票之差，赢下原由国家党（National）Ryan Hamilton 担任议员的汉密尔顿东区（Hamilton East）选区。",
+      "bodyEn": "Final results released today, including special votes, show Labour's Georgie Dansey has won Hamilton East from National's Ryan Hamilton by 173 votes.",
+      "takeZh": "住东区的，以后找选区议员反映问题，找的就是 Georgie Dansey 的办公室了。",
+      "takeEn": "If you live in Hamilton East, Georgie Dansey's office is now the one to contact about local issues.",
+      "source": "NZ Herald",
+      "url": "https://www.nzherald.co.nz/nz/election-2026-georgie-dansey-claims-hamilton-east-seat-in-final-result/BJBNGFEW2FGSXDDLLXY72POFWA/"
+    },
+    {
+      "id": "tree-lighting-free-parking",
+      "date": "2026-11-27",
+      "until": "2027-01-03",
+      "topics": [
+        "kids",
+        "travel",
+        "money"
+      ],
+      "titleZh": "明天（周六）圣诞树点灯，Garden Place 停车场下午 3 点后免费",
+      "titleEn": "Christmas tree lighting on Saturday, free Garden Place parking from 3pm",
+      "bodyZh": "汉密尔顿市议会（Hamilton City Council）今天公布节庆安排：明天 11 月 28 日（周六）下午 5 点到 9 点，花园广场（Garden Place）办圣诞树点灯节；当天下午 3 点到午夜，市议会的 Garden Place 停车场免费。12 月 5 日（周六）同样 3 点后免费，12 月 19 日、24 日、26 日全天免费。",
+      "bodyEn": "Hamilton City Council says the Christmas Tree Lighting Festival runs in Garden Place from 5pm to 9pm on Saturday 28 November, and the council's Garden Place Car Park is free from 3pm to midnight that day. It is also free from 3pm on 5 December and all day on 19, 24 and 26 December.",
+      "takeZh": "想带孩子看点灯，3 点后开进 Garden Place 停车场，停车不花钱。",
+      "takeEn": "Taking the kids to the lighting? Park at Garden Place after 3pm for free.",
+      "source": "Hamilton City Council",
+      "url": "https://hamilton.govt.nz/your-council/news/festive-fun-is-taking-over-hamiltons-central-city"
+    },
+    {
+      "id": "school-camp-gastro",
+      "date": "2026-11-27",
+      "until": "2026-12-11",
+      "topics": [
+        "health",
+        "kids"
+      ],
+      "titleZh": "Marian Catholic School 营地后爆发肠胃炎",
+      "titleEn": "Gastro outbreak after Marian Catholic School camp",
+      "bodyZh": "国家公共卫生服务（National Public Health Service）说，11 月 18 日至 20 日在怀卡托（Waikato）举行的 Marian Catholic School 营地约有 400 多人参加，之后多名学生、家长和至少两名老师上吐下泻，没去营地的家人也有人被传染，原因还在查。",
+      "bodyEn": "The National Public Health Service says a number of students, parents and at least two staff fell ill after the Marian Catholic School camp on 18 to 20 November, attended by more than 400 people. Some household members who did not go have also been sick, and the cause is still being investigated.",
+      "takeZh": "家里有人上吐下泻，症状停了 48 小时再去上学上班；不放心就打 Healthline 0800 611 116，免费。",
+      "takeEn": "Anyone with gastro should stay home until 48 hours after symptoms stop. Healthline is free on 0800 611 116.",
+      "source": "RNZ",
+      "url": "https://www.rnz.co.nz/news/health/2800879/gastroenteritis-outbreak-at-waikato-school-camp"
+    },
+    {
+      "id": "supergold-peak-buses",
+      "date": "2026-11-27",
+      "until": "2027-02-28",
+      "topics": [
+        "money",
+        "travel"
+      ],
+      "titleZh": "SuperGold 卡高峰时段免费坐公交，可能保留",
+      "titleEn": "Free peak-hour buses for SuperGold holders may stay",
+      "bodyZh": "怀卡托区域议会（Waikato Regional Council）8 月曾打算取消，遭居民强烈反对。现在公共交通小组委员会建议保留工作日早 7 点到 9 点、下午 3 点到 6 点半的免费乘车，还要等议员最终批准。",
+      "bodyEn": "Waikato Regional Council had signalled in August that it would axe the scheme, but after strong opposition its public transport subcommittee now recommends keeping free weekday travel from 7am to 9am and 3pm to 6.30pm. Councillors still need to approve it.",
+      "takeZh": "家里老人高峰时段坐车去医院的，先照常坐，等议会最后拍板。",
+      "takeEn": "Older family members can keep riding at peak times for now while councillors decide.",
+      "source": "Waikato Times",
+      "url": "https://www.waikatotimes.co.nz/nz-news/361124068/victory-supergold-card-holders-bus-battle"
+    },
+    {
+      "id": "woolworths-atms-removed",
+      "date": "2026-11-27",
+      "until": "2027-01-31",
+      "topics": [
+        "money"
+      ],
+      "titleZh": "三家 Woolworths 门口的 ATM 被撤了",
+      "titleEn": "ATMs removed at three Waikato Woolworths stores",
+      "bodyZh": "西太平洋银行（Westpac）以需求下降为由，撤走了 Bridge St、Te Rapa 和蒂阿瓦穆图（Te Awamutu）三家 Woolworths 的 ATM。Woolworths 说正在和新的服务商安装替代 ATM。",
+      "bodyEn": "Westpac has removed the ATMs at the Bridge St, Te Rapa and Te Awamutu Woolworths stores, citing falling demand. Woolworths says it is working with a new provider to install replacements.",
+      "takeZh": "需要现金的，先别指望超市门口那台了，提前在别处取好。",
+      "takeEn": "If you need cash, get it elsewhere before you go shopping.",
+      "source": "Waikato Times",
+      "url": "https://www.waikatotimes.co.nz/business/361123961/why-woolworths-atms-have-disappeared"
+    },
+    {
       "id": "el-nino-water",
       "date": "2026-11-23",
       "until": "2027-03-31",
