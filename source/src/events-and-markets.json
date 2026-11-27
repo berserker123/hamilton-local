@@ -144,28 +144,6 @@
       "http_status": 200
     },
     {
-      "id": "one-man-two-guvnors-2026",
-      "title_zh": "话剧《一仆二主》One Man, Two Guvnors",
-      "title_en": "One Man, Two Guvnors",
-      "dates": [
-        "2026-11-26",
-        "2026-11-27",
-        "2026-11-28",
-        "2026-11-29"
-      ],
-      "time": "Thu, Fri & Sat 19:30; Sun 13:30",
-      "venue": "The Woolshed Theatre, 268 Mahoe Street",
-      "town": "Te Awamutu",
-      "price_zh": "有薪 $30 / 无薪 $25（另加手续费）",
-      "price_en": "Waged $30 / un-waged $25 (+ fees)",
-      "source_url": "https://www.eventfinda.co.nz/2026/one-man-two-guvnors/te-awamutu",
-      "source_kind": "Eventfinda (Te Awamutu Light Operatic Society)",
-      "from_facebook": false,
-      "family_friendly": false,
-      "notes_zh": "PG-13；演出至 12 月 12 日。",
-      "http_status": 200
-    },
-    {
       "id": "pre-loved-market-tamahere-2026-11-26",
       "title_zh": "二手服饰·古着·手作市集 Pre-Loved Clothing, Vintage and Craft Market",
       "title_en": "Pre-Loved Clothing, Vintage and Craft Market",
@@ -200,45 +178,6 @@
       "source_kind": "Eventfinda",
       "from_facebook": false,
       "family_friendly": true,
-      "http_status": 200
-    },
-    {
-      "id": "disenchanted-riverlea-2026",
-      "title_zh": "音乐剧《解构童话》Disenchanted!",
-      "title_en": "Disenchanted!",
-      "dates": [
-        "2026-11-27",
-        "2026-11-28"
-      ],
-      "time": "Fri & Sat 19:30–21:30",
-      "venue": "Riverlea Theatre, 83 Riverlea Road, Riverlea",
-      "town": "Hamilton",
-      "price_zh": "$45；部分场次优惠 $35（另加手续费）",
-      "price_en": "Seated $45; selected concession shows $35 (+ fees)",
-      "source_url": "https://www.eventfinda.co.nz/2026/disenchanted/waikato",
-      "source_kind": "Eventfinda (Riverlea Theatre)",
-      "from_facebook": false,
-      "family_friendly": false,
-      "notes_zh": "R13 分级；演出至 12 月 12 日。",
-      "http_status": 200
-    },
-    {
-      "id": "mantra-lounge-kirtan-2026-11-27",
-      "title_zh": "音乐冥想与素食晚餐 Live Music, Meditation, Yoga Wisdom & Delicious Feast",
-      "title_en": "Live Music, Meditation, Yoga Wisdom & Delicious Feast",
-      "dates": [
-        "2026-11-27"
-      ],
-      "time": "18:00–20:30",
-      "venue": "Mantra Lounge, 64 Cook Street",
-      "town": "Hamilton",
-      "price_zh": "$10（含素食晚餐）；学生 $5",
-      "price_en": "$10 incl. plant-based dinner; students $5",
-      "source_url": "https://www.eventfinda.co.nz/2026/live-music-meditation-yoga-wisdom-delicous-feast-for-10/waikato",
-      "source_kind": "Eventfinda",
-      "from_facebook": false,
-      "family_friendly": false,
-      "notes_zh": "标价 $10，另加 $0.25 手续费；全年龄。",
       "http_status": 200
     },
     {
@@ -431,25 +370,6 @@
       "http_status": 200
     },
     {
-      "id": "murder-mystery-dinner-zenders-2026-11-28",
-      "title_zh": "互动推理晚宴 Lights! Camera! Murder!",
-      "title_en": "Lights! Camera! Murder! – Mystery Dinner Theatre",
-      "dates": [
-        "2026-11-28"
-      ],
-      "time": "19:00",
-      "venue": "Zenders, 44 Hopkins Road",
-      "town": "Hamilton",
-      "price_zh": "$135（含两道菜晚餐，另加手续费）",
-      "price_en": "$135 incl. 2-course dinner (+ fees)",
-      "source_url": "https://www.eventfinda.co.nz/2026/lights-camera-murder-mystery-dinner-theatre/hamilton",
-      "source_kind": "Eventfinda (Prime Productions)",
-      "from_facebook": false,
-      "family_friendly": false,
-      "notes_zh": "R18 分级。",
-      "http_status": 200
-    },
-    {
       "id": "national-band-cambridge-2026-11-28",
       "title_zh": "新西兰国家铜管乐团音乐会 National Band of New Zealand",
       "title_en": "National Band of New Zealand",
@@ -507,69 +427,6 @@
       "http_status": 200
     },
     {
-      "id": "resonate-masterclasses-2026-11-28",
-      "title_zh": "铜管乐大师班与工作坊 Resonate: Brass Band Masterclasses & Workshops",
-      "title_en": "Resonate: Brass Band Masterclasses and Workshops",
-      "dates": [
-        "2026-11-28"
-      ],
-      "time": "09:30–16:00",
-      "venue": "St Peter's Cambridge, 1716 Cambridge Road",
-      "town": "Cambridge",
-      "price_zh": "免费，需报名",
-      "price_en": "Free; registration required",
-      "source_url": "https://www.eventfinda.co.nz/2026/resonate-brass-band-masterclasses-and-workshops/cambridge",
-      "source_kind": "Eventfinda",
-      "from_facebook": false,
-      "family_friendly": true,
-      "notes_zh": "由国家铜管乐团成员授课。",
-      "http_status": 200
-    },
-    {
-      "id": "rogs-last-dance-2026-11-28",
-      "title_zh": "Rog 告别演出 Rog’s Last Dance",
-      "title_en": "Rog’s Last Dance",
-      "dates": [
-        "2026-11-28"
-      ],
-      "time": "20:00",
-      "venue": "Claudelands Arena, Claudelands Event Centre, Brooklyn Road",
-      "town": "Hamilton",
-      "price_zh": "票价待确认（需购票）",
-      "price_en": "Ticketed; price 待确认",
-      "source_url": "https://hlive.co.nz/events/rogs-last-dance",
-      "also": [
-        "https://www.eventfinda.co.nz/2026/rogs-last-dance/hamilton"
-      ],
-      "source_kind": "HLive (Hamilton City Council venues) + Eventfinda",
-      "from_facebook": false,
-      "family_friendly": false,
-      "notes_zh": "The Morning Rumble 一夜限定现场秀，嘉宾 Jon Toogood；HLive 页面仍写时间待公布，晚 8 点为 Eventfinda 列出的开场时间。",
-      "http_status": 200
-    },
-    {
-      "id": "rumble-on-the-river-2026-11-28",
-      "title_zh": "黑领拳击慈善之夜 Rumble on the River",
-      "title_en": "Rumble on the River",
-      "dates": [
-        "2026-11-28"
-      ],
-      "time": "18:00",
-      "venue": "Heaphy Room, Claudelands Event Centre",
-      "town": "Hamilton",
-      "price_zh": "票价待确认（需购票）",
-      "price_en": "Ticketed; price 待确认",
-      "source_url": "https://hlive.co.nz/events/rumble-on-the-river",
-      "also": [
-        "https://www.eventfinda.co.nz/2026/rumble-on-the-river/hamilton"
-      ],
-      "source_kind": "HLive (Hamilton City Council venues) + Eventfinda",
-      "from_facebook": false,
-      "family_friendly": false,
-      "notes_zh": "Liam Messam 领衔的黑领拳击慈善夜，为 Movember 筹款。",
-      "http_status": 200
-    },
-    {
       "id": "tree-lighting-festival-2026-11-28",
       "title_zh": "圣诞树点灯节 SkyCity Hamilton Christmas Tree Lighting Festival",
       "title_en": "SkyCity Hamilton Christmas Tree Lighting Festival",
@@ -620,13 +477,13 @@
       "time": "Sat 11:00–14:40; Sun 11:20–14:40",
       "venue": "Centre Place, 501 Victoria Street",
       "town": "Hamilton",
-      "price_zh": "儿童（3 岁以上）$15.50 / 成人或长者 $17.50 / 13–19 岁 $16.50 / 3 岁以下 $12.50 / 家庭票（2 大 2 小）每人 $15（另加手续费）",
-      "price_en": "Child (over 3) $15.50 / adult or senior $17.50 / teen (13–19) $16.50 / child under 3 $12.50 / family pass (2 adults + 2 kids) $15 each (+ fees)",
+      "price_zh": "儿童 $15.50 / 成人 $17.50（另有家庭票等，另加手续费）",
+      "price_en": "Child $15.50 / adult $17.50 (family pass and other tiers; + fees)",
       "source_url": "https://www.eventfinda.co.nz/2025/glotron/hamilton",
       "source_kind": "Eventfinda",
       "from_facebook": false,
       "family_friendly": true,
-      "notes_zh": "室内荧光迷宫，全年龄，约 35 分钟；每 20 分钟一场，时间为入场时间。现场可买票，建议提前订。",
+      "notes_zh": "室内荧光迷宫，全年龄，约 35 分钟；每 20 分钟一场，时间为入场时间。票价：3 岁以上儿童 $15.50、成人或长者 $17.50、13–19 岁 $16.50、3 岁以下 $12.50、家庭票（2 大 2 小）每人 $15，背带里的婴儿免费（均另加手续费）。现场可买票，建议提前订。",
       "http_status": 200
     },
     {
@@ -964,6 +821,41 @@
       "name": "Hamilton Christmas Parade",
       "reason": "日期是 12 月 6 日，不在本周。",
       "url": "https://hamiltonchristmas.co.nz/"
+    },
+    {
+      "name": "One Man, Two Guvnors",
+      "reason": "在 Te Awamutu 的英式台词喜剧（PG-13），华人家庭不太会参加，未收录。",
+      "url": "https://www.eventfinda.co.nz/2026/one-man-two-guvnors/te-awamutu"
+    },
+    {
+      "name": "Disenchanted!",
+      "reason": "R13 音乐剧，英文梗多，华人家庭不太会参加，未收录。",
+      "url": "https://www.eventfinda.co.nz/2026/disenchanted/waikato"
+    },
+    {
+      "name": "Live Music, Meditation, Yoga Wisdom & Delicious Feast",
+      "reason": "带宗教色彩的唱诵冥想，未收录。",
+      "url": "https://www.eventfinda.co.nz/2026/live-music-meditation-yoga-wisdom-delicous-feast-for-10/waikato"
+    },
+    {
+      "name": "Lights! Camera! Murder! – Mystery Dinner Theatre",
+      "reason": "R18 推理晚宴，每人 $135，华人家庭不太会参加，未收录。",
+      "url": "https://www.eventfinda.co.nz/2026/lights-camera-murder-mystery-dinner-theatre/hamilton"
+    },
+    {
+      "name": "Resonate: Brass Band Masterclasses and Workshops",
+      "reason": "给铜管乐演奏者的大师班，受众太窄，未收录。",
+      "url": "https://www.eventfinda.co.nz/2026/resonate-brass-band-masterclasses-and-workshops/cambridge"
+    },
+    {
+      "name": "Rog’s Last Dance",
+      "reason": "本地电台主持人告别秀，不熟悉节目的人兴趣不大，未收录。",
+      "url": "https://hlive.co.nz/events/rogs-last-dance"
+    },
+    {
+      "name": "Rumble on the River",
+      "reason": "业余拳击慈善夜，华人家庭不太会参加，未收录。",
+      "url": "https://hlive.co.nz/events/rumble-on-the-river"
     }
   ],
   "network_recheck": {
