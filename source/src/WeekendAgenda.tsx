@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import DATA from './events-and-markets.json';
 import { AGENDA } from './agenda-data';
+import { chineseDate, englishDate } from './agenda-dates';
 import { displayPrice, priceTone } from './weekend-status';
 
 type T = (zh: string, en: string) => string;
@@ -21,11 +22,8 @@ const picks = AGENDA.picks;
 const festivals = AGENDA.festivals.map(item => 'dates' in item ? item : {
   ...item, dates: [] as string[], time: item.hours, price_zh: '费用待确认', price_en: 'Price unconfirmed',
 });
-const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-export function chineseDate(date: string) {
-  const [year, month, day] = date.split('-').map(Number);
-  return `${month}月${day}日 ${weekdays[new Date(Date.UTC(year, month - 1, day)).getUTCDay()]}`;
-}
+export { chineseDate };
+const agendaDate = (date: string, t: T) => t(chineseDate(date), englishDate(date));
 function Sources({ item, t }: { item: { source_url: string; also?: string[] }; t: T }) {
   const urls = [item.source_url];
   return <div className="wa-sources caption-4">{urls.map((url, i) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${t('查看来源', 'View source')} ${i + 1}${url.includes('facebook.com') ? ' Facebook' : ''}`} className="wa-source">{url.includes('openfoodnetwork.nz') ? t('来源待确认', 'Source unconfirmed') : i === 0 ? t('来源', 'Source') : url.includes('facebook.com') ? 'Facebook' : t(`来源 ${i + 1}`, `Source ${i + 1}`)}<ArrowUpRight aria-hidden="true" /></a>)}</div>;
@@ -61,7 +59,7 @@ function EventRow({ item, t }: { item: Event; t: T }) {
   const notes = eventNotes(item);
   const timeUnconfirmed = !multi && item.time.startsWith('待确认');
   const when = multi
-    ? `${chineseDate(item.dates[0])} – ${chineseDate(item.dates.at(-1)!)}`
+    ? `${agendaDate(item.dates[0], t)} – ${agendaDate(item.dates.at(-1)!, t)}`
     : (timeUnconfirmed ? t('时间待确认', 'Time unconfirmed') : eventTimeLabel(item.time, t));
   const price = displayPrice(item.price_zh, item.price_en);
   return <article className="wa-row wa-event" data-event-id={item.id} data-past={eventClosed(item) ? 'true' : undefined}>
@@ -100,7 +98,7 @@ function MarketRow({ item, t }: { item: Market; t: T }) {
 function EventGroups({ items, t }: { items: Event[]; t: T }) {
   const days = [...new Set(items.filter(e => e.dates.length === 1).map(e => e.dates[0]))].sort();
   const continuous = items.filter(e => e.dates.length > 1).sort((a,b)=>a.dates[0].localeCompare(b.dates[0]));
-  const groups = [...days.map(day=>({key:day, label:chineseDate(day), items:items.filter(e=>e.dates.length===1 && e.dates[0]===day).sort((a,b)=>a.time.localeCompare(b.time))})), ...(continuous.length?[{key:'ongoing',label:t('多日活动', 'Across several days'),items:continuous}]:[])];
+  const groups = [...days.map(day=>({key:day, label:agendaDate(day, t), items:items.filter(e=>e.dates.length===1 && e.dates[0]===day).sort((a,b)=>a.time.localeCompare(b.time))})), ...(continuous.length?[{key:'ongoing',label:t('多日活动', 'Across several days'),items:continuous}]:[])];
   const undated=items.filter(e=>!e.dates.length);
   if(undated.length)groups.push({key:'unconfirmed',label:t('日期待确认','Dates unconfirmed'),items:undated});
   return <>{groups.map(group=><section key={group.key} className="wa-day" data-agenda-day={group.key} aria-label={group.label}><h3 className="wa-day-label caption-3">{group.key==='unconfirmed' ? group.label : group.key==='ongoing' ? <><span>{t('多日活动', 'Several days')}</span><small className="caption-5">{t('各项日期见下', 'See each date range')}</small></> : <time dateTime={group.key}>{group.label}</time>}</h3><div className="wa-day-rows">{group.items.map(item=><EventRow key={item.id} item={item} t={t}/>)}</div></section>)}</>;
