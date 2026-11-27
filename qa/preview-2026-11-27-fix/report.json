@@ -1,0 +1,162 @@
+[
+ {
+  "name": "desktop",
+  "theme": "day",
+  "lang": "zh",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | 荧光迷宫 | GLOtron! | Centre Place, 501 Victoria Street | 周六 11:00–14:40; 周日 11:20–14:40 | 儿童（3 岁以上）$15.50 / 成人或长者 $17.50 / 13–19 岁 $16.50 / 3 岁以下 $12.50 / 家庭票（2 大 2 小）每人 $15（另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "day",
+  "lang": "zh",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | 圣诞家庭剧《圣诞老人与丛林宝箱》 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | 周五 19:00–21:00; 周六、周日 14:00–16:00 | $30（可能另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "day",
+  "lang": "en",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | GLOtron! | Centre Place, 501 Victoria Street | Sat 11:00–14:40; Sun 11:20–14:40 | Child (over 3) $15.50 / adult or senior $17.50 / teen (13–19) $16.50 / child under 3 $12.50 / family pass (2 adults + 2 kids) $15 each (+ fees) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "day",
+  "lang": "en",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | Fri 19:00–21:00; Sat & Sun 14:00–16:00 | General seated admission $30 (fees may apply) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "night",
+  "lang": "zh",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | 荧光迷宫 | GLOtron! | Centre Place, 501 Victoria Street | 周六 11:00–14:40; 周日 11:20–14:40 | 儿童（3 岁以上）$15.50 / 成人或长者 $17.50 / 13–19 岁 $16.50 / 3 岁以下 $12.50 / 家庭票（2 大 2 小）每人 $15（另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "night",
+  "lang": "zh",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | 圣诞家庭剧《圣诞老人与丛林宝箱》 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | 周五 19:00–21:00; 周六、周日 14:00–16:00 | $30（可能另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "night",
+  "lang": "en",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | GLOtron! | Centre Place, 501 Victoria Street | Sat 11:00–14:40; Sun 11:20–14:40 | Child (over 3) $15.50 / adult or senior $17.50 / teen (13–19) $16.50 / child under 3 $12.50 / family pass (2 adults + 2 kids) $15 each (+ fees) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "night",
+  "lang": "en",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | Fri 19:00–21:00; Sat & Sun 14:00–16:00 | General seated admission $30 (fees may apply) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "day",
+  "lang": "zh",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | 荧光迷宫 | GLOtron! | Centre Place, 501 Victoria Street | 周六 11:00–14:40; 周日 11:20–14:40 | 儿童（3 岁以上）$15.50 / 成人或长者 $17.50 / 13–19 岁 $16.50 / 3 岁以下 $12.50 / 家庭票（2 大 2 小）每人 $15（另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "day",
+  "lang": "zh",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | 圣诞家庭剧《圣诞老人与丛林宝箱》 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | 周五 19:00–21:00; 周六、周日 14:00–16:00 | $30（可能另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "day",
+  "lang": "en",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | GLOtron! | Centre Place, 501 Victoria Street | Sat 11:00–14:40; Sun 11:20–14:40 | Child (over 3) $15.50 / adult or senior $17.50 / teen (13–19) $16.50 / child under 3 $12.50 / family pass (2 adults + 2 kids) $15 each (+ fees) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "day",
+  "lang": "en",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | Fri 19:00–21:00; Sat & Sun 14:00–16:00 | General seated admission $30 (fees may apply) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "night",
+  "lang": "zh",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | 荧光迷宫 | GLOtron! | Centre Place, 501 Victoria Street | 周六 11:00–14:40; 周日 11:20–14:40 | 儿童（3 岁以上）$15.50 / 成人或长者 $17.50 / 13–19 岁 $16.50 / 3 岁以下 $12.50 / 家庭票（2 大 2 小）每人 $15（另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "night",
+  "lang": "zh",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | 圣诞家庭剧《圣诞老人与丛林宝箱》 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | 周五 19:00–21:00; 周六、周日 14:00–16:00 | $30（可能另加手续费） | 来源",
+  "hasCjk": null,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "night",
+  "lang": "en",
+  "region": "Hamilton",
+  "text": "11月28日 周六 – 11月29日 周日 | GLOtron! | Centre Place, 501 Victoria Street | Sat 11:00–14:40; Sun 11:20–14:40 | Child (over 3) $15.50 / adult or senior $17.50 / teen (13–19) $16.50 / child under 3 $12.50 / family pass (2 adults + 2 kids) $15 each (+ fees) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "night",
+  "lang": "en",
+  "region": "Cambridge",
+  "text": "11月27日 周五 – 11月29日 周日 | Santa and the Jungle Chest | Gaslight Theatre, 8 Alpha Street | Fri 19:00–21:00; Sat & Sun 14:00–16:00 | General seated admission $30 (fees may apply) | Source",
+  "hasCjk": true,
+  "overflow": false,
+  "errors": 0
+ }
+]

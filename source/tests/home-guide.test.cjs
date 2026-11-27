@@ -5,7 +5,7 @@ function load(){const result=esbuild.buildSync({entryPoints:['src/home-guide-dat
 test('homepage counts reflect actual party, playground and non-festival pick records',()=>{
  const {guideStats}=load();
  const stats=guideStats(9);
- assert.deepEqual(stats.map(s=>s.count),[118,12,32,9]);
+ assert.deepEqual(stats.map(s=>s.count),[118,12,35,9]);
  assert.deepEqual(stats.map(s=>s.href),['/kids/parties/','/kids/map/','/whatson/picks/','/services/home/']);
  assert.match(stats[3].note.en,/Open for listings/);
  assert.equal(guideStats(0)[3].count,0);

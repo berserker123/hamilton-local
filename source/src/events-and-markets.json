@@ -286,6 +286,27 @@
       "http_status": 200
     },
     {
+      "id": "santa-and-the-jungle-chest-2026",
+      "title_zh": "圣诞家庭剧《圣诞老人与丛林宝箱》",
+      "title_en": "Santa and the Jungle Chest",
+      "dates": [
+        "2026-11-27",
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "time": "Fri 19:00–21:00; Sat & Sun 14:00–16:00",
+      "venue": "Gaslight Theatre, 8 Alpha Street",
+      "town": "Cambridge",
+      "price_zh": "$30（可能另加手续费）",
+      "price_en": "General seated admission $30 (fees may apply)",
+      "source_url": "https://www.eventfinda.co.nz/2026/santa-and-the-jungle-chest/waikato",
+      "source_kind": "Eventfinda (Cambridge Repertory Society)",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "剑桥话剧社圣诞剧，全年龄；订票电话 022 084 4360。12 月 1 日起还有场次。",
+      "http_status": 200
+    },
+    {
       "id": "beauty-and-the-beast-raglan-2026",
       "title_zh": "儿童剧《美女与野兽》Beauty and the Beast",
       "title_en": "Beauty and the Beast",
@@ -564,8 +585,11 @@
       "source_kind": "Eventfinda (Core Events)",
       "from_facebook": false,
       "family_friendly": true,
-      "notes_zh": "首次点亮圣诞树；Jingles 互动与舞台表演。",
-      "http_status": 200
+      "notes_zh": "首次点亮圣诞树；Jingles 互动与舞台表演。当天 15:00 至午夜 Garden Place 停车场免费（市政府 11-18 新闻）。",
+      "http_status": 200,
+      "also": [
+        "https://hamilton.govt.nz/your-council/news/hamilton-unwraps-free-parking-this-festive-season"
+      ]
     },
     {
       "id": "wintec-career-choices-day-2026-11-28",
@@ -583,6 +607,45 @@
       "source_kind": "Eventfinda (Wintec)",
       "from_facebook": false,
       "family_friendly": false,
+      "http_status": 200
+    },
+    {
+      "id": "glotron-2026-11-28",
+      "title_zh": "荧光迷宫 GLOtron!",
+      "title_en": "GLOtron!",
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "time": "Sat 11:00–14:40; Sun 11:20–14:40",
+      "venue": "Centre Place, 501 Victoria Street",
+      "town": "Hamilton",
+      "price_zh": "儿童（3 岁以上）$15.50 / 成人或长者 $17.50 / 13–19 岁 $16.50 / 3 岁以下 $12.50 / 家庭票（2 大 2 小）每人 $15（另加手续费）",
+      "price_en": "Child (over 3) $15.50 / adult or senior $17.50 / teen (13–19) $16.50 / child under 3 $12.50 / family pass (2 adults + 2 kids) $15 each (+ fees)",
+      "source_url": "https://www.eventfinda.co.nz/2025/glotron/hamilton",
+      "source_kind": "Eventfinda",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "室内荧光迷宫，全年龄，约 35 分钟；每 20 分钟一场，时间为入场时间。现场可买票，建议提前订。",
+      "http_status": 200
+    },
+    {
+      "id": "scratchmaths-rototuna-2026-11-28",
+      "title_zh": "儿童编程艺术课 Exploring with ScratchMaths – Generative Art",
+      "title_en": "Exploring with ScratchMaths – Generative Art",
+      "dates": [
+        "2026-11-28"
+      ],
+      "time": "15:00–16:30",
+      "venue": "Te Kete Aronui Rototuna Library, 30 North City Road",
+      "town": "Hamilton",
+      "price_zh": "免费，需报名",
+      "price_en": "Free; sign-up required",
+      "source_url": "https://hamiltonlibraries.co.nz/all-events/whats-on/exploring-with-scratchmaths-generative-art",
+      "source_kind": "Official library (Hamilton City Libraries)",
+      "from_facebook": false,
+      "family_friendly": true,
+      "notes_zh": "4 周课程（11/28、12/5、12/12、12/19 周六），面向 Year 5–7；自带电脑；14 岁以下需家长陪同。",
       "http_status": 200
     },
     {
