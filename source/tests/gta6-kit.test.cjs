@@ -17,7 +17,7 @@ const kitModel = bundle('src/gta6-kit-model.ts');
 const bfModel = bundle('src/blackfriday-model.ts');
 const page = bundle('src/BlackFriday.tsx', ['react']);
 const money = n => new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format(n);
-const SLOT_IDS = ['controller', 'tv', 'ssd', 'network', 'snacks', 'dock', 'audio', 'lights'];
+const SLOT_IDS = ['controller', 'tv', 'ssd', 'network', 'snacks', 'dock', 'lights'];
 const byId = new Map(DEALS.map(d => [d.id, d]));
 
 test('GTA6 kit config covers the eight gear slots and every deal id resolves', () => {

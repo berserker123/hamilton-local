@@ -70,7 +70,7 @@ test('preview data has real source URLs and never substitutes list price for his
   for (const d of data) {
     assert.ok(d.name && d.nameZh && d.category && d.store && d.addedAt && d.historyNote);
     assert.ok(validCategories.has(d.category), `unexpected category ${d.category} on ${d.id}`);
-    assert.ok(d.salePrice > 0 && /^2026-11-25/.test(d.checkedAt), d.id);
+    assert.ok(d.salePrice > 0 && /^2026-11-27/.test(d.checkedAt), d.id);
     assert.ok(d.sources.includes(d.productUrl));
     assert.match(d.productUrl, /^https:\/\//);
     if (d.priceSpyUrl) assert.match(d.priceSpyUrl, /^https:\/\/(pricespy\.co\.nz\/product\.php\?p=\d+|www\.priceme\.co\.nz\/[^/]+\/p-\d+\.aspx)/);
@@ -107,7 +107,7 @@ test('round three retains eight updated categories and records reproducible exac
     assert.match(d.historyEvidence.method, /Median of 90/, d.id);
   }
 });
-test('refresh 2026-11-25: counts, dates, retailer filters (including Bunnings & Mitre 10) and note states come from the data', () => {
+test('refresh 2026-11-27: counts, dates, retailer filters (including Bunnings & Mitre 10) and note states come from the data', () => {
   const React = require('react');
   const { renderToStaticMarkup } = require('react-dom/server');
   const data = require('../src/data/blackfriday.json');
@@ -120,7 +120,7 @@ test('refresh 2026-11-25: counts, dates, retailer filters (including Bunnings & 
   const dates = [...new Set(data.map(d => d.checkedAt.slice(0, 10)))].sort();
   const expectedRange = dates.length > 1 ? `${dates[0]} – ${dates[dates.length - 1]}` : dates[0];
   assert.ok(html.includes(expectedRange));
-  assert.equal(dates.at(-1), '2026-11-25');
+  assert.equal(dates.at(-1), '2026-11-27');
   const blocked = data.filter(d => d.currentPriceRecheck?.status === 'domain-blocked').length;
   assert.equal((html.match(/保留早前记录/g) || []).length, blocked);
   const spyConfirmed = data.filter(d => d.currentPriceRecheck?.status === 'pricespy-offer').length;
