@@ -308,40 +308,6 @@
   ],
   "news": [
     {
-      "id": "hamilton-east-flips",
-      "date": "2026-11-27",
-      "until": "2026-12-31",
-      "topics": [
-        "money"
-      ],
-      "titleZh": "汉密尔顿东区（Hamilton East）选区翻盘，工党 Georgie Dansey 胜出",
-      "titleEn": "Hamilton East flips to Labour's Georgie Dansey",
-      "bodyZh": "今天（11 月 27 日）公布的大选最终结果（含特殊票）显示，工党（Labour）的 Georgie Dansey 以 173 票之差，赢下原由国家党（National）Ryan Hamilton 担任议员的汉密尔顿东区（Hamilton East）选区。",
-      "bodyEn": "Final results released today, including special votes, show Labour's Georgie Dansey has won Hamilton East from National's Ryan Hamilton by 173 votes.",
-      "takeZh": "住东区的，以后找选区议员反映问题，找的就是 Georgie Dansey 的办公室了。",
-      "takeEn": "If you live in Hamilton East, Georgie Dansey's office is now the one to contact about local issues.",
-      "source": "NZ Herald",
-      "url": "https://www.nzherald.co.nz/nz/election-2026-georgie-dansey-claims-hamilton-east-seat-in-final-result/BJBNGFEW2FGSXDDLLXY72POFWA/"
-    },
-    {
-      "id": "tree-lighting-free-parking",
-      "date": "2026-11-27",
-      "until": "2027-01-03",
-      "topics": [
-        "kids",
-        "travel",
-        "money"
-      ],
-      "titleZh": "明天（周六）圣诞树点灯，Garden Place 停车场下午 3 点后免费",
-      "titleEn": "Christmas tree lighting on Saturday, free Garden Place parking from 3pm",
-      "bodyZh": "汉密尔顿市议会（Hamilton City Council）今天公布节庆安排：明天 11 月 28 日（周六）下午 5 点到 9 点，花园广场（Garden Place）办圣诞树点灯节；当天下午 3 点到午夜，市议会的 Garden Place 停车场免费。12 月 5 日（周六）同样 3 点后免费，12 月 19 日、24 日、26 日全天免费。",
-      "bodyEn": "Hamilton City Council says the Christmas Tree Lighting Festival runs in Garden Place from 5pm to 9pm on Saturday 28 November, and the council's Garden Place Car Park is free from 3pm to midnight that day. It is also free from 3pm on 5 December and all day on 19, 24 and 26 December.",
-      "takeZh": "想带孩子看点灯，3 点后开进 Garden Place 停车场，停车不花钱。",
-      "takeEn": "Taking the kids to the lighting? Park at Garden Place after 3pm for free.",
-      "source": "Hamilton City Council",
-      "url": "https://hamilton.govt.nz/your-council/news/festive-fun-is-taking-over-hamiltons-central-city"
-    },
-    {
       "id": "school-camp-gastro",
       "date": "2026-11-27",
       "until": "2026-12-11",
@@ -419,10 +385,10 @@
       ],
       "titleZh": "Garden Place 的 27 米圣诞树，今年可能是最后一次",
       "titleEn": "Garden Place's 27 m Christmas tree may be in its last year",
-      "bodyZh": "支撑圣诞树的钢架已焊修多次，专家认为不能继续用。更换报价约 22 万到 25 万纽币，除非有人出资，今年就是最后一次。",
-      "bodyEn": "Experts say the repeatedly welded steel frame is no longer safe to reuse. A replacement is quoted at NZ$220,000 to NZ$250,000, so this may be its last year unless someone funds it.",
-      "takeZh": "想带孩子看的，这个圣诞别错过。",
-      "takeEn": "If the kids love it, do not leave it for next year.",
+      "bodyZh": "支撑圣诞树的钢架已焊修多次，专家认为不能继续用。更换报价约 22 万到 25 万纽币，除非有人出资，今年可能就是最后一次。今年的点灯节在 11 月 28 日（周六）下午 5 点到 9 点，地点花园广场（Garden Place）；当天下午 3 点到午夜，市议会的 Garden Place 停车场免费。",
+      "bodyEn": "Experts say the repeatedly welded steel frame is no longer safe to reuse. A replacement is quoted at NZ$220,000 to NZ$250,000, so this may be its last year unless someone funds it. This year's lighting festival is in Garden Place on Saturday 28 November, 5pm to 9pm, and the council's Garden Place Car Park is free from 3pm to midnight that day.",
+      "takeZh": "想带孩子看点灯的，3 点后开进 Garden Place 停车场，停车不花钱。",
+      "takeEn": "Taking the kids to the lighting? Park at Garden Place after 3pm for free.",
       "source": "RNZ",
       "url": "https://www.rnz.co.nz/news/community/2751782/hamilton-s-christmas-wish-someone-to-save-its-giant-christmas-tree",
       "home": 1
