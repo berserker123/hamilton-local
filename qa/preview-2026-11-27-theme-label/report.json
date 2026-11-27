@@ -1,0 +1,230 @@
+[
+ {
+  "name": "desktop",
+  "theme": "day",
+  "lang": "zh",
+  "cordRight": 1404,
+  "cordLeft": 1356,
+  "vw": 1440,
+  "label": "换个风格",
+  "aria": "切换白天/黑夜模式",
+  "right": 1267,
+  "width": 103,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "night",
+   "换个风格"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "day",
+  "lang": "en",
+  "cordRight": 1404,
+  "cordLeft": 1356,
+  "vw": 1440,
+  "label": "Switch style",
+  "aria": "Switch between day and night mode",
+  "right": 1259,
+  "width": 124,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "night",
+   "Switch style"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "night",
+  "lang": "zh",
+  "cordRight": 1404,
+  "cordLeft": 1356,
+  "vw": 1440,
+  "label": "换个风格",
+  "aria": "切换白天/黑夜模式",
+  "right": 1267,
+  "width": 103,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "day",
+   "换个风格"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "desktop",
+  "theme": "night",
+  "lang": "en",
+  "cordRight": 1404,
+  "cordLeft": 1356,
+  "vw": 1440,
+  "label": "Switch style",
+  "aria": "Switch between day and night mode",
+  "right": 1259,
+  "width": 124,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "day",
+   "Switch style"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "day",
+  "lang": "zh",
+  "cordRight": 378,
+  "cordLeft": 330,
+  "vw": 390,
+  "label": "换个风格",
+  "aria": "切换白天/黑夜模式",
+  "right": 273,
+  "width": 81,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "night",
+   "换个风格"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "day",
+  "lang": "en",
+  "cordRight": 387,
+  "cordLeft": 339,
+  "vw": 390,
+  "label": "Switch style",
+  "aria": "Switch between day and night mode",
+  "right": 289,
+  "width": 96,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "night",
+   "Switch style"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "night",
+  "lang": "zh",
+  "cordRight": 378,
+  "cordLeft": 330,
+  "vw": 390,
+  "label": "换个风格",
+  "aria": "切换白天/黑夜模式",
+  "right": 273,
+  "width": 81,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "day",
+   "换个风格"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "mobile",
+  "theme": "night",
+  "lang": "en",
+  "cordRight": 387,
+  "cordLeft": 339,
+  "vw": 390,
+  "label": "Switch style",
+  "aria": "Switch between day and night mode",
+  "right": 289,
+  "width": 96,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "day",
+   "Switch style"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "small",
+  "theme": "day",
+  "lang": "zh",
+  "cordRight": 352,
+  "cordLeft": 304,
+  "vw": 360,
+  "label": "换个风格",
+  "aria": "切换白天/黑夜模式",
+  "right": 247,
+  "width": 81,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "night",
+   "换个风格"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "small",
+  "theme": "day",
+  "lang": "en",
+  "cordRight": 387,
+  "cordLeft": 339,
+  "vw": 360,
+  "label": "Switch style",
+  "aria": "Switch between day and night mode",
+  "right": 289,
+  "width": 96,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "night",
+   "Switch style"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "small",
+  "theme": "night",
+  "lang": "zh",
+  "cordRight": 352,
+  "cordLeft": 304,
+  "vw": 360,
+  "label": "换个风格",
+  "aria": "切换白天/黑夜模式",
+  "right": 247,
+  "width": 81,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "day",
+   "换个风格"
+  ],
+  "errors": 0
+ },
+ {
+  "name": "small",
+  "theme": "night",
+  "lang": "en",
+  "cordRight": 387,
+  "cordLeft": 339,
+  "vw": 360,
+  "label": "Switch style",
+  "aria": "Switch between day and night mode",
+  "right": 289,
+  "width": 96,
+  "overflowX": false,
+  "overlapsLogo": false,
+  "afterClick": [
+   "day",
+   "Switch style"
+  ],
+  "errors": 0
+ }
+]

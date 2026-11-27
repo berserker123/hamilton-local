@@ -46,7 +46,7 @@ Every section sub-tab bar uses one full-width rounded track. On a desktop the it
 
 ## Header
 
-The theme control reads 换个风格, with the sun or moon icon before the words, and matches the language pill. The language pill stays beside it. On phone widths both pills get smaller together so the logo and name still fit.
+The theme control reads 换个风格 in Chinese and Switch style in English (Frank, 2026-11-27), with the sun or moon icon before the words, and matches the language pill. The language pill stays beside it. On phone widths both pills get smaller together so the logo and name still fit.
 
 ## Homepage gallery
 
