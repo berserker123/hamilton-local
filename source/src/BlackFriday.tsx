@@ -55,7 +55,7 @@ function Gta6Kit({ t }: { t: T }) {
         <span>{t(`其中 ${summary.goodCount} 项为真优惠`, `${summary.goodCount} rated Good deal`)}</span>
       </div>
     </div>
-    <p className="bf-kit-lede">{t('手柄、电视、固态硬盘之外，再补上网络、零食、充电座、耳机和氛围灯。每一项都用同一套评级，价格取自新西兰商家页面。', 'Beyond the controller, TV and SSD: network, snacks, a charging dock, a headset and backlighting. Every pick is rated the same way, with prices from NZ retailer pages.')}</p>
+    <p className="bf-kit-lede">{t('手柄、电视、固态硬盘之外，再补上网络、零食、充电座和氛围灯。每一项都用同一套评级，价格取自新西兰商家页面。', 'Beyond the controller, TV and SSD: network, snacks, a charging dock and backlighting. Every pick is rated the same way, with prices from NZ retailer pages.')}</p>
     <div className="bf-kit-grid">{KIT_SLOTS.map(slot => {
       const { pick, alternatives } = slot, discount = realDiscount(pick);
       return <article className={'bf-kit-card' + (alternatives.length ? ' bf-kit-card-wide' : '')} key={slot.id} data-kit-slot={slot.id}>
