@@ -5,9 +5,9 @@ const routes=()=>import('../src/site-routes.mjs');
 
 test('every current section and tab round-trips through a canonical trailing-slash URL',async()=>{
   const {PAGES,readRoute,href,legacyHashPath}=await routes();
-  const tabs={tools:['bins','urgent','bus','pay','checklist','gst','units','seasonal','other'],living:['grocers','dining','places','upick','stays','blackfriday'],weekend:['picks','markets'],kids:['map','places','parties'],services:['home','trades','daily','pets','advisors']};
+  const tabs={tools:['bins','lookup','urgent','bus','pay','checklist','gst','units','seasonal','other'],living:['grocers','dining','places','upick','stays','blackfriday'],weekend:['picks','markets'],kids:['map','places','parties'],services:['home','trades','daily','pets','advisors']};
   const sectionPages=PAGES.filter(p=>!p.path.startsWith('/talk/'));
-  assert.equal(sectionPages.length,33);
+  assert.equal(sectionPages.length,34);
   assert.ok(!PAGES.some(p=>p.path.startsWith('/news/')));
   assert.deepEqual(readRoute('/news/'),{route:'talk',tab:'',q:'',at:''});
   assert.deepEqual(readRoute('/news/old-story/'),{route:'talk',tab:'',q:'',at:''});

@@ -28,7 +28,7 @@ test('home and top navigation put tools first; pet guide remains reachable',()=>
 test('toolbox splits buses and other tools into their own tabs',()=>{
   const {TOOL_TABS}=load();
   assert.deepEqual(TOOL_TABS,[
-    ['bins','垃圾分类与收运','Rubbish & recycling'],['urgent','急诊信息','Urgent care'],['bus','市区公交','City buses'],
+    ['bins','垃圾分类与收运','Rubbish & recycling'],['lookup','一键查','Address lookup'],['urgent','急诊信息','Urgent care'],['bus','市区公交','City buses'],
     ['pay','税后收入','Pay calculator'],['checklist','新移民清单','Arrival checklist'],
     ['gst','GST计算','GST calculator'],['units','单位换算','Unit converter'],
     ['seasonal','季节提醒','Seasonal'],['other','其他工具','Other tools'],

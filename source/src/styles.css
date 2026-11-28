@@ -5125,3 +5125,37 @@ html body .ia-root .v25g-shortcut h3:last-child { grid-row: 1 / span 2; align-se
 .hl-food-dice-result { display: flex; flex-direction: column; gap: 8px; max-width: 640px; }
 /* The English theme label "Switch style" is wider than the Chinese one: tighten the header pills (type stays 12px) and drop the globe icon on narrow phones so the cord stays on screen. */
 @media (max-width: 419px) { html[lang^="en"] body .ia-root .sb-header .sb-header-actions { gap: 3px; } html[lang^="en"] body .ia-root .sb-header .sb-language { gap: 3px; padding: 0 6px; } html[lang^="en"] body .ia-root .sb-header .sb-language[data-testid="lang"] svg { display: none; } }
+
+/* 一键查 (address lookup). Colours use theme tokens so day and night both work. */
+.hl-lookup .v25g-calculator { position: relative; }
+.hl-lookup-label { display: block; margin-bottom: 9px; font-size: 13px; color: var(--hl-muted); }
+.hl-lookup-field { position: relative; }
+.hl-lookup-field svg { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--hl-muted); pointer-events: none; }
+.hl-lookup-field input { width: 100%; min-width: 0; min-height: 50px; padding: 12px 14px 12px 42px; background: var(--hl-surface); color: var(--hl-ink); border: 1px solid var(--hl-control); border-radius: 9px; font: 400 16px/1.5 var(--sans); }
+.hl-lookup-field input::placeholder { color: var(--hl-muted); opacity: .8; }
+.hl-lookup-field input:focus-visible { outline: 2px solid var(--hl-accent); outline-offset: 2px; }
+.hl-lookup-options { list-style: none; margin: 6px 0 0; padding: 6px; max-height: 320px; overflow-y: auto; background: var(--hl-surface); border: 1px solid var(--hl-line); border-radius: 9px; }
+.hl-lookup-options li { padding: 10px 12px; border-radius: 6px; font-size: 15px; line-height: 1.5; color: var(--hl-ink); cursor: pointer; overflow-wrap: anywhere; }
+.hl-lookup-options li.is-active { background: var(--hl-accent-soft); }
+.hl-lookup-results { margin-top: 24px; }
+.hl-lookup-picked { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 16px; color: var(--hl-ink); font-size: 16px; }
+.hl-lookup-picked svg { width: 18px; height: 18px; color: var(--hl-accent); }
+.hl-lookup-picked span { color: var(--hl-muted); font-size: 14px; }
+.hl-lookup-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.hl-lookup-card { display: flex; flex-direction: column; min-width: 0; padding: 24px; }
+.hl-lookup-card-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 12px; }
+.hl-lookup-card-top svg { width: 20px; height: 20px; color: var(--hl-accent); align-self: center; }
+.hl-lookup-card-top h3 { margin: 0; }
+.hl-lookup-card-top .ia-secondary-name { margin: 0; flex-basis: 100%; padding-left: 30px; }
+.hl-lookup-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.hl-lookup-list li { display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid var(--hl-line); }
+.hl-lookup-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.hl-lookup-list strong { font-weight: 500; font-size: 15px; color: var(--hl-ink); overflow-wrap: anywhere; }
+.hl-lookup-list span { font-size: 13px; line-height: 1.6; color: var(--hl-muted); }
+.hl-lookup-list a { font-size: 14px; color: var(--hl-accent); text-decoration: underline; text-underline-offset: 3px; }
+.hl-lookup-card > p { color: var(--hl-muted); }
+.hl-lookup-more { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; min-height: 44px; font-size: 14px; color: var(--hl-accent); text-decoration: underline; text-underline-offset: 3px; }
+.hl-lookup-more svg { width: 15px; height: 15px; }
+.hl-lookup-sources > span { margin-bottom: 0; line-height: 1.7; }
+@media (max-width: 960px) { .hl-lookup-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .hl-lookup-card { padding: 20px 16px; } }

@@ -184,6 +184,7 @@ export function resolveSearch(query: string): string {
     return href('living', 'blackfriday', q);
   }
 
+  if (/一键查|地址查询|查地址|address\s*lookup/i.test(q)) return href('tools', 'lookup');
   if (/活动日历|events?\s*calendar|周末活动|what'?s\s*on/i.test(q)) return href('weekend', 'picks');
   if (/周末集市|集市|farmers?\s*market|weekend\s*market/i.test(q)) return href('weekend', 'markets');
   if (/派对|party|parties/i.test(q)) return href('kids', 'parties');

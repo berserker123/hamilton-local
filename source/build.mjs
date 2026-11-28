@@ -17,6 +17,10 @@ for (const name of ['favicon-32.png','apple-touch-icon.png','icon-512.png','icon
 fs.cpSync('public/brand',path.join(dist,'brand'),{recursive:true});
 for(const name of ['robots.txt','og-image.jpg','manifest.webmanifest','sw.js'])fs.copyFileSync(path.join('public',name),path.join(dist,name));
 fs.writeFileSync(path.join(dist,'.nojekyll'),'');
+// 一键查 address data, fetched only when the lookup tool opens.
+const lookupFiles=fs.readdirSync('public/lookup').filter(name=>name.endsWith('.json')).map(name=>'lookup/'+name);
+fs.mkdirSync(path.join(dist,'lookup'),{recursive:true});
+for(const name of lookupFiles)fs.copyFileSync(path.join('public',name),path.join(dist,name));
 await build({entryPoints:['src/main.tsx'],bundle:true,minify:true,format:'iife',loader:{'.css':'empty'},define:{'process.env.NODE_ENV':'"production"'},outfile:path.join(dist,'app.js')});
 execFileSync(process.execPath,['node_modules/tailwindcss/lib/cli.js','-c','tailwind.config.js','-i','src/styles.css','-o',path.join(dist,'app.css'),'--minify'],{stdio:'inherit'});
 fs.writeFileSync(path.join(dist,'app.css'),fs.readFileSync('node_modules/leaflet/dist/leaflet.css','utf8')+'\n'+fs.readFileSync(path.join(dist,'app.css'),'utf8')+'\n'+fs.readFileSync('src/page-experience.css','utf8'));
@@ -26,7 +30,7 @@ fs.cpSync('public/licenses',path.join(dist,'licenses'),{recursive:true});
 fs.copyFileSync('node_modules/leaflet/LICENSE',path.join(dist,'licenses/Leaflet.txt'));
 const template=fs.readFileSync('index.html','utf8');
 const repoRoot=path.resolve(root,'..');
-const generated=['app.js','manifest.webmanifest','sw.js','icon-192.png','icon-512-maskable.png','app.css','404.html','sitemap.xml','feed.xml',...PAGES.map(page=>page.path.slice(1)+'index.html')];
+const generated=['app.js','manifest.webmanifest','sw.js','icon-192.png','icon-512-maskable.png','app.css','404.html','sitemap.xml','feed.xml',...lookupFiles,...PAGES.map(page=>page.path.slice(1)+'index.html')];
 for(const page of PAGES){
   const file=path.join(dist,page.path.slice(1),'index.html');
   fs.mkdirSync(path.dirname(file),{recursive:true});

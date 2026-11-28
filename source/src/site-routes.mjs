@@ -3,13 +3,13 @@ import riverTalkData from './data/river-talk.json' with { type: 'json' };
 import { talkHref, talkIdFromPath } from './river-talk.mjs';
 export const SECTION_ORDER = ['home','tools','living','weekend','kids','services'];
 export const TOOL_TABS = [
-  ['bins','垃圾分类与收运','Rubbish & recycling'], ['urgent','急诊信息','Urgent care'], ['bus','市区公交','City buses'],
+  ['bins','垃圾分类与收运','Rubbish & recycling'], ['lookup','一键查','Address lookup'], ['urgent','急诊信息','Urgent care'], ['bus','市区公交','City buses'],
   ['pay','税后收入','Pay calculator'], ['checklist','新移民清单','Arrival checklist'],
   ['gst','GST计算','GST calculator'], ['units','单位换算','Unit converter'],
   ['seasonal','季节提醒','Seasonal'], ['other','其他工具','Other tools'],
 ];
 const toolAnchors = {
-  'tool-bins':'bins', 'urgent-clinics':'urgent', 'tool-transport':'bus', 'tool-pay':'pay', 'tool-checklist':'checklist', 'tool-beds':'units',
+  'tool-bins':'bins', 'tool-lookup':'lookup', 'urgent-clinics':'urgent', 'tool-transport':'bus', 'tool-pay':'pay', 'tool-checklist':'checklist', 'tool-beds':'units',
   'tool-gst':'gst', 'tool-units':'units', 'tool-fishing':'seasonal', 'tool-pollen-flu':'seasonal',
   'tool-school-terms':'other', 'tool-find-school':'other',
   'tool-weather':'other', 'tool-outages':'other', 'tool-government':'other', 'tool-fuel':'other',
