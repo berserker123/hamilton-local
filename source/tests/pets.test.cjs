@@ -21,7 +21,8 @@ test('pet guide lists shops, vets and off-leash areas, boarding, grooming and da
   assert.deepEqual(order, [...order].sort((a, b) => a - b));
   for (const name of ['Pet Essentials Hamilton', 'Waikato After Hours Veterinary Hospital', 'Minogue Park dog exercise area', '围栏免牵引绳区域']) assert.ok(html.includes(name), name);
   for (const id of ['newstead-boarding', 'metro-boarding', 'hounds-grooming', 'metro-te-rapa-grooming', 'paws-daycare', 'newstead-daycare']) assert.ok(html.includes('data-directory-id="' + id + '"'), id);
-  assert.doesNotMatch(html, /League of Pups|放绳区/);
+  assert.doesNotMatch(html, /放绳区/);
+  for (const id of ['league-boarding', 'league-daycare']) assert.ok(html.includes('data-directory-id="' + id + '"'), id);
   assert.ok(html.includes('hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas'));
   assert.doesNotMatch(html, /招商中|商家入驻/);
   const pets = require('../src/pets-v25.json');

@@ -66,12 +66,14 @@ export function Stays({ t }: { t: T }) {
 const PET_ORDER = ['shops', 'vets', 'dog-parks', 'boarding', 'grooming', 'daycare'];
 export function Pets({ t }: { t: T }) {
   const groups = PET_ORDER.map(id => PETS.find(group => group.id === id)).filter(Boolean);
+  // Number captions across groups so the last card of one group and the first of the next never repeat.
+  const offsets = groups.map((_, i) => groups.slice(0, i).reduce((sum, group) => sum + group.items.length, 0));
   return <section id="pets" className="v25-directory">
     <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、兽医、市政免牵引绳区域、寄养、洗护美容与狗狗日托。预约前请先致电商家确认。" introEn="Shops, vets, council off-leash areas, boarding, grooming and dog daycare. Call the business to confirm before booking." t={t} />
     <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{groups.map(group => <a key={group.id} href={'/services/pets/?at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
-    {groups.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
+    {groups.map((group, groupIndex) => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
       <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
-      <div className="hl-spot-grid" data-accent="services">{group.items.map((item, index) => <DirectoryCard key={item.id} item={item} kind="pet" t={t} placeholderIndex={index} />)}</div>
+      <div className="hl-spot-grid" data-accent="services">{group.items.map((item, index) => <DirectoryCard key={item.id} item={item} kind="pet" t={t} placeholderIndex={offsets[groupIndex] + index} />)}</div>
       {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政免牵引绳区域名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
     </section>)}
   </section>;
