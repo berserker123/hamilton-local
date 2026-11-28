@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, BedDouble, Cherry, Info, MapPin, PawPrint, X } from 'lucide-react';
-import { FeedbackLink, useFeedback } from './Feedback';
+import { FeedbackLink } from './Feedback';
 import STAYS from './stays-v25.json';
 import PETS from './pets-v25.json';
 import UPICK from './upick-v25.json';
 import { CardKind } from './card-style';
 import { PhotoFlip } from './PhotoFlip';
 import { PhotoPlaceholderCaption } from './PhotoPlaceholderCaption';
-import { servicePlaceholderLine } from './service-placeholders';
 
 import { BilingualTitle, DirectoryHeading } from './BilingualTitle';
 
@@ -65,31 +64,16 @@ export function Stays({ t }: { t: T }) {
   return <section id="stays" className="v25-directory"><div className="v25-directory-heading"><BilingualTitle as="h2" zh="精选住宿" en="Stays" t={t} /><p>{t('按区域找一处落脚点，房型、价格与空房请查看住宿页面。', 'Find a place to stay by area. Check the property page for rooms, prices and availability.')}</p></div><div className="hl-spot-grid" data-accent="living">{STAYS.map((item, index) => <DirectoryCard key={item.id} item={item} label={item.type} kind="stay" t={t} placeholderIndex={index} onDetails={() => setSelected(item)} />)}</div>{selected && <StayDetail item={selected} t={t} close={() => setSelected(null)} />}</section>;
 }
 const PET_ORDER = ['shops', 'vets', 'dog-parks', 'boarding', 'grooming', 'daycare'];
-const PET_PLACEHOLDERS = new Set(['boarding', 'grooming', 'daycare']);
 export function Pets({ t }: { t: T }) {
-  const { open } = useFeedback();
   const groups = PET_ORDER.map(id => PETS.find(group => group.id === id)).filter(Boolean);
-  const listed = groups.filter(group => !PET_PLACEHOLDERS.has(group.id));
-  const waiting = groups.filter(group => PET_PLACEHOLDERS.has(group.id));
   return <section id="pets" className="v25-directory">
-    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、兽医和市政免牵引绳区域已列出。寄养、洗护美容与狗狗日托仍在招募商家。" introEn="Shops, vets and council off-leash areas are listed. Boarding, grooming and dog daycare are open to merchants." t={t} />
+    <DirectoryHeading eyebrow="PETS" zh={PETS_NAME.zh} en={PETS_NAME.en} introZh="用品、兽医、市政免牵引绳区域、寄养、洗护美容与狗狗日托。预约前请先致电商家确认。" introEn="Shops, vets, council off-leash areas, boarding, grooming and dog daycare. Call the business to confirm before booking." t={t} />
     <nav className="v25-subnav" aria-label={t('宠物类别', 'Pet categories')}>{groups.map(group => <a key={group.id} href={'/services/pets/?at=pet-' + group.id}>{t(group.zh, group.en)}</a>)}</nav>
-    {listed.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
+    {groups.map(group => <section key={group.id} id={'pet-' + group.id} className="v25-directory-group" data-pet-category={group.id}>
       <BilingualTitle as="h2" zh={group.zh} en={group.en} t={t} />
       <div className="hl-spot-grid" data-accent="services">{group.items.map((item, index) => <DirectoryCard key={item.id} item={item} kind="pet" t={t} placeholderIndex={index} />)}</div>
       {group.id === 'dog-parks' && <p className="ia-section-note">{t('市政免牵引绳区域名录', 'Council off-leash directory')} · <a href="https://hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas" target="_blank" rel="noopener noreferrer">Hamilton City Council · Dog exercise areas</a></p>}
     </section>)}
-    <div className="v25k-pet-grid">{waiting.map((group, index) => {
-      const chinese = t('中', 'en') !== 'en';
-      const line = servicePlaceholderLine('pets', index);
-      return <article key={group.id} id={'pet-' + group.id} className="sb-card v25k-pet-card" data-pet-category={group.id}>
-        <div className="ia-card-top"><PawPrint className="v25k-pet-icon" aria-hidden="true" /><span className="sb-tag">{t('招商中', 'Open for listings')}</span></div>
-        <h3 lang="zh-CN">{group.zh}</h3>
-        <p className="v25k-pet-english" lang="en-NZ">{group.en}</p>
-        <p className="v25k-pet-status" lang={chinese ? 'zh-CN' : 'en-NZ'}>{t(line.zh, line.en)}</p>
-        <button type="button" className="v25k-pet-enquiry" aria-haspopup="dialog" onClick={e => open('宠物指南-' + group.zh, e.currentTarget, 'business', '宠物指南-' + group.zh + '：商家入驻 / 广告合作')}>{t('商家入驻 / 广告合作', 'List your business / Enquiries')}<ArrowUpRight aria-hidden="true" /></button>
-      </article>;
-    })}</div>
   </section>;
 }
 export function UPick({ t }: { t: T }) {

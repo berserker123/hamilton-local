@@ -14,23 +14,21 @@ function renderPets(lang) {
   return { html: renderToStaticMarkup(React.createElement(m.exports.default, { lang })), result };
 }
 
-test('pet guide lists shops, vets and off-leash areas, then merchant placeholders', () => {
+test('pet guide lists shops, vets and off-leash areas, boarding, grooming and daycare', () => {
   const { html, result } = renderPets('zh');
   for (const title of ['宠物用品', '寄养与猫舍', '洗护美容', '兽医与夜间急诊', '免牵引绳区域', '狗狗日托']) assert.ok(html.includes(title), title);
   const order = ['shops', 'vets', 'dog-parks', 'boarding', 'grooming', 'daycare'].map(id => html.indexOf('data-pet-category="' + id + '"'));
   assert.deepEqual(order, [...order].sort((a, b) => a - b));
   for (const name of ['Pet Essentials Hamilton', 'Waikato After Hours Veterinary Hospital', 'Minogue Park dog exercise area', '围栏免牵引绳区域']) assert.ok(html.includes(name), name);
-  assert.doesNotMatch(html, /Newstead Lodge|data-directory-id="newstead-boarding"|放绳区/);
+  for (const id of ['newstead-boarding', 'metro-boarding', 'hounds-grooming', 'metro-te-rapa-grooming', 'paws-daycare', 'newstead-daycare']) assert.ok(html.includes('data-directory-id="' + id + '"'), id);
+  assert.doesNotMatch(html, /League of Pups|放绳区/);
   assert.ok(html.includes('hamilton.govt.nz/dogs-and-other-animals/dogs/dog-exercise-areas'));
-  assert.equal((html.match(/招商中/g) || []).length, 3);
-  for (const line of ['空着也是空着，不如放你的店', '这个位置空着，老板急得睡不着', '虚位以待，先到先得']) {
-    assert.ok(html.includes(line), line);
-  }
+  assert.doesNotMatch(html, /招商中|商家入驻/);
+  const pets = require('../src/pets-v25.json');
+  for (const id of ['boarding', 'grooming', 'daycare']) for (const item of pets.find(g => g.id === id).items) { assert.ok(item.phone, item.id); assert.match(item.verifiedAt, /^\d{4}-\d{2}-\d{2}$/, item.id); assert.ok(html.includes(item.phone), item.phone); }
   assert.ok(!Object.keys(result.metafile.inputs).some(file => file.includes('_hidden')));
   const english = renderPets('en').html;
   assert.ok(english.includes('Off-leash areas'));
   assert.ok(english.includes('Pet Essentials Hamilton'));
-  assert.equal((english.match(/Open for listings/g) || []).length, 3);
-  assert.ok(english.includes('Your name here, first come first served'));
-  assert.ok(english.includes('List your business / Enquiries'));
+  assert.doesNotMatch(english, /Open for listings|List your business/);
 });
