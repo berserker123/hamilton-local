@@ -16,7 +16,7 @@ revised: 2026-11-26
   - 移民中介：Immigration Advisers Authority 的持牌顾问名单（持有执业证的律师不需要移民顾问执照，按律师名单核对）。
   - 金融服务：Financial Service Providers Register（FSPR）。
   - 律师：新西兰律师协会（NZ Law Society）的律师名单，须持有效执业证。
-  - 会计：新西兰没有强制的会计执照，查什么名单待定，见下。
+  - 会计：新西兰没有强制的会计执照，须在 Chartered Accountants Australia and New Zealand（CA ANZ）或 CPA Australia 的会员名单里查到。
 
   审核通过的条目由人工转成 Place JSON，先做预览，负责人说「上线」后才发布。
 - **分类**：网站固定 4 个分类页、13 个小分类，商家只能从中选择：
@@ -40,7 +40,6 @@ revised: 2026-11-26
 ## 待定
 
 1. **「其他服务」攒到多少家才加新小分类**：负责人看到时再定，暂不设固定数字。
-2. **会计查什么名单**：新西兰没有强制的会计执照，是否要求是 CA ANZ 或 CPA Australia 会员，还是只按一般商家核实。
 
 ## Considered Options
 
@@ -62,4 +61,5 @@ revised: 2026-11-26
 - 2026-11-28：「其他服务」定为先不上线，攒够同类再由负责人决定是否加小分类（Frank）。
 - 2026-11-28：只填服务区域的商家，一个独立 Source 上名称和电话都对上即算核实（Frank）。
 - 2026-11-28：专业顾问须在对应官方注册名单里查到才上线（Frank）；会计查什么名单待定。
+- 2026-11-28：会计须是 CA ANZ 或 CPA Australia 会员才上线（Frank）。
 - 2026-11-28：宠物 3 类不招商、不进表单，由我们在网上找现有商家收录（Frank）。
